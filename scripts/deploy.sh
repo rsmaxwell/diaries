@@ -13,8 +13,9 @@ ls -al
 cd ${PROJECT_DIR}
 
 pwd
-ls -al
+ls -al 
 
-gradlew publish \
+
+${PROJECT_DIR}/gradlew publish \
     -PrepositoryName=${REPOSITORY} \
     -PprojectVersion=${VERSION}
