@@ -6,5 +6,7 @@ plugins {
 }
 
 rootProject.name = 'diaries'
+include('diaries-common')
 include('diaries-request')
 include('diaries-response')
+include('diaries-database-tools')
