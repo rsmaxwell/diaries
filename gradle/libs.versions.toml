@@ -62,3 +62,9 @@ jjwt-api = "io.jsonwebtoken:jjwt-api:0.12.6"
 jjwt-impl = "io.jsonwebtoken:jjwt-impl:0.12.6"
 
 jjwt-jackson = "io.jsonwebtoken:jjwt-jackson:0.12.6"
+
+jakarta-persistence-api = "jakarta.persistence:jakarta.persistence-api:3.2.0-B02"
+
+jakarta-jakartaee-api = "jakarta.platform:jakarta.jakartaee-api:11.0.0-M4"
+
+hibernate-entitymanager = "org.hibernate.orm:hibernate-entitymanager:6.0.0.Alpha7"
