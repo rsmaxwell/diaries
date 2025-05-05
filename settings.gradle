@@ -9,3 +9,6 @@ rootProject.name = 'diaries'
 include('diaries-common')
 include('diaries-request')
 include('diaries-response')
+
+include ':mqtt-rpc-response'
+include ':mqtt-rpc-common'
