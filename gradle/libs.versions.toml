@@ -5,7 +5,7 @@
 
 guava = "32.1.2-jre"
 
-junit-jupiter = "5.11.3"
+junit-jupiter = "5.13.0"
 
 [libraries]
 
@@ -17,11 +17,11 @@ guava = { module = "com.google.guava:guava", version.ref = "guava" }
 
 h2 = "com.h2database:h2:2.3.230"
 
-hibernate-core = "org.hibernate:hibernate-core:7.0.0.Beta3"
+hibernate-core = "org.hibernate:hibernate-core:7.0.0.Final"
 
 hibernate-jpamodelgen = "org.hibernate.orm:hibernate-jpamodelgen:7.0.0.Beta1"
 
-jackson-databind = "com.fasterxml.jackson.core:jackson-databind:2.18.2"
+jackson-databind = "com.fasterxml.jackson.core:jackson-databind:2.19.0"
 
 jakarta-annotation-api = "jakarta.annotation:jakarta.annotation-api:3.0.0"
 
@@ -31,19 +31,20 @@ junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher
 
 log4j-api = "org.apache.logging.log4j:log4j-api:3.0.0-beta2"
 
-log4j-core = "org.apache.logging.log4j:log4j-core:3.0.0-beta3"
+log4j-core = "org.apache.logging.log4j:log4j-core:3.0.0-beta2"
+##                                                3.0.0-beta3"
 
-lombok = "org.projectlombok:lombok:1.18.36"
+lombok = "org.projectlombok:lombok:1.18.38"
 
-mqtt-rpc-common = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-common:0.0.1.8"
+mqtt-rpc-common = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-common:0.0.1.10"
 
-mqtt-rpc-request = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-request:0.0.1.8"
+mqtt-rpc-request = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-request:0.0.1.10"
 
-mqtt-rpc-response = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-response:0.0.1.8"
+mqtt-rpc-response = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-response:0.0.1.10"
 
 org-eclipse-paho-mqttv5-client = "org.eclipse.paho:org.eclipse.paho.mqttv5.client:1.2.5"
 
-postgresql = "org.postgresql:postgresql:42.7.4"
+postgresql = "org.postgresql:postgresql:42.7.6"
 
 spring-boot-starter-data-jpa = "org.springframework.boot:spring-boot-starter-data-jpa:3.3.2"
 
@@ -67,16 +68,16 @@ jjwt-jackson = "io.jsonwebtoken:jjwt-jackson:0.12.6"
 
 jakarta-persistence-api = "jakarta.persistence:jakarta.persistence-api:3.2.0-B02"
 
-jakarta-jakartaee-api = "jakarta.platform:jakarta.jakartaee-api:11.0.0-M4"
+jakarta-jakartaee-api = "jakarta.platform:jakarta.jakartaee-api:11.0.0-RC1"
 
 hibernate-entitymanager = "org.hibernate.orm:hibernate-entitymanager:6.0.0.Alpha7"
 
 chunk-templates = "org.apache.servicemix.bundles:org.apache.servicemix.bundles.chunk-templates:3.6.2_1"
 
-libphonenumber = "com.googlecode.libphonenumber:libphonenumber:8.13.51"
+libphonenumber = "com.googlecode.libphonenumber:libphonenumber:9.0.6"
 
-geocoder = "com.googlecode.libphonenumber:geocoder:2.245"
+geocoder = "com.googlecode.libphonenumber:geocoder:3.6"
 
-carrier = "com.googlecode.libphonenumber:carrier:1.235"
+carrier = "com.googlecode.libphonenumber:carrier:2.6"
 
 io = "io.jsonwebtoken:jjwt:0.12.6"
