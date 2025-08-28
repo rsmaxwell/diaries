@@ -12,6 +12,7 @@ junit-jupiter = "5.13.0"
 ##         ⬆ = "5.13.4"
 ##         ⬆ = "6.0.0-M1"
 ##         ⬆ = "6.0.0-M2"
+##         ⬆ = "6.0.0-RC1"
 
 [libraries]
 
@@ -35,7 +36,10 @@ hibernate-core = "org.hibernate:hibernate-core:7.0.0.Final"
 ##                                         ⬆ :7.0.7.Final"
 ##                                         ⬆ :7.0.8.Final"
 ##                                         ⬆ :7.0.9.Final"
+##                                         ⬆ :7.0.10.Final"
 ##                                         ⬆ :7.1.0.CR1"
+##                                         ⬆ :7.1.0.CR2"
+##                                         ⬆ :7.1.0.Final"
 
 hibernate-jpamodelgen = "org.hibernate.orm:hibernate-jpamodelgen:7.0.0.Beta1"
 
@@ -57,11 +61,11 @@ log4j-core = "org.apache.logging.log4j:log4j-core:3.0.0-beta2"
 
 lombok = "org.projectlombok:lombok:1.18.38"
 
-mqtt-rpc-common = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-common:0.0.1.11"
+mqtt-rpc-common = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-common:0.0.1.13"
 
-mqtt-rpc-request = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-request:0.0.1.11"
+mqtt-rpc-request = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-request:0.0.1.13"
 
-mqtt-rpc-response = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-response:0.0.1.11"
+mqtt-rpc-response = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-response:0.0.1.13"
 
 org-eclipse-paho-mqttv5-client = "org.eclipse.paho:org.eclipse.paho.mqttv5.client:1.2.5"
 
@@ -83,10 +87,16 @@ spring-boot-starter-data-jdbc = "org.springframework.boot:spring-boot-starter-da
 spring-boot-starter-jdbc = "org.springframework.boot:spring-boot-starter-jdbc:3.3.2"
 
 jjwt-api = "io.jsonwebtoken:jjwt-api:0.12.6"
+##                               ⬆ :0.12.7"
+##                               ⬆ :0.13.0"
 
 jjwt-impl = "io.jsonwebtoken:jjwt-impl:0.12.6"
+##                                 ⬆ :0.12.7"
+##                                 ⬆ :0.13.0"
 
 jjwt-jackson = "io.jsonwebtoken:jjwt-jackson:0.12.6"
+##                                       ⬆ :0.12.7"
+##                                       ⬆ :0.13.0"
 
 jakarta-persistence-api = "jakarta.persistence:jakarta.persistence-api:3.2.0-B02"
 
@@ -103,6 +113,7 @@ libphonenumber = "com.googlecode.libphonenumber:libphonenumber:9.0.6"
 ##                                                         ⬆ :9.0.9"
 ##                                                         ⬆ :9.0.10"
 ##                                                         ⬆ :9.0.11"
+##                                                         ⬆ :9.0.12"
 
 geocoder = "com.googlecode.libphonenumber:geocoder:3.6"
 ##                                             ⬆ :3.7"
@@ -110,6 +121,7 @@ geocoder = "com.googlecode.libphonenumber:geocoder:3.6"
 ##                                             ⬆ :3.9"
 ##                                             ⬆ :3.10"
 ##                                             ⬆ :3.11"
+##                                             ⬆ :3.12"
 
 carrier = "com.googlecode.libphonenumber:carrier:2.6"
 ##                                           ⬆ :2.7"
@@ -117,5 +129,6 @@ carrier = "com.googlecode.libphonenumber:carrier:2.6"
 ##                                           ⬆ :2.9"
 ##                                           ⬆ :2.10"
 ##                                           ⬆ :2.11"
+##                                           ⬆ :2.12"
 
 io = "io.jsonwebtoken:jjwt:0.12.6"
