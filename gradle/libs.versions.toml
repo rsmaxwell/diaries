@@ -13,6 +13,7 @@ junit-jupiter = "5.13.0"
 ##         ⬆ = "6.0.0-M1"
 ##         ⬆ = "6.0.0-M2"
 ##         ⬆ = "6.0.0-RC1"
+##         ⬆ = "6.0.0-RC2"
 
 [libraries]
 
@@ -47,6 +48,7 @@ jackson-databind = "com.fasterxml.jackson.core:jackson-databind:2.19.0"
 ##                                                          ⬆ :2.19.1"
 ##                                                          ⬆ :2.19.2"
 ##                                                          ⬆ :2.20.0-rc1"
+##                                                          ⬆ :2.20.0"
 
 jakarta-annotation-api = "jakarta.annotation:jakarta.annotation-api:3.0.0"
 
@@ -114,6 +116,7 @@ libphonenumber = "com.googlecode.libphonenumber:libphonenumber:9.0.6"
 ##                                                         ⬆ :9.0.10"
 ##                                                         ⬆ :9.0.11"
 ##                                                         ⬆ :9.0.12"
+##                                                         ⬆ :9.0.13"
 
 geocoder = "com.googlecode.libphonenumber:geocoder:3.6"
 ##                                             ⬆ :3.7"
@@ -122,6 +125,7 @@ geocoder = "com.googlecode.libphonenumber:geocoder:3.6"
 ##                                             ⬆ :3.10"
 ##                                             ⬆ :3.11"
 ##                                             ⬆ :3.12"
+##                                             ⬆ :3.13"
 
 carrier = "com.googlecode.libphonenumber:carrier:2.6"
 ##                                           ⬆ :2.7"
@@ -130,5 +134,8 @@ carrier = "com.googlecode.libphonenumber:carrier:2.6"
 ##                                           ⬆ :2.10"
 ##                                           ⬆ :2.11"
 ##                                           ⬆ :2.12"
+##                                           ⬆ :2.13"
 
 io = "io.jsonwebtoken:jjwt:0.12.6"
+
+metadata-extractor = "com.drewnoakes:metadata-extractor:2.18.0"
