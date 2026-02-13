@@ -3,11 +3,11 @@
 	url = ../diaries-common.git
 
 [submodule "diaries-request"]
-	path = diaries-request
+	path = diaries-requestor
 	url = ../diaries-request.git
 
 [submodule "diaries-response"]
-	path = diaries-response
+	path = diaries-responder
 	url = ../diaries-response.git
 	
 [submodule "diaries-client"]
