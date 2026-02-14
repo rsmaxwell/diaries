@@ -96,6 +96,8 @@ jackson-databind = "com.fasterxml.jackson.core:jackson-databind:2.19.0"
 
 jakarta-annotation-api = "jakarta.annotation:jakarta.annotation-api:3.0.0"
 
+jakarta-rs-api = "jakarta.ws.rs:jakarta.ws.rs-api:4.0.0"
+
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit-jupiter" }
 
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
