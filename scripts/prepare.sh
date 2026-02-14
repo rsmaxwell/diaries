@@ -54,8 +54,8 @@ export GIT_URL="${GIT_URL:-(none)}"
 
 tags='$VERSION,$BUILD_ID,$TIMESTAMP,$GIT_COMMIT,$GIT_BRANCH,$GIT_URL'
 
-ReplaceTags ${PROJECT_DIR}/diaries-request/src
-ReplaceTags ${PROJECT_DIR}/diaries-response/src
+ReplaceTags ${PROJECT_DIR}/diaries-requestor/src
+ReplaceTags ${PROJECT_DIR}/diaries-responder/src
 
 
 

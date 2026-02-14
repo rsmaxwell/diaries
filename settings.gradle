@@ -7,8 +7,6 @@ plugins {
 
 rootProject.name = 'diaries'
 include('diaries-common')
-include('diaries-request')
-include('diaries-response')
+include('diaries-requestor')
+include('diaries-responder')
 
-include ':mqtt-rpc-response'
-include ':mqtt-rpc-common'
