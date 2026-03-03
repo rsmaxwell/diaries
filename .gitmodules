@@ -13,3 +13,8 @@
 [submodule "diaries-client"]
 	path = diaries-client
 	url = ../diaries-client.git
+
+[submodule "diaries-stack"]
+	path = diaries-stack
+	url = git@github.com:rsmaxwell/diaries-stack.git
+	branch = main
