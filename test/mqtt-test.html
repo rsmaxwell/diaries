@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>MQTT.js WebSocket Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      max-width: 900px;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, textarea, button {
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 0.25rem;
+      padding: 0.5rem;
+      font: inherit;
+    }
+    button {
+      width: auto;
+      margin-right: 0.5rem;
+      cursor: pointer;
+    }
+    #log {
+      height: 260px;
+      font-family: Consolas, monospace;
+    }
+    .row {
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>MQTT.js WebSocket Test</h1>
+
+  <label for="brokerUrl">Broker URL</label>
+  <input id="brokerUrl" value="wss://pluto.rsmaxwell.co.uk/mosquitto/" />
+
+  <label for="username">Username</label>
+  <input id="username" value="richard" />
+
+  <label for="password">Password</label>
+  <input id="password" type="password" />
+
+  <label for="topic">Topic</label>
+  <input id="topic" value="diaries/test" />
+
+  <label for="message">Message</label>
+  <input id="message" value="Hello from MQTT.js" />
+
+  <div class="row">
+    <button id="connectBtn">Connect</button>
+    <button id="disconnectBtn">Disconnect</button>
+    <button id="subscribeBtn">Subscribe</button>
+    <button id="publishBtn">Publish</button>
+  </div>
+
+  <label for="log">Log</label>
+  <textarea id="log" readonly></textarea>
+
+  <script>
+    let client = null;
+
+    function log(message) {
+      const logBox = document.getElementById("log");
+      const timestamp = new Date().toISOString();
+      logBox.value += `[${timestamp}] ${message}\n`;
+      logBox.scrollTop = logBox.scrollHeight;
+    }
+
+    function getValues() {
+      return {
+        brokerUrl: document.getElementById("brokerUrl").value.trim(),
+        username: document.getElementById("username").value.trim(),
+        password: document.getElementById("password").value,
+        topic: document.getElementById("topic").value.trim(),
+        message: document.getElementById("message").value
+      };
+    }
+
+    document.getElementById("connectBtn").addEventListener("click", () => {
+      const { brokerUrl, username, password } = getValues();
+
+      if (client) {
+        log("Already connected or connecting.");
+        return;
+      }
+
+      log(`Connecting to ${brokerUrl} ...`);
+
+      client = mqtt.connect(brokerUrl, {
+        username,
+        password,
+        protocolVersion: 4,
+        clean: true,
+        connectTimeout: 10000,
+        reconnectPeriod: 0
+      });
+
+      client.on("connect", (connack) => {
+        log(`Connected. Session present: ${connack.sessionPresent}`);
+      });
+
+      client.on("reconnect", () => {
+        log("Reconnecting...");
+      });
+
+      client.on("close", () => {
+        log("Connection closed.");
+        client = null;
+      });
+
+      client.on("error", (err) => {
+        log(`Error: ${err.message}`);
+      });
+
+      client.on("message", (topic, payload) => {
+        log(`Received on ${topic}: ${payload.toString()}`);
+      });
+    });
+
+    document.getElementById("disconnectBtn").addEventListener("click", () => {
+      if (!client) {
+        log("Not connected.");
+        return;
+      }
+      client.end(true);
+      log("Disconnect requested.");
+    });
+
+    document.getElementById("subscribeBtn").addEventListener("click", () => {
+      const { topic } = getValues();
+
+      if (!client) {
+        log("Not connected.");
+        return;
+      }
+
+      client.subscribe(topic, (err, granted) => {
+        if (err) {
+          log(`Subscribe failed: ${err.message}`);
+          return;
+        }
+        log(`Subscribed: ${JSON.stringify(granted)}`);
+      });
+    });
+
+    document.getElementById("publishBtn").addEventListener("click", () => {
+      const { topic, message } = getValues();
+
+      if (!client) {
+        log("Not connected.");
+        return;
+      }
+
+      client.publish(topic, message, {}, (err) => {
+        if (err) {
+          log(`Publish failed: ${err.message}`);
+          return;
+        }
+        log(`Published to ${topic}: ${message}`);
+      });
+    });
+  </script>
+</body>
+</html>
