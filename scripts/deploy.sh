@@ -11,12 +11,11 @@ BUILD_DIR=${PROJECT_DIR}/build
 cd ${PROJECT_DIR}
 
 
-
+set -x
 echo "GRADLE_USER_HOME=$GRADLE_USER_HOME"
-ls -al "$GRADLE_USER_HOME" || true
+ls -al "$GRADLE_USER_HOME"
+set +x
 
-ls -al /home/gradle/.gradle
-sed -n '1,20p' /home/gradle/.gradle/gradle.properties
 
 ${PROJECT_DIR}/gradlew publish --info --stacktrace \
     -PrepositoryName=${REPOSITORY} \
