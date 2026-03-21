@@ -113,7 +113,7 @@ export REPOSITORY REPOSITORYID BUILD_ID VERSION TIMESTAMP GIT_COMMIT GIT_BRANCH 
 modules=(
   diaries-common
   diaries-requestor
-  diaries-responsder
+  diaries-responder
 )
 
 for module in "${modules[@]}"; do

@@ -12,15 +12,26 @@ BUILD_DIR="${PROJECT_DIR}/build"
 cd "${PROJECT_DIR}"
 
 # ----------------------------
+# Check the environment
+# ----------------------------
+required_vars=(
+  IMAGE_REGISTRY
+  DOCKER_USERNAME
+  DOCKER_PASSWORD
+)
+
+for var in "${required_vars[@]}"; do
+  if [ -z "${!var:-}" ]; then
+    echo "ERROR: ${var} is not set or empty" >&2
+    exit 2
+  fi
+done
+
+# ----------------------------
 # Image naming
 # ----------------------------
 
-# Override from Jenkins env if desired
-IMAGE_REGISTRY="${IMAGE_REGISTRY:-docker.io}"
-IMAGE_NAMESPACE="${IMAGE_NAMESPACE}"
-IMAGE_NAME="${IMAGE_NAME:-diaries-responder}"
-
-if [ -n "${IMAGE_NAMESPACE}" ]; then
+if [ -n "${IMAGE_NAMESPACE:-}" ]; then
   IMAGE_REPO="${IMAGE_REGISTRY}/${IMAGE_NAMESPACE}/${IMAGE_NAME}"
 else
   IMAGE_REPO="${IMAGE_REGISTRY}/${IMAGE_NAME}"
@@ -97,22 +108,14 @@ echo "imageinfo:"
 cat "${BUILD_DIR}/imageinfo"
 
 # ----------------------------
-# Optional push
+# Push the image ti the repository
 # ----------------------------
 
-if [ "${PUSH_IMAGE:-false}" = "true" ]; then
-  : "${IMAGE_REGISTRY:?IMAGE_REGISTRY not set}"
-  : "${DOCKER_USERNAME:?DOCKER_USERNAME not set}"
-  : "${DOCKER_PASSWORD:?DOCKER_PASSWORD not set}"
+echo "${DOCKER_PASSWORD}" | docker login "${IMAGE_REGISTRY}" \
+  --username "${DOCKER_USERNAME}" \
+  --password-stdin
 
-  echo "${DOCKER_PASSWORD}" | docker login "${IMAGE_REGISTRY}" \
-    --username "${DOCKER_USERNAME}" \
-    --password-stdin
-fi
-
-if [ "${PUSH_IMAGE:-false}" = "true" ]; then
-  docker push "${IMAGE_REPO}:${IMAGE_TAG}"
-  for tag in "${EXTRA_TAGS[@]}"; do
-    docker push "${IMAGE_REPO}:${tag}"
-  done
-fi
+docker push "${IMAGE_REPO}:${IMAGE_TAG}"
+for tag in "${EXTRA_TAGS[@]}"; do
+  docker push "${IMAGE_REPO}:${tag}"
+done
