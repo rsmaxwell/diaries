@@ -27,7 +27,7 @@ esac
 # Returns tag name (without leading 'v') if HEAD is exactly tagged; empty otherwise
 get_exact_release_tag() {
   local t
-  t="$(git describe --tags --exact-match 2>/dev/null || true)"
+  t="$(git describe --tags --exact-match --match 'v[0-9]*.[0-9]*.[0-9]*' 2>/dev/null || true)"
   [[ -n "$t" ]] && echo "${t#v}" || true
 }
 
