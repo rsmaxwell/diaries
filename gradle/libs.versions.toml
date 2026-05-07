@@ -44,11 +44,11 @@ logback-classic = "ch.qos.logback:logback-classic:1.5.18"
 lombok = "org.projectlombok:lombok:1.18.42"
 ##                             ⬆ :1.18.44"
 
-mqtt-rpc-common = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-common:0.0.3"
+mqtt-rpc-common = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-common:0.0.5"
 
-mqtt-rpc-requestor = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-requestor:0.0.3"
+mqtt-rpc-requestor = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-requestor:0.0.5"
 
-mqtt-rpc-responder = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-responder:0.0.3"
+mqtt-rpc-responder = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-responder:0.0.5"
 
 org-eclipse-paho-mqttv5-client = "org.eclipse.paho:org.eclipse.paho.mqttv5.client:1.2.5"
 
