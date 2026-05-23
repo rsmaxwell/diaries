@@ -7,6 +7,9 @@ guava = "32.1.2-jre"
 
 junit-jupiter = "6.1.0-M1"
 
+log4j = "2.24.3"
+slf4j = "2.0.17"
+
 [libraries]
 
 commons-cli = "commons-cli:commons-cli:1.11.0"
@@ -31,15 +34,10 @@ junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.r
 
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 
-## log4j-api = "org.apache.logging.log4j:log4j-api:2.24.3"
-##                                            ⬆ :3.0.0-beta2"
-
-## log4j-core = "org.apache.logging.log4j:log4j-core:2.24.3"
-##                                            ⬆ :3.0.0-beta2"
-##                                            ⬆ :3.0.0-beta3"
-
-slf4j-api = "org.slf4j:slf4j-api:2.0.17"
-logback-classic = "ch.qos.logback:logback-classic:1.5.18"
+log4j-api = { module = "org.apache.logging.log4j:log4j-api", version.ref = "log4j" }
+log4j-core = { module = "org.apache.logging.log4j:log4j-core", version.ref = "log4j" }
+log4j-slf4j2-impl = { module = "org.apache.logging.log4j:log4j-slf4j2-impl", version.ref = "log4j" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 
 lombok = "org.projectlombok:lombok:1.18.42"
 ##                             ⬆ :1.18.44"
