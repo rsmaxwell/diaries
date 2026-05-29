@@ -7,7 +7,5 @@ plugins {
 }
 
 rootProject.name = 'diaries'
-include('diaries-common')
-include('diaries-requestor')
 include('diaries-responder')
 

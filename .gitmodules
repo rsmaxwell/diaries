@@ -1,10 +1,3 @@
-[submodule "diaries-common"]
-	path = diaries-common
-	url = ../diaries-common.git
-
-[submodule "diaries-requestor"]
-	path = diaries-requestor
-	url = ../diaries-requestor.git
 
 [submodule "diaries-responder"]
 	path = diaries-responder
@@ -14,7 +7,5 @@
 	path = diaries-client
 	url = ../diaries-client.git
 
-[submodule "diaries-stack"]
-	path = diaries-stack
-	url = ../diaries-stack.git
+
 
