@@ -1,6 +1,6 @@
 ## Diaries Architecture
 
-Your Diaries application is essentially a **browser client + MQTT RPC responder + retained MQTT topic tree + PostgreSQL database + static file server** system.
+The Diaries application is essentially a **browser client + MQTT RPC responder + retained MQTT topic tree + PostgreSQL database + static file server** system.
 
 At a high level:
 
