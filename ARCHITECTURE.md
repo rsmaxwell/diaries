@@ -267,7 +267,7 @@ This avoids the client having to guess too much after operations like delete, ro
 
 ## Startup reconciliation
 
-On responder startup, it appears to compare filesystem/database/topic-tree state and republishes or normalises objects.
+On responder startup, it compares filesystem/database/topic-tree state and republishes or normalises objects.
 
 The intended architecture should be:
 
@@ -279,19 +279,7 @@ filesystem + database
    -> retained MQTT state republished only when useful
 ```
 
-The issue you noticed earlier — lots of work on restart resulting in zero new entries — suggests the responder may be doing reconciliation correctly but logging/publishing too noisily, or not distinguishing between:
-
-```text
-checked and unchanged
-```
-
-and
-
-```text
-changed and republished
-```
-
-Architecturally, it would be cleaner to report these separately.
+There will be a significant amount of work on restart, resulting in no new entries when the responder is reconciling correctly. Updates will occur when the database and the topic tree differ.
 
 ---
 
@@ -317,20 +305,6 @@ delete object:
 unlock object:
   allowed if locked by caller, admin, expired, or object missing
 ```
-
-For your recent fragment-delete/unlock race, the responder should avoid this kind of failure:
-
-```text
-client deletes fragment
-client later sends unlock fragment
-responder tries to inflate missing fragment
-exception thrown before unlock handler logic
-500 returned
-```
-
-Instead the responder should make the “find object” step optional for unlock operations, so that a missing fragment can be handled deliberately.
-
----
 
 ## Suggested architecture boundary
 
