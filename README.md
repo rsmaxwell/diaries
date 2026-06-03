@@ -139,26 +139,6 @@ cd diaries-responder
 ../gradlew build
 ```
 
-Exact commands, environment variables, ports, database settings, broker settings, and deployment steps should be documented in the child project READMEs.
-
-## Documentation
-
-Suggested documentation structure:
-
-```text
-diaries/ARCHITECTURE.md
-  System-wide architecture and design principles.
-
-diaries/README.md
-  Project overview, repository layout, and where to find more detail.
-
-diaries-client/README.md
-  Angular client setup, build, run, configuration, and client design notes.
-
-diaries-responder/README.md
-  Java responder setup, build, run, configuration, database, MQTT, and deployment notes.
-```
-
 ## Design principles
 
 * The responder is server-authoritative.
