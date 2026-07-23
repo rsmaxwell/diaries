@@ -1,0 +1,27 @@
+plugins {
+    alias(libs.plugins.ben.manes.versions)
+}
+
+subprojects {
+    apply plugin: 'com.github.ben-manes.versions'
+}
+
+def isNonStable = { String version ->
+    def stableKeywords = ['RELEASE', 'FINAL', 'GA']
+    def containsStableKeyword = stableKeywords.any {
+        version.toUpperCase().contains(it)
+    }
+
+    def stableVersionPattern = /^[0-9,.v-]+(-r)?$/
+
+    return !containsStableKeyword && !(version ==~ stableVersionPattern)
+}
+
+tasks.named('dependencyUpdates').configure {
+    rejectVersionIf {
+        isNonStable(candidate.version)
+                && !isNonStable(currentVersion)
+    }
+
+    gradleReleaseChannel = 'current'
+}

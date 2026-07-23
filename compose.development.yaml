@@ -1,0 +1,53 @@
+name: diaries-development
+
+services:
+  diaries-db:
+    image: postgres:18-alpine
+    container_name: diaries-development-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DIARIES_DB_NAME:-diaries}
+      POSTGRES_USER: ${DIARIES_DB_USERNAME:-diaries}
+      POSTGRES_PASSWORD: ${DIARIES_DB_PASSWORD:-diaries}
+    ports:
+      - "${DIARIES_DB_PORT:-5433}:5432"
+    volumes:
+      - diaries-development-db-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  diaries-mqtt:
+    image: eclipse-mosquitto:2
+    container_name: diaries-development-mqtt
+    restart: unless-stopped
+    environment:
+      DIARIES_MQTT_HEALTH_USERNAME: ${DIARIES_MQTT_HEALTH_USERNAME:-admin}
+      DIARIES_MQTT_HEALTH_PASSWORD: ${DIARIES_MQTT_HEALTH_PASSWORD:-admin}
+    ports:
+      - "${DIARIES_MQTT_PORT:-1883}:1883"
+      - "${DIARIES_MQTT_WEBSOCKET_PORT:-9001}:9001"
+    volumes:
+      - ./config/mosquitto/development/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./config/mosquitto/development/aclfile.txt:/mosquitto/config/aclfile.txt:ro
+      - ./config/mosquitto/development/pwfile.txt:/mosquitto/config/pwfile.txt:ro
+      - diaries-development-mqtt-data:/mosquitto/data
+      - diaries-development-mqtt-log:/mosquitto/log
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mosquitto_sub -h localhost -p 1883 -u \"$${DIARIES_MQTT_HEALTH_USERNAME}\" -P \"$${DIARIES_MQTT_HEALTH_PASSWORD}\" -t '$$SYS/broker/version' -C 1 -W 5 >/dev/null 2>&1",
+        ]
+      interval: 10s
+      timeout: 6s
+      retries: 10
+      start_period: 10s
+
+volumes:
+  diaries-development-db-data:
+  diaries-development-mqtt-data:
+  diaries-development-mqtt-log:
