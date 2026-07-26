@@ -1,20 +1,105 @@
+name: diaries-local-docker-build
+
 services:
-  ledger-db:
+  diaries-db:
     image: postgres:18-alpine
-    container_name: ledger-local-db
+    container_name: diaries-local-db
+    restart: unless-stopped
     environment:
-      POSTGRES_DB: ${LEDGER_DB_NAME:-ledger}
-      POSTGRES_USER: ${LEDGER_DB_USERNAME:-ledger}
-      POSTGRES_PASSWORD: ${LEDGER_DB_PASSWORD:-ledger}
+      POSTGRES_DB: ${DIARIES_DB_NAME:-diaries}
+      POSTGRES_USER: ${DIARIES_DB_USERNAME:-diaries}
+      POSTGRES_PASSWORD: ${DIARIES_DB_PASSWORD:-diaries}
     ports:
-      - "${LEDGER_DB_PORT:-5433}:5432"
+      - "${DIARIES_DB_PORT:-5433}:5432"
     volumes:
-      - ledger-local-db-data:/var/lib/postgresql
+      - diaries-local-db-data:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 10s
       timeout: 5s
       retries: 10
+      start_period: 10s
+
+  diaries-mqtt:
+    image: eclipse-mosquitto:2
+    container_name: diaries-local-mqtt
+    restart: unless-stopped
+    environment:
+      DIARIES_MQTT_HEALTH_USERNAME: ${DIARIES_MQTT_HEALTH_USERNAME:-admin}
+      DIARIES_MQTT_HEALTH_PASSWORD: ${DIARIES_MQTT_HEALTH_PASSWORD:-secret-1}
+    ports:
+      - "${DIARIES_MQTT_PORT:-1883}:1883"
+      - "${DIARIES_MQTT_WEBSOCKET_PORT:-9001}:9001"
+    volumes:
+      - ./config/mosquitto/development/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./config/mosquitto/development/aclfile.txt:/mosquitto/config/aclfile.txt:ro
+      - ./config/mosquitto/development/pwfile.txt:/mosquitto/config/pwfile.txt:ro
+      - diaries-local-mqtt-data:/mosquitto/data
+      - diaries-local-mqtt-log:/mosquitto/log
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "mosquitto_sub -h localhost -p 1883 -u \"$${DIARIES_MQTT_HEALTH_USERNAME}\" -P \"$${DIARIES_MQTT_HEALTH_PASSWORD}\" -t '$$SYS/broker/version' -C 1 -W 5 >/dev/null 2>&1",
+        ]
+      interval: 10s
+      timeout: 6s
+      retries: 10
+      start_period: 10s
+
+  diaries-responder:
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM eclipse-temurin:25-jdk-alpine AS build
+        WORKDIR /workspace
+
+        COPY gradlew settings.gradle build.gradle ./
+        COPY gradle ./gradle
+        COPY diaries-responder ./diaries-responder
+
+        RUN chmod +x gradlew \
+            && ./gradlew :diaries-responder:shadowJar --no-daemon
+
+        FROM eclipse-temurin:25-jre-alpine
+        WORKDIR /opt/diaries
+
+        COPY --from=build \
+          /workspace/diaries-responder/build/libs/diaries-responder-*-fat.jar \
+          /opt/diaries/diaries-responder.jar
+
+        EXPOSE 8081
+
+        ENTRYPOINT ["java", "-jar", "/opt/diaries/diaries-responder.jar"]
+        CMD ["--config", "/config/responder.json"]
+    image: diaries-responder:local
+    container_name: diaries-local-responder
+    restart: unless-stopped
+    depends_on:
+      diaries-db:
+        condition: service_healthy
+      diaries-mqtt:
+        condition: service_healthy
+    ports:
+      - "${DIARIES_RESPONDER_PORT:-8081}:8081"
+    volumes:
+      - ./config/local-docker-build/responder.json:/config/responder.json:ro
+      - diaries-local-content:/data
+
+  diaries-client:
+    build:
+      context: ./diaries-client
+      dockerfile: scripts/files/Dockerfile
+    image: diaries-client:local
+    container_name: diaries-local-client
+    restart: unless-stopped
+    depends_on:
+      - diaries-responder
+    ports:
+      - "${DIARIES_CLIENT_PORT:-8080}:8080"
 
 volumes:
-  ledger-local-db-data:
+  diaries-local-db-data:
+  diaries-local-mqtt-data:
+  diaries-local-mqtt-log:
+  diaries-local-content:

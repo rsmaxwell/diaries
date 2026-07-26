@@ -1,0 +1,35 @@
+
+------------------------------------------------------------
+: Project Dependency Updates (report to plain text file)
+------------------------------------------------------------
+
+Failed to determine the latest version for the following dependencies (use --info for details):
+ - com.drewnoakes:metadata-extractor
+ - com.fasterxml.jackson.core:jackson-databind
+ - com.github.ben-manes.versions:com.github.ben-manes.versions.gradle.plugin
+ - com.googlecode.libphonenumber:carrier
+ - com.googlecode.libphonenumber:geocoder
+ - com.googlecode.libphonenumber:libphonenumber
+ - com.gradleup.shadow:com.gradleup.shadow.gradle.plugin
+ - com.rsmaxwell.mqtt.rpc:mqtt-rpc-common
+ - com.rsmaxwell.mqtt.rpc:mqtt-rpc-responder
+ - commons-cli:commons-cli
+ - commons-validator:commons-validator
+ - io.jsonwebtoken:jjwt-api
+ - io.jsonwebtoken:jjwt-impl
+ - io.jsonwebtoken:jjwt-jackson
+ - jakarta.platform:jakarta.jakartaee-api
+ - org.apache.logging.log4j:log4j-api
+ - org.apache.logging.log4j:log4j-core
+ - org.apache.logging.log4j:log4j-slf4j2-impl
+ - org.eclipse.paho:org.eclipse.paho.mqttv5.client
+ - org.hibernate:hibernate-core
+ - org.junit.jupiter:junit-jupiter
+ - org.junit.platform:junit-platform-launcher
+ - org.mindrot:jbcrypt
+ - org.postgresql:postgresql
+ - org.projectlombok:lombok
+ - org.slf4j:slf4j-api
+
+Gradle current updates:
+ - Gradle: [9.3.1 -> 9.6.1]

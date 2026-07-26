@@ -1,0 +1,48 @@
+{
+  "mqtt": {
+    "host": "diaries-mqtt",
+    "port": 1883,
+    "user": {
+      "username": "diaries-responder",
+      "password": "secret-3"
+    }
+  },
+  "db": {
+    "go": {
+      "driver": "postgres"
+    },
+    "jdbc": {
+      "dbms": "postgresql",
+      "driver": "org.postgresql.Driver"
+    },
+    "additionalConnectionProperties": {
+      "hibernate.show_sql": "false",
+      "hibernate.format_sql": "true",
+      "hibernate.hbm2ddl.auto": "update"
+    },
+    "host": "diaries-db",
+    "port": 5432,
+    "database": "diaries",
+    "admin": {
+      "username": "diaries",
+      "password": "diaries"
+    },
+    "users": [
+      {
+        "username": "diaries",
+        "password": "diaries"
+      }
+    ]
+  },
+  "diaries": {
+    "root": "/data",
+    "baseUrl": "http://localhost:8081",
+    "diaries": "diaries",
+    "files": "files"
+  },
+  "refreshPeriod": "10h",
+  "refreshExpiration": "120h",
+  "secret": "OJaYyWItrlHoBv8UpKUIN75sz2I/worX4R2UuppvwU8=",
+  "normaliseOnStartup": true,
+  "fragmentLockTtlSeconds": 900
+}
