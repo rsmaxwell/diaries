@@ -1,5 +1,6 @@
 
 [versions]
+shadow = "9.6.1"
 ben-manes-versions = "0.54.0"
 
 chunk-templates = "3.6.2_1"
@@ -49,6 +50,7 @@ spring-boot = "3.3.2"
 spring-framework = "6.1.11"
 
 [plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 ben-manes-versions = { id = "com.github.ben-manes.versions", version.ref = "ben-manes-versions" }
 
 [libraries]

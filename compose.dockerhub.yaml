@@ -1,6 +1,6 @@
-name: diaries-local-published-smoke
 
 services:
+
   diaries-db:
     image: postgres:18-alpine
     container_name: diaries-published-smoke-db
@@ -19,6 +19,7 @@ services:
       timeout: 5s
       retries: 10
       start_period: 10s
+
 
   diaries-mqtt:
     image: eclipse-mosquitto:2
@@ -47,8 +48,9 @@ services:
       retries: 10
       start_period: 10s
 
+
   diaries-responder:
-    image: rsmaxwell/diaries-responder:${DIARIES_IMAGE_TAG:-integration}
+    image: rsmaxwell/diaries-responder:${DIARIES_RESPONDER_IMAGE_TAG:-${DIARIES_IMAGE_TAG:-integration}}
     container_name: diaries-published-smoke-responder
     restart: unless-stopped
     depends_on:
@@ -70,8 +72,9 @@ services:
       retries: 12
       start_period: 20s
 
+
   diaries-client:
-    image: rsmaxwell/diaries-client:${DIARIES_IMAGE_TAG:-integration}
+    image: rsmaxwell/diaries-client:${DIARIES_CLIENT_IMAGE_TAG:-${DIARIES_IMAGE_TAG:-integration}}
     container_name: diaries-published-smoke-client
     restart: unless-stopped
     depends_on:
