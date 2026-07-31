@@ -23,7 +23,7 @@ if exist "%SCRIPT_DIR%set-env.bat" (
 )
 
 
-
+set "COMPOSE_PROJECT_NAME=diaries-local-published-smoke"
 set "COMPOSE_FILE=%PROJECT_DIR%\compose.dockerhub.yaml"
 
 if not exist "%COMPOSE_FILE%" (
@@ -36,7 +36,10 @@ if not exist "%COMPOSE_FILE%" (
 
 
 echo on
-docker compose -f "%COMPOSE_FILE%" down
+docker compose ^
+  -p "%COMPOSE_PROJECT_NAME%" ^
+  -f "%COMPOSE_FILE%" ^
+  down
 echo off
 
 set "EXIT_CODE=%ERRORLEVEL%"

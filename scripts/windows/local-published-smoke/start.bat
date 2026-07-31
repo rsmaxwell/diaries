@@ -56,6 +56,9 @@ echo   Client image:    rsmaxwell/diaries-client:%EFFECTIVE_CLIENT_IMAGE_TAG%
 echo   Responder image: rsmaxwell/diaries-responder:%EFFECTIVE_RESPONDER_IMAGE_TAG%
 echo.
 
+
+
+set "COMPOSE_PROJECT_NAME=diaries-local-published-smoke"
 set "COMPOSE_FILE=%PROJECT_DIR%\compose.dockerhub.yaml"
 
 if not exist "%COMPOSE_FILE%" (
@@ -81,7 +84,10 @@ if errorlevel 1 (
 )
 
 echo on
-docker compose -f "%COMPOSE_FILE%" up -d --remove-orphans --wait --wait-timeout 120
+docker compose ^
+  -p "%COMPOSE_PROJECT_NAME%" ^
+  -f "%COMPOSE_FILE%" ^
+  up -d --remove-orphans --wait --wait-timeout 120
 echo off
 
 set "EXIT_CODE=%ERRORLEVEL%"
