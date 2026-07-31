@@ -458,7 +458,7 @@ The final names may be adjusted to remain consistent with the established Ledger
 
 ### 13. Add production Compose mode
 
-- [ ] Create `compose.production.yaml` or an Ansible-rendered equivalent.
+- [ ] Create an Ansible template `compose.yaml.j2` to be used in production.
 - [ ] Include PostgreSQL, Mosquitto, responder and client services.
 - [ ] Use published versioned images only.
 - [ ] Do not build source on the target machine.
