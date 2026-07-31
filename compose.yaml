@@ -90,6 +90,8 @@ services:
     build:
       context: ./diaries-client
       dockerfile: scripts/files/Dockerfile
+      args:
+        VERSION: ${DIARIES_CLIENT_VERSION}
     image: diaries-client:local
     container_name: diaries-local-client
     restart: unless-stopped
