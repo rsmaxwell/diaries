@@ -3,10 +3,9 @@ setlocal
 
 set "SCRIPT_DIR=%~dp0"
 pushd "%SCRIPT_DIR%..\..\.." || exit /b 1
+
 set "PROJECT_DIR=%CD%"
 set "EXIT_CODE=0"
-
-
 
 call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat"
 if errorlevel 1 (
@@ -22,8 +21,7 @@ if exist "%SCRIPT_DIR%set-env.bat" (
     )
 )
 
-
-
+set "COMPOSE_PROJECT_NAME=diaries-local-published-smoke"
 set "COMPOSE_FILE=%PROJECT_DIR%\compose.dockerhub.yaml"
 
 if not exist "%COMPOSE_FILE%" (
@@ -32,17 +30,19 @@ if not exist "%COMPOSE_FILE%" (
     goto :cleanup
 )
 
-
-
 if "%~1"=="" (
-    docker compose -f "%COMPOSE_FILE%" logs -f
+    docker compose ^
+        -p "%COMPOSE_PROJECT_NAME%" ^
+        -f "%COMPOSE_FILE%" ^
+        logs -f
 ) else (
-    docker compose -f "%COMPOSE_FILE%" logs -f %*
+    docker compose ^
+        -p "%COMPOSE_PROJECT_NAME%" ^
+        -f "%COMPOSE_FILE%" ^
+        logs -f %*
 )
 
 set "EXIT_CODE=%ERRORLEVEL%"
-
-
 
 :cleanup
 popd
