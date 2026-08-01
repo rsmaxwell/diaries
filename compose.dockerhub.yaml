@@ -84,7 +84,7 @@ services:
     ports:
       - "${DIARIES_CLIENT_HTTP_HOST_PORT:-8080}:8080"
     volumes:
-      - ./diaries-client/public/assets/config.direct.json:/usr/share/nginx/html/diaries/assets/config.json:ro
+      - ./diaries-client/public/assets/config.json:/usr/share/nginx/html/diaries/assets/config.json:ro
     healthcheck:
       test: ["CMD-SHELL", "wget --quiet --spider http://localhost:8080/diaries/"]
       interval: 10s
