@@ -2,10 +2,29 @@
 setlocal
 
 set "SCRIPT_DIR=%~dp0"
-
-pushd "%SCRIPT_DIR%..\..\.." || exit /b 1
-set "PROJECT_DIR=%CD%"
 set "EXIT_CODE=0"
+
+pushd "%SCRIPT_DIR%..\..\.." >nul 2>&1
+if errorlevel 1 (
+    echo ERROR: Could not locate the Diaries project root. >&2
+    echo Script directory: "%SCRIPT_DIR%" >&2
+    endlocal & exit /b 1
+)
+set "PROJECT_DIR=%CD%"
+
+set "COMPOSE_FILE=%PROJECT_DIR%\compose.local-published-smoke.yaml"
+if not exist "%COMPOSE_FILE%" (
+    echo Compose file not found: "%COMPOSE_FILE%"
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+set "ENV_FILE=%PROJECT_DIR%\config\environments\local-published-smoke.env"
+if not exist "%ENV_FILE%" (
+    echo Environment file not found: "%ENV_FILE%"
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
 
 call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat"
 if errorlevel 1 (
@@ -58,24 +77,15 @@ echo.
 
 
 
-set "COMPOSE_PROJECT_NAME=diaries-local-published-smoke"
-set "COMPOSE_FILE=%PROJECT_DIR%\compose.dockerhub.yaml"
-
-if not exist "%COMPOSE_FILE%" (
-    echo Compose file not found: "%COMPOSE_FILE%"
-    set "EXIT_CODE=1"
-    goto :cleanup
-)
 
 
 
 
-echo on
+
 docker compose ^
-  -p "%COMPOSE_PROJECT_NAME%" ^
-  -f "%COMPOSE_FILE%" ^
-  ps --all
-echo off
+    --env-file "%ENV_FILE%" ^
+    -f "%COMPOSE_FILE%" ^
+    ps --all
 
 set "EXIT_CODE=%ERRORLEVEL%"
 

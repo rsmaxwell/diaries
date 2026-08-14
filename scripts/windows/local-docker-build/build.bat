@@ -1,33 +1,64 @@
 @echo off
 setlocal
 
-set "SCRIPT_DIR=%~dp0"
-pushd "%SCRIPT_DIR%..\..\.." || exit /b 1
-
-set "PROJECT_DIR=%CD%"
 set "EXIT_CODE=0"
+set "SCRIPT_DIR=%~dp0"
 
-set "COMPOSE_FILE="
-set "COMPOSE_PROJECT_NAME="
+rem This script is located under:
+rem diaries\scripts\windows\local-docker-build
+rem Therefore, the Diaries project root is three directories above it.
+pushd "%SCRIPT_DIR%..\..\.." >nul 2>&1
+if errorlevel 1 (
+    echo ERROR: Could not locate the Diaries project root. >&2
+    echo Script directory: "%SCRIPT_DIR%" >&2
+    endlocal & exit /b 1
+)
+set "PROJECT_DIR=%CD%"
 
-pushd "%PROJECT_DIR%\diaries-client" || (
+set "COMPOSE_FILE=%PROJECT_DIR%\compose.local-docker-build.yaml"
+if not exist "%COMPOSE_FILE%" (
+    echo Compose file not found: "%COMPOSE_FILE%"
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+set "ENV_FILE=%PROJECT_DIR%\config\environments\local-docker-build.env"
+if not exist "%ENV_FILE%" (
+    echo Environment file not found: "%ENV_FILE%"
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+
+
+
+
+
+pushd "%PROJECT_DIR%\diaries-client" >nul 2>&1
+if errorlevel 1 (
+    echo ERROR: Could not enter Diaries client directory. >&2
     set "EXIT_CODE=1"
     goto :cleanup
 )
 
 call npm run generate-build-info
-if errorlevel 1 (
-    popd
-    set "EXIT_CODE=1"
+set "EXIT_CODE=%ERRORLEVEL%"
+
+popd
+
+if not "%EXIT_CODE%"=="0" (
+    echo ERROR: Failed to generate client build information. >&2
     goto :cleanup
 )
 
-for /f "usebackq delims=" %%V in (`powershell -NoProfile -Command ^
-    "(Get-Content 'public\assets\build-info.json' -Raw | ConvertFrom-Json).version"`) do (
-    set "DIARIES_CLIENT_VERSION=%%V"
-)
 
-popd
+
+call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat" "%ENV_FILE%"
+if errorlevel 1 (
+    echo ERROR: Could not load environment file. >&2
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
 
 if not defined DIARIES_CLIENT_VERSION (
     echo Unable to determine Diaries client version.
@@ -35,11 +66,14 @@ if not defined DIARIES_CLIENT_VERSION (
     goto :cleanup
 )
 
+
+
 echo Building Diaries client version %DIARIES_CLIENT_VERSION%
 echo.
 
 docker compose ^
-    -f "%PROJECT_DIR%\compose.yaml" ^
+    --env-file "%ENV_FILE%" ^
+    -f "%COMPOSE_FILE%" ^
     build
 
 set "EXIT_CODE=%ERRORLEVEL%"

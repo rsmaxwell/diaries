@@ -9,24 +9,44 @@ rem the application's RPC operations are carried over MQTT.
 
 rem Locate the Diaries project directory from this script:
 rem scripts\windows\development-infrastructure\test-responder-api.bat
+set "EXIT_CODE=0"
+
 set "SCRIPT_DIR=%~dp0"
-pushd "%SCRIPT_DIR%..\..\.." >nul
+pushd "%SCRIPT_DIR%..\..\.." >nul 2>&1
 if errorlevel 1 (
-    echo Unable to locate the Diaries project directory.
-    exit /b 1
+    echo ERROR: Could not locate the project directory. >&2
+    endlocal & exit /b 1
 )
+
 set "PROJECT_DIR=%CD%"
 
-rem Existing environment variables take precedence. This default matches the
-rem responder port used by the Diaries development and local Docker modes.
+set "ENV_FILE=%PROJECT_DIR%\config\environments\development-infrastructure.env"
+if not exist "%ENV_FILE%" (
+    echo Environment file not found: "%ENV_FILE%"
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat" "%ENV_FILE%"
+if errorlevel 1 (
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
 if not defined DIARIES_RESPONDER_PORT set "DIARIES_RESPONDER_PORT=8081"
 set "RESPONDER_URL=http://localhost:%DIARIES_RESPONDER_PORT%"
+
+
+
+
+
+
 
 where curl.exe >nul 2>&1
 if errorlevel 1 (
     echo curl.exe was not found on PATH.
-    popd
-    exit /b 1
+    set "EXIT_CODE=1"
+    goto :cleanup
 )
 
 echo Testing Diaries responder HTTP interface at:
@@ -53,8 +73,8 @@ echo.
 if not "%FAILURES%"=="0" (
     echo Diaries responder HTTP test failed: %FAILURES% check^(s^) failed.
     echo Check that diaries-responder is running and listening on port %DIARIES_RESPONDER_PORT%.
-    popd
-    endlocal & exit /b 1
+    set "EXIT_CODE=1"
+    goto :cleanup
 )
 
 echo Diaries responder HTTP test passed.
@@ -62,8 +82,8 @@ echo.
 echo Note: business API operations use MQTT RPC and are not exercised by this
 echo HTTP-only test.
 
-popd
-endlocal & exit /b 0
+set "EXIT_CODE=0"
+goto :cleanup
 
 :expect_status
 set "METHOD=%~1"
@@ -72,7 +92,11 @@ set "EXPECTED=%~3"
 set "DESCRIPTION=%~4"
 set "STATUS="
 
-for /f "usebackq delims=" %%S in (`curl.exe --silent --show-error --output nul --write-out "%%{http_code}" --request "%METHOD%" --max-time 10 "%URL%" 2^>nul`) do set "STATUS=%%S"
+
+for /f "usebackq delims=" %%S in (`
+    curl.exe --silent --show-error --output nul --write-out "%%{http_code}" --request "%METHOD%" --max-time 10 "%URL%" 2^>nul
+`) do set "STATUS=%%S"
+
 
 if not defined STATUS set "STATUS=000"
 
@@ -83,4 +107,12 @@ if "%STATUS%"=="%EXPECTED%" (
     echo          expected HTTP %EXPECTED%, received HTTP %STATUS%
     set /a FAILURES+=1
 )
+
 exit /b 0
+
+
+
+
+:cleanup
+popd
+endlocal & exit /b %EXIT_CODE%

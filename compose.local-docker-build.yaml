@@ -1,6 +1,7 @@
 name: diaries-local-docker-build
 
 services:
+
   diaries-db:
     image: postgres:18-alpine
     container_name: diaries-local-db
@@ -10,7 +11,7 @@ services:
       POSTGRES_USER: ${DIARIES_DB_USERNAME:-diaries}
       POSTGRES_PASSWORD: ${DIARIES_DB_PASSWORD:-diaries}
     ports:
-      - "${DIARIES_DB_PORT:-5433}:5432"
+      - "${DIARIES_DB_HOST_PORT:-5433}:5432"
     volumes:
       - diaries-local-db-data:/var/lib/postgresql
     healthcheck:
@@ -84,7 +85,8 @@ services:
       - "${DIARIES_RESPONDER_PORT:-8081}:8081"
     volumes:
       - ./config/local-docker-build/responder.json:/config/responder.json:ro
-      - diaries-local-content:/data
+      - "P:/nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/diaries:/data/diaries:ro"
+      - "P:/nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files:/data/files"
 
   diaries-client:
     build:

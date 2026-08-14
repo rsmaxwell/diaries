@@ -1,4 +1,4 @@
-name: diaries_local-docker-build
+name: diaries-local-published-smoke
 
 services:
 
@@ -65,7 +65,8 @@ services:
       - "${DIARIES_RESPONDER_HTTP_HOST_PORT:-8081}:8081"
     volumes:
       - ./config/local-published-smoke/responder.json:/config/responder.json:ro
-      - diaries-published-smoke-content:/data
+      - "P:/nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/diaries:/data/diaries:ro"
+      - "P:/nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files:/data/files"
     healthcheck:
       test: ["CMD-SHELL", "curl --silent --output /dev/null http://localhost:8081/not-a-responder-path"]
       interval: 10s
@@ -96,4 +97,3 @@ volumes:
   diaries-published-smoke-db-data:
   diaries-published-smoke-mqtt-data:
   diaries-published-smoke-mqtt-log:
-  diaries-published-smoke-content:

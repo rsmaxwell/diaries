@@ -1,4 +1,5 @@
-name: diaries_development-infrastructure
+
+name: diaries-development-infrastructure
 
 services:
   diaries-db:
@@ -26,7 +27,7 @@ services:
     restart: unless-stopped
     environment:
       DIARIES_MQTT_HEALTH_USERNAME: ${DIARIES_MQTT_HEALTH_USERNAME:-admin}
-      DIARIES_MQTT_HEALTH_PASSWORD: ${DIARIES_MQTT_HEALTH_PASSWORD:-admin}
+      DIARIES_MQTT_HEALTH_PASSWORD: ${DIARIES_MQTT_HEALTH_PASSWORD:-secret-1}
     ports:
       - "${DIARIES_MQTT_PORT:-1883}:1883"
       - "${DIARIES_MQTT_WEBSOCKET_PORT:-9001}:9001"
