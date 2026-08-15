@@ -22,13 +22,33 @@ if not exist "%COMPOSE_FILE%" (
 
 set "ENV_FILE=%PROJECT_DIR%\config\environments\development-infrastructure.env"
 if not exist "%ENV_FILE%" (
-    echo ERROR: Environment file not found: "%ENV_FILE%" >&2
+    echo Environment file not found: "%ENV_FILE%"
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+set "LOCAL_ENV_FILE=%PROJECT_DIR%\config\environments\local.env"
+if not exist "%LOCAL_ENV_FILE%" (
+    echo Environment file not found: "%LOCAL_ENV_FILE%"
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat" "%ENV_FILE%"
+if errorlevel 1 (
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat" "%LOCAL_ENV_FILE%"
+if errorlevel 1 (
     set "EXIT_CODE=1"
     goto :cleanup
 )
 
 docker compose ^
     --env-file "%ENV_FILE%" ^
+    --env-file "%LOCAL_ENV_FILE%" ^
     -f "%COMPOSE_FILE%" ^
     down
 

@@ -11,9 +11,9 @@ services:
       POSTGRES_USER: ${DIARIES_DB_USERNAME:-diaries}
       POSTGRES_PASSWORD: ${DIARIES_DB_PASSWORD:-diaries}
     ports:
-      - "${DIARIES_DB_PORT:-5433}:5432"
+      - "${DIARIES_DB_HOST_PORT:-5433}:5432"
     volumes:
-      - diaries-development-db-data:/var/lib/postgresql
+      - "${DIARIES_DB_DATA_DIR}:/var/lib/postgresql"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 10s
@@ -49,6 +49,5 @@ services:
       start_period: 10s
 
 volumes:
-  diaries-development-db-data:
   diaries-development-mqtt-data:
   diaries-development-mqtt-log:

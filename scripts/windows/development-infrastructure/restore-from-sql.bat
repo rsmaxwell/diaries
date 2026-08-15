@@ -33,6 +33,13 @@ if not exist "%ENV_FILE%" (
     goto :cleanup
 )
 
+set "LOCAL_ENV_FILE=%PROJECT_DIR%\config\environments\local.env"
+if not exist "%LOCAL_ENV_FILE%" (
+    echo Environment file not found: "%LOCAL_ENV_FILE%"
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
 set "BACKUP_DIR=%PROJECT_DIR%\data\database-backups\development-infrastructure"
 if not exist "%BACKUP_DIR%" (
     echo Backup directory not found: "%BACKUP_DIR%"
@@ -41,6 +48,12 @@ if not exist "%BACKUP_DIR%" (
 )
 
 call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat" "%ENV_FILE%"
+if errorlevel 1 (
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat" "%LOCAL_ENV_FILE%"
 if errorlevel 1 (
     set "EXIT_CODE=1"
     goto :cleanup
@@ -97,6 +110,7 @@ rem Check that the PostgreSQL service is available before replacing the
 rem database.
 docker compose ^
     --env-file "%ENV_FILE%" ^
+    --env-file "%LOCAL_ENV_FILE%" ^
     -f "%COMPOSE_FILE%" ^
     exec -T diaries-db pg_isready ^
     --username "%DIARIES_DB_USERNAME%" ^
@@ -129,6 +143,7 @@ echo.
 echo Dropping the existing database...
 docker compose ^
     --env-file "%ENV_FILE%" ^
+    --env-file "%LOCAL_ENV_FILE%" ^
     -f "%COMPOSE_FILE%" ^
     exec -T diaries-db dropdb ^
     --force ^
@@ -143,6 +158,7 @@ if errorlevel 1 (
 echo Creating a new empty database...
 docker compose ^
     --env-file "%ENV_FILE%" ^
+    --env-file "%LOCAL_ENV_FILE%" ^
     -f "%COMPOSE_FILE%" ^
     exec -T diaries-db createdb ^
     --username "%DIARIES_DB_USERNAME%" ^
@@ -156,6 +172,7 @@ if errorlevel 1 (
 echo Restoring the SQL backup...
 docker compose ^
     --env-file "%ENV_FILE%" ^
+    --env-file "%LOCAL_ENV_FILE%" ^
     -f "%COMPOSE_FILE%" ^
     exec -T diaries-db psql ^
     --set ON_ERROR_STOP=on ^

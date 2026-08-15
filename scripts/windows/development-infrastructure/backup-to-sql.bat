@@ -33,6 +33,13 @@ if not exist "%ENV_FILE%" (
     goto :cleanup
 )
 
+set "LOCAL_ENV_FILE=%PROJECT_DIR%\config\environments\local.env"
+if not exist "%LOCAL_ENV_FILE%" (
+    echo Environment file not found: "%LOCAL_ENV_FILE%"
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
 set "BACKUP_DIR=%PROJECT_DIR%\data\database-backups\development-infrastructure"
 if not exist "%BACKUP_DIR%" (
     mkdir "%BACKUP_DIR%"
@@ -44,6 +51,12 @@ if not exist "%BACKUP_DIR%" (
 )
 
 call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat" "%ENV_FILE%"
+if errorlevel 1 (
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat" "%LOCAL_ENV_FILE%"
 if errorlevel 1 (
     set "EXIT_CODE=1"
     goto :cleanup
@@ -78,6 +91,7 @@ rem pg_dump runs inside the PostgreSQL container, while redirection writes the
 rem plain-text SQL dump onto the Windows host.
 docker compose ^
     --env-file "%ENV_FILE%" ^
+    --env-file "%LOCAL_ENV_FILE%" ^
     -f "%COMPOSE_FILE%" ^
     exec -T diaries-db pg_dump ^
     --format=plain ^
