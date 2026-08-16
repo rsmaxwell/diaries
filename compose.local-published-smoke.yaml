@@ -65,8 +65,21 @@ services:
       - "${DIARIES_RESPONDER_HTTP_HOST_PORT:-8081}:8081"
     volumes:
       - ./config/responder/local-published-smoke/responder.json:/config/responder.json:ro
-      - "${DIARIES_CONTENT_DIR}/diaries:/data/diaries:ro"
-      - "${DIARIES_CONTENT_DIR}/files:/data/files"
+
+      - type: volume
+        source: nas-photo
+        target: /data/diaries
+        read_only: true
+        volume:
+          subpath: ${DIARIES_NAS_CONTENT_PATH}/diaries
+
+      - type: volume
+        source: nas-photo
+        target: /data/files
+        read_only: false
+        volume:
+          subpath: ${DIARIES_NAS_CONTENT_PATH}/files
+
     healthcheck:
       test: ["CMD-SHELL", "curl --silent --output /dev/null http://localhost:8081/not-a-responder-path"]
       interval: 10s
@@ -96,3 +109,9 @@ services:
 volumes:
   diaries-published-smoke-mqtt-data:
   diaries-published-smoke-mqtt-log:
+  nas-photo:
+    driver: local
+    driver_opts:
+      type: cifs
+      device: //${DIARIES_NAS_HOST}/${DIARIES_NAS_SHARE}
+      o: username=${DIARIES_NAS_USERNAME},password=${DIARIES_NAS_PASSWORD},vers=3.0
