@@ -18,3 +18,5 @@ topic readwrite diaries/dates/#
 topic readwrite diaries/people/#
 topic readwrite diaries/roles/#
 
+user diaries-health
+topic read $SYS/broker/version

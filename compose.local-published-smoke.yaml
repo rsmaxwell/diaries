@@ -33,9 +33,9 @@ services:
       - "${DIARIES_MQTT_HOST_PORT:-1883}:1883"
       - "${DIARIES_MQTT_WEBSOCKET_HOST_PORT:-9001}:9001"
     volumes:
-      - ./config/mosquitto/development/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
-      - ./config/mosquitto/development/aclfile.txt:/mosquitto/config/aclfile.txt:ro
-      - ./config/mosquitto/development/pwfile.txt:/mosquitto/config/pwfile.txt:ro
+      - ./config/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./config/mosquitto/aclfile.txt:/mosquitto/config/aclfile.txt:ro
+      - ./config/mosquitto/pwfile.txt:/mosquitto/config/pwfile.txt:ro
       - diaries-published-smoke-mqtt-data:/mosquitto/data
       - diaries-published-smoke-mqtt-log:/mosquitto/log
     healthcheck:
