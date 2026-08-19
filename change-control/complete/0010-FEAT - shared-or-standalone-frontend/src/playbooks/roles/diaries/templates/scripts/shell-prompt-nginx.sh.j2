@@ -1,0 +1,105 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# ==============================================================================
+# shell-prompt-nginx.sh
+#
+# Open an interactive shell in the Nginx container serving Diaries.
+#
+# standalone mode -> the Nginx service in the Diaries Compose stack
+# shared mode     -> the existing infrastructure Nginx container
+# ==============================================================================
+
+
+# ------------------------------------------------------------------------------
+# Production project files.
+#
+# diaries_project_dir is substituted by Ansible when this template is installed.
+# ------------------------------------------------------------------------------
+
+PROJECT_DIR="{{ diaries_project_dir }}"
+COMPOSE_FILE="${PROJECT_DIR}/compose.yaml"
+ENV_FILE="${PROJECT_DIR}/.env"
+FRONTEND_MODE="{{ diaries_frontend_mode }}"
+
+if [[ "${FRONTEND_MODE}" == "shared" ]]; then
+    NGINX_CONTAINER="{{ diaries_shared_frontend_nginx_container_name }}"
+
+    if ! docker inspect "${NGINX_CONTAINER}" >/dev/null 2>&1; then
+        echo "ERROR: Shared Nginx container not found: ${NGINX_CONTAINER}" >&2
+        exit 1
+    fi
+
+    if [[ "$(docker inspect -f '{% raw %}{{.State.Running}}{% endraw %}' "${NGINX_CONTAINER}")" != "true" ]]; then
+        echo "ERROR: Shared Nginx container is not running: ${NGINX_CONTAINER}" >&2
+        exit 1
+    fi
+
+    echo "Opening shell in shared Nginx container ${NGINX_CONTAINER}..."
+    echo 'Type "exit" to return to this host prompt.'
+    echo
+    exec docker exec -it "${NGINX_CONTAINER}" sh
+fi
+
+cd "${PROJECT_DIR}"
+
+
+# ------------------------------------------------------------------------------
+# Validate the expected production files.
+# ------------------------------------------------------------------------------
+
+if [[ ! -f "${COMPOSE_FILE}" ]]; then
+    echo "ERROR: Compose file not found: ${COMPOSE_FILE}" >&2
+    exit 1
+fi
+
+if [[ ! -f "${ENV_FILE}" ]]; then
+    echo "ERROR: Production environment file not found: ${ENV_FILE}" >&2
+    exit 1
+fi
+
+
+# ------------------------------------------------------------------------------
+# Validate the resolved Docker Compose configuration.
+# ------------------------------------------------------------------------------
+
+if ! docker compose \
+    --file "${COMPOSE_FILE}" \
+    --env-file "${ENV_FILE}" \
+    config --quiet; then
+    echo "ERROR: Docker Compose configuration validation failed." >&2
+    exit 1
+fi
+
+
+# ------------------------------------------------------------------------------
+# Verify that the service has a running container.
+# ------------------------------------------------------------------------------
+
+CONTAINER_ID="$(
+    docker compose \
+        --file "${COMPOSE_FILE}" \
+        --env-file "${ENV_FILE}" \
+        ps --quiet nginx
+)"
+
+if [[ -z "${CONTAINER_ID}" ]]; then
+    echo "ERROR: The nginx service is not running." >&2
+    echo "Start the Diaries stack before using this script." >&2
+    exit 1
+fi
+
+
+# ------------------------------------------------------------------------------
+# Open an interactive shell in the running Nginx container.
+# ------------------------------------------------------------------------------
+
+echo "Opening shell in the Diaries production Nginx container..."
+echo 'Type "exit" to return to this host prompt.'
+echo
+
+exec docker compose \
+    --file "${COMPOSE_FILE}" \
+    --env-file "${ENV_FILE}" \
+    exec nginx sh

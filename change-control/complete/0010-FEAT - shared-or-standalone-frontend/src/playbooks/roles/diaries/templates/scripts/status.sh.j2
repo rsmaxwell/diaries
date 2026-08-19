@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+PROJECT_DIR="{{ diaries_project_dir }}"
+COMPOSE_FILE="${PROJECT_DIR}/compose.yaml"
+ENV_FILE="${PROJECT_DIR}/.env"
+FRONTEND_MODE="{{ diaries_frontend_mode }}"
+
+if [[ ! -d "${PROJECT_DIR}" ]]; then
+    echo "Diaries project directory not found:"
+    echo "  ${PROJECT_DIR}"
+    exit 1
+fi
+
+if [[ ! -f "${COMPOSE_FILE}" ]]; then
+    echo "Diaries Compose file not found:"
+    echo "  ${COMPOSE_FILE}"
+    exit 1
+fi
+
+if [[ ! -f "${ENV_FILE}" ]]; then
+    echo "Diaries environment file not found:"
+    echo "  ${ENV_FILE}"
+    exit 1
+fi
+
+echo "Diaries stack status"
+echo "Project directory: ${PROJECT_DIR}"
+echo "Compose file:     ${COMPOSE_FILE}"
+echo "Frontend mode:    ${FRONTEND_MODE}"
+echo
+
+cd "${PROJECT_DIR}"
+
+docker compose \
+    --file "${COMPOSE_FILE}" \
+    --env-file "${ENV_FILE}" \
+    ps --all
+
+if [[ "${FRONTEND_MODE}" == "shared" ]]; then
+    echo
+    echo "Shared frontend"
+    echo "Network:          {{ diaries_shared_network_name }}"
+    echo "Nginx container:  {{ diaries_shared_frontend_nginx_container_name }}"
+    docker ps \
+        --filter "name=^/{{ diaries_shared_frontend_nginx_container_name }}$" \
+        --format 'table {% raw %}{{.Names}}\t{{.Status}}\t{{.Ports}}{% endraw %}'
+fi

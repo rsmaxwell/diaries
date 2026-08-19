@@ -1,0 +1,114 @@
+---
+
+
+- name: diaries:copy | Install prerequisite packages
+  ansible.builtin.apt:
+    name:
+      - cifs-utils
+      - smbclient
+      - curl
+      - gnupg
+      - python3-lxml
+      - jq
+      - tree
+      - zip
+      - unzip
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: diaries:copy | Create project directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "{{ projects_dir }}"
+    - "{{ diaries_project_dir }}"
+    - "{{ diaries_project_dir }}/config"
+    - "{{ diaries_project_dir }}/config/client"
+    - "{{ diaries_project_dir }}/config/responder"
+    - "{{ diaries_project_dir }}/config/nginx"
+    - "{{ diaries_project_dir }}/config/nginx/config"
+    - "{{ diaries_project_dir }}/config/nginx/config/conf.d"
+    - "{{ diaries_project_dir }}/config/nginx/config/conf.d/locations"
+    - "{{ diaries_project_dir }}/config/nginx/config/files"
+    - "{{ diaries_project_dir }}/config/nginx/html"
+    - "{{ diaries_project_dir }}/config/nginx/html/files"
+    - "{{ diaries_project_dir }}/config/nginx/log"
+    - "{{ diaries_project_dir }}/config/mosquitto"
+    - "{{ diaries_project_dir }}/config/postgres"
+    - "{{ diaries_project_dir }}/data"
+    - "{{ diaries_project_dir }}/data/postgres"
+    - "{{ diaries_project_dir }}/data/mosquitto"
+    - "{{ diaries_project_dir }}/data/responder"
+    - "{{ diaries_project_dir }}/data/nginx"
+    - "{{ diaries_project_dir }}/data/nginx/files"
+    - "{{ diaries_project_dir }}/data/diaries"
+    - "{{ diaries_project_dir }}/data/files"
+    - "{{ diaries_project_dir }}/scripts"
+
+
+- name: diaries:copy | Synchronize files
+  ansible.posix.synchronize:
+    src: "sync/"
+    dest: "{{ diaries_project_dir }}/"
+    rsync_opts:
+      - "--omit-dir-times"
+  register: result
+  notify: Restart diaries stack
+
+- name: diaries:copy | Debug sync output
+  ansible.builtin.debug:
+    var: result.stdout_lines
+
+
+
+
+
+- name: diaries:copy | Template files
+  ansible.builtin.template:
+    src: "{{ item.path }}.j2"
+    dest: "{{ diaries_project_dir }}/{{ item.path }}"
+    mode: "{{ item.mode }}"
+  loop:
+    - { path: "compose.yaml", mode: '0664' }
+    - { path: ".env", mode: '0600' }
+    - { path: "config/client/config.json", mode: '0644' }
+    - { path: "config/responder/responder.json", mode: '0644' }
+    - { path: "config/nginx/config/conf.d/site.conf", mode: "0644" }
+    - { path: "config/nginx/html/files/index.html", mode: "0644" }
+    - { path: "scripts/start.sh", mode: '0744' }
+    - { path: "scripts/stop.sh", mode: '0744' }
+    - { path: "scripts/status.sh", mode: '0744' }
+    - { path: "scripts/logs.sh", mode: '0744' }
+    - { path: "scripts/shell-prompt-database.sh", mode: '0744' }
+    - { path: "scripts/shell-prompt-mosquitto.sh", mode: '0744' }
+    - { path: "scripts/shell-prompt-responder.sh", mode: '0744' }
+    - { path: "scripts/shell-prompt-client.sh", mode: '0744' }
+    - { path: "scripts/shell-prompt-nginx.sh", mode: '0744' }
+  notify: Restart diaries stack
+
+
+
+
+- name: diaries:copy | Install the systemd unit
+  become: true
+  ansible.builtin.template:
+    src: "{{ item.path }}.j2"
+    dest: "/{{ item.path }}"
+    owner: root
+    group: root
+    mode: "0644"
+  loop:
+    - { path: "etc/systemd/system/diaries-compose.service", mode: '0644' }
+  notify:
+    - Reload systemd
+    - Restart diaries stack
+
+
+
+
+
+
+
+

@@ -1,3 +1,4 @@
+
 name: diaries-local-published-smoke
 
 services:
@@ -7,9 +8,9 @@ services:
     container_name: diaries-published-smoke-db
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${DIARIES_DB_NAME:-diaries}
-      POSTGRES_USER: ${DIARIES_DB_USERNAME:-diaries}
-      POSTGRES_PASSWORD: ${DIARIES_DB_PASSWORD:-diaries}
+      POSTGRES_DB: ${DIARIES_DB_NAME}
+      POSTGRES_USER: ${DIARIES_DB_USERNAME}
+      POSTGRES_PASSWORD: ${DIARIES_DB_PASSWORD}
     ports:
       - "${DIARIES_DB_HOST_PORT:-5433}:5432"
     volumes:

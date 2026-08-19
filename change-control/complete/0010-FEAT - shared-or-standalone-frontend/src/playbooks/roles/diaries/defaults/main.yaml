@@ -1,0 +1,29 @@
+---
+
+projects_dir: "{{ ansible_env.HOME }}/projects"
+diaries_project_dir: "{{ projects_dir }}/diaries"
+
+# Production frontend topology.
+#
+# standalone:
+#   The Diaries Compose stack owns its Nginx service and host ports.
+#
+# shared:
+#   Diaries does not create an Nginx service. Browser-facing Diaries services
+#   join an existing external Docker network and an existing infrastructure
+#   Nginx container routes requests to them.
+diaries_frontend_mode: standalone
+
+# Shared-frontend integration defaults. These are used only when
+# diaries_frontend_mode == 'shared'.
+diaries_shared_network_name: "{{ shared_network_name | default('infrastructure_shared') }}"
+diaries_shared_frontend_project_dir: "{{ projects_dir }}/infrastructure"
+diaries_shared_frontend_nginx_container_name: infra-nginx
+diaries_shared_frontend_systemd_unit: infrastructure-compose.service
+diaries_shared_frontend_location_dir: "{{ diaries_shared_frontend_project_dir }}/nginx/config/conf.d/locations"
+diaries_shared_frontend_location_file: "{{ diaries_shared_frontend_location_dir }}/diaries.conf"
+
+# Retain compatibility with the existing generic tunnel variable, while giving
+# the Diaries role its own explicit setting. The application-specific tunnel
+# is only created in standalone frontend mode.
+diaries_cloudflare_tunnel_enabled: "{{ enable_cloudflare_tunnel | default(false) }}"

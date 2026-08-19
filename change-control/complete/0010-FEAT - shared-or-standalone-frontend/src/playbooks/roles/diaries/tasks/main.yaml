@@ -1,0 +1,51 @@
+---
+
+- name: diaries | Validate frontend mode
+  ansible.builtin.assert:
+    that:
+      - diaries_frontend_mode in ['standalone', 'shared']
+    fail_msg: >-
+      diaries_frontend_mode must be either 'standalone' or 'shared';
+      current value is '{{ diaries_frontend_mode }}'.
+  tags:
+    - always
+
+- name: diaries | docker
+  ansible.builtin.import_tasks: docker.yaml
+  become: yes
+  tags:
+    - docker
+
+- name: diaries | tools
+  ansible.builtin.import_tasks: tools.yaml
+  tags:
+    - tools
+
+- name: diaries | copy files
+  ansible.builtin.import_tasks: copy.yaml
+  tags:
+    - copy
+
+- name: diaries | configure shared frontend
+  ansible.builtin.import_tasks: shared-frontend.yaml
+  when: diaries_frontend_mode == 'shared'
+  tags:
+    - copy
+    - frontend
+
+- name: diaries | remove stale shared frontend configuration
+  ansible.builtin.import_tasks: standalone-frontend.yaml
+  when: diaries_frontend_mode == 'standalone'
+  tags:
+    - copy
+    - frontend
+
+- name: diaries | generate the mosquitto pwfile
+  ansible.builtin.import_tasks: pwfile.yaml
+  tags:
+    - pwfile
+
+- name: diaries | setup compose
+  ansible.builtin.import_tasks: compose.yaml
+  tags:
+    - compose
