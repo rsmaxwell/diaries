@@ -1,0 +1,71 @@
+name: ledger-local-docker-build
+
+services:
+  ledger-db:
+    image: postgres:18-alpine
+    container_name: ledger-dev-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${LEDGER_DB_NAME:-ledger}
+      POSTGRES_USER: ${LEDGER_DB_USERNAME:-ledger}
+      POSTGRES_PASSWORD: ${LEDGER_DB_PASSWORD:?LEDGER_DB_PASSWORD must be set in .env}
+    volumes:
+      # PostgreSQL 18+ images should mount at /var/lib/postgresql, not /var/lib/postgresql/data.
+      - "${LEDGER_DB_DATA_DIR:?LEDGER_DB_DATA_DIR must be set}:/var/lib/postgresql"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      - ledger-dev
+
+  ledger-server:
+    build:
+      context: ./ledger-server
+      dockerfile: Dockerfile
+    image: ledger-server:dev
+    container_name: ledger-dev-server
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      LEDGER_DB_NAME: ${LEDGER_DB_NAME:-ledger}
+      LEDGER_DB_USERNAME: ${LEDGER_DB_USERNAME:-ledger}
+      LEDGER_DB_PASSWORD: ${LEDGER_DB_PASSWORD:?LEDGER_DB_PASSWORD must be set in .env}
+      LEDGER_DB_URL: jdbc:postgresql://ledger-db:5432/${LEDGER_DB_NAME:-ledger}
+      SERVER_PORT: 8080
+      LEDGER_BOOTSTRAP_ADMIN_USERNAME: ${LEDGER_BOOTSTRAP_ADMIN_USERNAME:-ledger-admin}
+      LEDGER_BOOTSTRAP_ADMIN_PASSWORD: ${LEDGER_BOOTSTRAP_ADMIN_PASSWORD:-ledger}
+      LEDGER_BOOTSTRAP_ADMIN_DISPLAY_NAME: ${LEDGER_BOOTSTRAP_ADMIN_DISPLAY_NAME:-Admin}
+      LEDGER_BOOTSTRAP_ADMIN_ROLES: ${LEDGER_BOOTSTRAP_ADMIN_ROLES:-ROLE_ADMIN,ROLE_STAFF}
+      LEDGER_JWT_SECRET: ${LEDGER_JWT_SECRET:-change-me-only-for-local-development-ledger-jwt-secret}
+      LEDGER_ACCESS_TOKEN_SECONDS: ${LEDGER_ACCESS_TOKEN_SECONDS:-900}
+    depends_on:
+      ledger-db:
+        condition: service_healthy
+    ports:
+      # Expose server directly for remote-dev API smoke testing.
+      # In normal browser use, ledger-client proxies /api to ledger-server internally.
+      - "${LEDGER_SERVER_PORT:-8080}:8080"
+    networks:
+      - ledger-dev
+
+  ledger-client:
+    build:
+      context: ./ledger-client
+      dockerfile: Dockerfile
+    image: ledger-client:dev
+    container_name: ledger-dev-client
+    restart: unless-stopped
+    depends_on:
+      - ledger-server
+    ports:
+      # Open this port in the browser on the remote development host.
+      - "${LEDGER_CLIENT_PORT:-4200}:80"
+    networks:
+      - ledger-dev
+
+networks:
+  ledger-dev:
+    name: ledger-dev

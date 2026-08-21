@@ -1,0 +1,88 @@
+name: ledger-local-published-smoke
+
+services:
+
+  ledger-db:
+    image: postgres:18-alpine
+    container_name: ledger-dockerhub-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${LEDGER_DB_NAME:-ledger}
+      POSTGRES_USER: ${LEDGER_DB_USERNAME:-ledger}
+      POSTGRES_PASSWORD: ${LEDGER_DB_PASSWORD:-ledger}
+    volumes:
+      # This is deliberately a separate disposable volume from the normal
+      # local-dev and production-style Compose files.
+      #
+      # PostgreSQL 18+ images should mount at /var/lib/postgresql, not
+      # /var/lib/postgresql/data.
+      - "${LEDGER_DB_DATA_DIR:?LEDGER_DB_DATA_DIR must be set}:/var/lib/postgresql"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      - ledger-dockerhub
+
+  ledger-server:
+    image: rsmaxwell/ledger-server:${LEDGER_SERVER_IMAGE_TAG:-${LEDGER_IMAGE_TAG:-integration}}
+    pull_policy: always
+    container_name: ledger-dockerhub-server
+    restart: unless-stopped
+    environment:
+      # This is a local smoke-test mode, so use the dev Spring profile rather
+      # than the stricter production profile.
+      SPRING_PROFILES_ACTIVE: dev
+
+      LEDGER_DB_NAME: ${LEDGER_DB_NAME:-ledger}
+      LEDGER_DB_USERNAME: ${LEDGER_DB_USERNAME:-ledger}
+      LEDGER_DB_PASSWORD: ${LEDGER_DB_PASSWORD:-ledger}
+      LEDGER_DB_URL: jdbc:postgresql://ledger-db:5432/${LEDGER_DB_NAME:-ledger}
+
+      SERVER_PORT: 8080
+
+      LEDGER_BOOTSTRAP_ADMIN_USERNAME: ${LEDGER_BOOTSTRAP_ADMIN_USERNAME:-ledger-admin}
+      LEDGER_BOOTSTRAP_ADMIN_PASSWORD: ${LEDGER_BOOTSTRAP_ADMIN_PASSWORD:-ledger}
+      LEDGER_BOOTSTRAP_ADMIN_DISPLAY_NAME: ${LEDGER_BOOTSTRAP_ADMIN_DISPLAY_NAME:-Admin}
+      LEDGER_BOOTSTRAP_ADMIN_ROLES: ${LEDGER_BOOTSTRAP_ADMIN_ROLES:-ROLE_ADMIN,ROLE_STAFF}
+
+      LEDGER_JWT_SECRET: ${LEDGER_JWT_SECRET:-change-me-only-for-local-dockerhub-smoke-test-ledger-jwt-secret}
+      LEDGER_ACCESS_TOKEN_SECONDS: ${LEDGER_ACCESS_TOKEN_SECONDS:-900}
+    depends_on:
+      ledger-db:
+        condition: service_healthy
+    ports:
+      # Expose the server directly so the existing smoke/API scripts can check
+      # actuator health and REST endpoints.
+      - "${LEDGER_SERVER_PORT:-8080}:8080"
+    labels:
+      com.rsmaxwell.ledger.mode: local-published-image-smoke-test
+      com.rsmaxwell.ledger.component: ledger-server
+      com.rsmaxwell.ledger.version: ${LEDGER_SERVER_IMAGE_TAG:-${LEDGER_IMAGE_TAG:-integration}}
+    networks:
+      - ledger-dockerhub
+
+  ledger-client:
+    image: docker.io/rsmaxwell/ledger-client:${LEDGER_CLIENT_IMAGE_TAG:-${LEDGER_IMAGE_TAG:-integration}}
+    pull_policy: always
+    container_name: ledger-dockerhub-client
+    restart: unless-stopped
+    depends_on:
+      - ledger-server
+    ports:
+      # This matches the normal local full-Docker mode, so do not run this
+      # Compose file at the same time as compose.yaml unless you override the
+      # port.
+      - "${LEDGER_CLIENT_PORT:-4200}:80"
+    labels:
+      com.rsmaxwell.ledger.mode: local-published-image-smoke-test
+      com.rsmaxwell.ledger.component: ledger-client
+      com.rsmaxwell.ledger.version: ${LEDGER_CLIENT_IMAGE_TAG:-${LEDGER_IMAGE_TAG:-integration}}
+    networks:
+      - ledger-dockerhub
+
+networks:
+  ledger-dockerhub:
+    name: ledger-dockerhub

@@ -3,8 +3,8 @@ setlocal EnableExtensions EnableDelayedExpansion
 
 rem Test the Diaries responder HTTP interface used by the local Docker build.
 rem
-rem Unlike ledger-server, diaries-responder does not expose a conventional
-rem REST API. Its HTTP server provides the static /diaries and /files contexts;
+rem diaries-responder does not expose a conventional REST API. Its HTTP server
+rem provides the static /diaries and /files contexts;
 rem the application's RPC operations are carried over MQTT.
 
 rem Locate the Diaries project directory from this script:

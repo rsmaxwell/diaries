@@ -5,18 +5,18 @@ set "EXIT_CODE=0"
 set "SCRIPT_DIR=%~dp0"
 
 rem This script is located under:
-rem diaries\scripts\windows\development-infrastructure
-rem Therefore, the Diaries project root is three directories above it.
+rem ledger\scripts\windows\local-docker-build
+rem Therefore, the Ledger project root is three directories above it.
 pushd "%SCRIPT_DIR%..\..\.." >nul 2>&1
 if errorlevel 1 (
-    echo ERROR: Could not locate the project directory. >&2
+    echo ERROR: Could not locate the Ledger project root. >&2
     echo Script directory: "%SCRIPT_DIR%" >&2
-    endlocal & exit /b 1
+    set "EXIT_CODE=1"
+    goto :cleanup
 )
-
 set "PROJECT_DIR=%CD%"
 
-set "COMPOSE_FILE=%PROJECT_DIR%\compose.development-infrastructure.yaml"
+set "COMPOSE_FILE=%PROJECT_DIR%\compose.local-docker-build.yaml"
 if not exist "%COMPOSE_FILE%" (
     echo ERROR: Compose file not found: >&2
     echo "%COMPOSE_FILE%" >&2
@@ -24,7 +24,7 @@ if not exist "%COMPOSE_FILE%" (
     goto :cleanup
 )
 
-set "ENV_FILE=%PROJECT_DIR%\config\environments\development-infrastructure.env"
+set "ENV_FILE=%PROJECT_DIR%\config\environments\local-docker-build.env"
 if not exist "%ENV_FILE%" (
     echo ERROR: Environment file not found: >&2
     echo "%ENV_FILE%" >&2
@@ -41,26 +41,15 @@ if not exist "%LOCAL_ENV_FILE%" (
     goto :cleanup
 )
 
-call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat" "%ENV_FILE%"
-if errorlevel 1 (
-    set "EXIT_CODE=1"
-    goto :cleanup
-)
 
-call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat" "%LOCAL_ENV_FILE%"
-if errorlevel 1 (
-    set "EXIT_CODE=1"
-    goto :cleanup
-)
 
-docker compose ^
-    --env-file "%ENV_FILE%" ^
-    --env-file "%LOCAL_ENV_FILE%" ^
-    -f "%COMPOSE_FILE%" ^
-    up -d 
+
+
+@echo on
+docker compose -f "%COMPOSE_FILE%" --env-file "%ENV_FILE%" --env-file "%LOCAL_ENV_FILE%" build
+@echo off
 
 set "EXIT_CODE=%ERRORLEVEL%"
 
-:cleanup
 popd
 endlocal & exit /b %EXIT_CODE%
