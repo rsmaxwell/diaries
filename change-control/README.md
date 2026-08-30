@@ -1,113 +1,128 @@
-# Ledger Change Control
+# Diaries Change Control
 
-This directory provides a lightweight, file-based system for managing defects, features, and other planned changes to the Ledger application.
+This directory provides lightweight, file-based change control for the Diaries application. It records defects, features, and technical or operational changes in the same repository as the application-level configuration that joins the client and responder together.
 
-The approach is intended to remain simple, readable, version-controlled, and suitable for a project where changes often span the Angular client, Java server, database, deployment scripts, and documentation.
+The purpose is to retain enough context to understand why a change was requested, how it affects the complete Diaries system, what was implemented, and how the result was verified. The process should remain proportionate to the risk and size of the change.
+
+## System Context
+
+Diaries is an end-to-end system comprising:
+
+- the Angular/TypeScript `diaries-client`;
+- the Java `diaries-responder`;
+- MQTT RPC request/reply messaging;
+- a retained MQTT topic tree used as the live application model;
+- PostgreSQL with JPA/Hibernate as the durable source of truth;
+- HTTP/static file serving for diary images and uploaded files;
+- Docker and Docker Compose for local execution;
+- Jenkins pipelines for component builds and images;
+- Ansible and Docker Compose for production deployment.
+
+The central architectural principles are:
+
+```text
+RPC requests express intent.
+Retained MQTT topics publish reality.
+The database is the durable source of truth.
+```
+
+A change that appears isolated to the client or responder may affect the contract between them. Change records should consider the complete path whenever authentication, MQTT, retained state, persistence, files, configuration, or deployment is involved.
 
 ## Directory Structure
+
+The active change-control states are:
 
 ```text
 change-control/
 ├── README.md
-├── INDEX.md
 ├── todo/
 ├── in-progress/
-└── completed/
+├── complete/
+└── will-not-fix/
 ```
 
-The folders represent the current state of each change:
+- `todo` contains accepted changes that have not started.
+- `in-progress` contains changes currently being investigated or implemented.
+- `complete` contains finished changes retained as a permanent record.
+- `will-not-fix` contains changes that were considered but intentionally not implemented.
 
-- `todo` — accepted items that have not yet been started
-- `in-progress` — items currently being investigated or implemented
-- `completed` — finished items retained as a permanent record
+Each change has its own directory. Move the entire change directory between state directories; do not create disconnected copies of the same change record.
 
-Each defect or feature should have its own folder. The whole folder moves between the status directories as work progresses.
-
-Example:
-
-```text
-change-control/
-├── todo/
-│   └── FEAT-0002-customer-search/
-│       ├── README.md
-│       ├── evidence/
-│       ├── designs/
-│       └── notes/
-├── in-progress/
-│   └── DEF-0001-login-fails-after-token-expiry/
-│       ├── README.md
-│       ├── evidence/
-│       └── notes/
-└── completed/
-```
+Completed and will-not-fix records are historical evidence. They may contain snapshots or implementation packages, but those copies are not the current source of truth. The active application tree takes precedence.
 
 ## Change Identifiers
 
-Every change should be given a permanent identifier when it is created.
+Assign each change a permanent numeric identifier and a type:
 
-Suggested prefixes:
+- `DEF` — defect;
+- `FEAT` — feature;
+- `CHG` — technical, maintenance, deployment, or operational change.
 
-- `DEF` — defect
-- `FEAT` — feature
-- `CHG` — general technical or operational change
+For new items, use this folder naming convention:
+
+```text
+NNNN-TYPE - short description
+```
 
 Examples:
 
 ```text
-DEF-0001-login-fails-after-token-expiry
-FEAT-0002-customer-search
-CHG-0003-update-deployment-backup-process
+0042-DEF - fragment unlock leaves stale retained state
+0043-FEAT - display uploaded files by diary
+0044-CHG - improve published image smoke testing
 ```
 
-The identifier must not change when the folder moves between `todo`, `in-progress`, and `completed`.
+Use the next available identifier across all state directories. Preserve identifiers and existing folder names when moving or updating older records, even where an older naming style differs from the current convention.
 
-## Change Item Contents
+## Change Record Contents
 
-Every change folder should contain a `README.md` as its main record.
+Every change directory should contain a `README.md` as its primary record. Add supporting files only when they improve traceability or make the work reproducible.
 
-Supporting material can be placed in subdirectories such as:
+Useful supporting directories include:
 
 ```text
 evidence/
 designs/
-notes/
-sql/
 logs/
+notes/
 screenshots/
+sql/
+validation/
 ```
 
-Typical supporting material includes:
+Supporting evidence may include:
 
-- browser console logs
-- Java server logs
-- screenshots
-- API requests and responses
-- SQL queries and results
-- database migration notes
-- design sketches
-- test results
-- deployment output
+- browser console or network output;
+- MQTT request, reply, and retained-topic observations;
+- Mosquitto logs;
+- responder logs;
+- PostgreSQL queries and results with secrets removed;
+- Docker or Compose configuration and health output;
+- screenshots;
+- test and build results;
+- deployment output;
+- migration, backup, or rollback notes.
 
-Raw evidence should be kept separate from the main `README.md` so that the change description remains readable.
+Do not store credentials, tokens, signing secrets, private keys, or sensitive diary content in a change record.
 
-## Change Item Template
+## Change Record Template
 
-The following template can be used for each item.
+Use the following template as a starting point. Remove sections that genuinely do not apply and add detail where the change has significant risk.
 
 ```markdown
-# DEF-0001 — Login fails after token expiry
+# NNNN-TYPE - Short description
 
 ## Type
 
-Defect
+Defect | Feature | Change
 
 ## Status
 
-To do
+To do | In progress | Complete | Will not fix
 
 ## Priority
 
-High
+Low | Medium | High | Critical
 
 ## Opened
 
@@ -115,358 +130,326 @@ YYYY-MM-DD
 
 ## Summary
 
-Provide a short description of the defect or feature.
+Describe the problem or requested outcome.
 
 ## Background
 
-Describe why the change is required and any relevant history.
+Explain why the change is needed and record relevant history or constraints.
 
 ## Observed Behaviour
 
-For a defect, describe what currently happens.
-
-For a feature, describe the current limitation.
+For a defect, describe what currently happens and distinguish observed evidence from assumptions.
 
 ## Expected Behaviour
 
-Describe what the system should do after the change is complete.
+Describe the intended result in terms that can be verified.
 
-## Reproduction Steps
+## Reproduction or User Workflow
 
-For a defect, provide repeatable steps.
-
-1. Sign in.
-2. Allow the access token to expire.
-3. Perform an API operation.
-4. Observe the failure.
-
-For a feature, this section may instead describe the user workflow.
+Provide repeatable steps, including the execution mode and actual component/image versions where relevant.
 
 ## Evidence
 
-List the supporting files stored in this folder.
-
-- Browser console log: `evidence/browser-console.txt`
-- Server log: `evidence/server.log`
-- Screenshot: `evidence/error.png`
+List supporting files, logs, screenshots, queries, or MQTT observations.
 
 ## Analysis
 
-Record the investigation, suspected cause, technical constraints, and relevant client/server interactions.
-
-When investigating Ledger defects, consider both:
-
-- Angular browser console and network activity
-- Java server logs and API behaviour
+Record the investigation, confirmed root cause, constraints, and cross-component interactions.
 
 ## Scope
 
-### Ledger Client
+### Diaries Client
 
-List expected changes to the Angular client.
+Describe Angular, browser configuration, authentication, MQTT, model, or presentation changes.
 
-### Ledger Server
+### Diaries Responder
 
-List expected changes to the Java server.
+Describe handler, validation, authentication, persistence, locking, retained publication, or file-serving changes.
+
+### MQTT Contract and Retained State
+
+Describe request/reply payloads, topics, correlation, error handling, subscriptions, and retained publications.
 
 ### Database
 
-List any PostgreSQL, JPA, Flyway, or data migration changes.
+Describe PostgreSQL, JPA/Hibernate, schema, migration, compatibility, backup, or restore implications.
 
-### Deployment and Operations
+### Images and Static Files
 
-List any Docker, Docker Compose, Jenkins, Ansible, script, backup, restore, or smoke-test changes.
+Describe metadata, URL construction, nginx/static routing, volume mounts, NAS paths, or filesystem implications.
+
+### Build, Configuration, and Deployment
+
+Describe Docker, Compose, environment variables, scripts, Jenkins, image tags, Ansible, nginx, systemd, or production implications.
 
 ### Documentation
 
-Check whether the following require updates:
-
-- `ledger-docs/DATA_MODEL.md`
-- `ledger-docs/ARCHITECTURE.md`
-- `ledger-docs/BILLING_RULES.md`
-- other user or deployment documentation
+List documentation that must be updated.
 
 ## Implementation Steps
 
-- [ ] Reproduce or define the required behaviour.
-- [ ] Add or update automated tests.
-- [ ] Implement the server changes.
-- [ ] Implement the client changes.
-- [ ] Update database migrations if required.
-- [ ] Update deployment or operational scripts if required.
-- [ ] Update documentation.
-- [ ] Run server tests.
-- [ ] Run client tests.
-- [ ] Run integration or smoke tests.
-- [ ] Record the final Git references.
-- [ ] Complete the completion summary.
+- [ ] Confirm or reproduce the current behaviour.
+- [ ] Identify affected components and contracts.
+- [ ] Add or update appropriate tests.
+- [ ] Implement the smallest coherent change.
+- [ ] Update configuration and documentation where required.
+- [ ] Run the relevant tests, builds, and smoke checks.
+- [ ] Review the final Git diff for unrelated changes.
+- [ ] Record validation evidence and remaining risks.
 
 ## Acceptance Criteria
 
-- [ ] The required behaviour is clearly defined.
-- [ ] The original defect can no longer be reproduced, or the feature works as specified.
-- [ ] Client and server behaviour remain consistent.
-- [ ] Automated tests cover the important behaviour.
-- [ ] Database definitions and migrations are consistent.
-- [ ] Relevant documentation has been updated.
-- [ ] Deployment and rollback implications have been checked.
-- [ ] The change has been verified in the appropriate Ledger environments.
+- [ ] The required behaviour is unambiguous.
+- [ ] Client and responder behaviour remain compatible.
+- [ ] Database and retained MQTT state remain consistent.
+- [ ] Authentication and authorisation remain correct.
+- [ ] Relevant tests and builds pass.
+- [ ] Applicable local or production modes have been considered.
+- [ ] Documentation and configuration match the implemented behaviour.
+- [ ] Deployment and rollback implications are understood.
 
-## Test Evidence
+## Validation
 
-Record the tests performed and their results.
+### Client Tests and Build
 
-### Server Tests
-
-```text
 Command:
 Result:
-```
 
-### Client Tests
+### Responder Tests and Build
 
-```text
 Command:
 Result:
-```
 
-### Smoke Test
+### MQTT and Database Verification
 
-```text
-Environment:
-Command:
+Method:
 Result:
-```
+
+### Docker or Application Smoke Test
+
+Mode:
+Command or method:
+Result:
 
 ### Manual Verification
 
-Describe any manual checks performed.
+Method:
+Result:
 
 ## Git References
 
-Record all relevant repositories because Ledger changes may span several projects.
+Record only repositories affected by the change.
 
-### Top-Level Ledger Repository
-
-- Branch:
-- Commits:
-- Pull request:
-
-### Ledger Client
+### Diaries Parent Repository
 
 - Branch:
 - Commits:
 - Pull request:
 
-### Ledger Server
+### Diaries Client
 
 - Branch:
 - Commits:
 - Pull request:
 
-### Ledger Docs
+### Diaries Responder
 
+- Branch:
+- Commits:
+- Pull request:
+
+### Pipelines or Production Playbooks
+
+- Repository:
 - Branch:
 - Commits:
 - Pull request:
 
 ## Deployment and Rollback Notes
 
-Describe:
-
-- deployment steps
-- configuration changes
-- database migration implications
-- compatibility considerations
-- rollback procedure
+Describe configuration changes, database compatibility, image selection, deployment order, rollback steps, and any backup requirements.
 
 ## Completion Summary
 
-Complete this section when the item is finished.
-
-Summarise:
-
-- what changed
-- why the chosen solution was used
-- any important limitations
-- tests performed
-- deployment outcome
-- follow-up work, if any
+Summarise what changed, why the solution was chosen, the validation performed, limitations, and follow-up work.
 
 ## Completed Date
 
 YYYY-MM-DD
 ```
 
-## Change Register
-
-The top-level `INDEX.md` should provide a compact view of all changes.
-
-Example:
-
-```markdown
-# Ledger Change Register
-
-| ID | Type | Description | Priority | Status | Opened | Completed |
-|---|---|---|---|---|---|---|
-| DEF-0001 | Defect | Login fails after token expiry | High | In progress | 2026-07-15 | |
-| FEAT-0002 | Feature | Add customer search | Medium | To do | 2026-07-15 | |
-| CHG-0003 | Change | Improve deployment backup process | Medium | Completed | 2026-07-10 | 2026-07-14 |
-```
-
-The index should be updated whenever:
-
-- a new change is created
-- a change starts
-- priority changes
-- a change is completed
-- a change is cancelled or superseded
-
 ## Workflow
 
 ### 1. Create the Change
 
-Create a new folder under `todo`.
+Create the change directory under `todo` using the next available identifier. Add a `README.md` that defines at least the summary, expected behaviour, scope, and acceptance criteria.
 
-Example:
+### 2. Investigate and Define
 
-```text
-change-control/todo/DEF-0004-invoice-rounding-error/
-```
+Before implementation:
 
-Add the item `README.md` and any available evidence.
-
-Add the item to `INDEX.md`.
-
-### 2. Define the Change
-
-Before implementation, record:
-
-- the problem or requirement
-- expected behaviour
-- scope
-- implementation steps
-- acceptance criteria
-- known risks
-- affected Ledger repositories
+- identify the execution mode involved;
+- establish the actual client and responder source or image versions;
+- separate observed evidence from suspected causes;
+- inspect both sides of an MQTT or authentication contract;
+- compare database, responder, retained-topic, and client state where relevant;
+- identify data safety, compatibility, and deployment risks;
+- define proportionate validation.
 
 ### 3. Start Work
 
-Move the complete folder from `todo` to `in-progress`.
+Move the complete change directory from `todo` to `in-progress`. Update its status and record any relevant branch references.
 
-Update:
-
-- the status in the item `README.md`
-- the status in `INDEX.md`
-- the Git branch references
-
-Example branch names:
-
-```text
-defect/DEF-0001-token-expiry
-feature/FEAT-0002-customer-search
-change/CHG-0003-backup-process
-```
+Do not discard existing local work. Inspect Git status and relevant diffs before editing files.
 
 ### 4. Implement and Verify
 
-Work through the implementation checklist.
+Make the smallest coherent change that satisfies the acceptance criteria. Consider all affected layers rather than treating a visible symptom as the complete problem.
 
-For Ledger changes, consider all relevant areas:
+For MQTT RPC changes, verify:
 
-- Angular client
-- Java server
-- PostgreSQL and JPA
-- Docker and Docker Compose
-- Jenkins
-- Ansible
-- remote scripts
-- smoke tests
-- Ledger documentation
+1. the Angular request payload and request topic;
+2. responder handler registration and implementation;
+3. authentication and authorisation;
+4. reply payload, reply topic, correlation, timeout, and error handling;
+5. resulting retained-topic publication;
+6. the client subscription and state transition.
 
-Where a defect crosses the HTTP boundary, preserve evidence from both the browser and server.
+For state consistency changes, compare:
+
+```text
+PostgreSQL state
+        |
+Responder state and transaction result
+        |
+Retained MQTT topic state
+        |
+Angular client state
+```
+
+For image or static-file changes, verify the metadata, generated URL, browser response, routing, container mount, host/NAS path, and file permissions.
 
 ### 5. Complete the Change
 
-Before marking the item complete:
+Before moving an item to `complete`:
 
-- confirm the acceptance criteria
-- record tests and results
-- record Git commits and pull requests
-- document deployment and rollback implications
-- complete the completion summary
-- add the completed date
+- confirm every acceptance criterion;
+- record tests, builds, smoke tests, and manual checks actually performed;
+- identify checks that could not be performed;
+- record affected repositories and Git references;
+- document deployment, compatibility, backup, and rollback implications;
+- update affected documentation;
+- inspect the final diff for accidental or unrelated changes;
+- complete the summary and completion date.
 
-Move the whole folder to `completed`.
+Move the whole change directory to `complete` only when the requested outcome has been achieved.
 
-Update `INDEX.md`.
+### 6. Close Without Implementing
 
-## Git and Repository Considerations
+Move an item to `will-not-fix` when the decision not to implement it is deliberate. Record:
 
-Ledger consists of a top-level repository and several submodules. A single change may therefore involve commits in:
+- the reason for the decision;
+- evidence considered;
+- risks accepted;
+- alternatives or mitigations;
+- conditions that would justify revisiting the decision;
+- the decision date.
 
-- `ledger`
-- `ledger-client`
-- `ledger-server`
-- `ledger-docs`
+## End-to-End Investigation Guidance
 
-The change record should link all relevant commits and branches.
+### Authentication and Sessions
 
-The detailed change record should normally remain in one place rather than being split between client and server repositories. This preserves the full end-to-end context.
+Check client access and refresh tokens, expiry and refresh behaviour, MQTT connection state, ACL permissions, responder validation, request retries, browser refresh, and sign-out behaviour.
 
-## Documentation and Data-Model Consistency
+### MQTT and Retained Topics
 
-When a change affects the data model or billing behaviour, verify that the implementation remains consistent with:
+Check exact topic names, payload properties, IDs, null handling, user properties, response topics, correlation data, timeouts, retries, retained flags, deletion/tombstone behaviour, reconnects, and stale retained messages.
 
-- PostgreSQL schema and migrations
-- JPA entity definitions
-- API request and response models
-- Angular client models
-- `DATA_MODEL.md`
-- `ARCHITECTURE.md`
-- `BILLING_RULES.md`
+### Database
 
-A change should not be considered complete while these definitions disagree.
+Distinguish between an empty database, an inaccessible database, the wrong database or volume, incorrect credentials, schema mismatch, missing rows, and retained-state inconsistency. Do not use destructive database operations without explicit approval and an appropriate backup plan.
 
-## File-Based System Versus GitHub Issues
+### Docker and Configuration
 
-A file-based change-control system has several advantages:
+Identify the Compose file, environment files and overrides, project name, service, running container, image ID and tag, volume mounts, ports, and health state. Do not infer a running version from the local source tree.
 
-- it is simple
-- it is version-controlled
-- it remains available offline
-- it supports detailed evidence and implementation notes
-- it is easy to archive permanently
-- it is not tied to a particular issue-tracking service
+### Production
 
-Its main limitations are:
+Consider both standalone and shared frontend modes. Where production configuration lives in a separate playbooks repository, record the repository and inspect role defaults, inventory overrides, generated Compose configuration, nginx configuration, scripts, and systemd units as applicable.
 
-- limited filtering and searching
-- no automatic notifications
-- no built-in comments or assignment workflow
-- less direct integration with pull requests
-- manual maintenance of the index and status folders
+## Validation by Change Type
 
-A hybrid approach can be introduced later:
+Use validation proportional to the change:
 
-- use a GitHub Issue for discussion, labels, and pull-request integration
-- use the change-control folder for the detailed investigation, evidence, implementation plan, test results, and completion record
+- Angular presentation changes: relevant client tests and a production client build.
+- Java internal changes: relevant responder tests and a responder build using the Gradle wrapper.
+- MQTT contract changes: client tests/build, responder tests/build, request/reply compatibility, and retained-topic behaviour.
+- Database changes: responder tests/build, schema or migration review, existing-data compatibility, and backup/restore implications.
+- Docker or configuration changes: `docker compose config`, the appropriate local mode, health/status checks, and an application smoke test.
+- Production or Ansible changes: syntax/configuration review, generated configuration review, idempotency consideration, and both frontend topologies where applicable.
 
-For a single-developer project, the file-based approach is a reasonable starting point.
+Do not report a test or build as passing unless it was actually run successfully.
+
+## Local Execution Modes
+
+Record which mode was used for reproduction and verification:
+
+### development-infrastructure
+
+PostgreSQL and Mosquitto run in Docker while the client and responder normally run directly from the Windows development environment.
+
+### local-docker-build
+
+The complete application runs in containers built from the current local source. Confirm that stale published images are not being used.
+
+### local-published-smoke
+
+The application runs from published client and responder images. Record the resolved image names, tags, and embedded build information.
+
+### production
+
+Production is deployed using Ansible and Docker Compose and may use either a standalone or shared frontend. Inventory variables can override normal role defaults, including component image tags.
+
+## Repository and Documentation References
+
+The main active documentation is:
+
+- `README.md`;
+- `ARCHITECTURE.md`;
+- `diaries-client/README.md`;
+- `diaries-responder/README.md`;
+- applicable documents under `docs/`;
+- current Compose, environment, script, and configuration files.
+
+Diaries client and responder source are separate Git repositories/submodules. Pipeline and production changes may involve additional repositories. A single change record should link every affected repository while retaining the end-to-end explanation in one place.
+
+Do not use source snapshots inside historical change-control implementation packages as the current application source.
+
+## Safety
+
+Change-control work does not authorise destructive operations. Obtain explicit approval before:
+
+- deleting, resetting, or replacing a database;
+- removing Docker volumes;
+- deleting or modifying NAS diary content;
+- overwriting uncommitted changes;
+- running destructive Git cleanup or reset operations;
+- modifying a separate deployment repository outside the task scope.
+
+Use supplied backup and restore scripts where appropriate, preserve secrets outside version control, and redact sensitive values from recorded evidence.
 
 ## Principles
 
 Every change should have:
 
-- a stable identifier
-- a clear description
-- defined scope
-- implementation steps
-- acceptance criteria
-- supporting evidence
-- test results
-- Git references
-- deployment and rollback notes
-- a completion summary
+- a stable identifier;
+- a clear outcome;
+- enough evidence to distinguish symptoms from root cause;
+- an explicit scope across affected components;
+- testable acceptance criteria;
+- proportionate validation;
+- deployment and data-safety consideration;
+- relevant Git references;
+- a completion or will-not-fix rationale.
 
-The purpose of the system is not to add unnecessary process. It is to ensure that each Ledger change can be understood, implemented, tested, deployed, reviewed, and traced later.
+The process exists to make each Diaries change understandable, safe, verifiable, and traceable without adding unnecessary ceremony.
