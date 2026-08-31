@@ -35,7 +35,13 @@ The script uses `eclipse-mosquitto:2` and `generate-pwfile.sh` to create the Com
 
 In ignored `config/environments/local.env`, set `DIARIES_MQTT_HEALTH_USERNAME` to `diaries-health` and set `DIARIES_MQTT_HEALTH_PASSWORD` to the password used by that entry in the external source. Do not use the `admin` account for health checks.
 
-The ACL intentionally grants `diaries-health` read access only to `$SYS/broker/version`.
+The ACL grants `diaries-health` only the permissions needed by the two health checks:
+
+- read `$SYS/broker/version` for Mosquitto health;
+- write `diaries/rpc/request` for responder readiness; and
+- read `diaries/rpc/<mqtt-client-id>/response` only when the topic's client ID matches the health-check client's own ID.
+
+It does not grant the health user access to retained Diaries business-data topics.
 
 ## Responder configuration
 

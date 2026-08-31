@@ -62,6 +62,8 @@ services:
         condition: service_healthy
     environment:
       CONFIG_FILE: /config/responder.json
+      DIARIES_MQTT_HEALTH_USERNAME: ${DIARIES_MQTT_HEALTH_USERNAME}
+      DIARIES_MQTT_HEALTH_PASSWORD: ${DIARIES_MQTT_HEALTH_PASSWORD}
     ports:
       - "${DIARIES_RESPONDER_HTTP_HOST_PORT:-8081}:8081"
     volumes:
@@ -85,7 +87,11 @@ services:
           subpath: ${DIARIES_NAS_CONTENT_PATH}/files
 
     healthcheck:
-      test: ["CMD-SHELL", "curl --silent --output /dev/null http://localhost:8081/not-a-responder-path"]
+      test:
+        [
+          "CMD-SHELL",
+          "loglevel=ERROR java -cp /opt/diaries/lib/diaries-responder.jar com.rsmaxwell.diaries.responder.health.ResponderHealthCheck --config /config/responder.json",
+        ]
       interval: 10s
       timeout: 5s
       retries: 12

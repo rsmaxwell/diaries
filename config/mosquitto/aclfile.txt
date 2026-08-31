@@ -20,3 +20,5 @@ topic readwrite diaries/roles/#
 
 user diaries-health
 topic read $SYS/broker/version
+topic write diaries/rpc/request
+pattern read diaries/rpc/%c/response
