@@ -7,5 +7,6 @@
 	path = diaries-client
 	url = ../diaries-client.git
 
-
-
+[submodule "diaries-web"]
+	path = diaries-web
+	url = ../diaries-web.git
