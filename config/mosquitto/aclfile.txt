@@ -18,6 +18,12 @@ topic readwrite diaries/dates/#
 topic readwrite diaries/people/#
 topic readwrite diaries/roles/#
 
+user diaries-web
+topic read diaries/diaries/+
+topic read diaries/pages/+
+topic read diaries/fragments/+
+topic read diaries/marquees/+
+
 user diaries-health
 topic read $SYS/broker/version
 topic write diaries/rpc/request

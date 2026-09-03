@@ -6,4 +6,5 @@ plugins {
 
 rootProject.name = 'diaries'
 include('diaries-responder')
+include('diaries-web')
 

@@ -16,6 +16,7 @@ Use `username:password` format with one entry for each required identity:
 admin:<local-admin-password>
 diaries-client:<local-client-password>
 diaries-responder:<local-responder-password>
+diaries-web:<local-web-password>
 diaries-health:<local-health-password>
 ```
 
@@ -42,6 +43,13 @@ The ACL grants `diaries-health` only the permissions needed by the two health ch
 - read `diaries/rpc/<mqtt-client-id>/response` only when the topic's client ID matches the health-check client's own ID.
 
 It does not grant the health user access to retained Diaries business-data topics.
+
+## Read-only web projection
+
+The `diaries-web` identity can subscribe only to the four canonical lookup
+families for diaries, pages, fragments and marquees. It has no write, RPC,
+date-index, people or role permission. Set its password through
+`DIARIES_WEB_MQTT_PASSWORD`; do not put it in the web JSON configuration.
 
 ## Responder configuration
 

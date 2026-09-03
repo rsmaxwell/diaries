@@ -1,6 +1,6 @@
 # Diaries
 
-Diaries is a personal diary/image annotation application consisting of an Angular browser client and a Java responder/server.
+Diaries is a personal diary/image annotation application consisting of an Angular editor, a Java responder/server, and a separate server-rendered read-only web projection.
 
 The system is built around MQTT RPC and a retained MQTT topic tree. The client sends commands to the responder over MQTT, while the responder owns validation, persistence, locking rules, and publication of the resulting live object state. Persistent state is stored in PostgreSQL using JPA/Hibernate, and large image files are served separately by a static file server.
 
@@ -18,14 +18,21 @@ diaries/
   test/
   diaries-client/
   diaries-responder/
+  diaries-web/
 ```
 
-The two main child projects are:
+The three application child directories are:
 
 | Project             | Purpose                                                                                       |
 | ------------------- | --------------------------------------------------------------------------------------------- |
 | `diaries-client`    | Angular/TypeScript browser application                                                        |
 | `diaries-responder` | Java responder/server handling MQTT RPC, persistence, locking, and retained topic publication |
+| `diaries-web`       | Java server-rendered, read-only projection of the canonical retained model                     |
+
+`diaries-client` remains the sole interactive editor. `diaries-web` complements
+it with ordinary GET/HEAD pages and cannot create or change diary content.
+Both Java components are Gradle subprojects of this parent; the Angular client
+is a Git submodule but is not a Gradle subproject.
 
 ## System overview
 
@@ -45,6 +52,14 @@ Java diaries-responder
    | JPA/Hibernate
    v
 PostgreSQL database
+
+Retained MQTT lookup topics
+   |
+   v
+Java diaries-web
+   |
+   v
+Read-only HTML pages
 
 Static file server
    |
@@ -92,6 +107,15 @@ The responder is the authoritative server process. It is responsible for:
 
 More detailed responder notes belong in `diaries-responder/README.md`.
 
+### diaries-web
+
+The web projection subscribes only to canonical retained Diary, Page, Fragment
+and Marquee lookup topics. It reconstructs relationships in memory and renders
+accessible diary, day, scan and transcript pages. It has no MQTT publish/RPC,
+database, JPA, NAS or mutation endpoint. The responder remains authoritative.
+
+More detailed web notes belong in `diaries-web/README.md`.
+
 ### MQTT broker
 
 The MQTT broker is used for two related purposes:
@@ -135,8 +159,8 @@ npm start
 ```
 
 ```bash
-cd diaries-responder
-../gradlew build
+.\gradlew.bat :diaries-responder:build
+.\gradlew.bat :diaries-web:build
 ```
 
 ## Design principles
@@ -156,3 +180,4 @@ See also:
 * `ARCHITECTURE.md` for a system-level architecture description.
 * `diaries-client/README.md` for client-specific development notes.
 * `diaries-responder/README.md` for responder-specific development notes.
+* `diaries-web/README.md` for the read-only web projection.

@@ -1,6 +1,8 @@
 ## Diaries Architecture
 
-The Diaries application is essentially a **browser client + MQTT RPC responder + retained MQTT topic tree + PostgreSQL database + static file server** system.
+The Diaries application is an **Angular editor + MQTT RPC responder + retained
+MQTT topic tree + PostgreSQL database + static file server + read-only web
+projection** system.
 
 At a high level:
 
@@ -20,6 +22,15 @@ Java diaries-responder                  |
 PostgreSQL database                     |
                                          |
 Static image/file server ---------------+
+
+Retained Diary/Page/Fragment/Marquee lookup topics
+   |
+   v
+Java diaries-web
+   |
+   | server-rendered GET/HEAD only
+   v
+Public reader browser
 ```
 
 ## Main components
@@ -108,7 +119,21 @@ The client may prevent obvious invalid actions, but the responder must still enf
 
 ---
 
-### 4. PostgreSQL / JPA model
+### 4. `diaries-web`
+
+`diaries-web` is a sibling Java process and read-only projection. It does not
+replace `diaries-client`. It subscribes to the responder's canonical retained
+Diary, Page, Fragment and Marquee lookup topics, rebuilds an in-memory model on
+startup/reconnect, and atomically serves immutable generations as HTML.
+
+It has no database connection, JPA model, MQTT publish/RPC path, authentication
+editor flow, file mutation or content-changing HTTP route. Scans continue to be
+served by the existing responder/static route. Editors continue to use
+`diaries-client`; only `diaries-responder` changes durable/canonical state.
+
+---
+
+### 5. PostgreSQL / JPA model
 
 PostgreSQL stores the persistent application model.
 
@@ -149,7 +174,7 @@ RPC request
 
 ---
 
-### 5. Static file server
+### 6. Static file server
 
 Images are not stored directly in MQTT.
 
@@ -317,6 +342,12 @@ Client:
   selected object state
   optimistic UI only where safe
   subscriptions to live MQTT objects
+
+Web projection:
+  subscription-only retained model consumer
+  immutable in-memory generations
+  sanitized server-rendered GET/HEAD pages
+  no editing or persistence
 
 Responder:
   validation

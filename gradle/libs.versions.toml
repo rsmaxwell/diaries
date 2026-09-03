@@ -16,6 +16,7 @@ hibernate-entitymanager = "6.0.0.Alpha7"
 hibernate-jpamodelgen = "7.0.0.Beta1"
 
 jackson = "2.22.1"
+javalin = "7.2.3"
 
 jakarta-annotation = "3.0.0"
 jakarta-ee = "11.0.0"
@@ -30,6 +31,10 @@ jjwt-legacy = "0.12.6"
 
 junit-jupiter = "6.1.2"
 
+assertj = "3.27.7"
+awaitility = "4.3.0"
+testcontainers = "2.0.5"
+
 libphonenumber = "9.0.35"
 libphonenumber-carrier = "2.35"
 libphonenumber-geocoder = "3.35"
@@ -41,6 +46,9 @@ metadata-extractor = "2.21.0"
 
 mqtt-paho = "1.2.5"
 mqtt-rpc = "0.0.8"
+
+owasp-html-sanitizer = "20260313.1"
+pebble = "4.1.2"
 
 postgresql = "42.7.13"
 
@@ -73,6 +81,7 @@ hibernate-jpamodelgen = { module = "org.hibernate.orm:hibernate-jpamodelgen", ve
 io = { module = "io.jsonwebtoken:jjwt", version.ref = "jjwt-legacy" }
 
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+javalin = { module = "io.javalin:javalin", version.ref = "javalin" }
 
 jakarta-annotation-api = { module = "jakarta.annotation:jakarta.annotation-api", version.ref = "jakarta-annotation" }
 jakarta-jakartaee-api = { module = "jakarta.platform:jakarta.jakartaee-api", version.ref = "jakarta-ee" }
@@ -89,6 +98,9 @@ jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitility" }
+
 libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "libphonenumber" }
 
 log4j-api = { module = "org.apache.logging.log4j:log4j-api", version.ref = "log4j" }
@@ -104,6 +116,9 @@ mqtt-rpc-requestor = { module = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-requestor", ver
 mqtt-rpc-responder = { module = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-responder", version.ref = "mqtt-rpc" }
 
 org-eclipse-paho-mqttv5-client = { module = "org.eclipse.paho:org.eclipse.paho.mqttv5.client", version.ref = "mqtt-paho" }
+owasp-html-sanitizer = { module = "com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer", version.ref = "owasp-html-sanitizer" }
+
+pebble = { module = "io.pebbletemplates:pebble", version.ref = "pebble" }
 
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 
@@ -115,4 +130,7 @@ spring-boot-starter-jdbc = { module = "org.springframework.boot:spring-boot-star
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
 
 spring-orm = { module = "org.springframework:spring-orm", version.ref = "spring-framework" }
+
+testcontainers = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
+testcontainers-junit-jupiter = { module = "org.testcontainers:testcontainers-junit-jupiter", version.ref = "testcontainers" }
 

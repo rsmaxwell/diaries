@@ -118,6 +118,34 @@ services:
       start_period: 20s
 
 
+  diaries-web:
+    build:
+      context: .
+      dockerfile: diaries-web/Dockerfile
+    image: diaries-web:local
+    container_name: diaries-local-web
+    restart: unless-stopped
+    depends_on:
+      diaries-mqtt:
+        condition: service_healthy
+    environment:
+      DIARIES_WEB_MQTT_USERNAME: ${DIARIES_WEB_MQTT_USERNAME}
+      DIARIES_WEB_MQTT_PASSWORD: ${DIARIES_WEB_MQTT_PASSWORD}
+    ports:
+      - "${DIARIES_WEB_HTTP_HOST_PORT:-8082}:8082"
+    volumes:
+      - type: bind
+        source: ${DIARIES_WEB_DOCKER_CONFIG_FILE:-./diaries-web/config/diaries-web.docker.json}
+        target: /config/diaries-web.json
+        read_only: true
+    healthcheck:
+      test: ["CMD-SHELL", "wget --quiet --spider http://localhost:8082/health/ready"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+
   diaries-client:
     build:
       context: ./diaries-client
