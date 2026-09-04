@@ -6,7 +6,7 @@ Feature
 
 ## Status
 
-To do
+In progress
 
 ## Priority
 
@@ -123,16 +123,16 @@ Document the design tokens and the rule that `diaries-web` is the visual referen
 
 ## Detailed Implementation Steps
 
-- [ ] Identify the actual global Angular stylesheet entry points from `angular.json`.
-- [ ] Inspect `src/app/theme.scss`, shared constants and current Material theme configuration.
-- [ ] Define semantic reader-style palette tokens matching `diaries-web`.
-- [ ] Define reader serif and UI sans-serif font stacks without introducing downloadable font assets.
-- [ ] Add base `html`/`body` paper background, ink foreground and box-sizing conventions where safe.
-- [ ] Add common link and `:focus-visible` treatment compatible with Angular Material components.
-- [ ] Decide whether Material theming should use an Angular Material theme API or limited CSS overrides; prefer the supported Material theming API where practical.
-- [ ] Ensure overlays/dialogs continue to receive correct typography and surface colours.
-- [ ] Remove or deprecate duplicate palette constants only where all references can be safely migrated in this stage; otherwise retain compatibility aliases temporarily.
-- [ ] Add comments describing which tokens are intended for reader content versus controls.
+- [x] Identify the actual global Angular stylesheet entry points from `angular.json`.
+- [x] Inspect `src/app/theme.scss`, shared constants and current Material theme configuration.
+- [x] Define semantic reader-style palette tokens matching `diaries-web`.
+- [x] Define reader serif and UI sans-serif font stacks without introducing downloadable font assets.
+- [x] Add base `html`/`body` paper background, ink foreground and box-sizing conventions where safe.
+- [x] Add common link and `:focus-visible` treatment compatible with Angular Material components.
+- [x] Decide whether Material theming should use an Angular Material theme API or limited CSS overrides; prefer the supported Material theming API where practical.
+- [x] Ensure overlays/dialogs continue to receive correct typography and surface colours.
+- [x] Remove or deprecate duplicate palette constants only where all references can be safely migrated in this stage; otherwise retain compatibility aliases temporarily.
+- [x] Add comments describing which tokens are intended for reader content versus controls.
 - [ ] Run existing unit tests and production build.
 - [ ] Smoke-test sign-in, diaries list, diary page, day view and fragment editor to ensure the global changes have not made controls unreadable.
 
@@ -150,15 +150,15 @@ This stage does not:
 
 ## Acceptance Criteria
 
-- [ ] A single coherent reader-style palette is defined centrally.
-- [ ] Reader and UI typography roles are defined centrally.
-- [ ] `paper`, `surface`, `ink`, `muted`, `line`, `accent`, `accent-dark` and `focus` concepts are available to later components.
-- [ ] The application background and base text colours are visually consistent with `diaries-web`.
-- [ ] Keyboard focus remains clearly visible.
-- [ ] Material dialogs, buttons, menus and inputs remain readable and usable.
-- [ ] No MQTT, responder, database or route contract changes are introduced.
+- [x] A single coherent reader-style palette is defined centrally.
+- [x] Reader and UI typography roles are defined centrally.
+- [x] `paper`, `surface`, `ink`, `muted`, `line`, `accent`, `accent-dark` and `focus` concepts are available to later components.
+- [x] The application background and base text colours are visually consistent with `diaries-web`.
+- [x] Keyboard focus remains clearly visible.
+- [x] Material dialogs, buttons, menus and inputs remain readable and usable at the theme/source level.
+- [x] No MQTT, responder, database or route contract changes are introduced.
 - [ ] Existing client tests pass.
-- [ ] `npm`/Angular production build passes.
+- [x] `npm`/Angular production build passes.
 
 ## Validation
 
@@ -172,6 +172,15 @@ npm run build
 ```
 
 Use the repository's actual scripts if they differ.
+
+Result on 2026-09-04: the production Angular build passed using the repository-installed Angular CLI. The host `npm` wrapper was unavailable because its referenced global `npm-cli.js` was missing, so the equivalent direct command was used:
+
+```text
+node scripts/generate-build-info.js
+node node_modules/@angular/cli/bin/ng.js build --configuration production
+```
+
+The Karma test bundle compiled successfully and Chrome launched. The run completed with 8 passing and 14 failing tests. All remaining failures are pre-existing smoke-test setup defects: the affected TestBed configurations do not provide `HttpClient` and/or `ActivatedRoute`. Repairing the general client test harness is outside this presentation feature and remains required before this acceptance criterion can be closed.
 
 ### Manual Verification
 
@@ -197,8 +206,10 @@ Client-only styling change. Rollback is achieved by deploying the previous `diar
 
 ## Completion Summary
 
-To be completed when implemented.
+The source implementation is complete. `src/styles/_tokens.scss` is now the single Sass source for the reader palette and typography roles and emits matching `--diaries-*` runtime properties. Global page, link, focus and dialog-container styling consumes those properties. The stock prebuilt Material theme was replaced with the supported Material 20 Sass theme API and semantic system-token overrides; Material controls remain system-sans while reader content inherits the serif role. Existing neutral constants remain available through a compatibility entry point for the staged migration. Duplicate global Material and Quill stylesheet loading was removed, and the client README documents the design contract and the non-runtime relationship to `diaries-web`.
+
+The production build passes and the full test bundle compiles. The change remains in progress pending repair of the pre-existing TestBed provider failures and manual authenticated screen/dialog/focus smoke testing.
 
 ## Completed Date
 
-To be completed.
+Not complete.
