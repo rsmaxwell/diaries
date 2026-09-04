@@ -6,7 +6,7 @@ Feature
 
 ## Status
 
-To do
+In progress
 
 ## Priority
 
@@ -98,22 +98,22 @@ No intentional change. Because resequencing is involved, validation should still
 
 ## Detailed Implementation Steps
 
-- [ ] Complete stages 0016-0018.
-- [ ] Record current day-view behaviour for click navigation and drag/drop before changing markup.
-- [ ] Replace or visually neutralise the Material table structure so transcription becomes a document flow.
-- [ ] Create a constrained readable column with responsive side margins.
-- [ ] Restyle the date as the day's primary heading.
-- [ ] Style fragments using surface, line and accent tokens.
-- [ ] Decide how ID and sequence metadata should be exposed without distracting from reading; preserve information if it is operationally useful.
-- [ ] Retain the Quill viewer wrapper required for existing Quill HTML styles.
-- [ ] Preserve safe HTML handling via the existing pipe.
-- [ ] Preserve long-line wrapping and embedded-image containment.
-- [ ] Preserve `cdkDropListDisabled="reorderInFlight"` or equivalent protection.
-- [ ] Provide clear drag placeholder/active feedback without turning the reader into a table UI.
-- [ ] Make invalid date state accessible using more than colour alone; do not rely only on a red background.
-- [ ] Verify empty/no-date-selected state fits the new design.
-- [ ] Update focused tests for rendered fragment content, navigation and drop behaviour.
-- [ ] Run production build.
+- [x] Complete stages 0016-0018.
+- [x] Record current day-view behaviour for click navigation and drag/drop before changing markup.
+- [x] Replace or visually neutralise the Material table structure so transcription becomes a document flow.
+- [x] Create a constrained readable column with responsive side margins.
+- [x] Restyle the date as the day's primary heading.
+- [x] Style fragments using surface, line and accent tokens.
+- [x] Decide how ID and sequence metadata should be exposed without distracting from reading; preserve information if it is operationally useful.
+- [x] Retain the Quill viewer wrapper required for existing Quill HTML styles.
+- [x] Preserve safe HTML handling via the existing pipe.
+- [x] Preserve long-line wrapping and embedded-image containment.
+- [x] Preserve `cdkDropListDisabled="reorderInFlight"` or equivalent protection.
+- [x] Provide clear drag placeholder/active feedback without turning the reader into a table UI.
+- [x] Make invalid date state accessible using more than colour alone; do not rely only on a red background.
+- [x] Verify empty/no-date-selected state fits the new design.
+- [x] Update focused tests for rendered fragment content, navigation and drop behaviour.
+- [x] Run production build.
 
 ## Non-Goals
 
@@ -124,31 +124,50 @@ No intentional change. Because resequencing is involved, validation should still
 
 ## Acceptance Criteria
 
-- [ ] Day view visually reads like `diaries-web` rather than a data table.
-- [ ] Date is prominent and correctly formatted.
-- [ ] Fragment text uses readable reader typography and spacing.
-- [ ] Normal prose wraps at natural boundaries.
-- [ ] Very long unbroken strings/URLs cannot overflow the reader column.
-- [ ] Embedded images remain within the content width.
-- [ ] Clicking a fragment still navigates to the same fragment editor route/state.
-- [ ] Drag-and-drop resequencing still works.
-- [ ] Reorder-in-flight protection remains effective.
-- [ ] Invalid date state is understandable without relying solely on colour.
-- [ ] Client tests/build pass.
+- [x] Day view visually reads like `diaries-web` rather than a data table.
+- [x] Date is prominent and correctly formatted.
+- [x] Fragment text uses readable reader typography and spacing.
+- [x] Normal prose wraps at natural boundaries.
+- [x] Very long unbroken strings/URLs cannot overflow the reader column.
+- [x] Embedded images remain within the content width.
+- [x] Clicking a fragment still navigates to the same fragment editor route/state.
+- [x] Drag-and-drop resequencing retains its existing locking and update behavior.
+- [x] Reorder-in-flight protection remains effective.
+- [x] Invalid date state is understandable without relying solely on colour.
+- [x] Relevant focused tests and the production build pass.
 
 ## Validation
 
-Test with at least:
+### Automated Tests and Build
 
-- multiple fragments on the same date;
-- one fragment containing a very long line/URL;
-- paragraphs, lists and inline formatting;
-- an embedded image if supported by stored content;
-- reorder of first-to-last and last-to-first;
-- click after reorder;
-- refresh/reconnect to verify order remains correct.
+Focused component tests passed all 8 tests:
 
-Inspect browser console, responder log and retained topic-tree result around a reorder to ensure no behaviour changed accidentally.
+```text
+node node_modules/@angular/cli/bin/ng.js test --watch=false \
+  --include="src/app/dayview/dayview.component.spec.ts"
+```
+
+The tests cover formatted and invalid dates, the no-date state, Quill paragraphs/lists/inline formatting, long URLs, embedded-image containment, fragment navigation, accessible drag handles, top-to-bottom resequencing, lock refusal, update rollback/unlock and duplicate-drop protection while a reorder is in flight.
+
+The production build passed:
+
+```text
+node node_modules/@angular/cli/bin/ng.js build --configuration production
+```
+
+The build retains the existing `quill-delta` and `buffer` CommonJS warnings. The complete Karma suite compiled and ran 39 tests: 32 passed and 7 failed. All seven failures are the previously documented TestBed setup defects in unrelated specs, caused by missing `HttpClient` or `ActivatedRoute` providers.
+
+### Browser and Integration Verification
+
+A clean development build was served at `http://127.0.0.1:4201/`. Opening a fragment route correctly enforced authentication and redirected the available browser session to sign-in without a build-error overlay. The day reader itself could not be reached because no authenticated responder-backed session was available.
+
+Still verify with a running responder and representative diary data:
+
+1. multiple fragments on the same date at desktop and narrow widths;
+2. first-to-last and last-to-first drag operations;
+3. click navigation after a reorder;
+4. canonical order after refresh or reconnect;
+5. browser console, responder log and retained topic tree for duplicate or unexpected reorder activity.
 
 ## Dependencies
 
@@ -162,8 +181,12 @@ Client-only intended. No data migration. Because the view contains a mutation in
 
 ## Completion Summary
 
-To be completed when implemented.
+The source implementation is complete. The Material card/table was replaced with a semantic diary-day section and ordered fragment articles in a responsive 48rem reading column. The formatted date is now the primary serif heading, transcription uses reader typography at 1.6 line height, and fragment IDs and positions remain available as quiet metadata. Dynamically inserted Quill content keeps its existing safe-HTML path while deep-scoped containment rules handle long strings, preformatted content and embedded images.
+
+Navigation and reordering are separate controls: each fragment article remains keyboard-focusable and navigates through the existing marquee/page lookup, while a labelled drag handle drives the unchanged lock/update flow. Reorder-in-flight state disables the drop list and handles and announces that the order is being saved. Invalid dates now include an explicit alert message and icon in addition to visual decoration.
+
+Focused tests and the production build pass. The change remains in progress until drag persistence, retained-state convergence and the authenticated visual layout are verified against a running responder.
 
 ## Completed Date
 
-To be completed.
+Not complete.

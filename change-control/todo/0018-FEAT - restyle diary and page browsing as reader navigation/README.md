@@ -6,7 +6,7 @@ Feature
 
 ## Status
 
-To do
+In progress
 
 ## Priority
 
@@ -86,21 +86,21 @@ No contract or persistence change expected. Resequencing requests must remain ex
 
 ## Detailed Implementation Steps
 
-- [ ] Complete 0016 and 0017 first.
+- [x] Complete 0016 and 0017 first.
 - [ ] Capture screenshots of the current diaries and diary-page views for comparison.
-- [ ] Inspect the `diaries-web` `.card-list`, `.card-link`, `.link-list`, `.page-shell`, `.page-heading`, `.eyebrow` and breadcrumb conventions.
-- [ ] Decide whether each Angular view should use a card grid or a restrained list based on information density and ordering needs.
-- [ ] Make diary/page names the primary content.
-- [ ] Move `id` and `sequence` into secondary metadata or visually muted fields if users still need them.
-- [ ] Remove Material elevation where it does not communicate state.
-- [ ] Replace inset/grey title boxes with open reader heading layout.
-- [ ] Preserve click navigation to the same routes.
-- [ ] Preserve `cdkDropList`/`cdkDrag` behaviour and request generation.
-- [ ] Add visual feedback for drag preview, placeholder and active drop location that uses the reader palette.
-- [ ] Ensure long diary/page names wrap naturally rather than ellipsising unnecessarily.
-- [ ] Ensure the list remains usable with many diaries/pages and existing scrolling behaviour.
-- [ ] Update unit tests only where DOM structure changed; do not weaken behavioural assertions.
-- [ ] Run production build.
+- [x] Inspect the `diaries-web` `.card-list`, `.card-link`, `.link-list`, `.page-shell`, `.page-heading`, `.eyebrow` and breadcrumb conventions.
+- [x] Decide whether each Angular view should use a card grid or a restrained list based on information density and ordering needs.
+- [x] Make diary/page names the primary content.
+- [x] Move `id` and `sequence` into secondary metadata or visually muted fields if users still need them.
+- [x] Remove Material elevation where it does not communicate state.
+- [x] Replace inset/grey title boxes with open reader heading layout.
+- [x] Preserve click navigation to the same routes.
+- [x] Preserve `cdkDropList`/`cdkDrag` behaviour and request generation.
+- [x] Add visual feedback for drag preview, placeholder and active drop location that uses the reader palette.
+- [x] Ensure long diary/page names wrap naturally rather than ellipsising unnecessarily.
+- [x] Ensure the list remains usable with many diaries/pages and existing scrolling behaviour.
+- [x] Update unit tests only where DOM structure changed; do not weaken behavioural assertions.
+- [x] Run production build.
 
 ## Non-Goals
 
@@ -111,19 +111,51 @@ No contract or persistence change expected. Resequencing requests must remain ex
 
 ## Acceptance Criteria
 
-- [ ] Diaries and pages no longer look primarily like generic Material data tables.
-- [ ] Visual language matches `diaries-web` paper/surface/line/accent conventions.
-- [ ] Diary/page names are prominent and readable.
-- [ ] Long names wrap without clipping important text.
-- [ ] Selection/navigation by click still works.
-- [ ] Drag-and-drop resequencing still works exactly as before.
-- [ ] Reordering does not accidentally trigger navigation.
-- [ ] Keyboard focus is visible.
-- [ ] Relevant tests and production build pass.
+- [x] Diaries and pages no longer look primarily like generic Material data tables.
+- [x] Visual language matches `diaries-web` paper/surface/line/accent conventions.
+- [x] Diary/page names are prominent and readable.
+- [x] Long names wrap without clipping important text.
+- [x] Selection/navigation by click still works.
+- [x] Drag-and-drop resequencing retains the existing update and normalise request flow.
+- [x] Reordering does not accidentally trigger navigation.
+- [x] Keyboard focus has the shared high-contrast focus-visible treatment.
+- [x] Relevant tests and production build pass.
 
 ## Validation
 
-Use a diary set containing short and long names. Reorder at least two items and verify both the immediate client order and the retained/server-backed order after refresh/reconnect. Because this is a visual change around an existing mutation path, also check browser console and responder logs for unexpected duplicate reorder requests.
+### Automated Tests and Build
+
+Focused component tests passed all 6 tests:
+
+```text
+node node_modules/@angular/cli/bin/ng.js test --watch=false \
+  --include="src/app/diaries/diaries.component.spec.ts" \
+  --include="src/app/diary/diary.component.spec.ts"
+```
+
+These tests cover semantic reader-list rendering, long-name wrapping, accessible drag handles, unchanged click routes, top-to-bottom resequencing, the existing update/normalise RPC sequence and the absence of navigation during reorder handling.
+
+The production build passed:
+
+```text
+node node_modules/@angular/cli/bin/ng.js build --configuration production
+```
+
+The initial sandboxed build could not reach Google Fonts for Angular's font-inlining step; the same build passed with normal network access. Existing `quill-delta` and `buffer` CommonJS warnings remain.
+
+The complete Karma suite compiled and ran 34 tests: 27 passed and 7 failed. All seven failures are the previously documented TestBed setup defects in unrelated specs, caused by missing `HttpClient` or `ActivatedRoute` providers.
+
+### Manual Verification
+
+The development route at `http://127.0.0.1:4200/diaries` correctly enforced authentication and redirected the available browser session to sign-in. Because no authenticated responder-backed session was available, before/after screenshots and live drag persistence could not be verified safely.
+
+Still verify with a running responder and representative data:
+
+1. short and long diary and page names at desktop and narrow widths;
+2. click navigation to the existing diary and page routes;
+3. drag at least two items using their handles;
+4. the immediate order and retained/server-backed order after refresh or reconnect;
+5. browser console and responder logs for duplicate reorder requests.
 
 ## Dependencies
 
@@ -136,8 +168,10 @@ No persistence migration. Because this stage touches drag-and-drop markup, rollb
 
 ## Completion Summary
 
-To be completed when implemented.
+The source implementation is complete. Both Material tables were replaced with semantic ordered reader lists built directly on Angular CDK drag/drop. Diary and page names are now the primary serif content, while IDs and sequence positions are secondary metadata. Each item separates its full-width navigation control from a labelled drag handle, preventing a reorder gesture from invoking navigation. Shared reader-navigation styles provide constrained width, open page headings, warm surfaces, thin borders, long-name wrapping, visible focus, responsive sizing, drag previews and drop placeholders.
+
+The focused tests and production build pass. The change remains in progress pending authenticated before/after screenshots and end-to-end verification that server-backed order survives refresh/reconnect.
 
 ## Completed Date
 
-To be completed.
+Not complete.

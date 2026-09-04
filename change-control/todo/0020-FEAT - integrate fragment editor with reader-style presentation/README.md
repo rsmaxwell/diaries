@@ -6,7 +6,7 @@ Feature
 
 ## Status
 
-To do
+In progress
 
 ## Priority
 
@@ -103,21 +103,21 @@ No intended change. Regression validation must still include lock acquisition/re
 
 ## Detailed Implementation Steps
 
-- [ ] Complete stages 0016-0019.
+- [x] Complete stages 0016-0019.
 - [ ] Capture screenshots and interaction notes for current fragment editing, including marquee, lock and navigation states.
-- [ ] Restyle the overall fragment workspace using shared paper/surface/line tokens.
-- [ ] Restyle image viewer border/background without changing coordinate calculations.
-- [ ] Verify CSS transforms, canvas/SVG sizing and pointer coordinate calculations are unaffected by padding/border changes; use wrapper elements if needed so geometry stays stable.
-- [ ] Keep only the selected marquee visible according to the existing intended behaviour.
-- [ ] Restyle selected marquee using a high-visibility accent that remains compatible with hover/focus/edit handles.
-- [ ] Restyle text panel read mode with reader typography.
-- [ ] Restyle Quill edit mode carefully so caret, selection, toolbar and formatting remain usable.
-- [ ] Keep editor controls and metadata in system sans-serif.
-- [ ] Harmonise lock/status indicators with the shared design system.
-- [ ] Restyle empty/no-image/error/loading states.
-- [ ] Verify pageheader and pagefooter from 0017 still fit naturally around the editor.
+- [x] Restyle the overall fragment workspace using shared paper/surface/line tokens.
+- [x] Restyle image viewer border/background without changing coordinate calculations.
+- [x] Verify the source-level geometry boundary: decoration is applied to an outer wrapper and the existing SVG CTM remains responsible for pointer conversion. Authenticated interaction validation remains outstanding.
+- [x] Keep only the selected marquee visible according to the existing intended behaviour.
+- [x] Restyle selected marquee using a high-visibility accent that remains compatible with hover/focus/edit handles.
+- [x] Restyle text panel read mode with reader typography.
+- [x] Restyle Quill edit mode carefully so caret, selection, toolbar and formatting remain usable.
+- [x] Keep editor controls and metadata in system sans-serif.
+- [x] Harmonise lock/status indicators with the shared design system.
+- [x] Restyle empty/no-image/error/loading states currently exposed by these components.
+- [x] Verify pageheader and pagefooter from 0017 still fit naturally around the editor at source/build level.
 - [ ] Run lock, edit, save, marquee create/edit/delete, file-dialog and navigation workflows.
-- [ ] Run production build and focused unit tests.
+- [x] Run production build and focused unit tests.
 
 ## Geometry Safety Requirement
 
@@ -172,7 +172,9 @@ No schema migration. Because image geometry and editing workflows are sensitive,
 
 ## Completion Summary
 
-To be completed when implemented.
+Implemented the client-side reader/editor integration while retaining Golden Layout, Quill, MQTT RPC and lock contracts. The workspace and Golden Layout chrome now use the shared reader tokens. The image viewer places its neutral border and padding on a wrapper outside the SVG, renders only the selected marquee and uses the shared focus colour for its outline. The transcription panel uses reader typography for content, UI typography for controls, explicit read-only/lock messaging, and an announced save-in-progress state that also prevents duplicate update requests.
+
+Focused save/lock-state tests and the production client build pass. The feature remains **In progress** until an authenticated end-to-end session verifies pointer geometry, lock acquisition/release, text and marquee persistence, file selection, navigation, refresh/retained state, and a second viewport size against running responder infrastructure.
 
 ## Completed Date
 

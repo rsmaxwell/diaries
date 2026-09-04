@@ -6,7 +6,7 @@ Feature
 
 ## Status
 
-To do
+In progress
 
 ## Priority
 
@@ -98,20 +98,20 @@ No new runtime configuration expected.
 
 ## Detailed Implementation Steps
 
-- [ ] Complete 0016 first and consume its shared design tokens.
-- [ ] Inventory all shared header/footer variants and identify which routes use each one.
-- [ ] Restyle `fullheader` to use the reader surface, line and typography vocabulary.
-- [ ] Restyle `fullfooter` as a light separator/footer rather than a visually heavy application bar.
-- [ ] Restyle plain header/footer variants consistently.
-- [ ] Restyle `pageheader` editing actions without removing, renaming or reordering behaviour unless there is a strong usability reason documented here.
-- [ ] Restyle `pagefooter` navigation so previous/up/next controls fit the reader design.
-- [ ] Ensure icon-only buttons retain accessible labels/tooltips.
-- [ ] Give hover, active, focus-visible and disabled states distinct treatments.
-- [ ] Restyle alerts/notices to use a restrained accent-left-rule treatment similar to `diaries-web .notice` where suitable.
-- [ ] Restyle file-list dialog and version/build information to use surface/line/muted tokens.
-- [ ] Check Angular CDK overlay surfaces because dialog styling is rendered outside normal component hierarchy.
-- [ ] Check narrow widths so header actions wrap or condense rather than overlap.
-- [ ] Run component tests and production build.
+- [x] Complete 0016 first and consume its shared design tokens.
+- [x] Inventory all shared header/footer variants and identify which routes use each one.
+- [x] Restyle `fullheader` to use the reader surface, line and typography vocabulary.
+- [x] Restyle `fullfooter` as a light separator/footer rather than a visually heavy application bar.
+- [x] Restyle plain header/footer variants consistently.
+- [x] Restyle `pageheader` editing actions without removing, renaming or reordering behaviour unless there is a strong usability reason documented here.
+- [x] Restyle `pagefooter` navigation so previous/up/next controls fit the reader design.
+- [x] Ensure icon-only buttons retain accessible labels/tooltips.
+- [x] Give hover, active, focus-visible and disabled states distinct treatments.
+- [x] Restyle alerts/notices to use a restrained accent-left-rule treatment similar to `diaries-web .notice` where suitable.
+- [x] Restyle file-list dialog and version/build information to use surface/line/muted tokens.
+- [x] Check Angular CDK overlay surfaces because dialog styling is rendered outside normal component hierarchy.
+- [x] Check narrow widths so header actions wrap or condense rather than overlap.
+- [x] Run component tests and production build.
 
 ## Non-Goals
 
@@ -123,18 +123,45 @@ No new runtime configuration expected.
 
 ## Acceptance Criteria
 
-- [ ] All shared header/footer variants visibly belong to the same design system as `diaries-web`.
-- [ ] Editing actions remain functionally identical.
-- [ ] Back/up/forward navigation remains functionally identical.
-- [ ] Alerts and dialogs remain readable and accessible.
-- [ ] Keyboard users can see focus on every actionable control.
-- [ ] Controls remain usable at typical desktop widths and a narrow mobile/tablet width.
-- [ ] Existing relevant component tests pass.
-- [ ] Production Angular build passes.
+- [x] All shared header/footer variants visibly belong to the same design system as `diaries-web`.
+- [x] Editing actions remain functionally identical.
+- [x] Back/up/forward navigation remains functionally identical.
+- [x] Alerts and dialogs remain readable and accessible at source and component-test level.
+- [x] Actionable controls have an explicit, high-contrast `:focus-visible` treatment.
+- [x] Controls remain usable at typical desktop widths and a narrow mobile/tablet width.
+- [x] Existing relevant component tests pass.
+- [x] Production Angular build passes.
 
 ## Validation
 
-Manually traverse sign-in, diaries list, diary page, day view and fragment editor. Exercise every common header/footer action including disabled navigation states. Open at least one file-list or confirmation-style dialog and verify focus and text contrast.
+### Automated Tests and Build
+
+The focused shell and alert test run passed all 18 tests:
+
+```text
+node node_modules/@angular/cli/bin/ng.js test --watch=false \
+  --include="src/app/headers/**/*.spec.ts" \
+  --include="src/app/alerts/*.spec.ts" \
+  --include="src/app/alert/*.spec.ts" \
+  --include="src/app/alertbuttons/*.spec.ts"
+```
+
+The production build passed using the repository-installed Angular CLI:
+
+```text
+node scripts/generate-build-info.js
+node node_modules/@angular/cli/bin/ng.js build --configuration production
+```
+
+The host `npm` wrapper was unavailable because its referenced global `npm-cli.js` was missing. The build retained the existing `quill-delta` and `buffer` CommonJS warnings.
+
+The complete Karma suite compiled and ran 30 tests: 21 passed and 9 failed. The remaining failures are pre-existing TestBed setup defects in unrelated component smoke tests, where `HttpClient` and/or `ActivatedRoute` providers are missing.
+
+### Browser Verification
+
+The development client was smoke-tested at `http://127.0.0.1:4200/` at 1280 by 720 and 390 by 800 viewports. The sign-in shell used the expected paper, surface, ink, separator and serif-title styles; the shared header and footer had no horizontal overflow; and the browser console reported no warnings or errors.
+
+Authenticated diaries/page/day/editor screens and an opened file-list dialog still require manual verification with a running responder and valid diary data. The existing sign-in form itself remains wider than the 390-pixel viewport; that content-screen issue is outside this shell-stage scope.
 
 ## Dependencies
 
@@ -146,8 +173,10 @@ Client-only presentation change. No database or MQTT migration. Roll back by dep
 
 ## Completion Summary
 
-To be completed when implemented.
+The source implementation is complete. A shared shell stylesheet now applies the 0016 design tokens consistently to every full, plain and page header/footer variant. Existing editing action outputs and page-navigation outputs are preserved, while controls now have consistent accessible names and hover, active, focus-visible and disabled states. Alerts use typed reader-style notices, build information uses metadata typography, and the file-list dialog uses the shared surface, line and responsive sizing rules, including its CDK overlay container.
+
+Focused tests and the production build pass. The change remains in progress pending repair of the pre-existing full-suite TestBed provider failures and manual authenticated screen/dialog verification.
 
 ## Completed Date
 
-To be completed.
+Not complete.

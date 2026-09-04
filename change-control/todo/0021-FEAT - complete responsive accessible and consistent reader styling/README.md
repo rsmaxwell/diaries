@@ -6,7 +6,7 @@ Feature
 
 ## Status
 
-To do
+In progress
 
 ## Priority
 
@@ -94,24 +94,24 @@ Do not use widespread `::ng-deep` overrides unless no supported alternative exis
 
 ## Detailed Implementation Steps
 
-- [ ] Complete 0016-0020 first.
-- [ ] Perform a page-by-page visual audit against `diaries-web` and the shared token definitions.
-- [ ] Record inconsistencies before changing them so the pass remains bounded.
-- [ ] Define final content-width and breakpoint conventions.
-- [ ] Make reader list/day layouts responsive.
-- [ ] Define and implement the fragment editor narrow-screen behaviour.
-- [ ] Verify Quill toolbar/content remain usable at the narrow breakpoint.
-- [ ] Verify image viewer geometry after any stacking/resizing changes.
-- [ ] Audit all focus-visible states using keyboard-only navigation.
-- [ ] Audit hover, active, disabled, selected, error and lock states.
-- [ ] Ensure invalid/error states use text/icon/border semantics in addition to colour.
-- [ ] Add `prefers-reduced-motion` handling where the client uses non-essential transitions.
-- [ ] Remove duplicated palette literals and obsolete Material-style overrides superseded by the new system.
-- [ ] Review component SCSS for accidental fixed heights that cause clipping at larger text sizes.
-- [ ] Test browser zoom at 200% on core reader/navigation flows.
-- [ ] Run all relevant tests and production build.
+- [x] Complete 0016-0020 first at source/build level; their authenticated workflow validation remains outstanding.
+- [x] Perform a page-by-page source and available unauthenticated visual audit against `diaries-web` and the shared token definitions.
+- [x] Record inconsistencies before changing them so the pass remains bounded.
+- [x] Define final content-width and breakpoint conventions.
+- [x] Make reader list/day layouts responsive.
+- [x] Define and implement the fragment editor narrow-screen behaviour.
+- [x] Preserve Quill toolbar/content flex and wrapping behaviour at the narrow breakpoint at source/build level.
+- [x] Preserve image viewer geometry by keeping visual decoration outside its coordinate-bearing SVG; authenticated manipulation testing remains outstanding.
+- [x] Apply consistent global `focus-visible` treatment and accessible labels; full keyboard-only authenticated navigation remains outstanding.
+- [x] Audit hover, active, disabled, selected, error and lock states at source level.
+- [x] Ensure invalid/error states use text/icon/border semantics in addition to colour.
+- [x] Add `prefers-reduced-motion` handling where the client uses non-essential transitions.
+- [x] Remove the unused legacy SCSS colour palette and retain only the semantic reader token compatibility forwarder.
+- [x] Review component SCSS for accidental fixed widths/heights and replace the authentication screens' fixed-width forms.
+- [ ] Test browser zoom at 200% on core authenticated reader/navigation flows.
+- [x] Run all relevant tests and production build.
 - [ ] Perform full application smoke test against a real responder/broker/database environment.
-- [ ] Update client README/design notes to describe the visual relationship with `diaries-web`.
+- [x] Update client README/design notes to describe the visual relationship with `diaries-web`.
 
 ## Non-Goals
 
@@ -162,7 +162,11 @@ Client-only intended. No database or retained-state migration. Rollback is the p
 
 ## Completion Summary
 
-To be completed when implemented. The final summary should explicitly state any intentional visual differences that remain between `diaries-client` and `diaries-web` because of editing requirements.
+Implemented the final client-side responsive and accessibility pass. Authentication now uses semantic, fluid reader surfaces and correct form/autocomplete/button semantics. Reader lists retain constrained line lengths and practical drag/link targets. File details collapse secondary columns below 44rem. The fragment workspace switches at 56rem from a desktop row to a 45/55 vertical source/transcription layout and cleans up its media-query and resize observers. Global focus-visible and reduced-motion rules now cover the application, and the obsolete legacy SCSS palette has been removed in favour of the semantic reader tokens.
+
+Intentional differences from static `diaries-web` remain: Diaries Client retains Golden Layout tabs/splitters, Quill editing controls, lock/save status, labelled CDK drag handles, file management and interactive marquee tooling. Drag reordering is labelled and visually distinct but still lacks a dedicated keyboard reordering command.
+
+All 42 Angular tests and the production client build pass. The feature remains **In progress** until an authenticated real-infrastructure smoke test covers the full navigation/edit/reorder workflow at the validation-matrix widths and 200% browser zoom.
 
 ## Completed Date
 
