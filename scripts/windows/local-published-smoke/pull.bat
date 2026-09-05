@@ -130,6 +130,11 @@ rem Precedence for the responder:
 rem   DIARIES_RESPONDER_IMAGE_TAG
 rem   DIARIES_IMAGE_TAG
 rem   integration
+
+rem Precedence for the web reader:
+rem   DIARIES_WEB_IMAGE_TAG
+rem   DIARIES_IMAGE_TAG
+rem   integration
 rem ----------------------------------------------------------------------------
 
 if defined DIARIES_CLIENT_IMAGE_TAG (
@@ -148,6 +153,14 @@ if defined DIARIES_RESPONDER_IMAGE_TAG (
     set "EFFECTIVE_RESPONDER_IMAGE_TAG=integration"
 )
 
+if defined DIARIES_WEB_IMAGE_TAG (
+    set "EFFECTIVE_WEB_IMAGE_TAG=%DIARIES_WEB_IMAGE_TAG%"
+) else if defined DIARIES_IMAGE_TAG (
+    set "EFFECTIVE_WEB_IMAGE_TAG=%DIARIES_IMAGE_TAG%"
+) else (
+    set "EFFECTIVE_WEB_IMAGE_TAG=integration"
+)
+
 
 rem ----------------------------------------------------------------------------
 rem Report the published images that will be pulled.
@@ -155,6 +168,7 @@ rem ----------------------------------------------------------------------------
 
 echo Pulling Diaries published images.
 echo   Client image:    rsmaxwell/diaries-client:%EFFECTIVE_CLIENT_IMAGE_TAG%
+echo   Web image:       rsmaxwell/diaries-web:%EFFECTIVE_WEB_IMAGE_TAG%
 echo   Responder image: rsmaxwell/diaries-responder:%EFFECTIVE_RESPONDER_IMAGE_TAG%
 echo.
 

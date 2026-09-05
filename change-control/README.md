@@ -404,7 +404,7 @@ The complete application runs in containers built from the current local source.
 
 ### local-published-smoke
 
-The application runs from published client and responder images. Record the resolved image names, tags, and embedded build information.
+The application runs from published client, web and responder images. Record the resolved image names, tags, and embedded build information.
 
 ### production
 
