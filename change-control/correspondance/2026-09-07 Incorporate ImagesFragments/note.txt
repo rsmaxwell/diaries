@@ -1,0 +1,185 @@
+I am considering how to handle Images as a special sort of fragment. I think having a fragment containing a list of media attachments might be unnecessarily complicated, as we have to introduce another sequence number to order the media attachments. If there were different types of fragment, a Fragment+Marquee and a Fragment+Image (containing a single image), then the existing fragment sequence number can be used to order all fragments (including the Fragment+Image) 
+
+
+The diaries-client is a diary/fragment editor. The user can create a MarqueeFragment with a date, text and an editable marquee around an area of interest on a diary page. Alternatively, the user can create an ImageFragment with a date and text and associate it with an Image that has previously been uploaded. These Fragments are persisted in the database and published to the MQTT topic tree.
+
+The diary-client app does have the beginning of some infrastructure to allow the user to upload images to an area on the server where they can be served when they appear in an image fragment.
+
+
+The diaries-web app is a Fragment viewer which consumes the MQTT topic tree and shows the Fragments sorted in date order
+
+The Page image is the source image of the physical diary page.
+
+An Image associated with an IMAGE Fragment is separate diary content
+(such as a photograph, drawing, map or other illustration) and is not
+the Page image itself.
+
+A given uploaded Image may be referenced by more than one ImageFragment.
+
+
+The Model
+
+
+Diaries
+  diaries              list of zero or more IDs
+
+
+Diary
+  id                   
+  name                 String      directory name
+  pages                list of zero or more IDs
+
+
+Page
+  id                   
+  diaryId             
+  name                 String      filename 
+  sequence             Decimal
+  extension         
+  fragments            list of zero or more IDs
+
+
+Fragment
+  id                   
+  pageId              
+  type                 MARQUEE | IMAGE
+  year
+  month
+  day
+  text                 
+  sequence             Decimal
+  lock
+  imageId              optional
+
+
+Marquee
+  id                   
+  fragmentId           unique
+  x
+  y
+  width
+  height
+
+
+Image
+  id
+  relativePath         String      path-to-file
+  mime_type
+  original_filename    String
+  width / height
+  checksum
+  caption
+  altText
+
+
+… and the cardinalities:
+
+Fragment 1 ---- 0..1 Marquee
+
+A Fragment references zero or one Image.
+An Image may be referenced by zero or more Fragments.
+
+
+
+During editing:
+    a MARQUEE fragment may temporarily have no Marquee.
+    an IMAGE fragment may temporarily have no Image.
+
+
+
+… with invariants:
+
+type = MARQUEE
+    marquee may exist
+    imageId must be null
+
+type = IMAGE
+    imageId may reference one Image
+    marquee must not exist
+
+
+
+An ImageFragment references at most one uploaded Image. A given uploaded Image may be referenced by zero, one, or more ImageFragments.
+
+The pages and fragments lists shown above describe the object relationships; implementations may derive these collections from Page.diaryId and Fragment.pageId rather than persist separate ID arrays.
+
+
+For the purposes of this design:
+
+MarqueeFragment = Fragment(type=MARQUEE) with its optional Marquee
+ImageFragment   = Fragment(type=IMAGE) with its optional reference to an Image
+
+
+
+… and maybe in the future we could introduce other types of fragments like an Audio or Video.
+
+
+
+
+
+With this arrangement:
+
+
+The existing "+" button creates a MarqueeFragment, as today.
+A new button will create an ImageFragment
+
+
+
+Every successfully uploaded image becomes an Image entity, which is persisted in the database and published to the MQTT topic tree
+
+Uploading an Image does not itself create an ImageFragment; the uploaded Image becomes available for later selection by one or more ImageFragments.
+
+
+
+A page can derive the URL of the image of the diary page from: 
+    ${base}/${diariesRoot}/${diary.name}/${page.name}${page.extension}     (- as today)
+
+
+The deploy-specific URL of an image can then be derived with:
+    ${base}/${filesRoot}/${image.relativePath} 
+
+
+The diaries-client navigates through the fragments under a page (as the dates may well not be correct yet) and lets the user edit a single fragment at a time under each diary as:
+
+- diary
+  - page
+    - on the LHS show the diary page
+        - for a MarqueeFragment:
+            image of diary page with editable marquee
+        - for an ImageFragment:
+            image of diary page with no marquee
+
+    - on the RHS
+        - show and edit the fragment date and text
+        - for an ImageFragment:
+            also show the selected uploaded Image
+            and allow the Image to be selected/changed
+
+
+
+
+… and the diaries-web app displays fragments in date order, rendering  
+each fragment appropriately depending on the fragment type:
+
+- date
+    - on the LHS
+        - for a MarqueeFragment:
+            show diary page with marquee
+        - for an ImageFragment:
+            show diary page without marquee
+
+    - on the RHS
+        - show the fragment text
+        - for an ImageFragment:
+            show the referenced Image
+
+
+
+
+
+
+
+
+
+
+
