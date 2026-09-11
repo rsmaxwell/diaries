@@ -6,7 +6,7 @@ Feature
 
 ## Status
 
-To do
+In progress
 
 ## Priority
 
@@ -83,26 +83,54 @@ No responder contract removal. Consumers accept 0022 additive fields and should 
 
 ## Detailed Implementation Steps
 
-- [ ] Extend Angular Fragment model with pageId/type.
-- [ ] Add parsing/compatibility tests for old and new fragment payloads where appropriate.
-- [ ] Audit `ModelContext` for Page inference through Marquee and replace with Fragment.pageId.
-- [ ] Ensure selected marquee is still located by `fragmentId` for MARQUEE fragments.
-- [ ] Make marquee controls explicitly conditional on fragment type/available marquee even though all production rows are still MARQUEE.
-- [ ] Extend diaries-web FragmentItem decoder/model.
-- [ ] Rewrite ProjectionSnapshot resolution to start from Fragment.pageId.
-- [ ] Preserve date/sequence ordering unchanged.
-- [ ] Replace `fragmentsWithoutMarquee` diagnostics with more precise type-aware diagnostics.
-- [ ] Add projection tests for a MARQUEE Fragment with valid Page but missing Marquee: it remains in chronology and is flagged rather than discarded.
-- [ ] Run client tests/build and diaries-web tests/build against a 0022 responder/topic-tree fixture.
+- [x] Extend Angular Fragment model with pageId/type.
+- [x] Add parsing/compatibility tests for old and new fragment payloads where appropriate.
+- [x] Audit `ModelContext` for Page inference through Marquee and replace with Fragment.pageId.
+- [x] Ensure selected marquee is still located by `fragmentId` for MARQUEE fragments.
+- [x] Make marquee controls explicitly conditional on fragment type/available marquee even though all production rows are still MARQUEE.
+- [x] Extend diaries-web FragmentItem decoder/model.
+- [x] Rewrite ProjectionSnapshot resolution to start from Fragment.pageId.
+- [x] Preserve date/sequence ordering unchanged.
+- [x] Replace `fragmentsWithoutMarquee` diagnostics with more precise type-aware diagnostics.
+- [x] Add projection tests for a MARQUEE Fragment with valid Page but missing Marquee: it remains in chronology and is flagged rather than discarded.
+- [x] Run client tests/build and diaries-web tests/build against retained-contract fixtures.
 
 ## Acceptance Criteria
 
-- [ ] Existing reader/editor behaviour is unchanged for healthy MARQUEE data.
-- [ ] Both consumers treat Fragment.pageId as authoritative.
-- [ ] diaries-web does not drop an otherwise valid Fragment merely because no Marquee is present.
-- [ ] Page/Diary resolution no longer depends on `Marquee.pageId`.
-- [ ] Existing date and sequence ordering is unchanged.
-- [ ] All tests/builds pass.
+- [x] Existing reader/editor behaviour is unchanged for healthy MARQUEE data in automated coverage.
+- [x] Both consumers treat Fragment.pageId as authoritative.
+- [x] diaries-web does not drop an otherwise valid Fragment merely because no Marquee is present.
+- [x] Page/Diary resolution no longer depends on `Marquee.pageId`.
+- [x] Existing date and sequence ordering is unchanged.
+- [x] All automated tests/builds pass.
+
+## Implementation Result
+
+Implemented on 2026-09-11. The Angular client now models migration-safe typed
+Fragment ownership, navigates from `Fragment.pageId`, derives Marquees from
+`Marquee.fragmentId` plus Page agreement, and prevents Marquee actions for
+IMAGE or inconsistent selections. The read-only web projection now resolves
+Fragment -> Page -> Diary before considering an optional Marquee, retains
+Page-owned fragments in chronology when their Marquee is absent, and exposes
+the more precise relationship diagnostics through its readiness response.
+
+Compatibility is deliberately additive: a null/absent `type` is treated as
+MARQUEE in one helper per consumer, null/absent `pageId` remains unresolved,
+and `marqueeId` remains decoded and sent by the existing update RPC but is not
+used as Page or Marquee relationship authority. Explicit IMAGE payloads decode
+safely without enabling IMAGE authoring or first-class IMAGE rendering.
+
+Automated evidence:
+
+- diaries-client: 65 Angular tests passed;
+- diaries-client: production build passed;
+- diaries-web: tests passed;
+- diaries-web: full build passed;
+- `git diff --check` passed in the parent repository and both consumer repositories.
+
+The full-stack/runtime smoke checks and deployment evidence in
+`IMPLEMENTATION.md` remain manual release gates; they were not claimed by this
+source implementation.
 
 ## Dependencies
 
