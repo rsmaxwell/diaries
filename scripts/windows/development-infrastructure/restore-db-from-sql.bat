@@ -111,7 +111,7 @@ if not "%~1"=="" (
         goto :cleanup
     )
 
-    for /f "delims=" %%F in ('dir /b /a-d /o-d "%BACKUP_DIR%\diaries-development-infrastructure-*.sql" 2^>nul') do (
+    for /f "delims=" %%F in ('dir /b /a-d /o-d "%BACKUP_DIR%\diaries-development-*.sql" 2^>nul') do (
         if not defined SQL_FILE set "SQL_FILE=%BACKUP_DIR%\%%F"
     )
 )

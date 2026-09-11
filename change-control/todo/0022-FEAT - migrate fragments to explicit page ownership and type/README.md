@@ -6,7 +6,7 @@ Feature
 
 ## Status
 
-To do
+Implemented; awaiting migration rehearsal and controlled production execution
 
 ## Priority
 
@@ -332,8 +332,10 @@ Do not automatically set legacy image candidates to `MARQUEE` merely because the
 
 Verify:
 
-- Fragment row count unchanged;
-- IDs unchanged;
+- every original Fragment ID remains present;
+- the Fragment row-count increase is exactly the set of reviewed
+  `CREATE_MISSING` MARQUEE actions;
+- newly allocated IDs belong only to those reviewed additions;
 - dates unchanged;
 - sequence unchanged;
 - text/HTML unchanged;
@@ -538,6 +540,27 @@ If this feature introduces nullable/absent `type` for legacy image candidates, t
 None. This remains the foundation for the later ImageFragment work.
 
 0024 uses this feature's embedded-image paths while reconciling the Image catalogue. 0028 must consume the complete reviewed candidate inventory and record a disposition for every candidate. 0029 must not impose final constraints while any candidate or Page-ownership anomaly remains unresolved.
+
+## Implementation Status (2026-09-08)
+
+The source implementation and migration tooling are present. In particular:
+
+- the responder model, native Fragment projections and retained MQTT DTO now carry nullable `pageId` and `type` fields;
+- newly-created normal Fragments are stored as `type=MARQUEE` with explicit Page ownership;
+- Marquee creation and update reject conflicting Page ownership and reject `IMAGE` Fragments;
+- responder startup publishes every Fragment independently, including legacy/no-Marquee rows;
+- `migration/001-preflight.sql`, `002-additive-schema.sql`, `004-backfill-page.sql` and `006-postflight.sql` provide the guarded schema/data workflow;
+- the read-only `migration0022Inventory` Gradle task creates the complete candidate inventory and a reviewable, state-checked `005-apply-safe-types.generated.sql` script;
+- unit tests cover Fragment persistence mapping, retained DTO compatibility, replay without a Marquee, sequence preservation and tolerant embedded-image detection.
+
+The migration has deliberately **not** been run against production. The operator must first rehearse the workflow in `migration/README.md` against a restored copy of the production database, review every generated report, take and verify a fresh production backup, and then execute each production checkpoint manually.
+
+The sibling `diaries-reconciliation-applier` is the read-only SQL-generation
+boundary for reviewed source corrections. It validates the frozen planner,
+inventory, reconciliation reports, ledger and source HTML. For the current
+baseline it emits guarded SQL for 15 reviewed text updates and 22 missing
+MARQUEE creates, while refusing all 73 deferred IMAGE actions. It has no JDBC
+dependency and never applies its generated SQL.
 
 ## Deployment Sequence
 

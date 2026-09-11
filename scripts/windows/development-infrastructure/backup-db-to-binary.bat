@@ -7,6 +7,15 @@ rem
 rem Back up the Diaries PostgreSQL database used by development-infrastructure mode in
 rem PostgreSQL custom (binary) format.
 rem
+rem Usage:
+rem
+rem     backup-db-to-binary.bat [output-file]
+rem
+rem If output-file is relative, it is written beneath the standard
+rem development-infrastructure backup directory used by the restore script.
+rem An absolute path is used unchanged. If no output-file is supplied, a
+rem timestamped filename is generated in the standard backup directory.
+rem
 rem The script:
 rem   - locates the Diaries project root;
 rem   - validates and loads the development-infrastructure environment files;
@@ -27,6 +36,7 @@ rem ----------------------------------------------------------------------------
 
 set "SCRIPT_DIR=%~dp0"
 set "EXIT_CODE=0"
+set "BACKUP_FILE="
 
 
 rem ----------------------------------------------------------------------------
@@ -118,19 +128,39 @@ if not exist "%BACKUP_DIR%" (
 
 
 rem ----------------------------------------------------------------------------
-rem Generate an unambiguous, filesystem-safe local timestamp and output name.
+rem Select the output file.
+rem
+rem A supplied relative filename is resolved beneath BACKUP_DIR so that, for
+rem example, both of these commands refer to the same file:
+rem
+rem     backup-db-to-binary.bat rehearsal.dump
+rem     restore-db-from-binary.bat data\database-backups\development-infrastructure\rehearsal.dump
+rem
+rem Drive-qualified, UNC and root-relative paths are treated as explicit.
+rem Without an argument, generate an unambiguous timestamped output name.
 rem ----------------------------------------------------------------------------
 
-set "TIMESTAMP="
-for /f %%I in ('powershell -NoProfile -Command "Get-Date -Format yyyyMMdd-HHmmss"') do set "TIMESTAMP=%%I"
+if not "%~1"=="" (
+    set "BACKUP_FILE=%~1"
+    call :resolve_backup_file
+    if errorlevel 1 (
+        set "EXIT_CODE=1"
+        goto :cleanup
+    )
+) else (
+    call :set_default_backup_file
+    if errorlevel 1 (
+        set "EXIT_CODE=1"
+        goto :cleanup
+    )
+)
 
-if not defined TIMESTAMP (
-    echo ERROR: Unable to generate backup timestamp. >&2
+for %%I in ("%BACKUP_FILE%") do set "BACKUP_PARENT=%%~dpI"
+if not exist "%BACKUP_PARENT%" (
+    echo ERROR: Output directory not found: "%BACKUP_PARENT%" >&2
     set "EXIT_CODE=1"
     goto :cleanup
 )
-
-set "BACKUP_FILE=%BACKUP_DIR%\diaries-development-infrastructure-%TIMESTAMP%.dump"
 
 
 rem ----------------------------------------------------------------------------
@@ -196,3 +226,50 @@ rem ----------------------------------------------------------------------------
 :cleanup
 popd
 endlocal & exit /b %EXIT_CODE%
+
+
+rem ----------------------------------------------------------------------------
+rem Resolve a caller-supplied output filename.
+rem
+rem A fully-qualified drive path, UNC path or root-relative path is explicit.
+rem Every other path is relative to the standard backup directory. Ambiguous
+rem drive-relative paths such as C:backup.dump are rejected.
+rem ----------------------------------------------------------------------------
+
+:resolve_backup_file
+if "%BACKUP_FILE:~1,1%"==":" (
+    if not "%BACKUP_FILE:~2,1%"=="\" if not "%BACKUP_FILE:~2,1%"=="/" (
+        echo ERROR: Drive-relative output paths are not supported: "%BACKUP_FILE%" >&2
+        exit /b 1
+    )
+)
+
+if "%BACKUP_FILE:~0,1%"=="\" goto :resolve_explicit_backup_file
+if "%BACKUP_FILE:~0,1%"=="/" goto :resolve_explicit_backup_file
+if "%BACKUP_FILE:~1,2%"==":\" goto :resolve_explicit_backup_file
+if "%BACKUP_FILE:~1,2%"==":/" goto :resolve_explicit_backup_file
+
+for %%I in ("%BACKUP_DIR%\%BACKUP_FILE%") do set "BACKUP_FILE=%%~fI"
+exit /b 0
+
+:resolve_explicit_backup_file
+    for %%I in ("%BACKUP_FILE%") do set "BACKUP_FILE=%%~fI"
+exit /b 0
+
+
+rem ----------------------------------------------------------------------------
+rem Generate the default timestamped output name outside the caller's
+rem parenthesised block so TIMESTAMP is expanded only after it has been set.
+rem ----------------------------------------------------------------------------
+
+:set_default_backup_file
+set "TIMESTAMP="
+for /f %%I in ('powershell -NoProfile -Command "Get-Date -Format yyyyMMdd-HHmmss"') do set "TIMESTAMP=%%I"
+
+if not defined TIMESTAMP (
+    echo ERROR: Unable to generate backup timestamp. >&2
+    exit /b 1
+)
+
+set "BACKUP_FILE=%BACKUP_DIR%\diaries-development-%TIMESTAMP%.dump"
+exit /b 0

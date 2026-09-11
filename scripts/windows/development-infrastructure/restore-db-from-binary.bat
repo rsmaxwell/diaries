@@ -114,7 +114,7 @@ if not "%~1"=="" (
         goto :cleanup
     )
 
-    for /f "delims=" %%F in ('dir /b /a-d /o-d "%BACKUP_DIR%\diaries-development-infrastructure-*.dump" 2^>nul') do (
+    for /f "delims=" %%F in ('dir /b /a-d /o-d "%BACKUP_DIR%\diaries-development-*.dump" 2^>nul') do (
         if not defined DUMP_FILE set "DUMP_FILE=%BACKUP_DIR%\%%F"
     )
 )
