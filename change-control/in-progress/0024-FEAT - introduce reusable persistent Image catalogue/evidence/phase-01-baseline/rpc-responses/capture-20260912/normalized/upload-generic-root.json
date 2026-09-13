@@ -1,0 +1,19 @@
+{
+  "caseId" : "upload-generic-root",
+  "function" : "uploadFile",
+  "auth" : "editor",
+  "status" : {
+    "code" : 200,
+    "message" : "ok"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : {
+    "name" : "generic.bin",
+    "path" : "<FILES_ROOT>\\generic.bin",
+    "url" : "/files/generic.bin",
+    "subdir" : "",
+    "size" : 28
+  },
+  "payloadFormat" : "json"
+}

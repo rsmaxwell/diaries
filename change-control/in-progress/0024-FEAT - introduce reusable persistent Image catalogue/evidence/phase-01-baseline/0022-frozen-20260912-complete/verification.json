@@ -1,0 +1,498 @@
+{
+  "captured_at_utc": "2026-09-12T18:20:57.1359838Z",
+  "status": "COMPLETE_STATIC_CANDIDATE_REVIEW_FREEZE",
+  "baseline": "0022-static-baseline-20260911",
+  "supersedes": "0022-frozen-20260912",
+  "source_repository_path": "change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/evidence/phase-01-baseline/0022",
+  "source_copy_matches": 22,
+  "ledger_report_hash_matches": 8,
+  "planner_input_hash_matches": 15,
+  "prior_snapshot_matches": 9,
+  "candidate_coverage": {
+    "inventory_rows": 2307,
+    "image_bearing_fragments": 73,
+    "legacy_classified_image_fragments": 22,
+    "orphan_classified_image_fragments": 51,
+    "reviewed_candidate_rows": 73,
+    "missing_ids": 0,
+    "extra_ids": 0,
+    "duplicate_ids": 0,
+    "unchanged_image_references": 71,
+    "reviewed_path_overrides": [
+      {
+        "fragment_id": 84,
+        "inventory_path": "images/img2840-image-map-whitley-park.jpg",
+        "reviewed_path": "diary-1828-and-1829-and-jan-1830/images/img2840-image-map-whitley-park.jpg",
+        "matches_explicit_ledger_override": true
+      },
+      {
+        "fragment_id": 1182,
+        "inventory_path": "images/img2734-doodle-on-blotting-paper.jpg",
+        "reviewed_path": "diary-1831/images/img2734-doodle-on-blotting-paper.jpg",
+        "matches_explicit_ledger_override": true
+      }
+    ],
+    "source_only_image_targets": [
+      {
+        "planKey": "source:fragments/1832/06/27-m3-img3018-murder-of-nicholas-fairles-image",
+        "sourceKey": "fragments/1832/06/27-m3-img3018-murder-of-nicholas-fairles-image",
+        "imageReference": "diary-1832/images/img3018-murder-of-nicholas-fairles.png",
+        "executionStage": "DEFERRED_IMAGE_MIGRATION"
+      }
+    ]
+  },
+  "archived_planner_validation": {
+    "status": "VALID",
+    "errorCount": 0,
+    "warningCount": 62,
+    "errors": [],
+    "warnings": [
+      "Reviewed type override keeps image-bearing database Fragment 1738 as MARQUEE",
+      "Page ownership remains unresolved for database:1",
+      "Page ownership remains unresolved for database:2",
+      "Page ownership remains unresolved for database:3",
+      "Page ownership remains unresolved for database:84",
+      "Page ownership remains unresolved for database:96",
+      "Page ownership remains unresolved for database:114",
+      "Page ownership remains unresolved for database:115",
+      "Page ownership remains unresolved for database:116",
+      "Page ownership remains unresolved for database:117",
+      "Page ownership remains unresolved for database:118",
+      "Page ownership remains unresolved for database:226",
+      "Page ownership remains unresolved for database:233",
+      "Page ownership remains unresolved for database:257",
+      "Page ownership remains unresolved for database:258",
+      "Page ownership remains unresolved for database:259",
+      "Page ownership remains unresolved for database:260",
+      "Page ownership remains unresolved for database:310",
+      "Page ownership remains unresolved for database:387",
+      "Page ownership remains unresolved for database:544",
+      "Page ownership remains unresolved for database:545",
+      "Page ownership remains unresolved for database:546",
+      "Page ownership remains unresolved for database:547",
+      "Page ownership remains unresolved for database:565",
+      "Page ownership remains unresolved for database:575",
+      "Page ownership remains unresolved for database:578",
+      "Page ownership remains unresolved for database:593",
+      "Page ownership remains unresolved for database:594",
+      "Page ownership remains unresolved for database:595",
+      "Page ownership remains unresolved for database:596",
+      "Page ownership remains unresolved for database:598",
+      "Page ownership remains unresolved for database:599",
+      "Page ownership remains unresolved for database:600",
+      "Page ownership remains unresolved for database:606",
+      "Page ownership remains unresolved for database:611",
+      "Page ownership remains unresolved for database:612",
+      "Page ownership remains unresolved for database:613",
+      "Page ownership remains unresolved for database:632",
+      "Page ownership remains unresolved for database:633",
+      "Page ownership remains unresolved for database:679",
+      "Page ownership remains unresolved for database:680",
+      "Page ownership remains unresolved for database:683",
+      "Page ownership remains unresolved for database:684",
+      "Page ownership remains unresolved for database:720",
+      "Page ownership remains unresolved for database:722",
+      "Page ownership remains unresolved for database:725",
+      "Page ownership remains unresolved for database:739",
+      "Page ownership remains unresolved for database:806",
+      "Page ownership remains unresolved for database:809",
+      "Page ownership remains unresolved for database:980",
+      "Page ownership remains unresolved for database:1029",
+      "Page ownership remains unresolved for database:1030",
+      "Page ownership remains unresolved for database:1043",
+      "Page ownership remains unresolved for database:1177",
+      "Page ownership remains unresolved for database:1182",
+      "Page ownership remains unresolved for database:1563",
+      "Page ownership remains unresolved for database:1564",
+      "Page ownership remains unresolved for database:1738",
+      "Page ownership remains unresolved for database:1926",
+      "Page ownership remains unresolved for database:1933",
+      "Page ownership remains unresolved for database:2061",
+      "Page ownership remains unresolved for source:fragments/1832/06/27-m3-img3018-murder-of-nicholas-fairles-image"
+    ]
+  },
+  "archived_planner_summary": {
+    "sourceRecords": 2329,
+    "databaseRecords": 2307,
+    "reviewedDecisions": 42,
+    "plannedTargets": 2330,
+    "createOperations": 23,
+    "reviewedTargets": 42,
+    "databaseImageCandidates": 73,
+    "targetImageFragments": 73,
+    "targetMarqueeFragments": 2257,
+    "reviewedImageCandidateOverrides": 1,
+    "unresolvedPageOwnership": 61,
+    "deferredImageActions": 73,
+    "warnings": 62,
+    "applyReady": false
+  },
+  "validation_scope": "Hash consistency, byte-identical copies and candidate coverage; archived planner results inspected, planner not rerun; no database or Files-root changes.",
+  "files": [
+    {
+      "source": "../0022/review-ledger.json",
+      "filename": "review-ledger.json",
+      "bytes": 105997,
+      "source_sha256": "29c89f797d996f351dbe404dd065199886ae3c24303b0e11174696f8b6c56d07",
+      "snapshot_sha256": "29c89f797d996f351dbe404dd065199886ae3c24303b0e11174696f8b6c56d07",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-static-reconciliation-with-images-3-20260911/database-reconciliation.csv",
+      "filename": "reconciliation/database-reconciliation.csv",
+      "bytes": 304229,
+      "source_sha256": "9fabec501be6c832d93aa177ad53a0d23ce16bf42b2ec731bc0aa1587824b19e",
+      "snapshot_sha256": "9fabec501be6c832d93aa177ad53a0d23ce16bf42b2ec731bc0aa1587824b19e",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-static-reconciliation-with-images-3-20260911/legacy-import-identity-collisions.csv",
+      "filename": "reconciliation/legacy-import-identity-collisions.csv",
+      "bytes": 4370,
+      "source_sha256": "ca9da2a0afd4b2453e85517f58492652e9f659bf5ea9024b47bb8098e24c02c3",
+      "snapshot_sha256": "ca9da2a0afd4b2453e85517f58492652e9f659bf5ea9024b47bb8098e24c02c3",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-static-reconciliation-with-images-3-20260911/source-key-collisions.csv",
+      "filename": "reconciliation/source-key-collisions.csv",
+      "bytes": 18,
+      "source_sha256": "9d1422f1cbaaf7f989f7d702caa8f470b592cc7ded5bd11856c85a65bd48cd4b",
+      "snapshot_sha256": "9d1422f1cbaaf7f989f7d702caa8f470b592cc7ded5bd11856c85a65bd48cd4b",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-static-reconciliation-with-images-3-20260911/source-manifest.csv",
+      "filename": "reconciliation/source-manifest.csv",
+      "bytes": 549985,
+      "source_sha256": "0d9fe2a86e7c3f9974c8c8765ea49b68aa64303c9ce141a2f81dddf4240df9a3",
+      "snapshot_sha256": "0d9fe2a86e7c3f9974c8c8765ea49b68aa64303c9ce141a2f81dddf4240df9a3",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-static-reconciliation-with-images-3-20260911/source-manifest.json",
+      "filename": "reconciliation/source-manifest.json",
+      "bytes": 1067358,
+      "source_sha256": "c279e87cf67104beba9fb044c2e97e6333cae517bff002072975ea1b0a9b25d0",
+      "snapshot_sha256": "c279e87cf67104beba9fb044c2e97e6333cae517bff002072975ea1b0a9b25d0",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-static-reconciliation-with-images-3-20260911/source-reconciliation.csv",
+      "filename": "reconciliation/source-reconciliation.csv",
+      "bytes": 410329,
+      "source_sha256": "def5d4d0a1dacb471da2a75c4f2312c89ca2e0b072b56035ce8b6a693acbdfdc",
+      "snapshot_sha256": "def5d4d0a1dacb471da2a75c4f2312c89ca2e0b072b56035ce8b6a693acbdfdc",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-static-reconciliation-with-images-3-20260911/source-reconciliation.json",
+      "filename": "reconciliation/source-reconciliation.json",
+      "bytes": 904455,
+      "source_sha256": "f4c4a2fac2b23907bf074db5c8b32aaacd70cde164b9cceb932140febe0bc84d",
+      "snapshot_sha256": "f4c4a2fac2b23907bf074db5c8b32aaacd70cde164b9cceb932140febe0bc84d",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-static-reconciliation-with-images-3-20260911/summary.json",
+      "filename": "reconciliation/summary.json",
+      "bytes": 802,
+      "source_sha256": "deff0ede0c4be86793b6c60d72805a8e4f0a195e6fbe8568eb8e65e60afe9428",
+      "snapshot_sha256": "deff0ede0c4be86793b6c60d72805a8e4f0a195e6fbe8568eb8e65e60afe9428",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-0022-inventory-final-20260911/0022-anomalies.csv",
+      "filename": "inventory/0022-anomalies.csv",
+      "bytes": 19287,
+      "source_sha256": "a6d68744b45d9e0e3e9c6d82357969278cae11d14207d390491a24ea21dda7a5",
+      "snapshot_sha256": "a6d68744b45d9e0e3e9c6d82357969278cae11d14207d390491a24ea21dda7a5",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-0022-inventory-final-20260911/0022-inventory.csv",
+      "filename": "inventory/0022-inventory.csv",
+      "bytes": 757688,
+      "source_sha256": "b021b6d429e8ba4cde2d6f8260671ac22770d2f8dbdab60b1f812d36ddab6167",
+      "snapshot_sha256": "b021b6d429e8ba4cde2d6f8260671ac22770d2f8dbdab60b1f812d36ddab6167",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-0022-inventory-final-20260911/0022-legacy-image-candidates.csv",
+      "filename": "inventory/0022-legacy-image-candidates.csv",
+      "bytes": 8319,
+      "source_sha256": "63e8325f4b0cb6116692cffd345cb003108604be3aacdf9784d5ceb7ec90efee",
+      "snapshot_sha256": "63e8325f4b0cb6116692cffd345cb003108604be3aacdf9784d5ceb7ec90efee",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-0022-inventory-final-20260911/0022-safe-marquee-candidates.csv",
+      "filename": "inventory/0022-safe-marquee-candidates.csv",
+      "bytes": 730428,
+      "source_sha256": "2ae55444d86ca45697f0a779f4b94e8e399f2bb768a25e92917f500b8ab1e76b",
+      "snapshot_sha256": "2ae55444d86ca45697f0a779f4b94e8e399f2bb768a25e92917f500b8ab1e76b",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-0022-inventory-final-20260911/0022-summary.json",
+      "filename": "inventory/0022-summary.json",
+      "bytes": 215,
+      "source_sha256": "c1a7ece8b582169ac8f92e67dec8e267bbc9cefe327178794984ec27d0e76a25",
+      "snapshot_sha256": "c1a7ece8b582169ac8f92e67dec8e267bbc9cefe327178794984ec27d0e76a25",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-0022-inventory-final-20260911/005-apply-safe-types.generated.sql",
+      "filename": "inventory/005-apply-safe-types.generated.sql",
+      "bytes": 122739,
+      "source_sha256": "327e86c333cbd9f972870ce13d931bf46103ae22e41bb3c405763472e3a22983",
+      "snapshot_sha256": "327e86c333cbd9f972870ce13d931bf46103ae22e41bb3c405763472e3a22983",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-reviewed-migration-plan-20260911/image-candidates.csv",
+      "filename": "planner/image-candidates.csv",
+      "bytes": 15523,
+      "source_sha256": "c8b0dcd5b531e133121f55e688f61afcf8d26737d1df39292505dbc01e1fe58a",
+      "snapshot_sha256": "c8b0dcd5b531e133121f55e688f61afcf8d26737d1df39292505dbc01e1fe58a",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-reviewed-migration-plan-20260911/input-checksums.sha256",
+      "filename": "planner/input-checksums.sha256",
+      "bytes": 1560,
+      "source_sha256": "006fe330094b61d34f820f855360e86d57f927ff18e47ad6597bfda1301d34e6",
+      "snapshot_sha256": "006fe330094b61d34f820f855360e86d57f927ff18e47ad6597bfda1301d34e6",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-reviewed-migration-plan-20260911/migration-plan.csv",
+      "filename": "planner/migration-plan.csv",
+      "bytes": 586194,
+      "source_sha256": "04b92e05347fcd28ed6b160577b6dc8759ea810feac444953b363f8c5a451267",
+      "snapshot_sha256": "04b92e05347fcd28ed6b160577b6dc8759ea810feac444953b363f8c5a451267",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-reviewed-migration-plan-20260911/migration-plan.json",
+      "filename": "planner/migration-plan.json",
+      "bytes": 1913929,
+      "source_sha256": "7cc588091cb8420caf3311b95d25ae84a43ecc60d80c1f27d091bf639f470c22",
+      "snapshot_sha256": "7cc588091cb8420caf3311b95d25ae84a43ecc60d80c1f27d091bf639f470c22",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-reviewed-migration-plan-20260911/sequence-plan.csv",
+      "filename": "planner/sequence-plan.csv",
+      "bytes": 2076,
+      "source_sha256": "13cdc8d94a2902cda77476c0f9a4b14644fdc760484c1704eb133523a250a284",
+      "snapshot_sha256": "13cdc8d94a2902cda77476c0f9a4b14644fdc760484c1704eb133523a250a284",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-reviewed-migration-plan-20260911/summary.json",
+      "filename": "planner/summary.json",
+      "bytes": 430,
+      "source_sha256": "f243127024ff1e9dad188e977e4f9699dafd5a3d0a8b266664bf3aa185d9701e",
+      "snapshot_sha256": "f243127024ff1e9dad188e977e4f9699dafd5a3d0a8b266664bf3aa185d9701e",
+      "match": true
+    },
+    {
+      "source": "../0022/diaries-reviewed-migration-plan-20260911/validation-report.json",
+      "filename": "planner/validation-report.json",
+      "bytes": 3548,
+      "source_sha256": "b30c2c32302df7924e9f578e35e74d82d6fa45fcaae5049f66acabe66bfbfd2e",
+      "snapshot_sha256": "b30c2c32302df7924e9f578e35e74d82d6fa45fcaae5049f66acabe66bfbfd2e",
+      "match": true
+    }
+  ],
+  "ledger_checks": [
+    {
+      "filename": "reconciliation/summary.json",
+      "expected_sha256": "deff0ede0c4be86793b6c60d72805a8e4f0a195e6fbe8568eb8e65e60afe9428",
+      "actual_sha256": "deff0ede0c4be86793b6c60d72805a8e4f0a195e6fbe8568eb8e65e60afe9428",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/source-manifest.json",
+      "expected_sha256": "c279e87cf67104beba9fb044c2e97e6333cae517bff002072975ea1b0a9b25d0",
+      "actual_sha256": "c279e87cf67104beba9fb044c2e97e6333cae517bff002072975ea1b0a9b25d0",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/source-manifest.csv",
+      "expected_sha256": "0d9fe2a86e7c3f9974c8c8765ea49b68aa64303c9ce141a2f81dddf4240df9a3",
+      "actual_sha256": "0d9fe2a86e7c3f9974c8c8765ea49b68aa64303c9ce141a2f81dddf4240df9a3",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/source-key-collisions.csv",
+      "expected_sha256": "9d1422f1cbaaf7f989f7d702caa8f470b592cc7ded5bd11856c85a65bd48cd4b",
+      "actual_sha256": "9d1422f1cbaaf7f989f7d702caa8f470b592cc7ded5bd11856c85a65bd48cd4b",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/legacy-import-identity-collisions.csv",
+      "expected_sha256": "ca9da2a0afd4b2453e85517f58492652e9f659bf5ea9024b47bb8098e24c02c3",
+      "actual_sha256": "ca9da2a0afd4b2453e85517f58492652e9f659bf5ea9024b47bb8098e24c02c3",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/source-reconciliation.json",
+      "expected_sha256": "f4c4a2fac2b23907bf074db5c8b32aaacd70cde164b9cceb932140febe0bc84d",
+      "actual_sha256": "f4c4a2fac2b23907bf074db5c8b32aaacd70cde164b9cceb932140febe0bc84d",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/source-reconciliation.csv",
+      "expected_sha256": "def5d4d0a1dacb471da2a75c4f2312c89ca2e0b072b56035ce8b6a693acbdfdc",
+      "actual_sha256": "def5d4d0a1dacb471da2a75c4f2312c89ca2e0b072b56035ce8b6a693acbdfdc",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/database-reconciliation.csv",
+      "expected_sha256": "9fabec501be6c832d93aa177ad53a0d23ce16bf42b2ec731bc0aa1587824b19e",
+      "actual_sha256": "9fabec501be6c832d93aa177ad53a0d23ce16bf42b2ec731bc0aa1587824b19e",
+      "match": true
+    }
+  ],
+  "planner_checks": [
+    {
+      "filename": "inventory/0022-anomalies.csv",
+      "expected_sha256": "a6d68744b45d9e0e3e9c6d82357969278cae11d14207d390491a24ea21dda7a5",
+      "actual_sha256": "a6d68744b45d9e0e3e9c6d82357969278cae11d14207d390491a24ea21dda7a5",
+      "match": true
+    },
+    {
+      "filename": "inventory/0022-inventory.csv",
+      "expected_sha256": "b021b6d429e8ba4cde2d6f8260671ac22770d2f8dbdab60b1f812d36ddab6167",
+      "actual_sha256": "b021b6d429e8ba4cde2d6f8260671ac22770d2f8dbdab60b1f812d36ddab6167",
+      "match": true
+    },
+    {
+      "filename": "inventory/0022-legacy-image-candidates.csv",
+      "expected_sha256": "63e8325f4b0cb6116692cffd345cb003108604be3aacdf9784d5ceb7ec90efee",
+      "actual_sha256": "63e8325f4b0cb6116692cffd345cb003108604be3aacdf9784d5ceb7ec90efee",
+      "match": true
+    },
+    {
+      "filename": "inventory/0022-safe-marquee-candidates.csv",
+      "expected_sha256": "2ae55444d86ca45697f0a779f4b94e8e399f2bb768a25e92917f500b8ab1e76b",
+      "actual_sha256": "2ae55444d86ca45697f0a779f4b94e8e399f2bb768a25e92917f500b8ab1e76b",
+      "match": true
+    },
+    {
+      "filename": "inventory/0022-summary.json",
+      "expected_sha256": "c1a7ece8b582169ac8f92e67dec8e267bbc9cefe327178794984ec27d0e76a25",
+      "actual_sha256": "c1a7ece8b582169ac8f92e67dec8e267bbc9cefe327178794984ec27d0e76a25",
+      "match": true
+    },
+    {
+      "filename": "inventory/005-apply-safe-types.generated.sql",
+      "expected_sha256": "327e86c333cbd9f972870ce13d931bf46103ae22e41bb3c405763472e3a22983",
+      "actual_sha256": "327e86c333cbd9f972870ce13d931bf46103ae22e41bb3c405763472e3a22983",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/database-reconciliation.csv",
+      "expected_sha256": "9fabec501be6c832d93aa177ad53a0d23ce16bf42b2ec731bc0aa1587824b19e",
+      "actual_sha256": "9fabec501be6c832d93aa177ad53a0d23ce16bf42b2ec731bc0aa1587824b19e",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/legacy-import-identity-collisions.csv",
+      "expected_sha256": "ca9da2a0afd4b2453e85517f58492652e9f659bf5ea9024b47bb8098e24c02c3",
+      "actual_sha256": "ca9da2a0afd4b2453e85517f58492652e9f659bf5ea9024b47bb8098e24c02c3",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/source-key-collisions.csv",
+      "expected_sha256": "9d1422f1cbaaf7f989f7d702caa8f470b592cc7ded5bd11856c85a65bd48cd4b",
+      "actual_sha256": "9d1422f1cbaaf7f989f7d702caa8f470b592cc7ded5bd11856c85a65bd48cd4b",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/source-manifest.csv",
+      "expected_sha256": "0d9fe2a86e7c3f9974c8c8765ea49b68aa64303c9ce141a2f81dddf4240df9a3",
+      "actual_sha256": "0d9fe2a86e7c3f9974c8c8765ea49b68aa64303c9ce141a2f81dddf4240df9a3",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/source-manifest.json",
+      "expected_sha256": "c279e87cf67104beba9fb044c2e97e6333cae517bff002072975ea1b0a9b25d0",
+      "actual_sha256": "c279e87cf67104beba9fb044c2e97e6333cae517bff002072975ea1b0a9b25d0",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/source-reconciliation.csv",
+      "expected_sha256": "def5d4d0a1dacb471da2a75c4f2312c89ca2e0b072b56035ce8b6a693acbdfdc",
+      "actual_sha256": "def5d4d0a1dacb471da2a75c4f2312c89ca2e0b072b56035ce8b6a693acbdfdc",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/source-reconciliation.json",
+      "expected_sha256": "f4c4a2fac2b23907bf074db5c8b32aaacd70cde164b9cceb932140febe0bc84d",
+      "actual_sha256": "f4c4a2fac2b23907bf074db5c8b32aaacd70cde164b9cceb932140febe0bc84d",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/summary.json",
+      "expected_sha256": "deff0ede0c4be86793b6c60d72805a8e4f0a195e6fbe8568eb8e65e60afe9428",
+      "actual_sha256": "deff0ede0c4be86793b6c60d72805a8e4f0a195e6fbe8568eb8e65e60afe9428",
+      "match": true
+    },
+    {
+      "filename": "review-ledger.json",
+      "expected_sha256": "29c89f797d996f351dbe404dd065199886ae3c24303b0e11174696f8b6c56d07",
+      "actual_sha256": "29c89f797d996f351dbe404dd065199886ae3c24303b0e11174696f8b6c56d07",
+      "match": true
+    }
+  ],
+  "previous_snapshot_checks": [
+    {
+      "filename": "review-ledger.json",
+      "sha256": "29c89f797d996f351dbe404dd065199886ae3c24303b0e11174696f8b6c56d07",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/database-reconciliation.csv",
+      "sha256": "9fabec501be6c832d93aa177ad53a0d23ce16bf42b2ec731bc0aa1587824b19e",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/legacy-import-identity-collisions.csv",
+      "sha256": "ca9da2a0afd4b2453e85517f58492652e9f659bf5ea9024b47bb8098e24c02c3",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/source-key-collisions.csv",
+      "sha256": "9d1422f1cbaaf7f989f7d702caa8f470b592cc7ded5bd11856c85a65bd48cd4b",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/source-manifest.csv",
+      "sha256": "0d9fe2a86e7c3f9974c8c8765ea49b68aa64303c9ce141a2f81dddf4240df9a3",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/source-manifest.json",
+      "sha256": "c279e87cf67104beba9fb044c2e97e6333cae517bff002072975ea1b0a9b25d0",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/source-reconciliation.csv",
+      "sha256": "def5d4d0a1dacb471da2a75c4f2312c89ca2e0b072b56035ce8b6a693acbdfdc",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/source-reconciliation.json",
+      "sha256": "f4c4a2fac2b23907bf074db5c8b32aaacd70cde164b9cceb932140febe0bc84d",
+      "match": true
+    },
+    {
+      "filename": "reconciliation/summary.json",
+      "sha256": "deff0ede0c4be86793b6c60d72805a8e4f0a195e6fbe8568eb8e65e60afe9428",
+      "match": true
+    }
+  ]
+}

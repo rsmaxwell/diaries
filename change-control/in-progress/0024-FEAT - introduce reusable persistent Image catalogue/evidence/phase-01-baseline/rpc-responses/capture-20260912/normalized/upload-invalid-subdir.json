@@ -1,0 +1,13 @@
+{
+  "caseId" : "upload-invalid-subdir",
+  "function" : "uploadFile",
+  "auth" : "editor",
+  "status" : {
+    "code" : 400,
+    "message" : "bad request"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : "Invalid 'subdir'.",
+  "payloadFormat" : "json"
+}

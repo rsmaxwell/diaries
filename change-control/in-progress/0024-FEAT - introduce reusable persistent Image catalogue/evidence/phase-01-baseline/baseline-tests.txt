@@ -1,0 +1,28 @@
+0024 Phase 1 responder baseline, 2026-09-12
+
+Command (Diaries repository root):
+  .\gradlew.bat :diaries-responder:test :diaries-responder:build --console=plain
+
+Result: BUILD SUCCESSFUL in 17s; 14 actionable tasks, 11 executed, 3 up-to-date.
+JUnit XML totals: 14 suites, 127 tests, 0 failures, 0 errors, 0 skipped.
+Executed before adding the capture harness or client compatibility tests.
+No responder production source was changed by this task.
+
+Existing build warnings: Shadow duplicate service-resource handling and Gradle
+deprecations. No pre-existing failing responder tests were observed.
+
+Initial sandbox attempt failed before Gradle started because it could not create
+the wrapper lock under C:\.gradle. The successful run used the normal user's
+existing Gradle cache outside the sandbox. This was an environment restriction,
+not a test failure.
+
+Additional validation for the response-capture item:
+  33 real MQTT request/reply cases, repeated twice with matching normalized data.
+  10 focused Angular compatibility tests passed in Chrome Headless 152.
+  npm.cmd run build -- --configuration production passed.
+  Production client warnings: existing quill-delta and buffer CommonJS dependencies.
+
+Capture exposed existing 500 responses for malformed JWTs and for validation paths
+requiring an unavailable Jakarta REST RuntimeDelegate provider, plus Windows
+upload URL escaping/separator differences. These are documented separately in
+rpc-responses/README.md and were not changed or counted as failed baseline tests.

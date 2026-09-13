@@ -1,0 +1,16 @@
+{
+  "caseId" : "list-empty-root",
+  "function" : "listFiles",
+  "auth" : "editor",
+  "status" : {
+    "code" : 200,
+    "message" : "ok"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : {
+    "subdir" : "",
+    "items" : [ ]
+  },
+  "payloadFormat" : "json"
+}

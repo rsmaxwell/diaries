@@ -1,0 +1,50 @@
+{
+  "validated_at_utc": "2026-09-12T18:44:41.8033684Z",
+  "responder_baseline": {
+    "command": ".\\gradlew.bat :diaries-responder:test :diaries-responder:build --console=plain",
+    "success": true,
+    "suites": 14,
+    "tests": 127,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "warnings": [
+      "Shadow service-resource duplicate handling",
+      "Gradle deprecations"
+    ]
+  },
+  "capture": {
+    "cases": 33,
+    "raw_normalized_checks": "PASS",
+    "repeat_captures": 2,
+    "matching_normalized_cases_each": 33,
+    "runner_end_to_end": "PASS",
+    "comparator_self_checks": 7
+  },
+  "client_tests": {
+    "command": "npm.cmd test -- --watch=false --browsers=ChromeHeadless --include=src/app/mqtt/file-rpc-compatibility.spec.ts --include=src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts",
+    "success": true,
+    "tests": 10,
+    "failures": 0,
+    "browser": "Chrome Headless 152.0.0.0 (Windows 10)",
+    "complete_client_suite_run": false
+  },
+  "client_build": {
+    "command": "npm.cmd run build -- --configuration production",
+    "success": true,
+    "version": "0.0.9-SNAPSHOT",
+    "warnings": [
+      "quill-delta CommonJS",
+      "buffer CommonJS"
+    ]
+  },
+  "environment_retries": [
+    "Gradle cache inaccessible in initial sandbox invocation; normal-user run succeeded",
+    "Chrome profile/GPU initialization failed in sandbox; normal-user tests succeeded",
+    "Google Fonts stylesheet unavailable to sandbox build; network-enabled production build succeeded"
+  ],
+  "remaining_verification": [
+    "Production/Linux deployment capture and full application/database startup are outside this isolated file-handler baseline",
+    "Review intended 0024 changes and baseline defects separately rather than blindly enforcing every historical error/path value"
+  ]
+}

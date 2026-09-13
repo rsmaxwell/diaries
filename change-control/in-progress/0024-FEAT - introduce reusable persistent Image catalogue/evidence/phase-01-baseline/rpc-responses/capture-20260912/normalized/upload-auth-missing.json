@@ -1,0 +1,13 @@
+{
+  "caseId" : "upload-auth-missing",
+  "function" : "uploadFile",
+  "auth" : "missing",
+  "status" : {
+    "code" : 401,
+    "message" : "unauthorized"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : "accessToken not found'",
+  "payloadFormat" : "json"
+}

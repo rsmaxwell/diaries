@@ -1,0 +1,19 @@
+{
+  "caseId" : "upload-image-octet-nested",
+  "function" : "uploadFile",
+  "auth" : "editor",
+  "status" : {
+    "code" : 200,
+    "message" : "ok"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : {
+    "name" : "image space.png",
+    "path" : "<FILES_ROOT>\\alpha\\nested space\\image space.png",
+    "url" : "/files/alpha\\nested space/image space.png",
+    "subdir" : "alpha\\nested space",
+    "size" : 68
+  },
+  "payloadFormat" : "json"
+}

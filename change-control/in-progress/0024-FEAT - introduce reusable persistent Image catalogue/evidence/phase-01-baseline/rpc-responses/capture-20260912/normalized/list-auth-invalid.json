@@ -1,0 +1,13 @@
+{
+  "caseId" : "list-auth-invalid",
+  "function" : "listFiles",
+  "auth" : "invalid",
+  "status" : {
+    "code" : 500,
+    "message" : "internal error"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : "Invalid compact JWT string: Compact JWSs must contain exactly 2 period characters, and compact JWEs must contain exactly 4.  Found: 0",
+  "payloadFormat" : "json"
+}

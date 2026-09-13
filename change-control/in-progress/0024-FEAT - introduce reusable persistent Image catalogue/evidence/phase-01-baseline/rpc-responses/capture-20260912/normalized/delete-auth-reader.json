@@ -1,0 +1,13 @@
+{
+  "caseId" : "delete-auth-reader",
+  "function" : "deleteFile",
+  "auth" : "reader",
+  "status" : {
+    "code" : 401,
+    "message" : "unauthorized"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : "insufficient role",
+  "payloadFormat" : "json"
+}

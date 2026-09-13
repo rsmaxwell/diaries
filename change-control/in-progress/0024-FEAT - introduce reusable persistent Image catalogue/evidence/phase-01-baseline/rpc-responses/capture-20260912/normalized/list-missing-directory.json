@@ -1,0 +1,13 @@
+{
+  "caseId" : "list-missing-directory",
+  "function" : "listFiles",
+  "auth" : "editor",
+  "status" : {
+    "code" : 500,
+    "message" : "internal error"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : "<FILES_ROOT>\\does-not-exist",
+  "payloadFormat" : "json"
+}

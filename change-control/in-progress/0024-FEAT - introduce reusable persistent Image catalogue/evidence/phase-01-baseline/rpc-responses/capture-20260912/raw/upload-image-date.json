@@ -1,0 +1,61 @@
+{
+  "caseId" : "upload-image-date",
+  "capturedAtUtc" : "2026-09-12T18:33:22.174362Z",
+  "requestTopic" : "diaries/rpc/request",
+  "request" : {
+    "function" : "uploadFile",
+    "args" : {
+      "name" : "dated.jpg",
+      "contentType" : "image/jpeg",
+      "size" : 687,
+      "bytes" : "/9j/4QA2RXhpZgAASUkqAAgAAAABADIBAgAUAAAAGgAAAAAAAAAyMDIwOjAxOjAyIDAzOjA0OjA1AP/gABBKRklGAAECAAABAAEAAP/bAEMACAYGBwYFCAcHBwkJCAoMFA0MCwsMGRITDxQdGh8eHRocHCAkLicgIiwjHBwoNyksMDE0NDQfJzk9ODI8LjM0Mv/bAEMBCQkJDAsMGA0NGDIhHCEyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMv/AABEIAAUABAMBIgACEQEDEQH/xAAfAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgv/xAC1EAACAQMDAgQDBQUEBAAAAX0BAgMABBEFEiExQQYTUWEHInEUMoGRoQgjQrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj5OXm5+jp6vHy8/T19vf4+fr/xAAfAQADAQEBAQEBAQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/APn+iiigD//Z",
+      "sha256" : "afe094e093c336fbbd4c60a07dc54f99d080ff6ac5ab34fd7ecc5a503c075be2"
+    }
+  },
+  "requestAuth" : "editor",
+  "requestQos" : 0,
+  "requestRetain" : false,
+  "responseTopic" : "diaries/rpc/0024-baseline/response",
+  "correlationDataBase64" : "ZWM5YjdmNDgtMjQ1Ni00ZDhmLWI4MzEtZjE3MjAwODI0NjEw",
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "responseDuplicate" : false,
+  "responseProperties" : {
+    "validProperties" : [ 1, 2, 35, 8, 9, 38, 3, 126, 11 ],
+    "payloadFormat" : false,
+    "maximumQoS" : null,
+    "retainAvailable" : true,
+    "wildcardSubscriptionsAvailable" : true,
+    "subscriptionIdentifiersAvailable" : true,
+    "sharedSubscriptionAvailable" : true,
+    "serverKeepAlive" : null,
+    "receiveMaximum" : null,
+    "topicAliasMaximum" : null,
+    "topicAlias" : null,
+    "messageExpiryInterval" : null,
+    "sessionExpiryInterval" : null,
+    "willDelayInterval" : null,
+    "maximumPacketSize" : null,
+    "contentType" : null,
+    "responseTopic" : null,
+    "assignedClientIdentifier" : null,
+    "authenticationMethod" : null,
+    "responseInfo" : null,
+    "serverReference" : null,
+    "reasonString" : null,
+    "userProperties" : [ {
+      "key" : "status",
+      "value" : "{\"code\":200,\"message\":\"ok\"}"
+    } ],
+    "correlationData" : "ZWM5YjdmNDgtMjQ1Ni00ZDhmLWI4MzEtZjE3MjAwODI0NjEw",
+    "authenticationData" : null,
+    "subscriptionIdentifier" : null,
+    "subscriptionIdentifiers" : [ ]
+  },
+  "responseUserProperties" : [ {
+    "key" : "status",
+    "value" : "{\"code\":200,\"message\":\"ok\"}"
+  } ],
+  "payloadBase64" : "eyJuYW1lIjoiZGF0ZWQuanBnIiwicGF0aCI6IkM6XFxVc2Vyc1xcUmljaGFyZFxcZ2l0XFxnaXRodWIuY29tXFxyc21heHdlbGxcXGRpYXJpZXMtYXBwbGljYXRpb25cXGRpYXJpZXNcXGJ1aWxkXFxycGMtYmFzZWxpbmUtMjAyNjA5MTJcXGZpbGVzXFxkYXRlZC5qcGciLCJ1cmwiOiIvZmlsZXMvZGF0ZWQuanBnIiwic3ViZGlyIjoiIiwic2l6ZSI6Njg3fQ==",
+  "payloadUtf8" : "{\"name\":\"dated.jpg\",\"path\":\"C:\\\\Users\\\\Richard\\\\git\\\\github.com\\\\rsmaxwell\\\\diaries-application\\\\diaries\\\\build\\\\rpc-baseline-20260912\\\\files\\\\dated.jpg\",\"url\":\"/files/dated.jpg\",\"subdir\":\"\",\"size\":687}"
+}

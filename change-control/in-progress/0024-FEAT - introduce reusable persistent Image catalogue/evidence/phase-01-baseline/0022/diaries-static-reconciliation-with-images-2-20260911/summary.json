@@ -1,0 +1,29 @@
+{
+  "mode" : "RECONCILE",
+  "inputRootName" : "fragments",
+  "imageFileValidationEnabled" : true,
+  "filesRoot" : "P:\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files",
+  "sourceDirectories" : 2329,
+  "validSources" : 2328,
+  "invalidSources" : 1,
+  "sourceKeyCollisionGroups" : 0,
+  "sourceTypes" : {
+    "LEGACY" : 2328,
+    "IMAGE" : 1
+  },
+  "legacyImportIdentityCollisionGroups" : 29,
+  "databaseFragments" : 2307,
+  "sourceReconciliationStatuses" : {
+    "MATCHED_EXACT" : 2288,
+    "MISSING_FROM_DATABASE" : 25,
+    "AMBIGUOUS_CONTEXT" : 8,
+    "POSSIBLE_EDITED_MATCH" : 7,
+    "SOURCE_INVALID" : 1
+  },
+  "databaseReconciliationStatuses" : {
+    "MATCHED_EXACT" : 2288,
+    "DATABASE_ONLY" : 4,
+    "AMBIGUOUS_CONTEXT" : 8,
+    "POSSIBLE_EDITED_MATCH" : 7
+  }
+}

@@ -1,0 +1,56 @@
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries-reconciliation-applier> Get-FileHash `
+>>   C:\temp\diaries-safe-reconciliation-sql-20260911.zip `
+>>   -Algorithm SHA256
+
+Algorithm       Hash                                                                   Path
+---------       ----                                                                   ----
+SHA256          F71FFE8A58DA7D241C8321B11318E05654F77B4BC86CEB827A36B4250FA52D67       C:\temp\diaries-safe-reconciliation-sql-20260911.zip
+
+
+
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries-reconciliation-applier> Get-FileHash C:\temp\0022-rehearsal-001-preflight-20260911.txt -Algorithm SHA256
+
+Algorithm       Hash                                                                   Path
+---------       ----                                                                   ----
+SHA256          6FB20874BCDD6ACC53C019CD6F8AF91062683A3A89E7152F1925B8C4E043374C       C:\temp\0022-rehearsal-001-preflight-20260911.txt
+
+
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries-reconciliation-applier>
+
+
+
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries-reconciliation-applier> Get-FileHash C:\temp\0022-rehearsal-002-additive-schema-20260911.txt -Algorithm SHA256
+
+Algorithm       Hash                                                                   Path
+---------       ----                                                                   ----
+SHA256          859FDA286751101645E1002701505A4B097A992419B0BEA141F8E36612A9A9BC       C:\temp\0022-rehearsal-002-additive-schema-20260911.txt
+
+
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries-reconciliation-applier>
+
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries-reconciliation-applier> Get-FileHash C:\temp\0022-rehearsal-004-backfill-page-20260911.txt -Algorithm SHA256
+
+Algorithm       Hash                                                                   Path
+---------       ----                                                                   ----
+SHA256          94EA68E47DB1B4008CB2263155D5A500D695FA13C87F6708E2D5C51CB355CD58       C:\temp\0022-rehearsal-004-backfill-page-20260911.txt
+
+
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries-reconciliation-applier>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries-reconciliation-applier> Get-FileHash C:\temp\0022-rehearsal-005-apply-safe-types-20260911.txt -Algorithm SHA256
+
+Algorithm       Hash                                                                   Path
+---------       ----                                                                   ----
+SHA256          CBC358CB668A96F8ADE21A79488CA9875971E5663E353303888E762C450BBA87       C:\temp\0022-rehearsal-005-apply-safe-types-20260911.txt
+
+
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries-reconciliation-applier>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries-reconciliation-applier> Get-FileHash `
+>>   "C:\temp\0022-rehearsal-006-postflight-20260911.txt" `
+>>   -Algorithm SHA256
+
+Algorithm       Hash                                                                   Path
+---------       ----                                                                   ----
+SHA256          39B784AD3FDB0E5C1942A427FF4626858F696B4C9DB91B9787C2EA39D8182E39       C:\temp\0022-rehearsal-006-postflight-20260911.txt
+
+
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries-reconciliation-applier>

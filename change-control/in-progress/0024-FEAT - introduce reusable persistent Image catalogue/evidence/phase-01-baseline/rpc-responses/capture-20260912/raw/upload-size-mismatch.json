@@ -1,0 +1,61 @@
+{
+  "caseId" : "upload-size-mismatch",
+  "capturedAtUtc" : "2026-09-12T18:33:22.212298300Z",
+  "requestTopic" : "diaries/rpc/request",
+  "request" : {
+    "function" : "uploadFile",
+    "args" : {
+      "name" : "size.png",
+      "contentType" : "image/png",
+      "size" : 69,
+      "bytes" : "iVBORw0KGgoAAAANSUhEUgAAAAIAAAADCAIAAAA2iEnWAAAAC0lEQVR4XmNgwAIAABUAAdYvSVgAAAAASUVORK5CYII=",
+      "sha256" : "faec21e2271541116e24bf7f90bd7e714b8ed8d3491e79d7629d4eec753ff13d"
+    }
+  },
+  "requestAuth" : "editor",
+  "requestQos" : 0,
+  "requestRetain" : false,
+  "responseTopic" : "diaries/rpc/0024-baseline/response",
+  "correlationDataBase64" : "NjliZjIyODctMjdhMC00ZWVlLWJjNmEtNTc4MjI3OTRlMDI1",
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "responseDuplicate" : false,
+  "responseProperties" : {
+    "validProperties" : [ 1, 2, 35, 8, 9, 38, 3, 126, 11 ],
+    "payloadFormat" : false,
+    "maximumQoS" : null,
+    "retainAvailable" : true,
+    "wildcardSubscriptionsAvailable" : true,
+    "subscriptionIdentifiersAvailable" : true,
+    "sharedSubscriptionAvailable" : true,
+    "serverKeepAlive" : null,
+    "receiveMaximum" : null,
+    "topicAliasMaximum" : null,
+    "topicAlias" : null,
+    "messageExpiryInterval" : null,
+    "sessionExpiryInterval" : null,
+    "willDelayInterval" : null,
+    "maximumPacketSize" : null,
+    "contentType" : null,
+    "responseTopic" : null,
+    "assignedClientIdentifier" : null,
+    "authenticationMethod" : null,
+    "responseInfo" : null,
+    "serverReference" : null,
+    "reasonString" : null,
+    "userProperties" : [ {
+      "key" : "status",
+      "value" : "{\"code\":500,\"message\":\"internal error\"}"
+    } ],
+    "correlationData" : "NjliZjIyODctMjdhMC00ZWVlLWJjNmEtNTc4MjI3OTRlMDI1",
+    "authenticationData" : null,
+    "subscriptionIdentifier" : null,
+    "subscriptionIdentifiers" : [ ]
+  },
+  "responseUserProperties" : [ {
+    "key" : "status",
+    "value" : "{\"code\":500,\"message\":\"internal error\"}"
+  } ],
+  "payloadBase64" : "ImphdmEubGFuZy5DbGFzc05vdEZvdW5kRXhjZXB0aW9uOiBQcm92aWRlciBmb3IgamFrYXJ0YS53cy5ycy5leHQuUnVudGltZURlbGVnYXRlIGNhbm5vdCBiZSBmb3VuZCI=",
+  "payloadUtf8" : "\"java.lang.ClassNotFoundException: Provider for jakarta.ws.rs.ext.RuntimeDelegate cannot be found\""
+}

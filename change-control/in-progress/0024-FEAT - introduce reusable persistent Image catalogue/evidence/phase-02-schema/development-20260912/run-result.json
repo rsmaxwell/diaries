@@ -1,0 +1,15 @@
+{
+  "startedAtUtc": "2026-09-12T19:47:35.8326129Z",
+  "completedAtUtc": "2026-09-12T19:47:36.4212838Z",
+  "exitCode": 0,
+  "container": "diaries-development-db",
+  "database": "diaries",
+  "applicationUser": "diaries",
+  "imageName": "postgres:18-alpine",
+  "imageId": "sha256:d3e1620b530c944afa6e887d22eb899824da68e19c52024bf98f5220c88a65b2",
+  "backupFile": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database-backups\\development-infrastructure\\diaries-development-20260912-203528.dump",
+  "backupBytes": 277932,
+  "backupSha256": "fe0e187eda4fe4c7923590f7ec5e36871ced87e2ba8fa6d3f882e0b0992d6b86",
+  "sqlDirectory": "sql",
+  "log": "preflight-apply-postflight.txt"
+}

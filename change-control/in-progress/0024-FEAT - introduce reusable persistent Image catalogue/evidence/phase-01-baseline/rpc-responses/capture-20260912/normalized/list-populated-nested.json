@@ -1,0 +1,22 @@
+{
+  "caseId" : "list-populated-nested",
+  "function" : "listFiles",
+  "auth" : "editor",
+  "status" : {
+    "code" : 200,
+    "message" : "ok"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : {
+    "subdir" : "alpha\\nested space",
+    "items" : [ {
+      "name" : "image space.png",
+      "url" : "/files/alpha/nested%20space/image%20space.png",
+      "size" : 68,
+      "mtime" : 1704164645000,
+      "dir" : false
+    } ]
+  },
+  "payloadFormat" : "json"
+}

@@ -1,0 +1,55 @@
+{
+  "caseId" : "list-empty-root",
+  "capturedAtUtc" : "2026-09-12T18:33:22.106950300Z",
+  "requestTopic" : "diaries/rpc/request",
+  "request" : {
+    "function" : "listFiles",
+    "args" : { }
+  },
+  "requestAuth" : "editor",
+  "requestQos" : 0,
+  "requestRetain" : false,
+  "responseTopic" : "diaries/rpc/0024-baseline/response",
+  "correlationDataBase64" : "NDM3YTY3NzEtZmU1Zi00NjRkLTlhNTMtY2IzOWVlZmRhNGM3",
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "responseDuplicate" : false,
+  "responseProperties" : {
+    "validProperties" : [ 1, 2, 35, 8, 9, 38, 3, 126, 11 ],
+    "payloadFormat" : false,
+    "maximumQoS" : null,
+    "retainAvailable" : true,
+    "wildcardSubscriptionsAvailable" : true,
+    "subscriptionIdentifiersAvailable" : true,
+    "sharedSubscriptionAvailable" : true,
+    "serverKeepAlive" : null,
+    "receiveMaximum" : null,
+    "topicAliasMaximum" : null,
+    "topicAlias" : null,
+    "messageExpiryInterval" : null,
+    "sessionExpiryInterval" : null,
+    "willDelayInterval" : null,
+    "maximumPacketSize" : null,
+    "contentType" : null,
+    "responseTopic" : null,
+    "assignedClientIdentifier" : null,
+    "authenticationMethod" : null,
+    "responseInfo" : null,
+    "serverReference" : null,
+    "reasonString" : null,
+    "userProperties" : [ {
+      "key" : "status",
+      "value" : "{\"code\":200,\"message\":\"ok\"}"
+    } ],
+    "correlationData" : "NDM3YTY3NzEtZmU1Zi00NjRkLTlhNTMtY2IzOWVlZmRhNGM3",
+    "authenticationData" : null,
+    "subscriptionIdentifier" : null,
+    "subscriptionIdentifiers" : [ ]
+  },
+  "responseUserProperties" : [ {
+    "key" : "status",
+    "value" : "{\"code\":200,\"message\":\"ok\"}"
+  } ],
+  "payloadBase64" : "eyJzdWJkaXIiOiIiLCJpdGVtcyI6W119",
+  "payloadUtf8" : "{\"subdir\":\"\",\"items\":[]}"
+}

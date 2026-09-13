@@ -1,0 +1,58 @@
+{
+  "caseId" : "delete-image-nested",
+  "capturedAtUtc" : "2026-09-12T18:33:22.303650800Z",
+  "requestTopic" : "diaries/rpc/request",
+  "request" : {
+    "function" : "deleteFile",
+    "args" : {
+      "name" : "image space.png",
+      "subdir" : "alpha/nested space"
+    }
+  },
+  "requestAuth" : "editor",
+  "requestQos" : 0,
+  "requestRetain" : false,
+  "responseTopic" : "diaries/rpc/0024-baseline/response",
+  "correlationDataBase64" : "MTU5YmNlM2EtMmZiNi00MzliLWI4NDQtYjgyOTE0MTQ3OTM2",
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "responseDuplicate" : false,
+  "responseProperties" : {
+    "validProperties" : [ 1, 2, 35, 8, 9, 38, 3, 126, 11 ],
+    "payloadFormat" : false,
+    "maximumQoS" : null,
+    "retainAvailable" : true,
+    "wildcardSubscriptionsAvailable" : true,
+    "subscriptionIdentifiersAvailable" : true,
+    "sharedSubscriptionAvailable" : true,
+    "serverKeepAlive" : null,
+    "receiveMaximum" : null,
+    "topicAliasMaximum" : null,
+    "topicAlias" : null,
+    "messageExpiryInterval" : null,
+    "sessionExpiryInterval" : null,
+    "willDelayInterval" : null,
+    "maximumPacketSize" : null,
+    "contentType" : null,
+    "responseTopic" : null,
+    "assignedClientIdentifier" : null,
+    "authenticationMethod" : null,
+    "responseInfo" : null,
+    "serverReference" : null,
+    "reasonString" : null,
+    "userProperties" : [ {
+      "key" : "status",
+      "value" : "{\"code\":200,\"message\":\"ok\"}"
+    } ],
+    "correlationData" : "MTU5YmNlM2EtMmZiNi00MzliLWI4NDQtYjgyOTE0MTQ3OTM2",
+    "authenticationData" : null,
+    "subscriptionIdentifier" : null,
+    "subscriptionIdentifiers" : [ ]
+  },
+  "responseUserProperties" : [ {
+    "key" : "status",
+    "value" : "{\"code\":200,\"message\":\"ok\"}"
+  } ],
+  "payloadBase64" : "eyJzdWJkaXIiOiJhbHBoYVxcbmVzdGVkIHNwYWNlIiwicGF0aCI6IkM6XFxVc2Vyc1xcUmljaGFyZFxcZ2l0XFxnaXRodWIuY29tXFxyc21heHdlbGxcXGRpYXJpZXMtYXBwbGljYXRpb25cXGRpYXJpZXNcXGJ1aWxkXFxycGMtYmFzZWxpbmUtMjAyNjA5MTJcXGZpbGVzXFxhbHBoYVxcbmVzdGVkIHNwYWNlXFxpbWFnZSBzcGFjZS5wbmciLCJuYW1lIjoiaW1hZ2Ugc3BhY2UucG5nIn0=",
+  "payloadUtf8" : "{\"subdir\":\"alpha\\\\nested space\",\"path\":\"C:\\\\Users\\\\Richard\\\\git\\\\github.com\\\\rsmaxwell\\\\diaries-application\\\\diaries\\\\build\\\\rpc-baseline-20260912\\\\files\\\\alpha\\\\nested space\\\\image space.png\",\"name\":\"image space.png\"}"
+}

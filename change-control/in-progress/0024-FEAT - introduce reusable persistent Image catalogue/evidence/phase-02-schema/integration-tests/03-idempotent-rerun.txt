@@ -1,0 +1,236 @@
+Pager usage is off.
+BEGIN
+SET
+SET
+      database       | server_address | server_port |                                     server_version                                      | current_schema | target_schema |         executed_at          | application_user | session_user |    isolation    | read_only |    search_path     
+---------------------+----------------+-------------+-----------------------------------------------------------------------------------------+----------------+---------------+------------------------------+------------------+--------------+-----------------+-----------+--------------------
+ t0024_66c03c01_good |                |             | PostgreSQL 18.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit | pg_catalog     | public        | 2026-09-12 19:46:30.55465+00 | diaries          | diaries      | repeatable read | on        | pg_catalog, public
+(1 row)
+
+ datcollate |  datctype  | datlocprovider 
+------------+------------+----------------
+ en_US.utf8 | en_US.utf8 | c
+(1 row)
+
+    collname     | collprovider | collisdeterministic | collversion | actual_version 
+-----------------+--------------+---------------------+-------------+----------------
+ pg_unicode_fast | b            | t                   | 1           | 1
+(1 row)
+
+ can_connect | schema_usage | can_create_table_sequence_indexes_constraints 
+-------------+--------------+-----------------------------------------------
+ t           | t            | t
+(1 row)
+
+ nspname |          relname          | relkind |  owner  
+---------+---------------------------+---------+---------
+ public  | image                     | r       | diaries
+ public  | image_checksum_idx        | i       | diaries
+ public  | image_id_seq              | S       | diaries
+ public  | image_pkey                | i       | diaries
+ public  | image_relative_path_ci_uq | i       | diaries
+(5 rows)
+
+ nspname | typname | typtype 
+---------+---------+---------
+ public  | _image  | b
+ public  | image   | c
+(2 rows)
+
+DO
+0024 exact Image schema verified
+                                    diary_integrity                                     
+----------------------------------------------------------------------------------------
+ {                                                                                     +
+     "counts": {                                                                       +
+         "page": 683,                                                                  +
+         "diary": 10,                                                                  +
+         "marquee": 2269,                                                              +
+         "fragment": 2329                                                              +
+     },                                                                                +
+     "rowSha256": {                                                                    +
+         "page": "65d62eaf4857a6caa018e4285576d806ae1a7a2e8ace84e2a30b8d82a9cdf085",   +
+         "diary": "a5183b5c108152e1ac87ad628a3d94725c8a8d5519f259dab3e35fda6017e7b5",  +
+         "marquee": "d8294114dd946e30b9d0afeda5949ed2b774e08f47e87f0588e5fb0ef683f19a",+
+         "fragment": "28d1cc7545800cac80f4eadd9c0dcf267cd7e57b315a74dadfcd444bd9d3e794"+
+     },                                                                                +
+     "marqueeIntegrity": {                                                             +
+         "missingPage": 0,                                                             +
+         "withoutPage": 0,                                                             +
+         "missingFragment": 0,                                                         +
+         "fragmentPageMismatch": 0                                                     +
+     },                                                                                +
+     "fragmentIntegrity": {                                                            +
+         "total": 2329,                                                                +
+         "typedImage": 0,                                                              +
+         "invalidType": 0,                                                             +
+         "missingPage": 0,                                                             +
+         "withoutPage": 60,                                                            +
+         "typedMarquee": 2248,                                                         +
+         "unclassified": 81,                                                           +
+         "withOneMarquee": 2269,                                                       +
+         "withoutMarquee": 60,                                                         +
+         "withMultipleMarquees": 0,                                                    +
+         "possibleEmbeddedImages": 72                                                  +
+     }                                                                                 +
+ }
+(1 row)
+
+ROLLBACK
+0024 PREFLIGHT PASS (read-only)
+BEGIN
+SET
+SET
+SET
+SET
+ pg_advisory_xact_lock 
+-----------------------
+ 
+(1 row)
+
+LOCK TABLE
+DO
+0024 exact Image schema verified
+                                    diary_integrity                                     
+----------------------------------------------------------------------------------------
+ {                                                                                     +
+     "counts": {                                                                       +
+         "page": 683,                                                                  +
+         "diary": 10,                                                                  +
+         "marquee": 2269,                                                              +
+         "fragment": 2329                                                              +
+     },                                                                                +
+     "rowSha256": {                                                                    +
+         "page": "65d62eaf4857a6caa018e4285576d806ae1a7a2e8ace84e2a30b8d82a9cdf085",   +
+         "diary": "a5183b5c108152e1ac87ad628a3d94725c8a8d5519f259dab3e35fda6017e7b5",  +
+         "marquee": "d8294114dd946e30b9d0afeda5949ed2b774e08f47e87f0588e5fb0ef683f19a",+
+         "fragment": "28d1cc7545800cac80f4eadd9c0dcf267cd7e57b315a74dadfcd444bd9d3e794"+
+     },                                                                                +
+     "marqueeIntegrity": {                                                             +
+         "missingPage": 0,                                                             +
+         "withoutPage": 0,                                                             +
+         "missingFragment": 0,                                                         +
+         "fragmentPageMismatch": 0                                                     +
+     },                                                                                +
+     "fragmentIntegrity": {                                                            +
+         "total": 2329,                                                                +
+         "typedImage": 0,                                                              +
+         "invalidType": 0,                                                             +
+         "missingPage": 0,                                                             +
+         "withoutPage": 60,                                                            +
+         "typedMarquee": 2248,                                                         +
+         "unclassified": 81,                                                           +
+         "withOneMarquee": 2269,                                                       +
+         "withoutMarquee": 60,                                                         +
+         "withMultipleMarquees": 0,                                                    +
+         "possibleEmbeddedImages": 72                                                  +
+     }                                                                                 +
+ }
+(1 row)
+
+LOCK TABLE
+0024 existing Image schema accepted; preserving rows
+0024 exact Image schema verified
+                                    diary_integrity                                     
+----------------------------------------------------------------------------------------
+ {                                                                                     +
+     "counts": {                                                                       +
+         "page": 683,                                                                  +
+         "diary": 10,                                                                  +
+         "marquee": 2269,                                                              +
+         "fragment": 2329                                                              +
+     },                                                                                +
+     "rowSha256": {                                                                    +
+         "page": "65d62eaf4857a6caa018e4285576d806ae1a7a2e8ace84e2a30b8d82a9cdf085",   +
+         "diary": "a5183b5c108152e1ac87ad628a3d94725c8a8d5519f259dab3e35fda6017e7b5",  +
+         "marquee": "d8294114dd946e30b9d0afeda5949ed2b774e08f47e87f0588e5fb0ef683f19a",+
+         "fragment": "28d1cc7545800cac80f4eadd9c0dcf267cd7e57b315a74dadfcd444bd9d3e794"+
+     },                                                                                +
+     "marqueeIntegrity": {                                                             +
+         "missingPage": 0,                                                             +
+         "withoutPage": 0,                                                             +
+         "missingFragment": 0,                                                         +
+         "fragmentPageMismatch": 0                                                     +
+     },                                                                                +
+     "fragmentIntegrity": {                                                            +
+         "total": 2329,                                                                +
+         "typedImage": 0,                                                              +
+         "invalidType": 0,                                                             +
+         "missingPage": 0,                                                             +
+         "withoutPage": 60,                                                            +
+         "typedMarquee": 2248,                                                         +
+         "unclassified": 81,                                                           +
+         "withOneMarquee": 2269,                                                       +
+         "withoutMarquee": 60,                                                         +
+         "withMultipleMarquees": 0,                                                    +
+         "possibleEmbeddedImages": 72                                                  +
+     }                                                                                 +
+ }
+(1 row)
+
+ image_rows | expected_image_rows | image_table_empty 
+------------+---------------------+-------------------
+          0 |                   0 | t
+(1 row)
+
+         verified_at          |      database       | application_user | exact_schema_verified | chronology_unchanged 
+------------------------------+---------------------+------------------+-----------------------+----------------------
+ 2026-09-12 19:46:30.71953+00 | t0024_66c03c01_good | diaries          | t                     | t
+(1 row)
+
+0024 POSTFLIGHT PASS
+COMMIT
+0024 APPLY PASS (committed)
+BEGIN
+SET
+SET
+0024 exact Image schema verified
+                                    diary_integrity                                     
+----------------------------------------------------------------------------------------
+ {                                                                                     +
+     "counts": {                                                                       +
+         "page": 683,                                                                  +
+         "diary": 10,                                                                  +
+         "marquee": 2269,                                                              +
+         "fragment": 2329                                                              +
+     },                                                                                +
+     "rowSha256": {                                                                    +
+         "page": "65d62eaf4857a6caa018e4285576d806ae1a7a2e8ace84e2a30b8d82a9cdf085",   +
+         "diary": "a5183b5c108152e1ac87ad628a3d94725c8a8d5519f259dab3e35fda6017e7b5",  +
+         "marquee": "d8294114dd946e30b9d0afeda5949ed2b774e08f47e87f0588e5fb0ef683f19a",+
+         "fragment": "28d1cc7545800cac80f4eadd9c0dcf267cd7e57b315a74dadfcd444bd9d3e794"+
+     },                                                                                +
+     "marqueeIntegrity": {                                                             +
+         "missingPage": 0,                                                             +
+         "withoutPage": 0,                                                             +
+         "missingFragment": 0,                                                         +
+         "fragmentPageMismatch": 0                                                     +
+     },                                                                                +
+     "fragmentIntegrity": {                                                            +
+         "total": 2329,                                                                +
+         "typedImage": 0,                                                              +
+         "invalidType": 0,                                                             +
+         "missingPage": 0,                                                             +
+         "withoutPage": 60,                                                            +
+         "typedMarquee": 2248,                                                         +
+         "unclassified": 81,                                                           +
+         "withOneMarquee": 2269,                                                       +
+         "withoutMarquee": 60,                                                         +
+         "withMultipleMarquees": 0,                                                    +
+         "possibleEmbeddedImages": 72                                                  +
+     }                                                                                 +
+ }
+(1 row)
+
+ image_rows | expected_image_rows | image_table_empty 
+------------+---------------------+-------------------
+          0 |                   0 | t
+(1 row)
+
+          verified_at          |      database       | application_user | exact_schema_verified | chronology_unchanged 
+-------------------------------+---------------------+------------------+-----------------------+----------------------
+ 2026-09-12 19:46:30.768651+00 | t0024_66c03c01_good | diaries          | t                     | t
+(1 row)
+
+ROLLBACK
+0024 POSTFLIGHT PASS

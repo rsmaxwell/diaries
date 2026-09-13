@@ -1,0 +1,19 @@
+{
+  "caseId" : "upload-image-root",
+  "function" : "uploadFile",
+  "auth" : "editor",
+  "status" : {
+    "code" : 200,
+    "message" : "ok"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : {
+    "name" : "plain.png",
+    "path" : "<FILES_ROOT>\\plain.png",
+    "url" : "/files/plain.png",
+    "subdir" : "",
+    "size" : 68
+  },
+  "payloadFormat" : "json"
+}

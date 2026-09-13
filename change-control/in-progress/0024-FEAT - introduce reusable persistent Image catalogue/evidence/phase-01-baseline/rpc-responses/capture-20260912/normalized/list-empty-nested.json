@@ -1,0 +1,16 @@
+{
+  "caseId" : "list-empty-nested",
+  "function" : "listFiles",
+  "auth" : "editor",
+  "status" : {
+    "code" : 200,
+    "message" : "ok"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : {
+    "subdir" : "alpha\\nested space",
+    "items" : [ ]
+  },
+  "payloadFormat" : "json"
+}

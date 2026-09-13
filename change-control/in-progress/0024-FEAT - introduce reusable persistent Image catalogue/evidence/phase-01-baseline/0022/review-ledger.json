@@ -1,0 +1,2589 @@
+{
+  "schema_version": 1,
+  "baseline": {
+    "reconciliation_directory": "C:\\temp\\diaries-static-reconciliation-with-images-3-20260911",
+    "refreshed_at": "2026-09-11T08:40:02.5304003+01:00",
+    "image_file_validation_enabled": true,
+    "files_root": "P:\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files",
+    "summary": "summary.json",
+    "source_manifest": "source-manifest.json",
+    "source_reconciliation": "source-reconciliation.csv",
+    "database_reconciliation": "database-reconciliation.csv",
+    "legacy_collision_report": "legacy-import-identity-collisions.csv",
+    "report_checksums_sha256": {
+      "summary.json": "deff0ede0c4be86793b6c60d72805a8e4f0a195e6fbe8568eb8e65e60afe9428",
+      "source-manifest.json": "c279e87cf67104beba9fb044c2e97e6333cae517bff002072975ea1b0a9b25d0",
+      "source-manifest.csv": "0d9fe2a86e7c3f9974c8c8765ea49b68aa64303c9ce141a2f81dddf4240df9a3",
+      "source-key-collisions.csv": "9d1422f1cbaaf7f989f7d702caa8f470b592cc7ded5bd11856c85a65bd48cd4b",
+      "legacy-import-identity-collisions.csv": "ca9da2a0afd4b2453e85517f58492652e9f659bf5ea9024b47bb8098e24c02c3",
+      "source-reconciliation.json": "f4c4a2fac2b23907bf074db5c8b32aaacd70cde164b9cceb932140febe0bc84d",
+      "source-reconciliation.csv": "def5d4d0a1dacb471da2a75c4f2312c89ca2e0b072b56035ce8b6a693acbdfdc",
+      "database-reconciliation.csv": "9fabec501be6c832d93aa177ad53a0d23ce16bf42b2ec731bc0aa1587824b19e"
+    }
+  },
+  "decisions": [
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1828/03/20-b-img2840-image-map-whitley-park",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1828-03-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "",
+          "place_after": "",
+          "html_sha256": "55898838432dc6e2eea218bd39fec54e2aadc035efb75bfa21ec19d7f58a8f34",
+          "html_length": 133,
+          "legacy_derived_sequence": "280320.0098",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1828/03/20-b-img2840-image-map-whitley-park",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1828-03-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 84,
+          "status": "DATABASE_ONLY",
+          "possible_source_key": "",
+          "date": "1828-03-20",
+          "diary": "",
+          "page_name": "",
+          "sequence": "1.0000",
+          "reason": "no source row was matched or proposed"
+        }
+      },
+      "resolution": "MATCH_EXACT",
+      "source_key": "fragments/1828/03/20-b-img2840-image-map-whitley-park",
+      "database_fragment_id": 84,
+      "fragment_type": "IMAGE",
+      "image": {
+        "relative_path": "diary-1828-and-1829-and-jan-1830/images/img2840-image-map-whitley-park.jpg",
+        "caption": "Whitley Park",
+        "alt_text": "A map of Whitley Park"
+      },
+      "marquee_action": "KEEP_ABSENT",
+      "reason": "Standard legacy image fragment; source and database rows were manually confirmed to represent the same fragment.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T18:51:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1828/08/14-img2853-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1828-08-14",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2853",
+          "place_after": "",
+          "html_sha256": "cba091d84ec7d012dd261471890a0580f18a8acf36654582df98a2b3be5b0df3",
+          "html_length": 330,
+          "legacy_derived_sequence": "280814.2853",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1828/08/14-img2853-right",
+          "source_type": "LEGACY",
+          "status": "AMBIGUOUS_CONTEXT",
+          "database_fragment_id": null,
+          "date": "1828-08-14",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2853",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 241,
+          "status": "AMBIGUOUS_CONTEXT",
+          "possible_source_key": "",
+          "date": "1828-08-14",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2853",
+          "sequence": "2.0000",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1828-08-14",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2853",
+          "legacy_derived_sequence": "280814.2853",
+          "count": 2,
+          "source_keys": [
+            "fragments/1828/08/14-img2853-left",
+            "fragments/1828/08/14-img2853-right"
+          ]
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1828/08/14-img2853-right",
+      "database_fragment_id": 241,
+      "text_preview": "<p>The&nbsp;ships&nbsp;papers&nbsp;interred&nbsp;her&nbsp;&amp;&nbsp;went&nbsp;&amp;&nbsp;went&nbsp;up&nbsp;to&nbsp;Richmond,&nbsp;a&nbsp;very&nbsp;unpleasant&nbsp;walk",
+      "reason": "The database version contains multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T18:56:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/04/16-img2878-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-04-16",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2878",
+          "place_after": "",
+          "html_sha256": "665d487aad1bcfc2aed2dc04d25342db1929a5d413fcb8046cfe6388f70d9901",
+          "html_length": 281,
+          "legacy_derived_sequence": "290416.2878",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/04/16-img2878-right",
+          "source_type": "LEGACY",
+          "status": "AMBIGUOUS_CONTEXT",
+          "database_fragment_id": null,
+          "date": "1829-04-16",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2878",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 493,
+          "status": "AMBIGUOUS_CONTEXT",
+          "possible_source_key": "",
+          "date": "1829-04-16",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2878",
+          "sequence": "1.0000",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_DATABASE",
+      "source_key": "fragments/1829/04/16-img2878-right",
+      "database_fragment_id": 493,
+      "text_preview": "<p>A very wet morning. Wind SW",
+      "reason": "The day's text is split between 2 pages. This one is at the bottom right of img2878.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:03:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/06/20-img2889-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-06-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2889",
+          "place_after": "",
+          "html_sha256": "a41fe1b9faf9d37cf8bf9a70253a945474295021f7fdc133b4ec7f7c6dc1f869",
+          "html_length": 736,
+          "legacy_derived_sequence": "290620.2889",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/06/20-img2889-right",
+          "source_type": "LEGACY",
+          "status": "POSSIBLE_EDITED_MATCH",
+          "database_fragment_id": 566,
+          "date": "1829-06-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2889",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "1.0000",
+          "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 566,
+          "status": "POSSIBLE_EDITED_MATCH",
+          "possible_source_key": "fragments/1829/06/20-img2889-right",
+          "date": "1829-06-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2889",
+          "sequence": "1.0000",
+          "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/20-img2889-right",
+      "database_fragment_id": 566,
+      "text_preview": "<p>Between 3 &amp; 4 o'clock feeling my <span class=highlight_yellow>coppers</span> very hot &amp;",
+      "reason": "The database version contains multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:15:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/06/20-img2890-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-06-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2890",
+          "place_after": "",
+          "html_sha256": "0e7f8c05dbfc42c1db5f3014cc7b69a27f2d2726c3085c5e4409667a25046e5a",
+          "html_length": 2029,
+          "legacy_derived_sequence": "290620.2890",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/06/20-img2890-right",
+          "source_type": "LEGACY",
+          "status": "AMBIGUOUS_CONTEXT",
+          "database_fragment_id": null,
+          "date": "1829-06-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2890",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 567,
+          "status": "AMBIGUOUS_CONTEXT",
+          "possible_source_key": "",
+          "date": "1829-06-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2890",
+          "sequence": "3.0000",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-06-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2890",
+          "legacy_derived_sequence": "290620.2890",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/06/20-img2890-left",
+            "fragments/1829/06/20-img2890-right"
+          ]
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/20-img2890-right",
+      "database_fragment_id": 567,
+      "text_preview": "splendid & magnificent, the houses all large & good & very clean",
+      "reason": "The database version contains multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T15:36:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/06/20-img2891-left",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-06-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2891",
+          "place_after": "",
+          "html_sha256": "6cd9200fc617b53d7e99c5a2cc90d91164919b6cc5f6c348b0be837d90fe0974",
+          "html_length": 1746,
+          "legacy_derived_sequence": "290620.2891",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/06/20-img2891-left",
+          "source_type": "LEGACY",
+          "status": "POSSIBLE_EDITED_MATCH",
+          "database_fragment_id": 568,
+          "date": "1829-06-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2891",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "4.0000",
+          "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 568,
+          "status": "POSSIBLE_EDITED_MATCH",
+          "possible_source_key": "fragments/1829/06/20-img2891-left",
+          "date": "1829-06-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2891",
+          "sequence": "4.0000",
+          "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/20-img2891-left",
+      "database_fragment_id": 568,
+      "text_preview": "devoting four hours on certain days in the week",
+      "reason": "The database version contains multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:30:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/06/25-img2892-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-06-25",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2892",
+          "place_after": "",
+          "html_sha256": "98ba4467f9220e17811f148c5b604a1960b463f6e6520e969b5d93d73386b96a",
+          "html_length": 918,
+          "legacy_derived_sequence": "290625.2892",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/06/25-img2892-right",
+          "source_type": "LEGACY",
+          "status": "AMBIGUOUS_CONTEXT",
+          "database_fragment_id": null,
+          "date": "1829-06-25",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2892",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 574,
+          "status": "AMBIGUOUS_CONTEXT",
+          "possible_source_key": "",
+          "date": "1829-06-25",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2892",
+          "sequence": "2.0000",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-06-25",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2892",
+          "legacy_derived_sequence": "290625.2892",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/06/25-img2892-left",
+            "fragments/1829/06/25-img2892-right"
+          ]
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/25-img2892-right",
+      "database_fragment_id": 574,
+      "text_preview": "<p>... knots. At &frac14; past 4 o'clock supposed",
+      "reason": "The database version contains unnecessary multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:30:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/06/26-img2893-left",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-06-26",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2893",
+          "place_after": "",
+          "html_sha256": "eff83dd5e1f508ff6d7439c24eee4135921d93a6cb8bc47288a61896cd4003f3",
+          "html_length": 292,
+          "legacy_derived_sequence": "290626.2893",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/06/26-img2893-left",
+          "source_type": "LEGACY",
+          "status": "POSSIBLE_EDITED_MATCH",
+          "database_fragment_id": 577,
+          "date": "1829-06-26",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2893",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "3.0000",
+          "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 577,
+          "status": "POSSIBLE_EDITED_MATCH",
+          "possible_source_key": "fragments/1829/06/26-img2893-left",
+          "date": "1829-06-26",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2893",
+          "sequence": "3.0000",
+          "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/26-img2893-left",
+      "database_fragment_id": 577,
+      "text_preview": "<p>... occurred today worthy of note.",
+      "reason": "The original text is good.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T15:36:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1831/01/05-b1-img2734-doodle-on-blotting-paper",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1831-01-05",
+          "diary": "",
+          "page_name": "img2734",
+          "place_after": "",
+          "html_sha256": "ec92f0f2b30b815c6a7fcbd7d7c4de0a615d91dc71de82abb05f3850a88525d2",
+          "html_length": 147,
+          "legacy_derived_sequence": "310105.0001",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1831/01/05-b1-img2734-doodle-on-blotting-paper",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1831-01-05",
+          "diary": "",
+          "page_name": "img2734",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 1182,
+          "status": "DATABASE_ONLY",
+          "possible_source_key": "",
+          "date": "1831-01-05",
+          "diary": "",
+          "page_name": "",
+          "sequence": "1.0000",
+          "reason": "no source row was matched or proposed"
+        }
+      },
+      "resolution": "MATCH_EXACT",
+      "source_key": "fragments/1831/01/05-b1-img2734-doodle-on-blotting-paper",
+      "database_fragment_id": 1182,
+      "fragment_type": "IMAGE",
+      "image": {
+        "relative_path": "diary-1831/images/img2734-doodle-on-blotting-paper.jpg",
+        "caption": "Doodle on blotting paper",
+        "alt_text": "A doodle drawn on blotting paper"
+      },
+      "marquee_action": "KEEP_ABSENT",
+      "reason": "standard legacy image fragment",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:54:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1832/06/27-m3-img3018-murder-of-nicholas-fairles",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1832-06-27",
+          "diary": "",
+          "page_name": "img3018",
+          "place_after": "",
+          "html_sha256": "d89fe5ac3ae9427ef2f8d5f371b3c08cc586512e1dd08b58cc212b8ba5a63bd2",
+          "html_length": 2972,
+          "legacy_derived_sequence": "320627.0003",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1832/06/27-m3-img3018-murder-of-nicholas-fairles",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1832-06-27",
+          "diary": "",
+          "page_name": "img3018",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 1738,
+          "status": "DATABASE_ONLY",
+          "possible_source_key": "",
+          "date": "1832-06-27",
+          "diary": "",
+          "page_name": "",
+          "sequence": "1.0000",
+          "reason": "no source row was matched or proposed"
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1832/06/27-m3-img3018-murder-of-nicholas-fairles",
+      "database_fragment_id": 1738,
+      "fragment_type": "MARQUEE",
+      "marquee_action": "KEEP_ABSENT",
+      "text_preview": "<style>",
+      "reason": "This is an informational fragment with no marquee.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T08:41:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1832/06/27-m3-img3018-murder-of-nicholas-fairles-image",
+          "type": "IMAGE",
+          "valid": true,
+          "date": "1832-06-27",
+          "diary": "",
+          "page_name": "",
+          "place_after": "fragments/1832/06/27-m3-img3018-murder-of-nicholas-fairles",
+          "html_sha256": "",
+          "html_length": null,
+          "legacy_derived_sequence": "",
+          "errors": "",
+          "image": {
+            "relative_path": "diary-1832/images/img3018-murder-of-nicholas-fairles.png",
+            "caption": "William Jobling memorial",
+            "alt_text": "A memorial stone for William Jobling",
+            "file_size": 559740,
+            "file_sha256": "f25f78831f9630705e8d32a1a12550473ff759ced2e0c650e3172f70ab508a6d"
+          }
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1832/06/27-m3-img3018-murder-of-nicholas-fairles-image",
+          "source_type": "IMAGE",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1832-06-27",
+          "diary": "",
+          "page_name": "",
+          "place_after": "fragments/1832/06/27-m3-img3018-murder-of-nicholas-fairles",
+          "image_relative_path": "diary-1832/images/img3018-murder-of-nicholas-fairles.png",
+          "database_sequence": "",
+          "reason": "typed IMAGE source has no HTML signature for a safe legacy database match"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1832/06/27-m3-img3018-murder-of-nicholas-fairles",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1832-06-27",
+          "diary": "",
+          "page_name": "img3018",
+          "database_sequence": ""
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "source_key": "fragments/1832/06/27-m3-img3018-murder-of-nicholas-fairles-image",
+      "database_fragment_id": null,
+      "fragment_type": "IMAGE",
+      "image": {
+        "relative_path": "diary-1832/images/img3018-murder-of-nicholas-fairles.png",
+        "caption": "William Jobling memorial",
+        "alt_text": "A memorial stone for William Jobling"
+      },
+      "marquee_action": "KEEP_ABSENT",
+      "fragment_text_preview": "",
+      "place_after": "fragments/1832/06/27-m3-img3018-murder-of-nicholas-fairles",
+      "reason": "Image separated from the existing informational Fragment.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T10:31:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1828/08/14-img2853-left",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1828-08-14",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2853",
+          "place_after": "",
+          "html_sha256": "22f073f038e43571c235011d7728e2122d52b6556c7e75e932d5fff862e3e218",
+          "html_length": 477,
+          "legacy_derived_sequence": "280814.2853",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1828/08/14-img2853-left",
+          "source_type": "LEGACY",
+          "status": "AMBIGUOUS_CONTEXT",
+          "database_fragment_id": null,
+          "date": "1828-08-14",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2853",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 2299,
+          "status": "AMBIGUOUS_CONTEXT",
+          "possible_source_key": "",
+          "date": "1828-08-14",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2853",
+          "sequence": "1.0000",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1828-08-14",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2853",
+          "legacy_derived_sequence": "280814.2853",
+          "count": 2,
+          "source_keys": [
+            "fragments/1828/08/14-img2853-left",
+            "fragments/1828/08/14-img2853-right"
+          ]
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1828/08/14-img2853-left",
+      "database_fragment_id": 2299,
+      "text_preview": "<p>Turned&nbsp;out&nbsp;at&nbsp;3&nbsp;o&#39;clock",
+      "reason": "The database version has multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T18:59:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/01/08-img2868-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-01-08",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2868",
+          "place_after": "",
+          "html_sha256": "dc6702144e5894eb8d64f47ef560f3f781069f77e2e855e35306aea86ed55283",
+          "html_length": 330,
+          "legacy_derived_sequence": "290108.2868",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/01/08-img2868-right",
+          "source_type": "LEGACY",
+          "status": "POSSIBLE_EDITED_MATCH",
+          "database_fragment_id": 2300,
+          "date": "1829-01-08",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2868",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "2.0000",
+          "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 2300,
+          "status": "POSSIBLE_EDITED_MATCH",
+          "possible_source_key": "fragments/1829/01/08-img2868-right",
+          "date": "1829-01-08",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2868",
+          "sequence": "2.0000",
+          "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-01-08",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2868",
+          "legacy_derived_sequence": "290108.2868",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/01/08-img2868-left",
+            "fragments/1829/01/08-img2868-right"
+          ]
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/01/08-img2868-right",
+      "database_fragment_id": 2300,
+      "text_preview": "Called upon Chapmans for £10 for self",
+      "reason": "The database version has multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T08:07:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/04/16-img2878-left-continuation",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-04-16",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2878",
+          "place_after": "",
+          "html_sha256": "e4fa7c33a7e5169fa16f94dc167290814a438a027513a308825ed8f3685adf28",
+          "html_length": 118,
+          "legacy_derived_sequence": "290416.4894",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/04/16-img2878-left-continuation",
+          "source_type": "LEGACY",
+          "status": "AMBIGUOUS_CONTEXT",
+          "database_fragment_id": null,
+          "date": "1829-04-16",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2878",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 2301,
+          "status": "AMBIGUOUS_CONTEXT",
+          "possible_source_key": "",
+          "date": "1829-04-16",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2878",
+          "sequence": "2.0000",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/04/16-img2878-right",
+          "source_type": "LEGACY",
+          "status": "AMBIGUOUS_CONTEXT",
+          "database_fragment_id": null,
+          "date": "1829-04-16",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2878",
+          "database_sequence": ""
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/04/16-img2878-left-continuation",
+      "database_fragment_id": 2301,
+      "place_after": "fragments/1829/04/16-img2878-right",
+      "text_preview": "Could not attend the oyster supplier at the George in consequence.",
+      "reason": "The database version has multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:03:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/05/17-img2882-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-05-17",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2882",
+          "place_after": "",
+          "html_sha256": "0444657847027d13a37671bfb039bce3e36fe29ecb0f95176adfcfd79ca0abcf",
+          "html_length": 351,
+          "legacy_derived_sequence": "290517.2882",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/05/17-img2882-right",
+          "source_type": "LEGACY",
+          "status": "POSSIBLE_EDITED_MATCH",
+          "database_fragment_id": 2302,
+          "date": "1829-05-17",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2882",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "2.0000",
+          "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 2302,
+          "status": "POSSIBLE_EDITED_MATCH",
+          "possible_source_key": "fragments/1829/05/17-img2882-right",
+          "date": "1829-05-17",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2882",
+          "sequence": "2.0000",
+          "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-05-17",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2882",
+          "legacy_derived_sequence": "290517.2882",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/05/17-img2882-left",
+            "fragments/1829/05/17-img2882-right"
+          ]
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/05/17-img2882-right",
+      "database_fragment_id": 2302,
+      "text_preview": "<p>... in the morning. Packed my cloths up. H Harry &amp;",
+      "reason": "The database version has multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:03:00+01:00"
+    },
+    {
+      "provenance": {
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 2303,
+          "status": "DATABASE_ONLY",
+          "possible_source_key": "",
+          "date": "1829-06-08",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2885",
+          "sequence": "1.0000",
+          "reason": "no source row was matched or proposed"
+        }
+      },
+      "resolution": "PRESERVE_DATABASE_ONLY",
+      "source_key": "",
+      "database_fragment_id": 2303,
+      "text_preview": "<p>Petersburg&nbsp;voyage&nbsp;commences</p>",
+      "reason": "There is no source for this one.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T08:29:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/06/19-img2889-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-06-19",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2889",
+          "place_after": "",
+          "html_sha256": "b767f27a94e2a9e04da9dc6fe06bc26821b711195911e79db3a04083c43ba914",
+          "html_length": 1929,
+          "legacy_derived_sequence": "290619.2889",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/06/19-img2889-right",
+          "source_type": "LEGACY",
+          "status": "POSSIBLE_EDITED_MATCH",
+          "database_fragment_id": 2304,
+          "date": "1829-06-19",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2889",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "2.0000",
+          "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 2304,
+          "status": "POSSIBLE_EDITED_MATCH",
+          "possible_source_key": "fragments/1829/06/19-img2889-right",
+          "date": "1829-06-19",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2889",
+          "sequence": "2.0000",
+          "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-06-19",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2889",
+          "legacy_derived_sequence": "290619.2889",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/06/19-img2889-left",
+            "fragments/1829/06/19-img2889-right"
+          ]
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/19-img2889-right",
+      "database_fragment_id": 2304,
+      "text_preview": "<p>... we did see of the town, we were much pleased with.",
+      "reason": "The database version contains multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T08:32:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/06/20-img2890-left",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-06-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2890",
+          "place_after": "",
+          "html_sha256": "dfddd79b6fbce254d73f1513eba62b55a9305201850b98db7b3a4dccc60a262f",
+          "html_length": 2426,
+          "legacy_derived_sequence": "290620.2890",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/06/20-img2890-left",
+          "source_type": "LEGACY",
+          "status": "AMBIGUOUS_CONTEXT",
+          "database_fragment_id": null,
+          "date": "1829-06-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2890",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 2305,
+          "status": "AMBIGUOUS_CONTEXT",
+          "possible_source_key": "",
+          "date": "1829-06-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2890",
+          "sequence": "2.0000",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-06-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2890",
+          "legacy_derived_sequence": "290620.2890",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/06/20-img2890-left",
+            "fragments/1829/06/20-img2890-right"
+          ]
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/20-img2890-left",
+      "database_fragment_id": 2305,
+      "text_preview": "<p>... sails set. Perfectly astonished at the exceeding beauty of the coast",
+      "reason": "The database version contains multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T15:36:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/06/25-img2892-left",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-06-25",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2892",
+          "place_after": "",
+          "html_sha256": "b5145ee731d439482017acb153e57d6fc58048cc6041d4b9a27e864078fa81e3",
+          "html_length": 370,
+          "legacy_derived_sequence": "290625.2892",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/06/25-img2892-left",
+          "source_type": "LEGACY",
+          "status": "AMBIGUOUS_CONTEXT",
+          "database_fragment_id": null,
+          "date": "1829-06-25",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2892",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 2306,
+          "status": "AMBIGUOUS_CONTEXT",
+          "possible_source_key": "",
+          "date": "1829-06-25",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2892",
+          "sequence": "1.0000",
+          "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-06-25",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2892",
+          "legacy_derived_sequence": "290625.2892",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/06/25-img2892-left",
+            "fragments/1829/06/25-img2892-right"
+          ]
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/25-img2892-left",
+      "database_fragment_id": 2306,
+      "text_preview": "<p>Turned out at &frac12; past 7 o'clock &amp; most delightful morning",
+      "reason": "The database version contains unnecessary multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:47:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/06/29-img2894-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-06-29",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2894",
+          "place_after": "",
+          "html_sha256": "28058d6a13a5445d3cfd73a9e386c65365d9f4203459918c14be6563f6fbd72a",
+          "html_length": 1433,
+          "legacy_derived_sequence": "290629.2894",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/06/29-img2894-right",
+          "source_type": "LEGACY",
+          "status": "POSSIBLE_EDITED_MATCH",
+          "database_fragment_id": 2307,
+          "date": "1829-06-29",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2894",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "2.0000",
+          "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+        },
+        "database_reconciliation": {
+          "report": "database-reconciliation.csv",
+          "database_fragment_id": 2307,
+          "status": "POSSIBLE_EDITED_MATCH",
+          "possible_source_key": "fragments/1829/06/29-img2894-right",
+          "date": "1829-06-29",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2894",
+          "sequence": "2.0000",
+          "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-06-29",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2894",
+          "legacy_derived_sequence": "290629.2894",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/06/29-img2894-left",
+            "fragments/1829/06/29-img2894-right"
+          ]
+        }
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/29-img2894-right",
+      "database_fragment_id": 2307,
+      "text_preview": "<p>... debt. I should also mention that before the ship got to the mole",
+      "reason": "The database version contains unnecessary multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:49:00+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/06/30-img2895-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-06-30",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2895",
+          "place_after": "",
+          "html_sha256": "5ec3fc7bceab672428a214d8aa96b1c57705c5b652a0e9773068bff7b6ebd8e4",
+          "html_length": 119,
+          "legacy_derived_sequence": "290630.2895",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/06/30-img2895-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-06-30",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2895",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-06-30",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2895",
+          "legacy_derived_sequence": "290630.2895",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/06/30-img2895-left",
+            "fragments/1829/06/30-img2895-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/06/30-img2895-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/06/30-img2895-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 583,
+          "date": "1829-06-30",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2895",
+          "database_sequence": "2.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/06/30-img2895-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/06/30-img2895-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/07/02-img2896-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-07-02",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2896",
+          "place_after": "",
+          "html_sha256": "eb7a2e083af85103006918ebc7a309116fbd5dbd07303e2eeb10716b818c124e",
+          "html_length": 1611,
+          "legacy_derived_sequence": "290702.2896",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/02-img2896-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-07-02",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2896",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-07-02",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2896",
+          "legacy_derived_sequence": "290702.2896",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/07/02-img2896-left",
+            "fragments/1829/07/02-img2896-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/07/02-img2896-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/02-img2896-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 586,
+          "date": "1829-07-02",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2896",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/07/02-img2896-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/07/02-img2896-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/07/02-img2897-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-07-02",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2897",
+          "place_after": "",
+          "html_sha256": "b8817e2420cc2b3aad1810701fcfd2cbea56270a30159a5b282bab9ba9ed5209",
+          "html_length": 493,
+          "legacy_derived_sequence": "290702.2897",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/02-img2897-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-07-02",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2897",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-07-02",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2897",
+          "legacy_derived_sequence": "290702.2897",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/07/02-img2897-left",
+            "fragments/1829/07/02-img2897-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/07/02-img2897-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/02-img2897-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 587,
+          "date": "1829-07-02",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2897",
+          "database_sequence": "2.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/07/02-img2897-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/07/02-img2897-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/07/05-img2899-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-07-05",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2899",
+          "place_after": "",
+          "html_sha256": "e5eaf203a4763244b1b9c0e744da0ef3b73b576a91ab0a8370da90ded26bef85",
+          "html_length": 552,
+          "legacy_derived_sequence": "290705.2899",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/05-img2899-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-07-05",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2899",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-07-05",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2899",
+          "legacy_derived_sequence": "290705.2899",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/07/05-img2899-left",
+            "fragments/1829/07/05-img2899-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/07/05-img2899-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/05-img2899-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 591,
+          "date": "1829-07-05",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2899",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/07/05-img2899-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/07/05-img2899-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/07/07-img2900-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-07-07",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2900",
+          "place_after": "",
+          "html_sha256": "6e00ef61e40d6eac2bb43bfe9a4d969e5449e04fc5da22a8900d8bf761a1b4a3",
+          "html_length": 1065,
+          "legacy_derived_sequence": "290707.2900",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/07-img2900-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-07-07",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2900",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-07-07",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2900",
+          "legacy_derived_sequence": "290707.2900",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/07/07-img2900-left",
+            "fragments/1829/07/07-img2900-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/07/07-img2900-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/07-img2900-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 597,
+          "date": "1829-07-07",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2900",
+          "database_sequence": "5.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/07/07-img2900-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/07/07-img2900-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/07/08-img2901-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-07-08",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2901",
+          "place_after": "",
+          "html_sha256": "a49f1b54f35cd9c50b1eb65187538db6807d84b04fed1eb998c353ae1517f6b9",
+          "html_length": 668,
+          "legacy_derived_sequence": "290708.2901",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/08-img2901-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-07-08",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2901",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-07-08",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2901",
+          "legacy_derived_sequence": "290708.2901",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/07/08-img2901-left",
+            "fragments/1829/07/08-img2901-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/07/08-img2901-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/08-img2901-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 602,
+          "date": "1829-07-08",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2901",
+          "database_sequence": "5.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/07/08-img2901-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/07/08-img2901-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/07/09-img2902-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-07-09",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2902",
+          "place_after": "",
+          "html_sha256": "851b456770608b43bcf423aa1c4c239afdb025461155dd80538adcb8c952f801",
+          "html_length": 1807,
+          "legacy_derived_sequence": "290709.2902",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/09-img2902-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-07-09",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2902",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-07-09",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2902",
+          "legacy_derived_sequence": "290709.2902",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/07/09-img2902-left",
+            "fragments/1829/07/09-img2902-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/07/09-img2902-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/09-img2902-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 604,
+          "date": "1829-07-09",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2902",
+          "database_sequence": "2.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/07/09-img2902-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/07/09-img2902-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/07/11-img2903-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-07-11",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2903",
+          "place_after": "",
+          "html_sha256": "afdd962fa60717090143e31c6225859041fc63bd4a9315116e4c344de9280275",
+          "html_length": 558,
+          "legacy_derived_sequence": "290711.2903",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/11-img2903-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-07-11",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2903",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-07-11",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2903",
+          "legacy_derived_sequence": "290711.2903",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/07/11-img2903-left",
+            "fragments/1829/07/11-img2903-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/07/11-img2903-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/11-img2903-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 607,
+          "date": "1829-07-11",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2903",
+          "database_sequence": "2.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/07/11-img2903-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/07/11-img2903-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/07/15-img2905-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-07-15",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2905",
+          "place_after": "",
+          "html_sha256": "37058c641018e7a664435755e066cb15e513fa3a4675888c6db3d3ce2bf2e751",
+          "html_length": 1317,
+          "legacy_derived_sequence": "290715.2905",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/15-img2905-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-07-15",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2905",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-07-15",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2905",
+          "legacy_derived_sequence": "290715.2905",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/07/15-img2905-left",
+            "fragments/1829/07/15-img2905-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/07/15-img2905-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/15-img2905-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 616,
+          "date": "1829-07-15",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2905",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/07/15-img2905-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/07/15-img2905-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/07/16-img2906-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-07-16",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2906",
+          "place_after": "",
+          "html_sha256": "ec4d733ec6bedd98c00f423371059405246d5deebac18c8aaf6710d0522d58de",
+          "html_length": 1062,
+          "legacy_derived_sequence": "290716.2906",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/16-img2906-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-07-16",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2906",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-07-16",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2906",
+          "legacy_derived_sequence": "290716.2906",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/07/16-img2906-left",
+            "fragments/1829/07/16-img2906-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/07/16-img2906-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/16-img2906-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 617,
+          "date": "1829-07-16",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2906",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/07/16-img2906-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/07/16-img2906-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/07/23-img2908-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-07-23",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2908",
+          "place_after": "",
+          "html_sha256": "862a179cd2b1451f1f4aa552d434672a4501c3b72f3c345755c267d834b3cf49",
+          "html_length": 239,
+          "legacy_derived_sequence": "290723.2908",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/23-img2908-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-07-23",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2908",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-07-23",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2908",
+          "legacy_derived_sequence": "290723.2908",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/07/23-img2908-left",
+            "fragments/1829/07/23-img2908-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/07/23-img2908-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/07/23-img2908-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 625,
+          "date": "1829-07-23",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2908",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/07/23-img2908-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/07/23-img2908-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/08/05-img2911-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-08-05",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2911",
+          "place_after": "",
+          "html_sha256": "20ec73d8296a29af0417255f0b1b2dccd69f74a63d1259d85d244ab3d09f93d2",
+          "html_length": 1053,
+          "legacy_derived_sequence": "290805.2911",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/08/05-img2911-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-08-05",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2911",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-08-05",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2911",
+          "legacy_derived_sequence": "290805.2911",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/08/05-img2911-left",
+            "fragments/1829/08/05-img2911-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/08/05-img2911-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/08/05-img2911-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 642,
+          "date": "1829-08-05",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2911",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/08/05-img2911-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/08/05-img2911-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/08/08-img2912-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-08-08",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2912",
+          "place_after": "",
+          "html_sha256": "ed93defc1427c18651296e0b337fddf8ffe7762e953ef26d15ded9f6b988561d",
+          "html_length": 468,
+          "legacy_derived_sequence": "290808.2912",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/08/08-img2912-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-08-08",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2912",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-08-08",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2912",
+          "legacy_derived_sequence": "290808.2912",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/08/08-img2912-left",
+            "fragments/1829/08/08-img2912-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/08/08-img2912-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/08/08-img2912-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 645,
+          "date": "1829-08-08",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2912",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/08/08-img2912-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/08/08-img2912-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/08/15-img2914-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-08-15",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2914",
+          "place_after": "",
+          "html_sha256": "37c465e1a03ab4e5970407f6f3d6b23252c7e0bac3ad09228de76298da1b6c4c",
+          "html_length": 401,
+          "legacy_derived_sequence": "290815.2914",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/08/15-img2914-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-08-15",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2914",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-08-15",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2914",
+          "legacy_derived_sequence": "290815.2914",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/08/15-img2914-left",
+            "fragments/1829/08/15-img2914-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/08/15-img2914-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/08/15-img2914-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 654,
+          "date": "1829-08-15",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2914",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/08/15-img2914-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/08/15-img2914-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/08/20-img2915-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-08-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2915",
+          "place_after": "",
+          "html_sha256": "8e5bdb381f6f98e37b53b8a60dfee0fedca28f172c335abd272740d67b492b53",
+          "html_length": 540,
+          "legacy_derived_sequence": "290820.2915",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/08/20-img2915-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-08-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2915",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-08-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2915",
+          "legacy_derived_sequence": "290820.2915",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/08/20-img2915-left",
+            "fragments/1829/08/20-img2915-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/08/20-img2915-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/08/20-img2915-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 660,
+          "date": "1829-08-20",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2915",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/08/20-img2915-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/08/20-img2915-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/08/22-img2916-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-08-22",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2916",
+          "place_after": "",
+          "html_sha256": "2293e6316f7ea3a1f1140428229569ef00e0f101d7b26b9f5dacbc0d50b2e8cb",
+          "html_length": 809,
+          "legacy_derived_sequence": "290822.2916",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/08/22-img2916-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-08-22",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2916",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-08-22",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2916",
+          "legacy_derived_sequence": "290822.2916",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/08/22-img2916-left",
+            "fragments/1829/08/22-img2916-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/08/22-img2916-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/08/22-img2916-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 662,
+          "date": "1829-08-22",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2916",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/08/22-img2916-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/08/22-img2916-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/08/28-img2918-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-08-28",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2918",
+          "place_after": "",
+          "html_sha256": "d06250753065f2f29eca557910b9a4ef6f4123291341504a815059a5e51003bf",
+          "html_length": 540,
+          "legacy_derived_sequence": "290828.2918",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/08/28-img2918-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-08-28",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2918",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-08-28",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2918",
+          "legacy_derived_sequence": "290828.2918",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/08/28-img2918-left",
+            "fragments/1829/08/28-img2918-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/08/28-img2918-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/08/28-img2918-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 670,
+          "date": "1829-08-28",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2918",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/08/28-img2918-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/08/28-img2918-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/09/11-img2921-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-09-11",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2921",
+          "place_after": "",
+          "html_sha256": "69a2d76237d8e901b06d498a61d73aec4ab1d4271b1b26dd9805b0a93f8fcd79",
+          "html_length": 474,
+          "legacy_derived_sequence": "290911.2921",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/09/11-img2921-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-09-11",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2921",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-09-11",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2921",
+          "legacy_derived_sequence": "290911.2921",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/09/11-img2921-left",
+            "fragments/1829/09/11-img2921-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/09/11-img2921-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/09/11-img2921-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 690,
+          "date": "1829-09-11",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2921",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/09/11-img2921-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/09/11-img2921-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/09/14-img2922-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-09-14",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2922",
+          "place_after": "",
+          "html_sha256": "862dc0ed5f9f5a803aaeb53a876ed1c7a074c1c1ddb3c0e0915e4ccb7b264b8a",
+          "html_length": 184,
+          "legacy_derived_sequence": "290914.2922",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/09/14-img2922-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-09-14",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2922",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-09-14",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2922",
+          "legacy_derived_sequence": "290914.2922",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/09/14-img2922-left",
+            "fragments/1829/09/14-img2922-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/09/14-img2922-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/09/14-img2922-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 693,
+          "date": "1829-09-14",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2922",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/09/14-img2922-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/09/14-img2922-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1829/09/18-img2923-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1829-09-18",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2923",
+          "place_after": "",
+          "html_sha256": "e54d7afb54a0577f20e047ac36e09075c51e9d5f2cb2a0cd500d7af5525366c8",
+          "html_length": 186,
+          "legacy_derived_sequence": "290918.2923",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/09/18-img2923-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1829-09-18",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2923",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1829-09-18",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2923",
+          "legacy_derived_sequence": "290918.2923",
+          "count": 2,
+          "source_keys": [
+            "fragments/1829/09/18-img2923-left",
+            "fragments/1829/09/18-img2923-right"
+          ],
+          "matched_sibling_source_key": "fragments/1829/09/18-img2923-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1829/09/18-img2923-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 698,
+          "date": "1829-09-18",
+          "diary": "diary-1828-and-1829-and-jan-1830",
+          "page_name": "img2923",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1829/09/18-img2923-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1829/09/18-img2923-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1834/07/08-img2712-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1834-07-08",
+          "diary": "diary-1834",
+          "page_name": "img2712",
+          "place_after": "",
+          "html_sha256": "3587cc33ce31f2174c5bd92860647abf5af652018e8c82d041621fe5999b269d",
+          "html_length": 167,
+          "legacy_derived_sequence": "340708.2712",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1834/07/08-img2712-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1834-07-08",
+          "diary": "diary-1834",
+          "page_name": "img2712",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1834-07-08",
+          "diary": "diary-1834",
+          "page_name": "img2712",
+          "legacy_derived_sequence": "340708.2712",
+          "count": 2,
+          "source_keys": [
+            "fragments/1834/07/08-img2712-left",
+            "fragments/1834/07/08-img2712-right"
+          ],
+          "matched_sibling_source_key": "fragments/1834/07/08-img2712-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1834/07/08-img2712-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 2117,
+          "date": "1834-07-08",
+          "diary": "diary-1834",
+          "page_name": "img2712",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1834/07/08-img2712-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1834/07/08-img2712-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    },
+    {
+      "provenance": {
+        "source_manifest": {
+          "report": "source-manifest.csv",
+          "source_key": "fragments/1834/11/13-img2723-right",
+          "type": "LEGACY",
+          "valid": true,
+          "date": "1834-11-13",
+          "diary": "diary-1834",
+          "page_name": "img2723",
+          "place_after": "",
+          "html_sha256": "0870f77e5f625fd7d2d10b2780f014d8896f56965e30e2a1dda6052a1b968211",
+          "html_length": 90,
+          "legacy_derived_sequence": "341113.2723",
+          "errors": ""
+        },
+        "source_reconciliation": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1834/11/13-img2723-right",
+          "source_type": "LEGACY",
+          "status": "MISSING_FROM_DATABASE",
+          "database_fragment_id": null,
+          "date": "1834-11-13",
+          "diary": "diary-1834",
+          "page_name": "img2723",
+          "place_after": "",
+          "image_relative_path": "",
+          "database_sequence": "",
+          "reason": "no unclaimed database row has the same date and Page context"
+        },
+        "legacy_collision": {
+          "report": "legacy-import-identity-collisions.csv",
+          "date": "1834-11-13",
+          "diary": "diary-1834",
+          "page_name": "img2723",
+          "legacy_derived_sequence": "341113.2723",
+          "count": 2,
+          "source_keys": [
+            "fragments/1834/11/13-img2723-left",
+            "fragments/1834/11/13-img2723-right"
+          ],
+          "matched_sibling_source_key": "fragments/1834/11/13-img2723-left"
+        },
+        "placement_anchor": {
+          "report": "source-reconciliation.csv",
+          "source_key": "fragments/1834/11/13-img2723-left",
+          "source_type": "LEGACY",
+          "status": "MATCHED_EXACT",
+          "database_fragment_id": 2245,
+          "date": "1834-11-13",
+          "diary": "diary-1834",
+          "page_name": "img2723",
+          "database_sequence": "1.0000"
+        }
+      },
+      "resolution": "CREATE_MISSING",
+      "fragment_type": "MARQUEE",
+      "marquee_action": "ENSURE_MARQUEE_EXISTS",
+      "source_key": "fragments/1834/11/13-img2723-right",
+      "database_fragment_id": null,
+      "place_after": "fragments/1834/11/13-img2723-left",
+      "reason": "Valid source fragment suppressed by the legacy sequence collision behaviour.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T11:31:34+01:00"
+    }
+  ]
+}

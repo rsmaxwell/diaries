@@ -1,0 +1,7 @@
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries-importer> Get-FileHash `
+>>   -Algorithm SHA256 `
+>>   "C:\temp\0022-static-baseline-20260911.zip"
+
+Algorithm       Hash                                                                   Path
+---------       ----                                                                   ----
+SHA256          2CEF733ACAD919B1C2F690F95940E8B213A92B0B3A3AEA108A737BAE85B08B44       C:\temp\0022-static-baseline-20260911.zip

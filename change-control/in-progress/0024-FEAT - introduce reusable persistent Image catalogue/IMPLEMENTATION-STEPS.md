@@ -69,6 +69,11 @@ case-folded database uniqueness index and have reconciliation report any
 pre-existing case collision instead of choosing one. This gives Windows
 development and Linux production the same identity rules.
 
+Phase 2 implements the index as
+`lower(relative_path COLLATE pg_catalog.pg_unicode_fast)` on PostgreSQL 18.
+Use this same database expression for later lookups and conflict guards after
+NFC path normalization; it is independent of database/OS locale.
+
 Do not persist a URL or absolute filesystem path. Consumers later derive a URL
 from runtime configuration plus `relativePath`, encoding each path segment.
 
@@ -145,23 +150,44 @@ unique index is the final authority for cross-process conflicts.
 ## Phase 1 — baseline and evidence
 
 - [x] Confirm 0022 is deployed and 0023 consumer changes are complete.
-- [ ] Record the responder/client/web versions used as the 0024 baseline.
-- [ ] Back up the development database used for implementation tests.
-- [ ] Take a read-only inventory of the actual Files root:
+- [x] Record the responder/client/web versions used as the 0024 baseline.
+- [x] Back up the development database used for implementation tests.
+- [x] Take a read-only inventory of the actual Files root:
   - total regular files and directories;
   - supported image candidates by detected type;
   - unsupported files;
   - unreadable files;
   - symlinks/reparse points;
   - case-folded path collisions.
-- [ ] Freeze the 0022 candidate inventory/review evidence which will be supplied
+  Relative paths and content-signature image types are recorded in the detected CSV.
+  The [Files-root summary](evidence/phase-01-baseline/files-root-summary.json)
+  records counts, findings and the detected CSV's SHA-256.
+  [Full-file and path-collision verification](evidence/phase-01-baseline/files-root-verification-20260912/verification-summary.json)
+  completed on 2026-09-12: all 87 files fully readable, zero case-folded path
+  collisions across 97 entries, and no inventory drift. Per-file SHA-256 hashes
+  and the evidence manifest are recorded in that package. This completes the
+  Phase 1 inventory evidence; the two extension mismatches remain recorded
+  findings for reconciliation, not automatic file-renaming instructions.
+- [x] Freeze the 0022 candidate inventory/review evidence which will be supplied
       to 0024 reconciliation, recording filenames and SHA-256 hashes.
-- [ ] Capture current `UploadFile`, `ListFiles` and `DeleteFile` response shapes
+      See [the complete static evidence snapshot](evidence/phase-01-baseline/0022-frozen-20260912-complete/README.md).
+- [x] Capture current `UploadFile`, `ListFiles` and `DeleteFile` response shapes
       so additive compatibility can be tested.
-- [ ] Run the existing responder tests and build before changing code and record
+      See [the captured file RPC baseline](evidence/phase-01-baseline/rpc-responses/README.md).
+- [x] Run the existing responder tests and build before changing code and record
       any pre-existing failures separately.
+      See [baseline test results](evidence/phase-01-baseline/baseline-tests.txt).
 
 ## Phase 2 — additive database migration
+
+- [x] 2.1 Read-only preflight and partial-schema/privilege rejection.
+- [x] 2.2 Transactional schema creation and exact-schema rerun checks.
+- [x] 2.3 Postflight, chronology preservation, runbook and validation evidence.
+
+Implemented and applied to development on 2026-09-12. See
+[migration commands and schema contract](migration/README.md) and
+[Phase 2 evidence](evidence/phase-02-schema/README.md).
+Production execution remains in Phase 11.
 
 Create this directory beneath the 0024 change record:
 
@@ -207,8 +233,8 @@ CREATE TABLE image (
 ```
 
 Add named checks restricting MIME values and lowercase hexadecimal checksum
-shape. Add a unique index on the agreed case-folded path identity, for example
-`lower(relative_path)`, and a non-unique checksum index. Retain the original
+shape. Add a unique index on the agreed case-folded path identity,
+`lower(relative_path COLLATE pg_catalog.pg_unicode_fast)`, and a non-unique checksum index. Retain the original
 case in `relative_path`.
 
 The script must be rerunnable safely: an already-correct schema is accepted,
@@ -240,15 +266,23 @@ diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/
 
 ### 3.1 Model and DTOs
 
-- [ ] Make `Image` extend the existing `Base` ID/version model.
-- [ ] Map every field explicitly to the SQL column name and nullability.
-- [ ] Keep `relativePath` a String; do not place a platform `Path` in DTOs.
-- [ ] Provide constructors between `Image`, `ImageDBDTO` and
+- [x] Make `Image` extend the existing `Base` ID/version model.
+- [x] Map every field explicitly to the SQL column name and nullability.
+- [x] Keep `relativePath` a String; do not place a platform `Path` in DTOs.
+- [x] Provide constructors between `Image`, `ImageDBDTO` and
       `ImagePublishDTO` following existing responder conventions.
-- [ ] Validate canonical path, MIME, positive dimensions and checksum at the
+- [x] Validate canonical path, MIME, positive dimensions and checksum at the
       service boundary as well as with database constraints.
-- [ ] Make caption and alt text non-null empty strings initially.
-- [ ] Avoid importing `java.awt.Image`; use the Diaries model type explicitly.
+- [x] Make caption and alt text non-null empty strings initially.
+- [x] Avoid importing `java.awt.Image`; use the Diaries model type explicitly.
+
+Implemented on 2026-09-12; see [3.1 implementation and test evidence](evidence/phase-03-model-dtos/README.md).
+`Image.validate()` is the reusable metadata boundary, called by conversions,
+DTO serialization/publication and JPA pre-persist/pre-update callbacks. It
+rejects noncanonical path syntax; filesystem resolution, symlink checks and
+byte-derived metadata inspection remain Phase 5. Future catalogue services must
+use this validation boundary. The repository is now implemented in 3.2;
+runtime registration and wiring are now completed in 3.3.
 
 `ImagePublishDTO` must publish metadata only to exactly:
 
@@ -260,6 +294,17 @@ It must support both map publication during startup reconciliation and retained
 MQTT publication/tombstoning using the existing `Publisher` QoS/retain rules.
 
 ### 3.2 Repository
+
+- [x] Implement Image CRUD and the three required bound lookup methods.
+- [x] Match the Phase 2 Unicode case identity and escape subtree LIKE patterns.
+- [x] Verify against PostgreSQL 18 with the actual Phase 2 schema.
+
+Completed on 2026-09-12; see [repository evidence and usage](evidence/phase-03-repository/README.md).
+The repository implements the existing CRUD interface directly so all Image
+values are bound parameters. The legacy `find(String where)` raw-SQL escape
+hatch is explicitly unsupported. Writes require a caller-owned transaction;
+version updates follow existing CRUD semantics. An empty String in
+`existsAtOrBelow` represents the Files root. Runtime wiring is completed in Phase 3.3 below.
 
 `ImageRepository` must add to normal CRUD operations:
 
@@ -278,13 +323,24 @@ existing repository's SQL-string quoting pattern to user-controlled paths.
 
 ### 3.3 Registration and wiring
 
-- [ ] Register `Image.class` once in `GetEntityManager`.
-- [ ] Construct `ImageRepositoryImpl` in `Responder.run` and place it in
+- [x] Register `Image.class` once in `GetEntityManager`.
+- [x] Construct `ImageRepositoryImpl` in `Responder.run` and place it in
       `DiaryContext`.
-- [ ] Add `DiaryContext.inflateImage` and focused transaction helpers rather
+- [x] Add `DiaryContext.inflateImage` and focused transaction helpers rather
       than embedding transaction logic in handlers.
-- [ ] Add repository tests for save/find/update/order, exact/case-alias lookup,
+- [x] Add repository tests for save/find/update/order, exact/case-alias lookup,
       subtree ownership and duplicate-path rejection.
+      Completed with 3.2 using an isolated PostgreSQL 18 fixture, with actual
+      factory/startup wiring and context transaction tests added in 3.3.
+
+Completed on 2026-09-13. `Responder.run` calls the tested `createContext`
+startup wiring, which constructs and installs the Image repository alongside
+the existing repositories. `inflateImage` supports DTO and id inputs;
+`saveImage` returns a committed copy and `updateImage` preserves the supplied
+version. Both helpers reject an existing transaction, roll back failures they
+own, and leave publication to later orchestration. See
+[3.3 implementation and test evidence](evidence/phase-03-wiring/README.md).
+Image replay remains Phase 4; production rollout remains Phase 11.
 
 ## Phase 4 — retained Image catalogue
 

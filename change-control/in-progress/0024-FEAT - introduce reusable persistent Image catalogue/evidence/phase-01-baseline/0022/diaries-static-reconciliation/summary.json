@@ -1,0 +1,22 @@
+{
+  "mode" : "RECONCILE",
+  "inputRootName" : "fragments",
+  "sourceDirectories" : 2327,
+  "validSources" : 2327,
+  "invalidSources" : 0,
+  "sourceKeyCollisionGroups" : 0,
+  "legacyImportIdentityCollisionGroups" : 29,
+  "databaseFragments" : 2307,
+  "sourceReconciliationStatuses" : {
+    "MATCHED_EXACT" : 2288,
+    "MISSING_FROM_DATABASE" : 25,
+    "AMBIGUOUS_CONTEXT" : 7,
+    "POSSIBLE_EDITED_MATCH" : 7
+  },
+  "databaseReconciliationStatuses" : {
+    "MATCHED_EXACT" : 2288,
+    "DATABASE_ONLY" : 4,
+    "AMBIGUOUS_CONTEXT" : 8,
+    "POSSIBLE_EDITED_MATCH" : 7
+  }
+}

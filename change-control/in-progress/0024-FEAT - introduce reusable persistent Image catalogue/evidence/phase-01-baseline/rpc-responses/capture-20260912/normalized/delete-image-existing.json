@@ -1,0 +1,17 @@
+{
+  "caseId" : "delete-image-existing",
+  "function" : "deleteFile",
+  "auth" : "editor",
+  "status" : {
+    "code" : 200,
+    "message" : "ok"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : {
+    "subdir" : "",
+    "path" : "<FILES_ROOT>\\plain.png",
+    "name" : "plain.png"
+  },
+  "payloadFormat" : "json"
+}

@@ -1,0 +1,57 @@
+{
+  "caseId" : "delete-auth-reader",
+  "capturedAtUtc" : "2026-09-12T18:33:22.343196200Z",
+  "requestTopic" : "diaries/rpc/request",
+  "request" : {
+    "function" : "deleteFile",
+    "args" : {
+      "name" : "dated.jpg"
+    }
+  },
+  "requestAuth" : "reader",
+  "requestQos" : 0,
+  "requestRetain" : false,
+  "responseTopic" : "diaries/rpc/0024-baseline/response",
+  "correlationDataBase64" : "YjkzMmMzZjAtM2IzMy00YzQ0LWJhYzYtOTM0MTczN2ZkYzM1",
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "responseDuplicate" : false,
+  "responseProperties" : {
+    "validProperties" : [ 1, 2, 35, 8, 9, 38, 3, 126, 11 ],
+    "payloadFormat" : false,
+    "maximumQoS" : null,
+    "retainAvailable" : true,
+    "wildcardSubscriptionsAvailable" : true,
+    "subscriptionIdentifiersAvailable" : true,
+    "sharedSubscriptionAvailable" : true,
+    "serverKeepAlive" : null,
+    "receiveMaximum" : null,
+    "topicAliasMaximum" : null,
+    "topicAlias" : null,
+    "messageExpiryInterval" : null,
+    "sessionExpiryInterval" : null,
+    "willDelayInterval" : null,
+    "maximumPacketSize" : null,
+    "contentType" : null,
+    "responseTopic" : null,
+    "assignedClientIdentifier" : null,
+    "authenticationMethod" : null,
+    "responseInfo" : null,
+    "serverReference" : null,
+    "reasonString" : null,
+    "userProperties" : [ {
+      "key" : "status",
+      "value" : "{\"code\":401,\"message\":\"unauthorized\"}"
+    } ],
+    "correlationData" : "YjkzMmMzZjAtM2IzMy00YzQ0LWJhYzYtOTM0MTczN2ZkYzM1",
+    "authenticationData" : null,
+    "subscriptionIdentifier" : null,
+    "subscriptionIdentifiers" : [ ]
+  },
+  "responseUserProperties" : [ {
+    "key" : "status",
+    "value" : "{\"code\":401,\"message\":\"unauthorized\"}"
+  } ],
+  "payloadBase64" : "Imluc3VmZmljaWVudCByb2xlIg==",
+  "payloadUtf8" : "\"insufficient role\""
+}

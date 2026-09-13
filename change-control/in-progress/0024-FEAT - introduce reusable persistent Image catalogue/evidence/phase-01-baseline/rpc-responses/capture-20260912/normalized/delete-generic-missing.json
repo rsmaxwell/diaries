@@ -1,0 +1,17 @@
+{
+  "caseId" : "delete-generic-missing",
+  "function" : "deleteFile",
+  "auth" : "editor",
+  "status" : {
+    "code" : 200,
+    "message" : "ok"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : {
+    "subdir" : "",
+    "path" : "<FILES_ROOT>\\generic.bin",
+    "name" : "generic.bin"
+  },
+  "payloadFormat" : "json"
+}

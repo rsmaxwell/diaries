@@ -1,0 +1,17 @@
+{
+  "caseId" : "delete-image-nested",
+  "function" : "deleteFile",
+  "auth" : "editor",
+  "status" : {
+    "code" : 200,
+    "message" : "ok"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : {
+    "subdir" : "alpha\\nested space",
+    "path" : "<FILES_ROOT>\\alpha\\nested space\\image space.png",
+    "name" : "image space.png"
+  },
+  "payloadFormat" : "json"
+}

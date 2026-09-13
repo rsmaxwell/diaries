@@ -1,0 +1,9 @@
+# These are byte-identical aliases of frozen MQTT capture records.
+/upload-response.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/list-files-response.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/delete-file-response.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# Preserve the byte hash recorded for the corrected Files-root inventory.
+/files-root-inventory.corrected.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/files-root-inventory.detected.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/files-root-summary.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/path-conflicts.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

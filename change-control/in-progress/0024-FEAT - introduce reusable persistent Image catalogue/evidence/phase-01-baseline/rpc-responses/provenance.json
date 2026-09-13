@@ -1,0 +1,92 @@
+{
+  "captured_date": "2026-09-12",
+  "mode": "isolated Windows MQTT integration harness, development-infrastructure pattern",
+  "parent_revision": "220e728388a989379841c6b2d43f1426cde14514",
+  "responder_revision": "2798bec79d9e4e1b649cf51256f5eeac58c63017",
+  "client_revision": "7311ec8f443b6fe752b2de3f69bc6415e5dc48b7",
+  "artifact": {
+    "filename": "diaries-responder/build/libs/diaries-responder-0.0.9-SNAPSHOT-fat.jar",
+    "sha256": "cc9a221e63fe7779673dcd3ca0e63ae36e2ed3674232a2b2e1349f944a3215c6",
+    "version": "0.0.9-SNAPSHOT",
+    "mqtt_rpc_version": "0.0.8"
+  },
+  "broker_image": "eclipse-mosquitto@sha256:6f8d8a947c506f8a2290ec65cd4bd2bc7cb4d43fb5f6271f861cb013e2ef9797",
+  "broker_binding": "127.0.0.1:18884",
+  "broker_persistence": false,
+  "database_access": false,
+  "full_responder_startup": false,
+  "account_signin": false,
+  "authentication": "Real Authorization with synthetic signed ACTIVE EDITOR/READER claims; ephemeral random signing key; tokens not archived",
+  "sources": [
+    {
+      "repository_relative_filename": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/UploadFile.java",
+      "sha256": "df3674002be32f21899231ec6ae1d9b6dd55905efd13c1bb827d577e702905ad"
+    },
+    {
+      "repository_relative_filename": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/ListFiles.java",
+      "sha256": "628429a8eda195ec1f1a6f7c7af0f4bb84f2462fc5eaa19b71781a7cb0a3dffe"
+    },
+    {
+      "repository_relative_filename": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/DeleteFile.java",
+      "sha256": "63bb30ac7d4b9297ece4442e129d250cdd69feedaa9b5b113b5903da5614d7ce"
+    },
+    {
+      "repository_relative_filename": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/ListFilesResponse.java",
+      "sha256": "aec8f03152eabbe91b7c5bd9655e0fcaee7529ccc68e673cb3ee61db47a5e368"
+    },
+    {
+      "repository_relative_filename": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageItem.java",
+      "sha256": "e7f6afa561af31b239d156755b6d05da1742f9b71034b7b17ffd208576c58000"
+    },
+    {
+      "repository_relative_filename": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/Authorization.java",
+      "sha256": "959a34b79477e147cf454e70ca457c369f0e625d1fa5cc5e3efd6ab7bf68591b"
+    },
+    {
+      "repository_relative_filename": "diaries-client/src/app/mqtt/rpc.service.ts",
+      "sha256": "31a9e5744785ec6c91380b41fc5ee02383a73e1132c532f8c3776e670918ef90"
+    },
+    {
+      "repository_relative_filename": "diaries-client/src/app/utilities/replyHandler.ts",
+      "sha256": "d50a033c5327862ea180a2f8a2bb1bb9bf350617a7757ab81911a3c2058164aa"
+    },
+    {
+      "repository_relative_filename": "diaries-client/src/app/files-list-dialog/files-list-dialog.component.ts",
+      "sha256": "00f9792474e5c9ead6d8f70258a754bd3598a5d44f425955070f9e05bb7e6096"
+    },
+    {
+      "repository_relative_filename": "diaries-client/src/app/files-list-dialog/files-list-dialog.component.html",
+      "sha256": "80f4fce7e92beaff7b3e018d6fbd9b67cdf0e4eb9b7179e63a10f25ff1c9961a"
+    },
+    {
+      "repository_relative_filename": "diaries-client/src/app/mqtt/file-rpc-compatibility.spec.ts",
+      "sha256": "4aabff585eb4ecfbb6cdda0d93636f8de42061fdcc6f7946a47d62f0b80fe423"
+    },
+    {
+      "repository_relative_filename": "diaries-client/src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts",
+      "sha256": "9dd5905210245e47f935c4b2d21029cf673dc8b0a4f71f4edca7cb6e5f49148b"
+    },
+    {
+      "repository_relative_filename": "diaries-client/src/app/testing/file-rpc-baseline.fixture.ts",
+      "sha256": "b85d53612e9f0f78667587572d214bff8f711263ee353208e35817ea8d9c67a1"
+    }
+  ],
+  "representative_aliases": [
+    {
+      "filename": "../upload-response.json",
+      "source": "capture-20260912/raw/upload-image-root.json",
+      "sha256": "881b43c5611a4e0e05a9cfea002edea694c71ef65f8b09ad08fbf132ef85c441"
+    },
+    {
+      "filename": "../list-files-response.json",
+      "source": "capture-20260912/raw/list-populated-root.json",
+      "sha256": "40f90222be698bd022c1153c011ceb9169d28aedb723d0fbd2182b95611e69b6"
+    },
+    {
+      "filename": "../delete-file-response.json",
+      "source": "capture-20260912/raw/delete-generic-existing.json",
+      "sha256": "40dcb2a6c9d8f42ae3bc3dfbae885bcb349259f6fb58fd6a8669ca9be14e60b2"
+    }
+  ],
+  "source_hash_note": "Hashes describe local file bytes at validation time. Source files outside this frozen package may subsequently change or undergo Git line-ending conversion; repository revisions and package hashes identify the baseline separately."
+}

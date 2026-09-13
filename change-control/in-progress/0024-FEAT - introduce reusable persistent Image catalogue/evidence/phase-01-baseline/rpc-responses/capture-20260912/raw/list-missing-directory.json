@@ -1,0 +1,57 @@
+{
+  "caseId" : "list-missing-directory",
+  "capturedAtUtc" : "2026-09-12T18:33:22.272923Z",
+  "requestTopic" : "diaries/rpc/request",
+  "request" : {
+    "function" : "listFiles",
+    "args" : {
+      "subdir" : "does-not-exist"
+    }
+  },
+  "requestAuth" : "editor",
+  "requestQos" : 0,
+  "requestRetain" : false,
+  "responseTopic" : "diaries/rpc/0024-baseline/response",
+  "correlationDataBase64" : "NGI3YzYxZjgtZTFmNC00MWMyLTk1OWMtZDY1YWQ1Y2NmMjA2",
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "responseDuplicate" : false,
+  "responseProperties" : {
+    "validProperties" : [ 1, 2, 35, 8, 9, 38, 3, 126, 11 ],
+    "payloadFormat" : false,
+    "maximumQoS" : null,
+    "retainAvailable" : true,
+    "wildcardSubscriptionsAvailable" : true,
+    "subscriptionIdentifiersAvailable" : true,
+    "sharedSubscriptionAvailable" : true,
+    "serverKeepAlive" : null,
+    "receiveMaximum" : null,
+    "topicAliasMaximum" : null,
+    "topicAlias" : null,
+    "messageExpiryInterval" : null,
+    "sessionExpiryInterval" : null,
+    "willDelayInterval" : null,
+    "maximumPacketSize" : null,
+    "contentType" : null,
+    "responseTopic" : null,
+    "assignedClientIdentifier" : null,
+    "authenticationMethod" : null,
+    "responseInfo" : null,
+    "serverReference" : null,
+    "reasonString" : null,
+    "userProperties" : [ {
+      "key" : "status",
+      "value" : "{\"code\":500,\"message\":\"internal error\"}"
+    } ],
+    "correlationData" : "NGI3YzYxZjgtZTFmNC00MWMyLTk1OWMtZDY1YWQ1Y2NmMjA2",
+    "authenticationData" : null,
+    "subscriptionIdentifier" : null,
+    "subscriptionIdentifiers" : [ ]
+  },
+  "responseUserProperties" : [ {
+    "key" : "status",
+    "value" : "{\"code\":500,\"message\":\"internal error\"}"
+  } ],
+  "payloadBase64" : "IkM6XFxVc2Vyc1xcUmljaGFyZFxcZ2l0XFxnaXRodWIuY29tXFxyc21heHdlbGxcXGRpYXJpZXMtYXBwbGljYXRpb25cXGRpYXJpZXNcXGJ1aWxkXFxycGMtYmFzZWxpbmUtMjAyNjA5MTJcXGZpbGVzXFxkb2VzLW5vdC1leGlzdCI=",
+  "payloadUtf8" : "\"C:\\\\Users\\\\Richard\\\\git\\\\github.com\\\\rsmaxwell\\\\diaries-application\\\\diaries\\\\build\\\\rpc-baseline-20260912\\\\files\\\\does-not-exist\""
+}

@@ -1,0 +1,71 @@
+{
+    "schemaVersion":  1,
+    "generatedAtUtc":  "2026-09-12T19:25:02.2340061Z",
+    "source":  {
+                   "inventoryFile":  "inventory-before.csv",
+                   "inventorySha256":  "eb2a751fa41411fec41f528ba5ee7be1ffee0ae3b400e09f18b3d2a91d513d05",
+                   "inventoryBytes":  19037,
+                   "sourceScanTimestamp":  null,
+                   "note":  "Derived from the saved CSV; generation time is not a new NAS scan time. The CSV does not record the original scan timestamp."
+               },
+    "totals":  {
+                   "entries":  97,
+                   "regularFiles":  87,
+                   "directoriesExcludingRoot":  10,
+                   "symlinksOrReparsePoints":  0,
+                   "regularFileBytesFromMetadata":  93058826,
+                   "imageCandidates":  83,
+                   "filesWithoutSupportedImageSignature":  4,
+                   "unreadableHeaders":  0,
+                   "extensionMismatches":  2,
+                   "blankRelativePaths":  0,
+                   "duplicateExactRelativePaths":  0
+               },
+    "imageCandidatesByDetectedMimeType":  {
+                                              "image/jpeg":  51,
+                                              "image/png":  32,
+                                              "image/gif":  0,
+                                              "image/webp":  0
+                                          },
+    "headerInspection":  {
+                             "maximumBytesPerFile":  16,
+                             "readableRegularFileHeaders":  87,
+                             "fullFileReadabilityChecked":  false,
+                             "fullFileUnreadableCount":  null,
+                             "imageDecodingChecked":  false,
+                             "note":  "Recognized signatures identify candidates, not validated/decodable images. Links are not followed."
+                         },
+    "caseFoldedPathCollisions":  {
+                                     "checked":  false,
+                                     "groupCount":  null,
+                                     "note":  "Exact-path uniqueness is checked above; a case-folded collision report has not been generated."
+                                 },
+    "filesWithoutSupportedImageSignature":  [
+                                                "diary-1828-and-1829-and-jan-1830/images/Thumbs.db",
+                                                "diary-1828-and-1829-and-jan-1830/Thumbs.db",
+                                                "diary-1830/images/Thumbs.db",
+                                                "diary-1832/images/Thumbs.db"
+                                            ],
+    "unreadableHeaders":  [
+
+                          ],
+    "extensionMismatches":  [
+                                {
+                                    "relativePath":  "diary-1831/images/img2805-blue-posts-pub.jpg",
+                                    "Extension":  ".jpg",
+                                    "detectedMimeType":  "image/png"
+                                },
+                                {
+                                    "relativePath":  "diary-1832/images/img3018-murder-of-nicholas-fairles.png",
+                                    "Extension":  ".png",
+                                    "detectedMimeType":  "image/jpeg"
+                                }
+                            ],
+    "skippedLinks":  [
+
+                     ],
+    "remainingInventoryEvidence":  [
+                                       "Full-file readability verification",
+                                       "Case-folded path collision report"
+                                   ]
+}

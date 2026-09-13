@@ -1,0 +1,395 @@
+{
+  "schema_version": 1,
+  "decisions": [
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 84,
+        "status": "DATABASE_ONLY",
+        "date": "1828-03-20",
+        "sequence": "1.0000",
+        "reason": "no source row was matched or proposed"
+      },
+      "resolution": "MATCH_EXACT",
+      "source_key": "fragments/1828/03/20-b-img2840-image-map-whitley-park",
+      "database_fragment_id": 84,
+      "fragment_type": "IMAGE",
+      "image_filename": "img2840-image-map-whitley-park.jpg",
+      "marquee_action": "KEEP_ABSENT",
+      "reason": "Standard legacy image fragment; source and database rows were manually confirmed to represent the same fragment.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T18:51:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 241,
+        "status": "AMBIGUOUS_CONTEXT",
+        "date": "1828-08-14",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2853",
+        "sequence": "2.0000",
+        "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1828/08/14-img2853-right",
+      "database_fragment_id": 241,
+      "text_preview": "<p>The&nbsp;ships&nbsp;papers&nbsp;interred&nbsp;her&nbsp;&amp;&nbsp;went&nbsp;&amp;&nbsp;went&nbsp;up&nbsp;to&nbsp;Richmond,&nbsp;a&nbsp;very&nbsp;unpleasant&nbsp;walk",
+      "reason": "The database version contains multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T18:56:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 493,
+        "status": "AMBIGUOUS_CONTEXT",
+        "date": "1829-04-16",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2878",
+        "sequence": "1.0000",
+        "reason": "1 unmatched source rows and 2 unmatched database rows share the date and Page context"
+      },
+      "resolution": "MATCH_EDITED_KEEP_DATABASE",
+      "source_key": "fragments/1829/04/16-img2878-right",
+      "database_fragment_id": 493,
+      "text_preview": "<p>A very wet morning. Wind SW",
+      "reason": "The day's text is split between 2 pages. This one is at the bottom right of img2878.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:03:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 566,
+        "status": "POSSIBLE_EDITED_MATCH",
+        "possible_source_key": "fragments/1829/06/20-img2889-right",
+        "date": "1829-06-20",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2889",
+        "sequence": "1.0000",
+        "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/20-img2889-right",
+      "database_fragment_id": 566,
+      "text_preview": "<p>Between 3 &amp; 4 o'clock feeling my <span class=highlight_yellow>coppers</span> very hot &amp;",
+      "reason": "The database version contains multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:15:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 567,
+        "status": "AMBIGUOUS_CONTEXT",
+        "date": "1829-06-20",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2890",
+        "sequence": "3.0000",
+        "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/20-img2890-right",
+      "database_fragment_id": 567,
+      "text_preview": "splendid & magnificent, the houses all large & good & very clean",
+      "reason": "The database version contains multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T15:36:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 568,
+        "status": "POSSIBLE_EDITED_MATCH",
+        "possible_source_key": "fragments/1829/06/20-img2891-left",
+        "date": "1829-06-20",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2891",
+        "sequence": "4.0000",
+        "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/20-img2891-left",
+      "database_fragment_id": 568,
+      "text_preview": "devoting four hours on certain days in the week",
+      "reason": "The database version contains multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:30:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 574,
+        "status": "AMBIGUOUS_CONTEXT",
+        "date": "1829-06-25",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2892",
+        "sequence": "2.0000",
+        "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/25-img2892-right",
+      "database_fragment_id": 574,
+      "text_preview": "<p>... knots. At &frac14; past 4 o'clock supposed",
+      "reason": "The database version contains unnecessary multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:30:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 577,
+        "status": "POSSIBLE_EDITED_MATCH",
+        "possible_source_key": "fragments/1829/06/26-img2893-left",
+        "date": "1829-06-26",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2893",
+        "sequence": "3.0000",
+        "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/26-img2893-left",
+      "database_fragment_id": 577,
+      "text_preview": "<p>... occurred today worthy of note.",
+      "reason": "The original text is good.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T15:36:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 1182,
+        "status": "DATABASE_ONLY",
+        "date": "1831-01-05",
+        "sequence": "1.0000",
+        "reason": "no source row was matched or proposed"
+      },
+      "resolution": "MATCH_EXACT",
+      "source_key": "fragments/1831/01/05-b1-img2734-doodle-on-blotting-paper",
+      "database_fragment_id": 1182,
+      "fragment_type": "IMAGE",
+      "image_filename": "img2734-doodle-on-blotting-paper.jpg",
+      "marquee_action": "KEEP_ABSENT",
+      "reason": "standard legacy image fragment",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:54:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 1738,
+        "status": "DATABASE_ONLY",
+        "date": "1832-06-27",
+        "sequence": "1.0000",
+        "reason": "no source row was matched or proposed"
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1832/06/27-m3-img3018-murder-of-nicholas-fairles",
+      "database_fragment_id": 1738,
+      "fragment_type": "MARQUEE",
+      "marquee_action": "KEEP_ABSENT",
+      "text_preview": "<style>",
+      "reason": "This is an informational fragment with no marquee.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T08:41:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 1738,
+        "status": "DATABASE_ONLY",
+        "date": "1832-06-27",
+        "sequence": "1.0000",
+        "reason": "no source row was matched or proposed"
+      },
+      "resolution": "CREATE_MISSING",
+      "source_key": "fragments/1832/06/27-m3-img3018-william-jobling-memorial-image",
+      "database_fragment_id": null,
+      "fragment_type": "IMAGE",
+      "fragment_text_preview": "",
+      "image_relative_path": "images/img3018-murder-of-nicholas-fairles.png",
+      "image_caption": "William Jobling memorial",
+      "image_alt_text_preview": "A memorial stone for William Jobling",
+      "place_after": "fragments/1832/06/27-m3-img3018-murder-of-nicholas-fairles",
+      "reason": "Image separated from the existing informational Fragment.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T10:31:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 2299,
+        "status": "AMBIGUOUS_CONTEXT",
+        "date": "1828-08-14",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2853",
+        "sequence": "1.0000",
+        "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1828/08/14-img2853-left",
+      "database_fragment_id": 2299,
+      "text_preview": "<p>Turned&nbsp;out&nbsp;at&nbsp;3&nbsp;o&#39;clock",
+      "reason": "The database version has multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T18:59:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 2300,
+        "status": "POSSIBLE_EDITED_MATCH",
+        "possible_source_key": "fragments/1829/01/08-img2868-right",
+        "date": "1829-01-08",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2868",
+        "sequence": "2.0000",
+        "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/01/08-img2868-right",
+      "database_fragment_id": 2300,
+      "text_preview": "Called upon Chapmans for £10 for self",
+      "reason": "The database version has multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T08:07:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 2301,
+        "status": "AMBIGUOUS_CONTEXT",
+        "date": "1829-04-16",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2878",
+        "sequence": "2.0000",
+        "reason": "1 unmatched source rows and 2 unmatched database rows share the date and Page context"
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/04/16-img2878-left-continuation",
+      "database_fragment_id": 2301,
+      "text_preview": "Could not attend the oyster supplier at the George in consequence.",
+      "reason": "The database version has multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:03:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 2302,
+        "status": "POSSIBLE_EDITED_MATCH",
+        "possible_source_key": "fragments/1829/05/17-img2882-right",
+        "date": "1829-05-17",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2882",
+        "sequence": "2.0000",
+        "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/05/17-img2882-right",
+      "database_fragment_id": 2302,
+      "text_preview": "<p>... in the morning. Packed my cloths up. H Harry &amp;",
+      "reason": "The database version has multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:03:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 2303,
+        "status": "DATABASE_ONLY",
+        "date": "1829-06-08",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2885",
+        "sequence": "1.0000",
+        "reason": "no source row was matched or proposed"
+      },
+      "resolution": "MATCH_EDITED_KEEP_DATABASE",
+      "source_key": "",
+      "database_fragment_id": 2303,
+      "text_preview": "<p>Petersburg&nbsp;voyage&nbsp;commences</p>",
+      "reason": "There is no source for this one.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T08:29:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 2304,
+        "status": "POSSIBLE_EDITED_MATCH",
+        "possible_source_key": "fragments/1829/06/19-img2889-right",
+        "date": "1829-06-19",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2889",
+        "sequence": "2.0000",
+        "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/19-img2889-right",
+      "database_fragment_id": 2304,
+      "text_preview": "<p>... we did see of the town, we were much pleased with.",
+      "reason": "The database version contains multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-10T08:32:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 2305,
+        "status": "AMBIGUOUS_CONTEXT",
+        "date": "1829-06-20",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2890",
+        "sequence": "2.0000",
+        "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/20-img2890-left",
+      "database_fragment_id": 2305,
+      "text_preview": "<p>... sails set. Perfectly astonished at the exceeding beauty of the coast",
+      "reason": "The database version contains multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T15:36:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 2306,
+        "status": "AMBIGUOUS_CONTEXT",
+        "date": "1829-06-25",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2892",
+        "sequence": "1.0000",
+        "reason": "2 unmatched source rows and 2 unmatched database rows share the date and Page context"
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/25-img2892-left",
+      "database_fragment_id": 2306,
+      "text_preview": "<p>Turned out at &frac12; past 7 o'clock &amp; most delightful morning",
+      "reason": "The database version contains unnecessary multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:47:00+01:00"
+    },
+    {
+      "provenance": {
+        "report": "database-reconciliation.csv",
+        "database_fragment_id": 2307,
+        "status": "POSSIBLE_EDITED_MATCH",
+        "possible_source_key": "fragments/1829/06/29-img2894-right",
+        "date": "1829-06-29",
+        "diary": "diary-1828-and-1829-and-jan-1830",
+        "page_name": "img2894",
+        "sequence": "2.0000",
+        "reason": "only remaining row with the same date and Page context; HTML differs and review is required"
+      },
+      "resolution": "MATCH_EDITED_KEEP_SOURCE",
+      "source_key": "fragments/1829/06/29-img2894-right",
+      "database_fragment_id": 2307,
+      "text_preview": "<p>... debt. I should also mention that before the ship got to the mole",
+      "reason": "The database version contains unnecessary multiple &nbsp;.",
+      "reviewed_by": "Richard",
+      "reviewed_at": "2026-09-09T19:49:00+01:00"
+    }
+  ]
+}

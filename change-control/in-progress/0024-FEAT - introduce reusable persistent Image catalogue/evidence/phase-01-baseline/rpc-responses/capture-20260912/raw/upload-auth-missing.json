@@ -1,0 +1,61 @@
+{
+  "caseId" : "upload-auth-missing",
+  "capturedAtUtc" : "2026-09-12T18:33:22.314664500Z",
+  "requestTopic" : "diaries/rpc/request",
+  "request" : {
+    "function" : "uploadFile",
+    "args" : {
+      "name" : "auth.png",
+      "contentType" : "image/png",
+      "size" : 68,
+      "bytes" : "iVBORw0KGgoAAAANSUhEUgAAAAIAAAADCAIAAAA2iEnWAAAAC0lEQVR4XmNgwAIAABUAAdYvSVgAAAAASUVORK5CYII=",
+      "sha256" : "faec21e2271541116e24bf7f90bd7e714b8ed8d3491e79d7629d4eec753ff13d"
+    }
+  },
+  "requestAuth" : "missing",
+  "requestQos" : 0,
+  "requestRetain" : false,
+  "responseTopic" : "diaries/rpc/0024-baseline/response",
+  "correlationDataBase64" : "YjAyMzZkMGItNmVkOC00N2E4LWI3MzEtZjQyZDhiNDFjYzRj",
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "responseDuplicate" : false,
+  "responseProperties" : {
+    "validProperties" : [ 1, 2, 35, 8, 9, 38, 3, 126, 11 ],
+    "payloadFormat" : false,
+    "maximumQoS" : null,
+    "retainAvailable" : true,
+    "wildcardSubscriptionsAvailable" : true,
+    "subscriptionIdentifiersAvailable" : true,
+    "sharedSubscriptionAvailable" : true,
+    "serverKeepAlive" : null,
+    "receiveMaximum" : null,
+    "topicAliasMaximum" : null,
+    "topicAlias" : null,
+    "messageExpiryInterval" : null,
+    "sessionExpiryInterval" : null,
+    "willDelayInterval" : null,
+    "maximumPacketSize" : null,
+    "contentType" : null,
+    "responseTopic" : null,
+    "assignedClientIdentifier" : null,
+    "authenticationMethod" : null,
+    "responseInfo" : null,
+    "serverReference" : null,
+    "reasonString" : null,
+    "userProperties" : [ {
+      "key" : "status",
+      "value" : "{\"code\":401,\"message\":\"unauthorized\"}"
+    } ],
+    "correlationData" : "YjAyMzZkMGItNmVkOC00N2E4LWI3MzEtZjQyZDhiNDFjYzRj",
+    "authenticationData" : null,
+    "subscriptionIdentifier" : null,
+    "subscriptionIdentifiers" : [ ]
+  },
+  "responseUserProperties" : [ {
+    "key" : "status",
+    "value" : "{\"code\":401,\"message\":\"unauthorized\"}"
+  } ],
+  "payloadBase64" : "ImFjY2Vzc1Rva2VuIG5vdCBmb3VuZCci",
+  "payloadUtf8" : "\"accessToken not found'\""
+}

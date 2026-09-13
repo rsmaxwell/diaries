@@ -1,0 +1,34 @@
+SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+list-empty-root: 200 ok
+list-empty-nested: 200 ok
+upload-image-root: 200 ok
+upload-generic-root: 200 ok
+upload-image-octet-nested: 200 ok
+upload-image-date: 200 ok
+upload-duplicate: 409 conflict
+upload-overwrite-generic: 200 ok
+upload-invalid-subdir: 400 bad request
+upload-invalid-name: 400 bad request
+upload-size-mismatch: 500 internal error
+upload-hash-mismatch: 500 internal error
+upload-unsupported-type: 500 internal error
+list-populated-root: 200 ok
+list-populated-nested: 200 ok
+list-missing-directory: 500 internal error
+list-invalid-subdir: 400 bad request
+delete-image-existing: 200 ok
+delete-image-missing: 200 ok
+delete-generic-existing: 200 ok
+delete-generic-missing: 200 ok
+delete-image-nested: 200 ok
+delete-invalid-name: 400 bad request
+delete-invalid-subdir: 400 bad request
+upload-auth-missing: 401 unauthorized
+list-auth-missing: 401 unauthorized
+delete-auth-missing: 401 unauthorized
+upload-auth-invalid: 500 internal error
+list-auth-invalid: 500 internal error
+delete-auth-invalid: 500 internal error
+upload-auth-reader: 401 unauthorized
+list-auth-reader: 401 unauthorized
+delete-auth-reader: 401 unauthorized

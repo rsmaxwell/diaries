@@ -1,0 +1,62 @@
+{
+  "caseId" : "upload-image-octet-nested",
+  "capturedAtUtc" : "2026-09-12T18:33:22.165776800Z",
+  "requestTopic" : "diaries/rpc/request",
+  "request" : {
+    "function" : "uploadFile",
+    "args" : {
+      "name" : "image space.png",
+      "subdir" : "alpha/nested space",
+      "contentType" : "application/octet-stream",
+      "size" : 68,
+      "bytes" : "iVBORw0KGgoAAAANSUhEUgAAAAIAAAADCAIAAAA2iEnWAAAAC0lEQVR4XmNgwAIAABUAAdYvSVgAAAAASUVORK5CYII=",
+      "sha256" : "faec21e2271541116e24bf7f90bd7e714b8ed8d3491e79d7629d4eec753ff13d"
+    }
+  },
+  "requestAuth" : "editor",
+  "requestQos" : 0,
+  "requestRetain" : false,
+  "responseTopic" : "diaries/rpc/0024-baseline/response",
+  "correlationDataBase64" : "NWNmNTQyYmQtMTJjOS00YmIzLWJjN2QtYjcxYWE3ZmUzYzNj",
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "responseDuplicate" : false,
+  "responseProperties" : {
+    "validProperties" : [ 1, 2, 35, 8, 9, 38, 3, 126, 11 ],
+    "payloadFormat" : false,
+    "maximumQoS" : null,
+    "retainAvailable" : true,
+    "wildcardSubscriptionsAvailable" : true,
+    "subscriptionIdentifiersAvailable" : true,
+    "sharedSubscriptionAvailable" : true,
+    "serverKeepAlive" : null,
+    "receiveMaximum" : null,
+    "topicAliasMaximum" : null,
+    "topicAlias" : null,
+    "messageExpiryInterval" : null,
+    "sessionExpiryInterval" : null,
+    "willDelayInterval" : null,
+    "maximumPacketSize" : null,
+    "contentType" : null,
+    "responseTopic" : null,
+    "assignedClientIdentifier" : null,
+    "authenticationMethod" : null,
+    "responseInfo" : null,
+    "serverReference" : null,
+    "reasonString" : null,
+    "userProperties" : [ {
+      "key" : "status",
+      "value" : "{\"code\":200,\"message\":\"ok\"}"
+    } ],
+    "correlationData" : "NWNmNTQyYmQtMTJjOS00YmIzLWJjN2QtYjcxYWE3ZmUzYzNj",
+    "authenticationData" : null,
+    "subscriptionIdentifier" : null,
+    "subscriptionIdentifiers" : [ ]
+  },
+  "responseUserProperties" : [ {
+    "key" : "status",
+    "value" : "{\"code\":200,\"message\":\"ok\"}"
+  } ],
+  "payloadBase64" : "eyJuYW1lIjoiaW1hZ2Ugc3BhY2UucG5nIiwicGF0aCI6IkM6XFxVc2Vyc1xcUmljaGFyZFxcZ2l0XFxnaXRodWIuY29tXFxyc21heHdlbGxcXGRpYXJpZXMtYXBwbGljYXRpb25cXGRpYXJpZXNcXGJ1aWxkXFxycGMtYmFzZWxpbmUtMjAyNjA5MTJcXGZpbGVzXFxhbHBoYVxcbmVzdGVkIHNwYWNlXFxpbWFnZSBzcGFjZS5wbmciLCJ1cmwiOiIvZmlsZXMvYWxwaGFcXG5lc3RlZCBzcGFjZS9pbWFnZSBzcGFjZS5wbmciLCJzdWJkaXIiOiJhbHBoYVxcbmVzdGVkIHNwYWNlIiwic2l6ZSI6Njh9",
+  "payloadUtf8" : "{\"name\":\"image space.png\",\"path\":\"C:\\\\Users\\\\Richard\\\\git\\\\github.com\\\\rsmaxwell\\\\diaries-application\\\\diaries\\\\build\\\\rpc-baseline-20260912\\\\files\\\\alpha\\\\nested space\\\\image space.png\",\"url\":\"/files/alpha\\\\nested space/image space.png\",\"subdir\":\"alpha\\\\nested space\",\"size\":68}"
+}

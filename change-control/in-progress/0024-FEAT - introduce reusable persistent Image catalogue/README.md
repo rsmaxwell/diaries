@@ -72,10 +72,10 @@ repositoryImpl/ImageRepositoryImpl.java
 
 Register `Image` in `GetEntityManager`.
 
-Recommended uniqueness:
+Implemented Phase 2 path uniqueness (PostgreSQL 18, deterministic Unicode collation):
 
 ```text
-UNIQUE(relative_path)
+UNIQUE INDEX ON image (lower(relative_path COLLATE pg_catalog.pg_unicode_fast))
 ```
 
 Checksum may be indexed but should not necessarily be unique because intentional duplicate bytes at different historical paths may be legitimate.
@@ -140,9 +140,9 @@ No authoring/rendering required yet, but add model/decoder capability if useful 
 
 ## Detailed Implementation Steps
 
-- [ ] Design the Image table and explicit migration SQL.
-- [ ] Add Image JPA model, repository and DTOs.
-- [ ] Register Image entity with the responder EntityManager factory.
+- [x] Design the Image table and explicit migration SQL. See [migration/README.md](migration/README.md); applied and verified on development, with production execution reserved for Phase 11.
+- [x] Add Image JPA model, repository and DTOs. All of Phase 3 is implemented; retained replay and upload integration remain later phases.
+- [x] Register Image entity with the responder EntityManager factory. Phase 3.3 also wires the repository and adds Image context helpers.
 - [ ] Add `ImagePublishDTO` and retained-state contract test.
 - [ ] Refactor UploadFile around a reusable resolved-upload result containing relativePath, mimeType, size/checksum and Path.
 - [ ] Detect supported images from file content/type and extract dimensions.

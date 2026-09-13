@@ -1,0 +1,13 @@
+{
+  "caseId" : "upload-hash-mismatch",
+  "function" : "uploadFile",
+  "auth" : "editor",
+  "status" : {
+    "code" : 500,
+    "message" : "internal error"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : "java.lang.ClassNotFoundException: Provider for jakarta.ws.rs.ext.RuntimeDelegate cannot be found",
+  "payloadFormat" : "json"
+}

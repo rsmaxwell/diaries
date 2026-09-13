@@ -1,0 +1,55 @@
+{
+  "caseId" : "list-auth-invalid",
+  "capturedAtUtc" : "2026-09-12T18:33:22.329168900Z",
+  "requestTopic" : "diaries/rpc/request",
+  "request" : {
+    "function" : "listFiles",
+    "args" : { }
+  },
+  "requestAuth" : "invalid",
+  "requestQos" : 0,
+  "requestRetain" : false,
+  "responseTopic" : "diaries/rpc/0024-baseline/response",
+  "correlationDataBase64" : "YzYyODVjOWItNTg2Zi00MmI2LTliNzItOTU5MzY0OGRmZmE4",
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "responseDuplicate" : false,
+  "responseProperties" : {
+    "validProperties" : [ 1, 2, 35, 8, 9, 38, 3, 126, 11 ],
+    "payloadFormat" : false,
+    "maximumQoS" : null,
+    "retainAvailable" : true,
+    "wildcardSubscriptionsAvailable" : true,
+    "subscriptionIdentifiersAvailable" : true,
+    "sharedSubscriptionAvailable" : true,
+    "serverKeepAlive" : null,
+    "receiveMaximum" : null,
+    "topicAliasMaximum" : null,
+    "topicAlias" : null,
+    "messageExpiryInterval" : null,
+    "sessionExpiryInterval" : null,
+    "willDelayInterval" : null,
+    "maximumPacketSize" : null,
+    "contentType" : null,
+    "responseTopic" : null,
+    "assignedClientIdentifier" : null,
+    "authenticationMethod" : null,
+    "responseInfo" : null,
+    "serverReference" : null,
+    "reasonString" : null,
+    "userProperties" : [ {
+      "key" : "status",
+      "value" : "{\"code\":500,\"message\":\"internal error\"}"
+    } ],
+    "correlationData" : "YzYyODVjOWItNTg2Zi00MmI2LTliNzItOTU5MzY0OGRmZmE4",
+    "authenticationData" : null,
+    "subscriptionIdentifier" : null,
+    "subscriptionIdentifiers" : [ ]
+  },
+  "responseUserProperties" : [ {
+    "key" : "status",
+    "value" : "{\"code\":500,\"message\":\"internal error\"}"
+  } ],
+  "payloadBase64" : "IkludmFsaWQgY29tcGFjdCBKV1Qgc3RyaW5nOiBDb21wYWN0IEpXU3MgbXVzdCBjb250YWluIGV4YWN0bHkgMiBwZXJpb2QgY2hhcmFjdGVycywgYW5kIGNvbXBhY3QgSldFcyBtdXN0IGNvbnRhaW4gZXhhY3RseSA0LiAgRm91bmQ6IDAi",
+  "payloadUtf8" : "\"Invalid compact JWT string: Compact JWSs must contain exactly 2 period characters, and compact JWEs must contain exactly 4.  Found: 0\""
+}

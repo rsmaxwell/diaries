@@ -1,0 +1,36 @@
+{
+    "schemaVersion":  1,
+    "startedAtUtc":  "2026-09-12T19:25:00.4172816Z",
+    "completedAtUtc":  "2026-09-12T19:25:04.7189084Z",
+    "filesRoot":  "P:\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files",
+    "powershellVersion":  "5.1.26100.9444",
+    "baselineInventoryFile":  "files-root-inventory.detected.csv",
+    "baselineInventorySha256":  "eb2a751fa41411fec41f528ba5ee7be1ffee0ae3b400e09f18b3d2a91d513d05",
+    "entries":  97,
+    "regularFiles":  87,
+    "directories":  10,
+    "skippedLinks":  0,
+    "fullFileReadability":  {
+                                "checked":  true,
+                                "readableFiles":  87,
+                                "failedFiles":  0,
+                                "bytesRead":  93058826,
+                                "report":  "file-readability.csv",
+                                "method":  "Read-only streams through EOF, SHA-256 over all bytes, expected length and modification-time checks; reparse points skipped."
+                            },
+    "caseFoldedPathCollisions":  {
+                                     "checked":  true,
+                                     "entriesChecked":  97,
+                                     "groupCount":  0,
+                                     "conflictingEntries":  0,
+                                     "nonAsciiPaths":  0,
+                                     "report":  "path-conflicts.csv",
+                                     "rule":  "Slash separators, NFC normalization, invariant lowercase, ordinal comparison across files, directories and links.",
+                                     "note":  "Invariant lowercase is the explicit baseline rule; future database collation must be reviewed for Unicode equivalence. All-ASCII inventories avoid this ambiguity."
+                                 },
+    "baselineUnchanged":  true,
+    "inventoryStableDuringCheck":  true,
+    "clean":  true,
+    "imageDecodingChecked":  false,
+    "limitations":  "Point-in-time reads, not an atomic NAS snapshot or proof of image decoding. Original baseline lacks full-file hashes, so historical byte equality cannot be established beyond recorded metadata and headers."
+}

@@ -1,0 +1,44 @@
+{
+  "caseId" : "list-populated-root",
+  "function" : "listFiles",
+  "auth" : "editor",
+  "status" : {
+    "code" : 200,
+    "message" : "ok"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : {
+    "subdir" : "",
+    "items" : [ {
+      "name" : "alpha",
+      "size" : 0,
+      "mtime" : 1704164645000,
+      "dir" : true
+    }, {
+      "name" : "empty",
+      "size" : 0,
+      "mtime" : 1704164645000,
+      "dir" : true
+    }, {
+      "name" : "zeta",
+      "size" : 0,
+      "mtime" : 1704164645000,
+      "dir" : true
+    }, {
+      "name" : "dated.jpg",
+      "url" : "/files/dated.jpg",
+      "size" : 687,
+      "mtime" : 1704164646000,
+      "dateTaken" : 1577934245000,
+      "dir" : false
+    }, {
+      "name" : "plain.png",
+      "url" : "/files/plain.png",
+      "size" : 68,
+      "mtime" : 1704164645000,
+      "dir" : false
+    } ]
+  },
+  "payloadFormat" : "json"
+}

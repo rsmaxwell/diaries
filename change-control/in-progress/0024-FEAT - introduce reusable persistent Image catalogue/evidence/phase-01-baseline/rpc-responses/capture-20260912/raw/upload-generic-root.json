@@ -1,0 +1,61 @@
+{
+  "caseId" : "upload-generic-root",
+  "capturedAtUtc" : "2026-09-12T18:33:22.157319700Z",
+  "requestTopic" : "diaries/rpc/request",
+  "request" : {
+    "function" : "uploadFile",
+    "args" : {
+      "name" : "generic.bin",
+      "contentType" : "application/octet-stream",
+      "size" : 28,
+      "bytes" : "MDAyNCBzeW50aGV0aWMgZ2VuZXJpYyBmaWxlCg==",
+      "sha256" : "297156de8d5290bd94b07bd71ff097b75f95373f0cf3c62ccf937e29af93865c"
+    }
+  },
+  "requestAuth" : "editor",
+  "requestQos" : 0,
+  "requestRetain" : false,
+  "responseTopic" : "diaries/rpc/0024-baseline/response",
+  "correlationDataBase64" : "NzNlZmQ4MGMtMTI5OC00YzMyLWE5MTAtYmNiZjY4MWE2NjA1",
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "responseDuplicate" : false,
+  "responseProperties" : {
+    "validProperties" : [ 1, 2, 35, 8, 9, 38, 3, 126, 11 ],
+    "payloadFormat" : false,
+    "maximumQoS" : null,
+    "retainAvailable" : true,
+    "wildcardSubscriptionsAvailable" : true,
+    "subscriptionIdentifiersAvailable" : true,
+    "sharedSubscriptionAvailable" : true,
+    "serverKeepAlive" : null,
+    "receiveMaximum" : null,
+    "topicAliasMaximum" : null,
+    "topicAlias" : null,
+    "messageExpiryInterval" : null,
+    "sessionExpiryInterval" : null,
+    "willDelayInterval" : null,
+    "maximumPacketSize" : null,
+    "contentType" : null,
+    "responseTopic" : null,
+    "assignedClientIdentifier" : null,
+    "authenticationMethod" : null,
+    "responseInfo" : null,
+    "serverReference" : null,
+    "reasonString" : null,
+    "userProperties" : [ {
+      "key" : "status",
+      "value" : "{\"code\":200,\"message\":\"ok\"}"
+    } ],
+    "correlationData" : "NzNlZmQ4MGMtMTI5OC00YzMyLWE5MTAtYmNiZjY4MWE2NjA1",
+    "authenticationData" : null,
+    "subscriptionIdentifier" : null,
+    "subscriptionIdentifiers" : [ ]
+  },
+  "responseUserProperties" : [ {
+    "key" : "status",
+    "value" : "{\"code\":200,\"message\":\"ok\"}"
+  } ],
+  "payloadBase64" : "eyJuYW1lIjoiZ2VuZXJpYy5iaW4iLCJwYXRoIjoiQzpcXFVzZXJzXFxSaWNoYXJkXFxnaXRcXGdpdGh1Yi5jb21cXHJzbWF4d2VsbFxcZGlhcmllcy1hcHBsaWNhdGlvblxcZGlhcmllc1xcYnVpbGRcXHJwYy1iYXNlbGluZS0yMDI2MDkxMlxcZmlsZXNcXGdlbmVyaWMuYmluIiwidXJsIjoiL2ZpbGVzL2dlbmVyaWMuYmluIiwic3ViZGlyIjoiIiwic2l6ZSI6Mjh9",
+  "payloadUtf8" : "{\"name\":\"generic.bin\",\"path\":\"C:\\\\Users\\\\Richard\\\\git\\\\github.com\\\\rsmaxwell\\\\diaries-application\\\\diaries\\\\build\\\\rpc-baseline-20260912\\\\files\\\\generic.bin\",\"url\":\"/files/generic.bin\",\"subdir\":\"\",\"size\":28}"
+}

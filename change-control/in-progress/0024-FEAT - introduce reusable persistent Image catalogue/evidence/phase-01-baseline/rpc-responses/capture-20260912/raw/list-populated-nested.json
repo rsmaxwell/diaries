@@ -1,0 +1,57 @@
+{
+  "caseId" : "list-populated-nested",
+  "capturedAtUtc" : "2026-09-12T18:33:22.268757600Z",
+  "requestTopic" : "diaries/rpc/request",
+  "request" : {
+    "function" : "listFiles",
+    "args" : {
+      "subdir" : "alpha/nested space"
+    }
+  },
+  "requestAuth" : "editor",
+  "requestQos" : 0,
+  "requestRetain" : false,
+  "responseTopic" : "diaries/rpc/0024-baseline/response",
+  "correlationDataBase64" : "ZTEyYjU1ZDUtNDYwZC00YzMyLWI1MjItMDFiNGQ1NTI2ZjQz",
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "responseDuplicate" : false,
+  "responseProperties" : {
+    "validProperties" : [ 1, 2, 35, 8, 9, 38, 3, 126, 11 ],
+    "payloadFormat" : false,
+    "maximumQoS" : null,
+    "retainAvailable" : true,
+    "wildcardSubscriptionsAvailable" : true,
+    "subscriptionIdentifiersAvailable" : true,
+    "sharedSubscriptionAvailable" : true,
+    "serverKeepAlive" : null,
+    "receiveMaximum" : null,
+    "topicAliasMaximum" : null,
+    "topicAlias" : null,
+    "messageExpiryInterval" : null,
+    "sessionExpiryInterval" : null,
+    "willDelayInterval" : null,
+    "maximumPacketSize" : null,
+    "contentType" : null,
+    "responseTopic" : null,
+    "assignedClientIdentifier" : null,
+    "authenticationMethod" : null,
+    "responseInfo" : null,
+    "serverReference" : null,
+    "reasonString" : null,
+    "userProperties" : [ {
+      "key" : "status",
+      "value" : "{\"code\":200,\"message\":\"ok\"}"
+    } ],
+    "correlationData" : "ZTEyYjU1ZDUtNDYwZC00YzMyLWI1MjItMDFiNGQ1NTI2ZjQz",
+    "authenticationData" : null,
+    "subscriptionIdentifier" : null,
+    "subscriptionIdentifiers" : [ ]
+  },
+  "responseUserProperties" : [ {
+    "key" : "status",
+    "value" : "{\"code\":200,\"message\":\"ok\"}"
+  } ],
+  "payloadBase64" : "eyJzdWJkaXIiOiJhbHBoYVxcbmVzdGVkIHNwYWNlIiwiaXRlbXMiOlt7Im5hbWUiOiJpbWFnZSBzcGFjZS5wbmciLCJ1cmwiOiIvZmlsZXMvYWxwaGEvbmVzdGVkJTIwc3BhY2UvaW1hZ2UlMjBzcGFjZS5wbmciLCJzaXplIjo2OCwibXRpbWUiOjE3MDQxNjQ2NDUwMDAsImRpciI6ZmFsc2V9XX0=",
+  "payloadUtf8" : "{\"subdir\":\"alpha\\\\nested space\",\"items\":[{\"name\":\"image space.png\",\"url\":\"/files/alpha/nested%20space/image%20space.png\",\"size\":68,\"mtime\":1704164645000,\"dir\":false}]}"
+}

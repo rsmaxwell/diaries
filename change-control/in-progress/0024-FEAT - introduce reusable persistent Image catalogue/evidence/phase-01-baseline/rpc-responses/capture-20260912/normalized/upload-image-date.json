@@ -1,0 +1,19 @@
+{
+  "caseId" : "upload-image-date",
+  "function" : "uploadFile",
+  "auth" : "editor",
+  "status" : {
+    "code" : 200,
+    "message" : "ok"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : {
+    "name" : "dated.jpg",
+    "path" : "<FILES_ROOT>\\dated.jpg",
+    "url" : "/files/dated.jpg",
+    "subdir" : "",
+    "size" : 687
+  },
+  "payloadFormat" : "json"
+}

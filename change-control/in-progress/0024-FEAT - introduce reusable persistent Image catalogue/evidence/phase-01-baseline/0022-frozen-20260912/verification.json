@@ -1,0 +1,93 @@
+{
+  "captured_at_utc": "2026-09-12T18:15:12.9417395Z",
+  "status": "PARTIAL_MISSING_INVENTORY_AND_PLANNER",
+  "baseline": "0022-static-baseline-20260911",
+  "source_repository_path": "change-control/complete/0022-FEAT - migrate fragments to explicit page ownership and type/0022-static-baseline-20260911",
+  "source_copy_matches": 9,
+  "ledger_report_hash_matches": 8,
+  "planner_input_hashes_verified": false,
+  "candidate_coverage_verified": false,
+  "files": [
+    {
+      "source": "review-ledger.json",
+      "filename": "review-ledger.json",
+      "sha256": "29c89f797d996f351dbe404dd065199886ae3c24303b0e11174696f8b6c56d07",
+      "bytes": 105997,
+      "source_copy_match": true,
+      "ledger_sha256": null,
+      "ledger_match": null
+    },
+    {
+      "source": "reconciliation/diaries-static-reconciliation-with-images-3-20260911/summary.json",
+      "filename": "reconciliation/summary.json",
+      "sha256": "deff0ede0c4be86793b6c60d72805a8e4f0a195e6fbe8568eb8e65e60afe9428",
+      "bytes": 802,
+      "source_copy_match": true,
+      "ledger_sha256": "deff0ede0c4be86793b6c60d72805a8e4f0a195e6fbe8568eb8e65e60afe9428",
+      "ledger_match": true
+    },
+    {
+      "source": "reconciliation/diaries-static-reconciliation-with-images-3-20260911/source-manifest.json",
+      "filename": "reconciliation/source-manifest.json",
+      "sha256": "c279e87cf67104beba9fb044c2e97e6333cae517bff002072975ea1b0a9b25d0",
+      "bytes": 1067358,
+      "source_copy_match": true,
+      "ledger_sha256": "c279e87cf67104beba9fb044c2e97e6333cae517bff002072975ea1b0a9b25d0",
+      "ledger_match": true
+    },
+    {
+      "source": "reconciliation/diaries-static-reconciliation-with-images-3-20260911/source-manifest.csv",
+      "filename": "reconciliation/source-manifest.csv",
+      "sha256": "0d9fe2a86e7c3f9974c8c8765ea49b68aa64303c9ce141a2f81dddf4240df9a3",
+      "bytes": 549985,
+      "source_copy_match": true,
+      "ledger_sha256": "0d9fe2a86e7c3f9974c8c8765ea49b68aa64303c9ce141a2f81dddf4240df9a3",
+      "ledger_match": true
+    },
+    {
+      "source": "reconciliation/diaries-static-reconciliation-with-images-3-20260911/source-key-collisions.csv",
+      "filename": "reconciliation/source-key-collisions.csv",
+      "sha256": "9d1422f1cbaaf7f989f7d702caa8f470b592cc7ded5bd11856c85a65bd48cd4b",
+      "bytes": 18,
+      "source_copy_match": true,
+      "ledger_sha256": "9d1422f1cbaaf7f989f7d702caa8f470b592cc7ded5bd11856c85a65bd48cd4b",
+      "ledger_match": true
+    },
+    {
+      "source": "reconciliation/diaries-static-reconciliation-with-images-3-20260911/legacy-import-identity-collisions.csv",
+      "filename": "reconciliation/legacy-import-identity-collisions.csv",
+      "sha256": "ca9da2a0afd4b2453e85517f58492652e9f659bf5ea9024b47bb8098e24c02c3",
+      "bytes": 4370,
+      "source_copy_match": true,
+      "ledger_sha256": "ca9da2a0afd4b2453e85517f58492652e9f659bf5ea9024b47bb8098e24c02c3",
+      "ledger_match": true
+    },
+    {
+      "source": "reconciliation/diaries-static-reconciliation-with-images-3-20260911/source-reconciliation.json",
+      "filename": "reconciliation/source-reconciliation.json",
+      "sha256": "f4c4a2fac2b23907bf074db5c8b32aaacd70cde164b9cceb932140febe0bc84d",
+      "bytes": 904455,
+      "source_copy_match": true,
+      "ledger_sha256": "f4c4a2fac2b23907bf074db5c8b32aaacd70cde164b9cceb932140febe0bc84d",
+      "ledger_match": true
+    },
+    {
+      "source": "reconciliation/diaries-static-reconciliation-with-images-3-20260911/source-reconciliation.csv",
+      "filename": "reconciliation/source-reconciliation.csv",
+      "sha256": "def5d4d0a1dacb471da2a75c4f2312c89ca2e0b072b56035ce8b6a693acbdfdc",
+      "bytes": 410329,
+      "source_copy_match": true,
+      "ledger_sha256": "def5d4d0a1dacb471da2a75c4f2312c89ca2e0b072b56035ce8b6a693acbdfdc",
+      "ledger_match": true
+    },
+    {
+      "source": "reconciliation/diaries-static-reconciliation-with-images-3-20260911/database-reconciliation.csv",
+      "filename": "reconciliation/database-reconciliation.csv",
+      "sha256": "9fabec501be6c832d93aa177ad53a0d23ce16bf42b2ec731bc0aa1587824b19e",
+      "bytes": 304229,
+      "source_copy_match": true,
+      "ledger_sha256": "9fabec501be6c832d93aa177ad53a0d23ce16bf42b2ec731bc0aa1587824b19e",
+      "ledger_match": true
+    }
+  ]
+}

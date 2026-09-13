@@ -1,0 +1,13 @@
+{
+  "caseId" : "upload-duplicate",
+  "function" : "uploadFile",
+  "auth" : "editor",
+  "status" : {
+    "code" : 409,
+    "message" : "conflict"
+  },
+  "responseQos" : 1,
+  "responseRetain" : false,
+  "payload" : "File already exists: plain.png",
+  "payloadFormat" : "json"
+}
