@@ -141,40 +141,40 @@ No authoring/rendering required yet, but add model/decoder capability if useful 
 ## Detailed Implementation Steps
 
 - [x] Design the Image table and explicit migration SQL. See [migration/README.md](migration/README.md); applied and verified on development, with production execution reserved for Phase 11.
-- [x] Add Image JPA model, repository and DTOs. Phase 3 and Phase 4 retained replay are implemented; upload integration remains a later phase.
+- [x] Add Image JPA model, repository and DTOs. Phase 3, Phase 4 retained replay and Phase 6 upload integration are implemented.
 - [x] Register Image entity with the responder EntityManager factory. Phase 3.3 also wires the repository and adds Image context helpers.
 - [x] Add `ImagePublishDTO` and retained-state contract test. Phase 4 includes real-broker replay, updates and tombstones.
-- [ ] Refactor UploadFile around a reusable resolved-upload result containing relativePath, mimeType, size/checksum and Path.
-- [x] Detect supported images from file content/type and extract dimensions. Phase 5 shared inspector; upload handler integration remains Phase 6.
-- [ ] Create Image metadata on successful image upload.
-- [ ] Return `imageId` and Image metadata from successful image uploads while preserving existing useful response fields where compatibility requires.
-- [x] Implement compensation for partial failure in the Phase 5 shared service. Phase 6 must adopt it in UploadFile.
+- [x] Refactor UploadFile staging around a reusable resolved-upload result containing relativePath, mimeType, size/checksum and Path. See [6.1 evidence](evidence/phase-06-1-staging/README.md); full catalogue completion is now wired in 6.3.
+- [x] Detect supported images from file content/type and extract dimensions. Phase 5 shared inspector is used by Phase 6 uploads.
+- [x] Create Image metadata on successful image upload. See [6.3 evidence](evidence/phase-06-3-creation/README.md).
+- [x] Return `imageId` and Image metadata from successful image uploads while preserving existing useful response fields where compatibility requires.
+- [x] Implement compensation for partial failure in the Phase 5 shared service. Phase 6.3 uses it in UploadFile.
 - [x] Extend database replay to include Image topics. See [Phase 4 evidence](evidence/phase-04-catalogue/README.md).
 - [ ] Implement dry-run/reconciliation utility for pre-existing uploads.
 - [ ] Test reconciliation twice to prove idempotency.
 - [ ] Run reconciliation against a copy of the actual Files directory and record counts/conflicts.
 - [ ] Cross-reference reconciled Images with the 0022 embedded-image candidate inventory.
-- [ ] Make generic `DeleteFile` reject catalogued paths and directories containing them.
-- [ ] Make upload reject silent overwrite of a catalogued path.
-- [ ] Add path-alias, separator, case-policy and traversal tests for both guards.
+- [x] Make generic `DeleteFile` reject catalogued paths and directories containing them. See [Phase 7 evidence](evidence/phase-07-delete/README.md).
+- [x] Make upload reject silent overwrite of a catalogued path. Phase 6.2 checks ownership before staging and again under the promotion lock; see [conflict evidence](evidence/phase-06-2-conflicts/README.md).
+- [x] Add path-alias, separator, case-policy and traversal tests for both guards.
 - [x] Add Image catalogue lookup/listing mechanism needed by the future client chooser: canonical retained `diaries/images/{id}` topics. Consumers remain later work; no `ListImages` RPC added.
 
 Phase 5 implementation and validation are recorded in
 [shared services evidence](evidence/phase-05-services/README.md): 191 responder
 tests passed, including PostgreSQL/MQTT integration, plus packaged Windows and
-Linux checks. UploadFile/DeleteFile integration remains in Phases 6/7.
+Linux checks. UploadFile integration is complete through 6.3; Phase 7 DeleteFile protection is implemented. Reconciliation and deployment remain later work.
 
 ## Acceptance Criteria
 
-- [ ] Image upload creates exactly one matching Image row/topic.
-- [ ] The Image URL can be derived from `relativePath` and configuration.
-- [ ] No absolute deployment URL is persisted.
+- [x] Image upload creates exactly one matching Image row/topic.
+- [x] The Image URL can be derived from `relativePath` and configuration.
+- [x] No absolute deployment URL is persisted.
 - [ ] Existing uploaded supported images can be imported without duplicate rows on rerun.
-- [ ] Non-image files are not incorrectly catalogued.
+- [x] Non-image files are not incorrectly catalogued.
 - [ ] No ImageFragment is created by upload/reconciliation.
-- [ ] Retained replay after restart reconstructs the same Image catalogue.
-- [ ] Tests cover path, checksum, MIME, dimensions and failure compensation.
-- [ ] Generic file operations cannot delete or silently replace catalogued image bytes.
+- [x] Retained replay after restart reconstructs the same Image catalogue.
+- [x] Tests cover path, checksum, MIME, dimensions and failure compensation.
+- [x] Generic file operations cannot delete or silently replace catalogued image bytes.
 - [ ] Reconciliation records whether every 0022 candidate path is matched, missing, external or ambiguous.
 
 ## Dependencies

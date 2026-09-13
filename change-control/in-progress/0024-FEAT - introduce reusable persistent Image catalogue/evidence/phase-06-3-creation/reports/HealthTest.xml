@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.handlers.HealthTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-09-13T11:49:05.682Z" hostname="RICHARD-PC" time="0.014">
+  <properties/>
+  <testcase name="missingEntityManagerFactoryReturnsInternalError()" classname="com.rsmaxwell.diaries.responder.handlers.HealthTest" time="0.001"/>
+  <testcase name="entityManagerCreationFailureReturnsInternalError()" classname="com.rsmaxwell.diaries.responder.handlers.HealthTest" time="0.009"/>
+  <testcase name="closedEntityManagerFactoryReturnsInternalError()" classname="com.rsmaxwell.diaries.responder.handlers.HealthTest" time="0.001"/>
+  <testcase name="successfulProbeReturnsUpAndClosesShortLivedEntityManager()" classname="com.rsmaxwell.diaries.responder.handlers.HealthTest" time="0.001"/>
+  <testcase name="sharedEntityManagerIsNotUsed()" classname="com.rsmaxwell.diaries.responder.handlers.HealthTest" time="0.0"/>
+  <testcase name="failedQueryReturnsInternalErrorAndClosesShortLivedEntityManager()" classname="com.rsmaxwell.diaries.responder.handlers.HealthTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

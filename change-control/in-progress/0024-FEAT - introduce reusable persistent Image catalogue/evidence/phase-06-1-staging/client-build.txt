@@ -1,0 +1,33 @@
+
+> diaries-client@0.0.0 prebuild
+> npm run generate-build-info
+
+
+> diaries-client@0.0.0 generate-build-info
+> node scripts/generate-build-info.js
+
+Generated client build information: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client\public\assets\build-info.json
+Client version: 0.0.9-SNAPSHOT
+
+> diaries-client@0.0.0 build
+> ng build
+
+> Building...
+√ Building...
+Initial chunk files | Names                    |  Raw size
+main.js             | main                     |   3.48 MB | 
+chunk-ZWUFNZ3W.js   | -                        | 882.49 kB | 
+polyfills.js        | polyfills                |  89.77 kB | 
+styles.css          | styles                   |  62.08 kB | 
+chunk-I62FR4CF.js   | -                        |   5.62 kB | 
+
+                    | Initial total            |   4.52 MB
+
+Lazy chunk files    | Names                    |  Raw size
+chunk-PXF3EY7H.js   | ngx-quill-quill-CUw8Q_m0 | 423.29 kB | 
+chunk-5HVBA2IW.js   | browser                  | 155.12 kB | 
+
+Application bundle generation complete. [4.877 seconds]
+
+Output location: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client\dist\diaries-client
+

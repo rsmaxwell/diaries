@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-09-13T17:31:17.021Z" hostname="RICHARD-PC" time="0.29">
+  <properties/>
+  <testcase name="deletionWaitsForUploadCommitAndCannotDeleteItsWinner()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.024"/>
+  <testcase name="simultaneousUploadsProduceOneCommittedWinner()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.03"/>
+  <testcase name="rejectedStagingLeavesNoBytesOrDirectoriesAtTarget()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.018"/>
+  <testcase name="genericOctetStreamRemainsUncatalogued()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.02"/>
+  <testcase name="cataloguedPathIsProtectedEvenWithOverwriteAndMissingFile()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.03"/>
+  <testcase name="uncataloguedConflictAndSuccessfulOverwrite()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.039"/>
+  <testcase name="uncertainCommitPreservesPromotedFileAndBackupForRecovery()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.027"/>
+  <testcase name="publicationFailureRetainsCommittedImageAndProvidesReplayDto()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.022"/>
+  <testcase name="contentIdentityAndCommitPrecedePublication()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.018"/>
+  <testcase name="compensationNeverDeletesAReplacementFile()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.023"/>
+  <testcase name="definitiveRollbackRemovesNewFileAndRestoresOverwrittenBytes()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.036"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2026-09-13T11:23:58.928Z" hostname="RICHARD-PC" time="0.019">
+  <properties/>
+  <testcase name="checkTokenRejectsMissingExpiredAndUnexpectedSubjectTokens()" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.003"/>
+  <testcase name="generatedTokenContainsSubjectAndClaims()" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.001"/>
+  <testcase name="refreshTokenIsReadOnlyWhenItIsAString()" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.0"/>
+  <testcase name="missingAndInvalidRoleClaimsAreRejected()" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.002"/>
+  <testcase name="role READER satisfies requirement READER: true" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.002"/>
+  <testcase name="role READER satisfies requirement EDITOR: false" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.001"/>
+  <testcase name="role READER satisfies requirement ADMIN: false" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.001"/>
+  <testcase name="role EDITOR satisfies requirement READER: true" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.0"/>
+  <testcase name="role EDITOR satisfies requirement EDITOR: true" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.0"/>
+  <testcase name="role EDITOR satisfies requirement ADMIN: false" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.001"/>
+  <testcase name="role ADMIN satisfies requirement READER: true" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.0"/>
+  <testcase name="role ADMIN satisfies requirement EDITOR: true" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.0"/>
+  <testcase name="role ADMIN satisfies requirement ADMIN: true" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.001"/>
+  <testcase name="tokenSignedWithAnotherSecretIsRejected()" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.0"/>
+  <testcase name="activeClaimIsRequired()" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.002"/>
+  <testcase name="missingAccessTokenReturnsNull()" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.0"/>
+  <testcase name="accessTokenIsReadFromMqttUserProperties()" classname="com.rsmaxwell.diaries.responder.utilities.AuthorizationTest" time="0.001"/>
+  <system-out><![CDATA[12:23:58.929 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:23:58.929 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:23:58.930 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken: JWT has expired'
+12:23:58.931 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:23:58.932 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getRefreshToken
+12:23:58.932 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getRefreshToken
+12:23:58.932 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getRefreshToken: refreshToken not found
+12:23:58.932 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getRefreshToken
+12:23:58.932 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getRefreshToken: refreshToken is an unexpected type: java.lang.Integer
+12:23:58.946 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:23:58.946 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken: accessToken not found'
+12:23:58.946 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

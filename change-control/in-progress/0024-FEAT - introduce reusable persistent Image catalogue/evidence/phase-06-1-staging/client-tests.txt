@@ -1,0 +1,179 @@
+
+> diaries-client@0.0.0 test
+> ng test --watch=false --browsers=ChromeHeadless --include=src/app/mqtt/file-rpc-compatibility.spec.ts
+
+> Building...
+√ Building...
+Initial chunk files                 | Names                            |  Raw size
+chunk-QJXMKCMW.js                   | -                                |   1.35 MB | 
+test_main.js                        | test_main                        |   1.04 MB | 
+polyfills.js                        | polyfills                        |   1.01 MB | 
+spec-file-rpc-compatibility.spec.js | spec-file-rpc-compatibility.spec | 912.24 kB | 
+jasmine-cleanup-1.js                | jasmine-cleanup-1                |  67.20 kB | 
+styles.css                          | styles                           |  62.08 kB | 
+chunk-QIKXYFZM.js                   | -                                |   5.31 kB | 
+jasmine-cleanup-0.js                | jasmine-cleanup-0                | 519 bytes | 
+
+                                    | Initial total                    |   4.44 MB
+
+Application bundle generation complete. [2.693 seconds]
+
+13 09 2026 12:25:07.200:INFO [karma-server]: Karma v6.4.4 server started at http://localhost:9876/
+13 09 2026 12:25:07.201:INFO [launcher]: Launching browsers ChromeHeadless with concurrency unlimited
+13 09 2026 12:25:07.208:INFO [launcher]: Starting browser ChromeHeadless
+13 09 2026 12:25:08.400:INFO [Chrome Headless 152.0.0.0 (Windows 10)]: Connected on socket fteHkcHwwhvMs3HMAAAB with id 5459988
+Chrome Headless 152.0.0.0 (Windows 10): Executed 0 of 8[32m SUCCESS[39m (0 secs / 0 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 0 of 8[32m SUCCESS[39m (0 secs / 0 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 0 of 8[32m SUCCESS[39m (0 secs / 0 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: '10d1c6e3-d0dc-4988-9543-c0c9b7e46620', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 0 of 8[32m SUCCESS[39m (0 secs / 0 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: '10d1c6e3-d0dc-4988-9543-c0c9b7e46620', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 0 of 8[32m SUCCESS[39m (0 secs / 0 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 0 of 8[32m SUCCESS[39m (0 secs / 0 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 152.0.0.0 (Windows 10): Executed 1 of 8[32m SUCCESS[39m (0 secs / 0.005 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 1 of 8[32m SUCCESS[39m (0 secs / 0.005 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 1 of 8[32m SUCCESS[39m (0 secs / 0.005 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 409, message: 'conflict'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 409, message: 'conflict'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 2 of 8[32m SUCCESS[39m (0 secs / 0.006 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KChrome Headless 152.0.0.0 (Windows 10): Executed 3 of 8[32m SUCCESS[39m (0 secs / 0.009 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 3 of 8[32m SUCCESS[39m (0 secs / 0.009 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KChrome Headless 152.0.0.0 (Windows 10): Executed 4 of 8[32m SUCCESS[39m (0 secs / 0.01 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 4 of 8[32m SUCCESS[39m (0 secs / 0.01 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 4 of 8[32m SUCCESS[39m (0 secs / 0.01 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: 'aaccf0de-d368-411f-9ba8-67a36290f38f', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 4 of 8[32m SUCCESS[39m (0 secs / 0.01 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: 'aaccf0de-d368-411f-9ba8-67a36290f38f', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 4 of 8[32m SUCCESS[39m (0 secs / 0.01 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 4 of 8[32m SUCCESS[39m (0 secs / 0.01 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 152.0.0.0 (Windows 10): Executed 5 of 8[32m SUCCESS[39m (0 secs / 0.01 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 5 of 8[32m SUCCESS[39m (0 secs / 0.01 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 5 of 8[32m SUCCESS[39m (0 secs / 0.01 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: '989fc84e-7919-4cdc-853d-9d081ff4270d', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 5 of 8[32m SUCCESS[39m (0 secs / 0.01 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: '989fc84e-7919-4cdc-853d-9d081ff4270d', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 5 of 8[32m SUCCESS[39m (0 secs / 0.01 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 5 of 8[32m SUCCESS[39m (0 secs / 0.01 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 152.0.0.0 (Windows 10): Executed 6 of 8[32m SUCCESS[39m (0 secs / 0.011 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 6 of 8[32m SUCCESS[39m (0 secs / 0.011 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 6 of 8[32m SUCCESS[39m (0 secs / 0.011 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: 'b46aa9b0-8582-4dfe-a63a-d9b87119e4a3', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 6 of 8[32m SUCCESS[39m (0 secs / 0.011 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: 'b46aa9b0-8582-4dfe-a63a-d9b87119e4a3', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 6 of 8[32m SUCCESS[39m (0 secs / 0.011 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 6 of 8[32m SUCCESS[39m (0 secs / 0.011 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 152.0.0.0 (Windows 10): Executed 7 of 8[32m SUCCESS[39m (0 secs / 0.012 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 7 of 8[32m SUCCESS[39m (0 secs / 0.012 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 7 of 8[32m SUCCESS[39m (0 secs / 0.012 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: 'a665f4c2-0c5b-4953-8798-bbb404f57bed', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 7 of 8[32m SUCCESS[39m (0 secs / 0.012 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: 'a665f4c2-0c5b-4953-8798-bbb404f57bed', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 7 of 8[32m SUCCESS[39m (0 secs / 0.012 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 152.0.0.0 (Windows 10): Executed 7 of 8[32m SUCCESS[39m (0 secs / 0.012 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 152.0.0.0 (Windows 10): Executed 8 of 8[32m SUCCESS[39m (0 secs / 0.012 secs)
+[1A[2KChrome Headless 152.0.0.0 (Windows 10): Executed 8 of 8[32m SUCCESS[39m (0.016 secs / 0.012 secs)
+[32mTOTAL: 8 SUCCESS[39m

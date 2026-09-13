@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-09-13T17:29:19.909Z" hostname="RICHARD-PC" time="96.311">
+  <properties/>
+  <testcase name="actualFactoryAndResponderWiringRegisterAndExposeImage()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.035"/>
+  <testcase name="catalogueServicePublishesCommittedRowsAndUsesDatabasePathIdentity(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.134"/>
+  <testcase name="deleteGuardUsesLiteralPostgresPrefixesAndPreservesCatalogue(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.181"/>
+  <testcase name="activeTransactionRemainsOwnedByCaller()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.004"/>
+  <testcase name="uploadCommitsPublishesAndReplaysAfterPublisherFailure(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="25.85"/>
+  <testcase name="uploadGuardUsesPostgresUnicodeIdentityWithoutChangingRows(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.054"/>
+  <testcase name="uniqueConflictRollsBackAndContextRemainsUsable()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.01"/>
+  <testcase name="saveAndUpdateCommitBeforeReturningAndInflateIndependently()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.01"/>
+  <testcase name="databaseReplayAddsUnreferencedImagesAndPreservesChronologyTopics()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="68.191"/>
+  <system-out><![CDATA[18:29:22.012 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:22.016 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:22.050 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:22.050 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:22.054 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:22.054 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:22.057 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:22.057 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:22.060 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:22.060 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:22.063 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:22.063 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:22.066 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:22.066 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:22.077 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:22.077 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:22.088 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:22.088 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:22.435 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:22.435 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:22.820 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:22.820 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:22.823 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:22.823 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:22.826 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:22.826 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:23.185 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:23.185 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:47.963 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:47.963 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:47.967 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:47.967 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:47.970 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:47.970 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+18:29:47.973 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+18:29:47.973 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+]]></system-out>
+  <system-err><![CDATA[SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+]]></system-err>
+</testsuite>

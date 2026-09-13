@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.handlers.AuthenticationHandlerTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-09-13T11:49:05.652Z" hostname="RICHARD-PC" time="0.03">
+  <properties/>
+  <testcase name="signinRejectsAccountsThatAreNotActiveOrHaveNoRole()" classname="com.rsmaxwell.diaries.responder.handlers.AuthenticationHandlerTest" time="0.013"/>
+  <testcase name="refreshUsesCurrentAccountDetailsAndPreservesTheSession()" classname="com.rsmaxwell.diaries.responder.handlers.AuthenticationHandlerTest" time="0.004"/>
+  <testcase name="unknownUsernameAndWrongPasswordReturnTheSameFailure()" classname="com.rsmaxwell.diaries.responder.handlers.AuthenticationHandlerTest" time="0.003"/>
+  <testcase name="refreshRejectsMissingInactiveAndRolelessAccounts()" classname="com.rsmaxwell.diaries.responder.handlers.AuthenticationHandlerTest" time="0.006"/>
+  <testcase name="successfulSigninReturnsTokensWithTheAuthenticatedIdentityAndSession()" classname="com.rsmaxwell.diaries.responder.handlers.AuthenticationHandlerTest" time="0.004"/>
+  <system-out><![CDATA[12:49:05.667 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.RefreshToken - RefreshToken.handleRequest
+12:49:05.667 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getRefreshToken
+12:49:05.667 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.668 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.RefreshToken - RefreshToken.handleRequest: Authorization.check: OK!
+12:49:05.673 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.RefreshToken - RefreshToken.handleRequest
+12:49:05.673 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getRefreshToken
+12:49:05.673 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.674 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.RefreshToken - RefreshToken.handleRequest: Authorization.check: OK!
+12:49:05.677 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.RefreshToken - RefreshToken.handleRequest
+12:49:05.677 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getRefreshToken
+12:49:05.677 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.677 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.RefreshToken - RefreshToken.handleRequest: Authorization.check: OK!
+12:49:05.677 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.RefreshToken - RefreshToken.handleRequest
+12:49:05.677 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getRefreshToken
+12:49:05.677 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.678 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.RefreshToken - RefreshToken.handleRequest: Authorization.check: OK!
+12:49:05.678 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.RefreshToken - RefreshToken.handleRequest
+12:49:05.678 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getRefreshToken
+12:49:05.678 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.678 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.RefreshToken - RefreshToken.handleRequest: Authorization.check: OK!
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

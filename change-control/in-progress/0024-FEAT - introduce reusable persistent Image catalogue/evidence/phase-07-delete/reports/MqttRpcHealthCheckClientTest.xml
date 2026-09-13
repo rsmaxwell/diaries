@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.health.MqttRpcHealthCheckClientTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-09-13T17:30:57.368Z" hostname="RICHARD-PC" time="0.007">
+  <properties/>
+  <testcase name="rejectsResponseWithoutRpcStatusProperty()" classname="com.rsmaxwell.diaries.responder.health.MqttRpcHealthCheckClientTest" time="0.001"/>
+  <testcase name="preservesRpcErrorStatusWithEmptyPayload()" classname="com.rsmaxwell.diaries.responder.health.MqttRpcHealthCheckClientTest" time="0.005"/>
+  <testcase name="decodesStatusPropertyAndPayloadUsingResponderWireContract()" classname="com.rsmaxwell.diaries.responder.health.MqttRpcHealthCheckClientTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

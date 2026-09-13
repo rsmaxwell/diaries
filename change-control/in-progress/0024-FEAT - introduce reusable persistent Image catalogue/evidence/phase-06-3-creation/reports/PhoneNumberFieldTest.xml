@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" tests="32" skipped="0" failures="0" errors="0" timestamp="2026-09-13T11:49:05.022Z" hostname="RICHARD-PC" time="0.024">
+  <properties/>
+  <testcase name="accepts valid phone number: &quot;+44 (123) 4567890&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.005"/>
+  <testcase name="accepts valid phone number: &quot;+44 (1722) 842753&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;(01694) 603845&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;01700  592357&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;01256 456789&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.001"/>
+  <testcase name="accepts valid phone number: &quot;01228 789015&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;+44 141 222-3344&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.001"/>
+  <testcase name="accepts valid phone number: &quot;+44 (7854) 604311&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;01261 550125&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.001"/>
+  <testcase name="accepts valid phone number: &quot;(0123) 4567890&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;01303 678905&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.001"/>
+  <testcase name="accepts valid phone number: &quot;01872824672&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;+44 785 604-3111&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.001"/>
+  <testcase name="accepts valid phone number: &quot;+44 785 4604-311&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;+44 (1364) 604331&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;+44 (1346) 604311&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;+44 (785) 4604311&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;01427 550125&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.001"/>
+  <testcase name="accepts valid phone number: &quot;(01651) 550125&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;01697 550125&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.001"/>
+  <testcase name="accepts valid phone number: &quot;1470 670125&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;(1503) 555125&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.001"/>
+  <testcase name="accepts valid phone number: &quot;+33644444444&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.001"/>
+  <testcase name="accepts valid phone number: &quot;+33 6 44 44 44 44&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;+33 6 36 85 67 89&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.001"/>
+  <testcase name="accepts valid phone number: &quot;07-23456-7892&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;1234567890&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="accepts valid phone number: &quot;123)4567890&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.001"/>
+  <testcase name="rejects invalid phone number: &quot;(1)234567890666&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.002"/>
+  <testcase name="rejects invalid phone number: &quot;1&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <testcase name="rejects invalid phone number: &quot;123-4567&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.001"/>
+  <testcase name="rejects invalid phone number: &quot;Hello world&quot;" classname="com.rsmaxwell.diaries.responder.PhoneNumberFieldTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

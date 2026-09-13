@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.repositoryImpl.ImageRepositoryIntegrationTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-09-13T17:30:57.500Z" hostname="RICHARD-PC" time="0.136">
+  <properties/>
+  <testcase name="subtreeMatchingHonoursSegmentBoundaries()" classname="com.rsmaxwell.diaries.responder.repositoryImpl.ImageRepositoryIntegrationTest" time="0.013"/>
+  <testcase name="saveFindUpdateDeleteRoundTripsEveryColumnAndMatchesJpaMapping()" classname="com.rsmaxwell.diaries.responder.repositoryImpl.ImageRepositoryIntegrationTest" time="0.01"/>
+  <testcase name="updateCannotCreateACaseAliasOfAnotherImage()" classname="com.rsmaxwell.diaries.responder.repositoryImpl.ImageRepositoryIntegrationTest" time="0.005"/>
+  <testcase name="emptyRootAndMissingPathsHaveExplicitBehaviour()" classname="com.rsmaxwell.diaries.responder.repositoryImpl.ImageRepositoryIntegrationTest" time="0.004"/>
+  <testcase name="orderedListingAndDuplicateChecksumsAreDeterministic()" classname="com.rsmaxwell.diaries.responder.repositoryImpl.ImageRepositoryIntegrationTest" time="0.007"/>
+  <testcase name="quotesAndSqlLookingTextStayBoundData()" classname="com.rsmaxwell.diaries.responder.repositoryImpl.ImageRepositoryIntegrationTest" time="0.006"/>
+  <testcase name="callerRollbackRemovesSavedRowsAndWritesRequireATransaction()" classname="com.rsmaxwell.diaries.responder.repositoryImpl.ImageRepositoryIntegrationTest" time="0.003"/>
+  <testcase name="percentUnderscoreAndEscapeMarkerAreLiteralInSubtreeLookups()" classname="com.rsmaxwell.diaries.responder.repositoryImpl.ImageRepositoryIntegrationTest" time="0.005"/>
+  <testcase name="caseAliasesUseTheSameUnicodeExpressionAsTheUniqueIndex()" classname="com.rsmaxwell.diaries.responder.repositoryImpl.ImageRepositoryIntegrationTest" time="0.004"/>
+  <testcase name="invalidPathsAndMetadataAreRejectedBeforeQueries()" classname="com.rsmaxwell.diaries.responder.repositoryImpl.ImageRepositoryIntegrationTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

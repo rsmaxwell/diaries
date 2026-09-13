@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.utilities.ImagePathPolicyTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-09-13T11:34:53.994Z" hostname="RICHARD-PC" time="0.059">
+  <properties/>
+  <testcase name="portableNormalizationPreservesLiteralCharactersAndCase()" classname="com.rsmaxwell.diaries.responder.utilities.ImagePathPolicyTest" time="0.004"/>
+  <testcase name="absoluteTraversalUriAndNonPortablePathsFailOnEveryOperatingSystem()" classname="com.rsmaxwell.diaries.responder.utilities.ImagePathPolicyTest" time="0.002"/>
+  <testcase name="symbolicLinksOrWindowsJunctionsCannotEscapeRoot()" classname="com.rsmaxwell.diaries.responder.utilities.ImagePathPolicyTest" time="0.042"/>
+  <testcase name="resolutionIsReadOnlyAndRejectsCaseAliases()" classname="com.rsmaxwell.diaries.responder.utilities.ImagePathPolicyTest" time="0.009"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

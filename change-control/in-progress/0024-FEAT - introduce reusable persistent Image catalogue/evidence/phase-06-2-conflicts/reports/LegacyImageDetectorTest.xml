@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.migration.migration0022.LegacyImageDetectorTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-09-13T11:34:33.990Z" hostname="RICHARD-PC" time="0.008">
+  <properties/>
+  <testcase name="handlesNullAndBlankInput()" classname="com.rsmaxwell.diaries.responder.migration.migration0022.LegacyImageDetectorTest" time="0.001"/>
+  <testcase name="doesNotTreatEscapedOrPlainTextAsAnImageElement()" classname="com.rsmaxwell.diaries.responder.migration.migration0022.LegacyImageDetectorTest" time="0.006"/>
+  <testcase name="findsImagesInTolerantHtmlAndPreservesDocumentOrder()" classname="com.rsmaxwell.diaries.responder.migration.migration0022.LegacyImageDetectorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

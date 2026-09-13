@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.dto.ImageDtoTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-09-13T11:49:05.628Z" hostname="RICHARD-PC" time="0.019">
+  <properties/>
+  <testcase name="buildersAndNoArgConstructionDefaultCaptionsAndVersion()" classname="com.rsmaxwell.diaries.responder.dto.ImageDtoTest" time="0.001"/>
+  <testcase name="supportedMimesAndLiteralPercentUnderscorePathsRemainCasePreserving()" classname="com.rsmaxwell.diaries.responder.dto.ImageDtoTest" time="0.001"/>
+  <testcase name="conversionsPreserveEveryValueIncludingIdentityAndVersion()" classname="com.rsmaxwell.diaries.responder.dto.ImageDtoTest" time="0.004"/>
+  <testcase name="mappingMatchesPhaseTwoSqlAndValidationRunsBeforeJpaWrites()" classname="com.rsmaxwell.diaries.responder.dto.ImageDtoTest" time="0.0"/>
+  <testcase name="mqttMetadataAndTombstoneUsePublisherQosOneAndRetain()" classname="com.rsmaxwell.diaries.responder.dto.ImageDtoTest" time="0.003"/>
+  <testcase name="invalidMetadataCannotCrossConversionOrSerializationBoundaries()" classname="com.rsmaxwell.diaries.responder.dto.ImageDtoTest" time="0.002"/>
+  <testcase name="unsavedMetadataIsAllowedButCannotBePublishedWithoutIdentity()" classname="com.rsmaxwell.diaries.responder.dto.ImageDtoTest" time="0.004"/>
+  <testcase name="nonCanonicalPathsAreRejectedWithoutNormalizationOrFilesystemAccess()" classname="com.rsmaxwell.diaries.responder.dto.ImageDtoTest" time="0.001"/>
+  <testcase name="mapPublicationAndIdentityOnlyTombstoneTouchOnlyCanonicalImageTopic()" classname="com.rsmaxwell.diaries.responder.dto.ImageDtoTest" time="0.0"/>
+  <testcase name="metadataJsonHasExactlyTheTenContractFieldsAndUnicodeValues()" classname="com.rsmaxwell.diaries.responder.dto.ImageDtoTest" time="0.001"/>
+  <system-out><![CDATA[12:49:05.639 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+12:49:05.639 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

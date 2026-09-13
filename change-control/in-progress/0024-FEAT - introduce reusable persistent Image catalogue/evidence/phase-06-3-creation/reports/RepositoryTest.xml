@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.RepositoryTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-09-13T11:49:05.046Z" hostname="RICHARD-PC" time="0.451">
+  <properties/>
+  <testcase name="testPageRepository()" classname="com.rsmaxwell.diaries.responder.RepositoryTest" time="0.021"/>
+  <testcase name="testDiaryRepository()" classname="com.rsmaxwell.diaries.responder.RepositoryTest" time="0.013"/>
+  <testcase name="testPersonRepository()" classname="com.rsmaxwell.diaries.responder.RepositoryTest" time="0.023"/>
+  <system-out><![CDATA[Hibernate: delete from page
+12:49:05.443 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - deleteAll --> count: 0
+Hibernate: delete from diary
+12:49:05.444 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - deleteAll --> count: 0
+Hibernate: insert into diary ( version, sequence, name ) values ( 0, 1, 'hardship' ) returning id
+12:49:05.446 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Diary --> id: 2097
+Hibernate: insert into diary ( version, sequence, name ) values ( 0, 1, 'horrorpoplar' ) returning id
+12:49:05.446 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Diary --> id: 2098
+Hibernate: insert into diary ( version, sequence, name ) values ( 0, 1, 'swarmbreath' ) returning id
+12:49:05.447 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Diary --> id: 2099
+Hibernate: select count(*) from diary
+Hibernate: insert into page ( diary_id, name, sequence, extension, width, height, version ) values ( 2097, 'structure', 1, 'jpg', 123, 456, 0 ) returning id
+12:49:05.449 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Page --> id: 1451
+Hibernate: insert into page ( diary_id, name, sequence, extension, width, height, version ) values ( 2097, 'deficit', 1, 'jpg', 123, 456, 0 ) returning id
+12:49:05.450 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Page --> id: 1452
+Hibernate: insert into page ( diary_id, name, sequence, extension, width, height, version ) values ( 2097, 'asset', 1, 'jpg', 123, 456, 0 ) returning id
+12:49:05.450 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Page --> id: 1453
+Hibernate: insert into page ( diary_id, name, sequence, extension, width, height, version ) values ( 2098, 'intermediate', 1, 'jpg', 123, 456, 0 ) returning id
+12:49:05.451 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Page --> id: 1454
+Hibernate: insert into page ( diary_id, name, sequence, extension, width, height, version ) values ( 2098, 'calendar', 1, 'jpg', 123, 456, 0 ) returning id
+12:49:05.451 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Page --> id: 1455
+Hibernate: insert into page ( diary_id, name, sequence, extension, width, height, version ) values ( 2098, 'body', 1, 'jpg', 123, 456, 0 ) returning id
+12:49:05.451 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Page --> id: 1456
+Hibernate: insert into page ( diary_id, name, sequence, extension, width, height, version ) values ( 2099, 'basin', 1, 'jpg', 123, 456, 0 ) returning id
+12:49:05.452 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Page --> id: 1457
+Hibernate: insert into page ( diary_id, name, sequence, extension, width, height, version ) values ( 2099, 'deal', 1, 'jpg', 123, 456, 0 ) returning id
+12:49:05.452 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Page --> id: 1458
+Hibernate: insert into page ( diary_id, name, sequence, extension, width, height, version ) values ( 2099, 'promotion', 1, 'jpg', 123, 456, 0 ) returning id
+12:49:05.452 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Page --> id: 1459
+Hibernate: select count(*) from page
+Hibernate: select id, diary_id, name, sequence, extension, width, height, version from page where diary_id = 2098 ORDER BY sequence NULLS LAST, id
+Hibernate: select id, diary_id, name, sequence, extension, width, height, version from page where diary_id = 2098 and name = 'calendar' ORDER BY sequence NULLS LAST, id
+Hibernate: select id, diary_id, name, sequence, extension, width, height, version from page where diary_id = 2098 and name = 'junk' ORDER BY sequence NULLS LAST, id
+Hibernate: delete from page
+12:49:05.457 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - deleteAll --> count: 9
+Hibernate: select count(*) from page
+Hibernate: delete from diary
+12:49:05.458 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - deleteAll --> count: 3
+Hibernate: select count(*) from diary
+Hibernate: delete from diary
+12:49:05.461 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - deleteAll --> count: 0
+Hibernate: insert into diary ( version, sequence, name ) values ( 0, 1, 'hardship' ) returning id
+12:49:05.461 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Diary --> id: 2100
+Hibernate: insert into diary ( version, sequence, name ) values ( 0, 1, 'horrorpoplar' ) returning id
+12:49:05.461 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Diary --> id: 2101
+Hibernate: insert into diary ( version, sequence, name ) values ( 0, 1, 'swarmbreath' ) returning id
+12:49:05.462 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Diary --> id: 2102
+Hibernate: insert into diary ( version, sequence, name ) values ( 0, 1, 'sickowither' ) returning id
+12:49:05.462 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Diary --> id: 2103
+Hibernate: insert into diary ( version, sequence, name ) values ( 0, 1, 'pushprovision' ) returning id
+12:49:05.462 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Diary --> id: 2104
+Hibernate: insert into diary ( version, sequence, name ) values ( 0, 1, 'fantasy' ) returning id
+12:49:05.463 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Diary --> id: 2105
+Hibernate: insert into diary ( version, sequence, name ) values ( 0, 1, 'shine' ) returning id
+12:49:05.463 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Diary --> id: 2106
+Hibernate: insert into diary ( version, sequence, name ) values ( 0, 1, 'indulge' ) returning id
+12:49:05.463 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Diary --> id: 2107
+Hibernate: select count(*) from diary
+Hibernate: insert into diary ( version, sequence, name ) values ( 0, 1, 'hemisphere' ) returning id
+12:49:05.464 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Diary --> id: 2108
+Hibernate: insert into diary ( version, sequence, name ) values ( 0, 1, 'judicial' ) returning id
+12:49:05.464 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Diary --> id: 2109
+Hibernate: select id,  version, sequence, name from diary ORDER BY sequence NULLS LAST, id
+Hibernate: select id, version, sequence, name from diary where id = 2100 ORDER BY sequence NULLS LAST, id
+Hibernate: select id, version, sequence, name from diary where id = 2101 ORDER BY sequence NULLS LAST, id
+Hibernate: select id, version, sequence, name from diary where id = 2102 ORDER BY sequence NULLS LAST, id
+Hibernate: select id, version, sequence, name from diary where id = 2103 ORDER BY sequence NULLS LAST, id
+Hibernate: select id, version, sequence, name from diary where id = 2104 ORDER BY sequence NULLS LAST, id
+Hibernate: select id, version, sequence, name from diary where id = 2105 ORDER BY sequence NULLS LAST, id
+Hibernate: select id, version, sequence, name from diary where id = 2106 ORDER BY sequence NULLS LAST, id
+Hibernate: select id, version, sequence, name from diary where id = 2107 ORDER BY sequence NULLS LAST, id
+Hibernate: select id, version, sequence, name from diary where id = 2108 ORDER BY sequence NULLS LAST, id
+Hibernate: select id, version, sequence, name from diary where id = 2109 ORDER BY sequence NULLS LAST, id
+Hibernate: select count(*) from diary
+Hibernate: select count(*) from diary
+Hibernate: select exists(select 1 from diary where id = 2100)
+Hibernate: delete from diary where id = '2100'
+12:49:05.470 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 1
+Hibernate: select exists(select 1 from diary where id = 2100)
+Hibernate: select count(*) from diary
+Hibernate: select exists(select 1 from diary where id = 2101)
+Hibernate: delete from diary where id = '2101'
+12:49:05.471 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 1
+Hibernate: select exists(select 1 from diary where id = 2101)
+Hibernate: select count(*) from diary
+Hibernate: delete from diary
+12:49:05.472 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - deleteAll --> count: 8
+Hibernate: select count(*) from diary
+Hibernate: delete from person
+12:49:05.476 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - deleteAll --> count: 0
+Hibernate: insert into person ( username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role ) values ( '007', 'secrethash', 'James', 'Bond', '007', 'bond@mi6.uk.gov', 44, 56220218978, 'ACTIVE', 'EDITOR' ) returning id
+12:49:05.484 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Person --> id: 1607
+Hibernate: insert into person ( username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role ) values ( 'horrorpoplar', 'maze', 'Ayana', 'Bush', 'bob', 'bobhorror@acer.com', 44, 54990891104, 'ACTIVE', 'EDITOR' ) returning id
+12:49:05.484 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Person --> id: 1608
+Hibernate: insert into person ( username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role ) values ( 'swarmbreath', 'architect', 'Frederick', 'Costa', 'jill', 'jgswarm@@london.edu.uk', 44, 12190125697, 'ACTIVE', 'EDITOR' ) returning id
+12:49:05.485 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Person --> id: 1609
+Hibernate: insert into person ( username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role ) values ( 'sickowither', 'direct', 'Brian', 'Villa', 'greg', 'gyobbo@os.co.uk', 44, 46431927722, 'ACTIVE', 'EDITOR' ) returning id
+12:49:05.485 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Person --> id: 1610
+Hibernate: insert into person ( username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role ) values ( 'pushprovision', 'landowner', 'Evelyn', 'Benton', 'top', 'beefsteak@waitrose.co.uk', 44, 50782257157, 'ACTIVE', 'EDITOR' ) returning id
+12:49:05.485 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Person --> id: 1611
+Hibernate: insert into person ( username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role ) values ( 'fantasy', 'quarter', 'Jazlynn', 'Collins', 'toby', 'thomashall@ntlworld.co.uk', 44, 53377002182, 'ACTIVE', 'EDITOR' ) returning id
+12:49:05.486 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Person --> id: 1612
+Hibernate: insert into person ( username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role ) values ( 'shine', 'conductor', 'Sean', 'Pierce', 'sue', 'qwerty@outlook.com', 44, 42326833933, 'ACTIVE', 'EDITOR' ) returning id
+12:49:05.486 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Person --> id: 1613
+Hibernate: insert into person ( username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role ) values ( 'indulge', 'action', 'Gisselle', 'Moss', 'tom', 'gross@hotmail.com', 44, 39906867554, 'ACTIVE', 'EDITOR' ) returning id
+12:49:05.486 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Person --> id: 1614
+Hibernate: select count(*) from person
+Hibernate: insert into person ( username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role ) values ( 'hemisphere', 'horseshoe', 'Cherish', 'Nguyen', 'georgy', 'george@hotmail.com', 44, 35598005196, 'ACTIVE', 'EDITOR' ) returning id
+12:49:05.487 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Person --> id: 1615
+Hibernate: insert into person ( username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role ) values ( 'judicial', 'sigh', 'Tianna ', 'Meza', 'fred', 'fredbloggs@vista.co.uk', 44, 35598005196, 'ACTIVE', 'EDITOR' ) returning id
+12:49:05.487 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Person --> id: 1616
+Hibernate: select id,  username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role from person
+Hibernate: select id, username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role from person where id = 1607
+Hibernate: select id, username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role from person where id = 1608
+Hibernate: select id, username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role from person where id = 1609
+Hibernate: select id, username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role from person where id = 1610
+Hibernate: select id, username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role from person where id = 1611
+Hibernate: select id, username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role from person where id = 1612
+Hibernate: select id, username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role from person where id = 1613
+Hibernate: select id, username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role from person where id = 1614
+Hibernate: select id, username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role from person where id = 1615
+Hibernate: select id, username, passwordHash, firstName, lastName, knownas, email, countryCode, nationalNumber, status, role from person where id = 1616
+Hibernate: select count(*) from person
+Hibernate: select exists(select 1 from person where id = 1608)
+Hibernate: delete from person where id = '1608'
+12:49:05.495 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 1
+Hibernate: select exists(select 1 from person where id = 1608)
+Hibernate: select count(*) from person
+Hibernate: delete from person
+12:49:05.496 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - deleteAll --> count: 9
+Hibernate: select count(*) from person
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

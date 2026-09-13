@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.handlers.UploadStagingTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2026-09-13T11:49:05.696Z" hostname="RICHARD-PC" time="0.482">
+  <properties/>
+  <testcase name="allRejectedInputsLeaveExistingBytesAndNoParts()" classname="com.rsmaxwell.diaries.responder.handlers.UploadStagingTest" time="0.082"/>
+  <testcase name="repositoryFailureRemovesNewFileAndRestoresAnOverwrite()" classname="com.rsmaxwell.diaries.responder.handlers.UploadStagingTest" time="0.064"/>
+  <testcase name="publicationFailureReportsCommittedStateAndLeavesReplayableMetadata()" classname="com.rsmaxwell.diaries.responder.handlers.UploadStagingTest" time="0.034"/>
+  <testcase name="validImageKeepsLegacyResponseAndGenericFilesStillWork()" classname="com.rsmaxwell.diaries.responder.handlers.UploadStagingTest" time="0.075"/>
+  <testcase name="conflictAndPromotionFailureCleanStaging()" classname="com.rsmaxwell.diaries.responder.handlers.UploadStagingTest" time="0.052"/>
+  <testcase name="missingCatalogueConfigurationFailsClosed()" classname="com.rsmaxwell.diaries.responder.handlers.UploadStagingTest" time="0.006"/>
+  <testcase name="uncataloguedOverwriteCreatesOneImage()" classname="com.rsmaxwell.diaries.responder.handlers.UploadStagingTest" time="0.03"/>
+  <testcase name="retryAndOverwriteCannotDuplicateCommittedImage()" classname="com.rsmaxwell.diaries.responder.handlers.UploadStagingTest" time="0.027"/>
+  <testcase name="authenticationPrecedesAnyFileWork()" classname="com.rsmaxwell.diaries.responder.handlers.UploadStagingTest" time="0.006"/>
+  <testcase name="ownedPathsAndAliasesAreConflictsEvenWhenFileMissing()" classname="com.rsmaxwell.diaries.responder.handlers.UploadStagingTest" time="0.021"/>
+  <testcase name="reservedDirectoryCannotBeListedOrDeletedAndDoesNotAppearInListing()" classname="com.rsmaxwell.diaries.responder.handlers.UploadStagingTest" time="0.02"/>
+  <testcase name="ownershipIsRecheckedUnderLockBeforeChangingTarget()" classname="com.rsmaxwell.diaries.responder.handlers.UploadStagingTest" time="0.024"/>
+  <testcase name="simultaneousNoOverwriteRequestsHaveOneWinner()" classname="com.rsmaxwell.diaries.responder.handlers.UploadStagingTest" time="0.038"/>
+  <system-out><![CDATA[12:49:05.701 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.701 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.717 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.717 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.730 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.730 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.731 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.731 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.741 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.741 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.751 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.751 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.761 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.762 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.763 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.763 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.764 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.764 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.765 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.765 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.780 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.780 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.805 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.805 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.845 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.845 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.871 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.871 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.879 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.879 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.919 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.919 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.955 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.955 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:05.978 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:05.978 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.007 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.007 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.014 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.014 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.043 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.043 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.062 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.062 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.063 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.063 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.071 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.071 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken: accessToken not found'
+12:49:06.071 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.072 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.072 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.077 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.078 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.079 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.079 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.080 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.080 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.082 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.082 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.084 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.084 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.085 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.085 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.086 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.086 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.088 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.088 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.089 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.089 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.090 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.090 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.091 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.091 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.092 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.092 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.099 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: args: {}
+12:49:06.099 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.100 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.100 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: Authorization.check: OK!
+12:49:06.100 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: filesDir: 'C:\Users\Richard\AppData\Local\Temp\junit-4817693570479396679\files'
+12:49:06.105 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: args: {"subdir":".image-staging"}
+12:49:06.105 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.105 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.105 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: Authorization.check: OK!
+12:49:06.105 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: filesDir: 'C:\Users\Richard\AppData\Local\Temp\junit-4817693570479396679\files'
+12:49:06.106 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.DeleteFile - DeleteFile.handleRequest: args: {"name":"private.png","subdir":".image-staging"}
+12:49:06.106 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.106 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.107 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.DeleteFile - DeleteFile.handleRequest: Authorization.check: OK!
+12:49:06.107 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.DeleteFile - UploadFile.handleRequest: filesDir: 'C:\Users\Richard\AppData\Local\Temp\junit-4817693570479396679\files'
+12:49:06.107 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: args: {"subdir":".IMAGE-STAGING"}
+12:49:06.107 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.107 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.108 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: Authorization.check: OK!
+12:49:06.108 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: filesDir: 'C:\Users\Richard\AppData\Local\Temp\junit-4817693570479396679\files'
+12:49:06.109 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.DeleteFile - DeleteFile.handleRequest: args: {"name":"private.png","subdir":".IMAGE-STAGING"}
+12:49:06.109 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.109 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.109 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.DeleteFile - DeleteFile.handleRequest: Authorization.check: OK!
+12:49:06.109 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.DeleteFile - UploadFile.handleRequest: filesDir: 'C:\Users\Richard\AppData\Local\Temp\junit-4817693570479396679\files'
+12:49:06.110 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: args: {"subdir":"x/../.image-staging"}
+12:49:06.110 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.110 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.110 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: Authorization.check: OK!
+12:49:06.110 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: filesDir: 'C:\Users\Richard\AppData\Local\Temp\junit-4817693570479396679\files'
+12:49:06.111 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.DeleteFile - DeleteFile.handleRequest: args: {"name":"private.png","subdir":"x/../.image-staging"}
+12:49:06.111 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.111 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.111 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.DeleteFile - DeleteFile.handleRequest: Authorization.check: OK!
+12:49:06.111 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.DeleteFile - UploadFile.handleRequest: filesDir: 'C:\Users\Richard\AppData\Local\Temp\junit-4817693570479396679\files'
+12:49:06.119 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.119 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.143 [pool-2-thread-1] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.143 [pool-2-thread-2] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+12:49:06.143 [pool-2-thread-1] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+12:49:06.143 [pool-2-thread-2] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

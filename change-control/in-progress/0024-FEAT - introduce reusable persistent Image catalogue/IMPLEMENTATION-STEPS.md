@@ -421,32 +421,54 @@ existing useful response fields.
 
 ### 6.1 Staging
 
-- [ ] Before activating staging, exclude `.image-staging` from file listing,
-      generic deletion and every HTTP/static serving route. Verify server-only
-      root permissions, hard links, atomic moves and locks on the target mount.
-- [ ] Resolve the Files root once through `ImagePathPolicy`.
-- [ ] Decode into a private temporary file on the same filesystem as the target.
-- [ ] Calculate SHA-256 during decoding and reuse it; do not read the full file
+- [x] Exclude `.image-staging` from file listing, generic deletion and the
+      responder HTTP/static routes; probe hard links, atomic moves and locks
+      on the configured mount before staging. Enforce POSIX staging mode 0700.
+- [x] Resolve the Files root once through `ImagePathPolicy` per upload.
+- [x] Decode into a private temporary file on the same filesystem as the target.
+- [x] Calculate SHA-256 during decoding and reuse it; do not read the full file
       merely to hash it again unless post-promotion verification is required.
-- [ ] Inspect bytes before promotion and delete the temporary file on every
+- [x] Inspect bytes before promotion and delete the temporary file on every
       rejected path.
-- [ ] Never log uploaded bytes, access tokens or full sensitive filesystem
+- [x] Never log uploaded bytes, access tokens or full sensitive filesystem
       configuration.
+
+Implemented 2026-09-13; see [6.1 evidence](evidence/phase-06-1-staging/README.md).
+Server-only root ownership/Windows ACLs and any externally managed static
+serving routes remain deployment checks before activation on a production
+mount (Phase 11). Local checks used temporary files only. Existing generic
+promotion and the five-field upload response remain until 6.2/6.3 integrate
+catalogue conflict rules, committed Image creation and retained publication.
 
 ### 6.2 Conflict rules
 
+Implemented 2026-09-13. See [6.2 evidence](evidence/phase-06-2-conflicts/README.md).
+UploadFile uses PostgreSQL ownership lookup before staging and rechecks under
+the shared promotion lock. The service's guarded generic mode retains the
+existing response and performs no Image insert/publication until 6.3 enables
+full completion. Both modes use the same backup/compensation implementation.
+
 Before changing the target:
 
-- reject any upload whose canonical path already belongs to an Image, whether
+- [x] reject any upload whose canonical path already belongs to an Image, whether
   `overwrite` is true or false;
-- reject a case/separator alias of a catalogued path;
-- retain the existing conflict when a target file exists and overwrite is false;
-- permit the existing overwrite behaviour only for an uncatalogued target;
-- preserve and restore that uncatalogued target if later catalogue creation
+- [x] reject a case/separator alias of a catalogued path;
+- [x] retain the existing conflict when a target file exists and overwrite is false;
+- [x] permit the existing overwrite behaviour only for an uncatalogued target;
+- [x] preserve and restore that uncatalogued target if later catalogue creation
   fails;
-- leave file, database and retained topic unchanged for every rejected request.
+- [x] leave file, database and retained topic unchanged for every rejected request.
 
 ### 6.3 Catalogue creation and response
+
+- [x] Wire full catalogue completion into UploadFile.
+- [x] Return the additive UploadFileResponse DTO, including explicit generic nulls.
+- [x] Await QoS 1 retained publication after commit and report recoverable failures.
+- [x] Test handler compensation/retry/concurrency and PostgreSQL/MQTT replay.
+
+Implemented 2026-09-13; see [6.3 evidence](evidence/phase-06-3-creation/README.md).
+This supersedes the temporary generic promotion described in 6.1/6.2.
+Phase 7 deletion protection is now implemented below; Phase 11 deployment gates remain outstanding.
 
 For a supported image, construct metadata from the inspected file, atomically
 promote it, insert exactly one Image row in a database transaction, commit, and
@@ -495,18 +517,24 @@ Add handler/service tests proving:
 
 ## Phase 7 — protect generic DeleteFile
 
+Implemented 2026-09-13. See [Phase 7 evidence](evidence/phase-07-delete/README.md).
+DeleteFile queries the repository's exact-or-descendant path guard before any
+filesystem mutation and repeats that query under the shared upload/delete lock.
+Missing backing files/directories do not bypass ownership. The operation remains
+non-recursive and does not mutate Image rows or retained topics.
+
 Refactor `DeleteFile` to use `ImagePathPolicy` and `ImageRepository` before any
 filesystem mutation.
 
-- [ ] Do not create a requested directory while processing a delete.
-- [ ] Reject deletion when the exact canonical path has an Image row.
-- [ ] If the target is a directory, reject deletion when any Image row is below
+- [x] Do not create a requested directory while processing a delete.
+- [x] Reject deletion when the exact canonical path has an Image row.
+- [x] If the target is a directory, reject deletion when any Image row is below
       that canonical prefix.
-- [ ] Apply the same separator/case/symlink rules as upload and uniqueness.
-- [ ] Return a clear conflict response which identifies the canonical relative
+- [x] Apply the same separator/case/symlink rules as upload and uniqueness.
+- [x] Return a clear conflict response which identifies the canonical relative
       path without leaking an absolute host path.
-- [ ] Leave the file/directory, Image row and retained topic unchanged.
-- [ ] Preserve the existing idempotent not-found behaviour only for genuinely
+- [x] Leave the file/directory, Image row and retained topic unchanged.
+- [x] Preserve the existing idempotent not-found behaviour only for genuinely
       uncatalogued paths.
 
 Test exact file, parent directory, case alias, separator alias, SQL wildcard in

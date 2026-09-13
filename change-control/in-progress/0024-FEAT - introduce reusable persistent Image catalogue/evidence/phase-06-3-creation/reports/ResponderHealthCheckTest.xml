@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.health.ResponderHealthCheckTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-09-13T11:49:06.186Z" hostname="RICHARD-PC" time="0.113">
+  <properties/>
+  <testcase name="malformedHealthPayloadReturnsFailure()" classname="com.rsmaxwell.diaries.responder.health.ResponderHealthCheckTest" time="0.005"/>
+  <testcase name="usesAUniqueClientIdForEachInvocation()" classname="com.rsmaxwell.diaries.responder.health.ResponderHealthCheckTest" time="0.001"/>
+  <testcase name="connectionFailureReturnsFailure()" classname="com.rsmaxwell.diaries.responder.health.ResponderHealthCheckTest" time="0.0"/>
+  <testcase name="requestPublishFailureReturnsFailure()" classname="com.rsmaxwell.diaries.responder.health.ResponderHealthCheckTest" time="0.0"/>
+  <testcase name="responseWaitIsBounded()" classname="com.rsmaxwell.diaries.responder.health.ResponderHealthCheckTest" time="0.102"/>
+  <testcase name="succeedsOnlyForValidUpResponseAndUsesClientScopedResponseTopic()" classname="com.rsmaxwell.diaries.responder.health.ResponderHealthCheckTest" time="0.001"/>
+  <testcase name="missingResponseReturnsFailure()" classname="com.rsmaxwell.diaries.responder.health.ResponderHealthCheckTest" time="0.001"/>
+  <testcase name="nonSuccessRpcStatusReturnsFailure()" classname="com.rsmaxwell.diaries.responder.health.ResponderHealthCheckTest" time="0.0"/>
+  <testcase name="subscriptionFailureReturnsFailure()" classname="com.rsmaxwell.diaries.responder.health.ResponderHealthCheckTest" time="0.001"/>
+  <testcase name="missingCredentialsFailWithoutPrintingPassword()" classname="com.rsmaxwell.diaries.responder.health.ResponderHealthCheckTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

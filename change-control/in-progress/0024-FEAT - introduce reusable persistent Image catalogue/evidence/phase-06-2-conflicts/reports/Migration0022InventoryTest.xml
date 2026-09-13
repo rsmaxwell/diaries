@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.migration.migration0022.Migration0022InventoryTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-09-13T11:34:33.998Z" hostname="RICHARD-PC" time="0.004">
+  <properties/>
+  <testcase name="classifiesFragmentWithoutMarqueeAsAnomaly()" classname="com.rsmaxwell.diaries.responder.migration.migration0022.Migration0022InventoryTest" time="0.002"/>
+  <testcase name="classifiesOrdinaryFragmentWithOneValidMarqueeAsSafe()" classname="com.rsmaxwell.diaries.responder.migration.migration0022.Migration0022InventoryTest" time="0.0"/>
+  <testcase name="classifiesEmbeddedImageFragmentForReviewRatherThanAsMarquee()" classname="com.rsmaxwell.diaries.responder.migration.migration0022.Migration0022InventoryTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

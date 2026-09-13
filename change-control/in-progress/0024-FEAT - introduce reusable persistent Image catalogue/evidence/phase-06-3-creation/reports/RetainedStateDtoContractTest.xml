@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-09-13T11:49:05.647Z" hostname="RICHARD-PC" time="0.005">
+  <properties/>
+  <testcase name="fragmentConstructedFromPersistenceDtoPublishesExplicitOwnership()" classname="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" time="0.0"/>
+  <testcase name="pageContractPublishesTheSamePayloadToHierarchyAndLookupTopics()" classname="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" time="0.001"/>
+  <testcase name="unlockedFragmentSerialisesAnExplicitNullLockAndMarquee()" classname="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" time="0.0"/>
+  <testcase name="fragmentContractIncludesDateAliasMarqueeIdAndLockOwner()" classname="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" time="0.001"/>
+  <testcase name="marqueeContractPublishesTheSamePayloadToHierarchyAndLookupTopics()" classname="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" time="0.0"/>
+  <testcase name="mqttPublicationUsesQosOneAndRetainsPayloadAndTombstone()" classname="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" time="0.001"/>
+  <testcase name="diaryContractUsesItsCanonicalTopicAndPayloadShape()" classname="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" time="0.0"/>
+  <system-out><![CDATA[12:49:05.652 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+12:49:05.652 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

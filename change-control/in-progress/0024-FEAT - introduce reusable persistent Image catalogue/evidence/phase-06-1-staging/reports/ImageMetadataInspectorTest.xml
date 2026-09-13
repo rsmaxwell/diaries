@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-09-13T11:23:59.227Z" hostname="RICHARD-PC" time="0.081">
+  <properties/>
+  <testcase name="crcCorruptionAndZeroDimensionsAreRejected()" classname="com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest" time="0.005"/>
+  <testcase name="byteLimitIsInclusiveAndDecodeBudgetIsEnforcedBeforeAllocation()" classname="com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest" time="0.006"/>
+  <testcase name="genericBytesAndChecksumsHaveControlledOutcomes()" classname="com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest" time="0.007"/>
+  <testcase name="sample.jpg" classname="com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest" time="0.007"/>
+  <testcase name="sample.png" classname="com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest" time="0.003"/>
+  <testcase name="sample.gif" classname="com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest" time="0.005"/>
+  <testcase name="sample.webp" classname="com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest" time="0.015"/>
+  <testcase name="lossless.webp" classname="com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest" time="0.007"/>
+  <testcase name="animated.gif" classname="com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest" time="0.005"/>
+  <testcase name="animated.webp" classname="com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest" time="0.006"/>
+  <testcase name="sample.jpg" classname="com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest" time="0.002"/>
+  <testcase name="sample.png" classname="com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest" time="0.002"/>
+  <testcase name="sample.gif" classname="com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest" time="0.001"/>
+  <testcase name="sample.webp" classname="com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

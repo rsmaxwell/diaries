@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.utilities.DiaryContextImageTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-09-13T11:49:25.832Z" hostname="RICHARD-PC" time="0.005">
+  <properties/>
+  <testcase name="activeCallerTransactionIsNeitherCommittedNorRolledBack()" classname="com.rsmaxwell.diaries.responder.utilities.DiaryContextImageTest" time="0.002"/>
+  <testcase name="failedBeginDoesNotAttemptRollback()" classname="com.rsmaxwell.diaries.responder.utilities.DiaryContextImageTest" time="0.0"/>
+  <testcase name="inflationIsIndependentOfChronologyAndReportsMissingImage()" classname="com.rsmaxwell.diaries.responder.utilities.DiaryContextImageTest" time="0.0"/>
+  <testcase name="updatePreservesProvidedVersionAndReturnsAffectedCount()" classname="com.rsmaxwell.diaries.responder.utilities.DiaryContextImageTest" time="0.001"/>
+  <testcase name="repositoryFailureRollsBackWithoutAssigningCallerIdentity()" classname="com.rsmaxwell.diaries.responder.utilities.DiaryContextImageTest" time="0.0"/>
+  <testcase name="invalidMetadataNeverStartsATransaction()" classname="com.rsmaxwell.diaries.responder.utilities.DiaryContextImageTest" time="0.0"/>
+  <testcase name="saveReturnsCopyOnlyAfterCommitAndLeavesCallerUntouched()" classname="com.rsmaxwell.diaries.responder.utilities.DiaryContextImageTest" time="0.0"/>
+  <testcase name="commitFailureCannotReturnSuccessAndPreservesRollbackFailure()" classname="com.rsmaxwell.diaries.responder.utilities.DiaryContextImageTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
