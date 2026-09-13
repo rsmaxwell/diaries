@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" tests="30" skipped="0" failures="0" errors="0" timestamp="2026-09-13T10:20:55.189Z" hostname="RICHARD-PC" time="0.102">
+  <properties/>
+  <testcase name="rejects invalid email: &quot;firstname-lastname@example.com\t&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.033"/>
+  <testcase name="rejects invalid email: &quot;email@123.123.123.123&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.001"/>
+  <testcase name="rejects invalid email: &quot;plainaddress&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="rejects invalid email: &quot;#@%^%#$@#$@#.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="rejects invalid email: &quot;@example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="rejects invalid email: &quot;Joe Smith &lt;email@example.com&gt;&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.001"/>
+  <testcase name="rejects invalid email: &quot;email.example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="rejects invalid email: &quot;email@example@example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.001"/>
+  <testcase name="rejects invalid email: &quot;.email@example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="rejects invalid email: &quot;email.@example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.001"/>
+  <testcase name="rejects invalid email: &quot;email..email@example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="rejects invalid email: &quot;email@example.com (Joe Smith)&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="rejects invalid email: &quot;email@example&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.001"/>
+  <testcase name="rejects invalid email: &quot;email@-example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="rejects invalid email: &quot;email@example.web&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.001"/>
+  <testcase name="rejects invalid email: &quot;email@111.222.333.44444&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="rejects invalid email: &quot;email@example..com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="rejects invalid email: &quot;Abc..123@example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="accepts valid email: &quot;email@example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.001"/>
+  <testcase name="accepts valid email: &quot;firstname.lastname@example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="accepts valid email: &quot;email@subdomain.example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="accepts valid email: &quot;firstname+lastname@example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="accepts valid email: &quot;“email”@example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="accepts valid email: &quot;あいうえお@example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="accepts valid email: &quot;1234567890@example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="accepts valid email: &quot;email@example-one.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="accepts valid email: &quot;_______@example.com&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.001"/>
+  <testcase name="accepts valid email: &quot;email@example.name&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <testcase name="accepts valid email: &quot;email@example.museum&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.001"/>
+  <testcase name="accepts valid email: &quot;email@example.co.jp&quot;" classname="com.rsmaxwell.diaries.responder.EmailAddressFieldTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

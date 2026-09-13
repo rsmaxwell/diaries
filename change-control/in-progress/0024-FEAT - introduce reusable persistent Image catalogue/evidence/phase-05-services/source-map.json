@@ -1,0 +1,54 @@
+[
+  {
+    "snapshot": "source/libs.versions.toml",
+    "source": "gradle/libs.versions.toml"
+  },
+  {
+    "snapshot": "source/build.gradle",
+    "source": "diaries-responder/build.gradle"
+  },
+  {
+    "snapshot": "source/ImageWiringIntegrationTest.java",
+    "source": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/ImageWiringIntegrationTest.java"
+  },
+  {
+    "snapshot": "source/ImageCatalogueService.java",
+    "source": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageCatalogueService.java"
+  },
+  {
+    "snapshot": "source/ImageMetadataInspector.java",
+    "source": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageMetadataInspector.java"
+  },
+  {
+    "snapshot": "source/ImagePathPolicy.java",
+    "source": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ImagePathPolicy.java"
+  },
+  {
+    "snapshot": "source/InspectedImage.java",
+    "source": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/InspectedImage.java"
+  },
+  {
+    "snapshot": "source/ResolvedUpload.java",
+    "source": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ResolvedUpload.java"
+  },
+  {
+    "snapshot": "source/ImageCatalogueServiceTest.java",
+    "source": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/ImageCatalogueServiceTest.java"
+  },
+  {
+    "snapshot": "source/ImageMetadataInspectorTest.java",
+    "source": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/ImageMetadataInspectorTest.java"
+  },
+  {
+    "snapshot": "source/ImagePathPolicyTest.java",
+    "source": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/ImagePathPolicyTest.java"
+  },
+  {
+    "snapshot": "source/generate.py",
+    "source": "diaries-responder/src/test/resources/image-inspection/generate.py"
+  },
+  {
+    "snapshot": "source/PackagedInspectionProbe.java",
+    "source": "diaries-responder/src/test/resources/image-inspection/PackagedInspectionProbe.java"
+  }
+]

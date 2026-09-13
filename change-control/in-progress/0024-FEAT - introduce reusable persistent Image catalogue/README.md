@@ -141,15 +141,15 @@ No authoring/rendering required yet, but add model/decoder capability if useful 
 ## Detailed Implementation Steps
 
 - [x] Design the Image table and explicit migration SQL. See [migration/README.md](migration/README.md); applied and verified on development, with production execution reserved for Phase 11.
-- [x] Add Image JPA model, repository and DTOs. All of Phase 3 is implemented; retained replay and upload integration remain later phases.
+- [x] Add Image JPA model, repository and DTOs. Phase 3 and Phase 4 retained replay are implemented; upload integration remains a later phase.
 - [x] Register Image entity with the responder EntityManager factory. Phase 3.3 also wires the repository and adds Image context helpers.
-- [ ] Add `ImagePublishDTO` and retained-state contract test.
+- [x] Add `ImagePublishDTO` and retained-state contract test. Phase 4 includes real-broker replay, updates and tombstones.
 - [ ] Refactor UploadFile around a reusable resolved-upload result containing relativePath, mimeType, size/checksum and Path.
-- [ ] Detect supported images from file content/type and extract dimensions.
+- [x] Detect supported images from file content/type and extract dimensions. Phase 5 shared inspector; upload handler integration remains Phase 6.
 - [ ] Create Image metadata on successful image upload.
 - [ ] Return `imageId` and Image metadata from successful image uploads while preserving existing useful response fields where compatibility requires.
-- [ ] Implement compensation for partial failure.
-- [ ] Extend database replay to include Image topics.
+- [x] Implement compensation for partial failure in the Phase 5 shared service. Phase 6 must adopt it in UploadFile.
+- [x] Extend database replay to include Image topics. See [Phase 4 evidence](evidence/phase-04-catalogue/README.md).
 - [ ] Implement dry-run/reconciliation utility for pre-existing uploads.
 - [ ] Test reconciliation twice to prove idempotency.
 - [ ] Run reconciliation against a copy of the actual Files directory and record counts/conflicts.
@@ -157,7 +157,12 @@ No authoring/rendering required yet, but add model/decoder capability if useful 
 - [ ] Make generic `DeleteFile` reject catalogued paths and directories containing them.
 - [ ] Make upload reject silent overwrite of a catalogued path.
 - [ ] Add path-alias, separator, case-policy and traversal tests for both guards.
-- [ ] Add Image catalogue lookup/listing mechanism needed by the future client chooser, preferably retained-topic driven rather than a second database-shaped API.
+- [x] Add Image catalogue lookup/listing mechanism needed by the future client chooser: canonical retained `diaries/images/{id}` topics. Consumers remain later work; no `ListImages` RPC added.
+
+Phase 5 implementation and validation are recorded in
+[shared services evidence](evidence/phase-05-services/README.md): 191 responder
+tests passed, including PostgreSQL/MQTT integration, plus packaged Windows and
+Linux checks. UploadFile/DeleteFile integration remains in Phases 6/7.
 
 ## Acceptance Criteria
 

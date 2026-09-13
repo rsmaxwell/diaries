@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-09-13T10:22:26.609Z" hostname="RICHARD-PC" time="0.235">
+  <properties/>
+  <testcase name="simultaneousUploadsProduceOneCommittedWinner()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.032"/>
+  <testcase name="rejectedStagingLeavesNoBytesOrDirectoriesAtTarget()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.016"/>
+  <testcase name="genericOctetStreamRemainsUncatalogued()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.017"/>
+  <testcase name="cataloguedPathIsProtectedEvenWithOverwriteAndMissingFile()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.024"/>
+  <testcase name="uncataloguedConflictAndSuccessfulOverwrite()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.032"/>
+  <testcase name="uncertainCommitPreservesPromotedFileAndBackupForRecovery()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.021"/>
+  <testcase name="publicationFailureRetainsCommittedImageAndProvidesReplayDto()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.016"/>
+  <testcase name="contentIdentityAndCommitPrecedePublication()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.016"/>
+  <testcase name="compensationNeverDeletesAReplacementFile()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.025"/>
+  <testcase name="definitiveRollbackRemovesNewFileAndRestoresOverwrittenBytes()" classname="com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest" time="0.034"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-09-13T10:20:55.295Z" hostname="RICHARD-PC" time="71.04">
+  <properties/>
+  <testcase name="actualFactoryAndResponderWiringRegisterAndExposeImage()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.033"/>
+  <testcase name="catalogueServicePublishesCommittedRowsAndUsesDatabasePathIdentity(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.122"/>
+  <testcase name="activeTransactionRemainsOwnedByCaller()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.007"/>
+  <testcase name="uniqueConflictRollsBackAndContextRemainsUsable()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.014"/>
+  <testcase name="saveAndUpdateCommitBeforeReturningAndInflateIndependently()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.016"/>
+  <testcase name="databaseReplayAddsUnreferencedImagesAndPreservesChronologyTopics()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="69.026"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+]]></system-err>
+</testsuite>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-09-13T09:57:14.245Z" hostname="RICHARD-PC" time="74.597">
+  <properties/>
+  <testcase name="actualFactoryAndResponderWiringRegisterAndExposeImage()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.041"/>
+  <testcase name="activeTransactionRemainsOwnedByCaller()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.012"/>
+  <testcase name="uniqueConflictRollsBackAndContextRemainsUsable()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.036"/>
+  <testcase name="saveAndUpdateCommitBeforeReturningAndInflateIndependently()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.032"/>
+  <testcase name="databaseReplayAddsUnreferencedImagesAndPreservesChronologyTopics()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="72.541"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+]]></system-err>
+</testsuite>

@@ -1,0 +1,516 @@
+import java.nio.charset.StandardCharsets
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
+plugins {
+    id 'application'
+    id 'maven-publish'
+    alias(libs.plugins.shadow)
+    id 'eclipse'
+    id 'com.github.ben-manes.versions' version '0.54.0'
+}
+
+/*
+ * Run a Git command and return its trimmed standard output.
+ *
+ * An empty string is returned when:
+ *
+ * - Git is unavailable;
+ * - the current directory is not in a Git repository;
+ * - the command returns a non-zero exit code.
+ *
+ * ProcessBuilder is used rather than a shell command so that this works on
+ * Windows and Unix-like systems.
+ */
+def runGitCommand = { List<String> arguments ->
+    try {
+        def command = ['git'] + arguments
+        def process = new ProcessBuilder(command)
+            .directory(rootProject.projectDir)
+            .redirectErrorStream(true)
+            .start()
+
+        def output = process.inputStream.getText(
+            StandardCharsets.UTF_8.name()
+        ).trim()
+
+        def exitCode = process.waitFor()
+
+        return exitCode == 0 ? output : ''
+    } catch (Exception ignored) {
+        return ''
+    }
+}
+
+/*
+ * Return the release version attached directly to HEAD.
+ *
+ * For example:
+ *
+ *     v0.0.7 -> 0.0.7
+ *
+ * An empty string is returned when HEAD is not tagged with a semantic release
+ * tag.
+ */
+def findExactReleaseVersion = {
+    def tag = runGitCommand([
+        'describe',
+        '--tags',
+        '--exact-match',
+        '--match',
+        'v[0-9]*.[0-9]*.[0-9]*'
+    ])
+
+    return tag.startsWith('v')
+        ? tag.substring(1)
+        : tag
+}
+
+/*
+ * Return the most recent semantic release version.
+ *
+ * For example:
+ *
+ *     v0.0.7 -> 0.0.7
+ */
+def findLatestReleaseVersion = {
+    def tag = runGitCommand([
+        'describe',
+        '--tags',
+        '--match',
+        'v[0-9]*.[0-9]*.[0-9]*',
+        '--abbrev=0'
+    ])
+
+    return tag.startsWith('v')
+        ? tag.substring(1)
+        : tag
+}
+
+/*
+ * Return true when the Git working tree contains changes.
+ *
+ * This includes:
+ *
+ * - modified tracked files;
+ * - staged changes;
+ * - deleted files;
+ * - untracked files.
+ *
+ * git status --porcelain produces no output for a clean working tree.
+ */
+def isWorkingTreeDirty = {
+    def status = runGitCommand([
+        'status',
+        '--porcelain'
+    ])
+
+    return !status.isEmpty()
+}
+
+/*
+ * Calculate the version following the existing prepare.sh rules:
+ *
+ * - Clean HEAD tagged v0.0.7 -> 0.0.7
+ * - Dirty HEAD tagged v0.0.7 -> 0.0.8-SNAPSHOT
+ * - Jenkins build 123        -> 0.0.8-build-123
+ * - Local untagged build     -> 0.0.8-SNAPSHOT
+ * - No previous release tag  -> 0.0.1-SNAPSHOT
+ *
+ * A tagged commit is treated as the exact release only when the working tree
+ * is clean. Local modifications mean the source no longer exactly represents
+ * the tagged release.
+ */
+def calculateBuildVersion = {
+    def exactReleaseVersion = findExactReleaseVersion()
+
+    if (exactReleaseVersion && !isWorkingTreeDirty()) {
+        return exactReleaseVersion
+    }
+
+    def latestReleaseVersion = findLatestReleaseVersion()
+    def nextReleaseVersion = '0.0.1'
+
+    if (latestReleaseVersion) {
+        def parts = latestReleaseVersion.tokenize('.')
+
+        if (parts.size() != 3) {
+            throw new GradleException(
+                "Unexpected release version: ${latestReleaseVersion}"
+            )
+        }
+
+        try {
+            def major = parts[0] as int
+            def minor = parts[1] as int
+            def patch = parts[2] as int
+
+            nextReleaseVersion = "${major}.${minor}.${patch + 1}"
+        } catch (NumberFormatException exception) {
+            throw new GradleException(
+                "Unexpected release version: ${latestReleaseVersion}",
+                exception
+            )
+        }
+    }
+
+    def buildId = System.getenv('BUILD_ID')
+
+    if (buildId) {
+        return "${nextReleaseVersion}-build-${buildId}"
+    }
+
+    return "${nextReleaseVersion}-SNAPSHOT"
+}
+
+/*
+ * An explicitly supplied Gradle property takes precedence:
+ *
+ *     gradlew.bat -PprojectVersion=0.0.8-SNAPSHOT build
+ *
+ * Jenkins can also supply its calculated version:
+ *
+ *     ./gradlew -PprojectVersion="${VERSION}" build
+ */
+def projectVersion = findProperty('projectVersion')
+    ?: calculateBuildVersion()
+
+def repositoryName = findProperty('repositoryName')
+    ?: 'snapshots'
+
+def responderMainClass =
+    'com.rsmaxwell.diaries.responder.Responder'
+
+def mavenUserProperty =
+    providers.gradleProperty('mavenUser')
+
+def mavenPasswordProperty =
+    providers.gradleProperty('mavenPassword')
+
+def generatedBuildInfoDirectory =
+    layout.buildDirectory.dir(
+        'generated/resources/buildInfo'
+    )
+
+def generatedBuildInfoFile =
+    generatedBuildInfoDirectory.map {
+        it.file('build-info.properties')
+    }
+
+group = projectGroupId
+version = projectVersion
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDir generatedBuildInfoDirectory
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+
+    maven {
+        name = 'archiva'
+        url = "${mavenRepositoryBaseURL}/releases"
+    }
+}
+
+dependencies {
+    testImplementation libs.junit.jupiter
+    testRuntimeOnly libs.junit.platform.launcher
+
+    implementation libs.slf4j.api
+    runtimeOnly libs.log4j.slf4j2.impl
+    runtimeOnly libs.log4j.core
+    runtimeOnly libs.log4j.api
+
+    compileOnly libs.lombok
+    testImplementation libs.lombok
+    annotationProcessor libs.lombok
+
+    implementation libs.commons.cli
+    implementation libs.commons.validator
+    implementation libs.libphonenumber
+    implementation libs.geocoder
+    implementation libs.carrier
+    runtimeOnly libs.postgresql
+    implementation libs.org.eclipse.paho.mqttv5.client
+    implementation libs.jbcrypt
+    implementation libs.jackson.databind
+    implementation libs.jjwt.api
+    runtimeOnly libs.jjwt.impl
+    runtimeOnly libs.jjwt.jackson
+    implementation libs.jakarta.jakartaee.api
+    implementation libs.hibernate.core
+    implementation libs.metadata.extractor
+    implementation libs.imageio.webp
+    implementation libs.mqtt.rpc.common
+    implementation libs.mqtt.rpc.responder
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+/*
+ * Generate build-info.properties as a classpath resource.
+ *
+ * Jenkins-provided environment variables take precedence over locally
+ * calculated Git values.
+ */
+tasks.register('generateBuildInfo') {
+    group = 'build'
+    description =
+        'Generates responder build information.'
+
+    outputs.file generatedBuildInfoFile
+
+    /*
+     * The build timestamp changes for every invocation, so this task must
+     * always run.
+     */
+    outputs.upToDateWhen {
+        false
+    }
+
+    doLast {
+        def outputFile =
+            generatedBuildInfoFile.get().asFile
+
+        if (!outputFile.parentFile.mkdirs()
+                && !outputFile.parentFile.isDirectory()) {
+            throw new GradleException(
+                "Unable to create directory: " +
+                    outputFile.parentFile
+            )
+        }
+
+        def buildId =
+            System.getenv('BUILD_ID')
+                ?: '(none)'
+
+        def gitCommit =
+            System.getenv('GIT_COMMIT')
+                ?: runGitCommand([
+                    'rev-parse',
+                    'HEAD'
+                ])
+                ?: '(none)'
+
+        def gitBranch =
+            System.getenv('GIT_BRANCH')
+                ?: runGitCommand([
+                    'rev-parse',
+                    '--abbrev-ref',
+                    'HEAD'
+                ])
+                ?: '(none)'
+
+        def gitUrl =
+            System.getenv('GIT_URL')
+                ?: runGitCommand([
+                    'config',
+                    '--get',
+                    'remote.origin.url'
+                ])
+                ?: '(none)'
+
+        def buildDate =
+            System.getenv('BUILD_TIMESTAMP')
+                ?: LocalDateTime.now().format(
+                    DateTimeFormatter.ofPattern(
+                        'yyyy-MM-dd HH:mm:ss'
+                    )
+                )
+
+        def properties = new Properties()
+
+        properties.setProperty(
+            'name',
+            'diaries-responder'
+        )
+
+        properties.setProperty(
+            'version',
+            project.version.toString()
+        )
+
+        properties.setProperty(
+            'buildId',
+            buildId
+        )
+
+        properties.setProperty(
+            'buildDate',
+            buildDate
+        )
+
+        properties.setProperty(
+            'gitCommit',
+            gitCommit
+        )
+
+        properties.setProperty(
+            'gitBranch',
+            gitBranch
+        )
+
+        properties.setProperty(
+            'gitUrl',
+            gitUrl
+        )
+
+        outputFile.withOutputStream { output ->
+            properties.store(
+                output,
+                'Generated by Gradle - do not edit'
+            )
+        }
+
+        logger.lifecycle(
+            'Generated responder build information: ' +
+                outputFile
+        )
+
+        logger.lifecycle(
+            "Responder version: ${project.version}"
+        )
+    }
+}
+
+tasks.named('processResources') {
+    dependsOn tasks.named('generateBuildInfo')
+}
+
+application {
+    mainClass = responderMainClass
+}
+
+/*
+ * The responder has enough runtime dependencies for the Windows start-script
+ * classpath to exceed cmd.exe's expanded command-line limit. All distribution
+ * JARs live directly under lib, so use Java's classpath wildcard instead of
+ * repeating %APP_HOME% once for every dependency.
+ */
+tasks.named('startScripts') {
+    doLast {
+        String originalScript = windowsScript.getText('UTF-8')
+        String wildcardClasspath = java.util.regex.Matcher.quoteReplacement(
+            'set CLASSPATH=%APP_HOME%\\lib\\*'
+        )
+        String shortenedScript = originalScript.replaceFirst(
+            '(?m)^set CLASSPATH=.*$',
+            wildcardClasspath
+        )
+
+        if (shortenedScript == originalScript) {
+            throw new GradleException(
+                'Unable to shorten the generated Windows responder classpath.'
+            )
+        }
+
+        windowsScript.write(shortenedScript, 'UTF-8')
+    }
+}
+
+tasks.named('jar') {
+    archiveBaseName.set(projectArtifactId)
+    archiveClassifier.set('')
+
+    manifest {
+        attributes(
+            'Main-Class': responderMainClass,
+            'Implementation-Title': projectArtifactId,
+            'Implementation-Version': project.version
+        )
+    }
+}
+
+tasks.named('shadowJar') {
+    archiveBaseName.set(projectArtifactId)
+    archiveClassifier.set('fat')
+
+    manifest {
+        attributes(
+            'Main-Class': responderMainClass,
+            'Implementation-Title': projectArtifactId,
+            'Implementation-Version': project.version
+        )
+    }
+
+    mergeServiceFiles()
+}
+
+tasks.named('assemble') {
+    dependsOn tasks.named('shadowJar')
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.register('migration0022Inventory', JavaExec) {
+    group = 'migration'
+    description = 'Produces the read-only 0022 Fragment migration inventory.'
+    dependsOn tasks.named('classes')
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.rsmaxwell.diaries.responder.migration.migration0022.Migration0022Inventory'
+
+    doFirst {
+        def configFile = providers.gradleProperty('migrationConfig').orNull
+        def outputDirectory = providers.gradleProperty('migrationOutput').orNull
+
+        if (!configFile || !outputDirectory) {
+            throw new GradleException(
+                'migration0022Inventory requires -PmigrationConfig=<file> ' +
+                'and -PmigrationOutput=<empty-directory>'
+            )
+        }
+
+        args '--config', configFile, '--output', outputDirectory
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = projectArtifactId
+            from components.java
+            suppressAllPomMetadataWarnings()
+        }
+    }
+
+    repositories {
+        maven {
+            url = uri(
+                "${mavenRepositoryBaseURL}/${repositoryName}"
+            )
+
+            credentials {
+                username = mavenUserProperty.orNull
+                password = mavenPasswordProperty.orNull
+            }
+        }
+    }
+}
+
+tasks.withType(PublishToMavenRepository).configureEach {
+    doFirst {
+        if (!mavenUserProperty.isPresent()
+                || !mavenPasswordProperty.isPresent()) {
+            throw new GradleException(
+                'Publishing requires mavenUser and ' +
+                    'mavenPassword in ' +
+                    '~/.gradle/gradle.properties'
+            )
+        }
+    }
+}

@@ -43,6 +43,7 @@ log4j = "2.24.3"
 lombok = "1.18.46"
 
 metadata-extractor = "2.21.0"
+twelvemonkeys = "3.14.0"
 
 mqtt-paho = "1.2.5"
 mqtt-rpc = "0.0.8"
@@ -62,6 +63,7 @@ shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 ben-manes-versions = { id = "com.github.ben-manes.versions", version.ref = "ben-manes-versions" }
 
 [libraries]
+imageio-webp = { module = "com.twelvemonkeys.imageio:imageio-webp", version.ref = "twelvemonkeys" }
 carrier = { module = "com.googlecode.libphonenumber:carrier", version.ref = "libphonenumber-carrier" }
 
 chunk-templates = { module = "org.apache.servicemix.bundles:org.apache.servicemix.bundles.chunk-templates", version.ref = "chunk-templates" }

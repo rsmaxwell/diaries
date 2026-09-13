@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.sync.ImageCatalogueMqttIntegrationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-09-13T09:58:29.813Z" hostname="RICHARD-PC" time="19.371">
+  <properties/>
+  <testcase name="startupReplaysUpdatesAndTombstonesCanonicalImagesForLateSubscribers()" classname="com.rsmaxwell.diaries.responder.sync.ImageCatalogueMqttIntegrationTest" time="19.371"/>
+  <system-out><![CDATA[10:58:30.130 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Connecting to broker 'tcp://127.0.0.1:58220' as 'syncronise-pub-1789293510129'
+10:58:30.436 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Connecting to broker 'tcp://127.0.0.1:58220' as 'syncronise-sub-1789293510435'
+10:58:31.750 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - sizeof(topicTreeMap) = 4
+10:58:31.750 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - sizeof(databaseMap) = 2
+10:58:31.750 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Difference detected on topic: diaries/images/41
+10:58:31.750 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise -           DB:   {"id":41,"version":3,"relativePath":"maps/Café 50%_1.png","mimeType":"image/png","originalFilename":"Café 50%_1.png","width":1200,"height":800,"checksum":"abababababababababababababababababababababababababababababababab","caption":"Harbour","altText":"Old map"}
+10:58:31.750 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise -           Tree: stale
+10:58:31.751 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - publish: topic: diaries/images/41
+10:58:31.751 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise -          value: {"id":41,"version":3,"relativePath":"maps/Café 50%_1.png","mimeType":"image/png","originalFilename":"Café 50%_1.png","width":1200,"height":800,"checksum":"abababababababababababababababababababababababababababababababab","caption":"Harbour","altText":"Old map"}
+10:58:31.751 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - removeOrphanEntries: removing: topic: diaries/images/999, value: orphan
+10:58:31.752 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - publish: topic: diaries/images/999
+10:58:31.752 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise -          value: null
+10:58:31.752 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - removeOrphanEntries: removing: topic: diaries/pages/7/images/41, value: alias
+10:58:31.752 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - publish: topic: diaries/pages/7/images/41
+10:58:31.752 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise -          value: null
+10:58:32.756 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - synchronise: ok
+10:58:34.958 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Connecting to broker 'tcp://127.0.0.1:58220' as 'syncronise-pub-1789293514957'
+10:58:35.263 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Connecting to broker 'tcp://127.0.0.1:58220' as 'syncronise-sub-1789293515262'
+10:58:36.575 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - sizeof(topicTreeMap) = 2
+10:58:36.575 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - sizeof(databaseMap) = 2
+10:58:37.578 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - synchronise: ok
+10:58:38.084 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Connecting to broker 'tcp://127.0.0.1:58220' as 'syncronise-pub-1789293518084'
+10:58:38.388 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Connecting to broker 'tcp://127.0.0.1:58220' as 'syncronise-sub-1789293518388'
+10:58:39.698 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - sizeof(topicTreeMap) = 2
+10:58:39.698 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - sizeof(databaseMap) = 2
+10:58:39.698 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Difference detected on topic: diaries/images/41
+10:58:39.698 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise -           DB:   {"id":41,"version":4,"relativePath":"maps/Café 50%_1.png","mimeType":"image/png","originalFilename":"Café 50%_1.png","width":1200,"height":800,"checksum":"abababababababababababababababababababababababababababababababab","caption":"Updated café","altText":"Old map"}
+10:58:39.698 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise -           Tree: {"id":41,"version":3,"relativePath":"maps/Café 50%_1.png","mimeType":"image/png","originalFilename":"Café 50%_1.png","width":1200,"height":800,"checksum":"abababababababababababababababababababababababababababababababab","caption":"Harbour","altText":"Old map"}
+10:58:39.699 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - publish: topic: diaries/images/41
+10:58:39.699 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise -          value: {"id":41,"version":4,"relativePath":"maps/Café 50%_1.png","mimeType":"image/png","originalFilename":"Café 50%_1.png","width":1200,"height":800,"checksum":"abababababababababababababababababababababababababababababababab","caption":"Updated café","altText":"Old map"}
+10:58:40.704 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - synchronise: ok
+10:58:42.855 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Connecting to broker 'tcp://127.0.0.1:58220' as 'syncronise-pub-1789293522855'
+10:58:43.160 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Connecting to broker 'tcp://127.0.0.1:58220' as 'syncronise-sub-1789293523160'
+10:58:44.469 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - sizeof(topicTreeMap) = 2
+10:58:44.469 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - sizeof(databaseMap) = 1
+10:58:44.469 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - removeOrphanEntries: removing: topic: diaries/images/41, value: {"id":41,"version":4,"relativePath":"maps/Café 50%_1.png","mimeType":"image/png","originalFilename":"Café 50%_1.png","width":1200,"height":800,"checksum":"abababababababababababababababababababababababababababababababab","caption":"Updated café","altText":"Old map"}
+10:58:44.471 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - publish: topic: diaries/images/41
+10:58:44.471 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise -          value: null
+10:58:45.474 [Test worker] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - synchronise: ok
+10:58:47.328 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+10:58:47.329 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,138 @@
+
+[versions]
+shadow = "9.6.1"
+ben-manes-versions = "0.54.0"
+
+chunk-templates = "3.6.2_1"
+commons-cli = "1.11.0"
+commons-validator = "1.10.1"
+
+geocoder = "3.25"
+guava = "32.1.2-jre"
+h2 = "2.3.230"
+
+hibernate-core = "8.0.0.Beta1"
+hibernate-entitymanager = "6.0.0.Alpha7"
+hibernate-jpamodelgen = "7.0.0.Beta1"
+
+jackson = "2.22.1"
+javalin = "7.2.3"
+
+jakarta-annotation = "3.0.0"
+jakarta-ee = "11.0.0"
+jakarta-persistence = "3.2.0-B02"
+jakarta-rs = "4.0.0"
+jakarta-transaction = "2.0.1"
+
+jbcrypt = "0.4"
+
+jjwt = "0.13.0"
+jjwt-legacy = "0.12.6"
+
+junit-jupiter = "6.1.2"
+
+assertj = "3.27.7"
+awaitility = "4.3.0"
+testcontainers = "2.0.5"
+
+libphonenumber = "9.0.35"
+libphonenumber-carrier = "2.35"
+libphonenumber-geocoder = "3.35"
+
+log4j = "2.24.3"
+lombok = "1.18.46"
+
+metadata-extractor = "2.21.0"
+twelvemonkeys = "3.14.0"
+
+mqtt-paho = "1.2.5"
+mqtt-rpc = "0.0.8"
+
+owasp-html-sanitizer = "20260313.1"
+pebble = "4.1.2"
+
+postgresql = "42.7.13"
+
+slf4j = "2.1.0-alpha1"
+
+spring-boot = "3.3.2"
+spring-framework = "6.1.11"
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
+ben-manes-versions = { id = "com.github.ben-manes.versions", version.ref = "ben-manes-versions" }
+
+[libraries]
+imageio-webp = { module = "com.twelvemonkeys.imageio:imageio-webp", version.ref = "twelvemonkeys" }
+carrier = { module = "com.googlecode.libphonenumber:carrier", version.ref = "libphonenumber-carrier" }
+
+chunk-templates = { module = "org.apache.servicemix.bundles:org.apache.servicemix.bundles.chunk-templates", version.ref = "chunk-templates" }
+
+commons-cli = { module = "commons-cli:commons-cli", version.ref = "commons-cli" }
+commons-validator = { module = "commons-validator:commons-validator", version.ref = "commons-validator" }
+
+geocoder = { module = "com.googlecode.libphonenumber:geocoder", version.ref = "libphonenumber-geocoder" }
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
+
+hibernate-core = { module = "org.hibernate.orm:hibernate-core", version.ref = "hibernate-core" }
+hibernate-entitymanager = { module = "org.hibernate.orm:hibernate-entitymanager", version.ref = "hibernate-entitymanager" }
+hibernate-jpamodelgen = { module = "org.hibernate.orm:hibernate-jpamodelgen", version.ref = "hibernate-jpamodelgen" }
+
+io = { module = "io.jsonwebtoken:jjwt", version.ref = "jjwt-legacy" }
+
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+javalin = { module = "io.javalin:javalin", version.ref = "javalin" }
+
+jakarta-annotation-api = { module = "jakarta.annotation:jakarta.annotation-api", version.ref = "jakarta-annotation" }
+jakarta-jakartaee-api = { module = "jakarta.platform:jakarta.jakartaee-api", version.ref = "jakarta-ee" }
+jakarta-persistence-api = { module = "jakarta.persistence:jakarta.persistence-api", version.ref = "jakarta-persistence" }
+jakarta-rs-api = { module = "jakarta.ws.rs:jakarta.ws.rs-api", version.ref = "jakarta-rs" }
+jakarta-transaction-api = { module = "jakarta.transaction:jakarta.transaction-api", version.ref = "jakarta-transaction" }
+
+jbcrypt = { module = "org.mindrot:jbcrypt", version.ref = "jbcrypt" }
+
+jjwt-api = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwt" }
+jjwt-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
+jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
+
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitility" }
+
+libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "libphonenumber" }
+
+log4j-api = { module = "org.apache.logging.log4j:log4j-api", version.ref = "log4j" }
+log4j-core = { module = "org.apache.logging.log4j:log4j-core", version.ref = "log4j" }
+log4j-slf4j2-impl = { module = "org.apache.logging.log4j:log4j-slf4j2-impl", version.ref = "log4j" }
+
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+
+metadata-extractor = { module = "com.drewnoakes:metadata-extractor", version.ref = "metadata-extractor" }
+
+mqtt-rpc-common = { module = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-common", version.ref = "mqtt-rpc" }
+mqtt-rpc-requestor = { module = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-requestor", version.ref = "mqtt-rpc" }
+mqtt-rpc-responder = { module = "com.rsmaxwell.mqtt.rpc:mqtt-rpc-responder", version.ref = "mqtt-rpc" }
+
+org-eclipse-paho-mqttv5-client = { module = "org.eclipse.paho:org.eclipse.paho.mqttv5.client", version.ref = "mqtt-paho" }
+owasp-html-sanitizer = { module = "com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer", version.ref = "owasp-html-sanitizer" }
+
+pebble = { module = "io.pebbletemplates:pebble", version.ref = "pebble" }
+
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+
+spring-boot-starter-data-jdbc = { module = "org.springframework.boot:spring-boot-starter-data-jdbc", version.ref = "spring-boot" }
+spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "spring-boot" }
+spring-boot-starter-jdbc = { module = "org.springframework.boot:spring-boot-starter-jdbc", version.ref = "spring-boot" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
+
+spring-orm = { module = "org.springframework:spring-orm", version.ref = "spring-framework" }
+
+testcontainers = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
+testcontainers-junit-jupiter = { module = "org.testcontainers:testcontainers-junit-jupiter", version.ref = "testcontainers" }
+

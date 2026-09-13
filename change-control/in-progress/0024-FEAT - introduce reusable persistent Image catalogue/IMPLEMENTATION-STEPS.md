@@ -340,7 +340,7 @@ the existing repositories. `inflateImage` supports DTO and id inputs;
 version. Both helpers reject an existing transaction, roll back failures they
 own, and leave publication to later orchestration. See
 [3.3 implementation and test evidence](evidence/phase-03-wiring/README.md).
-Image replay remains Phase 4; production rollout remains Phase 11.
+Image replay is completed in Phase 4 below; production rollout remains Phase 11.
 
 ## Phase 4 — retained Image catalogue
 
@@ -350,13 +350,22 @@ topic per row.
 
 Required tests:
 
-- [ ] exact JSON field set and values for `ImagePublishDTO`;
-- [ ] exactly one canonical topic per Image;
-- [ ] QoS 1 and retained publication consistent with existing entities;
-- [ ] tombstone behaviour;
-- [ ] database replay includes orphan/unreferenced Images;
-- [ ] replay is deterministic and contains no file bytes or absolute URL/path;
-- [ ] empty Image catalogue leaves existing retained projection unchanged.
+- [x] exact JSON field set and values for `ImagePublishDTO`;
+- [x] exactly one canonical topic per Image;
+- [x] QoS 1 and retained publication consistent with existing entities;
+- [x] tombstone behaviour;
+- [x] database replay includes orphan/unreferenced Images;
+- [x] replay is deterministic and contains no file bytes or absolute URL/path;
+- [x] empty Image catalogue leaves existing retained projection unchanged.
+
+Completed on 2026-09-13. The context independently loads every Image row into
+the canonical replay map. Startup waits for retained messages before comparison,
+then sends differences and tombstones in topic order with explicit QoS 1 and
+UTF-8. The shared local ACL grants the responder read/write on `diaries/images/+`.
+PostgreSQL and Mosquitto integration checks cover replay, unchanged chronology,
+late subscribers, updates, no-op replay and tombstones. See
+[Phase 4 evidence](evidence/phase-04-catalogue/README.md). Reload the broker ACL
+before running the updated responder; production deployment remains Phase 11.
 
 No consumer subscribes to `diaries/images/+` in 0024. The stable retained topic
 is the catalogue/listing mechanism needed by later consumers; do not add a
@@ -364,6 +373,18 @@ second database-shaped `ListImages` RPC unless a demonstrated requirement
 cannot be served by retained state.
 
 ## Phase 5 — shared path and image inspection services
+
+- [x] Shared canonical path and safe resolution policy.
+- [x] Byte-derived image inspection and immutable upload/metadata results.
+- [x] Staging, database transaction, compensation and publication orchestration.
+- [x] Focused tests, real PostgreSQL adapter tests and Windows/Linux packaged checks.
+
+Implemented 2026-09-13. See [Phase 5 evidence](evidence/phase-05-services/README.md).
+The full responder build passed with 191 tests and no failures or skips.
+The services are ready for handler integration in Phases 6/7; current file RPC
+responses and client/web behaviour are unchanged. Unknown commit outcomes
+preserve recovery files rather than assuming rollback and deleting potentially
+committed image bytes.
 
 Add focused, independently tested utilities, for example:
 
@@ -400,6 +421,9 @@ existing useful response fields.
 
 ### 6.1 Staging
 
+- [ ] Before activating staging, exclude `.image-staging` from file listing,
+      generic deletion and every HTTP/static serving route. Verify server-only
+      root permissions, hard links, atomic moves and locks on the target mount.
 - [ ] Resolve the Files root once through `ImagePathPolicy`.
 - [ ] Decode into a private temporary file on the same filesystem as the target.
 - [ ] Calculate SHA-256 during decoding and reuse it; do not read the full file
