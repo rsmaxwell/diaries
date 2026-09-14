@@ -561,6 +561,7 @@ the normal responder configuration and require explicit parameters:
 -PmigrationConfig=<config-file>
 -PmigrationOutput=<new-empty-output-directory>
 -PmigrationMode=dry-run|apply
+-PmigrationPlan=<reviewed-dry-run/0024-create-plan.json> # required for apply
 -Pmigration0022Candidates=<optional-frozen-0022-candidate-csv>
 ```
 
@@ -673,14 +674,22 @@ at the production Files root.
 
 Also run:
 
-- [ ] `git diff --check` in the parent and responder repositories;
-- [ ] explicit SQL preflight/schema/postflight tests against a disposable
+- [x] `git diff --check` in the parent and responder repositories;
+- [x] explicit SQL preflight/schema/postflight tests against a disposable
       PostgreSQL database;
-- [ ] responder startup reconciliation with zero, one and multiple Images;
-- [ ] retained MQTT integration tests when local Mosquitto is available;
-- [ ] current diaries-client upload/list/delete regression smoke tests;
-- [ ] diaries-web read regression smoke tests proving no visible chronology
+- [x] responder startup reconciliation with zero, one and multiple Images;
+- [x] retained MQTT integration tests when local Mosquitto is available;
+- [x] current diaries-client upload/list/delete regression smoke tests;
+- [x] diaries-web read regression smoke tests proving no visible chronology
       change.
+
+Implemented and validated 2026-09-14: 237 responder tests, 50 web tests,
+81 Angular tests and 24 SQL scenarios passed, with no skipped tests. Responder,
+web and client production builds passed. The repeatable disposable-fixture
+runner is `scripts/windows/validation/test-image-catalogue.ps1`. Validation also
+exposed and corrected incomplete startup snapshots when retained replay exceeded
+the broker queue. See [Phase 9 evidence and coverage](evidence/phase-09-validation/README.md)
+for the fix, source hashes and logs. Phase 10 and live deployment remain separate.
 
 ## Phase 10 — local full-stack smoke test
 

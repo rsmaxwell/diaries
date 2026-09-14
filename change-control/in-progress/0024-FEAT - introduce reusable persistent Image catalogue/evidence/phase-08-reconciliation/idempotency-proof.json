@@ -1,0 +1,26 @@
+{
+  "actualCopyFiles": 87,
+  "actualCopyBytes": 93058826,
+  "sourceAndCopySha256Verified": true,
+  "copiedFilesUnchangedAfterApply": true,
+  "firstApplyRows": 71,
+  "secondDryRunCreates": 0,
+  "secondApplyInserts": 0,
+  "allRowsAndMetadataUnchangedOnSecondApply": true,
+  "chronologyFingerprintsUnchangedAfterApplyAndResponderStartup": true,
+  "actualResponderStartup": true,
+  "retainedImageCount": 71,
+  "retainedQos": 1,
+  "lateSubscriberRetainedFlagsVerified": true,
+  "retainedTopicsAndPayloadsExactlyMatchDatabase": true,
+  "candidateCrossReferenceCounts": {
+    "MATCHED_ONE_IMAGE": 60,
+    "AMBIGUOUS_PATH": 13
+  },
+  "conflictsExcluded": 12,
+  "finalPackagedSamePlanReplay": {
+    "alreadyMatched": 71,
+    "insertedRows": 0,
+    "candidateCrossReferenceComplete": true
+  }
+}

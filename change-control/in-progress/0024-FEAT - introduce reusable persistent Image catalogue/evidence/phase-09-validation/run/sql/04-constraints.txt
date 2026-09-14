@@ -1,0 +1,5 @@
+BEGIN
+INSERT 0 3
+DO
+ROLLBACK
+PASS identity/defaults, duplicate checksum, ASCII/Unicode uniqueness and 12 invalid-row cases

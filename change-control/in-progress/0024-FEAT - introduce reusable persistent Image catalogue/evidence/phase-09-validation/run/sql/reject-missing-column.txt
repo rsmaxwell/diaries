@@ -1,0 +1,269 @@
+Pager usage is off.
+BEGIN
+SET
+SET
+           database            | server_address | server_port |                                     server_version                                      | current_schema | target_schema |          executed_at          | application_user | session_user |    isolation    | read_only |    search_path     
+-------------------------------+----------------+-------------+-----------------------------------------------------------------------------------------+----------------+---------------+-------------------------------+------------------+--------------+-----------------+-----------+--------------------
+ t0024_253a594d_missing_column |                |             | PostgreSQL 18.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit | pg_catalog     | public        | 2026-09-14 13:11:54.929327+00 | diaries          | diaries      | repeatable read | on        | pg_catalog, public
+(1 row)
+
+ datcollate |  datctype  | datlocprovider 
+------------+------------+----------------
+ en_US.utf8 | en_US.utf8 | c
+(1 row)
+
+    collname     | collprovider | collisdeterministic | collversion | actual_version 
+-----------------+--------------+---------------------+-------------+----------------
+ pg_unicode_fast | b            | t                   | 1           | 1
+(1 row)
+
+ can_connect | schema_usage | can_create_table_sequence_indexes_constraints 
+-------------+--------------+-----------------------------------------------
+ t           | t            | t
+(1 row)
+
+ nspname |          relname          | relkind |  owner  
+---------+---------------------------+---------+---------
+ public  | image                     | r       | diaries
+ public  | image_checksum_idx        | i       | diaries
+ public  | image_id_seq              | S       | diaries
+ public  | image_pkey                | i       | diaries
+ public  | image_relative_path_ci_uq | i       | diaries
+(5 rows)
+
+ nspname | typname | typtype 
+---------+---------+---------
+ public  | _image  | b
+ public  | image   | c
+(2 rows)
+
+DO
+                                                                                              unexpected_image_schema                                                                                              
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ {                                                                                                                                                                                                                +
+     "rules": 0,                                                                                                                                                                                                  +
+     "table": {                                                                                                                                                                                                   +
+         "kind": "r",                                                                                                                                                                                             +
+         "options": null,                                                                                                                                                                                         +
+         "partition": false,                                                                                                                                                                                      +
+         "tablespace": "0",                                                                                                                                                                                       +
+         "persistence": "p",                                                                                                                                                                                      +
+         "rowSecurity": false,                                                                                                                                                                                    +
+         "forceRowSecurity": false                                                                                                                                                                                +
+     },                                                                                                                                                                                                           +
+     "columns": [                                                                                                                                                                                                 +
+         {                                                                                                                                                                                                        +
+             "name": "id",                                                                                                                                                                                        +
+             "type": "bigint",                                                                                                                                                                                    +
+             "default": null,                                                                                                                                                                                     +
+             "notNull": true,                                                                                                                                                                                     +
+             "identity": "d",                                                                                                                                                                                     +
+             "position": 1,                                                                                                                                                                                       +
+             "collation": "-",                                                                                                                                                                                    +
+             "generated": ""                                                                                                                                                                                      +
+         },                                                                                                                                                                                                       +
+         {                                                                                                                                                                                                        +
+             "name": "version",                                                                                                                                                                                   +
+             "type": "bigint",                                                                                                                                                                                    +
+             "default": "0",                                                                                                                                                                                      +
+             "notNull": true,                                                                                                                                                                                     +
+             "identity": "",                                                                                                                                                                                      +
+             "position": 2,                                                                                                                                                                                       +
+             "collation": "-",                                                                                                                                                                                    +
+             "generated": ""                                                                                                                                                                                      +
+         },                                                                                                                                                                                                       +
+         {                                                                                                                                                                                                        +
+             "name": "relative_path",                                                                                                                                                                             +
+             "type": "text",                                                                                                                                                                                      +
+             "default": null,                                                                                                                                                                                     +
+             "notNull": true,                                                                                                                                                                                     +
+             "identity": "",                                                                                                                                                                                      +
+             "position": 3,                                                                                                                                                                                       +
+             "collation": "\"default\"",                                                                                                                                                                          +
+             "generated": ""                                                                                                                                                                                      +
+         },                                                                                                                                                                                                       +
+         {                                                                                                                                                                                                        +
+             "name": "mime_type",                                                                                                                                                                                 +
+             "type": "character varying(127)",                                                                                                                                                                    +
+             "default": null,                                                                                                                                                                                     +
+             "notNull": true,                                                                                                                                                                                     +
+             "identity": "",                                                                                                                                                                                      +
+             "position": 4,                                                                                                                                                                                       +
+             "collation": "\"default\"",                                                                                                                                                                          +
+             "generated": ""                                                                                                                                                                                      +
+         },                                                                                                                                                                                                       +
+         {                                                                                                                                                                                                        +
+             "name": "original_filename",                                                                                                                                                                         +
+             "type": "text",                                                                                                                                                                                      +
+             "default": null,                                                                                                                                                                                     +
+             "notNull": true,                                                                                                                                                                                     +
+             "identity": "",                                                                                                                                                                                      +
+             "position": 5,                                                                                                                                                                                       +
+             "collation": "\"default\"",                                                                                                                                                                          +
+             "generated": ""                                                                                                                                                                                      +
+         },                                                                                                                                                                                                       +
+         {                                                                                                                                                                                                        +
+             "name": "width",                                                                                                                                                                                     +
+             "type": "integer",                                                                                                                                                                                   +
+             "default": null,                                                                                                                                                                                     +
+             "notNull": true,                                                                                                                                                                                     +
+             "identity": "",                                                                                                                                                                                      +
+             "position": 6,                                                                                                                                                                                       +
+             "collation": "-",                                                                                                                                                                                    +
+             "generated": ""                                                                                                                                                                                      +
+         },                                                                                                                                                                                                       +
+         {                                                                                                                                                                                                        +
+             "name": "height",                                                                                                                                                                                    +
+             "type": "integer",                                                                                                                                                                                   +
+             "default": null,                                                                                                                                                                                     +
+             "notNull": true,                                                                                                                                                                                     +
+             "identity": "",                                                                                                                                                                                      +
+             "position": 7,                                                                                                                                                                                       +
+             "collation": "-",                                                                                                                                                                                    +
+             "generated": ""                                                                                                                                                                                      +
+         },                                                                                                                                                                                                       +
+         {                                                                                                                                                                                                        +
+             "name": "checksum",                                                                                                                                                                                  +
+             "type": "character(64)",                                                                                                                                                                             +
+             "default": null,                                                                                                                                                                                     +
+             "notNull": true,                                                                                                                                                                                     +
+             "identity": "",                                                                                                                                                                                      +
+             "position": 8,                                                                                                                                                                                       +
+             "collation": "\"default\"",                                                                                                                                                                          +
+             "generated": ""                                                                                                                                                                                      +
+         },                                                                                                                                                                                                       +
+         {                                                                                                                                                                                                        +
+             "name": "alt_text",                                                                                                                                                                                  +
+             "type": "text",                                                                                                                                                                                      +
+             "default": "''::text",                                                                                                                                                                               +
+             "notNull": true,                                                                                                                                                                                     +
+             "identity": "",                                                                                                                                                                                      +
+             "position": 10,                                                                                                                                                                                      +
+             "collation": "\"default\"",                                                                                                                                                                          +
+             "generated": ""                                                                                                                                                                                      +
+         }                                                                                                                                                                                                        +
+     ],                                                                                                                                                                                                           +
+     "indexes": [                                                                                                                                                                                                 +
+         {                                                                                                                                                                                                        +
+             "live": true,                                                                                                                                                                                        +
+             "name": "image_checksum_idx",                                                                                                                                                                        +
+             "ready": true,                                                                                                                                                                                       +
+             "valid": true,                                                                                                                                                                                       +
+             "unique": false,                                                                                                                                                                                     +
+             "options": null,                                                                                                                                                                                     +
+             "primary": false,                                                                                                                                                                                    +
+             "definition": "CREATE INDEX image_checksum_idx ON public.image USING btree (checksum)",                                                                                                              +
+             "tablespace": "0",                                                                                                                                                                                   +
+             "nullsNotDistinct": false                                                                                                                                                                            +
+         },                                                                                                                                                                                                       +
+         {                                                                                                                                                                                                        +
+             "live": true,                                                                                                                                                                                        +
+             "name": "image_pkey",                                                                                                                                                                                +
+             "ready": true,                                                                                                                                                                                       +
+             "valid": true,                                                                                                                                                                                       +
+             "unique": true,                                                                                                                                                                                      +
+             "options": null,                                                                                                                                                                                     +
+             "primary": true,                                                                                                                                                                                     +
+             "definition": "CREATE UNIQUE INDEX image_pkey ON public.image USING btree (id)",                                                                                                                     +
+             "tablespace": "0",                                                                                                                                                                                   +
+             "nullsNotDistinct": false                                                                                                                                                                            +
+         },                                                                                                                                                                                                       +
+         {                                                                                                                                                                                                        +
+             "live": true,                                                                                                                                                                                        +
+             "name": "image_relative_path_ci_uq",                                                                                                                                                                 +
+             "ready": true,                                                                                                                                                                                       +
+             "valid": true,                                                                                                                                                                                       +
+             "unique": true,                                                                                                                                                                                      +
+             "options": null,                                                                                                                                                                                     +
+             "primary": false,                                                                                                                                                                                    +
+             "definition": "CREATE UNIQUE INDEX image_relative_path_ci_uq ON public.image USING btree (lower((relative_path COLLATE pg_unicode_fast)))",                                                          +
+             "tablespace": "0",                                                                                                                                                                                   +
+             "nullsNotDistinct": false                                                                                                                                                                            +
+         }                                                                                                                                                                                                        +
+     ],                                                                                                                                                                                                           +
+     "policies": 0,                                                                                                                                                                                               +
+     "sequence": {                                                                                                                                                                                                +
+         "max": 9223372036854775807,                                                                                                                                                                              +
+         "min": 1,                                                                                                                                                                                                +
+         "name": "image_id_seq",                                                                                                                                                                                  +
+         "type": "bigint",                                                                                                                                                                                        +
+         "cache": 1,                                                                                                                                                                                              +
+         "cycle": false,                                                                                                                                                                                          +
+         "start": 1,                                                                                                                                                                                              +
+         "schema": "public",                                                                                                                                                                                      +
+         "increment": 1,                                                                                                                                                                                          +
+         "persistence": "p",                                                                                                                                                                                      +
+         "ownerMatchesTable": true,                                                                                                                                                                               +
+         "identityDependency": true                                                                                                                                                                               +
+     },                                                                                                                                                                                                           +
+     "constraints": [                                                                                                                                                                                             +
+         {                                                                                                                                                                                                        +
+             "name": "image_checksum_check",                                                                                                                                                                      +
+             "type": "c",                                                                                                                                                                                         +
+             "deferred": false,                                                                                                                                                                                   +
+             "enforced": true,                                                                                                                                                                                    +
+             "noInherit": false,                                                                                                                                                                                  +
+             "validated": true,                                                                                                                                                                                   +
+             "deferrable": false,                                                                                                                                                                                 +
+             "definition": "CHECK ((checksum ~ '^[0-9a-f]{64}$'::text))"                                                                                                                                          +
+         },                                                                                                                                                                                                       +
+         {                                                                                                                                                                                                        +
+             "name": "image_height_check",                                                                                                                                                                        +
+             "type": "c",                                                                                                                                                                                         +
+             "deferred": false,                                                                                                                                                                                   +
+             "enforced": true,                                                                                                                                                                                    +
+             "noInherit": false,                                                                                                                                                                                  +
+             "validated": true,                                                                                                                                                                                   +
+             "deferrable": false,                                                                                                                                                                                 +
+             "definition": "CHECK ((height > 0))"                                                                                                                                                                 +
+         },                                                                                                                                                                                                       +
+         {                                                                                                                                                                                                        +
+             "name": "image_mime_type_check",                                                                                                                                                                     +
+             "type": "c",                                                                                                                                                                                         +
+             "deferred": false,                                                                                                                                                                                   +
+             "enforced": true,                                                                                                                                                                                    +
+             "noInherit": false,                                                                                                                                                                                  +
+             "validated": true,                                                                                                                                                                                   +
+             "deferrable": false,                                                                                                                                                                                 +
+             "definition": "CHECK (((mime_type)::text = ANY ((ARRAY['image/jpeg'::character varying, 'image/png'::character varying, 'image/gif'::character varying, 'image/webp'::character varying])::text[])))"+
+         },                                                                                                                                                                                                       +
+         {                                                                                                                                                                                                        +
+             "name": "image_pkey",                                                                                                                                                                                +
+             "type": "p",                                                                                                                                                                                         +
+             "deferred": false,                                                                                                                                                                                   +
+             "enforced": true,                                                                                                                                                                                    +
+             "noInherit": true,                                                                                                                                                                                   +
+             "validated": true,                                                                                                                                                                                   +
+             "deferrable": false,                                                                                                                                                                                 +
+             "definition": "PRIMARY KEY (id)"                                                                                                                                                                     +
+         },                                                                                                                                                                                                       +
+         {                                                                                                                                                                                                        +
+             "name": "image_version_check",                                                                                                                                                                       +
+             "type": "c",                                                                                                                                                                                         +
+             "deferred": false,                                                                                                                                                                                   +
+             "enforced": true,                                                                                                                                                                                    +
+             "noInherit": false,                                                                                                                                                                                  +
+             "validated": true,                                                                                                                                                                                   +
+             "deferrable": false,                                                                                                                                                                                 +
+             "definition": "CHECK ((version >= 0))"                                                                                                                                                               +
+         },                                                                                                                                                                                                       +
+         {                                                                                                                                                                                                        +
+             "name": "image_width_check",                                                                                                                                                                         +
+             "type": "c",                                                                                                                                                                                         +
+             "deferred": false,                                                                                                                                                                                   +
+             "enforced": true,                                                                                                                                                                                    +
+             "noInherit": false,                                                                                                                                                                                  +
+             "validated": true,                                                                                                                                                                                   +
+             "deferrable": false,                                                                                                                                                                                 +
+             "definition": "CHECK ((width > 0))"                                                                                                                                                                  +
+         }                                                                                                                                                                                                        +
+     ],                                                                                                                                                                                                           +
+     "inheritance": 0,                                                                                                                                                                                            +
+     "userTriggers": 0,                                                                                                                                                                                           +
+     "droppedColumns": 1,                                                                                                                                                                                         +
+     "invalidNotNullConstraints": 0                                                                                                                                                                               +
+ }
+(1 row)
+
+psql:/tmp/t0024_253a594d/assert-image-schema.sql:244: ERROR:  Partial or incompatible Image schema; no automatic repair is permitted
+CONTEXT:  PL/pgSQL function inline_code_block line 1 at RAISE

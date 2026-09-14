@@ -1,0 +1,27 @@
+{
+  "schemaVersion" : 1,
+  "toolVersion" : "0.0.9-SNAPSHOT:b3ca4fe58da82f854390b30ceb687a2bd61b255b",
+  "startedAt" : "2026-09-13T17:57:51.992900300Z",
+  "endedAt" : "2026-09-13T17:58:06.891579100Z",
+  "mode" : "apply",
+  "outcome" : "COMMITTED",
+  "failureType" : "",
+  "filesRoot" : "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\diaries-responder\\build\\phase8-proof\\files",
+  "rootKey" : "null",
+  "databaseIdentity" : "image_reconciliation_test:16390:172.17.0.2/32:5432:18.6",
+  "inputs" : {
+    "candidatesFilename" : "image-candidates.csv",
+    "candidatesSha256" : "c8b0dcd5b531e133121f55e688f61afcf8d26737d1df39292505dbc01e1fe58a",
+    "configFilename" : "config.json",
+    "configSha256" : "2eb689fe34f5bbda5f388b5d3904bc3caba0fa9d2c3dc82248a7cd3d32da891f"
+  },
+  "reviewedPlanSha256" : "707816b9ab4138292396c6052de3591186d5990554868f4a3b6029e03e567544",
+  "counts" : {
+    "CREATE_MISSING" : 71,
+    "DIRECTORY" : 10,
+    "UNREADABLE" : 12,
+    "UNSUPPORTED" : 4
+  },
+  "insertedRows" : 71,
+  "reservedDirectoryExcluded" : ".image-staging (inspect recovery material separately)"
+}

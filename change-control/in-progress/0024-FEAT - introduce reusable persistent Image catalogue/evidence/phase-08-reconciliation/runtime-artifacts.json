@@ -1,0 +1,12 @@
+{
+  "fatJarFilename": "diaries-responder-0.0.9-SNAPSHOT-fat.jar",
+  "fatJarSha256": "00f14410775f262fe47afe4e819230a9eabf14d4fdf6ecd167b9b7853b9cf7f7",
+  "configFilename": "config.json",
+  "configSha256": "2eb689fe34f5bbda5f388b5d3904bc3caba0fa9d2c3dc82248a7cd3d32da891f",
+  "startupConfigFilename": "startup-config.json",
+  "startupConfigSha256": "f6f1f76ac4067ddd9be4097ee3eec35afac54769c71c643faea290a7ca0d1fc0",
+  "filesRootMode": "verified copy; responder startup mount read-only",
+  "database": "disposable PostgreSQL 18 restored baseline plus 0024 schema",
+  "broker": "disposable Mosquitto 2.0.22; current application ACL",
+  "originalContentModified": false
+}

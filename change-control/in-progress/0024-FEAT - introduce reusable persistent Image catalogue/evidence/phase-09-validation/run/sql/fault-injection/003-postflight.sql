@@ -1,0 +1,1 @@
+DO $$ BEGIN RAISE EXCEPTION 'Injected postflight failure'; END $$;

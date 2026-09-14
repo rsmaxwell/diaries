@@ -1,0 +1,169 @@
+{
+  "reviewedConflictCount": 12,
+  "safeCreates": 71,
+  "unsupportedGenericFiles": 4,
+  "conflicts": [
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2885-image-baltic-map.png",
+      "sha256": "22861a4633966297ddbd5ea7710261d0d6a5e898c1d94065bf1293da118f6e3e",
+      "inspectionRejection": "PNG chunk checksum mismatch",
+      "disposition": "EXCLUDE_FROM_CREATE_BATCH; retain bytes and report for separate review",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 8546,
+          "storedCrc": "bd257b58",
+          "calculatedCrc": "b99601bb"
+        }
+      ]
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2885-image-copenhagen-large-map.png",
+      "sha256": "27f0773a2dabfdcc231564b2e522173da0ad914b98f549907d5fcea8a2123693",
+      "inspectionRejection": "PNG chunk checksum mismatch",
+      "disposition": "EXCLUDE_FROM_CREATE_BATCH; retain bytes and report for separate review",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 5811,
+          "storedCrc": "bd257b58",
+          "calculatedCrc": "b99601bb"
+        }
+      ]
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2885-image-copenhagen-map.png",
+      "sha256": "3830530309064f84947d03aef909e6b1bc782b5e3108b635cb5ced5778389983",
+      "inspectionRejection": "PNG chunk checksum mismatch",
+      "disposition": "EXCLUDE_FROM_CREATE_BATCH; retain bytes and report for separate review",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 8239,
+          "storedCrc": "bd257b58",
+          "calculatedCrc": "b99601bb"
+        }
+      ]
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2891-image-copenhagen-east.png",
+      "sha256": "d8118b7e8bc28c933b10be926e859e1b9ff7f9a4274355b871ea368fd8212b77",
+      "inspectionRejection": "PNG chunk checksum mismatch",
+      "disposition": "EXCLUDE_FROM_CREATE_BATCH; retain bytes and report for separate review",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 8794,
+          "storedCrc": "cffbb40d",
+          "calculatedCrc": "cb48ceee"
+        }
+      ]
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2892-image-baltic.png",
+      "sha256": "52b7ea37a0053a5029d1cc8baca8698411eda180eb06d8680744521b92294a8d",
+      "inspectionRejection": "PNG chunk checksum mismatch",
+      "disposition": "EXCLUDE_FROM_CREATE_BATCH; retain bytes and report for separate review",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 8671,
+          "storedCrc": "8d454901",
+          "calculatedCrc": "89f633e2"
+        }
+      ]
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-st-petersburg-map-large.png",
+      "sha256": "bd033572a84844e0255c851064c9dda284e4435854d7a9852c8753bb307c8a3a",
+      "inspectionRejection": "PNG chunk checksum mismatch",
+      "disposition": "EXCLUDE_FROM_CREATE_BATCH; retain bytes and report for separate review",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 6588,
+          "storedCrc": "e2659373",
+          "calculatedCrc": "db6293cb"
+        }
+      ]
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-st-petersburg-map.png",
+      "sha256": "95456a21e89d774002e62c0071f626560d861b2fdd52b7692c9fd25b1ca57625",
+      "inspectionRejection": "PNG chunk checksum mismatch",
+      "disposition": "EXCLUDE_FROM_CREATE_BATCH; retain bytes and report for separate review",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 8496,
+          "storedCrc": "8afd4ea3",
+          "calculatedCrc": "e2a1b825"
+        }
+      ]
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-st-petersburg-map-large.png",
+      "sha256": "2231d54956cc21a8cb3f64d3a29bd1ddc9ecab3ce85d02afec4be3e47a8e4807",
+      "inspectionRejection": "PNG chunk checksum mismatch",
+      "disposition": "EXCLUDE_FROM_CREATE_BATCH; retain bytes and report for separate review",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 6588,
+          "storedCrc": "9ea84e7e",
+          "calculatedCrc": "a7af4ec6"
+        }
+      ]
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2920-image-map-london.png",
+      "sha256": "e9c825ae8484e76135d3074ac96f3815a6193f12abc0053f12d2e8378a889af9",
+      "inspectionRejection": "PNG chunk checksum mismatch",
+      "disposition": "EXCLUDE_FROM_CREATE_BATCH; retain bytes and report for separate review",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 7203,
+          "storedCrc": "9733c3d3",
+          "calculatedCrc": "ae34c36b"
+        }
+      ]
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2926-burnhopeside-hall.jpg",
+      "sha256": "793d8202e2269ad933a51f98191822c3774484f4417e03a00da487d8cf81de0d",
+      "inspectionRejection": "JPEG end marker missing",
+      "disposition": "EXCLUDE_FROM_CREATE_BATCH; retain bytes and report for separate review",
+      "lastEndMarkerOffset": 134494,
+      "trailingBytesAfterEndMarker": 1573
+    },
+    {
+      "relativePath": "diary-1831/images/img2761-brandon-white-house.png",
+      "sha256": "c16ab3fd1793b0be830829bf3a5f35b1a3486d78bfacd5300284b654f1b4aaea",
+      "inspectionRejection": "PNG chunk checksum mismatch",
+      "disposition": "EXCLUDE_FROM_CREATE_BATCH; retain bytes and report for separate review",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 6701,
+          "storedCrc": "8d32c170",
+          "calculatedCrc": "b435c1c8"
+        }
+      ]
+    },
+    {
+      "relativePath": "diary-1831/images/img2762-north-shields-walk.png",
+      "sha256": "485e4e6bb3636add58e70eec5d082937dd5019953da3cd51dbba25ff03eb0dbb",
+      "inspectionRejection": "PNG chunk checksum mismatch",
+      "disposition": "EXCLUDE_FROM_CREATE_BATCH; retain bytes and report for separate review",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 7696,
+          "storedCrc": "297db71f",
+          "calculatedCrc": "107ab7a7"
+        }
+      ]
+    }
+  ]
+}

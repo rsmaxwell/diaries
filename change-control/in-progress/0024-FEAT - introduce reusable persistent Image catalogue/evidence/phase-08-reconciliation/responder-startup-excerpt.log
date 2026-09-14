@@ -1,0 +1,4 @@
+18:01:25.132 [main] INFO  com.rsmaxwell.diaries.responder.Responder - Static server running at:
+18:01:40.476 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - synchronise: ok
+18:01:41.296 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Connected, subscribing to: 'diaries/rpc/request'
+18:01:41.297 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - MQTT connect complete (reconnect=false)

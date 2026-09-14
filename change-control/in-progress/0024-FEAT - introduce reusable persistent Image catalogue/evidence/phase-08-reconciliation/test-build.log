@@ -1,0 +1,96 @@
+> Task :diaries-responder:compileJava UP-TO-DATE
+
+> Task :diaries-responder:generateBuildInfo
+Generated responder build information: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\build\generated\resources\buildInfo\build-info.properties
+Responder version: 0.0.9-SNAPSHOT
+
+> Task :diaries-responder:processResources
+> Task :diaries-responder:classes
+> Task :diaries-responder:jar
+
+> Task :diaries-responder:shadowJar
+'META-INF/services/org.slf4j.spi.SLF4JServiceProvider' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/org.eclipse.paho.mqttv5.client.spi.NetworkModuleFactory' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/io.jsonwebtoken.io.Deserializer' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/io.jsonwebtoken.io.Serializer' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/com.fasterxml.jackson.core.JsonFactory' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/com.fasterxml.jackson.core.ObjectCodec' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/io.jsonwebtoken.CompressionCodec' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/jakarta.persistence.spi.PersistenceProvider' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/org.hibernate.bytecode.spi.BytecodeProvider' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/javax.imageio.spi.ImageReaderSpi' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/javax.annotation.processing.Processor' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/org.apache.logging.log4j.core.util.ContextDataProvider' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/org.apache.logging.log4j.message.ThreadDumpMessage$ThreadInfoFactory' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/org.apache.logging.log4j.spi.Provider' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/org.apache.logging.log4j.util.PropertySource' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/java.sql.Driver' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/jakarta.xml.bind.JAXBContextFactory' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/jakarta.activation.spi.MailcapRegistryProvider' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/jakarta.activation.spi.MimeTypeRegistryProvider' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+'META-INF/services/javax.imageio.spi.ImageInputStreamSpi' is matched by com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer but its DuplicatesStrategy is EXCLUDE — duplicates may be silently dropped before the transformer processes them.
+Set it to INCLUDE or WARN to ensure all duplicates are processed by the transformer.
+See https://gradleup.com/shadow/configuration/merging/#handling-duplicates-strategy for more details.
+
+> Task :diaries-responder:compileTestJava UP-TO-DATE
+> Task :diaries-responder:processTestResources UP-TO-DATE
+> Task :diaries-responder:testClasses UP-TO-DATE
+> Task :diaries-responder:test
+> Task :diaries-responder:startScripts
+> Task :diaries-responder:distTar
+> Task :diaries-responder:distZip
+> Task :diaries-responder:startShadowScripts
+> Task :diaries-responder:shadowDistTar
+> Task :diaries-responder:shadowDistZip
+> Task :diaries-responder:assemble
+> Task :diaries-responder:check
+> Task :diaries-responder:build
+
+[Incubating] Problems report is available at: file:///C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.6.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2m 11s
+14 actionable tasks: 11 executed, 3 up-to-date

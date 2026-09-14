@@ -1,0 +1,1566 @@
+[
+  {
+    "path": "build.gradle",
+    "sha256": "c4bec7223c87bfdd54eb8f341aff474dcb788fe3d5b4dd999ebfa4de06b719ee"
+  },
+  {
+    "path": "change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/evidence/phase-04-catalogue/mosquitto.conf",
+    "sha256": "3708cb4b350d42431addcea329605e368c20128f05e1321a744e6c7270307b8f"
+  },
+  {
+    "path": "change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/migration/001-preflight.sql",
+    "sha256": "b6defb7feba974715d732f3052dab5d93f841a106459ebab0f89aa8985acd521"
+  },
+  {
+    "path": "change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/migration/002-add-image-catalogue.sql",
+    "sha256": "f273616fb8118bcc0d97a3ecd6052f6e35e66ef49e4026415fb44a2311851375"
+  },
+  {
+    "path": "change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/migration/003-postflight.sql",
+    "sha256": "a398e46d25eccd06590dc72bf4e37833793a0e66ddf1c9a28dd1f1032af827a1"
+  },
+  {
+    "path": "change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/migration/assert-image-schema.sql",
+    "sha256": "38dde38f26b87600f1ee3ccf223c9a2cd840b791545802cbde2f86fd3538c074"
+  },
+  {
+    "path": "change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/migration/catalog-shape.sql",
+    "sha256": "7c83bd07c11d0af051d52fac9d9c625256f574b544156c057b6a56199b3034f8"
+  },
+  {
+    "path": "change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/migration/integrity.sql",
+    "sha256": "20796cbbabdf829259072d8e837b9c7315a7cfae2ef98fc2b3b06dfbcf453662"
+  },
+  {
+    "path": "change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/migration/prerequisites.sql",
+    "sha256": "10cb781e129441cbaa043ef7538d344fe9939c76e9f46f4a0cab9a2163d9ca61"
+  },
+  {
+    "path": "change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/migration/README.md",
+    "sha256": "0aba781b6b82a338cf4d51c9710aad623775980d3736afc4c33c9581c7aaedd7"
+  },
+  {
+    "path": "change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/migration/run-migration.ps1",
+    "sha256": "4aeed98bb4b7f0e3365e8f09ca8c3560eeff8cb3142711cb9fc02b3f075f15dd"
+  },
+  {
+    "path": "change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/migration/schema.sql",
+    "sha256": "459302ecc69beeda22f15b1549d97edb4930daeb016dea1307ff58fe02ca0a19"
+  },
+  {
+    "path": "change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/migration/tests/constraints.sql",
+    "sha256": "ae44306cd7cb6c059a129d9eba8397b6d37e986db861860687d923b2a7cf6973"
+  },
+  {
+    "path": "change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/migration/tests/run-tests.ps1",
+    "sha256": "5b81193b01ddd01637c1e349eafcce1ac80f754507556de40e95d5e052d6e769"
+  },
+  {
+    "path": "config/mosquitto/aclfile.txt",
+    "sha256": "9efa456a71ef02ebcea8c8a48c66bf85b7016d1b7f011d5856d6a3cb93a262dd"
+  },
+  {
+    "path": "config/mosquitto/mosquitto.conf",
+    "sha256": "78bbd8ffa2fb6b5dbe6cb4a0de85fa4b864f324a8d426ee071b645c229f99828"
+  },
+  {
+    "path": "diaries-client/angular.json",
+    "sha256": "de7de972a121478f782f9d4338ad52c78d1ea9b7b6c8162d4d3b52c1e5b77f92"
+  },
+  {
+    "path": "diaries-client/package-lock.json",
+    "sha256": "651a4d77f95f4af6ae2c3fdaa35e7e408e20ad49eac45ea308df8e1792715a77"
+  },
+  {
+    "path": "diaries-client/package.json",
+    "sha256": "a5d1795e1a13e3a7cf56ca066ba67863f7b305391ec415e7aa348e8df9b5119b"
+  },
+  {
+    "path": "diaries-client/src/app/alert/alert.component.html",
+    "sha256": "ae1821be7f1e8f297a5a4cfbac8f24a3303f7b57b5ba6f27206bb4646dc1ea8c"
+  },
+  {
+    "path": "diaries-client/src/app/alert/alert.component.scss",
+    "sha256": "43e6ea39be5ee590c392c99c22eb043e02eb0f5ea0c396cf4f8afb6527484a68"
+  },
+  {
+    "path": "diaries-client/src/app/alert/alert.component.spec.ts",
+    "sha256": "4aa9f11127d1ad2ffceca1a9d36c3ec88c6c9581cbf7bcb697f5bfde53b705e2"
+  },
+  {
+    "path": "diaries-client/src/app/alert/alert.component.ts",
+    "sha256": "bc0c270e06b5e356093ce222b3c2272c7e24aa4921985d498dc3cda25301e688"
+  },
+  {
+    "path": "diaries-client/src/app/alertbuttons/alertbuttons.component.html",
+    "sha256": "d481e1e7c181f4a5a01556cee225948a5541e048c65dce0ca515ad4c12469639"
+  },
+  {
+    "path": "diaries-client/src/app/alertbuttons/alertbuttons.component.scss",
+    "sha256": "fd027941537f36e3fc6f36403a6f908ad9a4eb50bc3924e9863bda1f78075a70"
+  },
+  {
+    "path": "diaries-client/src/app/alertbuttons/alertbuttons.component.spec.ts",
+    "sha256": "9eaaeccb905a1cd936e0c274151ee19f76101d36dfebfc1003ffad97d8405b84"
+  },
+  {
+    "path": "diaries-client/src/app/alertbuttons/alertbuttons.component.ts",
+    "sha256": "1cd5c3f9d49f213de4eb3bfb903aa290343d3ac5199c343d3326f5c9f0555900"
+  },
+  {
+    "path": "diaries-client/src/app/alerts/alert.builder.ts",
+    "sha256": "f696140eab3e96d7792b3ff046dac4056ff1076198fb2c5a27503da230fb67c6"
+  },
+  {
+    "path": "diaries-client/src/app/alerts/alert.model.ts",
+    "sha256": "2f9c312df3a54e18b400a1771ff29648b4853ce55faead4659b9442fc641c617"
+  },
+  {
+    "path": "diaries-client/src/app/alerts/alert.service.spec.ts",
+    "sha256": "5e0f188230484a77bb83ad64cb70fae068244eb274bfb953e36e3f29fa89fa91"
+  },
+  {
+    "path": "diaries-client/src/app/alerts/alert.service.ts",
+    "sha256": "81fc91b14d3571fe08f0ab67033a7c7b193cbe31488c1b59015f46a3a799c4ab"
+  },
+  {
+    "path": "diaries-client/src/app/alerts/alerts.component.html",
+    "sha256": "4d82303cecb03c786a8ae23f8ded2cbd181938031e1dd0b0132ea106d7dc9774"
+  },
+  {
+    "path": "diaries-client/src/app/alerts/alerts.component.scss",
+    "sha256": "379389992e99b72aafc40a9c7c88d7b5a76ef28bb9172d648a747e22c093106a"
+  },
+  {
+    "path": "diaries-client/src/app/alerts/alerts.component.spec.ts",
+    "sha256": "dc768444d4c68e36f9a1f8f043735357a15e47070cce9d0fe7bce3609520e84e"
+  },
+  {
+    "path": "diaries-client/src/app/alerts/alerts.component.ts",
+    "sha256": "84c039e6668e31ec3232758877100b512ed54df3a5461dc16b503c85800a0b6c"
+  },
+  {
+    "path": "diaries-client/src/app/app.component.html",
+    "sha256": "dc24544f75483121a8402b0f48f990ad2306ad86f3db0c38f3816d382ac0dfc3"
+  },
+  {
+    "path": "diaries-client/src/app/app.component.scss",
+    "sha256": "185f1bd23a4b83e324051c74f3774b75125be6f369eca23f4cdac89b8f10c730"
+  },
+  {
+    "path": "diaries-client/src/app/app.component.spec.ts",
+    "sha256": "413cc7ee87226f9d53950f022ce854cfcc605c276e74bf579e4ff38067aff38e"
+  },
+  {
+    "path": "diaries-client/src/app/app.component.ts",
+    "sha256": "0d066f3819f3f55d4a44d71279e44387308cb028c20d0df0b0ec9bac89d7669b"
+  },
+  {
+    "path": "diaries-client/src/app/app.config.ts",
+    "sha256": "b07ac518533f06469cb54c9235e41bd634e3b41351f78f9488ca53b414e63948"
+  },
+  {
+    "path": "diaries-client/src/app/app.routes.ts",
+    "sha256": "c12919f6dbd1a6c369194a4b3e7c4067baad2253decb3e23e62b3c3a1ce68d55"
+  },
+  {
+    "path": "diaries-client/src/app/auth.guard.ts",
+    "sha256": "4a24049ab445b6b846bdeb32f10cdd06b0dd663cb819d53ae5138881fe5999da"
+  },
+  {
+    "path": "diaries-client/src/app/build-info/client-build-info.service.ts",
+    "sha256": "cb83ca70ce2effbf0bbcee6e20c6135b75bd419f01f6e1e4229874c5de78587e"
+  },
+  {
+    "path": "diaries-client/src/app/build-info/version-info.component.html",
+    "sha256": "68f3c6478db7bafcf738a9284e537e35bb66cda606624789bab3e68050d29fe5"
+  },
+  {
+    "path": "diaries-client/src/app/build-info/version-info.component.scss",
+    "sha256": "4c422282d8aaf264123cdb29fcf42b94c3ea730bd10cdf9dcdb75033a01531ce"
+  },
+  {
+    "path": "diaries-client/src/app/build-info/version-info.component.ts",
+    "sha256": "462b471909f31b169377115a83ffbbe3ffc726e3bbc8255ed6e41e7f0ddd7b16"
+  },
+  {
+    "path": "diaries-client/src/app/config/config.service.spec.ts",
+    "sha256": "c3210cce6d5583cfccd4d17f08d672b93eb4cc2d7837f9cef30e2020ca892a04"
+  },
+  {
+    "path": "diaries-client/src/app/config/config.service.ts",
+    "sha256": "a7f8a08b1c280cc57c2226e041b8d61f67ce6e585d021c59ea9e3fe7a634cbc0"
+  },
+  {
+    "path": "diaries-client/src/app/dayview/dayview.component.html",
+    "sha256": "3d01c92fad34c6b8f608b944ac51d801233bdb2ca1707d235a0372d3d37a34e4"
+  },
+  {
+    "path": "diaries-client/src/app/dayview/dayview.component.scss",
+    "sha256": "27e22696d5beab5cddc9b34244bf2b45ad44b3d9fb2da3fe4fbf0475e3c9fc9c"
+  },
+  {
+    "path": "diaries-client/src/app/dayview/dayview.component.spec.ts",
+    "sha256": "6ecd939459993a24781a0246792e8109abacff89e64125f068c55fb3b25100e0"
+  },
+  {
+    "path": "diaries-client/src/app/dayview/dayview.component.ts",
+    "sha256": "4f5339fc6dfb5a7b37d03ef8c8731fb99ed749ca1362158dc8de6ae8c2135f85"
+  },
+  {
+    "path": "diaries-client/src/app/diaries/diaries.component.html",
+    "sha256": "99dbc66a822c0530c18367cd014e9b842044565ed55a6718fc5deb5efa7e80e0"
+  },
+  {
+    "path": "diaries-client/src/app/diaries/diaries.component.scss",
+    "sha256": "4f3f27d5e68f009c0756cc589bd2b08a4e4a736bee615e85657142c7df77b593"
+  },
+  {
+    "path": "diaries-client/src/app/diaries/diaries.component.spec.ts",
+    "sha256": "72d5b6fd915bf0616babcfe88d5ebdecaabebf4eaf1c24a332958472c9038684"
+  },
+  {
+    "path": "diaries-client/src/app/diaries/diaries.component.ts",
+    "sha256": "c01445ab536750dc8eb0d58eed7a33d7911f3d2b72ba8ac9977470131db663a4"
+  },
+  {
+    "path": "diaries-client/src/app/diary/diary.component.html",
+    "sha256": "55c3775e0c763de2872e75bc59c7746ce7492de90e61e80c985b4c33bfa6f78a"
+  },
+  {
+    "path": "diaries-client/src/app/diary/diary.component.scss",
+    "sha256": "4f3f27d5e68f009c0756cc589bd2b08a4e4a736bee615e85657142c7df77b593"
+  },
+  {
+    "path": "diaries-client/src/app/diary/diary.component.spec.ts",
+    "sha256": "5d3cf612c76828f63d924ec0097908aee97c40f85c148e91eb9b111982cce542"
+  },
+  {
+    "path": "diaries-client/src/app/diary/diary.component.ts",
+    "sha256": "eee6c62922a484015c54ed6fb6209cdedbc1032171e087ada55784d467a81d11"
+  },
+  {
+    "path": "diaries-client/src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts",
+    "sha256": "9dd5905210245e47f935c4b2d21029cf673dc8b0a4f71f4edca7cb6e5f49148b"
+  },
+  {
+    "path": "diaries-client/src/app/files-list-dialog/files-list-dialog.component.html",
+    "sha256": "80f4fce7e92beaff7b3e018d6fbd9b67cdf0e4eb9b7179e63a10f25ff1c9961a"
+  },
+  {
+    "path": "diaries-client/src/app/files-list-dialog/files-list-dialog.component.scss",
+    "sha256": "039695f70b795e3797693948e5cc2e6cc45660491ac7a20567e7909a96b5e80e"
+  },
+  {
+    "path": "diaries-client/src/app/files-list-dialog/files-list-dialog.component.ts",
+    "sha256": "00f9792474e5c9ead6d8f70258a754bd3598a5d44f425955070f9e05bb7e6096"
+  },
+  {
+    "path": "diaries-client/src/app/fragment/fragment-lock.service.ts",
+    "sha256": "69d1592127ab90844c22948c8b313791739af69bd8cf3ff3a974617e2e0b0ecb"
+  },
+  {
+    "path": "diaries-client/src/app/fragment/fragment.component.html",
+    "sha256": "04de86afb741cde711728cf50c061796591b3ff49a3404968982b3ef94291213"
+  },
+  {
+    "path": "diaries-client/src/app/fragment/fragment.component.scss",
+    "sha256": "b8f25d5d8cd1f9ec57a03cb5d82f8de222e863b9c1e7a229ea9cd81fb0fc345f"
+  },
+  {
+    "path": "diaries-client/src/app/fragment/fragment.component.spec.ts",
+    "sha256": "1e90d906dc8e2c43dbd8d898f044835b2678f26d102265d312beb37dfeb27f01"
+  },
+  {
+    "path": "diaries-client/src/app/fragment/fragment.component.ts",
+    "sha256": "4f0ea2c7b1b6f27c588f706424d335fe7a3e481a435f850fac5a42ceb82406c8"
+  },
+  {
+    "path": "diaries-client/src/app/fragment/image-viewer/image-viewer.component.html",
+    "sha256": "2fe9609d01af626bfaf4e51517a51819c5f071a274d594c094edb3d9cd3cbf5b"
+  },
+  {
+    "path": "diaries-client/src/app/fragment/image-viewer/image-viewer.component.scss",
+    "sha256": "e468b6b6fd4f9ea59994b0725d5684e1de4c22f49ad9575460110c91235212d7"
+  },
+  {
+    "path": "diaries-client/src/app/fragment/image-viewer/image-viewer.component.spec.ts",
+    "sha256": "c260dfb60a7f0ad0bf869aa8f0f589294d7a9d1d970c9172dc5f64480b69d37b"
+  },
+  {
+    "path": "diaries-client/src/app/fragment/image-viewer/image-viewer.component.ts",
+    "sha256": "ecfba5bd4002b509392c69fab016d5dfad409987b844a5e74d14be0dad68e0f1"
+  },
+  {
+    "path": "diaries-client/src/app/fragment/text-panel/text-panel.component.html",
+    "sha256": "7c63ff306dde87bda24cd248a2dda7e17a0ab2d772576a046d3f42868a03a604"
+  },
+  {
+    "path": "diaries-client/src/app/fragment/text-panel/text-panel.component.scss",
+    "sha256": "569e1b491b0dcf614c8604f6a79e201d5b064d3fe85e8421a67c3fffb0aa62b0"
+  },
+  {
+    "path": "diaries-client/src/app/fragment/text-panel/text-panel.component.spec.ts",
+    "sha256": "a9585a5c79024805f5b735328ce6a94002f75e554763e31d091b824b9cdd4be4"
+  },
+  {
+    "path": "diaries-client/src/app/fragment/text-panel/text-panel.component.ts",
+    "sha256": "bd30998fe30cc499406a4c0e33067b27d974bd4aa5b1229a2fe6c10160e331f0"
+  },
+  {
+    "path": "diaries-client/src/app/headers/fullfooter/fullfooter.component.html",
+    "sha256": "e3e7826c43d67e663889724d17d315090380645450b1eab6732001754b6eeca5"
+  },
+  {
+    "path": "diaries-client/src/app/headers/fullfooter/fullfooter.component.scss",
+    "sha256": "92caef1e7a784b6f88c0313ddf03ee2d6f0f5cbc27248bac8543e4ebb789962d"
+  },
+  {
+    "path": "diaries-client/src/app/headers/fullfooter/fullfooter.component.spec.ts",
+    "sha256": "d2f5632d712cf95c7d2fd05fc1b8aaaf452233c1cf9f698588886d4f614da53f"
+  },
+  {
+    "path": "diaries-client/src/app/headers/fullfooter/fullfooter.component.ts",
+    "sha256": "29af4d83acd525877e4a9b9c4f2a7cfec32344f983ac00c7e22eb42f687c70d4"
+  },
+  {
+    "path": "diaries-client/src/app/headers/fullheader/fullheader.component.html",
+    "sha256": "87dddbd7cb4dba964f426e2f9efef20322df15d5048bfa179e61584a72450c08"
+  },
+  {
+    "path": "diaries-client/src/app/headers/fullheader/fullheader.component.scss",
+    "sha256": "24b7a0dc7bfd93a3766640e50a5da416c99eff2c52ad2a20196d765d7d41ba22"
+  },
+  {
+    "path": "diaries-client/src/app/headers/fullheader/fullheader.component.spec.ts",
+    "sha256": "757dca9bbb5954622b1637148012ddf55a51d2a17e01bf455d03d137728c8677"
+  },
+  {
+    "path": "diaries-client/src/app/headers/fullheader/fullheader.component.ts",
+    "sha256": "576412e46e5ec28fed756375f30869d9f703bbfeeab8eb3214343eb3c8dceb2d"
+  },
+  {
+    "path": "diaries-client/src/app/headers/pagefooter/pagefooter.component.html",
+    "sha256": "f14a6f4e8eaad2edf544a0e16b3105b263812af467b7aa37c20e58af06d767dd"
+  },
+  {
+    "path": "diaries-client/src/app/headers/pagefooter/pagefooter.component.scss",
+    "sha256": "92caef1e7a784b6f88c0313ddf03ee2d6f0f5cbc27248bac8543e4ebb789962d"
+  },
+  {
+    "path": "diaries-client/src/app/headers/pagefooter/pagefooter.component.spec.ts",
+    "sha256": "a88a14eb60dbab6a5678b7d048a6d62b392b1d5a1b4f8acbdef3aac1a07b04e1"
+  },
+  {
+    "path": "diaries-client/src/app/headers/pagefooter/pagefooter.component.ts",
+    "sha256": "d0e3728a0570b64315057a001d92706af8046a374a35bd3bf8b42027041103dd"
+  },
+  {
+    "path": "diaries-client/src/app/headers/pageheader/pageheader.component.html",
+    "sha256": "e67c3233ba70a47d8a2227bb3ec757c483051b9a4e4c631d0400b3131f23ee0b"
+  },
+  {
+    "path": "diaries-client/src/app/headers/pageheader/pageheader.component.scss",
+    "sha256": "0d4b01b70345d7dcaebf9d9bd1f81a904b3b31c7dd79c6669423c600a1fc8e09"
+  },
+  {
+    "path": "diaries-client/src/app/headers/pageheader/pageheader.component.spec.ts",
+    "sha256": "dd3753c4e7bd20995b5be33c282bd77fedd6e501cad995eda1c6310622ed1a25"
+  },
+  {
+    "path": "diaries-client/src/app/headers/pageheader/pageheader.component.ts",
+    "sha256": "c6f7ec6bfc340ecf34282ca8cf1ad1cd8f6e30b83276e0d36dc75ae02367caaa"
+  },
+  {
+    "path": "diaries-client/src/app/headers/plainfooter/plainfooter.component.html",
+    "sha256": "2bf1f6323653d328d77afd15f3fc1254f4368e33f36052868332895cae07c435"
+  },
+  {
+    "path": "diaries-client/src/app/headers/plainfooter/plainfooter.component.scss",
+    "sha256": "901556128aaaaf681951bd0ec77316de3c9087c5ceb4e9fb8d52563cce076046"
+  },
+  {
+    "path": "diaries-client/src/app/headers/plainfooter/plainfooter.component.spec.ts",
+    "sha256": "c172e40deb255c1dc874412e9ea10bd8536439b6e7d23c788c206929f3f79fe3"
+  },
+  {
+    "path": "diaries-client/src/app/headers/plainfooter/plainfooter.component.ts",
+    "sha256": "33db5d2525b40a6363a1dd0236320b8770f9bd30e02ec31fa050babee1696b1b"
+  },
+  {
+    "path": "diaries-client/src/app/headers/plainheader/plainheader.component.html",
+    "sha256": "45e812e37a3e33d06b9f7996b6b3a764f1b8e08b184c7a162c918062e2706086"
+  },
+  {
+    "path": "diaries-client/src/app/headers/plainheader/plainheader.component.scss",
+    "sha256": "8e847e24503ceb5678c16dfb304c02d3b8a7e0caf2ea575e9308c259c201e977"
+  },
+  {
+    "path": "diaries-client/src/app/headers/plainheader/plainheader.component.spec.ts",
+    "sha256": "a74bb6cd75827e7bc71d28001e78e79eaf8dd3acc4229aad744251b6d1f06694"
+  },
+  {
+    "path": "diaries-client/src/app/headers/plainheader/plainheader.component.ts",
+    "sha256": "558c3f039888573da91c2d96e1ea85715903086ef0403d50955d1c6de1c71276"
+  },
+  {
+    "path": "diaries-client/src/app/model/build-info.ts",
+    "sha256": "7f1d57804d00f21e451d83b17bb483bc1d74d147ddfe1dd95535126b8928939a"
+  },
+  {
+    "path": "diaries-client/src/app/model/diary.ts",
+    "sha256": "e3d10fad06c37108fd583ec4c9152cdf9ab5dff943bf205e99efd01d0b2f3a05"
+  },
+  {
+    "path": "diaries-client/src/app/model/FileEntry.ts",
+    "sha256": "93a67b3ca9e003a5c657db9bbd09b6a0a99b353516e71b92c40799a743a97554"
+  },
+  {
+    "path": "diaries-client/src/app/model/FileListResponse.ts",
+    "sha256": "b088cc224cdf7a38d0356b97f3235b5305bc759312d1a2a388b69b9468175a11"
+  },
+  {
+    "path": "diaries-client/src/app/model/fragment.spec.ts",
+    "sha256": "58340afb57edb5b1a288ca31d790e66ed69b6d1d08a34dd10e5bc809cb64642b"
+  },
+  {
+    "path": "diaries-client/src/app/model/fragment.ts",
+    "sha256": "f902a6f017a6927d83fdf34ae1f0c85178b2a23fbe033b42bc9a8c63ac36b88d"
+  },
+  {
+    "path": "diaries-client/src/app/model/marquee.ts",
+    "sha256": "c41ca0f310815445323638b796165c20984afd453a9629227e46819f893c6c37"
+  },
+  {
+    "path": "diaries-client/src/app/model/model-context.spec.ts",
+    "sha256": "ca601f95f3f0f8361a87ddefd694a05342ab3251f9d8b14e54ff367c2b21cb1a"
+  },
+  {
+    "path": "diaries-client/src/app/model/model-context.ts",
+    "sha256": "9db578844f96423e3d6724a2f1d4b4c2eda224f05bfb3902e02f6a487ac06905"
+  },
+  {
+    "path": "diaries-client/src/app/model/page.ts",
+    "sha256": "f32ae16a9d080fc74e2114b08dfbe2fd668fa1b5882847efcbe7e21a3404ce14"
+  },
+  {
+    "path": "diaries-client/src/app/model/refresh.token.ts",
+    "sha256": "9932e6b95601e517aae9e014d265d90a481f943f45dd111f08561acc2157a44f"
+  },
+  {
+    "path": "diaries-client/src/app/model/register.ts",
+    "sha256": "9f10b342baba8f14900db709fb7de00a62337cdea20434c2c034befbf879b490"
+  },
+  {
+    "path": "diaries-client/src/app/model/reply.ts",
+    "sha256": "09d8ef67663d246f61fd00d65f9403bf75f7b55afc908600ee00acad1239dc1f"
+  },
+  {
+    "path": "diaries-client/src/app/model/signin.ts",
+    "sha256": "4a5cbe7edaee218ee465ee4257a2ab84902e7ebd887e7b7bc57357d316f77db2"
+  },
+  {
+    "path": "diaries-client/src/app/model/user.ts",
+    "sha256": "5c7e7674e8415b45ec795fcb83ce6f8c4187dfc6b61112e53213a1c1f9364abb"
+  },
+  {
+    "path": "diaries-client/src/app/mqtt/file-rpc-compatibility.spec.ts",
+    "sha256": "7177dc8203aad1aeb99b025665f8789128592012152e6b68b15e06aecda74897"
+  },
+  {
+    "path": "diaries-client/src/app/mqtt/live.object.list.service.ts",
+    "sha256": "ef0574c12c041d2316cef9149955a8ccd72cdfca36a89e370854e674e20fa022"
+  },
+  {
+    "path": "diaries-client/src/app/mqtt/live.object.service.ts",
+    "sha256": "3765c555a573d39483629716ed569b5f0617af2779f4058953ca614e023e8c9e"
+  },
+  {
+    "path": "diaries-client/src/app/mqtt/mqtt.service.spec.ts",
+    "sha256": "2e60cc6c310e8d01f2a004b11d02c1a98fbdc447239c058181e26a2294350d7d"
+  },
+  {
+    "path": "diaries-client/src/app/mqtt/mqtt.service.ts",
+    "sha256": "6d643733ded4d9afe132f15132f6b0ef9df6c2569edf958dd4451d3243afd22b"
+  },
+  {
+    "path": "diaries-client/src/app/mqtt/rpc.service.ts",
+    "sha256": "31a9e5744785ec6c91380b41fc5ee02383a73e1132c532f8c3776e670918ef90"
+  },
+  {
+    "path": "diaries-client/src/app/mqtt/status.ts",
+    "sha256": "c080244382cc94c534f12bf6d3a2babfdf318abec963352f62c7b963a7f37620"
+  },
+  {
+    "path": "diaries-client/src/app/testing/file-rpc-baseline.fixture.ts",
+    "sha256": "b85d53612e9f0f78667587572d214bff8f711263ee353208e35817ea8d9c67a1"
+  },
+  {
+    "path": "diaries-client/src/app/theme.scss",
+    "sha256": "78edfe0be10d38da06dbbc1ae00d16eac474779893bba1ad71bb5dbcbd565570"
+  },
+  {
+    "path": "diaries-client/src/app/thing/thing.component.html",
+    "sha256": "231f91c91b6685920471de13f3c9c36a8bf1498a8795eb9effa262a6c7acf76f"
+  },
+  {
+    "path": "diaries-client/src/app/thing/thing.component.scss",
+    "sha256": "e62ce0643bc16bf78480ca382686f088027437d03afe299850547c5cbca21169"
+  },
+  {
+    "path": "diaries-client/src/app/thing/thing.component.spec.ts",
+    "sha256": "31158ab7b3a8fb6afda13b6b72c98aa0f3b2c1fb55aa02ac26c198cdf9706701"
+  },
+  {
+    "path": "diaries-client/src/app/thing/thing.component.ts",
+    "sha256": "a40382ab86dcebcfaa8d2412197977cf97fe198e65f621067313334162d86887"
+  },
+  {
+    "path": "diaries-client/src/app/user/register/register.component.html",
+    "sha256": "ff46a68c4bab8fe52ffce2cec7316f683ecd90046d60a4bea82d0a5b75a241c3"
+  },
+  {
+    "path": "diaries-client/src/app/user/register/register.component.scss",
+    "sha256": "f8d19a3d4cc1c3ae7242821ffde15beb48ea103307e4151b19c9cb1ba3b077d4"
+  },
+  {
+    "path": "diaries-client/src/app/user/register/register.component.spec.ts",
+    "sha256": "b00cb529401a4581add7d3a3ca570327fb610c8a7b848f7abd627659258c92a4"
+  },
+  {
+    "path": "diaries-client/src/app/user/register/register.component.ts",
+    "sha256": "485ccc8ad691a4734be9496f623d4837c7e46262fdffac1891321c8b08ee9b5f"
+  },
+  {
+    "path": "diaries-client/src/app/user/signin/signin.component.html",
+    "sha256": "ac3fdde8f505e8f37e57872ade1a8da08a1c1d29271490338d640849c3bdfdbc"
+  },
+  {
+    "path": "diaries-client/src/app/user/signin/signin.component.scss",
+    "sha256": "f8d19a3d4cc1c3ae7242821ffde15beb48ea103307e4151b19c9cb1ba3b077d4"
+  },
+  {
+    "path": "diaries-client/src/app/user/signin/signin.component.spec.ts",
+    "sha256": "fa630697f2aa4a67103cb0ca7e79ab5bd73c6acf9391af280aea729a77142385"
+  },
+  {
+    "path": "diaries-client/src/app/user/signin/signin.component.ts",
+    "sha256": "e60f9d4fcfc65d202fc5d57b2380a6b4930e083992646db93699c3ef5f302cbd"
+  },
+  {
+    "path": "diaries-client/src/app/user/token/accessTokenService.ts",
+    "sha256": "86cc2e4cbc2a3f0a93d0a88dae035acfb6c5cef0589813f4e49e9737e05529a1"
+  },
+  {
+    "path": "diaries-client/src/app/user/token/refreshTokenService.ts",
+    "sha256": "930b0dbf17d52433c1041b459447086aca14d9beb0c45ab5f9fa225dce35cb4a"
+  },
+  {
+    "path": "diaries-client/src/app/user/token/tokenService.ts",
+    "sha256": "f4e05285ffa8ea908f36cb13de21453fe14e60495f7b8afcdd2b8a901a4d3397"
+  },
+  {
+    "path": "diaries-client/src/app/user/tokenRequestor.ts",
+    "sha256": "dedd02bb3a84eb90b33fe149bf09fa30c7dfdcbf24963fcb2c52ceb47983cd83"
+  },
+  {
+    "path": "diaries-client/src/app/utilities/constants.ts",
+    "sha256": "0bc19615bfa56dfb713dfd18aaa08584599cc9c35984e188cb044729128d6822"
+  },
+  {
+    "path": "diaries-client/src/app/utilities/DateFormatter.ts",
+    "sha256": "64950f6fea46b2afd332b63b67b6e690ba5648395acfda8aae09fcb54e5c4323"
+  },
+  {
+    "path": "diaries-client/src/app/utilities/legacy-fragment-html.pipe.spec.ts",
+    "sha256": "d752fbee4d62295de182ed545c7f7cced7946e048b3aa0f670f6e0152f2a3d6a"
+  },
+  {
+    "path": "diaries-client/src/app/utilities/legacy-fragment-html.pipe.ts",
+    "sha256": "38625011cd9f133d0af741ab43499d3bfe75f466c468c88b353ae98af41c5d0f"
+  },
+  {
+    "path": "diaries-client/src/app/utilities/passwordStrength.ts",
+    "sha256": "8e7ae1c33dbbd3064f7ea864d278806c26d9d6d983453328d2276908497aeb43"
+  },
+  {
+    "path": "diaries-client/src/app/utilities/point.ts",
+    "sha256": "5d40916d84fbc42c5c343b4d5907cf15a2c6a70be1ea8ad46527279de8823800"
+  },
+  {
+    "path": "diaries-client/src/app/utilities/rectangle.ts",
+    "sha256": "c2a32a93dbd1ee4d596a861853b4d4245a828eab66f6e2ff652e03f1352aabce"
+  },
+  {
+    "path": "diaries-client/src/app/utilities/replyHandler.ts",
+    "sha256": "d50a033c5327862ea180a2f8a2bb1bb9bf350617a7757ab81911a3c2058164aa"
+  },
+  {
+    "path": "diaries-client/src/app/utilities/safe-html.pipe.ts",
+    "sha256": "ea8845bbc5e3de2270540bed9ddfe653bd43db993c5e60eb11f79122f3fdb4f1"
+  },
+  {
+    "path": "diaries-client/src/app/utilities/startupRedirect.ts",
+    "sha256": "0ef347bba25074c9cb689ce1158bd3cb2fa44bede09a5c38e7c2de9a6e518a8d"
+  },
+  {
+    "path": "diaries-client/src/environments/environment.development.ts",
+    "sha256": "76a712ff696300f599be3ff061593c2d96127c6e2d4a2162978a9593a06f42e3"
+  },
+  {
+    "path": "diaries-client/src/environments/environment.ts",
+    "sha256": "03a826fcd9046b462f307de941767058d2c136e3cddd71d0cfa0bfc9b96894d1"
+  },
+  {
+    "path": "diaries-client/src/index.html",
+    "sha256": "4bffdf73e0222052ced85396fb7bb706dcb3a2377ab752e52229498860572aad"
+  },
+  {
+    "path": "diaries-client/src/main.ts",
+    "sha256": "e8b0b7ba0282c9502a2ec2e9ab95d39ade546fb6785454a3db4933138f7fdd7d"
+  },
+  {
+    "path": "diaries-client/src/styles.scss",
+    "sha256": "888176cb0a7648727e8b90a4081e135ee8edecd6657ef6e388bd28d281fe970a"
+  },
+  {
+    "path": "diaries-client/src/styles/_auth.scss",
+    "sha256": "aa5152d60845d25d363c6649173aeead3f39b5e54acc412bf0ce3f99e5c549de"
+  },
+  {
+    "path": "diaries-client/src/styles/_reader-navigation.scss",
+    "sha256": "9e85944c89e395ccb4fa21ff06a48c53c746a3fa412acb7a9c391695b1a8fa28"
+  },
+  {
+    "path": "diaries-client/src/styles/_shell.scss",
+    "sha256": "06707742aaa44f242ac6bb3a88378486c675fa2171c929b788171068be4014dc"
+  },
+  {
+    "path": "diaries-client/src/styles/_tokens.scss",
+    "sha256": "7f345bc2c33ccc4e88e0d01c7b0404d40d47a6d91e153487fab2ce518fd63fd8"
+  },
+  {
+    "path": "diaries-client/src/styles/constants.scss",
+    "sha256": "bb8353f84841fae05970b6b0337e9cf3f0a8f97413ad059d614faaa0e7046f1b"
+  },
+  {
+    "path": "diaries-client/tsconfig.json",
+    "sha256": "5b90b7d3fdcdf0ad3f16bad5ae3baa3bd92321581febee50852ba0a004a95bee"
+  },
+  {
+    "path": "diaries-responder/build.gradle",
+    "sha256": "f6598a58da631da777f80c135596c1a9e7969ad58385dfbc3a54977c5ae4db98"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/buildinfo/BuildInfo.java",
+    "sha256": "2bf2ef6c2c992a866a127dbf621dedbdf082863194df371bc4cccfc01400b1d6"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/buildinfo/BuildInfos.java",
+    "sha256": "40d1db8e352a191081dba27bec75a664f19b6589d6a3f63cbc6093a39deb70ee"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/config/Config.java",
+    "sha256": "1d3c7e0185d1d29a9fc4681d000d86ca6c4f758cf889f3d7adbf31a89fe17a4b"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/config/DbConfig.java",
+    "sha256": "4501ad7710b641585d72ec5675ed8082eb53722f74416e9a5c60ea0a7e3d0a52"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/config/DiariesConfig.java",
+    "sha256": "7a65027d971f2d3263745b3db6ec39290b6380e330f59ac0794138a6e4c28b84"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/config/FragmentLockPolicy.java",
+    "sha256": "1c3592153686682c93006b04261175a9e42c06c2e46b16d905ac0698a1606f15"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/config/Go.java",
+    "sha256": "90a787a104878bd898f02dfe80c2a789bdaa7e8e8a4871ed15f3d1ec40791f05"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/config/Jdbc.java",
+    "sha256": "4ed4fc1761b7dcb415cf6e015f7917ff2f5e081b7108c3c38a6841ec9c649a30"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/config/MqttConfig.java",
+    "sha256": "08d483b161c339c8ca87bb31b1b9ca238ad294e74c01b9c84682f5e5f639cea1"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/config/TimeParser.java",
+    "sha256": "86c819c27f4c5b54262122820f34feddd4f590a7bee02cd32c0b77c0a438639b"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/config/User.java",
+    "sha256": "09e7174d7bb7844330896935b636a7373680f1ad5acdea712a8d7017d2939ee5"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/CreateDatabase.java",
+    "sha256": "1391dc15571d0dd87c15449fed295c26667da584f63bd1edc21a4dbce6fcd68b"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/CreateTables.java",
+    "sha256": "5030e2b4ba312c9d67a11462557f9c738c61a7e2c76437d81d4c0c59488b5921"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/Database.java",
+    "sha256": "5aa01d048b22903f4d0fee063cadfd99a1ee12ac5c3e0d8d42bb4ced91292c04"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/DeleteDatabase.java",
+    "sha256": "9a2b74a1ee8d2b909f4c8466d2fc695fbfee5e6e9c0518305be8bcb5e3755f92"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/DiaryDTO.java",
+    "sha256": "dc6b2c077e62536923b91f81063a86e9e2abad95a0eb7436fca5890623342142"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/FragmentDBDTO.java",
+    "sha256": "fb2fa6456e8b24e138f8d7a73406469ccb435173649427559d7fa3745c462023"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/FragmentPublishDTO.java",
+    "sha256": "4cac7ff27917e8a35e0692d42c59c8173e3b9a0e8d738fa6e214a3ef49e93f37"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/ImageDBDTO.java",
+    "sha256": "84c0809f3b93dd1604efabd12818550a65843e26edef7bf1f65c7e86ceed31d3"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/ImagePublishDTO.java",
+    "sha256": "0c6d573cbfdea0c2be52dff14f22be94a03cb99d3d3935fea60f314c634dcf85"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/Jsonable.java",
+    "sha256": "32ba04fd1717bb9f89fd5a1382b4c56520ae1a3a1144c6a29e93270275abaa96"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/ListFilesResponse.java",
+    "sha256": "aec8f03152eabbe91b7c5bd9655e0fcaee7529ccc68e673cb3ee61db47a5e368"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/MarqueeDBDTO.java",
+    "sha256": "2aa56351e4e0f162504663df95057a8fe8ea5f557bb18f497d079ba6577c3eed"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/MarqueePublishDTO.java",
+    "sha256": "60c9bf98917c6e398368ac4df1737ee6935025ab983d1dacec0e4312a306ba0a"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/PageDTO.java",
+    "sha256": "dc952bcc20ff3c11002ca95c0d3f57110beb28cd4c2f5f2bcf2887a1c3fc49dd"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/PersonDTO.java",
+    "sha256": "e9ab84d2a4299a61e73742c5a6b7b951c6ea1f70bf5ef4fc07daf59e3470ce02"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/Publishable.java",
+    "sha256": "9e6e0c4ac0a732a9016c189a18a339b1403313a247c6d16d52c939ba21c0f4a3"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/Publisher.java",
+    "sha256": "5568b439a13f583e3a85e469e1be7c36c44ab9a7ee9886ffb0c427e281acdf09"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/UploadFileResponse.java",
+    "sha256": "51f8aed3d059426b7037d4f27f3b17500e14605fcab3c107f4aee36967b100bc"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/AddFragment.java",
+    "sha256": "419f9c1046aa8d12c7bff25036d239028a9de04da94aedc177a31420efb40061"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/AddMarquee.java",
+    "sha256": "712cc45519434f029abce26bde58ef197c50dcaf9d8f387bb7efd3835a53cd7d"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/DeleteFile.java",
+    "sha256": "e717857f44a23f64988c39af2dd3f6aaf44e376fd3bc6898e28688fed7a530a8"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/DeleteFragment.java",
+    "sha256": "06c155906802680b94eb0d215ef1ecb6112a1744b4d47c2dd7be1727426b765b"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/DeleteMarquee.java",
+    "sha256": "22bbf276c0e5e7755bf3076dfeeff805c3823fa5ab310379d8c1c3006c4827f6"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/GetVersion.java",
+    "sha256": "a556adaacbf18e70388696ec68d16ed806a6f600af98d52860dd95f0d29850be"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/Health.java",
+    "sha256": "a37855cd652b716fd5bb94cebe6b301dd5ddb9c68225daac0d7dcb85cc132714"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/ListFiles.java",
+    "sha256": "58c3502ff8a32021134c4d263587df5b0465928d9446f085274670569a3b0391"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/LockFragment.java",
+    "sha256": "e4649b942aabf075eec9cc9f7daf3bb71f008b8dae9deeb9a211877b7ba19a44"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/NormaliseDiaries.java",
+    "sha256": "ca4725e6f7af5d3fcb91631fbba0fd2d37ece42ae5dc48ae231135b50f011b0f"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/NormaliseFragments.java",
+    "sha256": "7ea1ceaf3272c55da78b1d336af0563ef2beae62da15eb68c3e35ce8ec44f68f"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/NormalisePages.java",
+    "sha256": "db09115030a794fe14fab7706d660ee501a36859dc599b64dcce76f7ddd9501c"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/Quit.java",
+    "sha256": "4ffd5f4915330f14c723e81faa3c342cc8dded0bf5a91aeed0de79cb1a4fcc78"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/RefreshToken.java",
+    "sha256": "fe5dc2b3eee2e6334d1d5bafc8cd80b1b68b39f346200750fb1a26266bc19850"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/Register.java",
+    "sha256": "38d9d5b10751a5897fb83a17b1fb8a2c64b9133843d59bd017e0cf17eb3f5703"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/Signin.java",
+    "sha256": "4cb6ac0e62a050d423b41b0188021fb77bfa12748771faf4c32de271d5c77e0e"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/UnlockFragment.java",
+    "sha256": "e0dd25e6792a801198a53af45cd588b8a8ca7cea7dd3fdeb9b4a9746f6de5e33"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/UpdateDiary.java",
+    "sha256": "80f1a819a3b3d4fdd07f9b848dd01f6ae2aa0b4f5bf4a6852c6cc0bab093edd2"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/UpdateFragment.java",
+    "sha256": "71901b4edd31c50ca5e9ea6caff73672f71cbaf76951bf3c0387ba25c972a7ab"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/UpdateMarquee.java",
+    "sha256": "2a2322b9280862e69dc3ff5d64fd4ef166c8b11b257755c247e400c51cc42a99"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/UpdatePage.java",
+    "sha256": "f568ac8a5e58d218279ea643c49c62fbb4da5602759e9c41498d789922c293b1"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/UploadFile.java",
+    "sha256": "9394d59f5d180ce949e5c20a9fa878d42fba31cf40db821f664115c118feba8e"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/health/DatabaseHealthProbe.java",
+    "sha256": "16937e74525a0479d6cfeb8acb9e692ecc735d453a626fd5a5a9f13bb128ae6b"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/health/JpaDatabaseHealthProbe.java",
+    "sha256": "b04f461a4218ed9d933c14d3b93f3c783bf2b27ab0184893a90624b4cb0e37eb"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/health/MqttRpcHealthCheckClient.java",
+    "sha256": "a247f20855b4dd868af0b1293c9042e12a1d69e8969dc49a9aa3c4125caeb2f7"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/health/ResponderHealthCheck.java",
+    "sha256": "8a874ebf0e834ebc158e9684f109700311e76db588c1d36b2290b706b6c75b03"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/migration/migration0022/LegacyImageDetector.java",
+    "sha256": "43621f3d85eba85e3aeaf14b9ce3461a44034e526d33421dee0854c3b5a03f6b"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/migration/migration0022/Migration0022Inventory.java",
+    "sha256": "58d3826ebcfea18844658f14aa7ada5ee51d2b719422dc73998eb60dcd2bcac3"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/migration/migration0024/CandidateCrossReference.java",
+    "sha256": "74ee5710192eda3d930ce1b60f26ba919e0f150e2ed864bffbd67007ee375bd7"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/migration/migration0024/CatalogueStore.java",
+    "sha256": "82fbc898b38d432a0a50fd687e1594f38f0a381db81a9682cfa72cc9391ae23a"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/migration/migration0024/EvidenceCsv.java",
+    "sha256": "12ea778d748f922219399bf3cce6b823db783308737f187120357b4093c38022"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/migration/migration0024/ImageReconciler.java",
+    "sha256": "0e54ec502963e0e004eb3e5f18d64071e3e3061e7bbff753a0b36eff9ba8a97a"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/migration/migration0024/Migration0024ImageCatalogue.java",
+    "sha256": "deeb106f9aae93ae8111d49b4c865e80037b34de58de5bcce820dadad4089b01"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/model/Base.java",
+    "sha256": "5320b15c6c13cec0446f59282f14ac2ba7779eb751a32bf10fd81b0eea2d1372"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/model/Diary.java",
+    "sha256": "01fd31874fb3e8b17631d6ddd87aa86f0562cad395b3ab30552fa84ee9457076"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/model/Fragment.java",
+    "sha256": "54ca5dbaac8581cae11d5c8601630254638a7aed847318266f4cb9e1e04b393b"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/model/FragmentType.java",
+    "sha256": "c6b5bfef8b1d054a52cd353648911471489f05e201cf3a0f9d410e7fcffe0a45"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/model/Image.java",
+    "sha256": "3600ec7be8812f80283b80faf205c87fae9d606066442814f9195d2cac2bb963"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/model/LockInfo.java",
+    "sha256": "4d3d343beffe9a36a64b675cb759151723a1b4f7b91a9baa265fbbff841d4f04"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/model/Marquee.java",
+    "sha256": "54bdb44413ea1488f1c0c04e9cea066944ae9cd519b2d215fad20e963a8be866"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/model/Page.java",
+    "sha256": "464be4002572246438626d87cd11182f76b9879882db838d716ef986e6277bc8"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/model/Person.java",
+    "sha256": "fb4f258c0339c835c826cc299a408bf735235716a7c36397b4b222aa44208626"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/model/Role.java",
+    "sha256": "d551d0e9d0e50c1f4ae1564cfb11123d18b6bbb3f0dc3cbf0711976bc0f2a16e"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/model/UserStatus.java",
+    "sha256": "7e2c5903ba6862d36c17b7e38498b36b7c3e9e52a44c517977b6786a2abac566"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/repository/CrudRepository.java",
+    "sha256": "c97813fac4b12df8a5ff3b45caac4df0d8b61c9c392b343a5ef322c3faf0a5f2"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/repository/DiaryRepository.java",
+    "sha256": "5028032d344561fa57ee9b62330f8ee98c52ebf572d497c3647bc94189285288"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/repository/FragmentRepository.java",
+    "sha256": "4197414b6c5adf2c9b9956b38615cb513491d407c0761511fa2bd16d5a73804c"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/repository/ImageRepository.java",
+    "sha256": "86e71397c723481e59b28d3ed5aabe91df57a551f93ba661b172c23c8614531d"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/repository/MarqueeRepository.java",
+    "sha256": "4dd1a340f17545efb7e53b2bdaa51d4d8314adcce45ea04b2993116401c7ce83"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/repository/PageRepository.java",
+    "sha256": "54e83e5620ad6199fb1786d90642555aeeab717898b1a0a77c1f7c3d729add82"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/repository/PersonRepository.java",
+    "sha256": "805c800ce49a377f1a7a1c438e6fd7634cec1c21e45c549bbe7a74607eddb9a2"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/repositoryImpl/AbstractCrudRepository.java",
+    "sha256": "58cf857c193f8b3ebf0f8b4337451455e4c26bfa7c7a0641a85cc0be78de335e"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/repositoryImpl/DiaryRepositoryImpl.java",
+    "sha256": "382ccc9ccc7eefb9a219b174262154e6fa5d13464d3bb8daed10fdeb5d4a322b"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/repositoryImpl/FragmentRepositoryImpl.java",
+    "sha256": "d2eae83ee642e12d2ce118fdf8cb8300a146371754b6a16f47be0d11815a1242"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/repositoryImpl/ImageRepositoryImpl.java",
+    "sha256": "1e2b57391ae011881b7650c06038793a4763058f5268831912a18945bc1ac455"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/repositoryImpl/MarqueeRepositoryImpl.java",
+    "sha256": "fb21a06b2ae69febc5af92e6579fac2d64efd814f0cf1b3ba25ba076176cfe1c"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/repositoryImpl/PageRepositoryImpl.java",
+    "sha256": "0a39949ff474ad24aab416eb492e40537a82d7984ed46501e875b4eee6fb42da"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/repositoryImpl/PersonRepositoryImpl.java",
+    "sha256": "b6b28e5cc0ac142028a0f52cd13d05c921078444f6fad5e6afd7ab3049fecdf0"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/Responder.java",
+    "sha256": "8d413c2aa3ec1185c0318d6867e82a7ac26cc9487966aeed5c1d97c811cb5aac"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/response/RefreshTokenReply.java",
+    "sha256": "e6960d76ae50c4d81f192cb7f44fac6255169b88cc709d3c003e619d450e5ce6"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/response/SigninReply.java",
+    "sha256": "07b097538ff58e2c0eecfd251cd982e2035768c07ea7e6e0030eaeacd0129adb"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/sync/Synchronise.java",
+    "sha256": "ee2f01247b48374761de65ff66d6352a1ac19dec4e17d25ff481b49caeb72de9"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/sync/SynchroniseCallback.java",
+    "sha256": "339336e32e5f96054a5ae2598bb23e29294cde008c7542ca0dc75c5a27fd8794"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/SyncroniseDatabase.java",
+    "sha256": "39aaaefe65549b3cc42699ba52be96c1001ca3e92ad57668fc32c3a210de2423"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/template/ImageInfo.java",
+    "sha256": "fb4b180e216311397abbd90e39b269e89d467be57d36f7fca13ea44de95426a0"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/Authorization.java",
+    "sha256": "959a34b79477e147cf454e70ca457c369f0e625d1fa5cc5e3efd6ab7bf68591b"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ConflictException.java",
+    "sha256": "8c7274c7c8183922ef88c8932fb1d963c4bda5763df7d3d805c88704db2329fa"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/DiaryContext.java",
+    "sha256": "4e4a9191a13239251c4775645eb293931c581b8b0afb2fb3c009afa0980aca0f"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/Field.java",
+    "sha256": "b1cfbf59c81cec04b4d17748c95f00c670136226ec6c137e4021760dbe865b30"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/FragmentAndMarquee.java",
+    "sha256": "a99a9c699ce69db3bf37daf55c80f30de7682ed8965dec3012a0a22e8fcd35f7"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/FragmentLocking.java",
+    "sha256": "f01cd3782db06e22641f40f421b0982a8e175a5e054a5eec9ebdb08bf13043d2"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/FragmentSequenceNormaliser.java",
+    "sha256": "08843590339489fd9a07a487b4e66752333b491107ee33859558ff7b0b2abaf0"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/GetEntityManager.java",
+    "sha256": "600bb6ce61bc2efc851c539d08659b4a2b6d24dcb88e6edc8c8edaf0f483aa77"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageCatalogueService.java",
+    "sha256": "4fad284f3e33ec940543e8786ea7ac09f6e6f5d871e308afa7455f2173f4fe3a"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageItem.java",
+    "sha256": "e7f6afa561af31b239d156755b6d05da1742f9b71034b7b17ffd208576c58000"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageMetadataInspector.java",
+    "sha256": "338c81e7475140f894229f528f91d87c8e3a7d22586c0e440bc4db4ca49a35fd"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ImagePathPolicy.java",
+    "sha256": "2ad518d57a23ef30421a12621c9bd4db1fe929b6e4aa3df7537a04c802184fe0"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/InspectedImage.java",
+    "sha256": "f5ef8180d5b260df47e6a524e79515e0f50c832a192448b7964c3f7361ee021b"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/MqttCallbackAdapter.java",
+    "sha256": "12c76b2adf50cd6eaa23f1cb1d4402a655facfc75ea81c4a05a2bb18bab5ef85"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/MyField.java",
+    "sha256": "f9bfa8234ed40f98c45d54fbf715647aa2f9b6d4cfd1d5c455c1e1f774d16c3f"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/MyFileUtilities.java",
+    "sha256": "984d81e9ecb845058e04c06d975a7d74834f5f52202b1766b164f36f29d7d349"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/MyGeneralUtilities.java",
+    "sha256": "e4e879b41d4180329ac2bdf1de6dc2f9551029792c3efa40ca6fd2b3dfee5c8f"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/MyImageUtilities.java",
+    "sha256": "f6d594230bf6e35023eb8c4d00d538ba4aa14c64ea8f0cddee17161b460552fc"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/MyMessageHandler.java",
+    "sha256": "a6156cde7c0f2a9e5a78bb68a6fba37a247354b8dbbce54da6c1af8cda6d9ca2"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/Pair.java",
+    "sha256": "12b65bf729313346f729508857bfd4cb7de92b87f0dc8ff2302be88aec9df9cc"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/PersistenceUnitInfoImpl.java",
+    "sha256": "2571c822d3d55a809d2aaffde2857c0be2220c316a3d01d7d73ee546fa1e36a7"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/Rectangle.java",
+    "sha256": "978e93ff8174cac94f6a0cfbb310a434a5d5e995a6ca1eee01af2ab2e5e04832"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ResolvedUpload.java",
+    "sha256": "3f18b749c99d04d872137e09b9c97ca60667e706aecf09c2cbe33ca2208eea30"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/SequenceNumber.java",
+    "sha256": "d4cb3d5130319fb591636238f25c58c82970ee980f04275461eaecdd56b887c7"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/SqlBuilder.java",
+    "sha256": "b23e60833804ee2af656a2093dc0defaff8e300141ed19b4945691ac6a93a67b"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/TriFunction.java",
+    "sha256": "58381d1998b8b813bdc4d54b10bd7f16cf75d7cf99b23ff18a90d2d05b55df5e"
+  },
+  {
+    "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/WhereBuilder.java",
+    "sha256": "20a45ec41d261e6ec667e28bf6695de3d72be69346fbf35b746b21da10b2b227"
+  },
+  {
+    "path": "diaries-responder/src/main/resources/com/rsmaxwell/diaries/response/image.svg",
+    "sha256": "65ed524071a83231ae89993d0ac7847892c222e6615ffb47aa39d29529f594d7"
+  },
+  {
+    "path": "diaries-responder/src/main/resources/log4j2.xml",
+    "sha256": "21aeca523475e2d7c2c3cea86cce2e4c9beb79f823caf31b38269f685245377a"
+  },
+  {
+    "path": "diaries-responder/src/main/resources/META-INF/persistence.xml",
+    "sha256": "f612bdb6def02a3595a30e0a4927573cf97bed5b1bde434c17ec7e133c26c6a8"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/dto/ImageDtoTest.java",
+    "sha256": "e4dde780f5fd45d6a38ba748ceabee7c4b22c532e125bd6b28f939cab1ad670c"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/dto/RetainedStateDtoContractTest.java",
+    "sha256": "615276f0b7b407e91c3192a02329a7f177e61a3f4dd29ad0e6cbb92042bd109c"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/EmailAddressFieldTest.java",
+    "sha256": "e753cf9df5278f1f53b96b66a729e6fc0360a3069db8520816a56bb7296e6159"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/handlers/AuthenticationHandlerTest.java",
+    "sha256": "1e1d33c6295814f647892c63a15ca706942f6caddc4ef68c8b8592926d444f65"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/handlers/DeleteCatalogueTest.java",
+    "sha256": "a28e74ee7494aea7d5fa2b6aeb42b2c50b9eccfc862e52b4cd99bb09ea2e8b23"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/handlers/HealthTest.java",
+    "sha256": "875818fdb6afe0c6bb51a75e5665cc77c909fdeb842018eb1daadc6b3a400064"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/handlers/UploadStagingTest.java",
+    "sha256": "5db54a3de7376a031e6b1e1f32d6772b6ea221c830e5dc349cfdcf49e5789ca2"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/health/MqttRpcHealthCheckClientTest.java",
+    "sha256": "a0483c410ee476f727d8b8bf1352a5bb08684046fe8bd6a526b62343b4efb5e5"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/health/ResponderHealthCheckTest.java",
+    "sha256": "c912d4bc66d3cb17016ec852485807da139c3f78ddd06af26562087fecb9de01"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/ImageWiringIntegrationTest.java",
+    "sha256": "5667a68fe55738ff17add9f4eb0b3498a2e1f3a6eadd2e513fed86940337116a"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/migration/migration0022/LegacyImageDetectorTest.java",
+    "sha256": "70fbc6a6278379da910fcd57987dcd1b631fc2d8eafed46f0ef424accdcdd557"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/migration/migration0022/Migration0022InventoryTest.java",
+    "sha256": "fb4343199932fe91efc512f187c348dd73e492c5f9c140b27faa9e2e7bf29088"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/migration/migration0024/ImageReconcilerTest.java",
+    "sha256": "2fd81cbf7231d47e8d6f32b321d902f3a74b878d69a826d534b0187cd583e123"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/migration/migration0024/ImageReconciliationIntegrationTest.java",
+    "sha256": "7fc72895259ed6119a54e822592106fc6d4ace77a9cfcba94f55379575d7da98"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/PhoneNumberFieldTest.java",
+    "sha256": "c3a07690b039298dcb0a7fd3e587c90151a1d2d4ef18291359cad945d06ae4aa"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/repositoryImpl/FragmentRepositoryImplTest.java",
+    "sha256": "202a9d0710ed79fa85e6710ab6f39364bcae2e3cbb4793674e1c3928155c063b"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/repositoryImpl/ImageRepositoryIntegrationTest.java",
+    "sha256": "c0bf7110d74eb6409498eeafdd42ab83ca87c7c6c18803956bd87df9b880f287"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/RepositoryTest.java",
+    "sha256": "f15b6825a75d2fc37de8b39d1d96a77c50338e929066b3e0bb88c0ba995a243f"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/StagingHttpTest.java",
+    "sha256": "9cb4bca78857fb359b0516242c0b78a85046c4b3b4e29ad8ce7f0e604d90720a"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/sync/ImageCatalogueMqttIntegrationTest.java",
+    "sha256": "cb830fc5077a30e5cd2bcc121bd8cef2a1c6ac1e25b476dddad54191b87fb880"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/sync/SynchroniseCallbackTest.java",
+    "sha256": "40c3c672df7c3408f8878931f55d331cc02cf28ca9fb12030fe9df447fbcb2f6"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/AuthorizationTest.java",
+    "sha256": "226bce5c56b99a9aca0fe5e6b75defd97deb3b5baefbfb94b8cfc2359cfe40dd"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/DiaryContextImageTest.java",
+    "sha256": "7a6745a1e3193367e7e4851df462060c2029726f01d5874165feb60c43bb97a1"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/DiaryContextTest.java",
+    "sha256": "4296c242d64e20ac880a8760eba0aab23cedbcce22e526d2dc5d5c60113924d7"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/FragmentSequenceNormaliserTest.java",
+    "sha256": "7042e618b87bafa20845dc74adab4763a7dafc2dbeeebd05f95c5d4042ca4568"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/ImageCatalogueServiceTest.java",
+    "sha256": "c50bb8a6597839f427c6231834a203e103047c35831ad61a6c98bbc62844205c"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/ImageMetadataInspectorTest.java",
+    "sha256": "cd50ed23ffb09e227745f21c309cec780850456a825fb86bbc6f625102e5c881"
+  },
+  {
+    "path": "diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/ImagePathPolicyTest.java",
+    "sha256": "3d64182e6173fde3463b16eb805fa321557742dbccd01734b7fc6b6e0727a00c"
+  },
+  {
+    "path": "diaries-responder/src/test/resources/.gitkeep",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "diaries-responder/src/test/resources/image-inspection/animated.gif",
+    "sha256": "3c48e8cae6350d76b7271d496278afc1dd3b2bc9ce21bbc81007953a661d2011"
+  },
+  {
+    "path": "diaries-responder/src/test/resources/image-inspection/animated.webp",
+    "sha256": "23999a44d5ceebaabc5097b06e4e3d91401a61b286bb245475af5747d8e6b95c"
+  },
+  {
+    "path": "diaries-responder/src/test/resources/image-inspection/generate.py",
+    "sha256": "35e48668d9e0005649de3b1a24df32f781f8ecce6832939649e88287f3e29dea"
+  },
+  {
+    "path": "diaries-responder/src/test/resources/image-inspection/lossless.webp",
+    "sha256": "b6c85439a8ccd195444ee578a43366170712b108d4920a2a1d2b18c303f03233"
+  },
+  {
+    "path": "diaries-responder/src/test/resources/image-inspection/PackagedInspectionProbe.java",
+    "sha256": "fe3808e0bcca432a496b7043a89e22b70fb9914d841242e957891712726dd680"
+  },
+  {
+    "path": "diaries-responder/src/test/resources/image-inspection/sample.gif",
+    "sha256": "7a62da97a409448ad6a06304bbcb5c61f8c09e3e77b3118b6c8ab9059e1faa8b"
+  },
+  {
+    "path": "diaries-responder/src/test/resources/image-inspection/sample.jpg",
+    "sha256": "2f7063169dfe2a314a188c41e9f657fc277b004a4ad8a327a23d57dd45e6e182"
+  },
+  {
+    "path": "diaries-responder/src/test/resources/image-inspection/sample.png",
+    "sha256": "c058bd573b19d4bfc140c95a103f51fb4ded20bc81ca619d4fd965d93a9a86bb"
+  },
+  {
+    "path": "diaries-responder/src/test/resources/image-inspection/sample.webp",
+    "sha256": "feb9a48a8d4b562b78ae5da3bbb08caedf0e36fa55fb436e46285996bcddec9f"
+  },
+  {
+    "path": "diaries-web/build.gradle",
+    "sha256": "053b7d32d7e28fc70a13ec97d4b63a6c5a91431764f52d567a63359d9d8f472a"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/buildinfo/BuildInfo.java",
+    "sha256": "3b23da4be0d51d7fa311e87b6660c35b421a0266c1ce8266f605dddd9b034cf0"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/config/AppConfig.java",
+    "sha256": "0b9b4b96667d45b125eb4d7ddaf84b2a3d9910cf12829d889de84d5aed937276"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/config/ConfigLoader.java",
+    "sha256": "2af713577e63517dd45497f7fb978227ea87ca7e5b77cbf33f236fc4d6834462"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/config/LoadedConfiguration.java",
+    "sha256": "ef3f5078bed2ab9e6598dede74e25a7c49a9a6f20a21b1c9333b8193026e59ac"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/config/MqttCredentials.java",
+    "sha256": "ba26f9a0cc3a6bc7f8d5464091b571c4987889e02e662e3bd8571d8db5c8ebb1"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/DiariesWeb.java",
+    "sha256": "1d254cabab98106a61fd80307d75863b2aee21524fda9b154cb3b022fe460736"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/http/SiteUrls.java",
+    "sha256": "bb5c42d75b5a90f6fbc463dfe5cf3232ef85d2bde65e0e0c94b05168d84393af"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/http/WebServer.java",
+    "sha256": "9add0030a7e04093b8cad0e5a7e1cb9babe3834571b777919c6c9239b5c44997"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/model/DiaryItem.java",
+    "sha256": "abb13649b52a2ba0aebe73be2ee949171e06760b0317e84e8c85a446c5afc4c5"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/model/FragmentItem.java",
+    "sha256": "9abf8258a1e451002bf40614dc3fd2eb16ed5c6cf5ca0f419cce4654bae1e3e8"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/model/FragmentType.java",
+    "sha256": "7424abfd54d0f1ba5fab9cfee2aa8ca7fbdca1213590314ea58912a40061b4f5"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/model/MarqueeItem.java",
+    "sha256": "27f11f717f1e349c5725dcd20d5da62987477aca7a58b98f09b7dec6e131711c"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/model/PageItem.java",
+    "sha256": "9e72a7e2a4e28b18baa9e4139090e20806f6b9e680cef9dea9b8bd1383f2c860"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/model/RectangleItem.java",
+    "sha256": "99133b7498cf89b50d07bab33be7f554cdd1ce7b7ffb5ad5b2e20cac46ca6d28"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/model/Validation.java",
+    "sha256": "7dbdbbb3a9f2480ab6fd8af324e2b812d59e74b1ccdc14c408139878ce4bc0ce"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/mqtt/EntityType.java",
+    "sha256": "83aa6fa657a68ff222aa4e4e572d38b315561e388b7f9c50d3815b5d4dbd1097"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/mqtt/MqttProjectionClient.java",
+    "sha256": "4edfb77445ed7f2669f84511c144cc1c318c69538d3c7e2893a25946f54be483"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/mqtt/ParsedTopic.java",
+    "sha256": "773c8a2ae6706378a20600250e9934c205af6e420ea21d5403727bb0879fcd50"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/mqtt/RetainedMessageDecoder.java",
+    "sha256": "61e08bf71762e0efedf93ea8ce6f6e5fb3041058a1cd7f26e330daf23a026fad"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/mqtt/TopicParser.java",
+    "sha256": "4380334985086c206b383140e2e0a73647c893863a4a7add882a630f2b9150b2"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/DiaryDayKey.java",
+    "sha256": "2eb113f71876dca28aceea4949f53367abab9ea196a17ddce83385f4e8d740ce"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/DiaryMonthKey.java",
+    "sha256": "94c2a77f4abc350635279393089230762847137efb4af76a18eff61c0d49c17c"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/MutableProjectionState.java",
+    "sha256": "80e6b33445b20e2949da09c49adab05dd1c656a5369c737b8c1cf3af84bbd334"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionEvent.java",
+    "sha256": "ee1db1c63c66fe55e1f7a768ec811ad9d8e17780536c169a0205195dce5f372e"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionService.java",
+    "sha256": "fc574e85a118eb952745eb5944be3880be8f083858a012bc21efa7898c97a834"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionSnapshot.java",
+    "sha256": "8f1d19756c3db33f30ee8885941dd47f938ebce1830c0a5f8cf551cc9fed0e07"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionStatus.java",
+    "sha256": "1a08c034026f98193634e8d0c6619ea8872d8ea99a4c291692f6073f0863a332"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/RelationshipDiagnostics.java",
+    "sha256": "9e4b2788c59567d91fd776a4ccdb315abca04948fdb5dead199248553906be81"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ResolvedFragment.java",
+    "sha256": "e12754e6baa8e4341326c748e53b3a93a1375b4bda579661c46d81748a387be5"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/SourceConnectionState.java",
+    "sha256": "b9b962dfb92c7b00f0c24d7887314da559850095b8685e24e8ff6f60b3f69812"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/rendering/FragmentHtmlSanitizer.java",
+    "sha256": "9e20c62dad76fe75de6d76f9f40ce03b0b00a4df0db4936548a05e88817c6c17"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/rendering/ImageUrlBuilder.java",
+    "sha256": "c3d0ad20246c7386574a68e11400f64e5f2199d2bd57266aa019210f699becc1"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/rendering/LegacyImageUrlResolver.java",
+    "sha256": "65272d3b18212d6268ce73224280d60e87e44e4bc6be259e024cb860a82a7780"
+  },
+  {
+    "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/rendering/PebbleRenderer.java",
+    "sha256": "432ce63a0d71cc762ccd2936a23ac061e03113ee2ac03d847d6bfbf2a238746b"
+  },
+  {
+    "path": "diaries-web/src/main/resources/log4j2.xml",
+    "sha256": "d3a43af191ec7b870f1359bcb3678279e6775946f56212518c3bc067d9b2a48e"
+  },
+  {
+    "path": "diaries-web/src/main/resources/static/css/diaries.css",
+    "sha256": "69d539c0a4c34854a92a0d36db04c0fac92375812b8aa99aa807c43b192733a5"
+  },
+  {
+    "path": "diaries-web/src/main/resources/static/js/diaries.js",
+    "sha256": "05aec9e0ca5c43736842940f97fcb7fce4c7f7ff110eeae7779c9981c9b1cedd"
+  },
+  {
+    "path": "diaries-web/src/main/resources/templates/about.peb",
+    "sha256": "17d37b607061cc89cd264e1dfe3cb144af021bb54295b64aaed41c12a6169d7c"
+  },
+  {
+    "path": "diaries-web/src/main/resources/templates/diary-index.peb",
+    "sha256": "cc757196a0d908a9c3f7e71537b456cd96a667769355587eddc12c1af1878e5f"
+  },
+  {
+    "path": "diaries-web/src/main/resources/templates/diary.peb",
+    "sha256": "9af1494f057edcb1b1c6a91b1dca7c4040c76f1ec59530468439e32be6954688"
+  },
+  {
+    "path": "diaries-web/src/main/resources/templates/error.peb",
+    "sha256": "e4f15ae03e6ded5497dc468e3ce47e91823f883a083e277c958a6457c3ea27e8"
+  },
+  {
+    "path": "diaries-web/src/main/resources/templates/layouts/base.peb",
+    "sha256": "de4db593e861e6a56a1f7ec4f986e4f4b0f214642c4b16d08eda680c162c3c44"
+  },
+  {
+    "path": "diaries-web/src/main/resources/templates/month-reader.peb",
+    "sha256": "0b21f8cee94c19cdb626fb77691a3570ed058dd232e2750320d651f6b991641c"
+  },
+  {
+    "path": "diaries-web/src/main/resources/templates/source-page.peb",
+    "sha256": "3af807821792ebf8ac5c02067edd2b27bb38d9017b3b1fadd0f60849ca311fc6"
+  },
+  {
+    "path": "diaries-web/src/main/resources/templates/unavailable.peb",
+    "sha256": "617566b001bfc54ed082cddca3982c4134accfdbe8ea57692b74688b22b78d5e"
+  },
+  {
+    "path": "diaries-web/src/test/java/com/rsmaxwell/diaries/web/config/ConfigLoaderTest.java",
+    "sha256": "f6eb748d1e0b8fc53cf592a20e8a7a211c1d7604885918afb68fdb38ed470348"
+  },
+  {
+    "path": "diaries-web/src/test/java/com/rsmaxwell/diaries/web/http/WebServerTest.java",
+    "sha256": "6c6c6b6d06a8e64b022759ddcd43bc56371be4302090e6822e9c76e96bef5f19"
+  },
+  {
+    "path": "diaries-web/src/test/java/com/rsmaxwell/diaries/web/model/PageItemTest.java",
+    "sha256": "09f00d799527bd84f5a9431ae04875bb1f2222fbeef7cc29157b8dba1d6307f2"
+  },
+  {
+    "path": "diaries-web/src/test/java/com/rsmaxwell/diaries/web/model/RectangleItemTest.java",
+    "sha256": "713aa2aeea8212b3b08cafc4d3e61c49a8756f2ab9f2c9d7d7f9b3d7132be2d4"
+  },
+  {
+    "path": "diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/MqttProjectionIntegrationTest.java",
+    "sha256": "35745f2636df481f57dbd69ee0d3d7102ff5c024c0c1d5d62363b4c74800d0aa"
+  },
+  {
+    "path": "diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/RetainedContractTest.java",
+    "sha256": "1cc8c5b4d4a85c5a4cc8187247e18ca6273b5100a319c676c866582b3c641d8c"
+  },
+  {
+    "path": "diaries-web/src/test/java/com/rsmaxwell/diaries/web/projection/ProjectionServiceTest.java",
+    "sha256": "8038819d98be4c415c4a124f13e63699c5530715a9286b4a61bbbabb169b82c5"
+  },
+  {
+    "path": "diaries-web/src/test/java/com/rsmaxwell/diaries/web/rendering/RenderingSafetyTest.java",
+    "sha256": "af96996f48704eee1d131e93b787c7502173ab75b30e29beecc8324013282151"
+  },
+  {
+    "path": "diaries-web/src/test/java/com/rsmaxwell/diaries/web/SyntheticSiteMain.java",
+    "sha256": "82eb869a6d09ef4afc99acc751b9e252691bff3406c6f997393f0e9e92697885"
+  },
+  {
+    "path": "diaries-web/src/test/java/com/rsmaxwell/diaries/web/TestData.java",
+    "sha256": "dfde156ce7a2dbec8f2dc083b7ea1e7f7d0073237db1d6529d4d9c0f54fd27b9"
+  },
+  {
+    "path": "diaries-web/src/test/resources/fixtures/diary.json",
+    "sha256": "496cec96667dad020482980bcd5be075b7478106f2eb38630a1df912bcb89294"
+  },
+  {
+    "path": "diaries-web/src/test/resources/fixtures/fragment-legacy.json",
+    "sha256": "9a8b89a93a1399dcde85d1bc5b13569c1d787c54896d0b49f6d7c9f68f10825e"
+  },
+  {
+    "path": "diaries-web/src/test/resources/fixtures/fragment.json",
+    "sha256": "0f0acdca40143ead561d6e85786f9f8f5b8d7cf9fadb520523aa97e508d71b04"
+  },
+  {
+    "path": "diaries-web/src/test/resources/fixtures/marquee.json",
+    "sha256": "ff573b7b52b1501ca46cb3da831fc52de1fb3e91146b4005e08b7fdfe37c2bab"
+  },
+  {
+    "path": "diaries-web/src/test/resources/fixtures/page.json",
+    "sha256": "4bd8dce34e41e055d71770e71a63a93ca1c751d7b473b8d2bc7a5790ade9097d"
+  },
+  {
+    "path": "diaries-web/src/test/resources/mosquitto/acl",
+    "sha256": "d69579406125cdbb6a328f4636b639a5001e26bdc3be3def767c51b27ca42769"
+  },
+  {
+    "path": "diaries-web/src/test/resources/mosquitto/mosquitto.conf",
+    "sha256": "580bd0f41da69de05786a3d7396944090fef6b3d09a711f1e6b1ae991738fbf1"
+  },
+  {
+    "path": "gradle/wrapper/gradle-wrapper.properties",
+    "sha256": "1d126b2f29d1a87825e57ae7a7a1b1cc06f8dcbc89dd614dc6a5b493244ba2cc"
+  },
+  {
+    "path": "scripts/windows/validation/test-image-catalogue.ps1",
+    "sha256": "a626f70c0dddd19444e143de7c6471fd6f9e0ea021145ab8338e3fdcc9d81b54"
+  },
+  {
+    "path": "settings.gradle",
+    "sha256": "7f862175610e3fce1edfb6377cabb86d06905efc85571e16a55c14231af14bb3"
+  }
+]

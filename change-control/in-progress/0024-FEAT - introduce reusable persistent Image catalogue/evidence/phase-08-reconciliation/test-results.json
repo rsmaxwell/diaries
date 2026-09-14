@@ -1,0 +1,202 @@
+{
+  "totals": {
+    "tests": 232,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "suite": "com.rsmaxwell.diaries.responder.dto.ImageDtoTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.EmailAddressFieldTest",
+      "tests": 30,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.handlers.AuthenticationHandlerTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.handlers.DeleteCatalogueTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.handlers.HealthTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.handlers.UploadStagingTest",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.health.MqttRpcHealthCheckClientTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.health.ResponderHealthCheckTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.migration.migration0022.LegacyImageDetectorTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.migration.migration0022.Migration0022InventoryTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest",
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconciliationIntegrationTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.PhoneNumberFieldTest",
+      "tests": 32,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.repositoryImpl.FragmentRepositoryImplTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.repositoryImpl.ImageRepositoryIntegrationTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.RepositoryTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.StagingHttpTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.sync.ImageCatalogueMqttIntegrationTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.utilities.AuthorizationTest",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.utilities.DiaryContextImageTest",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.utilities.DiaryContextTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.utilities.FragmentSequenceNormaliserTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.utilities.ImageCatalogueServiceTest",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.utilities.ImageMetadataInspectorTest",
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.rsmaxwell.diaries.responder.utilities.ImagePathPolicyTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "command": ":diaries-responder:test :diaries-responder:build",
+  "buildResult": "BUILD SUCCESSFUL",
+  "databaseAndMqttIntegrationEnabled": true
+}

@@ -150,10 +150,10 @@ No authoring/rendering required yet, but add model/decoder capability if useful 
 - [x] Return `imageId` and Image metadata from successful image uploads while preserving existing useful response fields where compatibility requires.
 - [x] Implement compensation for partial failure in the Phase 5 shared service. Phase 6.3 uses it in UploadFile.
 - [x] Extend database replay to include Image topics. See [Phase 4 evidence](evidence/phase-04-catalogue/README.md).
-- [ ] Implement dry-run/reconciliation utility for pre-existing uploads.
-- [ ] Test reconciliation twice to prove idempotency.
-- [ ] Run reconciliation against a copy of the actual Files directory and record counts/conflicts.
-- [ ] Cross-reference reconciled Images with the 0022 embedded-image candidate inventory.
+- [x] Implement dry-run/reconciliation utility for pre-existing uploads.
+- [x] Test reconciliation twice to prove idempotency.
+- [x] Run reconciliation against a copy of the actual Files directory and record counts/conflicts.
+- [x] Cross-reference reconciled Images with the 0022 embedded-image candidate inventory.
 - [x] Make generic `DeleteFile` reject catalogued paths and directories containing them. See [Phase 7 evidence](evidence/phase-07-delete/README.md).
 - [x] Make upload reject silent overwrite of a catalogued path. Phase 6.2 checks ownership before staging and again under the promotion lock; see [conflict evidence](evidence/phase-06-2-conflicts/README.md).
 - [x] Add path-alias, separator, case-policy and traversal tests for both guards.
@@ -162,7 +162,7 @@ No authoring/rendering required yet, but add model/decoder capability if useful 
 Phase 5 implementation and validation are recorded in
 [shared services evidence](evidence/phase-05-services/README.md): 191 responder
 tests passed, including PostgreSQL/MQTT integration, plus packaged Windows and
-Linux checks. UploadFile integration is complete through 6.3; Phase 7 DeleteFile protection is implemented. Reconciliation and deployment remain later work.
+Linux checks. UploadFile integration is complete through 6.3; Phase 7 DeleteFile protection is implemented. Phase 8 reconciliation is implemented and proved on a copy of the actual Files root; see [evidence](evidence/phase-08-reconciliation/README.md). Phase 9 automated validation is complete: 237 responder, 50 web and 81 client tests plus 24 SQL scenarios passed, with all required builds and no skips; see [Phase 9 evidence](evidence/phase-09-validation/README.md). Phase 10 full-stack smoke testing is next. Twelve rejected images and thirteen ambiguous candidate references remain explicit data-review items. Live deployment remains later work.
 
 ## Acceptance Criteria
 
