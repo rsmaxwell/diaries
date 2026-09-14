@@ -1,0 +1,27 @@
+{
+  "status": "UP",
+  "reason": "ready",
+  "mqttConnected": true,
+  "subscriptionsAcknowledged": true,
+  "generation": 1,
+  "diaries": 10,
+  "pages": 683,
+  "fragments": 2329,
+  "marquees": 2269,
+  "invalidMessages": 0,
+  "tombstones": 0,
+  "relationships": {
+    "pagesWithoutDiary": 0,
+    "marqueesWithoutPage": 0,
+    "marqueesWithoutFragment": 0,
+    "fragmentsWithoutPageId": 60,
+    "fragmentsWithMissingPage": 0,
+    "fragmentPagesWithoutDiary": 0,
+    "marqueeFragmentsWithoutMarquee": 0,
+    "inconsistentFragmentMarqueeLinks": 0,
+    "inconsistentFragmentMarqueePages": 0,
+    "unsupportedImageFragments": 0,
+    "legacyTypeFallbacks": 81
+  },
+  "lastAcceptedUpdateAt": "2026-09-14T19:03:06.374961024Z"
+}

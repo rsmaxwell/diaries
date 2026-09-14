@@ -1,0 +1,937 @@
+[
+  {
+    "host": "acorn",
+    "capturedAtUtc": "2026-09-14T19:27:39.992710+00:00",
+    "mode": "READ_ONLY",
+    "configuration": {
+      "filesRoot": "/data/files",
+      "normaliseOnStartup": true,
+      "database": {
+        "host": "diaries-db",
+        "port": 5432,
+        "database": "diaries"
+      }
+    },
+    "components": [
+      {
+        "name": "diaries-responder",
+        "present": true,
+        "image": "rsmaxwell/diaries-responder:0.0.9-build-73",
+        "imageId": "sha256:ff2505af3e7744d0ee4a12f3dc5904ca709e6505652f046b3b729c976a8b3383",
+        "status": "running",
+        "health": "healthy",
+        "workingDirectory": "/home/richard/projects/diaries"
+      },
+      {
+        "name": "diaries-client",
+        "present": true,
+        "image": "rsmaxwell/diaries-client:0.0.9-build-64",
+        "imageId": "sha256:7e9006890b4d9a7416166d0d67d25b39a36127435ad6bdd55011df992c52b982",
+        "status": "running",
+        "health": "healthy",
+        "workingDirectory": "/home/richard/projects/diaries"
+      },
+      {
+        "name": "diaries-web",
+        "present": false
+      },
+      {
+        "name": "diaries-postgres",
+        "present": true,
+        "image": "postgres:18-alpine",
+        "imageId": "sha256:9a8afca54e7861fd90fab5fdf4c42477a6b1cb7d293595148e674e0a3181de15",
+        "status": "running",
+        "health": "healthy",
+        "workingDirectory": "/home/richard/projects/diaries"
+      },
+      {
+        "name": "diaries-mosquitto",
+        "present": true,
+        "image": "eclipse-mosquitto:2",
+        "imageId": "sha256:6f8d8a947c506f8a2290ec65cd4bd2bc7cb4d43fb5f6271f861cb013e2ef9797",
+        "status": "running",
+        "health": "healthy",
+        "workingDirectory": "/home/richard/projects/diaries"
+      }
+    ],
+    "mounts": [
+      {
+        "Type": "volume",
+        "Source": "diaries_nas-photo",
+        "Target": "/data/files",
+        "ReadOnly": null,
+        "VolumeOptions": {
+          "Subpath": "nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files"
+        },
+        "device": "//nas.tail636235.ts.net/photo",
+        "filesystem": "cifs"
+      },
+      {
+        "Type": "volume",
+        "Source": "diaries_nas-photo",
+        "Target": "/data/diaries",
+        "ReadOnly": true,
+        "VolumeOptions": {
+          "Subpath": "nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/diaries"
+        },
+        "device": "//nas.tail636235.ts.net/photo",
+        "filesystem": "cifs"
+      }
+    ],
+    "schema": {
+      "database": "diaries",
+      "version": "PostgreSQL 18.4 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+      "imageTable": null,
+      "unicodeCollation": "pg_unicode_fast"
+    },
+    "chronology": [
+      {
+        "table": "diary",
+        "count": 10,
+        "rowHash": "4c94f56677d2e5286161a1a80e22de03"
+      },
+      {
+        "table": "page",
+        "count": 683,
+        "rowHash": "fd08505c6ada236ecfeef0689fbccdee"
+      },
+      {
+        "table": "fragment",
+        "count": 37,
+        "rowHash": "f4baafc7e2f726187355b37ebdd75bbc"
+      },
+      {
+        "table": "marquee",
+        "count": 29,
+        "rowHash": "4f9cccedfc2255a6a54bc738652a65ed"
+      }
+    ],
+    "imageRows": null,
+    "files": [
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/Thumbs.db",
+        "sha256": "271a4e6b72a249d2ebcca50b03fac1e1c0fdac6bc44191d47cfe018e829e1259"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/Lucia_Elizabeth_Vestris_by_Robert_William_Buss.jpg",
+        "sha256": "7306fd420df902de56be5b61ff448219d2b286ac1ef3abb4cabdbf74aa82d9bb"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/Thumbs.db",
+        "sha256": "08f581b80632e4d3046fec0c163289d4b44c44b413286191282360fafbaafa62"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/bugsbys_reach.jpg",
+        "sha256": "64f403ad983210663aaab2d46c4b642a445bca568b9341b33926543e33327ed8"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2840-image-map-whitley-park.jpg",
+        "sha256": "0ec1199bb262f2c720737a6fcd71549549ea8727784d5b09e3602fcd6d2d69ba"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2841-image-map-commercial-hotel.jpg",
+        "sha256": "59ae61501c15ff90c7dcdca936f69e21df79b9e10eb69e6cd292b18ab73b45e3"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2842-image-broomville-house.jpg",
+        "sha256": "f7b2daf4007a56e8aa119b293234c6ee9c0234d2d1c29e5af2119c692e599363"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2842-image-clogrennane-house.jpg",
+        "sha256": "4acf577d243ce05a2c08d2488259a31c0eeb0acc66aec77617d26f04d202c2ad"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2842-image-map-carlow.jpg",
+        "sha256": "36ae5f4a7754a442dd7337ed43b5dfd36840da2f144fb4d468611103f9cc5e3c"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2842-image-map-dublin.jpg",
+        "sha256": "5bf81f82865c6700942dea91c9117865cdf49273ea0d3c30f455709cae2c222c"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2842-image-map-tynemouth-to-carlow.jpg",
+        "sha256": "ad972fda62fde0f7c29684f1608ad99b538d018101b8bf5efb9ea5d7579a7da4"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2852-image-black-middens.jpg",
+        "sha256": "e2b8a8cf5df7f5681acc55f043713d50a25eb080c0da4c57107603a8109c316a"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2852-image-hope-voyage.jpg",
+        "sha256": "0ec31e8bfe5f8366f3580a8e08d9eb37bdd09f52d076936b559dd0028f76c56a"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2855-image-appuldurcombe-house.jpg",
+        "sha256": "d9239e70d7f84c9e98caf73660abec0960e47bbd9039e88199955db2fc98346b"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2855-image-isle-of-wight.jpg",
+        "sha256": "594de2ed7619fe911e142b0d528269689a279d5dae5413ff2f9487ac1bb5ddc9"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2855-image-navarino-house-map.png",
+        "sha256": "3d3b0c79daa11713ad6b6003c56f18672e9d29cf1ce75fafe2ca7a59ead9564e"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2855-image-navarino-house.jpg",
+        "sha256": "c678e0bd6c488e3eec86d669f5066bedfc2e1671b3a172931f14568e852c00d1"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2860-image-map-alnwick-tyneside.jpg",
+        "sha256": "ba21a37708dcaeddad11e2d8f5b555da92681afaecce1d08a9dcd90c8df12000"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2885-image-baltic-map.png",
+        "sha256": "22861a4633966297ddbd5ea7710261d0d6a5e898c1d94065bf1293da118f6e3e"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2885-image-copenhagen-large-map.png",
+        "sha256": "27f0773a2dabfdcc231564b2e522173da0ad914b98f549907d5fcea8a2123693"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2885-image-copenhagen-map.png",
+        "sha256": "3830530309064f84947d03aef909e6b1bc782b5e3108b635cb5ced5778389983"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2891-image-copenhagen-east.png",
+        "sha256": "d8118b7e8bc28c933b10be926e859e1b9ff7f9a4274355b871ea368fd8212b77"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2892-image-baltic.png",
+        "sha256": "52b7ea37a0053a5029d1cc8baca8698411eda180eb06d8680744521b92294a8d"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2893-image-kopu-lighthouse.jpg",
+        "sha256": "13b3ced34b2c6d80e84cffb07b0f2c8bc53977852163aa01220c004df7192051"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-hermitage.png",
+        "sha256": "2097979bd1ca47370a55c0f6053167a96f541a5c04adfe4ff52dc564ccc97d5a"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-room-plan.png",
+        "sha256": "c3abd851e52f272f7981a94f7a6256c352cf4aa7530676e1d811e1782d5b19c2"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-san_pietroburgo_ermitage_02_palazzo_inverno_jpg_1200_630_cover_85.jpg",
+        "sha256": "ed3d8e5b54a5db4fc7ac5ed35e6d0371ca878842d495e6aa6793ac9985f9969a"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-st-petersburg-map-large.png",
+        "sha256": "bd033572a84844e0255c851064c9dda284e4435854d7a9852c8753bb307c8a3a"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-st-petersburg-map.png",
+        "sha256": "95456a21e89d774002e62c0071f626560d861b2fdd52b7692c9fd25b1ca57625"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-the-jordan-staircase-state-hermitage-museum-st-petersburg-russia-B2KPFE.jpg",
+        "sha256": "3f5d54daa8129b47f6f9e1c99ec74cc3997bdb439f30cae80e5e50fccec0cc08"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-peter-and-paul-cathedral-st-petersburg.jpg",
+        "sha256": "3ef33432b43bd47c882c838a71409d4ae82d275c0ae2f06177a594b4a6957c4e"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-st-petersburg-map-large.png",
+        "sha256": "2231d54956cc21a8cb3f64d3a29bd1ddc9ecab3ce85d02afec4be3e47a8e4807"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2903-image-alexander-nevsky-monastery-st-petersburg-5.jpg",
+        "sha256": "d8113b8c819fabfcc9bd6cf1bfceafff41df606ef8425032ef4fe6b6e359bd7e"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2903-image-main-entrance-to-alexander-nevsky-monastery-in-st-petersburg.jpg",
+        "sha256": "ced43ee148a94330eab04fdfda53bffc434d034416eb9250acfc659b47049294"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2903-image-st-isaac-church.png",
+        "sha256": "2097979bd1ca47370a55c0f6053167a96f541a5c04adfe4ff52dc564ccc97d5a"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2903-image-st-petersberg-alexander-nevsky-lavra-private-tour-528435.jpg",
+        "sha256": "31de4c6b22cf16b5f59cbeb61ae1ba1c7d37794c65e2e171ea27fce88f6504b7"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2910-commodore-trunnion-and-jack-hatchway.jpg",
+        "sha256": "05983c068288df798767a4d2e9e6382c050a9e82fddcd638d93aaafb8c729661"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2910-peregrine-pickle-1st-edition.png",
+        "sha256": "7cdc755fcfcdcacbe2d4bbe143bdaa5bf9cb7c0cc000a9473ec13f06849c96eb"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2920-WhiteHorse1896.jpg",
+        "sha256": "5601e921f5dc947b6777a57229362409711683995bf15105aa7e7e79bf7ffaf7"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2920-image-map-london.png",
+        "sha256": "e9c825ae8484e76135d3074ac96f3815a6193f12abc0053f12d2e8378a889af9"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2920-the-cock-fleet-street-london.png",
+        "sha256": "a715322c3905830da061b3d3ed1ad2c77957c695914991b9fc6818da01562c0d"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2926-burnhopeside-hall.jpg",
+        "sha256": "793d8202e2269ad933a51f98191822c3774484f4417e03a00da487d8cf81de0d"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2926-lanchester-church.jpg",
+        "sha256": "a35cc6244aa64a5a0635b8168e92a952a57d4ccb9d017272c28281e3fabe4217"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2927-the-kings-head-lanchester.jpg",
+        "sha256": "317fee10813e9d10f4f9c25ad3a3fa0b10c82fc84707d5895425140874da5218"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/original-st-petersburg-map-large.png",
+        "sha256": "da6e475fcf3f75e8c466fdf57d2929fed85d30bb3847b80c6fc18f0118987f7d"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/original-st-petersburg-map.png",
+        "sha256": "ca0cd1f00890737f62e1bf489c3c6df0892848841a0b9d07eba33182743e5d52"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/the-tynemouth-lodge-hotel.jpg",
+        "sha256": "095e7d4f6c19a7ccdcbc7cc5daae84a14964d245ae2d759598a19cd2722bb73e"
+      },
+      {
+        "relativePath": "diary-1830/images/Thumbs.db",
+        "sha256": "d5bbb36ec4f96a64ce147f7dd526cd793f2266f8d147c8c03aa38c8ab19c85e8"
+      },
+      {
+        "relativePath": "diary-1830/images/dockwray square view.jpg",
+        "sha256": "8db9b0d588959e342e6408f28bf080f7b08664b97c9276e731d819b3693907d6"
+      },
+      {
+        "relativePath": "diary-1830/images/eldon-square.jpg",
+        "sha256": "bd92818f5e0cff3cc04fdea64ab0e47e4ed8126e78eb917c5d41eab0bb21920c"
+      },
+      {
+        "relativePath": "diary-1830/images/herd-groyn.jpg",
+        "sha256": "2fc4cc11da744ca74d4db14c4b9ad32edc8ca2f1b268e723e4b19eed910fe8b7"
+      },
+      {
+        "relativePath": "diary-1830/images/img2373-map.jpg",
+        "sha256": "b1c14a8f2a430a1a2793b1a18e56eb6597b8d63e7d2e38a0ddf995d2ae47d88d"
+      },
+      {
+        "relativePath": "diary-1830/images/img2381-image-map.jpg",
+        "sha256": "2b78908744912b54b3798456f186b1645d4b7b2e3c07d022986f590675540249"
+      },
+      {
+        "relativePath": "diary-1830/images/img2390-image-bullring.png",
+        "sha256": "7a59e2e49e5b14fae0e31064e79653222a5a602b8191949232a9fd3d939c9f4d"
+      },
+      {
+        "relativePath": "diary-1830/images/img2394-image-eldon-square-2.jpg",
+        "sha256": "025b0a15b81b5ce5199a5f8a520cab7a1a16fd50fa7f7f559f2581e89eb8301e"
+      },
+      {
+        "relativePath": "diary-1830/images/img2398-image-archangel-map.png",
+        "sha256": "99d82348670d4ced7d21c53a15df2b467566c5a44e52ba87b49318c31ee377e1"
+      },
+      {
+        "relativePath": "diary-1830/images/map3.jpg",
+        "sha256": "43dc1f3646cbf8341e8cbc1c02f4877825e92bc1743e1455b3616c835279a406"
+      },
+      {
+        "relativePath": "diary-1830/images/map4.jpg",
+        "sha256": "2a502087f78a686de7c6861e35ebfbaa0223c2c93025f72d990eb6af7fda791d"
+      },
+      {
+        "relativePath": "diary-1831/images/img2734-doodle-on-blotting-paper.jpg",
+        "sha256": "4a0ebe6350670d3af3dc2eead956ce9f4e3a04f45b7da1b29ebf492fb2292637"
+      },
+      {
+        "relativePath": "diary-1831/images/img2753-white-swan-alnwick.png",
+        "sha256": "e76eb9b43454cb04d5bf1d353ea6bc05643d9cb581978302901335f8fea2c76d"
+      },
+      {
+        "relativePath": "diary-1831/images/img2754-castle-alnwick.png",
+        "sha256": "f6286336210858d93467ff41b211c40cdd4a5b30ca4abfaeef2fa7d279aaf6c3"
+      },
+      {
+        "relativePath": "diary-1831/images/img2754-the-bull-alnwick.png",
+        "sha256": "1463ed4a279a60557c02d17f9c3abfc24f475c94696abe84a43d10b655eea277"
+      },
+      {
+        "relativePath": "diary-1831/images/img2755-bondgate-hall.png",
+        "sha256": "8178fcc7bf8ab28a0fca9367eb76eed8a2aea8b4b78763d4804c0d788fccb022"
+      },
+      {
+        "relativePath": "diary-1831/images/img2758-charlotte-square-newcastle.png",
+        "sha256": "535555c3927225ba003e8ca80ac21657a0834fa65ccc91874529c34eee798459"
+      },
+      {
+        "relativePath": "diary-1831/images/img2758-northumberland-alms-tynemouth.png",
+        "sha256": "40f311a968782ca72098f53f70027f12ce029e8a596c016d802456fae086954b"
+      },
+      {
+        "relativePath": "diary-1831/images/img2761-brandon-white-house.png",
+        "sha256": "c16ab3fd1793b0be830829bf3a5f35b1a3486d78bfacd5300284b654f1b4aaea"
+      },
+      {
+        "relativePath": "diary-1831/images/img2762-north-shields-walk.png",
+        "sha256": "485e4e6bb3636add58e70eec5d082937dd5019953da3cd51dbba25ff03eb0dbb"
+      },
+      {
+        "relativePath": "diary-1831/images/img2767-hms-samarang.jpg",
+        "sha256": "cb5f71a5ffb7d73e223cb8d1bd7705db24dfd08bffc7657f0613f93d7ff05d06"
+      },
+      {
+        "relativePath": "diary-1831/images/img2769-archibald-reed.jpg",
+        "sha256": "e72e3b1d9434bfab2b4a563f3b1cf591cd5bb4de7d0b9767c56b60205df6b61d"
+      },
+      {
+        "relativePath": "diary-1831/images/img2780-cross-keys-hull.jpg",
+        "sha256": "5756eaf330fe893e0ff457d6bb11623d1d71f2b7f65ef1898291a10e1fb8b460"
+      },
+      {
+        "relativePath": "diary-1831/images/img2783-black-swan-york.png",
+        "sha256": "2fd380b188fbf11b408f4036702a3786f6e5c3d4729f26b8717dc7d91be3d489"
+      },
+      {
+        "relativePath": "diary-1831/images/img2787-croquet-island.jpg",
+        "sha256": "243ac3808c83aa00b533a6a3eecfa59e84f12f27a58d360fc8adf9ffba38a26b"
+      },
+      {
+        "relativePath": "diary-1831/images/img2788-hermitage-inn-warkworth.png",
+        "sha256": "31d18f591ae608e6638d05c226f8a080387e2d979594624651f04ba1390198f0"
+      },
+      {
+        "relativePath": "diary-1831/images/img2788-hermitage-warkworth.png",
+        "sha256": "105528afac270e691e90a83f806d47c626fa8ab86317504f0b9fc56a01d29ab8"
+      },
+      {
+        "relativePath": "diary-1831/images/img2791-northumberland-house-london.jpg",
+        "sha256": "517327ff4038a3642dd56d19a80e39aea8960b6292d885a2764bcf700af10ca8"
+      },
+      {
+        "relativePath": "diary-1831/images/img2792-baths-southampton.jpg",
+        "sha256": "0d37089c55fb33499cf928f266287d4cba3a2eaf2c88a1e56f969a70cf7181c2"
+      },
+      {
+        "relativePath": "diary-1831/images/img2792-pier-southampton.jpg",
+        "sha256": "d31fcbb70fe0eded8ed36a4110b13cee1aa2c7107bacca4600bddc1026047000"
+      },
+      {
+        "relativePath": "diary-1831/images/img2798-crown-and-septre-london.png",
+        "sha256": "f7583abfb92d20049cb2869baa06e1233c7b5b9c18f6a3570f6ce9c6379a6567"
+      },
+      {
+        "relativePath": "diary-1831/images/img2799-coronation-william-4th.jpg",
+        "sha256": "ed12a05d20363fa65b42dd40c4d4dc7b2ab9dde35499efa8df1a1adcd0cb1f67"
+      },
+      {
+        "relativePath": "diary-1831/images/img2805-blue-posts-pub.jpg",
+        "sha256": "96280fb86ae716f9e58a807a785cafe1f98335cef3c8fe5c7a342ca37f965fa1"
+      },
+      {
+        "relativePath": "diary-1831/images/img2805-launch-of-hms-thunderer.jpg",
+        "sha256": "47875012d008971605bcc8a26aee9ccaa88d8dc8480cd1f279f397b2099c8c70"
+      },
+      {
+        "relativePath": "diary-1832/images/Thumbs.db",
+        "sha256": "5780ef5250cd8277c3acd10263ded1e89aaa1dab9dbb70e9f8158cd8bc4de4e5"
+      },
+      {
+        "relativePath": "diary-1832/images/img2982-note-at-front-of-diary.jpg",
+        "sha256": "0fae2a948de4595c8575e9979d03868a7d9e3d89dd8e2dcafde1f22c2c650055"
+      },
+      {
+        "relativePath": "diary-1832/images/img3018-murder-of-nicholas-fairles.png",
+        "sha256": "f25f78831f9630705e8d32a1a12550473ff759ced2e0c650e3172f70ab508a6d"
+      },
+      {
+        "relativePath": "diary-1834/images/Benton-Park-House.jpg",
+        "sha256": "a62d54efef3c97f1e50d72cc59303cd9adf326983aab05ab8568dbcb9ac7d078"
+      },
+      {
+        "relativePath": "diary-1834/images/img2982-note-at-front-of-diary.jpg",
+        "sha256": "0fae2a948de4595c8575e9979d03868a7d9e3d89dd8e2dcafde1f22c2c650055"
+      },
+      {
+        "relativePath": "diary-1834/images/img2994-burnhopeside-hall.jpg",
+        "sha256": "a16d0efc9d4ca32b5abbe141a3db0ff772e67477327a13ea0ea670e326f445c5"
+      }
+    ],
+    "fileCount": 87,
+    "inventorySha256": "f978fe5165238af2147e2e01e78abbd06454c8e695ad6ae59f4b7e5b9d43cfbd",
+    "caseFoldedAliases": [],
+    "filesystemType": "smb2",
+    "rootPermissions": "755 0:0",
+    "stagingPermissions": null
+  },
+  {
+    "host": "pluto",
+    "capturedAtUtc": "2026-09-14T19:27:43.691390+00:00",
+    "mode": "READ_ONLY",
+    "configuration": {
+      "filesRoot": "/data/files",
+      "normaliseOnStartup": true,
+      "database": {
+        "host": "diaries-db",
+        "port": 5432,
+        "database": "diaries"
+      }
+    },
+    "components": [
+      {
+        "name": "diaries-responder",
+        "present": true,
+        "image": "rsmaxwell/diaries-responder:0.0.9-build-77",
+        "imageId": "sha256:d744ea6de76298df674305678198bb4470719671868a5648a5d529a1292d0ab8",
+        "status": "running",
+        "health": "healthy",
+        "workingDirectory": "/home/richard/projects/diaries"
+      },
+      {
+        "name": "diaries-client",
+        "present": true,
+        "image": "rsmaxwell/diaries-client:0.0.9-build-69",
+        "imageId": "sha256:b3770ef1a0709832fa595cee6dfb929d1f3e1cd8b01a61f59f531cd65931e7fe",
+        "status": "running",
+        "health": "healthy",
+        "workingDirectory": "/home/richard/projects/diaries"
+      },
+      {
+        "name": "diaries-web",
+        "present": true,
+        "image": "rsmaxwell/diaries-web:0.0.9-build-3",
+        "imageId": "sha256:cd7f915e2b78c771ee5c0c5e5ef988cebf610bc8f4a72c885c639c810b76211f",
+        "status": "running",
+        "health": "healthy",
+        "workingDirectory": "/home/richard/projects/diaries"
+      },
+      {
+        "name": "diaries-postgres",
+        "present": true,
+        "image": "postgres:18-alpine",
+        "imageId": "sha256:b07129cc272f688c98f5b343138a0a52fa45b3d82f50d7a53ff441330624cd2e",
+        "status": "running",
+        "health": "healthy",
+        "workingDirectory": "/home/richard/projects/diaries"
+      },
+      {
+        "name": "diaries-mosquitto",
+        "present": true,
+        "image": "eclipse-mosquitto:2",
+        "imageId": "sha256:4725ea7590a578122675b1fdd242b94e5034885cfd0806045b25d700f5498ef5",
+        "status": "running",
+        "health": "healthy",
+        "workingDirectory": "/home/richard/projects/diaries"
+      }
+    ],
+    "mounts": [
+      {
+        "Type": "volume",
+        "Source": "diaries_nas-photo",
+        "Target": "/data/diaries",
+        "ReadOnly": true,
+        "VolumeOptions": {
+          "Subpath": "nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/diaries"
+        },
+        "device": "//nas.tail636235.ts.net/photo",
+        "filesystem": "cifs"
+      },
+      {
+        "Type": "volume",
+        "Source": "diaries_nas-photo",
+        "Target": "/data/files",
+        "ReadOnly": null,
+        "VolumeOptions": {
+          "Subpath": "nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files"
+        },
+        "device": "//nas.tail636235.ts.net/photo",
+        "filesystem": "cifs"
+      }
+    ],
+    "schema": {
+      "database": "diaries",
+      "version": "PostgreSQL 18.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+      "imageTable": null,
+      "unicodeCollation": "pg_unicode_fast"
+    },
+    "chronology": [
+      {
+        "table": "diary",
+        "count": 10,
+        "rowHash": "4c94f56677d2e5286161a1a80e22de03"
+      },
+      {
+        "table": "page",
+        "count": 683,
+        "rowHash": "fd08505c6ada236ecfeef0689fbccdee"
+      },
+      {
+        "table": "fragment",
+        "count": 2329,
+        "rowHash": "60daee6c6425363f1f36514ff73a3fb3"
+      },
+      {
+        "table": "marquee",
+        "count": 2269,
+        "rowHash": "24f7c955b2fc070b3c48b4fc24212649"
+      }
+    ],
+    "imageRows": null,
+    "files": [
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/Thumbs.db",
+        "sha256": "271a4e6b72a249d2ebcca50b03fac1e1c0fdac6bc44191d47cfe018e829e1259"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/Lucia_Elizabeth_Vestris_by_Robert_William_Buss.jpg",
+        "sha256": "7306fd420df902de56be5b61ff448219d2b286ac1ef3abb4cabdbf74aa82d9bb"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/Thumbs.db",
+        "sha256": "08f581b80632e4d3046fec0c163289d4b44c44b413286191282360fafbaafa62"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/bugsbys_reach.jpg",
+        "sha256": "64f403ad983210663aaab2d46c4b642a445bca568b9341b33926543e33327ed8"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2840-image-map-whitley-park.jpg",
+        "sha256": "0ec1199bb262f2c720737a6fcd71549549ea8727784d5b09e3602fcd6d2d69ba"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2841-image-map-commercial-hotel.jpg",
+        "sha256": "59ae61501c15ff90c7dcdca936f69e21df79b9e10eb69e6cd292b18ab73b45e3"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2842-image-broomville-house.jpg",
+        "sha256": "f7b2daf4007a56e8aa119b293234c6ee9c0234d2d1c29e5af2119c692e599363"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2842-image-clogrennane-house.jpg",
+        "sha256": "4acf577d243ce05a2c08d2488259a31c0eeb0acc66aec77617d26f04d202c2ad"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2842-image-map-carlow.jpg",
+        "sha256": "36ae5f4a7754a442dd7337ed43b5dfd36840da2f144fb4d468611103f9cc5e3c"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2842-image-map-dublin.jpg",
+        "sha256": "5bf81f82865c6700942dea91c9117865cdf49273ea0d3c30f455709cae2c222c"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2842-image-map-tynemouth-to-carlow.jpg",
+        "sha256": "ad972fda62fde0f7c29684f1608ad99b538d018101b8bf5efb9ea5d7579a7da4"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2852-image-black-middens.jpg",
+        "sha256": "e2b8a8cf5df7f5681acc55f043713d50a25eb080c0da4c57107603a8109c316a"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2852-image-hope-voyage.jpg",
+        "sha256": "0ec31e8bfe5f8366f3580a8e08d9eb37bdd09f52d076936b559dd0028f76c56a"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2855-image-appuldurcombe-house.jpg",
+        "sha256": "d9239e70d7f84c9e98caf73660abec0960e47bbd9039e88199955db2fc98346b"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2855-image-isle-of-wight.jpg",
+        "sha256": "594de2ed7619fe911e142b0d528269689a279d5dae5413ff2f9487ac1bb5ddc9"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2855-image-navarino-house-map.png",
+        "sha256": "3d3b0c79daa11713ad6b6003c56f18672e9d29cf1ce75fafe2ca7a59ead9564e"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2855-image-navarino-house.jpg",
+        "sha256": "c678e0bd6c488e3eec86d669f5066bedfc2e1671b3a172931f14568e852c00d1"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2860-image-map-alnwick-tyneside.jpg",
+        "sha256": "ba21a37708dcaeddad11e2d8f5b555da92681afaecce1d08a9dcd90c8df12000"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2885-image-baltic-map.png",
+        "sha256": "22861a4633966297ddbd5ea7710261d0d6a5e898c1d94065bf1293da118f6e3e"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2885-image-copenhagen-large-map.png",
+        "sha256": "27f0773a2dabfdcc231564b2e522173da0ad914b98f549907d5fcea8a2123693"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2885-image-copenhagen-map.png",
+        "sha256": "3830530309064f84947d03aef909e6b1bc782b5e3108b635cb5ced5778389983"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2891-image-copenhagen-east.png",
+        "sha256": "d8118b7e8bc28c933b10be926e859e1b9ff7f9a4274355b871ea368fd8212b77"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2892-image-baltic.png",
+        "sha256": "52b7ea37a0053a5029d1cc8baca8698411eda180eb06d8680744521b92294a8d"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2893-image-kopu-lighthouse.jpg",
+        "sha256": "13b3ced34b2c6d80e84cffb07b0f2c8bc53977852163aa01220c004df7192051"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-hermitage.png",
+        "sha256": "2097979bd1ca47370a55c0f6053167a96f541a5c04adfe4ff52dc564ccc97d5a"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-room-plan.png",
+        "sha256": "c3abd851e52f272f7981a94f7a6256c352cf4aa7530676e1d811e1782d5b19c2"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-san_pietroburgo_ermitage_02_palazzo_inverno_jpg_1200_630_cover_85.jpg",
+        "sha256": "ed3d8e5b54a5db4fc7ac5ed35e6d0371ca878842d495e6aa6793ac9985f9969a"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-st-petersburg-map-large.png",
+        "sha256": "bd033572a84844e0255c851064c9dda284e4435854d7a9852c8753bb307c8a3a"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-st-petersburg-map.png",
+        "sha256": "95456a21e89d774002e62c0071f626560d861b2fdd52b7692c9fd25b1ca57625"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-the-jordan-staircase-state-hermitage-museum-st-petersburg-russia-B2KPFE.jpg",
+        "sha256": "3f5d54daa8129b47f6f9e1c99ec74cc3997bdb439f30cae80e5e50fccec0cc08"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-peter-and-paul-cathedral-st-petersburg.jpg",
+        "sha256": "3ef33432b43bd47c882c838a71409d4ae82d275c0ae2f06177a594b4a6957c4e"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-st-petersburg-map-large.png",
+        "sha256": "2231d54956cc21a8cb3f64d3a29bd1ddc9ecab3ce85d02afec4be3e47a8e4807"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2903-image-alexander-nevsky-monastery-st-petersburg-5.jpg",
+        "sha256": "d8113b8c819fabfcc9bd6cf1bfceafff41df606ef8425032ef4fe6b6e359bd7e"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2903-image-main-entrance-to-alexander-nevsky-monastery-in-st-petersburg.jpg",
+        "sha256": "ced43ee148a94330eab04fdfda53bffc434d034416eb9250acfc659b47049294"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2903-image-st-isaac-church.png",
+        "sha256": "2097979bd1ca47370a55c0f6053167a96f541a5c04adfe4ff52dc564ccc97d5a"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2903-image-st-petersberg-alexander-nevsky-lavra-private-tour-528435.jpg",
+        "sha256": "31de4c6b22cf16b5f59cbeb61ae1ba1c7d37794c65e2e171ea27fce88f6504b7"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2910-commodore-trunnion-and-jack-hatchway.jpg",
+        "sha256": "05983c068288df798767a4d2e9e6382c050a9e82fddcd638d93aaafb8c729661"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2910-peregrine-pickle-1st-edition.png",
+        "sha256": "7cdc755fcfcdcacbe2d4bbe143bdaa5bf9cb7c0cc000a9473ec13f06849c96eb"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2920-WhiteHorse1896.jpg",
+        "sha256": "5601e921f5dc947b6777a57229362409711683995bf15105aa7e7e79bf7ffaf7"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2920-image-map-london.png",
+        "sha256": "e9c825ae8484e76135d3074ac96f3815a6193f12abc0053f12d2e8378a889af9"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2920-the-cock-fleet-street-london.png",
+        "sha256": "a715322c3905830da061b3d3ed1ad2c77957c695914991b9fc6818da01562c0d"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2926-burnhopeside-hall.jpg",
+        "sha256": "793d8202e2269ad933a51f98191822c3774484f4417e03a00da487d8cf81de0d"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2926-lanchester-church.jpg",
+        "sha256": "a35cc6244aa64a5a0635b8168e92a952a57d4ccb9d017272c28281e3fabe4217"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2927-the-kings-head-lanchester.jpg",
+        "sha256": "317fee10813e9d10f4f9c25ad3a3fa0b10c82fc84707d5895425140874da5218"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/original-st-petersburg-map-large.png",
+        "sha256": "da6e475fcf3f75e8c466fdf57d2929fed85d30bb3847b80c6fc18f0118987f7d"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/original-st-petersburg-map.png",
+        "sha256": "ca0cd1f00890737f62e1bf489c3c6df0892848841a0b9d07eba33182743e5d52"
+      },
+      {
+        "relativePath": "diary-1828-and-1829-and-jan-1830/images/the-tynemouth-lodge-hotel.jpg",
+        "sha256": "095e7d4f6c19a7ccdcbc7cc5daae84a14964d245ae2d759598a19cd2722bb73e"
+      },
+      {
+        "relativePath": "diary-1830/images/Thumbs.db",
+        "sha256": "d5bbb36ec4f96a64ce147f7dd526cd793f2266f8d147c8c03aa38c8ab19c85e8"
+      },
+      {
+        "relativePath": "diary-1830/images/dockwray square view.jpg",
+        "sha256": "8db9b0d588959e342e6408f28bf080f7b08664b97c9276e731d819b3693907d6"
+      },
+      {
+        "relativePath": "diary-1830/images/eldon-square.jpg",
+        "sha256": "bd92818f5e0cff3cc04fdea64ab0e47e4ed8126e78eb917c5d41eab0bb21920c"
+      },
+      {
+        "relativePath": "diary-1830/images/herd-groyn.jpg",
+        "sha256": "2fc4cc11da744ca74d4db14c4b9ad32edc8ca2f1b268e723e4b19eed910fe8b7"
+      },
+      {
+        "relativePath": "diary-1830/images/img2373-map.jpg",
+        "sha256": "b1c14a8f2a430a1a2793b1a18e56eb6597b8d63e7d2e38a0ddf995d2ae47d88d"
+      },
+      {
+        "relativePath": "diary-1830/images/img2381-image-map.jpg",
+        "sha256": "2b78908744912b54b3798456f186b1645d4b7b2e3c07d022986f590675540249"
+      },
+      {
+        "relativePath": "diary-1830/images/img2390-image-bullring.png",
+        "sha256": "7a59e2e49e5b14fae0e31064e79653222a5a602b8191949232a9fd3d939c9f4d"
+      },
+      {
+        "relativePath": "diary-1830/images/img2394-image-eldon-square-2.jpg",
+        "sha256": "025b0a15b81b5ce5199a5f8a520cab7a1a16fd50fa7f7f559f2581e89eb8301e"
+      },
+      {
+        "relativePath": "diary-1830/images/img2398-image-archangel-map.png",
+        "sha256": "99d82348670d4ced7d21c53a15df2b467566c5a44e52ba87b49318c31ee377e1"
+      },
+      {
+        "relativePath": "diary-1830/images/map3.jpg",
+        "sha256": "43dc1f3646cbf8341e8cbc1c02f4877825e92bc1743e1455b3616c835279a406"
+      },
+      {
+        "relativePath": "diary-1830/images/map4.jpg",
+        "sha256": "2a502087f78a686de7c6861e35ebfbaa0223c2c93025f72d990eb6af7fda791d"
+      },
+      {
+        "relativePath": "diary-1831/images/img2734-doodle-on-blotting-paper.jpg",
+        "sha256": "4a0ebe6350670d3af3dc2eead956ce9f4e3a04f45b7da1b29ebf492fb2292637"
+      },
+      {
+        "relativePath": "diary-1831/images/img2753-white-swan-alnwick.png",
+        "sha256": "e76eb9b43454cb04d5bf1d353ea6bc05643d9cb581978302901335f8fea2c76d"
+      },
+      {
+        "relativePath": "diary-1831/images/img2754-castle-alnwick.png",
+        "sha256": "f6286336210858d93467ff41b211c40cdd4a5b30ca4abfaeef2fa7d279aaf6c3"
+      },
+      {
+        "relativePath": "diary-1831/images/img2754-the-bull-alnwick.png",
+        "sha256": "1463ed4a279a60557c02d17f9c3abfc24f475c94696abe84a43d10b655eea277"
+      },
+      {
+        "relativePath": "diary-1831/images/img2755-bondgate-hall.png",
+        "sha256": "8178fcc7bf8ab28a0fca9367eb76eed8a2aea8b4b78763d4804c0d788fccb022"
+      },
+      {
+        "relativePath": "diary-1831/images/img2758-charlotte-square-newcastle.png",
+        "sha256": "535555c3927225ba003e8ca80ac21657a0834fa65ccc91874529c34eee798459"
+      },
+      {
+        "relativePath": "diary-1831/images/img2758-northumberland-alms-tynemouth.png",
+        "sha256": "40f311a968782ca72098f53f70027f12ce029e8a596c016d802456fae086954b"
+      },
+      {
+        "relativePath": "diary-1831/images/img2761-brandon-white-house.png",
+        "sha256": "c16ab3fd1793b0be830829bf3a5f35b1a3486d78bfacd5300284b654f1b4aaea"
+      },
+      {
+        "relativePath": "diary-1831/images/img2762-north-shields-walk.png",
+        "sha256": "485e4e6bb3636add58e70eec5d082937dd5019953da3cd51dbba25ff03eb0dbb"
+      },
+      {
+        "relativePath": "diary-1831/images/img2767-hms-samarang.jpg",
+        "sha256": "cb5f71a5ffb7d73e223cb8d1bd7705db24dfd08bffc7657f0613f93d7ff05d06"
+      },
+      {
+        "relativePath": "diary-1831/images/img2769-archibald-reed.jpg",
+        "sha256": "e72e3b1d9434bfab2b4a563f3b1cf591cd5bb4de7d0b9767c56b60205df6b61d"
+      },
+      {
+        "relativePath": "diary-1831/images/img2780-cross-keys-hull.jpg",
+        "sha256": "5756eaf330fe893e0ff457d6bb11623d1d71f2b7f65ef1898291a10e1fb8b460"
+      },
+      {
+        "relativePath": "diary-1831/images/img2783-black-swan-york.png",
+        "sha256": "2fd380b188fbf11b408f4036702a3786f6e5c3d4729f26b8717dc7d91be3d489"
+      },
+      {
+        "relativePath": "diary-1831/images/img2787-croquet-island.jpg",
+        "sha256": "243ac3808c83aa00b533a6a3eecfa59e84f12f27a58d360fc8adf9ffba38a26b"
+      },
+      {
+        "relativePath": "diary-1831/images/img2788-hermitage-inn-warkworth.png",
+        "sha256": "31d18f591ae608e6638d05c226f8a080387e2d979594624651f04ba1390198f0"
+      },
+      {
+        "relativePath": "diary-1831/images/img2788-hermitage-warkworth.png",
+        "sha256": "105528afac270e691e90a83f806d47c626fa8ab86317504f0b9fc56a01d29ab8"
+      },
+      {
+        "relativePath": "diary-1831/images/img2791-northumberland-house-london.jpg",
+        "sha256": "517327ff4038a3642dd56d19a80e39aea8960b6292d885a2764bcf700af10ca8"
+      },
+      {
+        "relativePath": "diary-1831/images/img2792-baths-southampton.jpg",
+        "sha256": "0d37089c55fb33499cf928f266287d4cba3a2eaf2c88a1e56f969a70cf7181c2"
+      },
+      {
+        "relativePath": "diary-1831/images/img2792-pier-southampton.jpg",
+        "sha256": "d31fcbb70fe0eded8ed36a4110b13cee1aa2c7107bacca4600bddc1026047000"
+      },
+      {
+        "relativePath": "diary-1831/images/img2798-crown-and-septre-london.png",
+        "sha256": "f7583abfb92d20049cb2869baa06e1233c7b5b9c18f6a3570f6ce9c6379a6567"
+      },
+      {
+        "relativePath": "diary-1831/images/img2799-coronation-william-4th.jpg",
+        "sha256": "ed12a05d20363fa65b42dd40c4d4dc7b2ab9dde35499efa8df1a1adcd0cb1f67"
+      },
+      {
+        "relativePath": "diary-1831/images/img2805-blue-posts-pub.jpg",
+        "sha256": "96280fb86ae716f9e58a807a785cafe1f98335cef3c8fe5c7a342ca37f965fa1"
+      },
+      {
+        "relativePath": "diary-1831/images/img2805-launch-of-hms-thunderer.jpg",
+        "sha256": "47875012d008971605bcc8a26aee9ccaa88d8dc8480cd1f279f397b2099c8c70"
+      },
+      {
+        "relativePath": "diary-1832/images/Thumbs.db",
+        "sha256": "5780ef5250cd8277c3acd10263ded1e89aaa1dab9dbb70e9f8158cd8bc4de4e5"
+      },
+      {
+        "relativePath": "diary-1832/images/img2982-note-at-front-of-diary.jpg",
+        "sha256": "0fae2a948de4595c8575e9979d03868a7d9e3d89dd8e2dcafde1f22c2c650055"
+      },
+      {
+        "relativePath": "diary-1832/images/img3018-murder-of-nicholas-fairles.png",
+        "sha256": "f25f78831f9630705e8d32a1a12550473ff759ced2e0c650e3172f70ab508a6d"
+      },
+      {
+        "relativePath": "diary-1834/images/Benton-Park-House.jpg",
+        "sha256": "a62d54efef3c97f1e50d72cc59303cd9adf326983aab05ab8568dbcb9ac7d078"
+      },
+      {
+        "relativePath": "diary-1834/images/img2982-note-at-front-of-diary.jpg",
+        "sha256": "0fae2a948de4595c8575e9979d03868a7d9e3d89dd8e2dcafde1f22c2c650055"
+      },
+      {
+        "relativePath": "diary-1834/images/img2994-burnhopeside-hall.jpg",
+        "sha256": "a16d0efc9d4ca32b5abbe141a3db0ff772e67477327a13ea0ea670e326f445c5"
+      }
+    ],
+    "fileCount": 87,
+    "inventorySha256": "f978fe5165238af2147e2e01e78abbd06454c8e695ad6ae59f4b7e5b9d43cfbd",
+    "caseFoldedAliases": [],
+    "filesystemType": "smb2",
+    "rootPermissions": "755 0:0",
+    "stagingPermissions": null
+  }
+]

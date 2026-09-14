@@ -1,0 +1,8 @@
+2026-09-14T19:03:05,378 INFO  [main] i.j.Javalin - Javalin started in 401ms \o/
+2026-09-14T19:03:05,379 INFO  [main] i.j.Javalin - Listening on http://0.0.0.0:8082/
+2026-09-14T19:03:05,390 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Connecting diaries-web MQTT subscriber to tcp://diaries-0024-phase10-d011cf03-mqtt:1883
+2026-09-14T19:03:05,709 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/diaries/+
+2026-09-14T19:03:05,719 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/pages/+
+2026-09-14T19:03:05,724 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/fragments/+
+2026-09-14T19:03:05,726 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/marquees/+
+2026-09-14T19:03:07,909 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=10, pages=683, fragments=2329, marquees=2269)

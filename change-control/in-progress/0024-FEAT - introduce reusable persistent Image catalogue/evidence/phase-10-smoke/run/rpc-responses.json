@@ -1,0 +1,128 @@
+[
+  {
+    "operation": "uploadFile",
+    "name": "smoke-twin.jpg",
+    "status": {
+      "code": 200,
+      "message": "ok"
+    },
+    "payload": {
+      "name": "smoke-twin.jpg",
+      "subdir": "",
+      "size": 43789,
+      "path": "/data/files/smoke-twin.jpg",
+      "url": "/files/smoke-twin.jpg",
+      "imageId": 2,
+      "image": {
+        "id": 2,
+        "version": 0,
+        "relativePath": "smoke-twin.jpg",
+        "mimeType": "image/jpeg",
+        "originalFilename": "smoke-twin.jpg",
+        "width": 1200,
+        "height": 1600,
+        "checksum": "86fdc66dded2eeb53300d8fdb4c29fa95efe7cef01857e3ad819d91c50e3c0f5",
+        "caption": "",
+        "altText": ""
+      }
+    }
+  },
+  {
+    "operation": "uploadFile",
+    "name": "smoke-octet.png",
+    "status": {
+      "code": 200,
+      "message": "ok"
+    },
+    "payload": {
+      "name": "smoke-octet.png",
+      "subdir": "",
+      "size": 10982,
+      "path": "/data/files/smoke-octet.png",
+      "url": "/files/smoke-octet.png",
+      "imageId": 3,
+      "image": {
+        "id": 3,
+        "version": 0,
+        "relativePath": "smoke-octet.png",
+        "mimeType": "image/png",
+        "originalFilename": "smoke-octet.png",
+        "width": 1200,
+        "height": 1600,
+        "checksum": "ed47fc408379d4a1d7ae95ae906959009eddaa8d166ebfa30eec384c5529fa33",
+        "caption": "",
+        "altText": ""
+      }
+    }
+  },
+  {
+    "operation": "uploadFile",
+    "name": "smoke-generic.bin",
+    "status": {
+      "code": 200,
+      "message": "ok"
+    },
+    "payload": {
+      "name": "smoke-generic.bin",
+      "subdir": "",
+      "size": 20,
+      "path": "/data/files/smoke-generic.bin",
+      "url": "/files/smoke-generic.bin",
+      "imageId": null,
+      "image": null
+    }
+  },
+  {
+    "operation": "uploadFile",
+    "name": "smoke-ui.jpg",
+    "status": {
+      "code": 409,
+      "message": "conflict"
+    },
+    "payload": "Path belongs to the Image catalogue."
+  },
+  {
+    "operation": "uploadFile",
+    "name": "smoke-ui.jpg",
+    "status": {
+      "code": 409,
+      "message": "conflict"
+    },
+    "payload": "Path belongs to the Image catalogue."
+  },
+  {
+    "operation": "uploadFile",
+    "name": "SMOKE-UI.JPG",
+    "status": {
+      "code": 409,
+      "message": "conflict"
+    },
+    "payload": "Path belongs to the Image catalogue."
+  },
+  {
+    "operation": "deleteFile",
+    "status": {
+      "code": 409,
+      "message": "conflict"
+    },
+    "payload": "Image catalogue protects path: smoke-ui.jpg"
+  },
+  {
+    "operation": "uploadFile",
+    "name": "smoke-bad-upload.png",
+    "status": {
+      "code": 400,
+      "message": "bad request"
+    },
+    "payload": "Upload rejected: invalid path, encoding, size, checksum or image content."
+  },
+  {
+    "operation": "deleteFile",
+    "name": "smoke-absent.png",
+    "status": {
+      "code": 409,
+      "message": "conflict"
+    },
+    "payload": "Image catalogue protects path: smoke-absent.png"
+  }
+]

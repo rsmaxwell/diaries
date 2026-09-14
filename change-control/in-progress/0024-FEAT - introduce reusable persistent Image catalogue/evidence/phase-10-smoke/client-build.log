@@ -1,0 +1,45 @@
+
+> diaries-client@0.0.0 prebuild
+> npm run generate-build-info
+
+
+> diaries-client@0.0.0 generate-build-info
+> node scripts/generate-build-info.js
+
+Generated client build information: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client\public\assets\build-info.json
+Client version: 0.0.9-SNAPSHOT
+
+> diaries-client@0.0.0 build
+> ng build --configuration production
+
+> Building...
+√ Building...
+Initial chunk files   | Names                    |  Raw size | Estimated transfer size
+main-ICSNSW5Q.js      | main                     |   1.29 MB |               261.16 kB
+chunk-FJJIWVLM.js     | -                        | 168.53 kB |                49.59 kB
+styles-N7335JD7.css   | styles                   |  43.65 kB |                 6.22 kB
+polyfills-B6TNHZQ6.js | polyfills                |  34.58 kB |                11.32 kB
+chunk-ATDPNAVO.js     | -                        |   2.50 kB |                 1.03 kB
+
+                      | Initial total            |   1.53 MB |               329.32 kB
+
+Lazy chunk files      | Names                    |  Raw size | Estimated transfer size
+chunk-4NPUSYAG.js     | ngx-quill-quill-CUw8Q_m0 | 204.66 kB |                51.69 kB
+chunk-DM5VVT4S.js     | browser                  |  67.63 kB |                17.75 kB
+
+Application bundle generation complete. [6.293 seconds]
+
+▲ [WARNING] Module 'quill-delta' used by 'node_modules/quill/core.js' is not ESM
+
+  CommonJS or AMD dependencies can cause optimization bailouts.
+  For more information see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+
+▲ [WARNING] Module 'buffer' used by 'src/app/mqtt/rpc.service.ts' is not ESM
+
+  CommonJS or AMD dependencies can cause optimization bailouts.
+  For more information see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+
+Output location: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client\dist\diaries-client
+

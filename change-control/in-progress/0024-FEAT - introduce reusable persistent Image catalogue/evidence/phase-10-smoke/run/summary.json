@@ -1,0 +1,50 @@
+{
+  "phase": 10,
+  "startedAtUtc": "2026-09-14T19:02:42.719Z",
+  "status": "PASSED",
+  "checks": [
+    "Actual client sign-in, MARQUEE selection/zoom, JPEG upload, file listing and decoded thumbnail",
+    "Content-detected octet-stream PNG, distinct same-checksum Images, generic uncatalogued upload, immutable conflict/delete/corrupt rejection",
+    "Reconciliation reports missing/corrupt/generic/pre-existing files, reviewed apply and repeat apply are idempotent",
+    "Two responder restarts reproduce database Images and retained state; chronology and all file hashes unchanged by guards/reconciliation/restarts",
+    "Client and web MARQUEE behavior preserved; web HTML identical and client PNG preview works after restart"
+  ],
+  "backupFilename": "diaries-development-20260912-203528.dump",
+  "backupSha256": "fe0e187eda4fe4c7923590f7ec5e36871ced87e2ba8fa6d3f882e0b0992d6b86",
+  "liveDataModified": false,
+  "mqttUrl": "mqtt://127.0.0.1:64487",
+  "responderUrl": "http://127.0.0.1:64325",
+  "webUrl": "http://127.0.0.1:50717",
+  "clientUrl": "http://127.0.0.1:61040/diaries",
+  "counts": {
+    "beforeImages": 0,
+    "uploadedImages": 3,
+    "finalImages": 76,
+    "finalImageTopics": 76,
+    "beforeFiles": 91,
+    "afterFiles": 95
+  },
+  "reconciliation": {
+    "dry": {
+      "CASE_COLLISION": 2,
+      "CATALOGUED_MATCH": 3,
+      "CREATE_MISSING": 72,
+      "DATABASE_ROW_MISSING_FILE": 1,
+      "DIRECTORY": 11,
+      "UNREADABLE": 13,
+      "UNSUPPORTED": 5
+    },
+    "insertedRows": 72,
+    "repeatInsertedRows": 0,
+    "post": {
+      "CASE_COLLISION": 2,
+      "CATALOGUED_MATCH": 75,
+      "DATABASE_ROW_MISSING_FILE": 1,
+      "DIRECTORY": 11,
+      "UNREADABLE": 13,
+      "UNSUPPORTED": 5
+    }
+  },
+  "cleanupFailures": [],
+  "finishedAtUtc": "2026-09-14T19:04:53.013Z"
+}

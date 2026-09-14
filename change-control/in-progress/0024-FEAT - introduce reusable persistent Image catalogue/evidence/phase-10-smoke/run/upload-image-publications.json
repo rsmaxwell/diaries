@@ -1,0 +1,53 @@
+[
+  {
+    "topic": "diaries/images/1",
+    "qos": 1,
+    "retained": false,
+    "payload": {
+      "id": 1,
+      "version": 0,
+      "relativePath": "smoke-ui.jpg",
+      "mimeType": "image/jpeg",
+      "originalFilename": "smoke-ui.jpg",
+      "width": 1200,
+      "height": 1600,
+      "checksum": "86fdc66dded2eeb53300d8fdb4c29fa95efe7cef01857e3ad819d91c50e3c0f5",
+      "caption": "",
+      "altText": ""
+    }
+  },
+  {
+    "topic": "diaries/images/2",
+    "qos": 1,
+    "retained": false,
+    "payload": {
+      "id": 2,
+      "version": 0,
+      "relativePath": "smoke-twin.jpg",
+      "mimeType": "image/jpeg",
+      "originalFilename": "smoke-twin.jpg",
+      "width": 1200,
+      "height": 1600,
+      "checksum": "86fdc66dded2eeb53300d8fdb4c29fa95efe7cef01857e3ad819d91c50e3c0f5",
+      "caption": "",
+      "altText": ""
+    }
+  },
+  {
+    "topic": "diaries/images/3",
+    "qos": 1,
+    "retained": false,
+    "payload": {
+      "id": 3,
+      "version": 0,
+      "relativePath": "smoke-octet.png",
+      "mimeType": "image/png",
+      "originalFilename": "smoke-octet.png",
+      "width": 1200,
+      "height": 1600,
+      "checksum": "ed47fc408379d4a1d7ae95ae906959009eddaa8d166ebfa30eec384c5529fa33",
+      "caption": "",
+      "altText": ""
+    }
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "schemaVersion" : 1,
+  "toolVersion" : "0.0.9-SNAPSHOT:44e6e0ca91fdd5098b6af7d7560c9543240f3e44",
+  "startedAt" : "2026-09-14T19:04:07.808314519Z",
+  "endedAt" : "2026-09-14T19:04:16.776488464Z",
+  "mode" : "dry-run",
+  "outcome" : "DRY_RUN_COMPLETE",
+  "failureType" : "",
+  "filesRoot" : "/data/files",
+  "rootKey" : "(dev=5d,ino=363119)",
+  "databaseIdentity" : "image_smoke_test:16384:172.19.0.2/32:5432:18.6",
+  "inputs" : {
+    "candidatesSha256" : "",
+    "candidatesFilename" : "",
+    "configSha256" : "f9ee354ecd2e0c2e3cf944893aa2b5e30e5f5df972eead90a9611f1fd5e1616e",
+    "configFilename" : "responder.json"
+  },
+  "reviewedPlanSha256" : null,
+  "counts" : {
+    "CASE_COLLISION" : 2,
+    "CATALOGUED_MATCH" : 75,
+    "DATABASE_ROW_MISSING_FILE" : 1,
+    "DIRECTORY" : 11,
+    "UNREADABLE" : 13,
+    "UNSUPPORTED" : 5
+  },
+  "insertedRows" : 0,
+  "reservedDirectoryExcluded" : ".image-staging (inspect recovery material separately)"
+}

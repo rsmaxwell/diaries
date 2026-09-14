@@ -696,28 +696,39 @@ for the fix, source hashes and logs. Phase 10 and live deployment remain separat
 Use a disposable Files-root copy and development database. The test dataset
 should contain:
 
-- one JPEG uploaded normally;
-- one PNG uploaded as octet-stream;
-- one non-image generic file;
-- one supported pre-existing uncatalogued image;
-- two identical images at distinct paths;
-- a case/path conflict;
-- a corrupt image;
-- an Image row whose file is deliberately absent in the disposable dataset.
+- [x] one JPEG uploaded normally;
+- [x] one PNG uploaded as octet-stream;
+- [x] one non-image generic file;
+- [x] one supported pre-existing uncatalogued image;
+- [x] two identical images at distinct paths;
+- [x] a case/path conflict;
+- [x] a corrupt image;
+- [x] an Image row whose file is deliberately absent in the disposable dataset.
 
 Verify:
 
-- successful supported uploads return Image metadata and publish one topic;
-- the current client still lists/previews uploaded files;
-- generic non-image upload remains uncatalogued;
-- overwrite and delete guards return conflict without mutation;
-- restart reconstructs the same Image topic set from PostgreSQL;
-- reconciliation reports all expected statuses and is idempotent;
-- no Fragment/Marquee count, content, sequence, type or ownership changes;
-- diaries-client and diaries-web continue their 0023 MARQUEE behaviour.
+- [x] successful supported uploads return Image metadata and publish one topic;
+- [x] the current client still lists/previews uploaded files;
+- [x] generic non-image upload remains uncatalogued;
+- [x] overwrite and delete guards return conflict without mutation;
+- [x] restart reconstructs the same Image topic set from PostgreSQL;
+- [x] reconciliation reports all expected statuses and is idempotent;
+- [x] no Fragment/Marquee count, content, sequence, type or ownership changes;
+- [x] diaries-client and diaries-web continue their 0023 MARQUEE behaviour.
 
 Record database counts, filesystem hashes and retained-topic counts before and
 after the smoke test.
+
+Implemented and passed 2026-09-14 using the packaged applications, headless Chrome,
+a disposable restoration of the development backup and a local Files copy.
+Three uploads created Images; reconciliation inserted 72 further rows and repeat
+apply inserted zero. Two restarts reproduced 76 Image rows/topics, including one
+deliberately missing-file fixture. All chronology hashes were unchanged. See
+[Phase 10 evidence](evidence/phase-10-smoke/README.md) for before/after snapshots,
+browser screenshots, expected unresolved fixture statuses and SHA-256 manifests.
+The runner and invocation instructions are in `scripts/windows/validation/`.
+Native container storage passed; the actual deployment NAS storage capabilities
+remain a Phase 11 prerequisite.
 
 ## Phase 11 — production deployment and reconciliation
 
@@ -733,6 +744,10 @@ after the smoke test.
 6. Take fresh binary PostgreSQL and SQL backups.
 7. Back up or snapshot the Files root; database backup alone is insufficient.
 8. Run and archive `001-preflight.sql`.
+9. Verify owner-only staging permissions, file locks, hard links and atomic moves
+   on the configured deployment Files filesystem before enabling uploads. Phase
+   10 proved native container storage; Windows-backed Docker bind mounts exposed
+   mode 777 and were correctly rejected by the existing storage checks.
 
 ### 11.2 Deploy
 

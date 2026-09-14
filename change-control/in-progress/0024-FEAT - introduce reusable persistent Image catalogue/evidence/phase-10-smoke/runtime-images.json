@@ -1,0 +1,23 @@
+[
+  {
+    "name": "diaries-responder:local",
+    "id": "sha256:8a95684fd9143653d9dc169cc337f2282699ec3f550f550c1040b9c16d8ffa52",
+    "created": "2026-09-04T09:14:01.278673023Z",
+    "os": "linux",
+    "architecture": "amd64"
+  },
+  {
+    "name": "postgres:18-alpine",
+    "id": "sha256:d3e1620b530c944afa6e887d22eb899824da68e19c52024bf98f5220c88a65b2",
+    "created": "2026-08-13T19:17:31.951845817Z",
+    "os": "linux",
+    "architecture": "amd64"
+  },
+  {
+    "name": "eclipse-mosquitto:2.0.22",
+    "id": "sha256:212f89e1eaeb2c322d6441b64396e3346026674db8fa9c27beac293405c32b3c",
+    "created": "2026-06-22T19:46:25.508064764Z",
+    "os": "linux",
+    "architecture": "amd64"
+  }
+]
