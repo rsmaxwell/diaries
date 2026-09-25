@@ -767,6 +767,21 @@ remain a Phase 11 prerequisite.
 
 Do not create an ImageFragment during 0024 verification.
 
+Production status on 2026-09-23: the catalogue reconciliation is complete and
+archived in [Phase 11 evidence](evidence/phase-11-production/README.md). The
+reviewed utility apply stopped before inserting rows because the CIFS mount
+reported the staging directory as mode 0755. A guarded, restore-tested database
+transaction then imported only the 12 reviewed development Image rows. The
+independent production dry run now reports 83 matches, zero creates/conflicts
+and complete coverage of all 73 candidates. The owner-only staging, locking,
+hard-link and atomic-move storage gate remains open, so retained replay,
+production upload/guard smoke tests and re-enabling normal editing are still
+pending. On 2026-09-24 a full data comparison identified Fragment 566 as the
+sole difference between development and production. After fresh SQL and binary
+backups and a disposable restore test, a guarded one-row transaction selected
+the development version. All application-table digests and identity-sequence
+states now match between the two databases.
+
 ## Rollback
 
 Before reconciliation has inserted rows, roll back the responder artifact and

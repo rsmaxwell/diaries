@@ -140,7 +140,7 @@ No authoring/rendering required yet, but add model/decoder capability if useful 
 
 ## Detailed Implementation Steps
 
-- [x] Design the Image table and explicit migration SQL. See [migration/README.md](migration/README.md); applied and verified on development, with production execution reserved for Phase 11.
+- [x] Design the Image table and explicit migration SQL. See [migration/README.md](migration/README.md); applied and verified on development and production.
 - [x] Add Image JPA model, repository and DTOs. Phase 3, Phase 4 retained replay and Phase 6 upload integration are implemented.
 - [x] Register Image entity with the responder EntityManager factory. Phase 3.3 also wires the repository and adds Image context helpers.
 - [x] Add `ImagePublishDTO` and retained-state contract test. Phase 4 includes real-broker replay, updates and tombstones.
@@ -162,20 +162,20 @@ No authoring/rendering required yet, but add model/decoder capability if useful 
 Phase 5 implementation and validation are recorded in
 [shared services evidence](evidence/phase-05-services/README.md): 191 responder
 tests passed, including PostgreSQL/MQTT integration, plus packaged Windows and
-Linux checks. UploadFile integration is complete through 6.3; Phase 7 DeleteFile protection is implemented. Phase 8 reconciliation is implemented and proved on a copy of the actual Files root; see [evidence](evidence/phase-08-reconciliation/README.md). Phase 9 automated validation is complete: 237 responder, 50 web and 81 client tests plus 24 SQL scenarios passed, with all required builds and no skips; see [Phase 9 evidence](evidence/phase-09-validation/README.md). Phase 10 full-stack smoke testing passed with packaged applications and headless Chrome: uploads, guards, idempotent reconciliation and two restarts were verified; see [Phase 10 evidence](evidence/phase-10-smoke/README.md). Phase 11 production preparation and storage-capability verification are next. Twelve rejected images and thirteen ambiguous candidate references remain explicit data-review items. Live deployment remains later work.
+Linux checks. UploadFile integration is complete through 6.3; Phase 7 DeleteFile protection is implemented. Phase 8 reconciliation is implemented and proved on a copy of the actual Files root; see [evidence](evidence/phase-08-reconciliation/README.md). The local data findings were repaired and the development catalogue reconciliation was applied on 2026-09-23: 83 Images now match the Files root, the repeat dry-run has zero creates/conflicts, and all 73 candidates match one Image; see the [local reconciliation evidence](evidence/phase-08-reconciliation/local-reconciliation-20260923/README.md). Phase 9 automated validation is complete: 237 responder, 50 web and 81 client tests plus 24 SQL scenarios passed, with all required builds and no skips; see [Phase 9 evidence](evidence/phase-09-validation/README.md). Phase 10 full-stack smoke testing passed with packaged applications and headless Chrome: uploads, guards, idempotent reconciliation and two restarts were verified; see [Phase 10 evidence](evidence/phase-10-smoke/README.md). The Phase 11 production catalogue reconciliation completed on 2026-09-23 with 83 matching Images, zero remaining creates/conflicts and all 73 candidates matched; see [production reconciliation evidence](evidence/phase-11-production/README.md). Production storage-capability verification, retained replay and production smoke testing remain open because the CIFS mount does not currently provide owner-only staging permissions.
 
 ## Acceptance Criteria
 
 - [x] Image upload creates exactly one matching Image row/topic.
 - [x] The Image URL can be derived from `relativePath` and configuration.
 - [x] No absolute deployment URL is persisted.
-- [ ] Existing uploaded supported images can be imported without duplicate rows on rerun.
+- [x] Existing uploaded supported images can be imported without duplicate rows on rerun.
 - [x] Non-image files are not incorrectly catalogued.
-- [ ] No ImageFragment is created by upload/reconciliation.
+- [x] No ImageFragment is created by upload/reconciliation.
 - [x] Retained replay after restart reconstructs the same Image catalogue.
 - [x] Tests cover path, checksum, MIME, dimensions and failure compensation.
 - [x] Generic file operations cannot delete or silently replace catalogued image bytes.
-- [ ] Reconciliation records whether every 0022 candidate path is matched, missing, external or ambiguous.
+- [x] Reconciliation records whether every 0022 candidate path is matched, missing, external or ambiguous.
 
 ## Dependencies
 

@@ -1,0 +1,62 @@
+{
+  "mode" : "apply",
+  "startedAtUtc" : "2026-09-23T14:09:06.312765800Z",
+  "configSha256" : "2b6dd017b495f3c3783dabcc8fc4a38f219d6285358fe4b30b6b5593f7cf3eb6",
+  "candidateSourceSha256" : "c8b0dcd5b531e133121f55e688f61afcf8d26737d1df39292505dbc01e1fe58a",
+  "before" : [ {
+    "id" : 65,
+    "version" : 0,
+    "oldPath" : "diary-1831/images/img2805-blue-posts-pub.jpg",
+    "newPath" : "diary-1831/images/img2805-blue-posts-pub.png",
+    "mimeType" : "image/png",
+    "checksum" : "96280fb86ae716f9e58a807a785cafe1f98335cef3c8fe5c7a342ca37f965fa1",
+    "width" : 1912,
+    "height" : 1079,
+    "size" : 4249490
+  }, {
+    "id" : 68,
+    "version" : 0,
+    "oldPath" : "diary-1832/images/img3018-murder-of-nicholas-fairles.png",
+    "newPath" : "diary-1832/images/img3018-murder-of-nicholas-fairles.jpg",
+    "mimeType" : "image/jpeg",
+    "checksum" : "f25f78831f9630705e8d32a1a12550473ff759ced2e0c650e3172f70ab508a6d",
+    "width" : 960,
+    "height" : 1707,
+    "size" : 559740
+  } ],
+  "fragmentReferences" : [ {
+    "newName" : "img2805-blue-posts-pub.png",
+    "occurrences" : 1,
+    "version" : 0,
+    "textSha256" : "67d5cc1d33404ff55d83f55bce02fa7e4b699a12b14e0e3648374902deca397d",
+    "type" : "null",
+    "id" : 1461,
+    "oldName" : "img2805-blue-posts-pub.jpg"
+  } ],
+  "correctedCandidates" : "C:\\Users\\Richard\\temp\\migration0024-extension-correction-apply-20260923-150905\\image-candidates-corrected-extensions.csv",
+  "correctedCandidatesSha256" : "29850666647cb57e6cc44bd7235030f7e7795767a7036ba0564b12c076d07bec",
+  "after" : [ {
+    "width" : 1912,
+    "version" : 1,
+    "size" : 4249490,
+    "mimeType" : "image/png",
+    "originalFilename" : "img2805-blue-posts-pub.png",
+    "height" : 1079,
+    "checksum" : "96280fb86ae716f9e58a807a785cafe1f98335cef3c8fe5c7a342ca37f965fa1",
+    "relativePath" : "diary-1831/images/img2805-blue-posts-pub.png",
+    "id" : 65
+  }, {
+    "width" : 960,
+    "version" : 1,
+    "size" : 559740,
+    "mimeType" : "image/jpeg",
+    "originalFilename" : "img3018-murder-of-nicholas-fairles.jpg",
+    "height" : 1707,
+    "checksum" : "f25f78831f9630705e8d32a1a12550473ff759ced2e0c650e3172f70ab508a6d",
+    "relativePath" : "diary-1832/images/img3018-murder-of-nicholas-fairles.jpg",
+    "id" : 68
+  } ],
+  "updatedFragmentIds" : [ 1461 ],
+  "status" : "COMPLETED",
+  "completedAtUtc" : "2026-09-23T14:09:08.783323800Z"
+}

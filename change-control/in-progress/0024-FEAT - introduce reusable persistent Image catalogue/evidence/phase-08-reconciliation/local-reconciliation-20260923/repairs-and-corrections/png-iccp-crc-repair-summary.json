@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "repairDate": "2026-09-23",
+  "itemCount": 11,
+  "action": "Recalculated and replaced only the invalid CRC values for ancillary iCCP chunks; image data and chunk payloads were preserved.",
+  "provenance": "Original rejection details are archived in ../conflict-review.json. Repaired hashes and metadata come from the reviewed dry-run plan; final IDs/statuses come from the post-apply idempotency inventory.",
+  "imageBinariesArchived": false,
+  "items": [
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2885-image-baltic-map.png",
+      "originalSha256": "22861a4633966297ddbd5ea7710261d0d6a5e898c1d94065bf1293da118f6e3e",
+      "repairedSha256": "20aa37569ac2b4f962ed3e74b3e51b17f01b931ae516bcb7f10816f7e56b4d01",
+      "originalProblem": "PNG ancillary iCCP chunk CRC mismatch",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 8546,
+          "storedCrc": "bd257b58",
+          "calculatedCrc": "b99601bb"
+        }
+      ],
+      "repairedSize": 1423373,
+      "mimeType": "image/png",
+      "width": 1852,
+      "height": 1076,
+      "finalImageId": 72,
+      "finalStatus": "CATALOGUED_MATCH"
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2885-image-copenhagen-large-map.png",
+      "originalSha256": "27f0773a2dabfdcc231564b2e522173da0ad914b98f549907d5fcea8a2123693",
+      "repairedSha256": "b729a3bab407829192cada11efaa037014fa93825689717a254e625efd01581b",
+      "originalProblem": "PNG ancillary iCCP chunk CRC mismatch",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 5811,
+          "storedCrc": "bd257b58",
+          "calculatedCrc": "b99601bb"
+        }
+      ],
+      "repairedSize": 839354,
+      "mimeType": "image/png",
+      "width": 1832,
+      "height": 1084,
+      "finalImageId": 73,
+      "finalStatus": "CATALOGUED_MATCH"
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2885-image-copenhagen-map.png",
+      "originalSha256": "3830530309064f84947d03aef909e6b1bc782b5e3108b635cb5ced5778389983",
+      "repairedSha256": "42ef8db9a0e6a84fbb727805aa7e179c5e7a8aa89228c23d4e9358ff9d237249",
+      "originalProblem": "PNG ancillary iCCP chunk CRC mismatch",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 8239,
+          "storedCrc": "bd257b58",
+          "calculatedCrc": "b99601bb"
+        }
+      ],
+      "repairedSize": 1283962,
+      "mimeType": "image/png",
+      "width": 1849,
+      "height": 1084,
+      "finalImageId": 74,
+      "finalStatus": "CATALOGUED_MATCH"
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2891-image-copenhagen-east.png",
+      "originalSha256": "d8118b7e8bc28c933b10be926e859e1b9ff7f9a4274355b871ea368fd8212b77",
+      "repairedSha256": "a75e829a447b054b108bc47dd46fcd380f8aa4ab07e6342e8de15df1dacfe075",
+      "originalProblem": "PNG ancillary iCCP chunk CRC mismatch",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 8794,
+          "storedCrc": "cffbb40d",
+          "calculatedCrc": "cb48ceee"
+        }
+      ],
+      "repairedSize": 1113615,
+      "mimeType": "image/png",
+      "width": 1720,
+      "height": 1082,
+      "finalImageId": 75,
+      "finalStatus": "CATALOGUED_MATCH"
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2892-image-baltic.png",
+      "originalSha256": "52b7ea37a0053a5029d1cc8baca8698411eda180eb06d8680744521b92294a8d",
+      "repairedSha256": "cd0a4a5b1d066ff8ea0fdaa959cde758f8476c037844982a61c246b6d0fdb0d3",
+      "originalProblem": "PNG ancillary iCCP chunk CRC mismatch",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 8671,
+          "storedCrc": "8d454901",
+          "calculatedCrc": "89f633e2"
+        }
+      ],
+      "repairedSize": 1129960,
+      "mimeType": "image/png",
+      "width": 1710,
+      "height": 1065,
+      "finalImageId": 76,
+      "finalStatus": "CATALOGUED_MATCH"
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-st-petersburg-map-large.png",
+      "originalSha256": "bd033572a84844e0255c851064c9dda284e4435854d7a9852c8753bb307c8a3a",
+      "repairedSha256": "25a4eaed075620efed1f33d7c7fffbccbce92a06c17def03f0ebd8df33c13e45",
+      "originalProblem": "PNG ancillary iCCP chunk CRC mismatch",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 6588,
+          "storedCrc": "e2659373",
+          "calculatedCrc": "db6293cb"
+        }
+      ],
+      "repairedSize": 869810,
+      "mimeType": "image/png",
+      "width": 1760,
+      "height": 966,
+      "finalImageId": 77,
+      "finalStatus": "CATALOGUED_MATCH"
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-image-st-petersburg-map.png",
+      "originalSha256": "95456a21e89d774002e62c0071f626560d861b2fdd52b7692c9fd25b1ca57625",
+      "repairedSha256": "ddabf0f09024690f6b0a434e2bdf7437ca055ace8928e199ac7ce6c0ca3d7945",
+      "originalProblem": "PNG ancillary iCCP chunk CRC mismatch",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 8496,
+          "storedCrc": "8afd4ea3",
+          "calculatedCrc": "e2a1b825"
+        }
+      ],
+      "repairedSize": 1266267,
+      "mimeType": "image/png",
+      "width": 1757,
+      "height": 1082,
+      "finalImageId": 78,
+      "finalStatus": "CATALOGUED_MATCH"
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2900-st-petersburg-map-large.png",
+      "originalSha256": "2231d54956cc21a8cb3f64d3a29bd1ddc9ecab3ce85d02afec4be3e47a8e4807",
+      "repairedSha256": "4c554791a010b80370e0f5b0dbbf33607c4680ed445a606a73db1e7862b48bd5",
+      "originalProblem": "PNG ancillary iCCP chunk CRC mismatch",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 6588,
+          "storedCrc": "9ea84e7e",
+          "calculatedCrc": "a7af4ec6"
+        }
+      ],
+      "repairedSize": 869810,
+      "mimeType": "image/png",
+      "width": 1760,
+      "height": 966,
+      "finalImageId": 79,
+      "finalStatus": "CATALOGUED_MATCH"
+    },
+    {
+      "relativePath": "diary-1828-and-1829-and-jan-1830/images/img2920-image-map-london.png",
+      "originalSha256": "e9c825ae8484e76135d3074ac96f3815a6193f12abc0053f12d2e8378a889af9",
+      "repairedSha256": "7f9c48beec78daa43c189ccc4b91c18568521ef77c87acde12086dc547951354",
+      "originalProblem": "PNG ancillary iCCP chunk CRC mismatch",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 7203,
+          "storedCrc": "9733c3d3",
+          "calculatedCrc": "ae34c36b"
+        }
+      ],
+      "repairedSize": 1318232,
+      "mimeType": "image/png",
+      "width": 1846,
+      "height": 1090,
+      "finalImageId": 80,
+      "finalStatus": "CATALOGUED_MATCH"
+    },
+    {
+      "relativePath": "diary-1831/images/img2761-brandon-white-house.png",
+      "originalSha256": "c16ab3fd1793b0be830829bf3a5f35b1a3486d78bfacd5300284b654f1b4aaea",
+      "repairedSha256": "6eab0c712d2c38ed9fd6ed3d9a2f4f9cc841d1b533370edb2f2fcc2a9c2be29a",
+      "originalProblem": "PNG ancillary iCCP chunk CRC mismatch",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 6701,
+          "storedCrc": "8d32c170",
+          "calculatedCrc": "b435c1c8"
+        }
+      ],
+      "repairedSize": 752096,
+      "mimeType": "image/png",
+      "width": 1887,
+      "height": 1082,
+      "finalImageId": 82,
+      "finalStatus": "CATALOGUED_MATCH"
+    },
+    {
+      "relativePath": "diary-1831/images/img2762-north-shields-walk.png",
+      "originalSha256": "485e4e6bb3636add58e70eec5d082937dd5019953da3cd51dbba25ff03eb0dbb",
+      "repairedSha256": "b5d68a29c08d96d35a344c5ea4c420426a8f9d7ff6646119a9b9e49cc3d1d971",
+      "originalProblem": "PNG ancillary iCCP chunk CRC mismatch",
+      "badChunks": [
+        {
+          "chunkType": "iCCP",
+          "offset": 7696,
+          "storedCrc": "297db71f",
+          "calculatedCrc": "107ab7a7"
+        }
+      ],
+      "repairedSize": 2414628,
+      "mimeType": "image/png",
+      "width": 1916,
+      "height": 907,
+      "finalImageId": 83,
+      "finalStatus": "CATALOGUED_MATCH"
+    }
+  ]
+}

@@ -142,6 +142,19 @@ proves idempotency; it does not claim every legacy file is now a valid Image.
 Phase 8's utility and proof are complete. Content repair decisions, remaining
 0024 deployment gates and 0028 conversion decisions are separate follow-up work.
 
+## Local reconciliation addendum — 2026-09-23
+
+The previously rejected local image files were repaired, the two misleading
+filename extensions and associated metadata/references were corrected, and the
+reviewed reconciliation was applied to the development database. The follow-up
+dry-run found 83 catalogue matches, zero creates and zero conflicts, with all 73
+candidates matched to one Image. See the archived
+[local reconciliation evidence](local-reconciliation-20260923/README.md).
+
+This addendum resolves the local data-review items described above. The original
+actual-copy proof remains unchanged as the audit record of the pre-repair state.
+Production reconciliation remains a Phase 11 activity.
+
 ## Validation
 
 The final complete responder suite and build passed: **232 tests, zero failures, zero errors, zero skips**, with PostgreSQL and MQTT integration enabled. See `test-results.json` and `test-build.log`. The final packaged utility also replayed the original 71-image plan: 71 `ALREADY_MATCHED`, zero inserts and complete verified candidate evidence (`final-same-plan-replay`).

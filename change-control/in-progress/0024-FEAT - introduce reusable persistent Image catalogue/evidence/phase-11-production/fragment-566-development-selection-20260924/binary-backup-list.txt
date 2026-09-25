@@ -1,0 +1,55 @@
+;
+; Archive created at 2026-09-24 07:54:54 UTC
+;     dbname: diaries
+;     TOC Entries: 44
+;     Compression: gzip
+;     Dump Version: 1.16-0
+;     Format: CUSTOM
+;     Integer: 4 bytes
+;     Offset: 8 bytes
+;     Dumped from database version: 18.6
+;     Dumped by pg_dump version: 18.6
+;
+;
+; Selected TOC Entries:
+;
+219; 1259 16839 TABLE public diary postgres
+220; 1259 16845 SEQUENCE public diary_id_seq postgres
+221; 1259 16846 TABLE public fragment postgres
+222; 1259 16855 SEQUENCE public fragment_id_seq postgres
+223; 1259 16856 TABLE public image postgres
+224; 1259 16879 SEQUENCE public image_id_seq postgres
+225; 1259 16880 TABLE public marquee postgres
+226; 1259 16887 SEQUENCE public marquee_id_seq postgres
+227; 1259 16888 TABLE public page postgres
+228; 1259 16896 SEQUENCE public page_id_seq postgres
+229; 1259 16897 TABLE public person postgres
+230; 1259 16907 SEQUENCE public person_id_seq postgres
+3536; 0 16839 TABLE DATA public diary postgres
+3538; 0 16846 TABLE DATA public fragment postgres
+3540; 0 16856 TABLE DATA public image postgres
+3542; 0 16880 TABLE DATA public marquee postgres
+3544; 0 16888 TABLE DATA public page postgres
+3546; 0 16897 TABLE DATA public person postgres
+3554; 0 0 SEQUENCE SET public diary_id_seq postgres
+3555; 0 0 SEQUENCE SET public fragment_id_seq postgres
+3556; 0 0 SEQUENCE SET public image_id_seq postgres
+3557; 0 0 SEQUENCE SET public marquee_id_seq postgres
+3558; 0 0 SEQUENCE SET public page_id_seq postgres
+3559; 0 0 SEQUENCE SET public person_id_seq postgres
+3365; 2606 16910 CONSTRAINT public diary diary_pkey postgres
+3368; 2606 16912 CONSTRAINT public fragment fragment_pkey postgres
+3371; 2606 16914 CONSTRAINT public image image_pkey postgres
+3374; 2606 16916 CONSTRAINT public marquee marquee_pkey postgres
+3378; 2606 16918 CONSTRAINT public page page_pkey postgres
+3382; 2606 16920 CONSTRAINT public person person_pkey postgres
+3376; 2606 16922 CONSTRAINT public marquee ukl9q4l90feijpx2gieoru58pb2 postgres
+3384; 2606 16924 CONSTRAINT public person ukn0i6d7rc1hqkjivk494g8j2qd postgres
+3380; 2606 16926 CONSTRAINT public page ukstpwefkx8tx90raxx79mhwerm postgres
+3366; 1259 16927 INDEX public fragment_page_id_idx postgres
+3369; 1259 16928 INDEX public image_checksum_idx postgres
+3372; 1259 16929 INDEX public image_relative_path_ci_uq postgres
+3386; 2606 16930 FK CONSTRAINT public marquee fkbo945jvar300n630a3ip4o0hj postgres
+3387; 2606 16935 FK CONSTRAINT public marquee fkdfde2ipuunqs9qcyf08l7iu1m postgres
+3388; 2606 16940 FK CONSTRAINT public page fkqba2qhex78ywtpcpywaaqjvtt postgres
+3385; 2606 16945 FK CONSTRAINT public fragment fragment_page_fk postgres

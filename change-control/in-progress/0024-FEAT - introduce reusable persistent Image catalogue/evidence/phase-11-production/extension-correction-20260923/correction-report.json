@@ -1,0 +1,62 @@
+{
+    "after": {
+        "images": [
+            {
+                "id": 65,
+                "width": 1912,
+                "height": 1079,
+                "version": 1,
+                "checksum": "96280fb86ae716f9e58a807a785cafe1f98335cef3c8fe5c7a342ca37f965fa1",
+                "mimeType": "image/png",
+                "relativePath": "diary-1831/images/img2805-blue-posts-pub.png",
+                "originalFilename": "img2805-blue-posts-pub.png"
+            },
+            {
+                "id": 68,
+                "width": 960,
+                "height": 1707,
+                "version": 1,
+                "checksum": "f25f78831f9630705e8d32a1a12550473ff759ced2e0c650e3172f70ab508a6d",
+                "mimeType": "image/jpeg",
+                "relativePath": "diary-1832/images/img3018-murder-of-nicholas-fairles.jpg",
+                "originalFilename": "img3018-murder-of-nicholas-fairles.jpg"
+            }
+        ],
+        "fragment566": {
+            "id": 566,
+            "textMd5": "88028219b08dd39f500e7ede406e3949",
+            "version": 3
+        },
+        "fragment1461": {
+            "id": 1461,
+            "textMd5": "80538d7f904c77cd717042e54e3fe85c",
+            "version": 1,
+            "newReferenceCount": 1,
+            "oldReferenceCount": 0
+        }
+    },
+    "backup": {
+        "sha256": "a4a8757d47fe08b1fef374a503c274d376d38bbb9266c494382df6317e8a34c6",
+        "filename": "diaries-production-20260923-193936.sql"
+    },
+    "before": {
+        "images": [
+            {
+                "id": 65,
+                "version": 0,
+                "relativePath": "diary-1831/images/img2805-blue-posts-pub.jpg",
+                "originalFilename": "img2805-blue-posts-pub.jpg"
+            },
+            {
+                "id": 68,
+                "version": 0,
+                "relativePath": "diary-1832/images/img3018-murder-of-nicholas-fairles.png",
+                "originalFilename": "img3018-murder-of-nicholas-fairles.png"
+            }
+        ],
+        "fragment1461Version": 0
+    },
+    "status": "COMPLETED",
+    "schemaVersion": 1,
+    "completedAtUtc": "2026-09-23T18:44:07.633446Z"
+}

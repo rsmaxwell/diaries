@@ -1,0 +1,22 @@
+{
+  "schemaVersion" : 1,
+  "toolVersion" : "0.0.9-build-78:cd07317454b91fcdb27731693a9c4874a3660fe4",
+  "startedAt" : "2026-09-23T18:52:07.210416002Z",
+  "endedAt" : "2026-09-23T18:52:07.507723090Z",
+  "mode" : "apply",
+  "outcome" : "ROLLED_BACK_OR_NOT_APPLIED",
+  "failureType" : "IOException",
+  "filesRoot" : "/data/files",
+  "rootKey" : "(dev=8f,ino=3752538)",
+  "databaseIdentity" : "diaries:16838:172.21.0.3/32:5432:18.6",
+  "inputs" : {
+    "configSha256" : "abaed6fbea378d2d53f829c4263ddd6a57b6ef9bbc45c6b811c83c8f5317f192",
+    "candidatesFilename" : "candidates.csv",
+    "candidatesSha256" : "f12f69cd56797c50dec2fd73ff151de1734ebc15fa54eb2e3ac6ff9a041a43e0",
+    "configFilename" : "responder.json"
+  },
+  "reviewedPlanSha256" : "5cf9d721f11dadd37babcb83fdefe03a68e2c6c379ce86b34ef9593936e5bb5f",
+  "counts" : { },
+  "insertedRows" : 0,
+  "reservedDirectoryExcluded" : ".image-staging (inspect recovery material separately)"
+}
