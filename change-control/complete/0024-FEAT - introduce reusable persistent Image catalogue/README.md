@@ -6,7 +6,11 @@ Feature
 
 ## Status
 
-In progress
+Complete
+
+## Completed Date
+
+2026-09-26
 
 ## Priority
 
@@ -132,7 +136,7 @@ Catalogue introduction changes file ownership semantics. In the same release:
 - rejected operations must return a clear conflict response and leave the file, database and retained topic unchanged;
 - directories containing catalogued files must not be recursively deleted through a generic operation.
 
-This feature may initially require catalogued files to be deleted only by an administrator-controlled migration/reconciliation process. A public `DeleteImage` operation is completed in 0025 before any ImageFragment references can be created.
+Generic `DeleteFile` continues to reject catalogued files. The supported `deleteImage` operation and client confirmation UI are tracked separately in [0030](../../todo/0030-FEAT%20-%20allow%20deletion%20of%20catalogued%20Images/README.md). Feature 0025 must add reference-aware deletion protection before ImageFragment authoring is enabled. Closing 0024 does not imply that either follow-up has been implemented.
 
 ### Client / Web
 
@@ -162,7 +166,7 @@ No authoring/rendering required yet, but add model/decoder capability if useful 
 Phase 5 implementation and validation are recorded in
 [shared services evidence](evidence/phase-05-services/README.md): 191 responder
 tests passed, including PostgreSQL/MQTT integration, plus packaged Windows and
-Linux checks. UploadFile integration is complete through 6.3; Phase 7 DeleteFile protection is implemented. Phase 8 reconciliation is implemented and proved on a copy of the actual Files root; see [evidence](evidence/phase-08-reconciliation/README.md). The local data findings were repaired and the development catalogue reconciliation was applied on 2026-09-23: 83 Images now match the Files root, the repeat dry-run has zero creates/conflicts, and all 73 candidates match one Image; see the [local reconciliation evidence](evidence/phase-08-reconciliation/local-reconciliation-20260923/README.md). Phase 9 automated validation is complete: 237 responder, 50 web and 81 client tests plus 24 SQL scenarios passed, with all required builds and no skips; see [Phase 9 evidence](evidence/phase-09-validation/README.md). Phase 10 full-stack smoke testing passed with packaged applications and headless Chrome: uploads, guards, idempotent reconciliation and two restarts were verified; see [Phase 10 evidence](evidence/phase-10-smoke/README.md). The Phase 11 production catalogue reconciliation completed on 2026-09-23 with 83 matching Images, zero remaining creates/conflicts and all 73 candidates matched; see [production reconciliation evidence](evidence/phase-11-production/README.md). Production storage-capability verification, retained replay and production smoke testing remain open because the CIFS mount does not currently provide owner-only staging permissions.
+Linux checks. UploadFile integration is complete through 6.3; Phase 7 DeleteFile protection is implemented. Phase 8 reconciliation is implemented and proved on a copy of the actual Files root; see [evidence](evidence/phase-08-reconciliation/README.md). The local data findings were repaired and the development catalogue reconciliation was applied on 2026-09-23: 83 Images now match the Files root, the repeat dry-run has zero creates/conflicts, and all 73 candidates match one Image; see the [local reconciliation evidence](evidence/phase-08-reconciliation/local-reconciliation-20260923/README.md). Phase 9 automated validation is complete: 237 responder, 50 web and 81 client tests plus 24 SQL scenarios passed, with all required builds and no skips; see [Phase 9 evidence](evidence/phase-09-validation/README.md). Phase 10 full-stack smoke testing passed with packaged applications and headless Chrome: uploads, guards, idempotent reconciliation and two restarts were verified; see [Phase 10 evidence](evidence/phase-10-smoke/README.md). The Phase 11 production catalogue reconciliation completed on 2026-09-23 with 83 matching Images, zero remaining creates/conflicts and all 73 candidates matched; see [production reconciliation evidence](evidence/phase-11-production/README.md). The subsequent production NAS/CIFS correction and final upload/file/database/retained-MQTT verification are recorded in [Phase 12 closure evidence](evidence/phase-12-closure/006-closure-summary.md). The earlier production staging blocker is resolved; see the completion summary for the remaining transport limitation and separate deletion follow-up.
 
 ## Acceptance Criteria
 
@@ -184,3 +188,34 @@ Linux checks. UploadFile integration is complete through 6.3; Phase 7 DeleteFile
 ## Deployment and Rollback
 
 Additive database/table/topic change. Back up database and Files root before production reconciliation. Rollback does not delete uploaded files automatically; restore database if catalogue migration must be undone. Do not roll back to a responder that permits unrestricted generic deletion while retaining an Image catalogue unless the catalogue is treated as read-only and operational access to deletion is disabled.
+
+## Completion Summary
+
+Closed on 2026-09-26 at the user's request after review of the recorded validation
+and production closure evidence. The Image catalogue, catalogue-aware upload,
+retained replay, idempotent reconciliation and generic delete/overwrite guards
+meet the acceptance criteria above. Historical phase records retain the findings
+and blockers as they stood at the time; Phase 12 records the final disposition.
+
+Validation already recorded includes 237 responder tests, 50 web tests, 81 client
+tests and 24 SQL scenarios, required builds, disposable full-stack smoke tests,
+and production reconciliation. The final production checks recorded image 86
+completing within the client timeout and image 85 completing at the filesystem,
+database and retained-MQTT layers after the client timed out. NAS staging modes
+and promotion operations were verified. See the [closure summary](evidence/phase-12-closure/006-closure-summary.md)
+and its five supporting evidence files. No new runtime validation was performed
+for this administrative close-out.
+
+Remaining work is explicitly outside this completed catalogue feature:
+
+- [0030 - Allow deletion of catalogued Images](../../todo/0030-FEAT%20-%20allow%20deletion%20of%20catalogued%20Images/README.md)
+  owns the dedicated deletion operation and client UI. Generic `DeleteFile`
+  remains protected. Reference-aware deletion remains a prerequisite in 0025
+  before ImageFragment authoring is enabled.
+- Large uploads can complete after the client's MQTT RPC timeout. The recorded
+  follow-on direction is HTTP streaming for bulk bytes with MQTT for control
+  and retained state. This limitation is accepted for 0024 closure, not fixed by
+  this close-out; no separate transport feature identifier is recorded here.
+
+The existing deployment and rollback precautions continue to apply. No image
+files, database rows or retained topics are changed by closing this record.

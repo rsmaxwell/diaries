@@ -119,7 +119,7 @@ async function main() {
   await waitFor('PostgreSQL', async () => { await docker('exec', db, 'pg_isready', '-U', 'diaries'); return true; });
   await docker('cp', backup, db + ':/tmp/baseline.dump');
   await docker('exec', db, 'pg_restore', '-U', 'diaries', '-d', 'image_smoke_test', '--no-owner', '--no-privileges', '/tmp/baseline.dump');
-  const migration = path.join(root, 'change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/migration');
+  const migration = path.join(root, 'change-control/complete/0024-FEAT - introduce reusable persistent Image catalogue/migration');
   await docker('cp', path.join(migration, 'schema.sql'), db + ':/tmp/schema.sql');
   await docker('exec', db, 'psql', '-X', '-U', 'diaries', '-d', 'image_smoke_test', '-v', 'ON_ERROR_STOP=1', '-f', '/tmp/schema.sql');
   // Only the restored fixture's login is changed; diary content is never edited.

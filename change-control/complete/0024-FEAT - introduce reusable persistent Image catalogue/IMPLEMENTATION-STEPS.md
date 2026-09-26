@@ -1,5 +1,12 @@
 # 0024 implementation steps
 
+## Final status
+
+Complete — administratively closed on 2026-09-26. The dated phase notes below
+are historical execution records. The final production disposition is recorded
+in [Phase 12](evidence/phase-12-closure/006-closure-summary.md) and the
+[completion summary](README.md#completion-summary).
+
 ## Objective
 
 Introduce a durable, reusable `Image` catalogue for files below the configured
@@ -43,7 +50,8 @@ eventually be reused by several ImageFragments.
 - diaries-web ImageFragment projection or rendering;
 - transformation of legacy Fragment HTML.
 
-Those operations remain in 0025–0028. In particular, reconciliation creates
+Those operations remain in 0025–0028, with the initial supported Image deletion
+operation and client UI now tracked in 0030. In particular, reconciliation creates
 Image rows only; it must never create or modify a Fragment or Marquee.
 
 ## Fixed design decisions
@@ -542,9 +550,10 @@ name, traversal and symlink escape. Also prove an unrelated uncatalogued file
 can still be deleted and that an empty uncatalogued directory follows the
 existing supported behaviour.
 
-There is intentionally no public `DeleteImage` operation in 0024. Catalogue
-removal is administrator-controlled until reference-aware deletion arrives in
-0025.
+There is intentionally no public `DeleteImage` operation in 0024. The supported
+deletion RPC and client UI are tracked in 0030; 0025 must add reference-aware
+protection before ImageFragment authoring is enabled. The generic guard remains
+in force throughout.
 
 ## Phase 8 — existing-file reconciliation utility
 
@@ -781,6 +790,23 @@ sole difference between development and production. After fresh SQL and binary
 backups and a disposable restore test, a guarded one-row transaction selected
 the development version. All application-table digests and identity-sequence
 states now match between the two databases.
+
+## Phase 12 — final production verification and closure
+
+- [x] Archive production NAS/CIFS staging and promotion verification.
+- [x] Verify real uploads against physical files, PostgreSQL Image rows and
+      retained MQTT catalogue entries (Images 85 and 86).
+- [x] Record the large-image client timeout despite successful server completion
+      as a separate transport follow-up, not as a resolved client defect.
+- [x] Track supported catalogue deletion and its client UI in
+      [0030](../../todo/0030-FEAT%20-%20allow%20deletion%20of%20catalogued%20Images/README.md),
+      retaining the generic deletion guard and the 0025 reference-safety gate.
+- [x] Complete administrative closure and move the full record to `complete`.
+
+The [Phase 12 closure evidence](evidence/phase-12-closure/006-closure-summary.md)
+supersedes the open production staging status in the dated Phase 11 notes.
+Existing automated, smoke and replay evidence remains archived in its original
+phase directories. Closure does not claim implementation of the follow-up work.
 
 ## Rollback
 

@@ -72,4 +72,4 @@ Phase 11 must verify the actual deployment filesystem's owner-only staging,
 file locks, hard links and atomic moves before enabling production uploads.
 
 Frozen results and the requirement-to-evidence mapping are in the
-[Phase 10 evidence](../../../change-control/in-progress/0024-FEAT%20-%20introduce%20reusable%20persistent%20Image%20catalogue/evidence/phase-10-smoke/README.md).
+[Phase 10 evidence](../../../change-control/complete/0024-FEAT%20-%20introduce%20reusable%20persistent%20Image%20catalogue/evidence/phase-10-smoke/README.md).

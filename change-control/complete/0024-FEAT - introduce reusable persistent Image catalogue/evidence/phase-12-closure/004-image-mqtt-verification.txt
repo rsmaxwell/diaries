@@ -1,0 +1,58 @@
+0024-FEAT - introduce reusable persistent Image catalogue
+Phase 12 closure evidence
+Retained MQTT image catalogue verification
+Date: 2026-09-25
+
+Purpose
+-------
+Verify that the Image catalogue rows created by the closure-test uploads
+were also published into the retained MQTT topic tree.
+
+Tool
+----
+MQTT Explorer connected to the production Diaries broker.
+
+Observed retained topics
+------------------------
+The image catalogue tree contained the newly-created image objects.
+
+Large image:
+  topic:
+    diaries/images/85
+
+  visible payload fields included:
+    id: 85
+    version: 0
+    relativePath: diary-1830/images/img2221.jpg
+    mimeType: image/jpeg
+    originalFilename: img2221.jpg
+    width: 2970
+    height: 4608
+    checksum: populated
+    caption: ""
+    altText: ""
+
+Small image:
+  topic:
+    diaries/images/86
+
+The small-image topic was also present in the same retained image tree,
+corresponding to:
+  diary-1830/images/Screenshot 2026-09-25 121352.png
+
+Conclusion
+----------
+PASS.
+
+The responder published retained MQTT Image catalogue state for both
+closure-test uploads.
+
+The large image therefore completed all catalogue publication work even
+though the Angular client reported an RPC timeout.
+
+Together with the filesystem and PostgreSQL evidence, this demonstrates
+agreement across the three persistent/live representations:
+
+  NAS filesystem
+  PostgreSQL public.image
+  retained MQTT diaries/images/<id>

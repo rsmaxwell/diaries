@@ -1,0 +1,117 @@
+0024-FEAT - introduce reusable persistent Image catalogue
+Phase 12 closure evidence
+Production NAS/CIFS filesystem verification
+Date: 2026-09-24 to 2026-09-25
+
+Purpose
+-------
+Record the production filesystem checks relevant to reliable 0024 image
+staging and promotion.
+
+Production volume change
+------------------------
+The Docker named volume:
+
+  diaries_nas-photo
+
+was recreated after updating its CIFS mount options to include:
+
+  dir_mode=0700,file_mode=0600
+
+The responder was then restarted against the recreated volume.
+
+Responder-visible permissions
+-----------------------------
+Inside the diaries-responder container:
+
+  stat -c "%a %u:%g" /data/files/.image-staging
+
+returned:
+
+  700 0:0
+
+and:
+
+  stat -c "%a %u:%g" /data/files
+
+returned:
+
+  700 0:0
+
+The mounted filesystem type reported by:
+
+  stat -f -c "%T" /data/files
+
+was:
+
+  smb2
+
+Synthetic filesystem tests
+--------------------------
+1. Hard-link test
+
+A test file was created in .image-staging and linked with ln.
+
+Both names showed:
+  - the same inode number
+  - link count 2
+  - mode -rw-------
+
+Result:
+  PASS - hard links work on the production CIFS-backed volume.
+
+2. Rename within staging
+
+A staged test file was renamed within .image-staging.
+
+Result:
+  PASS.
+
+3. Cross-directory rename
+
+A test file was created as:
+
+  /data/files/.image-staging/test-move.tmp
+
+and renamed to:
+
+  /data/files/.image-test-destination/test-move-final.tmp
+
+The inode number remained unchanged across the rename and the source
+pathname disappeared.
+
+Result:
+  PASS - the rename was a same-filesystem rename rather than a
+  copy/delete fallback.
+
+4. Cleanup
+
+Temporary test files and the temporary destination directory were removed
+successfully.
+
+Result:
+  PASS.
+
+Real upload verification
+------------------------
+The following files were subsequently visible in the real diary image
+directory after uploads through the application:
+
+  diary-1830/images/img2221.jpg
+  diary-1830/images/Screenshot 2026-09-25 121352.png
+
+Conclusion
+----------
+PASS.
+
+The production nas-photo CIFS mount now supports the filesystem
+operations required by the 0024 image staging/promotion path:
+  - restrictive directory mode
+  - restrictive file mode
+  - hard links
+  - rename within staging
+  - rename from staging into another directory on the same mount
+  - deletion/cleanup
+
+The earlier staging-permission/mount problem is considered resolved for
+the purposes of 0024 closure.

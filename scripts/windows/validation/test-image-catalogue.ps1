@@ -11,7 +11,7 @@ $backup = (Get-Item -LiteralPath $BackupFile).FullName
 if (!(Test-Path -LiteralPath $backup -PathType Leaf)) { throw 'BackupFile must be a regular file.' }
 if (Test-Path -LiteralPath $EvidenceDirectory) { throw 'Choose a new evidence directory.' }
 $evidence = (New-Item -ItemType Directory -Path $EvidenceDirectory).FullName
-$migration = Join-Path $repository 'change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/migration'
+$migration = Join-Path $repository 'change-control/complete/0024-FEAT - introduce reusable persistent Image catalogue/migration'
 $runId = [guid]::NewGuid().ToString('N').Substring(0,12)
 $sqlContainer = "diaries-0024-phase9-$runId-sql-test"
 $dbContainer = "diaries-0024-phase9-$runId-db-test"
@@ -68,7 +68,7 @@ try {
     Write-Host 'Starting disposable SQL, JPA and MQTT fixtures.'
     Start-Fixture $sqlContainer @('--network','none','--tmpfs','/var/lib/postgresql','-e','POSTGRES_USER=diaries','-e','POSTGRES_DB=diaries','-e','POSTGRES_HOST_AUTH_METHOD=trust','postgres:18-alpine')
     Start-Fixture $dbContainer @('--tmpfs','/var/lib/postgresql','-e','POSTGRES_USER=diaries','-e','POSTGRES_DB=image_repository_test','-e','POSTGRES_HOST_AUTH_METHOD=trust','-p','127.0.0.1::5432','postgres:18-alpine')
-    $brokerBase = Join-Path $repository 'change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/evidence/phase-04-catalogue/mosquitto.conf'
+    $brokerBase = Join-Path $repository 'change-control/complete/0024-FEAT - introduce reusable persistent Image catalogue/evidence/phase-04-catalogue/mosquitto.conf'
     $queueSetting = (Select-String -LiteralPath (Join-Path $repository 'config/mosquitto/mosquitto.conf') -Pattern '^max_queued_messages\s+').Line
     if (!$queueSetting) { throw 'Application broker queue setting missing; review fixture parity.' }
     $brokerConfig = Join-Path $evidence 'fixture-mosquitto.conf'

@@ -108,10 +108,10 @@ From the Diaries repository root in PowerShell:
 ```powershell
 & .\scripts\windows\development-infrastructure\backup-db-to-binary.bat
 if ($LASTEXITCODE -ne 0) { throw 'Backup failed' }
-$migration = Join-Path (Get-Location) 'change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/migration'
+$migration = Join-Path (Get-Location) 'change-control/complete/0024-FEAT - introduce reusable persistent Image catalogue/migration'
 # Set these to the fresh backup printed above and a NEW evidence directory.
 $backup = 'data/database-backups/development-infrastructure/diaries-development-YYYYMMDD-HHMMSS.dump'
-$evidence = 'change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue/evidence/phase-02-schema/development-YYYYMMDD-HHMMSS'
+$evidence = 'change-control/complete/0024-FEAT - introduce reusable persistent Image catalogue/evidence/phase-02-schema/development-YYYYMMDD-HHMMSS'
 & "$migration/run-migration.ps1" -Container diaries-development-db -Database diaries -User diaries -BackupFile $backup -EvidenceDirectory $evidence
 ```
 

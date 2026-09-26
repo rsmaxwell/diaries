@@ -1,0 +1,72 @@
+0024-FEAT - introduce reusable persistent Image catalogue
+Phase 12 closure evidence
+Small image upload verification
+Date: 2026-09-25
+
+Purpose
+-------
+Verify that a small image can be uploaded through the existing Diaries
+MQTT RPC upload path and that the upload completes successfully end-to-end.
+
+Test image
+----------
+Filename:
+  Screenshot 2026-09-25 121352.png
+
+Target:
+  diary-1830/images/
+
+Observed client behaviour
+-------------------------
+The Angular client issued the uploadFile MQTT RPC request.
+
+The browser console showed:
+  - uploadFile RPC request sent
+  - MQTT publish succeeded
+  - RPC response received with:
+        code: 200
+        message: ok
+
+The client then refreshed the file listing successfully.
+
+Observed filesystem state
+-------------------------
+The uploaded file was visible in the Diaries file browser under:
+
+  diary-1830/images/Screenshot 2026-09-25 121352.png
+
+Observed database state
+-----------------------
+A corresponding row was present in public.image:
+
+  id:                86
+  relative_path:     diary-1830/images/Screenshot 2026-09-25 121352.png
+  mime_type:         image/png
+  original_filename: Screenshot 2026-09-25 121352.png
+  width:             85
+  height:            49
+
+A checksum was also populated.
+
+Observed MQTT state
+-------------------
+A retained image catalogue object was published under:
+
+  diaries/images/86
+
+Conclusion
+----------
+PASS.
+
+The existing 0024 image upload/catalogue path works end-to-end for a
+small image:
+
+  client upload
+      -> responder
+      -> file written to NAS-backed image storage
+      -> public.image row created
+      -> retained diaries/images/<id> object published
+      -> client receives successful RPC response
+
+This test provides the control case for comparison with the large-image
+upload timeout documented separately.

@@ -1,0 +1,86 @@
+0024-FEAT - introduce reusable persistent Image catalogue
+Phase 12 closure evidence
+Large image upload - successful server-side completion with client timeout
+Date: 2026-09-25
+
+Purpose
+-------
+Verify the behaviour of the existing MQTT RPC upload path when uploading
+a materially larger image.
+
+Test image
+----------
+Filename:
+  img2221.jpg
+
+Target:
+  diary-1830/images/
+
+Observed client behaviour
+-------------------------
+The Angular client issued the uploadFile MQTT RPC request.
+
+The browser console showed:
+  - uploadFile RPC request sent
+  - MQTT publish succeeded
+  - the client subsequently reported:
+
+        Upload failed: RpcError: Status undefined: Timeout
+
+The current RPC call uses the ordinary client timeout, which is 5 seconds
+unless explicitly overridden.
+
+Observed server-side outcome
+----------------------------
+Despite the client timeout, the upload completed successfully.
+
+The final image file was present in the target image directory.
+
+A corresponding row was present in public.image:
+
+  id:                85
+  relative_path:     diary-1830/images/img2221.jpg
+  mime_type:         image/jpeg
+  original_filename: img2221.jpg
+  width:             2970
+  height:            4608
+
+A checksum was populated.
+
+A retained MQTT catalogue object was also published under:
+
+  diaries/images/85
+
+Finding
+-------
+The client timeout is a false failure indication.
+
+The upload was not rolled back or lost. The responder completed the
+operation after the Angular client had stopped waiting for the RPC reply.
+
+The observed sequence is therefore:
+
+  client sends uploadFile request
+      -> responder receives and processes image
+      -> image is persisted and catalogued
+      -> retained image state is published
+      -> operation takes longer than client RPC timeout
+      -> client reports Timeout
+
+Conclusion
+----------
+The 0024 image catalogue/data-integrity workflow succeeds for the large
+image. The remaining problem is a transport/timing limitation of carrying
+large binary image payloads through the current MQTT RPC path.
+
+This finding should not be interpreted as a failed 0024 catalogue
+operation.
+
+Recommended follow-on
+---------------------
+Address large bulk image transfer in a separate change rather than
+expanding 0024.
+
+Preferred architecture:
+  - HTTP for streaming/bulk image bytes
+  - MQTT for commands, control messages and retained catalogue/state

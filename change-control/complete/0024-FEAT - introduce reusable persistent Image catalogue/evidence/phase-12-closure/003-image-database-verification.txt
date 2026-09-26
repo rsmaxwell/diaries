@@ -1,0 +1,56 @@
+0024-FEAT - introduce reusable persistent Image catalogue
+Phase 12 closure evidence
+PostgreSQL image catalogue verification
+Date: 2026-09-25
+
+Purpose
+-------
+Verify that both closure-test uploads were registered in the persistent
+Image catalogue in PostgreSQL.
+
+Query used
+----------
+  SELECT * FROM public.image;
+
+Observed rows
+-------------
+Large image:
+
+  id:                85
+  version:           0
+  relative_path:     diary-1830/images/img2221.jpg
+  mime_type:         image/jpeg
+  original_filename: img2221.jpg
+  width:             2970
+  height:            4608
+  checksum:          populated
+
+Small image:
+
+  id:                86
+  version:           0
+  relative_path:     diary-1830/images/Screenshot 2026-09-25 121352.png
+  mime_type:         image/png
+  original_filename: Screenshot 2026-09-25 121352.png
+  width:             85
+  height:            49
+  checksum:          populated
+
+Observations
+------------
+The database contains one Image row for each closure-test upload.
+
+The values visible in pgAdmin are consistent with the physical files
+shown by the Diaries file browser:
+  - img2221.jpg
+  - Screenshot 2026-09-25 121352.png
+
+Conclusion
+----------
+PASS.
+
+The persistent Image catalogue contains entries for both the small and
+large closure-test uploads.
+
+In particular, the large image's client-side RPC timeout did not prevent
+the responder from committing the Image catalogue row.

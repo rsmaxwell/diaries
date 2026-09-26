@@ -7,7 +7,7 @@ param(
 # Freeze the exact Phase 10-tested artifact. This script never contacts production.
 $ErrorActionPreference = 'Stop'
 $repository = (Resolve-Path (Join-Path $PSScriptRoot '../../..')).Path
-$change = Join-Path $repository 'change-control/in-progress/0024-FEAT - introduce reusable persistent Image catalogue'
+$change = Join-Path $repository 'change-control/complete/0024-FEAT - introduce reusable persistent Image catalogue'
 $phase10 = Join-Path $change 'evidence/phase-10-smoke/run'
 $result = Get-Content -LiteralPath (Join-Path $phase10 'summary.json') -Raw | ConvertFrom-Json
 if ($result.status -ne 'PASSED' -or $result.cleanupFailures.Count) { throw 'Phase 10 must have passed and cleaned up its fixtures.' }
