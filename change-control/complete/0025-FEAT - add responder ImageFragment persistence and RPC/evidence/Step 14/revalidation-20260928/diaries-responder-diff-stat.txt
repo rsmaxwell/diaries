@@ -1,0 +1,7 @@
+ README.md                                          | 15 +++--
+ .../diaries/responder/sync/Synchronise.java        | 75 +++++++++++++++++-----
+ .../responder/sync/SynchroniseCallback.java        | 50 ++++++++++++---
+ .../responder/ImageWiringIntegrationTest.java      | 14 ++--
+ .../sync/ImageCatalogueMqttIntegrationTest.java    |  2 +-
+ .../responder/sync/SynchroniseCallbackTest.java    | 25 ++++++++
+ 6 files changed, 145 insertions(+), 36 deletions(-)

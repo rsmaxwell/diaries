@@ -1,0 +1,47 @@
+1790541993: Info: running mosquitto as user: mosquitto.
+1790541993: mosquitto version 2.1.2 starting
+1790541993: Config loaded from /mosquitto/config/mosquitto.conf.
+1790541993: Bridge support available.
+1790541993: Persistence support available.
+1790541993: TLS support available.
+1790541993: TLS-PSK support available.
+1790541993: Websockets support available.
+1790541993: Opening ipv4 listen socket on port 1883.
+1790541993: Opening ipv6 listen socket on port 1883.
+1790541993: mosquitto version 2.1.2 running
+1790541994: New connection from 127.0.0.1:47166 on port 1883.
+1790541994: New client connected from 127.0.0.1:47166 as auto-A214DCBD-61D3-EAA1-76DC-83678366CF88 (p4, c1, k60).
+1790541994: Client auto-A214DCBD-61D3-EAA1-76DC-83678366CF88 [127.0.0.1:47166] disconnected.
+1790541995: New connection from 172.17.0.1:38386 on port 1883.
+1790541995: New client connected from 172.17.0.1:38386 as diaries-health-c7e8648d3b1e (p5, c1, k60, u'fixture-health').
+1790541995: New connection from 172.17.0.1:38400 on port 1883.
+1790541996: New client connected from 172.17.0.1:38400 as syncronise-pub-b7dc0bf6-7875-4069-a5fc-cd8b2f54fabe (p5, c1, k60, u'fixture').
+1790541996: New connection from 172.17.0.1:38416 on port 1883.
+1790541996: New client connected from 172.17.0.1:38416 as syncronise-sub-b7dc0bf6-7875-4069-a5fc-cd8b2f54fabe (p5, c1, k60, u'fixture').
+1790541999: Client diaries-health-c7e8648d3b1e [172.17.0.1:38386] disconnected: connection closed by client.
+1790542000: New connection from 172.17.0.1:38424 on port 1883.
+1790542000: New client connected from 172.17.0.1:38424 as diaries-health-c573c3c4e8fc (p5, c1, k60, u'fixture-health').
+1790542004: Client diaries-health-c573c3c4e8fc [172.17.0.1:38424] disconnected: connection closed by client.
+1790542005: New connection from 172.17.0.1:49538 on port 1883.
+1790542006: New client connected from 172.17.0.1:49538 as diaries-health-d739b341a29f (p5, c1, k60, u'fixture-health').
+1790542009: Client diaries-health-d739b341a29f [172.17.0.1:49538] disconnected: connection closed by client.
+1790542011: New connection from 172.17.0.1:49548 on port 1883.
+1790542011: New client connected from 172.17.0.1:49548 as diaries-health-e55cc2977941 (p5, c1, k60, u'fixture-health').
+1790542014: Client diaries-health-e55cc2977941 [172.17.0.1:49548] disconnected: connection closed by client.
+1790542016: New connection from 172.17.0.1:57830 on port 1883.
+1790542016: New client connected from 172.17.0.1:57830 as diaries-health-f3919625b606 (p5, c1, k60, u'fixture-health').
+1790542019: Client syncronise-sub-b7dc0bf6-7875-4069-a5fc-cd8b2f54fabe [172.17.0.1:38416] disconnected.
+1790542019: Client syncronise-pub-b7dc0bf6-7875-4069-a5fc-cd8b2f54fabe [172.17.0.1:38400] disconnected.
+1790542019: New connection from 172.17.0.1:57832 on port 1883.
+1790542019: New client connected from 172.17.0.1:57832 as responder (p5, c0, k60, u'fixture').
+1790542019: New connection from 172.17.0.1:58136 on port 1883.
+1790542020: Client diaries-health-f3919625b606 [172.17.0.1:57830] disconnected: connection closed by client.
+1790542020: New client connected from 172.17.0.1:58136 as listener (p5, c0, k60, u'fixture').
+1790542021: New connection from 172.17.0.1:58138 on port 1883.
+1790542022: New client connected from 172.17.0.1:58138 as diaries-health-92f39e8621ef (p5, c1, k60, u'fixture-health').
+1790542022: Client diaries-health-92f39e8621ef [172.17.0.1:58138] disconnected: connection closed by client.
+1790542022: New connection from 172.17.0.1:58142 on port 1883.
+1790542022: New client connected from 172.17.0.1:58142 as mqttjs_cd8d8ae7 (p5, c1, k60).
+1790542022: Client mqttjs_cd8d8ae7 [172.17.0.1:58142] disconnected: connection closed by client.
+1790542022: Client listener [172.17.0.1:58136] disconnected: connection closed by client.
+1790542022: Client responder [172.17.0.1:57832] disconnected: connection closed by client.

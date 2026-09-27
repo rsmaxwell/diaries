@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-09-27T23:20:24.734Z" hostname="RICHARD-PC" time="0.033">
+  <properties/>
+  <testcase name="rejectsMalformedFields()" classname="com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest" time="0.018"/>
+  <testcase name="missingReferencesAreControlledAndFailureDoesNotPublish()" classname="com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest" time="0.002"/>
+  <testcase name="publicationFailureReportsCommittedIdentity()" classname="com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest" time="0.002"/>
+  <testcase name="disabledGateRejectsBeforePageLookupPersistenceOrPublication()" classname="com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest" time="0.002"/>
+  <testcase name="validOptionalReferencesAndUnexpectedFields()" classname="com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest" time="0.004"/>
+  <testcase name="authorizationPrecedesPersistence()" classname="com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest" time="0.004"/>
+  <system-out><![CDATA[00:20:24.738 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.738 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.739 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.739 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.739 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.739 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.739 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.739 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.740 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.740 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.740 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.740 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.741 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.741 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.741 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.741 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.742 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.742 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.742 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.742 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.742 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.742 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.743 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.743 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.744 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.744 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.745 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.745 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.746 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.746 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.746 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.746 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.747 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.747 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.747 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.747 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.750 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.750 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.751 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.751 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.751 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.751 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.751 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.751 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.752 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.752 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.752 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.752 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.753 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.753 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.755 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.755 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.755 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.755 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.756 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.756 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.757 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.757 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.758 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+00:20:24.758 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/fragments/123, version: 0
+00:20:24.758 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+00:20:24.759 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.759 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.759 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.759 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.760 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.760 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.761 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.762 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.762 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+00:20:24.762 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/fragments/123, version: 0
+00:20:24.762 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+00:20:24.762 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/1830/3/8/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+00:20:24.762 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/dates/1830/3/8/123, version: 0
+00:20:24.762 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+00:20:24.762 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.763 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.763 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"IMAGE","imageId":91,"marqueeId":null,"lock":null}
+00:20:24.763 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/fragments/123, version: 0
+00:20:24.763 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+00:20:24.763 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/1830/3/8/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"IMAGE","imageId":91,"marqueeId":null,"lock":null}
+00:20:24.763 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/dates/1830/3/8/123, version: 0
+00:20:24.763 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+00:20:24.764 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.764 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.764 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+00:20:24.764 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/fragments/123, version: 0
+00:20:24.764 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+00:20:24.764 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/1830/3/8/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+00:20:24.764 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/dates/1830/3/8/123, version: 0
+00:20:24.764 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+00:20:24.766 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.766 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken: accessToken not found'
+00:20:24.766 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.766 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.766 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.766 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.766 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.767 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken: JWT has expired'
+00:20:24.767 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.767 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+00:20:24.767 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+00:20:24.767 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

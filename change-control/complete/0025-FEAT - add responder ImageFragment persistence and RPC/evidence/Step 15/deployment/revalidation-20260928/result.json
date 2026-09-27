@@ -1,0 +1,61 @@
+{
+  "status": "PASSED",
+  "startedAtUtc": "2026-09-27T23:26:17.377222+00:00",
+  "feature": "0025-FEAT - add responder ImageFragment persistence and RPC",
+  "validation": [
+    "15.2",
+    "15.3"
+  ],
+  "productionModified": false,
+  "liveDatabaseUsed": false,
+  "nasUsed": false,
+  "httpPort": "dynamic loopback mapping",
+  "step14SourceComparison": {
+    "checkedFiles": 398,
+    "changedFiles": [],
+    "matchesStep14": true
+  },
+  "jar": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\diaries-responder\\build\\libs\\diaries-responder-0.0.9-SNAPSHOT-fat.jar",
+  "jarSha256": "5963f8fbaf744d782b4ac88738132f3bb082ed6a26ec5030588e0bd4519a8df1",
+  "javaVersion": "openjdk version \"25.0.2\" 2026-01-20\r\nOpenJDK Runtime Environment (build 25.0.2+10-69)\r\nOpenJDK 64-Bit Server VM (build 25.0.2+10-69, mixed mode, sharing)",
+  "nodeVersion": "v22.16.0",
+  "dockerVersion": "Docker version 29.5.3, build d1c06ef",
+  "backupSha256": "fe0e187eda4fe4c7923590f7ec5e36871ced87e2ba8fa6d3f882e0b0992d6b86",
+  "frozenBackupMatched": true,
+  "postgresImage": "sha256:d3e1620b530c944afa6e887d22eb899824da68e19c52024bf98f5220c88a65b2",
+  "mosquittoImage": "sha256:6f8d8a947c506f8a2290ec65cd4bd2bc7cb4d43fb5f6271f861cb013e2ef9797",
+  "runtimeImage": "sha256:8a95684fd9143653d9dc169cc337f2282699ec3f550f550c1040b9c16d8ffa52",
+  "deployment": "candidate JAR mounted into isolated runtime container",
+  "deployments": [
+    {
+      "phase": "disabled",
+      "container": "diaries-0025-step15-29afad9cb2-responder",
+      "httpPort": 54347,
+      "imageFragmentWritesEnabled": false,
+      "jarSha256": "5963f8fbaf744d782b4ac88738132f3bb082ed6a26ec5030588e0bd4519a8df1"
+    },
+    {
+      "phase": "enabled",
+      "container": "diaries-0025-step15-29afad9cb2-responder",
+      "httpPort": 49801,
+      "imageFragmentWritesEnabled": true,
+      "jarSha256": "5963f8fbaf744d782b4ac88738132f3bb082ed6a26ec5030588e0bd4519a8df1"
+    },
+    {
+      "phase": "replay",
+      "container": "diaries-0025-step15-29afad9cb2-responder",
+      "httpPort": 65173,
+      "imageFragmentWritesEnabled": true,
+      "jarSha256": "5963f8fbaf744d782b4ac88738132f3bb082ed6a26ec5030588e0bd4519a8df1"
+    }
+  ],
+  "databaseRowsUnchanged": true,
+  "controlledFileAbsent": true,
+  "cleanup": {
+    "diaries-0025-step15-29afad9cb2-mqtt": 0,
+    "diaries-0025-step15-29afad9cb2": 0,
+    "diaries-0025-step15-29afad9cb2-network": 0
+  },
+  "workDirectoryRemoved": true,
+  "finishedAtUtc": "2026-09-27T23:27:30.512944+00:00"
+}

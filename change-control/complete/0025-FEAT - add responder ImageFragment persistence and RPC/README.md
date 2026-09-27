@@ -1,0 +1,179 @@
+# 0025-FEAT - Add responder ImageFragment persistence and RPC
+
+## Type
+
+Feature
+
+## Status
+
+Complete
+
+Step 1 baseline frozen on 2026-09-27; see [evidence](evidence/Step%201/README.md). Step 2 additive schema migration is implemented and tested on disposable PostgreSQL; see [schema evidence](evidence/Step%202/README.md). Step 3 model/repository support is implemented and verified; see [persistence evidence](evidence/Step%203/README.md). The development schema migration is verified. Step 4 aggregate resolution and creation helpers are complete; see [Step 4 evidence](evidence/Step%204/README.md). Step 5 retained publication is implemented; see [Step 5 evidence](evidence/Step%205/README.md). Step 6 addImageFragment is implemented and registered; see [Step 6 evidence](evidence/Step%206/README.md). Step 7 Image-aware UpdateFragment is complete; see [Step 7 evidence](evidence/Step%207/README.md). Step 8 mixed Fragment lifecycle handling is complete; see [Step 8 evidence](evidence/Step%208/README.md). Step 9 reference-aware Image deletion is complete; see [Step 9 evidence](evidence/Step%209/README.md). Step 10 focused unit/contract coverage is complete; see [Step 10 evidence](evidence/Step%2010/README.md). Step 11 database-backed integration is complete; see [Step 11 evidence](evidence/Step%2011/README.md). Step 12 live MQTT RPC and retained replay verification is complete; see [Step 12 evidence](evidence/Step%2012/README.md). Step 13 safe authoring gate is implemented and verified; see [Step 13 evidence](evidence/Step%2013/README.md). Step 14 full regression and deployed-consumer compatibility verification is complete; see [Step 14 evidence](evidence/Step%2014/README.md). Step 15 development deployment, controlled validation and close-out is complete; see [Step 15 evidence](evidence/Step%2015/README.md). Production migration/deployment and enabling IMAGE authoring remain separate operational work; the authoring gate stays disabled until the 0026/0027 rollout prerequisites are approved.
+
+## Priority
+
+High
+
+## Opened
+
+2026-09-07
+
+## Summary
+
+Extend the responder so a Fragment can reference a reusable Image and can be created/updated as `type=IMAGE`. Add explicit ImageFragment RPC intent while applying existing locking, sequence normalisation, persistence and retained-publication rules to both fragment types.
+
+## Background
+
+By this point:
+
+- Fragment owns Page and type;
+- consumers understand typed Page ownership;
+- reusable Image entities exist and are retained.
+
+The responder can now introduce the missing relationship:
+
+```text
+Fragment.image_id -> Image.id (nullable)
+```
+
+without embedding file paths/URLs in Fragment.
+
+## Expected Behaviour
+
+- `AddFragment` continues creating MARQUEE fragments for compatibility;
+- new `AddImageFragment` creates an IMAGE fragment for a Page;
+- an ImageFragment references zero or one existing Image while editing;
+- a MARQUEE fragment cannot reference an Image;
+- an IMAGE fragment cannot have a Marquee;
+- date/text/sequence/lock semantics are common to both types;
+- mixed MARQUEE/IMAGE sequence normalisation works correctly;
+- fragment retained payload includes `imageId`;
+- an Image referenced by any Fragment cannot be deleted;
+- Image deletion cannot be bypassed through generic file operations.
+
+## Scope
+
+### Database / JPA
+
+Add nullable `fragment.image_id` foreign key to `image(id)` and JPA relationship (`ManyToOne` is appropriate because many Fragments may reference one Image).
+
+Do not put `fragmentId` on Image.
+
+### RPC
+
+Add `AddImageFragment` handler with fields:
+
+```text
+pageId
+year
+month
+day
+sequence
+text
+imageId optional
+```
+
+Validate:
+
+- Page exists;
+- requested Image exists if provided;
+- type is fixed by the operation and cannot be supplied inconsistently;
+- authorization is EDITOR or stronger;
+- sequence/date/text validation matches existing Fragment rules.
+
+Consider a dedicated `SetFragmentImage` RPC if extending `UpdateFragment` would make validation opaque. If `UpdateFragment` gains `imageId`, it must reject `imageId` for MARQUEE fragments and must not permit arbitrary type mutation unless a separately designed conversion workflow exists. This proposal does not require converting an existing fragment between types.
+
+### Persistence Transaction
+
+Create ImageFragment without Marquee. Do not reuse `DiaryContext.save(fragment, marquee)` unchanged; introduce focused save methods or a service that supports both valid aggregate shapes without nullable assumptions scattered through handlers.
+
+### Retained MQTT
+
+Fragment payload now includes:
+
+```text
+pageId
+type
+imageId
+```
+
+During compatibility, `marqueeId` may remain. For an IMAGE fragment it is null.
+
+### Locking and Sequence Utilities
+
+Audit:
+
+```text
+FragmentLocking
+UpdateFragment
+DeleteFragment
+FragmentSequenceNormaliser
+NormaliseFragments
+```
+
+Any utility that inflates/publishes `FragmentAndMarquee` must be generalized so IMAGE fragments do not require a Marquee. Prefer a `ResolvedFragmentState`/service abstraction over proliferating null Marquee parameters.
+
+Deleting an ImageFragment removes only the Fragment. It must not delete the referenced Image.
+
+### Reference-aware Image deletion
+
+Extend the existing `deleteImage({subdir?, name})` RPC with reference protection before enabling production operations that create an Image reference:
+
+- lock or otherwise serialize the Image row and reference check in the database transaction;
+- return conflict when any Fragment references the Image;
+- for an unreferenced Image, coordinate filesystem removal, database removal and retained tombstone so partial failure is reported and recoverable;
+- never report success while the database/topic tree claims deletion but the implementation has silently lost track of a failed filesystem operation;
+- retain the 0024 guards so `DeleteFile` cannot bypass this operation.
+
+Because PostgreSQL and the filesystem cannot participate in one atomic transaction, document the chosen failure protocol. A staged deletion state or recoverable operation journal is preferred to irreversible file deletion before the database transaction is known to be durable.
+
+## Detailed Implementation Steps
+
+- [x] Add explicit migration SQL for nullable `fragment.image_id` FK.
+- [x] Extend Fragment entity/DB DTO/publish DTO with image relationship/ID.
+- [x] Add repository/inflation support for referenced Image.
+- [x] Introduce a fragment aggregate/service that can represent MARQUEE and IMAGE shapes safely.
+- [x] Implement `AddImageFragment` RPC and register it with responder request handling.
+- [x] Decide and implement `SetFragmentImage` versus type-aware UpdateFragment.
+- [x] Ensure UpdateFragment preserves immutable type/page relationship unless separately intended.
+- [x] Generalize delete/lock/unlock publication to avoid assuming a Marquee exists.
+- [x] Generalize sequence normalisation for mixed types.
+- [x] Add retained contract tests for IMAGE payloads.
+- [x] Add integration tests for two ImageFragments referencing the same Image.
+- [x] Add tests proving deletion of one ImageFragment leaves Image and other reference intact.
+- [x] Add tests proving MARQUEE cannot carry imageId and IMAGE cannot acquire a Marquee through responder operations.
+- [x] Add an indexed repository query for Fragment references to an Image.
+- [x] Implement reference-aware `DeleteImage` with a documented partial-failure protocol.
+- [x] Test the race between attaching an Image and attempting to delete it.
+- [x] Test retained tombstone and filesystem failure recovery.
+
+## Acceptance Criteria
+
+- [x] Responder can create an IMAGE fragment with and without initial image selection.
+- [x] Existing AddFragment MARQUEE workflow remains compatible.
+- [x] Image reuse across multiple fragments works.
+- [x] Locks operate identically at Fragment level for both types.
+- [x] Mixed-type sequence normalisation preserves correct order.
+- [x] Retained DB replay recreates IMAGE fragments correctly.
+- [x] Deleting ImageFragment does not delete Image.
+- [x] Invalid cross-type relationships are rejected.
+- [x] A referenced Image cannot be deleted.
+- [x] An unreferenced Image can be deleted without leaving an untracked partial-success state.
+- [x] Generic `DeleteFile` cannot bypass Image reference integrity.
+
+
+## Implementation close-out (Step 15)
+
+Step 14 was revalidated on 2026-09-28 after the synchronisation source changes: responder 322 discovered / 285 passed / 37 environment-gated skips with zero failures/errors and a successful build; diaries-web 50 passed with build success; diaries-client 132 passed with production build success; six selected real PostgreSQL/MQTT tests passed, including large retained-tree startup replay. Step 15.1 then verified the actual development schema and backup before any candidate start. Step 15.2/15.3 deployed that same source candidate in a controlled environment and passed the disabled-gate MARQUEE smoke flow plus the enabled IMAGE create/edit/reference/delete/restart-replay flow. See `evidence/Step 15`.
+
+The implemented RPC design extends `updateFragment`: omitted `imageId` preserves the reference; explicit null clears it for IMAGE; a positive existing ID attaches/replaces it; MARQUEE cannot acquire a non-null Image reference; type and Page remain immutable. Reference mutation uses the existing caller-owned Fragment lock/version transaction. Attachment takes a pessimistic read lock on the Image row; `DeleteImage` takes a pessimistic write lock on the same row and rechecks Fragment references, so attach/delete races cannot commit a dangling FK. Recoverable 0030 file/database/MQTT deletion remains the sole physical Image deletion path.
+
+Production was not modified by Step 15. `imageFragmentWritesEnabled` remains fail-closed (missing/null/false means disabled). 0026–0029 remain deliberately deferred as documented below; therefore closing 0025 does not enable production IMAGE authoring.
+
+## Dependencies
+
+Requires 0022 and 0024. 0023 must be deployed before IMAGE creation is enabled. The 0026-capable diaries-web reader must be deployed before the 0027 client enables production authoring.
+
+## Deployment and Rollback
+
+Backend capability may be deployed before any UI creates IMAGE fragments. Do not create production IMAGE fragments until 0026 has been deployed and verified. The responder now defaults `imageFragmentWritesEnabled` to disabled. Keep it disabled until the reader prerequisite and explicit authoring rollout are approved; active-editor RPC access cannot bypass this gate.

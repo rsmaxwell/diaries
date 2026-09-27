@@ -54,8 +54,13 @@ date-index, people or role permission. Set its password through
 ## Responder configuration
 
 The responder has read/write permission on the canonical Image catalogue
-`diaries/images/+` for 0024 startup replay and retained tombstones. Client, web
-and health identities have no Image-catalogue permission. All three local
+`diaries/images/+` for 0024 startup replay and retained tombstones. It also has
+read/write permission on the transient `diaries-sync/#` namespace used only for
+non-retained QoS-1 retained-snapshot drain barriers. The bulk `diaries/#`
+snapshot now uses QoS 1 with MQTT 5 Receive Maximum 20. The separate barrier
+namespace prevents overlapping subscriptions. Keep broker queue capacity sufficient
+for the full retained tree (see `max_queued_messages` in `mosquitto.conf`). Client, web and
+health identities have neither Image-catalogue nor barrier permission. All three local
 Compose modes mount the same `aclfile.txt`. Reload Mosquitto's ACL (or restart
 the selected mode's broker) before starting a responder with Image replay;
 an already-running broker may still be using the previous ACL. Apply the

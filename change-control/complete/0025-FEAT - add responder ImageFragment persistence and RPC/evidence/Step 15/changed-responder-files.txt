@@ -1,0 +1,47 @@
+Compared with frozen pre-0025 responder HEAD 810444eb37289dd16a9fb3a317358c1a21b6cdcf
+M	README.md
+M	src/main/java/com/rsmaxwell/diaries/responder/Responder.java
+M	src/main/java/com/rsmaxwell/diaries/responder/config/Config.java
+M	src/main/java/com/rsmaxwell/diaries/responder/dto/FragmentDBDTO.java
+M	src/main/java/com/rsmaxwell/diaries/responder/dto/FragmentPublishDTO.java
+M	src/main/java/com/rsmaxwell/diaries/responder/handlers/AddFragment.java
+A	src/main/java/com/rsmaxwell/diaries/responder/handlers/AddImageFragment.java
+M	src/main/java/com/rsmaxwell/diaries/responder/handlers/AddMarquee.java
+M	src/main/java/com/rsmaxwell/diaries/responder/handlers/DeleteFragment.java
+M	src/main/java/com/rsmaxwell/diaries/responder/handlers/DeleteImage.java
+M	src/main/java/com/rsmaxwell/diaries/responder/handlers/LockFragment.java
+M	src/main/java/com/rsmaxwell/diaries/responder/handlers/UnlockFragment.java
+M	src/main/java/com/rsmaxwell/diaries/responder/handlers/UpdateFragment.java
+M	src/main/java/com/rsmaxwell/diaries/responder/handlers/UpdateMarquee.java
+M	src/main/java/com/rsmaxwell/diaries/responder/model/Fragment.java
+M	src/main/java/com/rsmaxwell/diaries/responder/repository/FragmentRepository.java
+M	src/main/java/com/rsmaxwell/diaries/responder/repositoryImpl/FragmentRepositoryImpl.java
+M	src/main/java/com/rsmaxwell/diaries/responder/sync/Synchronise.java
+M	src/main/java/com/rsmaxwell/diaries/responder/sync/SynchroniseCallback.java
+M	src/main/java/com/rsmaxwell/diaries/responder/utilities/DiaryContext.java
+D	src/main/java/com/rsmaxwell/diaries/responder/utilities/FragmentAndMarquee.java
+M	src/main/java/com/rsmaxwell/diaries/responder/utilities/FragmentLocking.java
+M	src/main/java/com/rsmaxwell/diaries/responder/utilities/FragmentSequenceNormaliser.java
+M	src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageCatalogueService.java
+A	src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageFragmentMessageHandler.java
+A	src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageFragmentWritePolicy.java
+A	src/main/java/com/rsmaxwell/diaries/responder/utilities/ResolvedFragmentState.java
+M	src/test/java/com/rsmaxwell/diaries/responder/ImageWiringIntegrationTest.java
+A	src/test/java/com/rsmaxwell/diaries/responder/config/ImageFragmentGateConfigTest.java
+M	src/test/java/com/rsmaxwell/diaries/responder/dto/RetainedStateDtoContractTest.java
+A	src/test/java/com/rsmaxwell/diaries/responder/handlers/AddFragmentContractTest.java
+A	src/test/java/com/rsmaxwell/diaries/responder/handlers/AddImageFragmentTest.java
+M	src/test/java/com/rsmaxwell/diaries/responder/handlers/DeleteImageTest.java
+A	src/test/java/com/rsmaxwell/diaries/responder/handlers/FragmentLifecycleContractTest.java
+A	src/test/java/com/rsmaxwell/diaries/responder/handlers/UpdateFragmentImageTest.java
+M	src/test/java/com/rsmaxwell/diaries/responder/repositoryImpl/FragmentRepositoryImplTest.java
+M	src/test/java/com/rsmaxwell/diaries/responder/sync/ImageCatalogueMqttIntegrationTest.java
+M	src/test/java/com/rsmaxwell/diaries/responder/sync/SynchroniseCallbackTest.java
+M	src/test/java/com/rsmaxwell/diaries/responder/utilities/DiaryContextTest.java
+M	src/test/java/com/rsmaxwell/diaries/responder/utilities/FragmentSequenceNormaliserTest.java
+M	src/test/java/com/rsmaxwell/diaries/responder/utilities/ImageCatalogueDeletionTest.java
+A	src/test/java/com/rsmaxwell/diaries/responder/utilities/ImageFragmentMessageHandlerTest.java
+A	src/test/java/com/rsmaxwell/diaries/responder/utilities/ResolvedFragmentStateTest.java
+
+Untracked new source/test files:
+src/test/java/com/rsmaxwell/diaries/responder/sync/SynchroniseLargeRetainedTreeMqttIntegrationTest.java

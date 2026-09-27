@@ -10,6 +10,7 @@ topic read diaries/dates/#
 user diaries-responder
 topic read diaries/rpc/request
 topic write diaries/rpc/+/response
+topic readwrite diaries-sync/#
 topic readwrite diaries/diaries/#
 topic readwrite diaries/pages/#
 topic readwrite diaries/fragments/#

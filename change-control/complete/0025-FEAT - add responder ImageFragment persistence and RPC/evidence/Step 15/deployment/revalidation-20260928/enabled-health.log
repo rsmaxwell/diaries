@@ -1,0 +1,10 @@
+--- attempt 1; exit=1 ---
+SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+Responder health check failed: MQTT RPC health check timed out
+
+--- attempt 2; exit=1 ---
+SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+Responder health check failed: MQTT RPC health check timed out
+
+--- attempt 3; exit=0 ---
+SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]

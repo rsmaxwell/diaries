@@ -1,0 +1,35 @@
+1790551373: Info: running mosquitto as user: mosquitto.
+1790551373: mosquitto version 2.1.2 starting
+1790551373: Config loaded from /mosquitto/config/mosquitto.conf.
+1790551373: Bridge support available.
+1790551373: Persistence support available.
+1790551373: TLS support available.
+1790551373: TLS-PSK support available.
+1790551373: Websockets support available.
+1790551373: Opening ipv4 listen socket on port 1883.
+1790551373: Opening ipv6 listen socket on port 1883.
+1790551373: mosquitto version 2.1.2 running
+1790551378: New connection from 172.17.0.1:46360 on port 1883.
+1790551379: New client connected from 172.17.0.1:46360 as syncronise-pub-8c3420d8-48b5-477d-8e37-8b3291f2fb85 (p5, c1, k60, u'diaries-responder').
+1790551379: New connection from 172.17.0.1:46364 on port 1883.
+1790551379: New client connected from 172.17.0.1:46364 as syncronise-sub-8c3420d8-48b5-477d-8e37-8b3291f2fb85 (p5, c1, k60, u'diaries-responder').
+1790551381: Client syncronise-sub-8c3420d8-48b5-477d-8e37-8b3291f2fb85 [172.17.0.1:46364] disconnected: connection closed by client.
+1790551381: Client syncronise-pub-8c3420d8-48b5-477d-8e37-8b3291f2fb85 [172.17.0.1:46360] disconnected.
+1790551381: New connection from 172.17.0.1:46378 on port 1883.
+1790551381: New client connected from 172.17.0.1:46378 as syncronise-pub-5a432193-5102-4032-bbe4-dc6fcff17550 (p5, c1, k60, u'diaries-responder').
+1790551381: New connection from 172.17.0.1:46394 on port 1883.
+1790551381: New client connected from 172.17.0.1:46394 as syncronise-sub-5a432193-5102-4032-bbe4-dc6fcff17550 (p5, c1, k60, u'diaries-responder').
+1790551382: Client syncronise-sub-5a432193-5102-4032-bbe4-dc6fcff17550 [172.17.0.1:46394] disconnected: connection closed by client.
+1790551382: Client syncronise-pub-5a432193-5102-4032-bbe4-dc6fcff17550 [172.17.0.1:46378] disconnected.
+1790551382: New connection from 172.17.0.1:46396 on port 1883.
+1790551382: New client connected from 172.17.0.1:46396 as syncronise-pub-0fa95351-e68f-408a-b858-2da3a56eaed0 (p5, c1, k60, u'diaries-responder').
+1790551382: New connection from 172.17.0.1:46398 on port 1883.
+1790551382: New client connected from 172.17.0.1:46398 as syncronise-sub-0fa95351-e68f-408a-b858-2da3a56eaed0 (p5, c1, k60, u'diaries-responder').
+1790551383: Client syncronise-sub-0fa95351-e68f-408a-b858-2da3a56eaed0 [172.17.0.1:46398] disconnected: connection closed by client.
+1790551383: Client syncronise-pub-0fa95351-e68f-408a-b858-2da3a56eaed0 [172.17.0.1:46396] disconnected.
+1790551383: New connection from 172.17.0.1:46402 on port 1883.
+1790551383: New client connected from 172.17.0.1:46402 as sync-large-tree-76400ada-278f-4ec1-9604-d70ab1250db8 (p5, c1, k60, u'diaries-responder').
+1790551383: New connection from 172.17.0.1:33770 on port 1883.
+1790551384: New client connected from 172.17.0.1:33770 as sync-large-tree-9e1692f7-1aa9-4dad-8c98-a565a34b12f6 (p5, c1, k60, u'diaries-responder').
+1790551384: Client sync-large-tree-9e1692f7-1aa9-4dad-8c98-a565a34b12f6 [172.17.0.1:33770] disconnected: connection closed by client.
+1790551384: Client sync-large-tree-76400ada-278f-4ec1-9604-d70ab1250db8 [172.17.0.1:46402] disconnected: connection closed by client.

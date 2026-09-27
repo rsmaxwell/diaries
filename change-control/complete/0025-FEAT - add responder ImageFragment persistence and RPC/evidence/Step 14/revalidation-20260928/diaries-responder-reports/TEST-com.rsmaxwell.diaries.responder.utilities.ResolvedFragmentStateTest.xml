@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.utilities.ResolvedFragmentStateTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2026-09-27T23:20:27.614Z" hostname="RICHARD-PC" time="0.004">
+  <properties/>
+  <testcase name="Case[type=MARQUEE, marquee=true, reference=none, valid=true]" classname="com.rsmaxwell.diaries.responder.utilities.ResolvedFragmentStateTest" time="0.0"/>
+  <testcase name="Case[type=MARQUEE, marquee=false, reference=none, valid=true]" classname="com.rsmaxwell.diaries.responder.utilities.ResolvedFragmentStateTest" time="0.0"/>
+  <testcase name="Case[type=MARQUEE, marquee=true, reference=existing, valid=false]" classname="com.rsmaxwell.diaries.responder.utilities.ResolvedFragmentStateTest" time="0.0"/>
+  <testcase name="Case[type=MARQUEE, marquee=false, reference=existing, valid=false]" classname="com.rsmaxwell.diaries.responder.utilities.ResolvedFragmentStateTest" time="0.0"/>
+  <testcase name="Case[type=MARQUEE, marquee=true, reference=missing, valid=false]" classname="com.rsmaxwell.diaries.responder.utilities.ResolvedFragmentStateTest" time="0.0"/>
+  <testcase name="Case[type=MARQUEE, marquee=false, reference=missing, valid=false]" classname="com.rsmaxwell.diaries.responder.utilities.ResolvedFragmentStateTest" time="0.001"/>
+  <testcase name="Case[type=IMAGE, marquee=false, reference=none, valid=true]" classname="com.rsmaxwell.diaries.responder.utilities.ResolvedFragmentStateTest" time="0.0"/>
+  <testcase name="Case[type=IMAGE, marquee=false, reference=existing, valid=true]" classname="com.rsmaxwell.diaries.responder.utilities.ResolvedFragmentStateTest" time="0.0"/>
+  <testcase name="Case[type=IMAGE, marquee=false, reference=missing, valid=false]" classname="com.rsmaxwell.diaries.responder.utilities.ResolvedFragmentStateTest" time="0.0"/>
+  <testcase name="Case[type=IMAGE, marquee=true, reference=none, valid=false]" classname="com.rsmaxwell.diaries.responder.utilities.ResolvedFragmentStateTest" time="0.0"/>
+  <testcase name="Case[type=IMAGE, marquee=true, reference=existing, valid=false]" classname="com.rsmaxwell.diaries.responder.utilities.ResolvedFragmentStateTest" time="0.0"/>
+  <testcase name="Case[type=IMAGE, marquee=true, reference=missing, valid=false]" classname="com.rsmaxwell.diaries.responder.utilities.ResolvedFragmentStateTest" time="0.0"/>
+  <testcase name="Case[type=null, marquee=false, reference=none, valid=false]" classname="com.rsmaxwell.diaries.responder.utilities.ResolvedFragmentStateTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

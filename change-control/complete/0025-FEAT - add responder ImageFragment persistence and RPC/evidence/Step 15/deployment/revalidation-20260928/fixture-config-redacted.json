@@ -1,0 +1,42 @@
+{
+  "db": {
+    "host": "diaries-0025-step15-29afad9cb2",
+    "port": 5432,
+    "database": "image_wiring_test",
+    "jdbc": {
+      "dbms": "postgresql",
+      "driver": "org.postgresql.Driver"
+    },
+    "admin": {
+      "username": "diaries",
+      "password": ""
+    },
+    "users": [
+      {
+        "username": "diaries",
+        "password": ""
+      }
+    ],
+    "additionalConnectionProperties": {
+      "hibernate.hbm2ddl.auto": "validate"
+    }
+  },
+  "mqtt": {
+    "host": "diaries-0025-step15-29afad9cb2-mqtt",
+    "port": 1883,
+    "user": {
+      "username": "fixture",
+      "password": "fixture"
+    }
+  },
+  "diaries": {
+    "root": "/fixture/content",
+    "diaries": "diaries",
+    "files": "files"
+  },
+  "refreshPeriod": "1h",
+  "refreshExpiration": "2h",
+  "secret": "[DISPOSABLE SECRET REDACTED]",
+  "normaliseOnStartup": false,
+  "imageFragmentWritesEnabled": false
+}

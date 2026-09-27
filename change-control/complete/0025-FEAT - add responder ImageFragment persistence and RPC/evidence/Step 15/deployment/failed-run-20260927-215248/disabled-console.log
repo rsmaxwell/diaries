@@ -1,0 +1,19 @@
+[phase] disabled: subscribed to fixture/step15/reply/disabled/64188/1790542022233
+[phase] disabled: MQTT client connected; responder readiness was already verified by the Java health-check client
+[rpc] -> signin correlation=1
+[rpc] publish acknowledged signin correlation=1
+[rpc] <- signin correlation=1 status=500
+AssertionError [ERR_ASSERTION]: signin: {"code":500,"message":"internal error"}
+
+500 !== 200
+
+    at MqttClient.receive (C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\change-control\in-progress\0025-FEAT - add responder ImageFragment persistence and RPC\evidence\Step 15\deployment\smoke.cjs:42:16)
+    at MqttClient.emit (node:events:518:28)
+    at Array.<anonymous> (C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client\node_modules\mqtt\build\lib\handlers\publish.js:85:28)
+    at MqttClient.options.customHandleAcks (C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client\node_modules\mqtt\build\lib\client.js:103:28)
+    at handlePublish (C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client\node_modules\mqtt\build\lib\handlers\publish.js:73:21)
+    at handle (C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client\node_modules\mqtt\build\lib\handlers\index.js:28:35)
+    at work (C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client\node_modules\mqtt\build\lib\client.js:227:40)
+    at writable._write (C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client\node_modules\mqtt\build\lib\client.js:252:13)
+    at writeOrBuffer (C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client\node_modules\mqtt\node_modules\readable-stream\lib\internal\streams\writable.js:334:12)
+    at _write (C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client\node_modules\mqtt\node_modules\readable-stream\lib\internal\streams\writable.js:283:10)

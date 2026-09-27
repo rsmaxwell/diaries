@@ -1,0 +1,48 @@
+[
+  {
+    "function": "signin",
+    "status": 200,
+    "payload": {
+      "authenticated": true
+    }
+  },
+  {
+    "function": "getVersion",
+    "status": 200,
+    "payload": {
+      "name": "diaries-responder",
+      "version": "0.0.9-SNAPSHOT",
+      "buildID": "(none)",
+      "builddate": "2026-09-28 00:26:20",
+      "gitCommit": "c7fd6e7c99f0c1a68835b68b4ae544434d068455",
+      "gitBranch": "main",
+      "gitURL": "git@github.com:rsmaxwell/diaries.git"
+    }
+  },
+  {
+    "function": "deleteImage",
+    "status": 409,
+    "payload": "Image is referenced by a Fragment. Remove its references before deleting it."
+  },
+  {
+    "function": "deleteFragment",
+    "status": 200,
+    "payload": 2331
+  },
+  {
+    "function": "deleteImage",
+    "status": 200,
+    "payload": {
+      "relativePath": "step15/images/step15.png",
+      "id": 2,
+      "deleted": true
+    }
+  },
+  {
+    "startupReplayVerified": true,
+    "referenceConflictRechecked": true,
+    "databaseRowsRemoved": true,
+    "retainedTombstonesVerified": true,
+    "physicalFileAbsent": true
+  }
+]

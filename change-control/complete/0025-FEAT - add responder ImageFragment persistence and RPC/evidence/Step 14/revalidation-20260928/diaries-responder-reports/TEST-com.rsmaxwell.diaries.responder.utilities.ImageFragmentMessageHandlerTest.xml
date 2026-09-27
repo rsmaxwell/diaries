@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.utilities.ImageFragmentMessageHandlerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-09-27T23:20:27.447Z" hostname="RICHARD-PC" time="0.028">
+  <properties/>
+  <testcase name="handlerAuthorizationFailureIsNotBypassedForNullSelection()" classname="com.rsmaxwell.diaries.responder.utilities.ImageFragmentMessageHandlerTest" time="0.018"/>
+  <testcase name="absentAndNonNullImageIdsStillUseTheExistingContract()" classname="com.rsmaxwell.diaries.responder.utilities.ImageFragmentMessageHandlerTest" time="0.007"/>
+  <testcase name="missingCorrelationDropsNullRequestWithoutCallingTheHandler()" classname="com.rsmaxwell.diaries.responder.utilities.ImageFragmentMessageHandlerTest" time="0.001"/>
+  <testcase name="explicitNullReachesBothImageHandlersWithOriginalPropertiesAndReplyContract()" classname="com.rsmaxwell.diaries.responder.utilities.ImageFragmentMessageHandlerTest" time="0.001"/>
+  <system-out><![CDATA[00:20:27.468 [Test worker] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"args":{},"function":"updateFragment"}
+00:20:27.472 [Test worker] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+00:20:27.472 [Test worker] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: 123
+00:20:27.472 [Test worker] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"args":{"imageId":91},"function":"updateFragment"}
+00:20:27.472 [Test worker] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+00:20:27.472 [Test worker] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: 123
+00:20:27.473 [Test worker] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"args":{},"function":"other"}
+00:20:27.473 [Test worker] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+00:20:27.473 [Test worker] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: 123
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

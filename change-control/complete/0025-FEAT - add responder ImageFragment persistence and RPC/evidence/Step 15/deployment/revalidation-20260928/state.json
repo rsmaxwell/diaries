@@ -1,0 +1,76 @@
+{
+  "id": 2331,
+  "imageId": 2,
+  "fragment": {
+    "id": 2331,
+    "day": 2,
+    "text": "IMAGE edited",
+    "type": "IMAGE",
+    "year": 2096,
+    "month": 1,
+    "page_id": 684,
+    "version": 4,
+    "image_id": 2,
+    "sequence": 1,
+    "lock_user_id": null,
+    "lock_known_as": null,
+    "lock_username": null,
+    "lock_timestamp": null,
+    "lock_session_id": null
+  },
+  "image": {
+    "id": 2,
+    "width": 16,
+    "height": 12,
+    "caption": "",
+    "version": 0,
+    "alt_text": "",
+    "checksum": "c058bd573b19d4bfc140c95a103f51fb4ded20bc81ca619d4fd965d93a9a86bb",
+    "mime_type": "image/png",
+    "relative_path": "step15/images/step15.png",
+    "original_filename": "step15.png"
+  },
+  "marquees": 0,
+  "retained": {
+    "diaries/fragments/2331": {
+      "id": 2331,
+      "version": 4,
+      "year": 2096,
+      "month": 1,
+      "day": 2,
+      "sequence": 1,
+      "text": "IMAGE edited",
+      "pageId": 684,
+      "type": "IMAGE",
+      "imageId": 2,
+      "marqueeId": null,
+      "lock": null
+    },
+    "diaries/dates/2096/1/2/2331": {
+      "id": 2331,
+      "version": 4,
+      "year": 2096,
+      "month": 1,
+      "day": 2,
+      "sequence": 1,
+      "text": "IMAGE edited",
+      "pageId": 684,
+      "type": "IMAGE",
+      "imageId": 2,
+      "marqueeId": null,
+      "lock": null
+    },
+    "diaries/images/2": {
+      "id": 2,
+      "version": 0,
+      "relativePath": "step15/images/step15.png",
+      "mimeType": "image/png",
+      "originalFilename": "step15.png",
+      "width": 16,
+      "height": 12,
+      "checksum": "c058bd573b19d4bfc140c95a103f51fb4ded20bc81ca619d4fd965d93a9a86bb",
+      "caption": "",
+      "altText": ""
+    }
+  }
+}

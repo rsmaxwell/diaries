@@ -73,9 +73,10 @@ async function snapshot(label) {
   const images = await rows('SELECT * FROM image ORDER BY id');
   const client = await connect();
   const retained = {};
-  const marker = 'diaries/diaries/_sync/smoke/' + crypto.randomUUID();
+  const marker = 'diaries-sync/smoke/' + crypto.randomUUID();
   let drained = false;
   client.on('message', (topic, bytes, packet) => { if (topic === marker) drained = true; else if (packet.retain && bytes.length) retained[topic] = sha(bytes); });
+  await client.subscribeAsync(marker, { qos: 1 });
   await client.subscribeAsync('diaries/#', { qos: 0 });
   await client.publishAsync(marker, '1', { qos: 1, retain: false });
   await waitFor('retained snapshot', () => drained);

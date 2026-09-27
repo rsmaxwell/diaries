@@ -1,0 +1,117 @@
+[
+  {
+    "function": "signin",
+    "status": 200,
+    "payload": {
+      "authenticated": true
+    }
+  },
+  {
+    "function": "getVersion",
+    "status": 200,
+    "payload": {
+      "name": "diaries-responder",
+      "version": "0.0.9-SNAPSHOT",
+      "buildID": "(none)",
+      "builddate": "2026-09-28 00:26:20",
+      "gitCommit": "c7fd6e7c99f0c1a68835b68b4ae544434d068455",
+      "gitBranch": "main",
+      "gitURL": "git@github.com:rsmaxwell/diaries.git"
+    }
+  },
+  {
+    "function": "uploadFile",
+    "status": 200,
+    "payload": {
+      "name": "step15.png",
+      "subdir": "step15/images",
+      "size": 89,
+      "path": "/fixture/content/files/step15/images/step15.png",
+      "url": "/files/step15/images/step15.png",
+      "imageId": 2,
+      "image": {
+        "id": 2,
+        "version": 0,
+        "relativePath": "step15/images/step15.png",
+        "mimeType": "image/png",
+        "originalFilename": "step15.png",
+        "width": 16,
+        "height": 12,
+        "checksum": "c058bd573b19d4bfc140c95a103f51fb4ded20bc81ca619d4fd965d93a9a86bb",
+        "caption": "",
+        "altText": ""
+      }
+    }
+  },
+  {
+    "function": "addImageFragment",
+    "status": 200,
+    "payload": {
+      "id": 2331,
+      "version": 0,
+      "year": 2096,
+      "month": 1,
+      "day": 1,
+      "sequence": 1000,
+      "text": "Step 15 controlled fixture",
+      "pageId": 684,
+      "type": "IMAGE",
+      "imageId": 2,
+      "marqueeId": null,
+      "lock": null
+    }
+  },
+  {
+    "function": "lockFragment",
+    "status": 200,
+    "payload": 2331
+  },
+  {
+    "function": "updateFragment",
+    "status": 200,
+    "payload": 2331
+  },
+  {
+    "function": "lockFragment",
+    "status": 200,
+    "payload": 2331
+  },
+  {
+    "function": "updateFragment",
+    "status": 200,
+    "payload": 2331
+  },
+  {
+    "function": "lockFragment",
+    "status": 200,
+    "payload": 2331
+  },
+  {
+    "function": "updateFragment",
+    "status": 200,
+    "payload": 2331
+  },
+  {
+    "function": "normaliseFragments",
+    "status": 200,
+    "payload": 0
+  },
+  {
+    "function": "deleteImage",
+    "status": 409,
+    "payload": "Image is referenced by a Fragment. Remove its references before deleting it."
+  },
+  {
+    "function": "deleteFile",
+    "status": 409,
+    "payload": "Image catalogue protects path: step15/images/step15.png"
+  },
+  {
+    "imageFragmentCreated": true,
+    "imageSelectionClearedAndReattached": true,
+    "noMarquee": true,
+    "retainedFragmentAndImageVerified": true,
+    "referencedDeleteImageConflictVerified": true,
+    "deleteFileProtectionVerified": true
+  }
+]

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.utilities.DiaryContextTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-09-27T23:20:26.440Z" hostname="RICHARD-PC" time="0.005">
+  <properties/>
+  <testcase name="imageCatalogueReplaysWithoutAnyChronologyOrFileConfiguration()" classname="com.rsmaxwell.diaries.responder.utilities.DiaryContextTest" time="0.002"/>
+  <testcase name="writerRejectsCrossTypeAndMismatchedRelationships()" classname="com.rsmaxwell.diaries.responder.utilities.DiaryContextTest" time="0.0"/>
+  <testcase name="databaseReplayPublishesAFragmentWithoutDependingOnAMarquee()" classname="com.rsmaxwell.diaries.responder.utilities.DiaryContextTest" time="0.001"/>
+  <testcase name="replayPreservesAnImageFragmentWhoseOptionalImageIsMissing()" classname="com.rsmaxwell.diaries.responder.utilities.DiaryContextTest" time="0.001"/>
+  <testcase name="replayPublishesImageFragmentsWithAndWithoutImageOnBothAliases()" classname="com.rsmaxwell.diaries.responder.utilities.DiaryContextTest" time="0.001"/>
+  <system-out><![CDATA[00:20:26.445 [Test worker] WARN  com.rsmaxwell.diaries.responder.utilities.DiaryContext - Fragment 41 references missing Image 91; preserving unresolved id for repair
+00:20:26.445 [Test worker] WARN  com.rsmaxwell.diaries.responder.utilities.DiaryContext - Fragment 41 references missing Image 91; preserving unresolved id for repair
+00:20:26.446 [Test worker] WARN  com.rsmaxwell.diaries.responder.utilities.DiaryContext - Fragment 41 references missing Image 91; preserving unresolved id for repair
+00:20:26.446 [Test worker] WARN  com.rsmaxwell.diaries.responder.utilities.DiaryContext - Fragment 41 references missing Image 91; preserving unresolved id for repair
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

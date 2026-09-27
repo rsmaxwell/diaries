@@ -1,0 +1,20 @@
+[
+  {
+    "test": "ImageCatalogueMqttIntegrationTest",
+    "status": "PASSED",
+    "container": "diaries-0025-step14-934b33b49ed3",
+    "imageId": "sha256:6f8d8a947c506f8a2290ec65cd4bd2bc7cb4d43fb5f6271f861cb013e2ef9797",
+    "tests": 1,
+    "skipped": 0,
+    "cleanupExitCode": 0
+  },
+  {
+    "test": "SynchroniseLargeRetainedTreeMqttIntegrationTest",
+    "status": "PASSED",
+    "container": "diaries-0025-step14-e1c02f401e43",
+    "imageId": "sha256:6f8d8a947c506f8a2290ec65cd4bd2bc7cb4d43fb5f6271f861cb013e2ef9797",
+    "tests": 1,
+    "skipped": 0,
+    "cleanupExitCode": 0
+  }
+]

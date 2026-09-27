@@ -1,0 +1,53 @@
+1790551355: Info: running mosquitto as user: mosquitto.
+1790551355: mosquitto version 2.1.2 starting
+1790551355: Config loaded from /mosquitto/config/mosquitto.conf.
+1790551355: Bridge support available.
+1790551355: Persistence support available.
+1790551355: TLS support available.
+1790551355: TLS-PSK support available.
+1790551355: Websockets support available.
+1790551355: Opening ipv4 listen socket on port 1883.
+1790551355: Opening ipv6 listen socket on port 1883.
+1790551355: mosquitto version 2.1.2 running
+1790551361: New connection from 172.17.0.1:45710 on port 1883.
+1790551361: New client connected from 172.17.0.1:45710 as image-test-3bec243a-64c1-49e0-857c-088cb15b044d (p5, c1, k60, u'diaries-responder').
+1790551361: New connection from 172.17.0.1:45714 on port 1883.
+1790551361: New client connected from 172.17.0.1:45714 as syncronise-pub-49842d5d-1ed7-484d-a9d7-dc09d9aabb24 (p5, c1, k60, u'diaries-responder').
+1790551361: New connection from 172.17.0.1:45724 on port 1883.
+1790551362: New client connected from 172.17.0.1:45724 as syncronise-sub-49842d5d-1ed7-484d-a9d7-dc09d9aabb24 (p5, c1, k60, u'diaries-responder').
+1790551362: Client syncronise-sub-49842d5d-1ed7-484d-a9d7-dc09d9aabb24 [172.17.0.1:45724] disconnected: connection closed by client.
+1790551362: Client syncronise-pub-49842d5d-1ed7-484d-a9d7-dc09d9aabb24 [172.17.0.1:45714] disconnected.
+1790551362: New connection from 172.17.0.1:45726 on port 1883.
+1790551362: New client connected from 172.17.0.1:45726 as image-test-5c7570c4-04b0-475a-aaaa-d1b106fd0652 (p5, c1, k60, u'diaries-responder').
+1790551363: Client image-test-5c7570c4-04b0-475a-aaaa-d1b106fd0652 [172.17.0.1:45726] disconnected.
+1790551363: New connection from 172.17.0.1:54298 on port 1883.
+1790551364: New client connected from 172.17.0.1:54298 as image-test-15559a62-627c-4a6a-8b24-4ba64ca02ff2 (p5, c1, k60, u'diaries-responder').
+1790551364: New connection from 172.17.0.1:54302 on port 1883.
+1790551364: New client connected from 172.17.0.1:54302 as syncronise-pub-4c722800-66fe-4f40-95ba-7136bae17390 (p5, c1, k60, u'diaries-responder').
+1790551364: New connection from 172.17.0.1:54318 on port 1883.
+1790551364: New client connected from 172.17.0.1:54318 as syncronise-sub-4c722800-66fe-4f40-95ba-7136bae17390 (p5, c1, k60, u'diaries-responder').
+1790551364: Client syncronise-sub-4c722800-66fe-4f40-95ba-7136bae17390 [172.17.0.1:54318] disconnected: connection closed by client.
+1790551364: Client syncronise-pub-4c722800-66fe-4f40-95ba-7136bae17390 [172.17.0.1:54302] disconnected.
+1790551365: New connection from 172.17.0.1:54326 on port 1883.
+1790551365: New client connected from 172.17.0.1:54326 as syncronise-pub-6e9a2837-5a08-4651-8632-4d4f86bee641 (p5, c1, k60, u'diaries-responder').
+1790551365: New connection from 172.17.0.1:54332 on port 1883.
+1790551365: New client connected from 172.17.0.1:54332 as syncronise-sub-6e9a2837-5a08-4651-8632-4d4f86bee641 (p5, c1, k60, u'diaries-responder').
+1790551366: Client syncronise-sub-6e9a2837-5a08-4651-8632-4d4f86bee641 [172.17.0.1:54332] disconnected: connection closed by client.
+1790551366: Client syncronise-pub-6e9a2837-5a08-4651-8632-4d4f86bee641 [172.17.0.1:54326] disconnected.
+1790551366: New connection from 172.17.0.1:54346 on port 1883.
+1790551366: New client connected from 172.17.0.1:54346 as image-test-9645702f-974c-4bdf-8f1f-05c6670a03cb (p5, c1, k60, u'diaries-responder').
+1790551367: Client image-test-9645702f-974c-4bdf-8f1f-05c6670a03cb [172.17.0.1:54346] disconnected.
+1790551368: New connection from 172.17.0.1:54362 on port 1883.
+1790551368: New client connected from 172.17.0.1:54362 as syncronise-pub-02446204-6d1a-4948-8905-efa508e33ca2 (p5, c1, k60, u'diaries-responder').
+1790551368: New connection from 172.17.0.1:54366 on port 1883.
+1790551368: New client connected from 172.17.0.1:54366 as syncronise-sub-02446204-6d1a-4948-8905-efa508e33ca2 (p5, c1, k60, u'diaries-responder').
+1790551368: Client syncronise-sub-02446204-6d1a-4948-8905-efa508e33ca2 [172.17.0.1:54366] disconnected: connection closed by client.
+1790551368: Client syncronise-pub-02446204-6d1a-4948-8905-efa508e33ca2 [172.17.0.1:54362] disconnected.
+1790551368: New connection from 172.17.0.1:54376 on port 1883.
+1790551369: New client connected from 172.17.0.1:54376 as image-test-debf0db7-6e7a-41e9-9b29-531a359cc3d2 (p5, c1, k60, u'diaries-responder').
+1790551370: Client image-test-debf0db7-6e7a-41e9-9b29-531a359cc3d2 [172.17.0.1:54376] disconnected.
+1790551370: New connection from 172.17.0.1:54384 on port 1883.
+1790551370: New client connected from 172.17.0.1:54384 as image-test-456b307d-00bb-40bb-a9f0-e4ab023b8f43 (p5, c1, k60, u'diaries-responder').
+1790551372: Client image-test-456b307d-00bb-40bb-a9f0-e4ab023b8f43 [172.17.0.1:54384] disconnected.
+1790551372: Client image-test-15559a62-627c-4a6a-8b24-4ba64ca02ff2 [172.17.0.1:54298] disconnected.
+1790551372: Client image-test-3bec243a-64c1-49e0-857c-088cb15b044d [172.17.0.1:45710] disconnected.

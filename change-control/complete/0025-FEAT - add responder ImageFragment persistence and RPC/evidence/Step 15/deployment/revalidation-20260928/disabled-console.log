@@ -1,0 +1,41 @@
+[phase] disabled: subscribed to fixture/step15/reply/disabled/59312/1790551603459
+[phase] disabled: MQTT client connected; responder readiness was already verified by the Java health-check client
+[rpc] -> signin correlation=1
+[rpc] publish acknowledged signin correlation=1
+[rpc] <- signin correlation=1 status=200
+[rpc] -> getVersion correlation=2
+[rpc] publish acknowledged getVersion correlation=2
+[rpc] <- getVersion correlation=2 status=200
+[rpc] -> addImageFragment correlation=3
+[rpc] publish acknowledged addImageFragment correlation=3
+[rpc] <- addImageFragment correlation=3 status=403
+[rpc] -> addFragment correlation=4
+[rpc] publish acknowledged addFragment correlation=4
+[rpc] <- addFragment correlation=4 status=200
+[rpc] -> lockFragment correlation=5
+[rpc] publish acknowledged lockFragment correlation=5
+[rpc] <- lockFragment correlation=5 status=200
+[rpc] -> updateFragment correlation=6
+[rpc] publish acknowledged updateFragment correlation=6
+[rpc] <- updateFragment correlation=6 status=200
+[rpc] -> lockFragment correlation=7
+[rpc] publish acknowledged lockFragment correlation=7
+[rpc] <- lockFragment correlation=7 status=200
+[rpc] -> updateMarquee correlation=8
+[rpc] publish acknowledged updateMarquee correlation=8
+[rpc] <- updateMarquee correlation=8 status=200
+[rpc] -> deleteFragment correlation=9
+[rpc] publish acknowledged deleteFragment correlation=9
+[rpc] <- deleteFragment correlation=9 status=200
+[rpc] -> uploadFile correlation=10
+[rpc] publish acknowledged uploadFile correlation=10
+[rpc] <- uploadFile correlation=10 status=200
+[rpc] -> listFiles correlation=11
+[rpc] publish acknowledged listFiles correlation=11
+[rpc] <- listFiles correlation=11 status=200
+[rpc] -> deleteFile correlation=12
+[rpc] publish acknowledged deleteFile correlation=12
+[rpc] <- deleteFile correlation=12 status=409
+[rpc] -> deleteImage correlation=13
+[rpc] publish acknowledged deleteImage correlation=13
+[rpc] <- deleteImage correlation=13 status=200

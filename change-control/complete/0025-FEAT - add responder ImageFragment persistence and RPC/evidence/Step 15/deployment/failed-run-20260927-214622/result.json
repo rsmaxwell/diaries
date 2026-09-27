@@ -1,0 +1,42 @@
+{
+  "status": "FAILED",
+  "startedAtUtc": "2026-09-27T19:12:43.377593+00:00",
+  "feature": "0025-FEAT - add responder ImageFragment persistence and RPC",
+  "validation": [
+    "15.2",
+    "15.3"
+  ],
+  "productionModified": false,
+  "liveDatabaseUsed": false,
+  "nasUsed": false,
+  "httpPort": 8081,
+  "step14SourceComparison": {
+    "checkedFiles": 1198,
+    "changedFiles": [],
+    "matchesStep14": true
+  },
+  "jar": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\diaries-responder\\build\\libs\\diaries-responder-0.0.9-SNAPSHOT-fat.jar",
+  "jarSha256": "ca38e66034e02c7876100b5bb359b5a6cfbe7daae6dfc47ca8938e4c478768ea",
+  "javaVersion": "openjdk version \"25.0.2\" 2026-01-20\r\nOpenJDK Runtime Environment (build 25.0.2+10-69)\r\nOpenJDK 64-Bit Server VM (build 25.0.2+10-69, mixed mode, sharing)",
+  "nodeVersion": "v22.16.0",
+  "dockerVersion": "Docker version 29.5.3, build d1c06ef",
+  "backupSha256": "fe0e187eda4fe4c7923590f7ec5e36871ced87e2ba8fa6d3f882e0b0992d6b86",
+  "frozenBackupMatched": true,
+  "postgresImage": "sha256:d3e1620b530c944afa6e887d22eb899824da68e19c52024bf98f5220c88a65b2",
+  "mosquittoImage": "sha256:6f8d8a947c506f8a2290ec65cd4bd2bc7cb4d43fb5f6271f861cb013e2ef9797",
+  "deployments": [
+    {
+      "phase": "disabled",
+      "pid": 45820,
+      "imageFragmentWritesEnabled": false,
+      "jarSha256": "ca38e66034e02c7876100b5bb359b5a6cfbe7daae6dfc47ca8938e4c478768ea"
+    }
+  ],
+  "error": "node exit 4294967295: see disabled-console.log; ",
+  "cleanup": {
+    "diaries-0025-step15-22e587f3a6-mqtt": 0,
+    "diaries-0025-step15-22e587f3a6": 0
+  },
+  "workDirectoryRemoved": true,
+  "finishedAtUtc": "2026-09-27T20:35:15.450064+00:00"
+}

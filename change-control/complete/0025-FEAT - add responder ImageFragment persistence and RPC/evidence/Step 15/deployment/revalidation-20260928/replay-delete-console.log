@@ -1,0 +1,17 @@
+[phase] replay-delete: subscribed to fixture/step15/reply/replay-delete/86596/1790551643882
+[phase] replay-delete: MQTT client connected; responder readiness was already verified by the Java health-check client
+[rpc] -> signin correlation=1
+[rpc] publish acknowledged signin correlation=1
+[rpc] <- signin correlation=1 status=200
+[rpc] -> getVersion correlation=2
+[rpc] publish acknowledged getVersion correlation=2
+[rpc] <- getVersion correlation=2 status=200
+[rpc] -> deleteImage correlation=3
+[rpc] publish acknowledged deleteImage correlation=3
+[rpc] <- deleteImage correlation=3 status=409
+[rpc] -> deleteFragment correlation=4
+[rpc] publish acknowledged deleteFragment correlation=4
+[rpc] <- deleteFragment correlation=4 status=200
+[rpc] -> deleteImage correlation=5
+[rpc] publish acknowledged deleteImage correlation=5
+[rpc] <- deleteImage correlation=5 status=200

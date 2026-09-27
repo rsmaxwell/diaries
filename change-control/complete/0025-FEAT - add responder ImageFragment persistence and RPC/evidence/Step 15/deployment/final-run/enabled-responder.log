@@ -1,0 +1,11 @@
+SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+21:53:32.169 [main] INFO  com.rsmaxwell.diaries.responder.Responder - Static server running at:
+21:53:32.174 [main] INFO  com.rsmaxwell.diaries.responder.Responder -   http://localhost:8081/diaries  ->  C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\build\step15-f6d6a57f06\content\diaries
+21:53:32.175 [main] INFO  com.rsmaxwell.diaries.responder.Responder -   http://localhost:8081/files  ->  C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\build\step15-f6d6a57f06\content\files
+Unexpected error: Retained snapshot drain marker was not received
+java.util.concurrent.TimeoutException: Retained snapshot drain marker was not received
+	at com.rsmaxwell.diaries.responder.sync.SynchroniseCallback.awaitDrained(SynchroniseCallback.java:52)
+	at com.rsmaxwell.diaries.responder.sync.SynchroniseCallback.awaitDrained(SynchroniseCallback.java:42)
+	at com.rsmaxwell.diaries.responder.sync.Synchronise.perform(Synchronise.java:77)
+	at com.rsmaxwell.diaries.responder.Responder.run(Responder.java:284)
+	at com.rsmaxwell.diaries.responder.Responder.main(Responder.java:141)

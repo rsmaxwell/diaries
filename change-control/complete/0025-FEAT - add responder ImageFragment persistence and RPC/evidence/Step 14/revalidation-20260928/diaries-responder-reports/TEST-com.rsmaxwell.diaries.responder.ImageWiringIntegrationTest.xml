@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" tests="24" skipped="24" failures="0" errors="0" timestamp="2026-09-27T23:20:22.093Z" hostname="RICHARD-PC" time="0.002">
+  <properties/>
+  <testcase name="actualFactoryAndResponderWiringRegisterAndExposeImage()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="catalogueServicePublishesCommittedRowsAndUsesDatabasePathIdentity(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="filesDialogDeletionEndToEnd(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="imageFragmentDatabaseLifecycleWithRealRetainedTopics(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="referenceAwareDeletionSerializesWithAttachment(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="deleteGuardUsesLiteralPostgresPrefixesAndPreservesCatalogue(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="registeredDeleteImageRemovesRowFileAndRetainedTopic(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="liveImageFragmentRpcAndRestartReplay(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="mixedFragmentLifecyclePreservesReusableImage(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="activeTransactionRemainsOwnedByCaller()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="fragmentImageRepositoryRoundTripsAndCountsReferences()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="uploadCommitsPublishesAndReplaysAfterPublisherFailure(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="startupReconcilesZeroOneAndMultipleImagesAgainstActualDatabaseAndBroker(int)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase name="uploadGuardUsesPostgresUnicodeIdentityWithoutChangingRows(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="fragmentCreationResolutionRollbackAndImageLocking()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="registeredAddImageFragmentCommitsAndPublishes()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="uniqueConflictRollsBackAndContextRemainsUsable()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="imageAwareUpdatesAreAtomicAndPublishCommittedState()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="catalogueDeletionCommitsAndRejectsStaleSnapshots(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="saveAndUpdateCommitBeforeReturningAndInflateIndependently()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="completedDeletionStaysAbsentAfterRestart(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="authoringGateRejectsMutationsButPreservesLifecycle(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="databaseReplayAddsUnreferencedImagesAndPreservesChronologyTopics()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="freshContextReplaysCommittedImageFragmentContract()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
