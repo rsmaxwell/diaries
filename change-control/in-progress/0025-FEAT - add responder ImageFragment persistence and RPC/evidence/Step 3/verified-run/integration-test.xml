@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-09-27T09:29:52.675Z" hostname="RICHARD-PC" time="2.229">
+  <properties/>
+  <testcase name="fragmentImageRepositoryRoundTripsAndCountsReferences()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.203"/>
+  <system-out><![CDATA[10:29:54.780 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Fragment --> id: 2330
+10:29:54.787 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Fragment --> id: 2331
+10:29:54.871 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - update --> count: 1
+10:29:54.880 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.FragmentRepositoryImpl - updateSequence --> count: 1
+10:29:54.883 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 1
+10:29:54.888 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - update --> count: 1
+10:29:54.891 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - update --> count: 1
+10:29:54.893 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 1
+]]></system-out>
+  <system-err><![CDATA[SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+]]></system-err>
+</testsuite>

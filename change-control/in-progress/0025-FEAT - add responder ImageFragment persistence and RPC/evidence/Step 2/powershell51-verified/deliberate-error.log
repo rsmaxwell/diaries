@@ -1,0 +1,9 @@
+docker.exe : ERROR:  0025 deliberate failure probe
+At line:9 char:12
++     $out = & $dockerCommand.Source @Arguments 2>&1
++            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR:  0025 deliberate failure probe:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+CONTEXT:  PL/pgSQL function inline_code_block line 1 at RAISE
+

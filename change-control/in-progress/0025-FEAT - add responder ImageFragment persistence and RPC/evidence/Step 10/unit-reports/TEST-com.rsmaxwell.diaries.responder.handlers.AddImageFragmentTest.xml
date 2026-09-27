@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-09-27T12:54:25.363Z" hostname="RICHARD-PC" time="0.023">
+  <properties/>
+  <testcase name="rejectsMalformedFields()" classname="com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest" time="0.014"/>
+  <testcase name="missingReferencesAreControlledAndFailureDoesNotPublish()" classname="com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest" time="0.002"/>
+  <testcase name="publicationFailureReportsCommittedIdentity()" classname="com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest" time="0.001"/>
+  <testcase name="validOptionalReferencesAndUnexpectedFields()" classname="com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest" time="0.003"/>
+  <testcase name="authorizationPrecedesPersistence()" classname="com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest" time="0.002"/>
+  <system-out><![CDATA[13:54:25.367 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.367 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.368 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.368 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.369 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.369 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.369 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.369 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.370 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.370 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.370 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.370 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.371 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.371 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.371 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.371 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.371 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.371 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.372 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.372 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.372 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.372 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.372 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.372 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.373 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.373 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.373 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.373 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.373 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.373 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.374 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.374 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.374 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.374 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.374 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.374 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.375 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.375 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.375 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.375 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.375 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.375 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.376 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.376 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.376 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.376 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.377 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.377 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.377 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.377 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.378 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.378 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.379 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.379 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.380 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.380 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.381 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.381 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.381 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+13:54:25.381 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/fragments/123, version: 0
+13:54:25.381 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.382 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.382 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.383 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+13:54:25.383 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/fragments/123, version: 0
+13:54:25.383 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.383 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/1830/3/8/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+13:54:25.383 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/dates/1830/3/8/123, version: 0
+13:54:25.383 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.383 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.383 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.383 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"IMAGE","imageId":91,"marqueeId":null,"lock":null}
+13:54:25.383 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/fragments/123, version: 0
+13:54:25.383 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.384 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/1830/3/8/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"IMAGE","imageId":91,"marqueeId":null,"lock":null}
+13:54:25.384 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/dates/1830/3/8/123, version: 0
+13:54:25.384 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.384 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.384 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.384 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+13:54:25.384 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/fragments/123, version: 0
+13:54:25.384 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.384 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/1830/3/8/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+13:54:25.384 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/dates/1830/3/8/123, version: 0
+13:54:25.384 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.385 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.385 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken: accessToken not found'
+13:54:25.385 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.385 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.385 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.385 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.385 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.386 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken: JWT has expired'
+13:54:25.386 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.386 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:25.387 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:25.387 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

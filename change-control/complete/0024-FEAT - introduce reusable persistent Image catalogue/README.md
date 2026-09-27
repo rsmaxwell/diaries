@@ -136,7 +136,7 @@ Catalogue introduction changes file ownership semantics. In the same release:
 - rejected operations must return a clear conflict response and leave the file, database and retained topic unchanged;
 - directories containing catalogued files must not be recursively deleted through a generic operation.
 
-Generic `DeleteFile` continues to reject catalogued files. The supported `deleteImage` operation and client confirmation UI are tracked separately in [0030](../../todo/0030-FEAT%20-%20allow%20deletion%20of%20catalogued%20Images/README.md). Feature 0025 must add reference-aware deletion protection before ImageFragment authoring is enabled. Closing 0024 does not imply that either follow-up has been implemented.
+Generic `DeleteFile` continues to reject catalogued files. The supported `deleteImage` operation and client confirmation UI are tracked separately in [0030](../0030-FEAT%20-%20allow%20deletion%20of%20catalogued%20Images/README.md). Feature 0025 must add reference-aware deletion protection before ImageFragment authoring is enabled. Closing 0024 does not imply that either follow-up has been implemented.
 
 ### Client / Web
 
@@ -208,7 +208,7 @@ for this administrative close-out.
 
 Remaining work is explicitly outside this completed catalogue feature:
 
-- [0030 - Allow deletion of catalogued Images](../../todo/0030-FEAT%20-%20allow%20deletion%20of%20catalogued%20Images/README.md)
+- [0030 - Allow deletion of catalogued Images](../0030-FEAT%20-%20allow%20deletion%20of%20catalogued%20Images/README.md)
   owns the dedicated deletion operation and client UI. Generic `DeleteFile`
   remains protected. Reference-aware deletion remains a prerequisite in 0025
   before ImageFragment authoring is enabled.

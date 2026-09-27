@@ -1,0 +1,55 @@
+;
+; Archive created at 2026-09-27 09:37:24 UTC
+;     dbname: diaries
+;     TOC Entries: 44
+;     Compression: gzip
+;     Dump Version: 1.16-0
+;     Format: CUSTOM
+;     Integer: 4 bytes
+;     Offset: 8 bytes
+;     Dumped from database version: 18.6
+;     Dumped by pg_dump version: 18.6
+;
+;
+; Selected TOC Entries:
+;
+223; 1259 16386 TABLE public diary diaries
+224; 1259 16392 SEQUENCE public diary_id_seq diaries
+225; 1259 16393 TABLE public fragment diaries
+226; 1259 16401 SEQUENCE public fragment_id_seq diaries
+234; 1259 24614 TABLE public image diaries
+233; 1259 24613 SEQUENCE public image_id_seq diaries
+227; 1259 16402 TABLE public marquee diaries
+228; 1259 16409 SEQUENCE public marquee_id_seq diaries
+229; 1259 16410 TABLE public page diaries
+230; 1259 16418 SEQUENCE public page_id_seq diaries
+231; 1259 16419 TABLE public person diaries
+232; 1259 16429 SEQUENCE public person_id_seq diaries
+3540; 0 16386 TABLE DATA public diary diaries
+3542; 0 16393 TABLE DATA public fragment diaries
+3551; 0 24614 TABLE DATA public image diaries
+3544; 0 16402 TABLE DATA public marquee diaries
+3546; 0 16410 TABLE DATA public page diaries
+3548; 0 16419 TABLE DATA public person diaries
+3558; 0 0 SEQUENCE SET public diary_id_seq diaries
+3559; 0 0 SEQUENCE SET public fragment_id_seq diaries
+3560; 0 0 SEQUENCE SET public image_id_seq diaries
+3561; 0 0 SEQUENCE SET public marquee_id_seq diaries
+3562; 0 0 SEQUENCE SET public page_id_seq diaries
+3563; 0 0 SEQUENCE SET public person_id_seq diaries
+3369; 2606 16432 CONSTRAINT public diary diary_pkey diaries
+3372; 2606 16434 CONSTRAINT public fragment fragment_pkey diaries
+3387; 2606 24638 CONSTRAINT public image image_pkey diaries
+3374; 2606 16436 CONSTRAINT public marquee marquee_pkey diaries
+3378; 2606 16438 CONSTRAINT public page page_pkey diaries
+3382; 2606 16440 CONSTRAINT public person person_pkey diaries
+3376; 2606 16442 CONSTRAINT public marquee ukl9q4l90feijpx2gieoru58pb2 diaries
+3384; 2606 16444 CONSTRAINT public person ukn0i6d7rc1hqkjivk494g8j2qd diaries
+3380; 2606 16446 CONSTRAINT public page ukstpwefkx8tx90raxx79mhwerm diaries
+3370; 1259 24583 INDEX public fragment_page_id_idx diaries
+3385; 1259 24640 INDEX public image_checksum_idx diaries
+3388; 1259 24639 INDEX public image_relative_path_ci_uq diaries
+3390; 2606 16447 FK CONSTRAINT public marquee fkbo945jvar300n630a3ip4o0hj diaries
+3391; 2606 16452 FK CONSTRAINT public marquee fkdfde2ipuunqs9qcyf08l7iu1m diaries
+3392; 2606 16457 FK CONSTRAINT public page fkqba2qhex78ywtpcpywaaqjvtt diaries
+3389; 2606 24578 FK CONSTRAINT public fragment fragment_page_fk diaries

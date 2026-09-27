@@ -1,0 +1,76 @@
+SET
+DO
+CREATE TABLE
+ALTER TABLE
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:12: NOTICE:  constraint "expected_type" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:13: NOTICE:  constraint "expected_reference" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:14: NOTICE:  constraint "expected_type_varchar" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+DO
+{"page": [683, "fd08505c6ada236ecfeef0689fbccdee"], "diary": [10, "4c94f56677d2e5286161a1a80e22de03"], "image": [0, "d751713988987e9331980363e24189ce"], "marquee": [2269, "24f7c955b2fc070b3c48b4fc24212649"], "fragment": [2329, "60daee6c6425363f1f36514ff73a3fb3"], "references": "96c4f6acc3f4b908fe3d2cfba377d773"}
+0025 PREFLIGHT PASS
+BEGIN
+SET
+SET
+ pg_advisory_xact_lock 
+-----------------------
+ 
+(1 row)
+
+LOCK TABLE
+LOCK TABLE
+DO
+psql:/tmp/migration/assert-schema.sql:10: NOTICE:  relation "_0025_expected" already exists, skipping
+CREATE TABLE
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:11: NOTICE:  column "image_id" of relation "_0025_expected" already exists, skipping
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+DO
+{"page": [683, "fd08505c6ada236ecfeef0689fbccdee"], "diary": [10, "4c94f56677d2e5286161a1a80e22de03"], "image": [0, "d751713988987e9331980363e24189ce"], "marquee": [2269, "24f7c955b2fc070b3c48b4fc24212649"], "fragment": [2329, "60daee6c6425363f1f36514ff73a3fb3"], "references": "96c4f6acc3f4b908fe3d2cfba377d773"}
+ALTER TABLE
+DO
+CREATE INDEX
+ALTER TABLE
+ALTER TABLE
+DO
+CREATE TABLE
+psql:/tmp/migration/assert-schema.sql:10: NOTICE:  relation "_0025_expected" already exists, skipping
+psql:/tmp/migration/assert-schema.sql:11: NOTICE:  column "image_id" of relation "_0025_expected" already exists, skipping
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+DO
+DO
+{"page": [683, "fd08505c6ada236ecfeef0689fbccdee"], "diary": [10, "4c94f56677d2e5286161a1a80e22de03"], "image": [0, "d751713988987e9331980363e24189ce"], "marquee": [2269, "24f7c955b2fc070b3c48b4fc24212649"], "fragment": [2329, "60daee6c6425363f1f36514ff73a3fb3"], "references": "96c4f6acc3f4b908fe3d2cfba377d773"}
+0025 POSTFLIGHT PASS: all original rows and references preserved
+COMMIT
+0025 APPLY PASS
+DO
+CREATE TABLE
+psql:/tmp/migration/assert-schema.sql:10: NOTICE:  relation "_0025_expected" already exists, skipping
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:11: NOTICE:  column "image_id" of relation "_0025_expected" already exists, skipping
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+DO
+DO
+{"page": [683, "fd08505c6ada236ecfeef0689fbccdee"], "diary": [10, "4c94f56677d2e5286161a1a80e22de03"], "image": [0, "d751713988987e9331980363e24189ce"], "marquee": [2269, "24f7c955b2fc070b3c48b4fc24212649"], "fragment": [2329, "60daee6c6425363f1f36514ff73a3fb3"], "references": "96c4f6acc3f4b908fe3d2cfba377d773"}
+0025 POSTFLIGHT PASS: all original rows and references preserved

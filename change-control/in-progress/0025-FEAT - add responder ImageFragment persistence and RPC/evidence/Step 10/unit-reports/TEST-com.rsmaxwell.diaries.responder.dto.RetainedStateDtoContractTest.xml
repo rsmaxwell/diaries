@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-09-27T12:54:25.355Z" hostname="RICHARD-PC" time="0.008">
+  <properties/>
+  <testcase name="fragmentConstructedFromPersistenceDtoPublishesExplicitOwnership()" classname="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" time="0.0"/>
+  <testcase name="imageFragmentsPublishBothAliasesAndTombstonesWithOptionalReference()" classname="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" time="0.002"/>
+  <testcase name="pageContractPublishesTheSamePayloadToHierarchyAndLookupTopics()" classname="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" time="0.002"/>
+  <testcase name="unlockedFragmentSerialisesAnExplicitNullLockAndMarquee()" classname="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" time="0.001"/>
+  <testcase name="fragmentContractIncludesDateAliasMarqueeIdAndLockOwner()" classname="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" time="0.0"/>
+  <testcase name="marqueeContractPublishesTheSamePayloadToHierarchyAndLookupTopics()" classname="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" time="0.001"/>
+  <testcase name="mqttPublicationUsesQosOneAndRetainsPayloadAndTombstone()" classname="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" time="0.0"/>
+  <testcase name="diaryContractUsesItsCanonicalTopicAndPayloadShape()" classname="com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest" time="0.002"/>
+  <system-out><![CDATA[13:54:25.357 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/34 --> {"id":34,"version":1,"year":1830,"month":3,"day":8,"sequence":1,"text":"Image fragment","pageId":22,"type":"IMAGE","imageId":91,"marqueeId":null,"lock":null}
+13:54:25.357 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 34 to topic: diaries/fragments/34, version: 1
+13:54:25.357 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.357 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/1830/3/8/34 --> {"id":34,"version":1,"year":1830,"month":3,"day":8,"sequence":1,"text":"Image fragment","pageId":22,"type":"IMAGE","imageId":91,"marqueeId":null,"lock":null}
+13:54:25.357 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 34 to topic: diaries/dates/1830/3/8/34, version: 1
+13:54:25.357 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.357 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - removing topic: diaries/fragments/34
+13:54:25.357 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.357 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - removing topic: diaries/dates/1830/3/8/34
+13:54:25.357 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.357 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/34 --> {"id":34,"version":1,"year":1830,"month":3,"day":8,"sequence":1,"text":"Image fragment","pageId":22,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+13:54:25.358 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 34 to topic: diaries/fragments/34, version: 1
+13:54:25.358 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.358 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/1830/3/8/34 --> {"id":34,"version":1,"year":1830,"month":3,"day":8,"sequence":1,"text":"Image fragment","pageId":22,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+13:54:25.358 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 34 to topic: diaries/dates/1830/3/8/34, version: 1
+13:54:25.358 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.358 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - removing topic: diaries/fragments/34
+13:54:25.358 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.358 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - removing topic: diaries/dates/1830/3/8/34
+13:54:25.358 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.362 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:25.362 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

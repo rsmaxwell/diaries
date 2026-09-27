@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-09-27T13:02:30.252Z" hostname="RICHARD-PC" time="9.327">
+  <properties/>
+  <testcase name="imageFragmentDatabaseLifecycleWithRealRetainedTopics(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="7.134"/>
+  <testcase name="referenceAwareDeletionSerializesWithAttachment(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="0.163"/>
+  <system-out><![CDATA[14:02:32.743 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Diary --> id: 11
+14:02:32.751 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Page --> id: 1368
+14:02:32.783 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:32.785 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:32.785 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:32.785 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:32.868 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Fragment --> id: 2330
+14:02:32.876 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/2330 --> {"id":2330,"version":0,"year":2093,"month":3,"day":11,"sequence":40.0000,"text":"Shared first","pageId":1368,"type":"IMAGE","imageId":1,"marqueeId":null,"lock":null}
+14:02:32.876 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2330 to topic: diaries/fragments/2330, version: 0
+14:02:32.876 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:32.876 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/2093/3/11/2330 --> {"id":2330,"version":0,"year":2093,"month":3,"day":11,"sequence":40.0000,"text":"Shared first","pageId":1368,"type":"IMAGE","imageId":1,"marqueeId":null,"lock":null}
+14:02:32.877 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2330 to topic: diaries/dates/2093/3/11/2330, version: 0
+14:02:32.877 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:32.877 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:32.877 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:32.886 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Fragment --> id: 2331
+14:02:32.887 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/2331 --> {"id":2331,"version":0,"year":2093,"month":3,"day":11,"sequence":20.0000,"text":"Shared second","pageId":1368,"type":"IMAGE","imageId":1,"marqueeId":null,"lock":null}
+14:02:32.887 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2331 to topic: diaries/fragments/2331, version: 0
+14:02:32.887 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:32.888 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/2093/3/11/2331 --> {"id":2331,"version":0,"year":2093,"month":3,"day":11,"sequence":20.0000,"text":"Shared second","pageId":1368,"type":"IMAGE","imageId":1,"marqueeId":null,"lock":null}
+14:02:32.888 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2331 to topic: diaries/dates/2093/3/11/2331, version: 0
+14:02:32.888 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:32.888 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:32.888 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:32.892 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Fragment --> id: 2332
+14:02:32.893 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/2332 --> {"id":2332,"version":0,"year":2093,"month":3,"day":11,"sequence":10.0000,"text":"Shared second","pageId":1368,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+14:02:32.893 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2332 to topic: diaries/fragments/2332, version: 0
+14:02:32.894 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:32.894 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/2093/3/11/2332 --> {"id":2332,"version":0,"year":2093,"month":3,"day":11,"sequence":10.0000,"text":"Shared second","pageId":1368,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+14:02:32.894 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2332 to topic: diaries/dates/2093/3/11/2332, version: 0
+14:02:32.894 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:33.344 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.AddFragment - AddFragment.handleRequest: args: {"sequence":30,"month":3,"year":2093,"x":0.0,"width":40.0,"y":0.0,"text":"Shared second","pageId":1368,"day":11,"height":40.0}
+14:02:33.344 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:33.344 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:33.345 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.AddFragment - AddFragment.handleRequest: Authorization.check: OK!
+14:02:33.350 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Fragment --> id: 2333
+14:02:33.351 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Marquee --> id: 2270
+14:02:33.352 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/2333 --> {"id":2333,"version":0,"year":2093,"month":3,"day":11,"sequence":30.0000,"text":"Shared second","pageId":1368,"type":"MARQUEE","imageId":null,"marqueeId":2270,"lock":null}
+14:02:33.352 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2333 to topic: diaries/fragments/2333, version: 0
+14:02:33.352 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:33.352 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/2093/3/11/2333 --> {"id":2333,"version":0,"year":2093,"month":3,"day":11,"sequence":30.0000,"text":"Shared second","pageId":1368,"type":"MARQUEE","imageId":null,"marqueeId":2270,"lock":null}
+14:02:33.352 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2333 to topic: diaries/dates/2093/3/11/2333, version: 0
+14:02:33.352 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:33.356 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.MarqueePublishDTO - publishing to topic: diaries/diaries/11/1368/2270 --> {"id":2270,"version":0,"pageId":1368,"fragmentId":2333,"rectangle":{"x":0.0,"y":0.0,"width":40.0,"height":40.0}}
+14:02:33.356 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:33.356 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.MarqueePublishDTO - publishing to topic: diaries/marquees/2270 --> {"id":2270,"version":0,"pageId":1368,"fragmentId":2333,"rectangle":{"x":0.0,"y":0.0,"width":40.0,"height":40.0}}
+14:02:33.356 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:33.363 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - update --> count: 1
+14:02:33.364 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.UpdateFragment - UpdateFragment.handleRequest: args: {"sequence":10.0000,"imageId":1,"month":3,"year":2093,"id":2332,"text":"Shared second","day":11,"version":0}
+14:02:33.364 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:33.364 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:33.365 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.UpdateFragment - UpdateFragment.handleRequest: Authorization.check: OK!
+14:02:33.373 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - update --> count: 1
+14:02:33.384 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.UpdateFragment - UpdateFragment.handleRequest: publishing 1 affected fragment(s) to the TopicTree
+14:02:33.388 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/2332 --> {"id":2332,"version":1,"year":2093,"month":3,"day":11,"sequence":10.0000,"text":"Shared second","pageId":1368,"type":"IMAGE","imageId":1,"marqueeId":null,"lock":null}
+14:02:33.388 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2332 to topic: diaries/fragments/2332, version: 1
+14:02:33.388 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:33.388 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/2093/3/11/2332 --> {"id":2332,"version":1,"year":2093,"month":3,"day":11,"sequence":10.0000,"text":"Shared second","pageId":1368,"type":"IMAGE","imageId":1,"marqueeId":null,"lock":null}
+14:02:33.388 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2332 to topic: diaries/dates/2093/3/11/2332, version: 1
+14:02:33.388 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:33.807 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - update --> count: 1
+14:02:33.808 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.UpdateFragment - UpdateFragment.handleRequest: args: {"sequence":10.0000,"imageId":2,"month":3,"year":2093,"id":2332,"text":"Shared second","day":11,"version":1}
+14:02:33.808 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:33.808 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:33.808 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.UpdateFragment - UpdateFragment.handleRequest: Authorization.check: OK!
+14:02:33.815 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - update --> count: 1
+14:02:33.822 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.UpdateFragment - UpdateFragment.handleRequest: publishing 1 affected fragment(s) to the TopicTree
+14:02:33.825 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/2332 --> {"id":2332,"version":2,"year":2093,"month":3,"day":11,"sequence":10.0000,"text":"Shared second","pageId":1368,"type":"IMAGE","imageId":2,"marqueeId":null,"lock":null}
+14:02:33.825 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2332 to topic: diaries/fragments/2332, version: 2
+14:02:33.825 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:33.826 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/2093/3/11/2332 --> {"id":2332,"version":2,"year":2093,"month":3,"day":11,"sequence":10.0000,"text":"Shared second","pageId":1368,"type":"IMAGE","imageId":2,"marqueeId":null,"lock":null}
+14:02:33.826 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2332 to topic: diaries/dates/2093/3/11/2332, version: 2
+14:02:33.826 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:34.240 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - update --> count: 1
+14:02:34.241 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.UpdateFragment - UpdateFragment.handleRequest: args: {"sequence":10.0000,"imageId":null,"month":3,"year":2093,"id":2332,"text":"Shared second","day":11,"version":2}
+14:02:34.241 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:34.241 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:34.242 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.UpdateFragment - UpdateFragment.handleRequest: Authorization.check: OK!
+14:02:34.248 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - update --> count: 1
+14:02:34.252 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.UpdateFragment - UpdateFragment.handleRequest: publishing 1 affected fragment(s) to the TopicTree
+14:02:34.253 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/2332 --> {"id":2332,"version":3,"year":2093,"month":3,"day":11,"sequence":10.0000,"text":"Shared second","pageId":1368,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+14:02:34.254 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2332 to topic: diaries/fragments/2332, version: 3
+14:02:34.254 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:34.254 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/2093/3/11/2332 --> {"id":2332,"version":3,"year":2093,"month":3,"day":11,"sequence":10.0000,"text":"Shared second","pageId":1368,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":null}
+14:02:34.254 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2332 to topic: diaries/dates/2093/3/11/2332, version: 3
+14:02:34.254 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:34.670 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - update --> count: 1
+14:02:35.079 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.UpdateFragment - UpdateFragment.handleRequest: args: {"sequence":10.0000,"imageId":2,"month":3,"year":2093,"id":2332,"text":"Shared second","day":11,"version":2}
+14:02:35.079 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:35.079 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:35.080 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.UpdateFragment - UpdateFragment.handleRequest: Authorization.check: OK!
+14:02:35.085 [Test worker] WARN  com.rsmaxwell.diaries.responder.handlers.UpdateFragment - UpdateFragment.handleRequest: request failed; rolling back transaction: Stale update. incoming version: 2, original version: 3
+com.rsmaxwell.mqtt.rpc.exceptions.RpcStatusException: Stale update. incoming version: 2, original version: 3
+	at com.rsmaxwell.mqtt.rpc.exceptions.RpcStatusException.badRequest(RpcStatusException.java:26) ~[mqtt-rpc-responder-0.0.8.jar:?]
+	at com.rsmaxwell.diaries.responder.model.Base.checkAndIncrementVersion(Base.java:36) ~[main/:?]
+	at com.rsmaxwell.diaries.responder.handlers.UpdateFragment.handleRequest(UpdateFragment.java:106) [main/:?]
+	at com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest.lambda$imageFragmentDatabaseLifecycleWithRealRetainedTopics$0(ImageWiringIntegrationTest.java:191) [test/:?]
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:54) [junit-jupiter-api-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35) [junit-jupiter-api-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3234) [junit-jupiter-api-6.1.2.jar:6.1.2]
+	at com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest.imageFragmentDatabaseLifecycleWithRealRetainedTopics(ImageWiringIntegrationTest.java:191) [test/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[?:?]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:700) [junit-platform-commons-6.1.2.jar:6.1.2]
+	at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:528) [junit-platform-commons-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.support.MethodReflectionUtils.invoke(MethodReflectionUtils.java:53) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:61) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:124) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:163) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:148) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:124) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:105) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:99) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:66) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:47) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:39) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:104) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:98) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invokeVoid(InterceptingExecutableInvoker.java:71) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$0(TestMethodTestDescriptor.java:219) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:215) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:157) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:176) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604) [?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604) [?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:256) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:228) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:189) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:109) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:168) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:137) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:126) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:100) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:57) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$0(InterceptingLauncher.java:46) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:45) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:57) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestDefinitionProcessor$CollectThenExecuteTestDefinitionConsumer.processAllTestDefinitions(JUnitPlatformTestDefinitionProcessor.java:205) [gradle-testing-jvm-infrastructure-9.6.1.jar:9.6.1]
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestDefinitionProcessor$CollectThenExecuteTestDefinitionConsumer.access$000(JUnitPlatformTestDefinitionProcessor.java:122) [gradle-testing-jvm-infrastructure-9.6.1.jar:9.6.1]
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestDefinitionProcessor.stop(JUnitPlatformTestDefinitionProcessor.java:116) [gradle-testing-jvm-infrastructure-9.6.1.jar:9.6.1]
+	at org.gradle.api.internal.tasks.testing.SuiteTestDefinitionProcessor.stop(SuiteTestDefinitionProcessor.java:63) [gradle-testing-base-infrastructure-9.6.1.jar:9.6.1]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[?:?]
+	at org.gradle.internal.dispatch.MethodInvocation.invokeOn(MethodInvocation.java:77) [gradle-messaging-9.6.1.jar:9.6.1]
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:28) [gradle-messaging-9.6.1.jar:9.6.1]
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:19) [gradle-messaging-9.6.1.jar:9.6.1]
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33) [gradle-messaging-9.6.1.jar:9.6.1]
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:88) [gradle-messaging-9.6.1.jar:9.6.1]
+	at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source) [?:?]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:195) [gradle-testing-base-infrastructure-9.6.1.jar:9.6.1]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:126) [gradle-testing-base-infrastructure-9.6.1.jar:9.6.1]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103) [gradle-testing-base-infrastructure-9.6.1.jar:9.6.1]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63) [gradle-testing-base-infrastructure-9.6.1.jar:9.6.1]
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56) [gradle-worker-main-9.6.1.jar:9.6.1]
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:122) [gradle-worker-main-9.6.1.jar:9.6.1]
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:72) [gradle-worker-main-9.6.1.jar:9.6.1]
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69) [gradle-worker.jar:?]
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74) [gradle-worker.jar:?]
+14:02:35.506 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - update --> count: 1
+14:02:35.915 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.UpdateFragment - UpdateFragment.handleRequest: args: {"sequence":10.0000,"imageId":2,"month":3,"year":2093,"id":2332,"text":"Shared second","day":11,"version":3}
+14:02:35.915 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:35.915 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:35.916 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.UpdateFragment - UpdateFragment.handleRequest: Authorization.check: OK!
+14:02:35.921 [Test worker] WARN  com.rsmaxwell.diaries.responder.handlers.UpdateFragment - UpdateFragment.handleRequest: request failed; rolling back transaction: Fragment is locked by another session
+com.rsmaxwell.mqtt.rpc.exceptions.RpcStatusException: Fragment is locked by another session
+	at com.rsmaxwell.mqtt.rpc.exceptions.RpcStatusException.conflict(RpcStatusException.java:38) ~[mqtt-rpc-responder-0.0.8.jar:?]
+	at com.rsmaxwell.diaries.responder.utilities.FragmentLocking.requireLockedByCaller(FragmentLocking.java:41) ~[main/:?]
+	at com.rsmaxwell.diaries.responder.handlers.UpdateFragment.handleRequest(UpdateFragment.java:83) [main/:?]
+	at com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest.lambda$imageFragmentDatabaseLifecycleWithRealRetainedTopics$0(ImageWiringIntegrationTest.java:191) [test/:?]
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:54) [junit-jupiter-api-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35) [junit-jupiter-api-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3234) [junit-jupiter-api-6.1.2.jar:6.1.2]
+	at com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest.imageFragmentDatabaseLifecycleWithRealRetainedTopics(ImageWiringIntegrationTest.java:191) [test/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[?:?]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:700) [junit-platform-commons-6.1.2.jar:6.1.2]
+	at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:528) [junit-platform-commons-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.support.MethodReflectionUtils.invoke(MethodReflectionUtils.java:53) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:61) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:124) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:163) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:148) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:124) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:105) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:99) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:66) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:47) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:39) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:104) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:98) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invokeVoid(InterceptingExecutableInvoker.java:71) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$0(TestMethodTestDescriptor.java:219) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:215) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:157) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70) [junit-jupiter-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:176) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604) [?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604) [?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:139) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58) [junit-platform-engine-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:256) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:228) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:189) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:109) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:168) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:137) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:126) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:100) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:57) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$0(InterceptingLauncher.java:46) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:45) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:57) [junit-platform-launcher-6.1.2.jar:6.1.2]
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestDefinitionProcessor$CollectThenExecuteTestDefinitionConsumer.processAllTestDefinitions(JUnitPlatformTestDefinitionProcessor.java:205) [gradle-testing-jvm-infrastructure-9.6.1.jar:9.6.1]
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestDefinitionProcessor$CollectThenExecuteTestDefinitionConsumer.access$000(JUnitPlatformTestDefinitionProcessor.java:122) [gradle-testing-jvm-infrastructure-9.6.1.jar:9.6.1]
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestDefinitionProcessor.stop(JUnitPlatformTestDefinitionProcessor.java:116) [gradle-testing-jvm-infrastructure-9.6.1.jar:9.6.1]
+	at org.gradle.api.internal.tasks.testing.SuiteTestDefinitionProcessor.stop(SuiteTestDefinitionProcessor.java:63) [gradle-testing-base-infrastructure-9.6.1.jar:9.6.1]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[?:?]
+	at org.gradle.internal.dispatch.MethodInvocation.invokeOn(MethodInvocation.java:77) [gradle-messaging-9.6.1.jar:9.6.1]
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:28) [gradle-messaging-9.6.1.jar:9.6.1]
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:19) [gradle-messaging-9.6.1.jar:9.6.1]
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33) [gradle-messaging-9.6.1.jar:9.6.1]
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:88) [gradle-messaging-9.6.1.jar:9.6.1]
+	at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source) [?:?]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:195) [gradle-testing-base-infrastructure-9.6.1.jar:9.6.1]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:126) [gradle-testing-base-infrastructure-9.6.1.jar:9.6.1]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103) [gradle-testing-base-infrastructure-9.6.1.jar:9.6.1]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63) [gradle-testing-base-infrastructure-9.6.1.jar:9.6.1]
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56) [gradle-worker-main-9.6.1.jar:9.6.1]
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:122) [gradle-worker-main-9.6.1.jar:9.6.1]
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:72) [gradle-worker-main-9.6.1.jar:9.6.1]
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69) [gradle-worker.jar:?]
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74) [gradle-worker.jar:?]
+14:02:36.332 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.NormaliseFragments - NormaliseFragments.handleRequest
+14:02:36.332 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:36.332 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:36.333 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.NormaliseFragments - NormaliseFragments.handleRequest: Authorization.check: OK!
+14:02:36.333 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.NormaliseFragments - NormaliseFragments.handleRequest: get the date arguments
+14:02:36.337 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.FragmentRepositoryImpl - updateSequence --> count: 1
+14:02:36.338 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.FragmentRepositoryImpl - updateSequence --> count: 1
+14:02:36.338 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.FragmentRepositoryImpl - updateSequence --> count: 1
+14:02:36.339 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.FragmentRepositoryImpl - updateSequence --> count: 1
+14:02:36.341 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/2332 --> {"id":2332,"version":4,"year":2093,"month":3,"day":11,"sequence":1.0000,"text":"Shared second","pageId":1368,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":{"lockUserId":43,"lockUserName":"editor","lockKnownAs":"Editor","lockTimeStamp":1,"lockSessionId":"step7","locked":true}}
+14:02:36.341 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2332 to topic: diaries/fragments/2332, version: 4
+14:02:36.341 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:36.341 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/2093/3/11/2332 --> {"id":2332,"version":4,"year":2093,"month":3,"day":11,"sequence":1.0000,"text":"Shared second","pageId":1368,"type":"IMAGE","imageId":null,"marqueeId":null,"lock":{"lockUserId":43,"lockUserName":"editor","lockKnownAs":"Editor","lockTimeStamp":1,"lockSessionId":"step7","locked":true}}
+14:02:36.341 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2332 to topic: diaries/dates/2093/3/11/2332, version: 4
+14:02:36.341 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:36.344 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/2331 --> {"id":2331,"version":1,"year":2093,"month":3,"day":11,"sequence":2.0000,"text":"Shared second","pageId":1368,"type":"IMAGE","imageId":1,"marqueeId":null,"lock":null}
+14:02:36.344 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2331 to topic: diaries/fragments/2331, version: 1
+14:02:36.344 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:36.344 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/2093/3/11/2331 --> {"id":2331,"version":1,"year":2093,"month":3,"day":11,"sequence":2.0000,"text":"Shared second","pageId":1368,"type":"IMAGE","imageId":1,"marqueeId":null,"lock":null}
+14:02:36.344 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2331 to topic: diaries/dates/2093/3/11/2331, version: 1
+14:02:36.344 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:36.349 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/2333 --> {"id":2333,"version":1,"year":2093,"month":3,"day":11,"sequence":3.0000,"text":"Shared second","pageId":1368,"type":"MARQUEE","imageId":null,"marqueeId":2270,"lock":null}
+14:02:36.349 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2333 to topic: diaries/fragments/2333, version: 1
+14:02:36.350 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:36.350 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/2093/3/11/2333 --> {"id":2333,"version":1,"year":2093,"month":3,"day":11,"sequence":3.0000,"text":"Shared second","pageId":1368,"type":"MARQUEE","imageId":null,"marqueeId":2270,"lock":null}
+14:02:36.350 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2333 to topic: diaries/dates/2093/3/11/2333, version: 1
+14:02:36.350 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:36.352 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/2330 --> {"id":2330,"version":1,"year":2093,"month":3,"day":11,"sequence":4.0000,"text":"Shared first","pageId":1368,"type":"IMAGE","imageId":1,"marqueeId":null,"lock":null}
+14:02:36.352 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2330 to topic: diaries/fragments/2330, version: 1
+14:02:36.352 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:36.353 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/2093/3/11/2330 --> {"id":2330,"version":1,"year":2093,"month":3,"day":11,"sequence":4.0000,"text":"Shared first","pageId":1368,"type":"IMAGE","imageId":1,"marqueeId":null,"lock":null}
+14:02:36.353 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 2330 to topic: diaries/dates/2093/3/11/2330, version: 1
+14:02:36.353 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:36.767 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:36.767 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:37.193 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.DeleteFragment - DeleteFragment.handleRequest: args: {"id":2330}
+14:02:37.193 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:37.193 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:37.194 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.DeleteFragment - DeleteFragment.handleRequest: Authorization.check: OK!
+14:02:37.201 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 1
+14:02:37.202 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.DeleteFragment - DeleteFragment.handleRequest: removing the fragment from the TopicTree
+14:02:37.202 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - removing topic: diaries/fragments/2330
+14:02:37.202 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:37.202 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - removing topic: diaries/dates/2093/3/11/2330
+14:02:37.202 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:38.024 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:38.024 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:38.441 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.DeleteFragment - DeleteFragment.handleRequest: args: {"id":2331}
+14:02:38.441 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:38.441 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:38.441 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.DeleteFragment - DeleteFragment.handleRequest: Authorization.check: OK!
+14:02:38.449 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 1
+14:02:38.450 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.DeleteFragment - DeleteFragment.handleRequest: removing the fragment from the TopicTree
+14:02:38.450 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - removing topic: diaries/fragments/2331
+14:02:38.450 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:38.450 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - removing topic: diaries/dates/2093/3/11/2331
+14:02:38.450 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+14:02:38.859 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:38.859 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:39.397 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 1
+14:02:39.398 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 1
+14:02:39.433 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Fragment --> id: 2334
+14:02:39.436 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Fragment --> id: 2335
+14:02:39.437 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:39.437 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:39.448 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 1
+14:02:39.450 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:39.450 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:39.459 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 1
+14:02:39.461 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:39.461 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:39.485 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Fragment --> id: 2336
+14:02:39.487 [pool-2-thread-1] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:39.487 [pool-2-thread-1] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:39.534 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 1
+14:02:39.540 [pool-2-thread-2] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+14:02:39.541 [pool-2-thread-2] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+14:02:39.572 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 0
+14:02:39.573 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 0
+14:02:39.574 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 0
+]]></system-out>
+  <system-err><![CDATA[SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+]]></system-err>
+</testsuite>

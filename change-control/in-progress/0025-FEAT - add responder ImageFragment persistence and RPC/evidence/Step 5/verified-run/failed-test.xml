@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-09-27T12:06:48.147Z" hostname="RICHARD-PC" time="20.519">
+  <properties/>
+  <testcase name="freshContextReplaysCommittedImageFragmentContract()" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="18.584">
+    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;{&quot;id&quot;:2330,&quot;version&quot;:0,&quot;year&quot;:1830,&quot;month&quot;:3,&quot;day&quot;:8,&quot;sequence&quot;:1,&quot;text&quot;:&quot;Replay contract&quot;,&quot;pageId&quot;:684,&quot;type&quot;:&quot;IMAGE&quot;,&quot;imageId&quot;:1,&quot;marqueeId&quot;:null,&quot;lock&quot;:null}&gt; but was: &lt;{&quot;id&quot;:2330,&quot;version&quot;:0,&quot;year&quot;:1830,&quot;month&quot;:3,&quot;day&quot;:8,&quot;sequence&quot;:1.0,&quot;text&quot;:&quot;Replay contract&quot;,&quot;pageId&quot;:684,&quot;type&quot;:&quot;IMAGE&quot;,&quot;imageId&quot;:1,&quot;marqueeId&quot;:null,&quot;lock&quot;:null}&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;{&quot;id&quot;:2330,&quot;version&quot;:0,&quot;year&quot;:1830,&quot;month&quot;:3,&quot;day&quot;:8,&quot;sequence&quot;:1,&quot;text&quot;:&quot;Replay contract&quot;,&quot;pageId&quot;:684,&quot;type&quot;:&quot;IMAGE&quot;,&quot;imageId&quot;:1,&quot;marqueeId&quot;:null,&quot;lock&quot;:null}&gt; but was: &lt;{&quot;id&quot;:2330,&quot;version&quot;:0,&quot;year&quot;:1830,&quot;month&quot;:3,&quot;day&quot;:8,&quot;sequence&quot;:1.0,&quot;text&quot;:&quot;Replay contract&quot;,&quot;pageId&quot;:684,&quot;type&quot;:&quot;IMAGE&quot;,&quot;imageId&quot;:1,&quot;marqueeId&quot;:null,&quot;lock&quot;:null}&gt;
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1199)
+	at com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest.freshContextReplaysCommittedImageFragmentContract(ImageWiringIntegrationTest.java:143)
+</failure>
+  </testcase>
+  <system-out><![CDATA[13:06:50.198 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Fragment --> id: 2330
+13:06:50.205 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - save Fragment --> id: 2331
+13:07:08.650 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 1
+13:07:08.651 [Test worker] INFO  com.rsmaxwell.diaries.responder.repositoryImpl.AbstractCrudRepository - delete --> count: 1
+]]></system-out>
+  <system-err><![CDATA[SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+]]></system-err>
+</testsuite>

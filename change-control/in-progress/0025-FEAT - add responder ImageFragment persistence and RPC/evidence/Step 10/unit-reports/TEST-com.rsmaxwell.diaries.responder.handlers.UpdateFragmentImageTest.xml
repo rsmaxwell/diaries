@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.handlers.UpdateFragmentImageTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-09-27T12:54:25.678Z" hostname="RICHARD-PC" time="0.001">
+  <properties/>
+  <testcase name="identityKeysMayConfirmButCannotChangeOwnership()" classname="com.rsmaxwell.diaries.responder.handlers.UpdateFragmentImageTest" time="0.0"/>
+  <testcase name="invalidOrMissingImagesAreControlledFailures()" classname="com.rsmaxwell.diaries.responder.handlers.UpdateFragmentImageTest" time="0.001"/>
+  <testcase name="marqueeAndLegacyNullCannotAcquireImages()" classname="com.rsmaxwell.diaries.responder.handlers.UpdateFragmentImageTest" time="0.0"/>
+  <testcase name="absentPreservesNullClearsAndValueReplaces()" classname="com.rsmaxwell.diaries.responder.handlers.UpdateFragmentImageTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,29 @@
+Source: terminal output supplied by Richard in the conversation on 2026-09-27.
+Transcription: spacing normalized; truncated Docker COMMAND fields retained.
+
+richard@pluto:~/projects/diaries/scripts$ ./status.sh
+Diaries stack status
+
+Project directory: /home/richard/projects/diaries
+Compose file:     /home/richard/projects/diaries/compose.yaml
+Environment file: /home/richard/projects/diaries/.env
+Frontend mode:    shared
+
+NAME                IMAGE                                      COMMAND                  SERVICE            CREATED          STATUS                    PORTS
+diaries-client      rsmaxwell/diaries-client:0.0.9-build-72      "/docker-entrypoint.…"   diaries-client     12 minutes ago   Up 12 minutes (healthy)   80/tcp, 8080/tcp
+diaries-mosquitto    eclipse-mosquitto:2                         "/docker-entrypoint.…"   diaries-mqtt       12 minutes ago   Up 12 minutes (healthy)   1883/tcp
+diaries-postgres     postgres:18-alpine                         "docker-entrypoint.s…"   diaries-db         12 minutes ago   Up 12 minutes (healthy)   0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp
+diaries-responder    rsmaxwell/diaries-responder:0.0.9-build-80   "/opt/diaries/bin/re…"    diaries-responder  12 minutes ago   Up 12 minutes (healthy)
+diaries-web          rsmaxwell/diaries-web:0.0.9-build-5          "java -jar /opt/diar…"    diaries-web        12 minutes ago   Up 12 minutes (healthy)   8082/tcp
+
+Shared frontend
+
+Network:          infrastructure_shared
+Nginx container:  infra-nginx
+Route source:     /home/richard/projects/infrastructure/nginx/config/files/diaries.conf
+Route location:   /home/richard/projects/infrastructure/nginx/config/conf.d/locations/diaries.conf
+Route active:     yes -> ../../files/diaries.conf
+NAMES         STATUS       PORTS
+infra-nginx   Up 4 weeks   0.0.0.0:80->80/tcp, [::]:80->80/tcp, 0.0.0.0:443->443/tcp, [::]:443->443/tcp, 0.0.0.0:9418->9418/tcp, [::]:9418->9418/tcp
+
+richard@pluto:~/projects/diaries/scripts$

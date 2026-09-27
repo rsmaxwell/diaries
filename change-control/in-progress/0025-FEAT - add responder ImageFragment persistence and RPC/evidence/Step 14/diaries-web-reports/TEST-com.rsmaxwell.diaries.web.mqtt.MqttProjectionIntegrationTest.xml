@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.web.mqtt.MqttProjectionIntegrationTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-09-27T18:00:13.847Z" hostname="RICHARD-PC" time="9.652">
+  <properties/>
+  <testcase name="imageCatalogueDoesNotChangeVisibleChronologyAcrossReaderRestarts()" classname="com.rsmaxwell.diaries.web.mqtt.MqttProjectionIntegrationTest" time="4.607"/>
+  <testcase name="retainedStartupLiveUpdateTombstoneAndReadOnlyAclWorkTogether()" classname="com.rsmaxwell.diaries.web.mqtt.MqttProjectionIntegrationTest" time="4.583"/>
+  <system-out><![CDATA[2026-09-27T19:00:13,855 INFO  [Test worker] t.e.0.22 - Creating container for image: eclipse-mosquitto:2.0.22
+2026-09-27T19:00:14,000 INFO  [Test worker] t.e.0.22 - Container eclipse-mosquitto:2.0.22 is starting: 0649289e728c587b82185f70669e65d2facc441899df5d0cf65774f6af2b2ec6
+2026-09-27T19:00:14,306 INFO  [Test worker] t.e.0.22 - Container eclipse-mosquitto:2.0.22 started in PT0.451405S
+2026-09-27T19:00:14,682 INFO  [Test worker] i.j.Javalin - Starting Javalin ...
+2026-09-27T19:00:14,700 INFO  [Test worker] i.j.Javalin - 
+       __                  ___          _____
+      / /___ __   ______ _/ (_)___     /__  /
+ __  / / __ `/ | / / __ `/ / / __ \      / /
+/ /_/ / /_/ /| |/ / /_/ / / / / / /     / /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/     /_/
+
+       https://javalin.io/documentation
+
+2026-09-27T19:00:14,701 INFO  [Test worker] i.j.Javalin - Javalin started in 20ms \o/
+2026-09-27T19:00:14,701 INFO  [Test worker] i.j.Javalin - Listening on http://127.0.0.1:58136/
+2026-09-27T19:00:14,701 INFO  [Test worker] i.j.Javalin - You are running Javalin 7.2.3 (released August 11, 2026).
+2026-09-27T19:00:14,701 INFO  [Test worker] c.r.d.w.h.WebServer - diaries-web HTTP server listening on 127.0.0.1:58136
+2026-09-27T19:00:14,702 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Connecting diaries-web MQTT subscriber to tcp://localhost:65158
+2026-09-27T19:00:15,009 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-27T19:00:15,011 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/diaries/+
+2026-09-27T19:00:15,018 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/pages/+
+2026-09-27T19:00:15,018 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/fragments/+
+2026-09-27T19:00:15,021 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/marquees/+
+2026-09-27T19:00:15,235 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-27T19:00:15,953 INFO  [Test worker] i.j.Javalin - Stopping Javalin ...
+2026-09-27T19:00:15,959 INFO  [Test worker] i.j.Javalin - Javalin has stopped
+2026-09-27T19:00:16,067 INFO  [Test worker] i.j.Javalin - Starting Javalin ...
+2026-09-27T19:00:16,083 INFO  [Test worker] i.j.Javalin - 
+       __                  ___          _____
+      / /___ __   ______ _/ (_)___     /__  /
+ __  / / __ `/ | / / __ `/ / / __ \      / /
+/ /_/ / /_/ /| |/ / /_/ / / / / / /     / /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/     /_/
+
+       https://javalin.io/documentation
+
+2026-09-27T19:00:16,084 INFO  [Test worker] i.j.Javalin - Javalin started in 18ms \o/
+2026-09-27T19:00:16,084 INFO  [Test worker] i.j.Javalin - Listening on http://127.0.0.1:55078/
+2026-09-27T19:00:16,084 INFO  [Test worker] i.j.Javalin - You are running Javalin 7.2.3 (released August 11, 2026).
+2026-09-27T19:00:16,084 INFO  [Test worker] c.r.d.w.h.WebServer - diaries-web HTTP server listening on 127.0.0.1:55078
+2026-09-27T19:00:16,085 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Connecting diaries-web MQTT subscriber to tcp://localhost:65158
+2026-09-27T19:00:16,388 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-27T19:00:16,389 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/diaries/+
+2026-09-27T19:00:16,392 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/pages/+
+2026-09-27T19:00:16,393 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/fragments/+
+2026-09-27T19:00:16,394 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/marquees/+
+2026-09-27T19:00:16,597 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-27T19:00:17,323 INFO  [Test worker] i.j.Javalin - Stopping Javalin ...
+2026-09-27T19:00:17,327 INFO  [Test worker] i.j.Javalin - Javalin has stopped
+2026-09-27T19:00:17,435 INFO  [Test worker] i.j.Javalin - Starting Javalin ...
+2026-09-27T19:00:17,450 INFO  [Test worker] i.j.Javalin - 
+       __                  ___          _____
+      / /___ __   ______ _/ (_)___     /__  /
+ __  / / __ `/ | / / __ `/ / / __ \      / /
+/ /_/ / /_/ /| |/ / /_/ / / / / / /     / /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/     /_/
+
+       https://javalin.io/documentation
+
+2026-09-27T19:00:17,450 INFO  [Test worker] i.j.Javalin - Javalin started in 15ms \o/
+2026-09-27T19:00:17,450 INFO  [Test worker] i.j.Javalin - Listening on http://127.0.0.1:52743/
+2026-09-27T19:00:17,450 INFO  [Test worker] i.j.Javalin - You are running Javalin 7.2.3 (released August 11, 2026).
+2026-09-27T19:00:17,451 INFO  [Test worker] c.r.d.w.h.WebServer - diaries-web HTTP server listening on 127.0.0.1:52743
+2026-09-27T19:00:17,451 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Connecting diaries-web MQTT subscriber to tcp://localhost:65158
+2026-09-27T19:00:17,755 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-27T19:00:17,756 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/diaries/+
+2026-09-27T19:00:17,759 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/pages/+
+2026-09-27T19:00:17,760 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/fragments/+
+2026-09-27T19:00:17,761 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/marquees/+
+2026-09-27T19:00:17,963 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-27T19:00:18,702 INFO  [Test worker] i.j.Javalin - Stopping Javalin ...
+2026-09-27T19:00:18,709 INFO  [Test worker] i.j.Javalin - Javalin has stopped
+2026-09-27T19:00:19,229 INFO  [Test worker] i.j.Javalin - Starting Javalin ...
+2026-09-27T19:00:19,243 INFO  [Test worker] i.j.Javalin - 
+       __                  ___          _____
+      / /___ __   ______ _/ (_)___     /__  /
+ __  / / __ `/ | / / __ `/ / / __ \      / /
+/ /_/ / /_/ /| |/ / /_/ / / / / / /     / /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/     /_/
+
+       https://javalin.io/documentation
+
+2026-09-27T19:00:19,243 INFO  [Test worker] i.j.Javalin - Javalin started in 15ms \o/
+2026-09-27T19:00:19,243 INFO  [Test worker] i.j.Javalin - Listening on http://127.0.0.1:54907/
+2026-09-27T19:00:19,244 INFO  [Test worker] i.j.Javalin - You are running Javalin 7.2.3 (released August 11, 2026).
+2026-09-27T19:00:19,244 INFO  [Test worker] c.r.d.w.h.WebServer - diaries-web HTTP server listening on 127.0.0.1:54907
+2026-09-27T19:00:19,244 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Connecting diaries-web MQTT subscriber to tcp://localhost:65158
+2026-09-27T19:00:19,549 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-27T19:00:19,550 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/diaries/+
+2026-09-27T19:00:19,553 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/pages/+
+2026-09-27T19:00:19,553 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/fragments/+
+2026-09-27T19:00:19,555 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/marquees/+
+2026-09-27T19:00:19,758 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-27T19:00:20,273 WARN  [MQTT Rec: integration-reader-3a686f93] c.r.d.w.m.MqttProjectionClient - MQTT disconnected (reason code 0)
+2026-09-27T19:00:21,581 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 2 (reconnect=true)
+2026-09-27T19:00:21,582 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/diaries/+
+2026-09-27T19:00:21,583 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/pages/+
+2026-09-27T19:00:21,583 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/fragments/+
+2026-09-27T19:00:21,584 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/marquees/+
+2026-09-27T19:00:21,785 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 2 as snapshot 5 (diaries=0, pages=0, fragments=0, marquees=0)
+2026-09-27T19:00:21,829 INFO  [Test worker] i.j.Javalin - Stopping Javalin ...
+2026-09-27T19:00:21,833 INFO  [Test worker] i.j.Javalin - Javalin has stopped
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,21 @@
+{
+  "status": "FAILED",
+  "startedAtUtc": "2026-09-27T12:21:55.0517130Z",
+  "test": "com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest.imageAwareUpdatesAreAtomicAndPublishCommittedState",
+  "testInvocations": 1,
+  "container": "diaries-0025-step7-6fb6a84c7d41",
+  "liveDatabaseUsed": false,
+  "nasFilesUsed": false,
+  "backupFilename": "diaries-development-20260912-203528.dump",
+  "backupSha256": "fe0e187eda4fe4c7923590f7ec5e36871ced87e2ba8fa6d3f882e0b0992d6b86",
+  "frozenBackupMatched": true,
+  "schemaSha256": "459302ecc69beeda22f15b1549d97edb4930daeb016dea1307ff58fe02ca0a19",
+  "testSourceSha256": "1f8496feb14c1480e62ff4679a2c0bd87411c47695fad2b57584bc3a1efff265",
+  "responderCommit": "810444eb37289dd16a9fb3a317358c1a21b6cdcf",
+  "postgresImageId": "sha256:d3e1620b530c944afa6e887d22eb899824da68e19c52024bf98f5220c88a65b2",
+  "testDatabaseUrl": "jdbc:postgresql://127.0.0.1:50406/image_wiring_test",
+  "command": "gradlew.bat :diaries-responder:test --tests com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest.imageAwareUpdatesAreAtomicAndPublishCommittedState --rerun-tasks --console=plain",
+  "failure": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\gradlew.bat failed (1); see gradle-test.log",
+  "cleanupExitCode": 0,
+  "finishedAtUtc": "2026-09-27T12:22:06.3797357Z"
+}

@@ -1,0 +1,19 @@
+BEGIN
+ALTER TABLE
+ALTER TABLE
+SET
+DO
+CREATE TABLE
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:11: NOTICE:  column "image_id" of relation "_0025_expected" already exists, skipping
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:12: NOTICE:  constraint "expected_type" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:13: NOTICE:  constraint "expected_reference" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:14: NOTICE:  constraint "expected_type_varchar" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:51: ERROR:  Incompatible image foreign key: fragment_image_fk
+CONTEXT:  PL/pgSQL function inline_code_block line 21 at RAISE

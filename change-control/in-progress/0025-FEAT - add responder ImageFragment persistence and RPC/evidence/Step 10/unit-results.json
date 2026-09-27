@@ -1,0 +1,102 @@
+{
+  "total": {
+    "tests": 309,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 33,
+    "passed": 276
+  },
+  "focused": [
+    {
+      "name": "com.rsmaxwell.diaries.responder.dto.RetainedStateDtoContractTest",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.rsmaxwell.diaries.responder.handlers.AddFragmentContractTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.rsmaxwell.diaries.responder.handlers.DeleteCatalogueTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.rsmaxwell.diaries.responder.handlers.DeleteImageTest",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.rsmaxwell.diaries.responder.handlers.FragmentLifecycleContractTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.rsmaxwell.diaries.responder.handlers.UpdateFragmentImageTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.rsmaxwell.diaries.responder.repositoryImpl.FragmentRepositoryImplTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.rsmaxwell.diaries.responder.utilities.DiaryContextTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.rsmaxwell.diaries.responder.utilities.FragmentSequenceNormaliserTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.rsmaxwell.diaries.responder.utilities.ImageCatalogueDeletionTest",
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.rsmaxwell.diaries.responder.utilities.ImageDeletionConcurrencyTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.rsmaxwell.diaries.responder.utilities.ResolvedFragmentStateTest",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+SET
+DO
+CREATE TABLE
+psql:/tmp/diaries-0025-3bf35238b876436491409d66c8dca846/assert-schema.sql:11: NOTICE:  column "image_id" of relation "_0025_expected" already exists, skipping
+ALTER TABLE
+psql:/tmp/diaries-0025-3bf35238b876436491409d66c8dca846/assert-schema.sql:12: NOTICE:  constraint "expected_type" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+psql:/tmp/diaries-0025-3bf35238b876436491409d66c8dca846/assert-schema.sql:13: NOTICE:  constraint "expected_reference" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+psql:/tmp/diaries-0025-3bf35238b876436491409d66c8dca846/assert-schema.sql:14: NOTICE:  constraint "expected_type_varchar" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+DO
+{"page": [683, "fd08505c6ada236ecfeef0689fbccdee"], "diary": [10, "4c94f56677d2e5286161a1a80e22de03"], "image": [83, "a4e88f1911437b9ed31f98f9008de723"], "marquee": [2269, "24f7c955b2fc070b3c48b4fc24212649"], "fragment": [2329, "69f5eb748b852b22232a6d69e3df25cb"], "references": "96c4f6acc3f4b908fe3d2cfba377d773"}
+0025 PREFLIGHT PASS
+DO
+psql:/tmp/diaries-0025-3bf35238b876436491409d66c8dca846/assert-schema.sql:10: NOTICE:  relation "_0025_expected" already exists, skipping
+CREATE TABLE
+psql:/tmp/diaries-0025-3bf35238b876436491409d66c8dca846/assert-schema.sql:11: NOTICE:  column "image_id" of relation "_0025_expected" already exists, skipping
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+DO
+DO
+{"page": [683, "fd08505c6ada236ecfeef0689fbccdee"], "diary": [10, "4c94f56677d2e5286161a1a80e22de03"], "image": [83, "a4e88f1911437b9ed31f98f9008de723"], "marquee": [2269, "24f7c955b2fc070b3c48b4fc24212649"], "fragment": [2329, "69f5eb748b852b22232a6d69e3df25cb"], "references": "96c4f6acc3f4b908fe3d2cfba377d773"}
+0025 POSTFLIGHT PASS: all original rows and references preserved

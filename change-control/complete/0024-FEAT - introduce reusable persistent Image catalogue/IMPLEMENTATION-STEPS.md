@@ -799,7 +799,7 @@ states now match between the two databases.
 - [x] Record the large-image client timeout despite successful server completion
       as a separate transport follow-up, not as a resolved client defect.
 - [x] Track supported catalogue deletion and its client UI in
-      [0030](../../todo/0030-FEAT%20-%20allow%20deletion%20of%20catalogued%20Images/README.md),
+      [0030](../0030-FEAT%20-%20allow%20deletion%20of%20catalogued%20Images/README.md),
       retaining the generic deletion guard and the 0025 reference-safety gate.
 - [x] Complete administrative closure and move the full record to `complete`.
 

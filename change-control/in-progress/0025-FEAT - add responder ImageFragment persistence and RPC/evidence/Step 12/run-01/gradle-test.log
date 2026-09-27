@@ -1,0 +1,69 @@
+
+> Task :diaries-responder:compileJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :diaries-responder:generateBuildInfo
+Generated responder build information: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\build\generated\resources\buildInfo\build-info.properties
+Responder version: 0.0.9-SNAPSHOT
+
+> Task :diaries-responder:processResources
+> Task :diaries-responder:classes
+
+> Task :diaries-responder:compileTestJava
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\src\test\java\com\rsmaxwell\diaries\responder\ImageWiringIntegrationTest.java:398: warning: [removal] executeUpdate() in Query has been deprecated and marked for removal
+                em.createNativeQuery("DELETE FROM marquee WHERE fragment_id IN (SELECT id FROM fragment WHERE page_id=:id)").setParameter("id",page.getId()).executeUpdate();
+                                                                                                                                                            ^
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\src\test\java\com\rsmaxwell\diaries\responder\ImageWiringIntegrationTest.java:399: warning: [removal] executeUpdate() in Query has been deprecated and marked for removal
+                em.createNativeQuery("DELETE FROM fragment WHERE page_id=:id").setParameter("id",page.getId()).executeUpdate();
+                                                                                                              ^
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\src\test\java\com\rsmaxwell\diaries\responder\ImageWiringIntegrationTest.java:411: warning: [removal] executeUpdate() in Query has been deprecated and marked for removal
+                var error=assertThrows(PersistenceException.class,()->writer.createNativeQuery(sql).executeUpdate());
+                                                                                                   ^
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\src\test\java\com\rsmaxwell\diaries\responder\ImageWiringIntegrationTest.java:562: warning: [removal] getSingleResult() in Query has been deprecated and marked for removal
+                Number waiting = (Number) observer.createNativeQuery("SELECT count(*) FROM pg_stat_activity WHERE datname=current_database() AND wait_event_type='Lock' AND query ILIKE '%image%'").getSingleResult();
+                                                                                                                                                                                                   ^
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\src\test\java\com\rsmaxwell\diaries\responder\ImageWiringIntegrationTest.java:957: warning: [removal] executeUpdate() in Query has been deprecated and marked for removal
+				deleting.createNativeQuery("SET LOCAL lock_timeout = '200ms'").executeUpdate();
+				                                                              ^
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\src\test\java\com\rsmaxwell\diaries\responder\ImageWiringIntegrationTest.java:959: warning: [removal] executeUpdate() in Query has been deprecated and marked for removal
+						"DELETE FROM image WHERE id = :id").setParameter("id", unreferenced.getId()).executeUpdate());
+						                                                                            ^
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\src\test\java\com\rsmaxwell\diaries\responder\ImageWiringIntegrationTest.java:965: warning: [removal] executeUpdate() in Query has been deprecated and marked for removal
+						.setParameter("id", unreferenced.getId()).executeUpdate());
+						                                         ^
+Note: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\src\test\java\com\rsmaxwell\diaries\responder\migration\migration0024\ImageReconciliationIntegrationTest.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+7 warnings
+
+> Task :diaries-responder:processTestResources
+> Task :diaries-responder:testClasses
+
+> Task :diaries-responder:test
+
+ImageWiringIntegrationTest > liveImageFragmentRpcAndRestartReplay(Path) FAILED
+    org.opentest4j.AssertionFailedError at ImageWiringIntegrationTest.java:155
+
+1 test completed, 1 failed
+
+> Task :diaries-responder:test FAILED
+
+[Incubating] Problems report is available at: file:///C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':diaries-responder:test'.
+> There were failing tests. See the report at: file:///C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/diaries-responder/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.6.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 11s
+6 actionable tasks: 6 executed

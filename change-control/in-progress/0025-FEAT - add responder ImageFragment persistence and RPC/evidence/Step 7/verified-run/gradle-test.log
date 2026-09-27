@@ -1,0 +1,40 @@
+
+> Task :diaries-responder:compileJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :diaries-responder:generateBuildInfo
+Generated responder build information: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\build\generated\resources\buildInfo\build-info.properties
+Responder version: 0.0.9-SNAPSHOT
+
+> Task :diaries-responder:processResources
+> Task :diaries-responder:classes
+
+> Task :diaries-responder:compileTestJava
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\src\test\java\com\rsmaxwell\diaries\responder\ImageWiringIntegrationTest.java:399: warning: [removal] executeUpdate() in Query has been deprecated and marked for removal
+				deleting.createNativeQuery("SET LOCAL lock_timeout = '200ms'").executeUpdate();
+				                                                              ^
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\src\test\java\com\rsmaxwell\diaries\responder\ImageWiringIntegrationTest.java:401: warning: [removal] executeUpdate() in Query has been deprecated and marked for removal
+						"DELETE FROM image WHERE id = :id").setParameter("id", unreferenced.getId()).executeUpdate());
+						                                                                            ^
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\src\test\java\com\rsmaxwell\diaries\responder\ImageWiringIntegrationTest.java:407: warning: [removal] executeUpdate() in Query has been deprecated and marked for removal
+						.setParameter("id", unreferenced.getId()).executeUpdate());
+						                                         ^
+Note: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\src\test\java\com\rsmaxwell\diaries\responder\migration\migration0024\ImageReconciliationIntegrationTest.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :diaries-responder:processTestResources
+> Task :diaries-responder:testClasses
+> Task :diaries-responder:test
+
+[Incubating] Problems report is available at: file:///C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.6.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 6s
+6 actionable tasks: 6 executed

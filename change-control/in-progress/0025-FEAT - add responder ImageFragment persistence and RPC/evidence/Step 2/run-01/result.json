@@ -1,0 +1,12 @@
+{
+  "status": "FAILED",
+  "startedAtUtc": "2026-09-27T09:17:49.3972035Z",
+  "container": "diaries-0025-schema-72f9d2a85012",
+  "liveDatabaseUsed": false,
+  "cases": [],
+  "backupSha256": "fe0e187eda4fe4c7923590f7ec5e36871ced87e2ba8fa6d3f882e0b0992d6b86",
+  "postgresImageId": "sha256:d3e1620b530c944afa6e887d22eb899824da68e19c52024bf98f5220c88a65b2",
+  "failure": "docker failed (3): first-apply.log",
+  "cleanupExitCode": 0,
+  "finishedAtUtc": "2026-09-27T09:17:53.3890001Z"
+}

@@ -1,0 +1,26 @@
+{
+  "startedAtUtc": "2026-09-27T18:17:49.852951+00:00",
+  "container": "diaries-development-db",
+  "database": "diaries",
+  "mode": "development-infrastructure",
+  "migrationAppliedThisRun": false,
+  "responderStartedThisRun": false,
+  "backup": {
+    "path": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database-backups\\development-infrastructure\\before-0025-20260927-103724.dump",
+    "bytes": 286244,
+    "sha256": "57fb8161cb3f2f8e0cf137acd3fbe07a302756548f97bd27911e7e2e7ede90f4"
+  },
+  "responderArtifact": {
+    "path": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\diaries-responder\\build\\libs\\diaries-responder-0.0.9-SNAPSHOT-fat.jar",
+    "sha256": "0aadd2c0485889b08da4a8be8b88bdc2945a671e255e6c2f86894baed155c6b4"
+  },
+  "migrationSqlSha256": {
+    "001-preflight.sql": "bd6b8a9fe8a95e3c288820ec72875a90161898b72be8a7fc7bcdd39c1d6f3538",
+    "002-add-fragment-image-reference.sql": "9476d56a3a18d97aba235927a7766ff7e9fe6e1b6ad562ff1b2c849fc29be781",
+    "003-postflight.sql": "7270faaf599e934ae21859593daf5ec73665576aaea62aff7ab3e24348be5ce7",
+    "assert-schema.sql": "bea492636079a0e6356c518941c0817e93106b08eaa6584ad46b03c741f51d2f",
+    "snapshot.sql": "3b77dd6c4f71d56b0708dd2d8d6a7361eda94868c0380c2390c42e9924264a4b"
+  },
+  "status": "PASSED",
+  "finishedAtUtc": "2026-09-27T18:17:51.016442+00:00"
+}

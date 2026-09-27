@@ -1,0 +1,3 @@
+PASS: deployed client canonical decoder tolerates imageId:null; callback=r=>JSON.parse(r.toString())
+PASS: deployed client date alias decoder tolerates imageId:null; callback=u=>JSON.parse(u.toString())
+bundle SHA256=226fd7133a765f92ee88a862156d6aeba794105894fc96b205f8957da92ac4ff

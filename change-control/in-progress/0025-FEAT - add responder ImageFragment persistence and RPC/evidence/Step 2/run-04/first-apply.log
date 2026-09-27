@@ -1,0 +1,15 @@
+SET
+DO
+CREATE TABLE
+ALTER TABLE
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:12: NOTICE:  constraint "expected_type" of relation "_0025_expected" does not exist, skipping
+psql:/tmp/migration/assert-schema.sql:13: NOTICE:  constraint "expected_reference" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:14: NOTICE:  constraint "expected_type_varchar" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:51: ERROR:  Expected validated MARQUEE/IMAGE fragment_type_check required
+CONTEXT:  PL/pgSQL function inline_code_block line 6 at RAISE

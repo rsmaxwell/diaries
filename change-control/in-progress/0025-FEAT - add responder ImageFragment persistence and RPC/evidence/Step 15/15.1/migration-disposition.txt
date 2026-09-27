@@ -1,0 +1,7 @@
+0025 additive schema was already applied to diaries-development-db / diaries during Step 2.
+No migration apply SQL was executed for Step 15.1.
+Fresh preflight/postflight and catalog inspection passed: final-run/preflight-postflight-schema.log.
+The original Step 2 wrapper invocation was interrupted while logging a PostgreSQL NOTICE.
+Its original apply/transaction output is unavailable; the successful database schema was subsequently verified.
+See ../../Step 2/powershell51-verified/schema-verification.log (relative to Step 15 directory).
+This record does not reconstruct an unavailable migration log or claim a new apply occurred.

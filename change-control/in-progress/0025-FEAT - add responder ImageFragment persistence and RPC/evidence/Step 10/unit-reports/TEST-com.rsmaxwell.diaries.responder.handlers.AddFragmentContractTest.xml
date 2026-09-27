@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.handlers.AddFragmentContractTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-09-27T12:54:22.855Z" hostname="RICHARD-PC" time="0.513">
+  <properties/>
+  <testcase name="legacyRequestStillCreatesMarqueeAndReturnsFragmentWithAdditiveImageId()" classname="com.rsmaxwell.diaries.responder.handlers.AddFragmentContractTest" time="0.504"/>
+  <system-out><![CDATA[13:54:23.282 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.AddFragment - AddFragment.handleRequest: args: {"sequence":2.125,"month":3,"year":1830,"width":5,"x":12,"y":13,"text":"Entry","pageId":22,"day":8,"height":50}
+13:54:23.286 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:23.286 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:23.322 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.AddFragment - AddFragment.handleRequest: Authorization.check: OK!
+13:54:23.352 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"MARQUEE","imageId":null,"marqueeId":44,"lock":null}
+13:54:23.352 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/fragments/123, version: 0
+13:54:23.352 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:23.352 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/1830/3/8/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"MARQUEE","imageId":null,"marqueeId":44,"lock":null}
+13:54:23.352 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/dates/1830/3/8/123, version: 0
+13:54:23.352 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:23.356 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.MarqueePublishDTO - publishing to topic: diaries/diaries/7/22/44 --> {"id":44,"version":0,"pageId":22,"fragmentId":123,"rectangle":{"x":12.0,"y":13.0,"width":40.0,"height":50.0}}
+13:54:23.357 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:23.357 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.MarqueePublishDTO - publishing to topic: diaries/marquees/44 --> {"id":44,"version":0,"pageId":22,"fragmentId":123,"rectangle":{"x":12.0,"y":13.0,"width":40.0,"height":50.0}}
+13:54:23.357 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:23.361 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.AddFragment - AddFragment.handleRequest: args: {"sequence":2.125,"imageId":91,"month":3,"year":1830,"width":5,"x":12,"y":13,"text":"Entry","pageId":22,"type":"IMAGE","day":8,"height":50}
+13:54:23.361 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+13:54:23.361 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+13:54:23.362 [Test worker] INFO  com.rsmaxwell.diaries.responder.handlers.AddFragment - AddFragment.handleRequest: Authorization.check: OK!
+13:54:23.362 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/fragments/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"MARQUEE","imageId":null,"marqueeId":44,"lock":null}
+13:54:23.362 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/fragments/123, version: 0
+13:54:23.362 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:23.362 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - publishing to topic: diaries/dates/1830/3/8/123 --> {"id":123,"version":0,"year":1830,"month":3,"day":8,"sequence":2.1250,"text":"Entry","pageId":22,"type":"MARQUEE","imageId":null,"marqueeId":44,"lock":null}
+13:54:23.362 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.FragmentPublishDTO - Publishing fragmentId: 123 to topic: diaries/dates/1830/3/8/123, version: 0
+13:54:23.363 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:23.363 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.MarqueePublishDTO - publishing to topic: diaries/diaries/7/22/44 --> {"id":44,"version":0,"pageId":22,"fragmentId":123,"rectangle":{"x":12.0,"y":13.0,"width":40.0,"height":50.0}}
+13:54:23.363 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+13:54:23.363 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.MarqueePublishDTO - publishing to topic: diaries/marquees/44 --> {"id":44,"version":0,"pageId":22,"fragmentId":123,"rectangle":{"x":12.0,"y":13.0,"width":40.0,"height":50.0}}
+13:54:23.363 [Test worker] INFO  com.rsmaxwell.diaries.responder.dto.Publisher - Publishing payload using: retained: true, qos 1
+]]></system-out>
+  <system-err><![CDATA[SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+]]></system-err>
+</testsuite>

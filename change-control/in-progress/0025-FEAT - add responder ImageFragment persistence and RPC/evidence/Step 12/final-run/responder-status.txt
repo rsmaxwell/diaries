@@ -1,0 +1,36 @@
+ M README.md
+ M src/main/java/com/rsmaxwell/diaries/responder/Responder.java
+ M src/main/java/com/rsmaxwell/diaries/responder/dto/FragmentDBDTO.java
+ M src/main/java/com/rsmaxwell/diaries/responder/dto/FragmentPublishDTO.java
+ M src/main/java/com/rsmaxwell/diaries/responder/handlers/AddFragment.java
+ M src/main/java/com/rsmaxwell/diaries/responder/handlers/AddMarquee.java
+ M src/main/java/com/rsmaxwell/diaries/responder/handlers/DeleteFragment.java
+ M src/main/java/com/rsmaxwell/diaries/responder/handlers/DeleteImage.java
+ M src/main/java/com/rsmaxwell/diaries/responder/handlers/LockFragment.java
+ M src/main/java/com/rsmaxwell/diaries/responder/handlers/UnlockFragment.java
+ M src/main/java/com/rsmaxwell/diaries/responder/handlers/UpdateFragment.java
+ M src/main/java/com/rsmaxwell/diaries/responder/handlers/UpdateMarquee.java
+ M src/main/java/com/rsmaxwell/diaries/responder/model/Fragment.java
+ M src/main/java/com/rsmaxwell/diaries/responder/repository/FragmentRepository.java
+ M src/main/java/com/rsmaxwell/diaries/responder/repositoryImpl/FragmentRepositoryImpl.java
+ M src/main/java/com/rsmaxwell/diaries/responder/utilities/DiaryContext.java
+ D src/main/java/com/rsmaxwell/diaries/responder/utilities/FragmentAndMarquee.java
+ M src/main/java/com/rsmaxwell/diaries/responder/utilities/FragmentLocking.java
+ M src/main/java/com/rsmaxwell/diaries/responder/utilities/FragmentSequenceNormaliser.java
+ M src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageCatalogueService.java
+ M src/test/java/com/rsmaxwell/diaries/responder/ImageWiringIntegrationTest.java
+ M src/test/java/com/rsmaxwell/diaries/responder/dto/RetainedStateDtoContractTest.java
+ M src/test/java/com/rsmaxwell/diaries/responder/handlers/DeleteImageTest.java
+ M src/test/java/com/rsmaxwell/diaries/responder/repositoryImpl/FragmentRepositoryImplTest.java
+ M src/test/java/com/rsmaxwell/diaries/responder/utilities/DiaryContextTest.java
+ M src/test/java/com/rsmaxwell/diaries/responder/utilities/FragmentSequenceNormaliserTest.java
+ M src/test/java/com/rsmaxwell/diaries/responder/utilities/ImageCatalogueDeletionTest.java
+?? src/main/java/com/rsmaxwell/diaries/responder/handlers/AddImageFragment.java
+?? src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageFragmentMessageHandler.java
+?? src/main/java/com/rsmaxwell/diaries/responder/utilities/ResolvedFragmentState.java
+?? src/test/java/com/rsmaxwell/diaries/responder/handlers/AddFragmentContractTest.java
+?? src/test/java/com/rsmaxwell/diaries/responder/handlers/AddImageFragmentTest.java
+?? src/test/java/com/rsmaxwell/diaries/responder/handlers/FragmentLifecycleContractTest.java
+?? src/test/java/com/rsmaxwell/diaries/responder/handlers/UpdateFragmentImageTest.java
+?? src/test/java/com/rsmaxwell/diaries/responder/utilities/ImageFragmentMessageHandlerTest.java
+?? src/test/java/com/rsmaxwell/diaries/responder/utilities/ResolvedFragmentStateTest.java

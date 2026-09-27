@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.web.model.PageItemTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-09-27T18:00:12.161Z" hostname="RICHARD-PC" time="0.065">
+  <properties/>
+  <testcase name="[1] extension = &quot;.&quot;" classname="com.rsmaxwell.diaries.web.model.PageItemTest" time="0.005"/>
+  <testcase name="[2] extension = &quot;..jpg&quot;" classname="com.rsmaxwell.diaries.web.model.PageItemTest" time="0.0"/>
+  <testcase name="[3] extension = &quot;jpg.png&quot;" classname="com.rsmaxwell.diaries.web.model.PageItemTest" time="0.0"/>
+  <testcase name="[4] extension = &quot;../jpg&quot;" classname="com.rsmaxwell.diaries.web.model.PageItemTest" time="0.0"/>
+  <testcase name="[5] extension = &quot;jpg/png&quot;" classname="com.rsmaxwell.diaries.web.model.PageItemTest" time="0.001"/>
+  <testcase name="[6] extension = &quot;jpg\\png&quot;" classname="com.rsmaxwell.diaries.web.model.PageItemTest" time="0.0"/>
+  <testcase name="[7] extension = &quot; jpg&quot;" classname="com.rsmaxwell.diaries.web.model.PageItemTest" time="0.0"/>
+  <testcase name="[8] extension = &quot;jpg &quot;" classname="com.rsmaxwell.diaries.web.model.PageItemTest" time="0.001"/>
+  <testcase name="[1] supplied = &quot;jpg&quot;, expected = &quot;jpg&quot;" classname="com.rsmaxwell.diaries.web.model.PageItemTest" time="0.002"/>
+  <testcase name="[2] supplied = &quot;.jpg&quot;, expected = &quot;jpg&quot;" classname="com.rsmaxwell.diaries.web.model.PageItemTest" time="0.001"/>
+  <testcase name="[3] supplied = &quot;JPEG&quot;, expected = &quot;JPEG&quot;" classname="com.rsmaxwell.diaries.web.model.PageItemTest" time="0.001"/>
+  <testcase name="[4] supplied = &quot;.j2k&quot;, expected = &quot;j2k&quot;" classname="com.rsmaxwell.diaries.web.model.PageItemTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,30 @@
+{
+  "Id": "00a1500d31464490918a477a28ebee0fbb676983ee6e4a3f737ad2998b76bfb8",
+  "Image": "sha256:d3e1620b530c944afa6e887d22eb899824da68e19c52024bf98f5220c88a65b2",
+  "Created": "2026-09-08T18:06:07.653004143Z",
+  "imageName": "postgres:18-alpine",
+  "state": "running",
+  "ports": {
+    "5432/tcp": [
+      {
+        "HostIp": "0.0.0.0",
+        "HostPort": "5433"
+      },
+      {
+        "HostIp": "::",
+        "HostPort": "5433"
+      }
+    ]
+  },
+  "mounts": [
+    {
+      "Type": "bind",
+      "Source": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database\\common",
+      "Destination": "/var/lib/postgresql",
+      "Mode": "rw",
+      "RW": true,
+      "Propagation": "rprivate"
+    }
+  ],
+  "composeProject": "diaries-development-infrastructure"
+}

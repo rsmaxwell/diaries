@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.utilities.ImageDeletionConcurrencyTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-09-27T18:00:02.172Z" hostname="RICHARD-PC" time="0.403">
+  <properties/>
+  <testcase name="concurrentDuplicateDeletesCommitAndPublishOnlyOnce()" classname="com.rsmaxwell.diaries.responder.utilities.ImageDeletionConcurrencyTest" time="0.123"/>
+  <testcase name="[1] true" classname="com.rsmaxwell.diaries.responder.utilities.ImageDeletionConcurrencyTest" time="0.141"/>
+  <testcase name="[2] false" classname="com.rsmaxwell.diaries.responder.utilities.ImageDeletionConcurrencyTest" time="0.135"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

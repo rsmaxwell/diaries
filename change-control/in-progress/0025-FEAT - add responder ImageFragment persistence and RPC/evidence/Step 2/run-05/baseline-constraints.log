@@ -1,0 +1,9 @@
+          conname          | convalidated |                                                        pg_get_constraintdef                                                        
+---------------------------+--------------+------------------------------------------------------------------------------------------------------------------------------------
+ fragment_id_not_null      | t            | NOT NULL id
+ fragment_page_fk          | t            | FOREIGN KEY (page_id) REFERENCES page(id)
+ fragment_pkey             | t            | PRIMARY KEY (id)
+ fragment_type_check       | t            | CHECK (((type IS NULL) OR ((type)::text = ANY (ARRAY[('MARQUEE'::character varying)::text, ('IMAGE'::character varying)::text]))))
+ fragment_version_not_null | t            | NOT NULL version
+(5 rows)
+

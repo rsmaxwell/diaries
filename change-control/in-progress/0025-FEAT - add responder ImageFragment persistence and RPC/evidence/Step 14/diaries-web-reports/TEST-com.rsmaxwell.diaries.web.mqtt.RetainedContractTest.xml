@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-09-27T18:00:23.820Z" hostname="RICHARD-PC" time="0.044">
+  <properties/>
+  <testcase name="rejectsPayloadIdMismatchAndInvalidRequiredFields()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.007"/>
+  <testcase name="rejectsInvalidPresentFragmentRelationships()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.003"/>
+  <testcase name="decodesExplicitImageAndIgnoresUnknownFields()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.003"/>
+  <testcase name="emptyPayloadIsATombstone()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.0"/>
+  <testcase name="normalizesTheRespondersDottedPageExtension()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.003"/>
+  <testcase name="exposesOnlyCanonicalLookupFilters()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.004"/>
+  <testcase name="[1] topic = &quot;diaries/diaries/11&quot;, fixture = &quot;/fixtures/diary.json&quot;, expectedType = class com.rsmaxwell.diaries.web.model.DiaryItem, expectedEntityType = DIARY" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.005"/>
+  <testcase name="[2] topic = &quot;diaries/pages/22&quot;, fixture = &quot;/fixtures/page.json&quot;, expectedType = class com.rsmaxwell.diaries.web.model.PageItem, expectedEntityType = PAGE" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.002"/>
+  <testcase name="[3] topic = &quot;diaries/fragments/33&quot;, fixture = &quot;/fixtures/fragment.json&quot;, expectedType = class com.rsmaxwell.diaries.web.model.FragmentItem, expectedEntityType = FRAGMENT" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.002"/>
+  <testcase name="[4] topic = &quot;diaries/marquees/44&quot;, fixture = &quot;/fixtures/marquee.json&quot;, expectedType = class com.rsmaxwell.diaries.web.model.MarqueeItem, expectedEntityType = MARQUEE" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.003"/>
+  <testcase name="decodesTypedAndLegacyFragmentPayloads()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

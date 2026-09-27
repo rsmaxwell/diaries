@@ -1,0 +1,9 @@
+DO
+docker.exe : NOTICE:  0025 notice handling probe
+At line:9 char:12
++     $out = & $dockerCommand.Source @Arguments 2>&1
++            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (NOTICE:  0025 notice handling probe:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+

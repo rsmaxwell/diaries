@@ -1,0 +1,60 @@
+BEGIN
+SET
+DO
+CREATE TABLE
+ALTER TABLE
+NOTICE:  column "image_id" of relation "_0025_expected" already exists, skipping
+NOTICE:  constraint "expected_type" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+ALTER TABLE
+NOTICE:  constraint "expected_reference" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+NOTICE:  constraint "expected_type_varchar" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+DO
+{"page": [683, "fd08505c6ada236ecfeef0689fbccdee"], "diary": [10, "4c94f56677d2e5286161a1a80e22de03"], "image": [83, "a4e88f1911437b9ed31f98f9008de723"], "marquee": [2269, "24f7c955b2fc070b3c48b4fc24212649"], "fragment": [2329, "69f5eb748b852b22232a6d69e3df25cb"], "references": "96c4f6acc3f4b908fe3d2cfba377d773"}
+0025 PREFLIGHT PASS
+DO
+CREATE TABLE
+NOTICE:  relation "_0025_expected" already exists, skipping
+ALTER TABLE
+NOTICE:  column "image_id" of relation "_0025_expected" already exists, skipping
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+DO
+DO
+{"page": [683, "fd08505c6ada236ecfeef0689fbccdee"], "diary": [10, "4c94f56677d2e5286161a1a80e22de03"], "image": [83, "a4e88f1911437b9ed31f98f9008de723"], "marquee": [2269, "24f7c955b2fc070b3c48b4fc24212649"], "fragment": [2329, "69f5eb748b852b22232a6d69e3df25cb"], "references": "96c4f6acc3f4b908fe3d2cfba377d773"}
+0025 POSTFLIGHT PASS: all original rows and references preserved
+ current_database | current_user |                                         version                                         
+------------------+--------------+-----------------------------------------------------------------------------------------
+ diaries          | diaries      | PostgreSQL 18.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+(1 row)
+
+ column_name | data_type | is_nullable | column_default 
+-------------+-----------+-------------+----------------
+ image_id    | bigint    | YES         | 
+(1 row)
+
+          conname          | convalidated | condeferrable |                                  pg_get_constraintdef                                   
+---------------------------+--------------+---------------+-----------------------------------------------------------------------------------------
+ fragment_image_fk         | t            | f             | FOREIGN KEY (image_id) REFERENCES image(id)
+ fragment_image_type_check | t            | f             | CHECK (((image_id IS NULL) OR ((type IS NOT NULL) AND ((type)::text = 'IMAGE'::text))))
+(2 rows)
+
+       indexname       |                                   indexdef                                   
+-----------------------+------------------------------------------------------------------------------
+ fragment_image_id_idx | CREATE INDEX fragment_image_id_idx ON public.fragment USING btree (image_id)
+(1 row)
+
+ image_fragments | attached_images 
+-----------------+-----------------
+               0 |               0
+(1 row)
+
+ROLLBACK

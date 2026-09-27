@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2026-09-27T18:00:00.550Z" hostname="RICHARD-PC" time="0.781">
+  <properties/>
+  <testcase name="uncertainCommitRequiresReview()" classname="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" time="0.065"/>
+  <testcase name="csvRoundTripsQuotedMultilineSourcesAndRejectsMalformedInput()" classname="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" time="0.004"/>
+  <testcase name="candidateReportFailureAfterCommitIsNotReportedAsSuccess()" classname="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" time="0.047"/>
+  <testcase name="applyIsAtomicAndIdempotentIncludingSameReviewedPlan()" classname="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" time="0.131"/>
+  <testcase name="dryRunIsReadOnlySortedAndUsesContentType()" classname="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" time="0.029"/>
+  <testcase name="candidateReferencesPreserveIdentityAndDoNotChooseConversions()" classname="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" time="0.145"/>
+  <testcase name="changedCandidatesAndDatabaseInputsAreRejected()" classname="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" time="0.043"/>
+  <testcase name="twoWayInventoryReportsDriftAndMissingRows()" classname="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" time="0.033"/>
+  <testcase name="mutationDuringBatchRollsBackAllInserts()" classname="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" time="0.05"/>
+  <testcase name="caseAliasAgainstDatabaseCannotCreateOrMatch()" classname="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" time="0.02"/>
+  <testcase name="existingEvidenceAndUnsafeOutputsAreRejected()" classname="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" time="0.023"/>
+  <testcase name="insertFailureRollsBackEarlierInsert()" classname="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" time="0.078"/>
+  <testcase name="changedFileRejectsReviewedPlan()" classname="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" time="0.039"/>
+  <testcase name="corruptImageIsReportedAndNeverPlanned()" classname="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" time="0.016"/>
+  <testcase name="linksAreReportedWithoutFollowingThem()" classname="com.rsmaxwell.diaries.responder.migration.migration0024.ImageReconcilerTest" time="0.052"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

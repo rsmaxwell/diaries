@@ -1,0 +1,23 @@
+BEGIN
+ ?column? 
+----------
+        1
+(1 row)
+
+SET
+DO
+CREATE TABLE
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:11: NOTICE:  column "image_id" of relation "_0025_expected" already exists, skipping
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:12: NOTICE:  constraint "expected_type" of relation "_0025_expected" does not exist, skipping
+psql:/tmp/migration/assert-schema.sql:13: NOTICE:  constraint "expected_reference" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+psql:/tmp/migration/assert-schema.sql:14: NOTICE:  constraint "expected_type_varchar" of relation "_0025_expected" does not exist, skipping
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+DO
+psql:/tmp/migration/001-preflight.sql:13: ERROR:  Existing references require explicit allow_existing_references=true for repeat/recovery
+CONTEXT:  PL/pgSQL function inline_code_block line 1 at RAISE

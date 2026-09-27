@@ -1,0 +1,12 @@
+main-5L2A2TMF.js:15 ConfigService.getConfig
+main-5L2A2TMF.js:15 ConfigService.getConfig from cache:  {brokerMode: 'proxy', brokerProxyPath: '/mosquitto/', responderBaseUrlMode: 'same-origin', username: 'diaries-client', password: '********', …}
+main-5L2A2TMF.js:15 RpcService.rpcRequest
+main-5L2A2TMF.js:15 RpcService.rpcRequest: sending {requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '2e3c9a4b-f228-4a54-aae8-0bb909049166', replyTopic: 'diaries/rpc/client-1790496899257/response', hasAccessToken: true}
+main-5L2A2TMF.js:15 [rpcRequest] Publish succeeded
+main-5L2A2TMF.js:15 rpcDispatcher: received status: {code: 200, message: 'ok'}
+main-5L2A2TMF.js:15 ConfigService.getConfig
+main-5L2A2TMF.js:15 ConfigService.getConfig from cache:  {brokerMode: 'proxy', brokerProxyPath: '/mosquitto/', responderBaseUrlMode: 'same-origin', username: 'diaries-client', password: '********', …}
+main-5L2A2TMF.js:15 RpcService.rpcRequest
+main-5L2A2TMF.js:15 RpcService.rpcRequest: sending {requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: 'fa95fdfd-624a-461f-a92b-af305d118420', replyTopic: 'diaries/rpc/client-1790496899257/response', hasAccessToken: true}
+main-5L2A2TMF.js:15 [rpcRequest] Publish succeeded
+main-5L2A2TMF.js:15 rpcDispatcher: received status: {code: 200, message: 'ok'}

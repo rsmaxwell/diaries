@@ -1,0 +1,23 @@
+{
+  "status": "PASSED",
+  "startedAtUtc": "2026-09-27T09:19:50.9969938Z",
+  "container": "diaries-0025-schema-702af66a0350",
+  "liveDatabaseUsed": false,
+  "cases": [
+    "first-apply",
+    "repeat-apply",
+    "constraints",
+    "reject-default",
+    "reject-wrong-type",
+    "reject-cascade",
+    "reject-wrong-index",
+    "reject-weak-check",
+    "reject-prerequisite",
+    "partial-recovery"
+  ],
+  "backupSha256": "fe0e187eda4fe4c7923590f7ec5e36871ced87e2ba8fa6d3f882e0b0992d6b86",
+  "postgresImageId": "sha256:d3e1620b530c944afa6e887d22eb899824da68e19c52024bf98f5220c88a65b2",
+  "rowsUnchanged": true,
+  "cleanupExitCode": 0,
+  "finishedAtUtc": "2026-09-27T09:19:58.4605425Z"
+}
