@@ -1,0 +1,90 @@
+[
+  {
+    "phase": "before",
+    "files": [
+      "disposable.png",
+      "protected.png",
+      "uncatalogued.png"
+    ],
+    "rows": [
+      [
+        1,
+        "step9/images/disposable.png"
+      ],
+      [
+        2,
+        "step9/images/protected.png"
+      ]
+    ],
+    "retained": {
+      "diaries/images/1": {
+        "id": 1,
+        "version": 0,
+        "relativePath": "step9/images/disposable.png",
+        "mimeType": "image/png",
+        "originalFilename": "disposable.png",
+        "width": 12,
+        "height": 10,
+        "checksum": "3ca22cb1f726115cef82856452c8cc115f99700146572ee376aee00ad400eec9",
+        "caption": "",
+        "altText": ""
+      },
+      "diaries/images/2": {
+        "id": 2,
+        "version": 0,
+        "relativePath": "step9/images/protected.png",
+        "mimeType": "image/png",
+        "originalFilename": "protected.png",
+        "width": 12,
+        "height": 10,
+        "checksum": "3ca22cb1f726115cef82856452c8cc115f99700146572ee376aee00ad400eec9",
+        "caption": "",
+        "altText": ""
+      }
+    }
+  },
+  {
+    "phase": "cancelled",
+    "files": [
+      "disposable.png",
+      "protected.png",
+      "uncatalogued.png"
+    ],
+    "rows": [
+      [
+        1,
+        "step9/images/disposable.png"
+      ],
+      [
+        2,
+        "step9/images/protected.png"
+      ]
+    ],
+    "retained": {
+      "diaries/images/1": {
+        "id": 1,
+        "version": 0,
+        "relativePath": "step9/images/disposable.png",
+        "mimeType": "image/png",
+        "originalFilename": "disposable.png",
+        "width": 12,
+        "height": 10,
+        "checksum": "3ca22cb1f726115cef82856452c8cc115f99700146572ee376aee00ad400eec9",
+        "caption": "",
+        "altText": ""
+      },
+      "diaries/images/2": {
+        "id": 2,
+        "version": 0,
+        "relativePath": "step9/images/protected.png",
+        "mimeType": "image/png",
+        "originalFilename": "protected.png",
+        "width": 12,
+        "height": 10,
+        "checksum": "3ca22cb1f726115cef82856452c8cc115f99700146572ee376aee00ad400eec9",
+        "caption": "",
+        "altText": ""
+      }
+    }
+  }
+]

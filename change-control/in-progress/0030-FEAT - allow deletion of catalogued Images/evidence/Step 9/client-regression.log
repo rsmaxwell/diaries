@@ -1,0 +1,1314 @@
+
+> diaries-client@0.0.0 test
+> ng test --watch=false --browsers=ChromeHeadless --progress=false
+
+> Building...
+√ Building...
+Initial chunk files                          | Names                                     |  Raw size
+chunk-ZH3HQXVV.js                            | -                                         |   1.14 MB | 
+chunk-LT6BV4SV.js                            | -                                         |   1.10 MB | 
+polyfills.js                                 | polyfills                                 |   1.01 MB | 
+chunk-7ZJNDT6Q.js                            | -                                         | 494.60 kB | 
+chunk-6UDWGB23.js                            | -                                         | 368.22 kB | 
+spec-fragment.component.spec.js              | spec-fragment.component.spec              | 309.98 kB | 
+spec-alert.component.spec.js                 | spec-alert.component.spec                 | 263.28 kB | 
+chunk-Q3HJRVOV.js                            | -                                         | 242.46 kB | 
+chunk-S5FBBSJ3.js                            | -                                         | 239.26 kB | 
+chunk-KSWDACZ3.js                            | -                                         | 229.08 kB | 
+chunk-GL32SDAE.js                            | -                                         | 195.68 kB | 
+chunk-ENYCCH6H.js                            | -                                         | 169.71 kB | 
+chunk-SCDI3I5Y.js                            | -                                         | 155.24 kB | 
+chunk-LJOW233W.js                            | -                                         | 154.70 kB | 
+chunk-2DUGSE5M.js                            | -                                         | 137.52 kB | 
+chunk-DSLTZ4J4.js                            | -                                         | 129.78 kB | 
+chunk-VKEUAAVR.js                            | -                                         | 123.26 kB | 
+chunk-4E3AP6RO.js                            | -                                         |  99.92 kB | 
+chunk-WQ25CJ5D.js                            | -                                         |  87.94 kB | 
+chunk-2ASJQYUN.js                            | -                                         |  82.78 kB | 
+chunk-SNBGV74A.js                            | -                                         |  72.80 kB | 
+jasmine-cleanup-1.js                         | jasmine-cleanup-1                         |  67.20 kB | 
+styles.css                                   | styles                                    |  62.08 kB | 
+spec-thing.component.spec.js                 | spec-thing.component.spec                 |  57.14 kB | 
+chunk-OUPSVKDV.js                            | -                                         |  47.80 kB | 
+chunk-NWO6BF4Y.js                            | -                                         |  43.56 kB | 
+chunk-YK4U7E47.js                            | -                                         |  40.01 kB | 
+chunk-KRBUVALY.js                            | -                                         |  34.04 kB | 
+chunk-L6TMCNYD.js                            | -                                         |  27.00 kB | 
+chunk-POWXGFK4.js                            | -                                         |  22.64 kB | 
+test_main.js                                 | test_main                                 |  21.83 kB | 
+chunk-ML4IJUCK.js                            | -                                         |  19.58 kB | 
+spec-file-rpc-compatibility.spec.js          | spec-file-rpc-compatibility.spec          |  19.14 kB | 
+spec-diary.component.spec.js                 | spec-diary.component.spec                 |  17.68 kB | 
+spec-diaries.component.spec.js               | spec-diaries.component.spec               |  16.34 kB | 
+chunk-VCVM4HMG.js                            | -                                         |  15.77 kB | 
+chunk-5UPOVAAJ.js                            | -                                         |  14.73 kB | 
+spec-register.component.spec.js              | spec-register.component.spec              |  13.25 kB | 
+chunk-VOBEVV7C.js                            | -                                         |  12.37 kB | 
+spec-dayview.component.spec.js               | spec-dayview.component.spec               |  12.32 kB | 
+chunk-KIWIPNKA.js                            | -                                         |  10.71 kB | 
+spec-files-list-dialog.context-menu.spec.js  | spec-files-list-dialog.context-menu.spec  |  10.44 kB | 
+spec-signin.component.spec.js                | spec-signin.component.spec                |   9.69 kB | 
+spec-pageheader.component.spec.js            | spec-pageheader.component.spec            |   8.42 kB | 
+chunk-MO4D7ZVT.js                            | -                                         |   5.87 kB | 
+spec-text-panel.component.spec.js            | spec-text-panel.component.spec            |   5.78 kB | 
+chunk-74QXHKXW.js                            | -                                         |   5.44 kB | 
+chunk-LDW6F45F.js                            | -                                         |   5.04 kB | 
+spec-files-list-dialog.compatibility.spec.js | spec-files-list-dialog.compatibility.spec |   4.97 kB | 
+chunk-4FU4L43P.js                            | -                                         |   4.85 kB | 
+chunk-767FKU45.js                            | -                                         |   4.79 kB | 
+chunk-AJRITUN4.js                            | -                                         |   4.56 kB | 
+chunk-ARCV3P4V.js                            | -                                         |   4.13 kB | 
+chunk-HEX5G57F.js                            | -                                         |   4.08 kB | 
+chunk-5YNDDUF6.js                            | -                                         |   3.86 kB | 
+chunk-56JUR7J3.js                            | -                                         |   3.79 kB | 
+chunk-GZI57ZN7.js                            | -                                         |   3.45 kB | 
+chunk-BD76JDZT.js                            | -                                         |   3.25 kB | 
+chunk-MXYQ2FVQ.js                            | -                                         |   3.22 kB | 
+chunk-7YUAEEDX.js                            | -                                         |   3.12 kB | 
+spec-pagefooter.component.spec.js            | spec-pagefooter.component.spec            |   3.06 kB | 
+chunk-TZIJUBNP.js                            | -                                         |   3.05 kB | 
+spec-legacy-fragment-html.pipe.spec.js       | spec-legacy-fragment-html.pipe.spec       |   2.69 kB | 
+spec-fullfooter.component.spec.js            | spec-fullfooter.component.spec            |   2.58 kB | 
+chunk-6GWNECMK.js                            | -                                         |   2.56 kB | 
+spec-image-viewer.component.spec.js          | spec-image-viewer.component.spec          |   2.46 kB | 
+spec-app.component.spec.js                   | spec-app.component.spec                   |   2.38 kB | 
+spec-plainfooter.component.spec.js           | spec-plainfooter.component.spec           |   2.25 kB | 
+spec-model-context.spec.js                   | spec-model-context.spec                   |   2.18 kB | 
+spec-alerts.component.spec.js                | spec-alerts.component.spec                |   2.08 kB | 
+chunk-6NOSSKOX.js                            | -                                         |   1.99 kB | 
+spec-fullheader.component.spec.js            | spec-fullheader.component.spec            |   1.72 kB | 
+spec-fragment.spec.js                        | spec-fragment.spec                        |   1.46 kB | 
+spec-plainheader.component.spec.js           | spec-plainheader.component.spec           |   1.40 kB | 
+spec-alertbuttons.component.spec.js          | spec-alertbuttons.component.spec          |   1.24 kB | 
+chunk-Y4ECTCXR.js                            | -                                         | 979 bytes | 
+spec-alert.service.spec.js                   | spec-alert.service.spec                   | 569 bytes | 
+jasmine-cleanup-0.js                         | jasmine-cleanup-0                         | 519 bytes | 
+spec-mqtt.service.spec.js                    | spec-mqtt.service.spec                    | 485 bytes | 
+spec-config.service.spec.js                  | spec-config.service.spec                  | 452 bytes | 
+
+                                             | Initial total                             |   7.51 MB
+
+Lazy chunk files                             | Names                                     |  Raw size
+chunk-RRAZGOX7.js                            | ngx-quill-quill-CUw8Q_m0                  | 487.21 kB | 
+
+Application bundle generation complete. [3.073 seconds]
+
+27 09 2026 08:02:17.623:INFO [karma-server]: Karma v6.4.4 server started at http://localhost:9876/
+27 09 2026 08:02:17.625:INFO [launcher]: Launching browsers ChromeHeadless with concurrency unlimited
+27 09 2026 08:02:17.643:INFO [launcher]: Starting browser ChromeHeadless
+27 09 2026 08:02:18.063:INFO [Chrome Headless 153.0.0.0 (Windows 10)]: Connected on socket tpW9-f6e7J0A1c7AAAAB with id 32347933
+Chrome Headless 153.0.0.0 (Windows 10): Executed 0 of 132[32m SUCCESS[39m (0 secs / 0 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 1 of 132[32m SUCCESS[39m (0 secs / 0.002 secs)
+[1A[2KLOG: [36m'ConfigService.constructor'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 1 of 132[32m SUCCESS[39m (0 secs / 0.002 secs)
+LOG: 'ConfigService.constructor'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 2 of 132[32m SUCCESS[39m (0 secs / 0.002 secs)
+[1A[2KLOG: [36m'DayviewComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 2 of 132[32m SUCCESS[39m (0 secs / 0.002 secs)
+LOG: 'DayviewComponent.ngOnInit'
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 2 of 132[32m SUCCESS[39m (0 secs / 0.002 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [1, 2][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 2 of 132[32m SUCCESS[39m (0 secs / 0.002 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', [1, 2]
+[1A[2KLOG: [36m'DayviewComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 2 of 132[32m SUCCESS[39m (0 secs / 0.002 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 3 of 132[32m SUCCESS[39m (0 secs / 0.036 secs)
+[1A[2KLOG: [36m'DayviewComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 3 of 132[32m SUCCESS[39m (0 secs / 0.036 secs)
+LOG: 'DayviewComponent.ngOnInit'
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 3 of 132[32m SUCCESS[39m (0 secs / 0.036 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+[1A[2KLOG: [36m'DayviewComponent.drop: UpdateFragment succeeded: n: 3'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 3 of 132[32m SUCCESS[39m (0 secs / 0.036 secs)
+LOG: 'DayviewComponent.drop: UpdateFragment succeeded: n: 3'
+[1A[2KLOG: [36m'DayviewComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 3 of 132[32m SUCCESS[39m (0 secs / 0.036 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 4 of 132[32m SUCCESS[39m (0 secs / 0.039 secs)
+[1A[2KLOG: [36m'DayviewComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 4 of 132[32m SUCCESS[39m (0 secs / 0.039 secs)
+LOG: 'DayviewComponent.ngOnInit'
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 4 of 132[32m SUCCESS[39m (0 secs / 0.039 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+[1A[2KLOG: [36m'DayviewComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 4 of 132[32m SUCCESS[39m (0 secs / 0.039 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 5 of 132[32m SUCCESS[39m (0 secs / 0.041 secs)
+[1A[2KLOG: [36m'DayviewComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 5 of 132[32m SUCCESS[39m (0 secs / 0.041 secs)
+LOG: 'DayviewComponent.ngOnInit'
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 5 of 132[32m SUCCESS[39m (0 secs / 0.041 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+[1A[2KLOG: [36m'DayviewComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 5 of 132[32m SUCCESS[39m (0 secs / 0.041 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 6 of 132[32m SUCCESS[39m (0 secs / 0.042 secs)
+[1A[2KLOG: [36m'DayviewComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 6 of 132[32m SUCCESS[39m (0 secs / 0.042 secs)
+LOG: 'DayviewComponent.ngOnInit'
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 6 of 132[32m SUCCESS[39m (0 secs / 0.042 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [1][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 6 of 132[32m SUCCESS[39m (0 secs / 0.042 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', [1]
+[1A[2KLOG: [36m'DayviewComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 6 of 132[32m SUCCESS[39m (0 secs / 0.042 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 7 of 132[32m SUCCESS[39m (0 secs / 0.046 secs)
+[1A[2KLOG: [36m'DayviewComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 7 of 132[32m SUCCESS[39m (0 secs / 0.046 secs)
+LOG: 'DayviewComponent.ngOnInit'
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 7 of 132[32m SUCCESS[39m (0 secs / 0.046 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+[1A[2KLOG: [36m'DayviewComponent.goToFragment: fragmentId: 7'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 7 of 132[32m SUCCESS[39m (0 secs / 0.046 secs)
+LOG: 'DayviewComponent.goToFragment: fragmentId: 7'
+[1A[2KLOG: [36m'DayviewComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 7 of 132[32m SUCCESS[39m (0 secs / 0.046 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 8 of 132[32m SUCCESS[39m (0 secs / 0.048 secs)
+[1A[2KLOG: [36m'DayviewComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 8 of 132[32m SUCCESS[39m (0 secs / 0.048 secs)
+LOG: 'DayviewComponent.ngOnInit'
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 8 of 132[32m SUCCESS[39m (0 secs / 0.048 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [1][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 8 of 132[32m SUCCESS[39m (0 secs / 0.048 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', [1]
+[1A[2KLOG: [36m'DayviewComponent.goToFragment: fragmentId: 1'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 8 of 132[32m SUCCESS[39m (0 secs / 0.048 secs)
+LOG: 'DayviewComponent.goToFragment: fragmentId: 1'
+[1A[2KLOG: [36m'DayviewComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 8 of 132[32m SUCCESS[39m (0 secs / 0.048 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 9 of 132[32m SUCCESS[39m (0 secs / 0.05 secs)
+[1A[2KLOG: [36m'DayviewComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 9 of 132[32m SUCCESS[39m (0 secs / 0.05 secs)
+LOG: 'DayviewComponent.ngOnInit'
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 9 of 132[32m SUCCESS[39m (0 secs / 0.05 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [7][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 9 of 132[32m SUCCESS[39m (0 secs / 0.05 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', [7]
+[1A[2KLOG: [36m'DayviewComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 9 of 132[32m SUCCESS[39m (0 secs / 0.05 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 10 of 132[32m SUCCESS[39m (0 secs / 0.052 secs)
+[1A[2KLOG: [36m'DayviewComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 10 of 132[32m SUCCESS[39m (0 secs / 0.052 secs)
+LOG: 'DayviewComponent.ngOnInit'
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 10 of 132[32m SUCCESS[39m (0 secs / 0.052 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+[1A[2KLOG: [36m'DayviewComponent.handleError: RPC error: Error: update failed'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 10 of 132[32m SUCCESS[39m (0 secs / 0.052 secs)
+LOG: 'DayviewComponent.handleError: RPC error: Error: update failed'
+[1A[2KLOG: [36m'DayviewComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 10 of 132[32m SUCCESS[39m (0 secs / 0.052 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 11 of 132[32m SUCCESS[39m (0 secs / 0.054 secs)
+[1A[2KLOG: [36m'DayviewComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 11 of 132[32m SUCCESS[39m (0 secs / 0.054 secs)
+LOG: 'DayviewComponent.ngOnInit'
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 11 of 132[32m SUCCESS[39m (0 secs / 0.054 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+[1A[2KLOG: [36m'DayviewComponent.goToFragment: fragmentId: 7'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 11 of 132[32m SUCCESS[39m (0 secs / 0.054 secs)
+LOG: 'DayviewComponent.goToFragment: fragmentId: 7'
+[1A[2KLOG: [36m'DayviewComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 11 of 132[32m SUCCESS[39m (0 secs / 0.054 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 12 of 132[32m SUCCESS[39m (0 secs / 0.056 secs)
+[1A[2KLOG: [36m'DayviewComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 12 of 132[32m SUCCESS[39m (0 secs / 0.056 secs)
+LOG: 'DayviewComponent.ngOnInit'
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 12 of 132[32m SUCCESS[39m (0 secs / 0.056 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+[1A[2KLOG: [36m'DayviewComponent.<subscribe fragments>: fragments:', [1][39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 12 of 132[32m SUCCESS[39m (0 secs / 0.056 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', [1]
+[1A[2KLOG: [36m'DayviewComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 12 of 132[32m SUCCESS[39m (0 secs / 0.056 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 13 of 132[32m SUCCESS[39m (0 secs / 0.059 secs)
+[1A[2KLOG: [36m'AlertComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 13 of 132[32m SUCCESS[39m (0 secs / 0.059 secs)
+LOG: 'AlertComponent.ngOnInit'
+[1A[2KLOG: [36m'AlertComponent.getAlert: id: 1'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 13 of 132[32m SUCCESS[39m (0 secs / 0.059 secs)
+LOG: 'AlertComponent.getAlert: id: 1'
+[1A[2KLOG: [36m'AlertComponent.getAlert - next: alert: {"id":0,"type":3,"message":"Check this notice","autoClose":false}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 13 of 132[32m SUCCESS[39m (0 secs / 0.059 secs)
+LOG: 'AlertComponent.getAlert - next: alert: {"id":0,"type":3,"message":"Check this notice","autoClose":false}'
+[1A[2KLOG: [36m'AlertComponent.getAlert - complete'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 13 of 132[32m SUCCESS[39m (0 secs / 0.059 secs)
+LOG: 'AlertComponent.getAlert - complete'
+[1A[2KLOG: [36m'AlertsComponent.getAlerts: complete'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 13 of 132[32m SUCCESS[39m (0 secs / 0.059 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 13 of 132[32m SUCCESS[39m (0 secs / 0.059 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 14 of 132[32m SUCCESS[39m (0 secs / 0.075 secs)
+[1A[2KLOG: [36m'AlertComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 14 of 132[32m SUCCESS[39m (0 secs / 0.075 secs)
+LOG: 'AlertComponent.ngOnInit'
+[1A[2KLOG: [36m'AlertComponent.getAlert: id: 1'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 14 of 132[32m SUCCESS[39m (0 secs / 0.075 secs)
+LOG: 'AlertComponent.getAlert: id: 1'
+[1A[2KLOG: [36m'AlertComponent.getAlert - next: alert: {"id":0,"type":3,"message":"Check this notice","autoClose":false}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 14 of 132[32m SUCCESS[39m (0 secs / 0.075 secs)
+LOG: 'AlertComponent.getAlert - next: alert: {"id":0,"type":3,"message":"Check this notice","autoClose":false}'
+[1A[2KLOG: [36m'AlertComponent.getAlert - complete'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 14 of 132[32m SUCCESS[39m (0 secs / 0.075 secs)
+LOG: 'AlertComponent.getAlert - complete'
+[1A[2KLOG: [36m'AlertsComponent.getAlerts: complete'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 14 of 132[32m SUCCESS[39m (0 secs / 0.075 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 14 of 132[32m SUCCESS[39m (0 secs / 0.075 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 15 of 132[32m SUCCESS[39m (0 secs / 0.08 secs)
+[1A[2KLOG: [36m'DiariesComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 15 of 132[32m SUCCESS[39m (0 secs / 0.08 secs)
+LOG: 'DiariesComponent.ngOnInit'
+[1A[2KLOG: [36m'AlertsComponent.getAlerts: complete'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 15 of 132[32m SUCCESS[39m (0 secs / 0.08 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 15 of 132[32m SUCCESS[39m (0 secs / 0.08 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KLOG: [36m'DiariesComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 15 of 132[32m SUCCESS[39m (0 secs / 0.08 secs)
+LOG: 'DiariesComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 16 of 132[32m SUCCESS[39m (0 secs / 0.089 secs)
+[1A[2KLOG: [36m'DiariesComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 16 of 132[32m SUCCESS[39m (0 secs / 0.089 secs)
+LOG: 'DiariesComponent.ngOnInit'
+[1A[2KLOG: [36m'AlertsComponent.getAlerts: complete'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 16 of 132[32m SUCCESS[39m (0 secs / 0.089 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+[1A[2KLOG: [36m'DiariesComponent.selectItem: id: 7'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 16 of 132[32m SUCCESS[39m (0 secs / 0.089 secs)
+LOG: 'DiariesComponent.selectItem: id: 7'
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 16 of 132[32m SUCCESS[39m (0 secs / 0.089 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KLOG: [36m'DiariesComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 16 of 132[32m SUCCESS[39m (0 secs / 0.089 secs)
+LOG: 'DiariesComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 17 of 132[32m SUCCESS[39m (0 secs / 0.093 secs)
+[1A[2KLOG: [36m'DiariesComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 17 of 132[32m SUCCESS[39m (0 secs / 0.093 secs)
+LOG: 'DiariesComponent.ngOnInit'
+[1A[2KLOG: [36m'AlertsComponent.getAlerts: complete'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 17 of 132[32m SUCCESS[39m (0 secs / 0.093 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+[1A[2KLOG: [36m'UpdateDiary succeeded: n: 1'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 17 of 132[32m SUCCESS[39m (0 secs / 0.093 secs)
+LOG: 'UpdateDiary succeeded: n: 1'
+[1A[2KLOG: [36m'NormaliseDiaries succeeded: n: 1'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 17 of 132[32m SUCCESS[39m (0 secs / 0.093 secs)
+LOG: 'NormaliseDiaries succeeded: n: 1'
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 17 of 132[32m SUCCESS[39m (0 secs / 0.093 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KLOG: [36m'DiariesComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 17 of 132[32m SUCCESS[39m (0 secs / 0.093 secs)
+LOG: 'DiariesComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 18 of 132[32m SUCCESS[39m (0 secs / 0.097 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 19 of 132[32m SUCCESS[39m (0 secs / 0.098 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 20 of 132[32m SUCCESS[39m (0 secs / 0.098 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 21 of 132[32m SUCCESS[39m (0 secs / 0.098 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 22 of 132[32m SUCCESS[39m (0 secs / 0.098 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 23 of 132[32m SUCCESS[39m (0 secs / 0.098 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 24 of 132[32m SUCCESS[39m (0 secs / 0.098 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 25 of 132[32m SUCCESS[39m (0 secs / 0.098 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 26 of 132[32m SUCCESS[39m (0 secs / 0.104 secs)
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 26 of 132[32m SUCCESS[39m (0 secs / 0.104 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 27 of 132[32m SUCCESS[39m (0 secs / 0.107 secs)
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 27 of 132[32m SUCCESS[39m (0 secs / 0.107 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 28 of 132[32m SUCCESS[39m (0 secs / 0.108 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 29 of 132[32m SUCCESS[39m (0 secs / 0.109 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 30 of 132[32m SUCCESS[39m (0 secs / 0.109 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 31 of 132[32m SUCCESS[39m (0 secs / 0.109 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 32 of 132[32m SUCCESS[39m (0 secs / 0.109 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 33 of 132[32m SUCCESS[39m (0 secs / 0.111 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 34 of 132[32m SUCCESS[39m (0 secs / 0.113 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 35 of 132[32m SUCCESS[39m (0 secs / 0.113 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 36 of 132[32m SUCCESS[39m (0 secs / 0.113 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 37 of 132[32m SUCCESS[39m (0 secs / 0.113 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 38 of 132[32m SUCCESS[39m (0 secs / 0.113 secs)
+[1A[2KLOG: [36m'ImageViewerComponent.fitPage', Object{reason: 'user', pageId: 3, scaleBefore: 1.2, offsetXBefore: -120, offsetYBefore: -180}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 38 of 132[32m SUCCESS[39m (0 secs / 0.113 secs)
+LOG: 'ImageViewerComponent.fitPage', Object{reason: 'user', pageId: 3, scaleBefore: 1.2, offsetXBefore: -120, offsetYBefore: -180}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 39 of 132[32m SUCCESS[39m (0 secs / 0.113 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 40 of 132[32m SUCCESS[39m (0 secs / 0.113 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 41 of 132[32m SUCCESS[39m (0 secs / 0.113 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 42 of 132[32m SUCCESS[39m (0 secs / 0.113 secs)
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 42 of 132[32m SUCCESS[39m (0 secs / 0.113 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 43 of 132[32m SUCCESS[39m (0 secs / 0.117 secs)
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 43 of 132[32m SUCCESS[39m (0 secs / 0.117 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 44 of 132[32m SUCCESS[39m (0 secs / 0.119 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 45 of 132[32m SUCCESS[39m (0 secs / 0.119 secs)
+[1A[2KLOG: [36m'TextPanelComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 45 of 132[32m SUCCESS[39m (0 secs / 0.119 secs)
+LOG: 'TextPanelComponent.ngOnInit'
+[1A[2KLOG: [36m'TextPanelComponent: we are leaving fragment.id=undefined'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 45 of 132[32m SUCCESS[39m (0 secs / 0.119 secs)
+LOG: 'TextPanelComponent: we are leaving fragment.id=undefined'
+[1A[2KLOG: [36m'TextPanelComponent.onSave', Object{fragmentId: 17, version: 4}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 45 of 132[32m SUCCESS[39m (0 secs / 0.119 secs)
+LOG: 'TextPanelComponent.onSave', Object{fragmentId: 17, version: 4}
+[1A[2KLOG: [36m'TextPanelComponent.onSave: success (optimistic accepted)'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 45 of 132[32m SUCCESS[39m (0 secs / 0.119 secs)
+LOG: 'TextPanelComponent.onSave: success (optimistic accepted)'
+[1A[2KLOG: [36m'TextPanelComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 45 of 132[32m SUCCESS[39m (0 secs / 0.119 secs)
+LOG: 'TextPanelComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 46 of 132[32m SUCCESS[39m (0 secs / 0.121 secs)
+[1A[2KLOG: [36m'TextPanelComponent.onSave', Object{fragmentId: 17, version: 4}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 46 of 132[32m SUCCESS[39m (0 secs / 0.121 secs)
+LOG: 'TextPanelComponent.onSave', Object{fragmentId: 17, version: 4}
+[1A[2KLOG: [36m'TextPanelComponent.onSave', Object{fragmentId: 17, version: 5}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 46 of 132[32m SUCCESS[39m (0 secs / 0.121 secs)
+LOG: 'TextPanelComponent.onSave', Object{fragmentId: 17, version: 5}
+[1A[2KLOG: [36m'TextPanelComponent.onSave: success (optimistic accepted)'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 46 of 132[32m SUCCESS[39m (0 secs / 0.121 secs)
+LOG: 'TextPanelComponent.onSave: success (optimistic accepted)'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 47 of 132[32m SUCCESS[39m (0 secs / 0.121 secs)
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 47 of 132[32m SUCCESS[39m (0 secs / 0.121 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 48 of 132[32m SUCCESS[39m (0 secs / 0.123 secs)
+[1A[2KLOG: [36m'DiaryComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 48 of 132[32m SUCCESS[39m (0 secs / 0.123 secs)
+LOG: 'DiaryComponent.ngOnInit'
+[1A[2KLOG: [36m'DiaryComponent.ngOnInit: Route changed: diaryId: 7'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 48 of 132[32m SUCCESS[39m (0 secs / 0.123 secs)
+LOG: 'DiaryComponent.ngOnInit: Route changed: diaryId: 7'
+[1A[2KLOG: [36m'DiaryComponent.ngOnInit: diary.id: 7'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 48 of 132[32m SUCCESS[39m (0 secs / 0.123 secs)
+LOG: 'DiaryComponent.ngOnInit: diary.id: 7'
+[1A[2KLOG: [36m'AlertsComponent.getAlerts: complete'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 48 of 132[32m SUCCESS[39m (0 secs / 0.123 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 48 of 132[32m SUCCESS[39m (0 secs / 0.123 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KLOG: [36m'DiaryComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 48 of 132[32m SUCCESS[39m (0 secs / 0.123 secs)
+LOG: 'DiaryComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 49 of 132[32m SUCCESS[39m (0 secs / 0.132 secs)
+[1A[2KLOG: [36m'DiaryComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 49 of 132[32m SUCCESS[39m (0 secs / 0.132 secs)
+LOG: 'DiaryComponent.ngOnInit'
+[1A[2KLOG: [36m'DiaryComponent.ngOnInit: Route changed: diaryId: 7'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 49 of 132[32m SUCCESS[39m (0 secs / 0.132 secs)
+LOG: 'DiaryComponent.ngOnInit: Route changed: diaryId: 7'
+[1A[2KLOG: [36m'DiaryComponent.ngOnInit: diary.id: 7'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 49 of 132[32m SUCCESS[39m (0 secs / 0.132 secs)
+LOG: 'DiaryComponent.ngOnInit: diary.id: 7'
+[1A[2KLOG: [36m'AlertsComponent.getAlerts: complete'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 49 of 132[32m SUCCESS[39m (0 secs / 0.132 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+[1A[2KLOG: [36m'UpdatePage succeeded: n: 1'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 49 of 132[32m SUCCESS[39m (0 secs / 0.132 secs)
+LOG: 'UpdatePage succeeded: n: 1'
+[1A[2KLOG: [36m'NormalisePages succeeded: n: 1'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 49 of 132[32m SUCCESS[39m (0 secs / 0.132 secs)
+LOG: 'NormalisePages succeeded: n: 1'
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 49 of 132[32m SUCCESS[39m (0 secs / 0.132 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KLOG: [36m'DiaryComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 49 of 132[32m SUCCESS[39m (0 secs / 0.132 secs)
+LOG: 'DiaryComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 50 of 132[32m SUCCESS[39m (0 secs / 0.136 secs)
+[1A[2KLOG: [36m'DiaryComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 50 of 132[32m SUCCESS[39m (0 secs / 0.136 secs)
+LOG: 'DiaryComponent.ngOnInit'
+[1A[2KLOG: [36m'DiaryComponent.ngOnInit: Route changed: diaryId: 7'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 50 of 132[32m SUCCESS[39m (0 secs / 0.136 secs)
+LOG: 'DiaryComponent.ngOnInit: Route changed: diaryId: 7'
+[1A[2KLOG: [36m'DiaryComponent.ngOnInit: diary.id: 7'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 50 of 132[32m SUCCESS[39m (0 secs / 0.136 secs)
+LOG: 'DiaryComponent.ngOnInit: diary.id: 7'
+[1A[2KLOG: [36m'AlertsComponent.getAlerts: complete'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 50 of 132[32m SUCCESS[39m (0 secs / 0.136 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+[1A[2KLOG: [36m'DiaryComponent.selectItem: id: 11'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 50 of 132[32m SUCCESS[39m (0 secs / 0.136 secs)
+LOG: 'DiaryComponent.selectItem: id: 11'
+[1A[2KLOG: [36m'DiaryComponent.selectItem: this.diary: {"id":7,"version":0,"sequence":1000,"name":"Travel diary"}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 50 of 132[32m SUCCESS[39m (0 secs / 0.136 secs)
+LOG: 'DiaryComponent.selectItem: this.diary: {"id":7,"version":0,"sequence":1000,"name":"Travel diary"}'
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 50 of 132[32m SUCCESS[39m (0 secs / 0.136 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KLOG: [36m'DiaryComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 50 of 132[32m SUCCESS[39m (0 secs / 0.136 secs)
+LOG: 'DiaryComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 51 of 132[32m SUCCESS[39m (0 secs / 0.139 secs)
+[1A[2KLOG: [36m'ConfigService.constructor'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 51 of 132[32m SUCCESS[39m (0 secs / 0.139 secs)
+LOG: 'ConfigService.constructor'
+[1A[2KLOG: [36m'MqttService.getConnection: getting configuration'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 51 of 132[32m SUCCESS[39m (0 secs / 0.139 secs)
+LOG: 'MqttService.getConnection: getting configuration'
+[1A[2KLOG: [36m'ConfigService.getConfig'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 51 of 132[32m SUCCESS[39m (0 secs / 0.139 secs)
+LOG: 'ConfigService.getConfig'
+[1A[2KLOG: [36m'ConfigService.getConfig'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 51 of 132[32m SUCCESS[39m (0 secs / 0.139 secs)
+LOG: 'ConfigService.getConfig'
+[1A[2KLOG: [36m'ConfigService.getConfig from pending request'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 51 of 132[32m SUCCESS[39m (0 secs / 0.139 secs)
+LOG: 'ConfigService.getConfig from pending request'
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 51 of 132[32m SUCCESS[39m (0 secs / 0.139 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 51 of 132[32m SUCCESS[39m (0 secs / 0.139 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 52 of 132[32m SUCCESS[39m (0 secs / 0.146 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 53 of 132[32m SUCCESS[39m (0 secs / 0.149 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 54 of 132[32m SUCCESS[39m (0 secs / 0.149 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 55 of 132[32m SUCCESS[39m (0 secs / 0.15 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 56 of 132[32m SUCCESS[39m (0 secs / 0.18 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 57 of 132[32m SUCCESS[39m (0 secs / 0.187 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 58 of 132[32m SUCCESS[39m (0 secs / 0.193 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 59 of 132[32m SUCCESS[39m (0 secs / 0.199 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 60 of 132[32m SUCCESS[39m (0 secs / 0.204 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 61 of 132[32m SUCCESS[39m (0 secs / 0.209 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 62 of 132[32m SUCCESS[39m (0 secs / 0.242 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 63 of 132[32m SUCCESS[39m (0 secs / 0.259 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 64 of 132[32m SUCCESS[39m (0 secs / 0.271 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 65 of 132[32m SUCCESS[39m (0 secs / 0.292 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 66 of 132[32m SUCCESS[39m (0 secs / 0.3 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 67 of 132[32m SUCCESS[39m (0 secs / 0.307 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 68 of 132[32m SUCCESS[39m (0 secs / 0.312 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 69 of 132[32m SUCCESS[39m (0 secs / 0.321 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 70 of 132[32m SUCCESS[39m (0 secs / 0.33 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 71 of 132[32m SUCCESS[39m (0 secs / 0.337 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 72 of 132[32m SUCCESS[39m (0 secs / 0.346 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 73 of 132[32m SUCCESS[39m (0 secs / 0.354 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 74 of 132[32m SUCCESS[39m (0 secs / 0.363 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 75 of 132[32m SUCCESS[39m (0 secs / 0.371 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 76 of 132[32m SUCCESS[39m (0 secs / 0.379 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 77 of 132[32m SUCCESS[39m (0 secs / 0.388 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 78 of 132[32m SUCCESS[39m (0 secs / 0.395 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 79 of 132[32m SUCCESS[39m (0 secs / 0.401 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 80 of 132[32m SUCCESS[39m (0 secs / 0.409 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 80 of 132[32m SUCCESS[39m (0 secs / 0.409 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 81 of 132[32m SUCCESS[39m (0 secs / 0.41 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 81 of 132[32m SUCCESS[39m (0 secs / 0.41 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 81 of 132[32m SUCCESS[39m (0 secs / 0.41 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'b42b1a2a-3951-4b8a-97e6-e5c0ed9d1391', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 81 of 132[32m SUCCESS[39m (0 secs / 0.41 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'b42b1a2a-3951-4b8a-97e6-e5c0ed9d1391', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 81 of 132[32m SUCCESS[39m (0 secs / 0.41 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 81 of 132[32m SUCCESS[39m (0 secs / 0.41 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 82 of 132[32m SUCCESS[39m (0 secs / 0.411 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 82 of 132[32m SUCCESS[39m (0 secs / 0.411 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 82 of 132[32m SUCCESS[39m (0 secs / 0.411 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '7276b155-f944-491a-a32a-622c8133f635', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 82 of 132[32m SUCCESS[39m (0 secs / 0.411 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '7276b155-f944-491a-a32a-622c8133f635', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 82 of 132[32m SUCCESS[39m (0 secs / 0.411 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 82 of 132[32m SUCCESS[39m (0 secs / 0.411 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 83 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 83 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 83 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '8c7ebb74-ea85-49a0-b3f5-9cd295e7009d', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 83 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '8c7ebb74-ea85-49a0-b3f5-9cd295e7009d', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 83 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 83 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 84 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 84 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 84 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '45e5d239-526f-4c7c-b0c2-e4ee297f47b5', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 84 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '45e5d239-526f-4c7c-b0c2-e4ee297f47b5', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 84 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 84 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 85 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 85 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 85 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'b26a1dd6-873d-441c-9d50-bcf1dc6c0353', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 85 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'b26a1dd6-873d-441c-9d50-bcf1dc6c0353', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 85 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 85 of 132[32m SUCCESS[39m (0 secs / 0.412 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 86 of 132[32m SUCCESS[39m (0 secs / 0.413 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 86 of 132[32m SUCCESS[39m (0 secs / 0.413 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 86 of 132[32m SUCCESS[39m (0 secs / 0.413 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '7889fce0-76c4-419d-a440-2f720cea4221', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 86 of 132[32m SUCCESS[39m (0 secs / 0.413 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '7889fce0-76c4-419d-a440-2f720cea4221', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 86 of 132[32m SUCCESS[39m (0 secs / 0.413 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 86 of 132[32m SUCCESS[39m (0 secs / 0.413 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 87 of 132[32m SUCCESS[39m (0 secs / 0.413 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 87 of 132[32m SUCCESS[39m (0 secs / 0.413 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 87 of 132[32m SUCCESS[39m (0 secs / 0.413 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: '28856ecc-a663-44e1-aedd-49ccdb5fd0b9', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 87 of 132[32m SUCCESS[39m (0 secs / 0.413 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: '28856ecc-a663-44e1-aedd-49ccdb5fd0b9', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 87 of 132[32m SUCCESS[39m (0 secs / 0.413 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 87 of 132[32m SUCCESS[39m (0 secs / 0.413 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 88 of 132[32m SUCCESS[39m (0 secs / 0.414 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 88 of 132[32m SUCCESS[39m (0 secs / 0.414 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 88 of 132[32m SUCCESS[39m (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 89 of 132[32m SUCCESS[39m (0 secs / 0.414 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 89 of 132[32m SUCCESS[39m (0 secs / 0.414 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 89 of 132[32m SUCCESS[39m (0 secs / 0.414 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: 'f507bdef-36e6-42fa-91c4-e28d22fcfbce', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 89 of 132[32m SUCCESS[39m (0 secs / 0.414 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: 'f507bdef-36e6-42fa-91c4-e28d22fcfbce', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 89 of 132[32m SUCCESS[39m (0 secs / 0.414 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 89 of 132[32m SUCCESS[39m (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 90 of 132[32m SUCCESS[39m (0 secs / 0.415 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 90 of 132[32m SUCCESS[39m (0 secs / 0.415 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 90 of 132[32m SUCCESS[39m (0 secs / 0.415 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '6b587037-1608-41f0-8768-4b4345a3ab24', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 90 of 132[32m SUCCESS[39m (0 secs / 0.415 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '6b587037-1608-41f0-8768-4b4345a3ab24', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 90 of 132[32m SUCCESS[39m (0 secs / 0.415 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 90 of 132[32m SUCCESS[39m (0 secs / 0.415 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 91 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 91 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 91 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: 'ff083233-c961-4e73-9186-fcf30a3a8b51', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 91 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: 'ff083233-c961-4e73-9186-fcf30a3a8b51', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 91 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 91 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 409, message: 'conflict'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 409, message: 'conflict'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 92 of 132[32m SUCCESS[39m (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 93 of 132[32m SUCCESS[39m (0 secs / 0.417 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 93 of 132[32m SUCCESS[39m (0 secs / 0.417 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 93 of 132[32m SUCCESS[39m (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '54fa059e-6ec2-4476-8a89-a42771c5d0b2', replyTopic: 'test/delete-image/reply', hasAccessToken: false}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 93 of 132[32m SUCCESS[39m (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '54fa059e-6ec2-4476-8a89-a42771c5d0b2', replyTopic: 'test/delete-image/reply', hasAccessToken: false}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 93 of 132[32m SUCCESS[39m (0 secs / 0.417 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 93 of 132[32m SUCCESS[39m (0 secs / 0.417 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 94 of 132[32m SUCCESS[39m (0 secs / 0.418 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 94 of 132[32m SUCCESS[39m (0 secs / 0.418 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 94 of 132[32m SUCCESS[39m (0 secs / 0.418 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'd26ce25a-cfda-4d1b-b050-74c2d9467293', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 94 of 132[32m SUCCESS[39m (0 secs / 0.418 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'd26ce25a-cfda-4d1b-b050-74c2d9467293', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 94 of 132[32m SUCCESS[39m (0 secs / 0.418 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 94 of 132[32m SUCCESS[39m (0 secs / 0.418 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 95 of 132[32m SUCCESS[39m (0 secs / 0.418 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 95 of 132[32m SUCCESS[39m (0 secs / 0.418 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 95 of 132[32m SUCCESS[39m (0 secs / 0.418 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'd7b5d4f2-f2df-4c25-8537-66c2cc169b92', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 95 of 132[32m SUCCESS[39m (0 secs / 0.418 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'd7b5d4f2-f2df-4c25-8537-66c2cc169b92', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 95 of 132[32m SUCCESS[39m (0 secs / 0.418 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 95 of 132[32m SUCCESS[39m (0 secs / 0.418 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 96 of 132[32m SUCCESS[39m (0 secs / 0.419 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 96 of 132[32m SUCCESS[39m (0 secs / 0.419 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 96 of 132[32m SUCCESS[39m (0 secs / 0.419 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: 'acbf4385-3dab-43dc-89e9-0b856c6fb6e8', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 96 of 132[32m SUCCESS[39m (0 secs / 0.419 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: 'acbf4385-3dab-43dc-89e9-0b856c6fb6e8', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 96 of 132[32m SUCCESS[39m (0 secs / 0.419 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 96 of 132[32m SUCCESS[39m (0 secs / 0.419 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 97 of 132[32m SUCCESS[39m (0 secs / 0.42 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 97 of 132[32m SUCCESS[39m (0 secs / 0.42 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 97 of 132[32m SUCCESS[39m (0 secs / 0.42 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'c2957e03-6227-494e-8f09-e1979a0d15cb', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 97 of 132[32m SUCCESS[39m (0 secs / 0.42 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'c2957e03-6227-494e-8f09-e1979a0d15cb', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 97 of 132[32m SUCCESS[39m (0 secs / 0.42 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 97 of 132[32m SUCCESS[39m (0 secs / 0.42 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 98 of 132[32m SUCCESS[39m (0 secs / 0.42 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 98 of 132[32m SUCCESS[39m (0 secs / 0.42 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 98 of 132[32m SUCCESS[39m (0 secs / 0.42 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: 'bdf88a5d-6339-4ac2-8f2f-3968cc3ee522', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 98 of 132[32m SUCCESS[39m (0 secs / 0.42 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: 'bdf88a5d-6339-4ac2-8f2f-3968cc3ee522', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 98 of 132[32m SUCCESS[39m (0 secs / 0.42 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 98 of 132[32m SUCCESS[39m (0 secs / 0.42 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 99 of 132[32m SUCCESS[39m (0 secs / 0.421 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 99 of 132[32m SUCCESS[39m (0 secs / 0.421 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 99 of 132[32m SUCCESS[39m (0 secs / 0.421 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '7c834551-970d-48b0-af4f-6db7bd41051b', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 99 of 132[32m SUCCESS[39m (0 secs / 0.421 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '7c834551-970d-48b0-af4f-6db7bd41051b', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 99 of 132[32m SUCCESS[39m (0 secs / 0.421 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 99 of 132[32m SUCCESS[39m (0 secs / 0.421 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 100 of 132[32m SUCCESS[39m (0 secs / 0.421 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 100 of 132[32m SUCCESS[39m (0 secs / 0.421 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 100 of 132[32m SUCCESS[39m (0 secs / 0.421 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '81239a95-e70b-4d78-9fb6-2fec0f9afbca', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 100 of 132[32m SUCCESS[39m (0 secs / 0.421 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '81239a95-e70b-4d78-9fb6-2fec0f9afbca', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 100 of 132[32m SUCCESS[39m (0 secs / 0.421 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 409, message: 'conflict'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 100 of 132[32m SUCCESS[39m (0 secs / 0.421 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 409, message: 'conflict'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 101 of 132[32m SUCCESS[39m (0 secs / 0.422 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 101 of 132[32m SUCCESS[39m (0 secs / 0.422 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 101 of 132[32m SUCCESS[39m (0 secs / 0.422 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '8796f9e2-9e39-4c54-9841-7bfd7aa18684', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 101 of 132[32m SUCCESS[39m (0 secs / 0.422 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '8796f9e2-9e39-4c54-9841-7bfd7aa18684', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 101 of 132[32m SUCCESS[39m (0 secs / 0.422 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 101 of 132[32m SUCCESS[39m (0 secs / 0.422 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 102 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 102 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 102 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '21e91924-f743-490e-b141-dbd9fa178234', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 102 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '21e91924-f743-490e-b141-dbd9fa178234', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 102 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 404, message: 'not found'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 102 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 404, message: 'not found'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 103 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 103 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 103 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'b8336605-9c54-4c95-9349-d91894ee35b1', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 103 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'b8336605-9c54-4c95-9349-d91894ee35b1', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 103 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 103 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 104 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 104 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 104 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '38516307-783c-444c-a664-75e893a72897', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 104 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '38516307-783c-444c-a664-75e893a72897', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 104 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 104 of 132[32m SUCCESS[39m (0 secs / 0.423 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 105 of 132[32m SUCCESS[39m (0 secs / 0.424 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 105 of 132[32m SUCCESS[39m (0 secs / 0.424 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 105 of 132[32m SUCCESS[39m (0 secs / 0.424 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'f00b6e8e-4eef-4ea4-9fd2-981fb3ed8c25', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 105 of 132[32m SUCCESS[39m (0 secs / 0.424 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'f00b6e8e-4eef-4ea4-9fd2-981fb3ed8c25', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 105 of 132[32m SUCCESS[39m (0 secs / 0.424 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 105 of 132[32m SUCCESS[39m (0 secs / 0.424 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 106 of 132[32m SUCCESS[39m (0 secs / 0.424 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 106 of 132[32m SUCCESS[39m (0 secs / 0.424 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 106 of 132[32m SUCCESS[39m (0 secs / 0.424 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: 'cf6a3e17-e1c9-4c14-b38c-dc298193f6e9', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 106 of 132[32m SUCCESS[39m (0 secs / 0.424 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: 'cf6a3e17-e1c9-4c14-b38c-dc298193f6e9', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 106 of 132[32m SUCCESS[39m (0 secs / 0.424 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 106 of 132[32m SUCCESS[39m (0 secs / 0.424 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 107 of 132[32m SUCCESS[39m (0 secs / 0.425 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 107 of 132[32m SUCCESS[39m (0 secs / 0.425 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 107 of 132[32m SUCCESS[39m (0 secs / 0.425 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '30efa077-0a9c-4a3c-bb7a-ed83f74af5a9', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 107 of 132[32m SUCCESS[39m (0 secs / 0.425 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '30efa077-0a9c-4a3c-bb7a-ed83f74af5a9', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 107 of 132[32m SUCCESS[39m (0 secs / 0.425 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 404, message: 'not found'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 107 of 132[32m SUCCESS[39m (0 secs / 0.425 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 404, message: 'not found'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 108 of 132[32m SUCCESS[39m (0 secs / 0.425 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 108 of 132[32m SUCCESS[39m (0 secs / 0.425 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 108 of 132[32m SUCCESS[39m (0 secs / 0.425 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: '15bd5ddd-2c7d-4601-bed7-f8380a800398', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 108 of 132[32m SUCCESS[39m (0 secs / 0.425 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: '15bd5ddd-2c7d-4601-bed7-f8380a800398', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 108 of 132[32m SUCCESS[39m (0 secs / 0.425 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 108 of 132[32m SUCCESS[39m (0 secs / 0.425 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 109 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 109 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 109 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'd5097bd6-8501-4985-8f89-e36b05f447fa', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 109 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'd5097bd6-8501-4985-8f89-e36b05f447fa', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 109 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 109 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 110 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 110 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 110 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '13bf8aaf-9ba2-4394-b9f5-c6fbc16d4282', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 110 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '13bf8aaf-9ba2-4394-b9f5-c6fbc16d4282', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 110 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 110 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+[1A[2KWARN: [36m'RpcService: access token missing/rejected; refreshing and retrying once'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 110 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+WARN: 'RpcService: access token missing/rejected; refreshing and retrying once'
+[1A[2KLOG: [36m'RpcService.refreshAccessToken$: refreshing access token'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 110 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: 'RpcService.refreshAccessToken$: refreshing access token'
+[1A[2KLOG: [36m'RpcService.refreshAccessToken$: received new access token'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 110 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: 'RpcService.refreshAccessToken$: received new access token'
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 110 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '7632be0c-26ad-4dc5-83e3-00017a66edb1', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 110 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '7632be0c-26ad-4dc5-83e3-00017a66edb1', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 110 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 110 of 132[32m SUCCESS[39m (0 secs / 0.426 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 111 of 132[32m SUCCESS[39m (0 secs / 0.427 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 111 of 132[32m SUCCESS[39m (0 secs / 0.427 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 111 of 132[32m SUCCESS[39m (0 secs / 0.427 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'c7a5a4dd-0f1d-4ac5-a2b6-2e69e33bdc7e', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 111 of 132[32m SUCCESS[39m (0 secs / 0.427 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'c7a5a4dd-0f1d-4ac5-a2b6-2e69e33bdc7e', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 111 of 132[32m SUCCESS[39m (0 secs / 0.427 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 409, message: 'conflict'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 111 of 132[32m SUCCESS[39m (0 secs / 0.427 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 409, message: 'conflict'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 112 of 132[32m SUCCESS[39m (0 secs / 0.427 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 112 of 132[32m SUCCESS[39m (0 secs / 0.427 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 112 of 132[32m SUCCESS[39m (0 secs / 0.427 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: '8cc5a4bf-a267-48e1-b48b-26b93bd74eb7', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 112 of 132[32m SUCCESS[39m (0 secs / 0.427 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: '8cc5a4bf-a267-48e1-b48b-26b93bd74eb7', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 112 of 132[32m SUCCESS[39m (0 secs / 0.427 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 112 of 132[32m SUCCESS[39m (0 secs / 0.427 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 113 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 113 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 113 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteFile', correlationId: '9dd32d7c-dd35-493b-98be-a8ca369b1432', replyTopic: 'test/delete/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 113 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteFile', correlationId: '9dd32d7c-dd35-493b-98be-a8ca369b1432', replyTopic: 'test/delete/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 113 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 113 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 114 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 114 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 114 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '33e295a4-e513-43f3-a672-3421070722e8', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 114 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '33e295a4-e513-43f3-a672-3421070722e8', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 114 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 409, message: 'conflict'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 114 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 409, message: 'conflict'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 115 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 115 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 115 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '4f4654c3-6708-45ad-988a-f4ff9149bb7e', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 115 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '4f4654c3-6708-45ad-988a-f4ff9149bb7e', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 115 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 115 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 116 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 116 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 116 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteFile', correlationId: '4630220b-0cce-4ced-bcc3-04319307489d', replyTopic: 'test/delete/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 116 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteFile', correlationId: '4630220b-0cce-4ced-bcc3-04319307489d', replyTopic: 'test/delete/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 116 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 116 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 117 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 117 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 117 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'd829561f-84f5-42f6-94cb-63d172291963', replyTopic: 'test/delete-image/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 117 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'd829561f-84f5-42f6-94cb-63d172291963', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 117 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 117 of 132[32m SUCCESS[39m (0 secs / 0.428 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 118 of 132[32m SUCCESS[39m (0 secs / 0.429 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 118 of 132[32m SUCCESS[39m (0 secs / 0.429 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 118 of 132[32m SUCCESS[39m (0 secs / 0.429 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteFile', correlationId: '04feae54-adee-4582-9c39-6213a1de95a6', replyTopic: 'test/delete/reply', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 118 of 132[32m SUCCESS[39m (0 secs / 0.429 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteFile', correlationId: '04feae54-adee-4582-9c39-6213a1de95a6', replyTopic: 'test/delete/reply', hasAccessToken: true}
+[1A[2KLOG: [36m'[rpcRequest] Publish succeeded'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 118 of 132[32m SUCCESS[39m (0 secs / 0.429 secs)
+LOG: '[rpcRequest] Publish succeeded'
+[1A[2KLOG: [36m'rpcDispatcher: received status:', Object{code: 409, message: 'Catalogued file cannot be deleted'}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 118 of 132[32m SUCCESS[39m (0 secs / 0.429 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 409, message: 'Catalogued file cannot be deleted'}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 119 of 132[32m SUCCESS[39m (0 secs / 0.429 secs)
+[1A[2KLOG: [36m'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 119 of 132[32m SUCCESS[39m (0 secs / 0.429 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+[1A[2KLOG: [36m'RpcService.rpcRequest'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 119 of 132[32m SUCCESS[39m (0 secs / 0.429 secs)
+LOG: 'RpcService.rpcRequest'
+[1A[2KLOG: [36m'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '0f0a8d1f-6a88-4e94-b4f6-f85af765d718', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 119 of 132[32m SUCCESS[39m (0 secs / 0.429 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '0f0a8d1f-6a88-4e94-b4f6-f85af765d718', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 120 of 132[32m SUCCESS[39m (0 secs / 0.43 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 121 of 132[32m SUCCESS[39m (0 secs / 0.43 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 122 of 132[32m SUCCESS[39m (0 secs / 0.43 secs)
+[1A[2KLOG: [36m'PagefooterComponent.onUpClick'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 122 of 132[32m SUCCESS[39m (0 secs / 0.43 secs)
+LOG: 'PagefooterComponent.onUpClick'
+[1A[2KLOG: [36m'PagefooterComponent.onBackClick'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 122 of 132[32m SUCCESS[39m (0 secs / 0.43 secs)
+LOG: 'PagefooterComponent.onBackClick'
+[1A[2KLOG: [36m'PagefooterComponent.onForwardClick'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 122 of 132[32m SUCCESS[39m (0 secs / 0.43 secs)
+LOG: 'PagefooterComponent.onForwardClick'
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 122 of 132[32m SUCCESS[39m (0 secs / 0.43 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 123 of 132[32m SUCCESS[39m (0 secs / 0.434 secs)
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 123 of 132[32m SUCCESS[39m (0 secs / 0.434 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 124 of 132[32m SUCCESS[39m (0 secs / 0.438 secs)
+[1A[2KLOG: [36m'AlertsComponent.ngOnDestroy'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 124 of 132[32m SUCCESS[39m (0 secs / 0.438 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 125 of 132[32m SUCCESS[39m (0 secs / 0.441 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 126 of 132[32m SUCCESS[39m (0 secs / 0.442 secs)
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 126 of 132[32m SUCCESS[39m (0 secs / 0.442 secs)
+LOG: 'PageheaderComponent.ngOnInit'
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 126 of 132[32m SUCCESS[39m (0 secs / 0.442 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit: page: {"id":22}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 126 of 132[32m SUCCESS[39m (0 secs / 0.442 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":22}'
+[1A[2KLOG: [36m'Create Marquee button clicked'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 126 of 132[32m SUCCESS[39m (0 secs / 0.442 secs)
+LOG: 'Create Marquee button clicked'
+[1A[2KLOG: [36m'Edit Marquee button clicked'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 126 of 132[32m SUCCESS[39m (0 secs / 0.442 secs)
+LOG: 'Edit Marquee button clicked'
+[1A[2KLOG: [36m'Delete Marquee button clicked'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 126 of 132[32m SUCCESS[39m (0 secs / 0.442 secs)
+LOG: 'Delete Marquee button clicked'
+[1A[2KLOG: [36m'Add button clicked'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 126 of 132[32m SUCCESS[39m (0 secs / 0.442 secs)
+LOG: 'Add button clicked'
+[1A[2KLOG: [36m'Delete button clicked'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 126 of 132[32m SUCCESS[39m (0 secs / 0.442 secs)
+LOG: 'Delete button clicked'
+[1A[2KLOG: [36m'List Files button clicked'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 126 of 132[32m SUCCESS[39m (0 secs / 0.442 secs)
+LOG: 'List Files button clicked'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 127 of 132[32m SUCCESS[39m (0 secs / 0.449 secs)
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 127 of 132[32m SUCCESS[39m (0 secs / 0.449 secs)
+LOG: 'PageheaderComponent.ngOnInit'
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 127 of 132[32m SUCCESS[39m (0 secs / 0.449 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit: page: {"id":22}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 127 of 132[32m SUCCESS[39m (0 secs / 0.449 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":22}'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 128 of 132[32m SUCCESS[39m (0 secs / 0.452 secs)
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 128 of 132[32m SUCCESS[39m (0 secs / 0.452 secs)
+LOG: 'PageheaderComponent.ngOnInit'
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 128 of 132[32m SUCCESS[39m (0 secs / 0.452 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit: page: {"id":22}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 128 of 132[32m SUCCESS[39m (0 secs / 0.452 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":22}'
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit: diary: null'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 128 of 132[32m SUCCESS[39m (0 secs / 0.452 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: null'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 129 of 132[32m SUCCESS[39m (0 secs / 0.455 secs)
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 129 of 132[32m SUCCESS[39m (0 secs / 0.455 secs)
+LOG: 'PageheaderComponent.ngOnInit'
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 129 of 132[32m SUCCESS[39m (0 secs / 0.455 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit: page: {"id":22}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 129 of 132[32m SUCCESS[39m (0 secs / 0.455 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":22}'
+[1A[2KLOG: [36m'Upload button clicked'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 129 of 132[32m SUCCESS[39m (0 secs / 0.455 secs)
+LOG: 'Upload button clicked'
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit: diary: {"id":12,"name":"diary-1831"}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 129 of 132[32m SUCCESS[39m (0 secs / 0.455 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":12,"name":"diary-1831"}'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 130 of 132[32m SUCCESS[39m (0 secs / 0.458 secs)
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 130 of 132[32m SUCCESS[39m (0 secs / 0.458 secs)
+LOG: 'PageheaderComponent.ngOnInit'
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 130 of 132[32m SUCCESS[39m (0 secs / 0.458 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit: page: {"id":22}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 130 of 132[32m SUCCESS[39m (0 secs / 0.458 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":22}'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 131 of 132[32m SUCCESS[39m (0 secs / 0.46 secs)
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 131 of 132[32m SUCCESS[39m (0 secs / 0.46 secs)
+LOG: 'PageheaderComponent.ngOnInit'
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 131 of 132[32m SUCCESS[39m (0 secs / 0.46 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'
+[1A[2KLOG: [36m'PageheaderComponent.ngOnInit: page: {"id":22}'[39m
+Chrome Headless 153.0.0.0 (Windows 10): Executed 131 of 132[32m SUCCESS[39m (0 secs / 0.46 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":22}'
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 132 of 132[32m SUCCESS[39m (0 secs / 0.462 secs)
+[1A[2KChrome Headless 153.0.0.0 (Windows 10): Executed 132 of 132[32m SUCCESS[39m (0.519 secs / 0.462 secs)
+[32mTOTAL: 132 SUCCESS[39m

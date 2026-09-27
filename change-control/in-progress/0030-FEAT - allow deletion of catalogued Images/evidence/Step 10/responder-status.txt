@@ -1,0 +1,13 @@
+ M README.md
+ M build.gradle
+ M src/main/java/com/rsmaxwell/diaries/responder/Responder.java
+ M src/main/java/com/rsmaxwell/diaries/responder/dto/ImagePublishDTO.java
+ M src/main/java/com/rsmaxwell/diaries/responder/dto/ListFilesResponse.java
+ M src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageCatalogueService.java
+ M src/test/java/com/rsmaxwell/diaries/responder/ImageWiringIntegrationTest.java
+?? src/main/java/com/rsmaxwell/diaries/responder/handlers/DeleteImage.java
+?? src/test/java/com/rsmaxwell/diaries/responder/ImageDeletionBrowserFixture.java
+?? src/test/java/com/rsmaxwell/diaries/responder/dto/ListFilesResponseTest.java
+?? src/test/java/com/rsmaxwell/diaries/responder/handlers/DeleteImageTest.java
+?? src/test/java/com/rsmaxwell/diaries/responder/utilities/ImageCatalogueDeletionTest.java
+?? src/test/java/com/rsmaxwell/diaries/responder/utilities/ImageDeletionConcurrencyTest.java

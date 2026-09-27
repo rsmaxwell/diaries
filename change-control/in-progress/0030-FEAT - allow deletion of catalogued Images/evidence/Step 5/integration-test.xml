@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-09-27T06:36:18.491Z" hostname="RICHARD-PC" time="5.016">
+  <properties/>
+  <testcase name="registeredDeleteImageRemovesRowFileAndRetainedTopic(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="3.096"/>
+  <system-out><![CDATA[07:36:21.245 [Test worker] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"deleteImage","args":{"subdir":"diary/images","name":"test.png"}}
+07:36:21.277 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+07:36:21.277 [Test worker] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+07:36:21.371 [Test worker] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:36:21.371 [Test worker] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"deleted":true,"relativePath":"diary/images/test.png","id":1}
+]]></system-out>
+  <system-err><![CDATA[SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+]]></system-err>
+</testsuite>

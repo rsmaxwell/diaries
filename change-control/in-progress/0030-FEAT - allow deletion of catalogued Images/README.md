@@ -85,6 +85,10 @@ This keeps file ownership explicit and prevents future callers from bypassing Im
 
 ## RPC contract
 
+The exact Step 2 contract is defined in [RPC-CONTRACT.md](RPC-CONTRACT.md),
+including required fields, transport properties, status mapping and synthetic
+compatibility fixtures. The handler was implemented and registered in Step 5 on 2026-09-27; see [validation evidence](evidence/Step%205/README.md).
+
 Add an authenticated responder RPC named:
 
 ```text
@@ -123,7 +127,7 @@ The exact payload may follow existing responder conventions, but it must be stab
 At minimum:
 
 - `400` for malformed path/name input;
-- `401/403` according to existing authentication/authorization conventions;
+- `401` for authentication, inactive accounts and insufficient roles, matching the existing authorization helpers;
 - `404` when no catalogued Image owns the requested path;
 - `409` for lifecycle conflicts introduced later, including a referenced Image;
 - `500` for unrecoverable filesystem/database coordination failures.

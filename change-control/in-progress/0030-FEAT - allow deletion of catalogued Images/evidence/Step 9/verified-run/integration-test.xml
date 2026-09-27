@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-09-27T07:01:13.458Z" hostname="RICHARD-PC" time="11.626">
+  <properties/>
+  <testcase name="filesDialogDeletionEndToEnd(Path)" classname="com.rsmaxwell.diaries.responder.ImageWiringIntegrationTest" time="9.477"/>
+  <system-out><![CDATA[08:01:22.244 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"uploadFile","args":{"name":"disposable.png","subdir":"step9/images","contentType":"image/png","size":70,"bytes":"iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAIAAAAPTiitAAAADUlEQVR4XmNgGAX0BQABcgABaFEW8QAAAABJRU5ErkJggg=="}}
+08:01:22.279 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+08:01:22.280 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+08:01:22.396 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+08:01:22.397 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"name":"disposable.png","subdir":"step9/images","size":70,"path":"C:\\Users\\Richard\\AppData\\Local\\Temp\\junit-9843310954612103687\\files\\step9\\images\\disposable.png","url":"/files/step9/images/disposable.png","imageId":1,"image":{"id":1,"version":0,"relativePath":"step9/images/disposable.png","mimeType":"image/png","originalFilename":"disposable.png","width":12,"height":10,"checksum":"3ca22cb1f726115cef82856452c8cc115f99700146572ee376aee00ad400eec9","caption":"","altText":""}}
+08:01:22.401 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"uploadFile","args":{"name":"protected.png","subdir":"step9/images","contentType":"image/png","size":70,"bytes":"iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAIAAAAPTiitAAAADUlEQVR4XmNgGAX0BQABcgABaFEW8QAAAABJRU5ErkJggg=="}}
+08:01:22.401 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+08:01:22.401 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+08:01:22.446 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+08:01:22.446 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"name":"protected.png","subdir":"step9/images","size":70,"path":"C:\\Users\\Richard\\AppData\\Local\\Temp\\junit-9843310954612103687\\files\\step9\\images\\protected.png","url":"/files/step9/images/protected.png","imageId":2,"image":{"id":2,"version":0,"relativePath":"step9/images/protected.png","mimeType":"image/png","originalFilename":"protected.png","width":12,"height":10,"checksum":"3ca22cb1f726115cef82856452c8cc115f99700146572ee376aee00ad400eec9","caption":"","altText":""}}
+08:01:22.489 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"listFiles","args":{"subdir":"step9/images"}}
+08:01:22.493 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: args: {"subdir":"step9/images"}
+08:01:22.493 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+08:01:22.493 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+08:01:22.494 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: Authorization.check: OK!
+08:01:22.494 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: filesDir: 'C:\Users\Richard\AppData\Local\Temp\junit-9843310954612103687\files'
+08:01:22.533 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+08:01:22.533 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"subdir":"step9/images","items":[{"name":"protected.png","url":"/files/step9/images/protected.png","size":70,"mtime":1790492482417,"dir":false},{"name":"disposable.png","url":"/files/step9/images/disposable.png","size":70,"mtime":1790492482334,"dir":false},{"name":"uncatalogued.png","url":"/files/step9/images/uncatalogued.png","size":70,"mtime":1790492475678,"dir":false}]}
+08:01:23.136 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"deleteImage","args":{"name":"disposable.png","subdir":"step9/images"}}
+08:01:23.136 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+08:01:23.137 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+08:01:23.196 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+08:01:23.196 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"id":1,"relativePath":"step9/images/disposable.png","deleted":true}
+08:01:23.198 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"listFiles","args":{"subdir":"step9/images"}}
+08:01:23.198 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: args: {"subdir":"step9/images"}
+08:01:23.198 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+08:01:23.198 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+08:01:23.199 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: Authorization.check: OK!
+08:01:23.199 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: filesDir: 'C:\Users\Richard\AppData\Local\Temp\junit-9843310954612103687\files'
+08:01:23.209 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+08:01:23.209 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"subdir":"step9/images","items":[{"name":"protected.png","url":"/files/step9/images/protected.png","size":70,"mtime":1790492482417,"dir":false},{"name":"uncatalogued.png","url":"/files/step9/images/uncatalogued.png","size":70,"mtime":1790492475678,"dir":false}]}
+08:01:23.499 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"deleteFile","args":{"name":"protected.png","subdir":"step9/images"}}
+08:01:23.499 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+08:01:23.499 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+08:01:23.505 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":409,"message":"conflict"}
+08:01:23.505 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: "Image catalogue protects path: step9/images/protected.png"
+08:01:23.784 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"deleteImage","args":{"name":"uncatalogued.png","subdir":"step9/images"}}
+08:01:23.784 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+08:01:23.784 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+08:01:23.793 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":404,"message":"not found"}
+08:01:23.793 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: "Image not found."
+08:01:24.089 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"uploadFile","args":{"name":"disposable.png","subdir":"step9/images","contentType":"image/png","size":70,"bytes":"iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAIAAAAPTiitAAAADUlEQVR4XmNgGAX0BQABcgABaFEW8QAAAABJRU5ErkJggg=="}}
+08:01:24.090 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+08:01:24.090 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+08:01:24.130 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+08:01:24.130 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"name":"disposable.png","subdir":"step9/images","size":70,"path":"C:\\Users\\Richard\\AppData\\Local\\Temp\\junit-9843310954612103687\\files\\step9\\images\\disposable.png","url":"/files/step9/images/disposable.png","imageId":3,"image":{"id":3,"version":0,"relativePath":"step9/images/disposable.png","mimeType":"image/png","originalFilename":"disposable.png","width":12,"height":10,"checksum":"3ca22cb1f726115cef82856452c8cc115f99700146572ee376aee00ad400eec9","caption":"","altText":""}}
+08:01:24.134 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"listFiles","args":{"subdir":"step9/images"}}
+08:01:24.135 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: args: {"subdir":"step9/images"}
+08:01:24.135 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+08:01:24.135 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+08:01:24.136 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: Authorization.check: OK!
+08:01:24.136 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.handlers.ListFiles - ListFiles.handleRequest: filesDir: 'C:\Users\Richard\AppData\Local\Temp\junit-9843310954612103687\files'
+08:01:24.149 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+08:01:24.149 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"subdir":"step9/images","items":[{"name":"disposable.png","url":"/files/step9/images/disposable.png","size":70,"mtime":1790492484104,"dir":false},{"name":"protected.png","url":"/files/step9/images/protected.png","size":70,"mtime":1790492482417,"dir":false},{"name":"uncatalogued.png","url":"/files/step9/images/uncatalogued.png","size":70,"mtime":1790492475678,"dir":false}]}
+08:01:24.429 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"uploadFile","args":{"name":"disposable.png","subdir":"step9/images","contentType":"image/png","size":70,"bytes":"iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAIAAAAPTiitAAAADUlEQVR4XmNgGAX0BQABcgABaFEW8QAAAABJRU5ErkJggg=="}}
+08:01:24.429 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+08:01:24.429 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+08:01:24.434 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":409,"message":"conflict"}
+08:01:24.434 [MQTT Call: step9-rpc] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: "Path belongs to the Image catalogue."
+]]></system-out>
+  <system-err><![CDATA[SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+]]></system-err>
+</testsuite>
