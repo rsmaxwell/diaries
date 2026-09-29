@@ -1,0 +1,15 @@
+sha256,path
+3600ec7be8812f80283b80faf205c87fae9d606066442814f9195d2cac2bb963,diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/model/Image.java
+408d4dc8e8bfc21d1f9936b570f80a7b2343ce511cc347b1b221f825a62b49f6,diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/ImagePublishDTO.java
+9abf8258a1e451002bf40614dc3fd2eb16ed5c6cf5ca0f419cce4654bae1e3e8,diaries-web/src/main/java/com/rsmaxwell/diaries/web/model/FragmentItem.java
+7424abfd54d0f1ba5fab9cfee2aa8ca7fbdca1213590314ea58912a40061b4f5,diaries-web/src/main/java/com/rsmaxwell/diaries/web/model/FragmentType.java
+7dbdbbb3a9f2480ab6fd8af324e2b812d59e74b1ccdc14c408139878ce4bc0ce,diaries-web/src/main/java/com/rsmaxwell/diaries/web/model/Validation.java
+61e08bf71762e0efedf93ea8ce6f6e5fb3041058a1cd7f26e330daf23a026fad,diaries-web/src/main/java/com/rsmaxwell/diaries/web/mqtt/RetainedMessageDecoder.java
+4edfb77445ed7f2669f84511c144cc1c318c69538d3c7e2893a25946f54be483,diaries-web/src/main/java/com/rsmaxwell/diaries/web/mqtt/MqttProjectionClient.java
+fc574e85a118eb952745eb5944be3880be8f083858a012bc21efa7898c97a834,diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionService.java
+1cc8c5b4d4a85c5a4cc8187247e18ca6273b5100a319c676c866582b3c641d8c,diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/RetainedContractTest.java
+8038819d98be4c415c4a124f13e63699c5530715a9286b4a61bbbabb169b82c5,diaries-web/src/test/java/com/rsmaxwell/diaries/web/projection/ProjectionServiceTest.java
+977946e105957c431bebbfd750bc8b12156eebfe8522061c9fe1248b772265ad,diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/ImageReaderContractDefinitionTest.java
+3fe9b78c5d9bb909ef35fc9a5d24d2e67a595c05adca610313f73f9e8ea95bdb,diaries-web/src/test/resources/fixtures/image-reader-contract-cases.json
+8f89bc3b2207030108af262aab71864075c12bf3088acf1187643e72d484ee1a,change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/IMAGE-READER-CONTRACT.md
+2c4aeb3a929d31b43a13d59c52ad2026a6f84dd6abe779bb3f57e14c0b5a5773,change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 2/README.md

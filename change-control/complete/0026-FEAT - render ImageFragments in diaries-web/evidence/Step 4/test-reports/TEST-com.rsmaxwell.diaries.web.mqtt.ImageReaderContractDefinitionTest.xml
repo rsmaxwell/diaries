@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.web.mqtt.ImageReaderContractDefinitionTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-09-28T15:09:58.170Z" hostname="RICHARD-PC" time="0.137">
+  <properties/>
+  <testcase name="contractFixtureIsValidJsonAndContainsEveryRequiredStep2Category()" classname="com.rsmaxwell.diaries.web.mqtt.ImageReaderContractDefinitionTest" time="0.012"/>
+  <testcase name="rejectedLiveReplacementLeavesLastValidEntityUntouchedAndCountsTheRejection()" classname="com.rsmaxwell.diaries.web.mqtt.ImageReaderContractDefinitionTest" time="0.119"/>
+  <testcase name="absentAndExplicitNullImageIdAreEquivalentNoSelectionStates()" classname="com.rsmaxwell.diaries.web.mqtt.ImageReaderContractDefinitionTest" time="0.004"/>
+  <system-out><![CDATA[2026-09-28T16:09:58,186 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:09:58,207 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=0, pages=0, fragments=1, marquees=0)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

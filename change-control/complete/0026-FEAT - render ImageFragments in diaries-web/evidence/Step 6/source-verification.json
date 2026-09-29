@@ -1,0 +1,28 @@
+{
+  "implementationPackage": "0026-Step6-mixed-fragment-resolution-diagnostics.zip",
+  "implementationPackageSha256": "79d3d7095c132a0fa20db1f18a415623bf49631d55e7169491b8a3c2b09763ee",
+  "recordedSourceHashes": "source-sha256.csv",
+  "changedProductionFiles": [
+    "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ResolvedFragment.java",
+    "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionSnapshot.java",
+    "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/RelationshipDiagnostics.java",
+    "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/MutableProjectionState.java",
+    "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionService.java",
+    "diaries-web/src/main/java/com/rsmaxwell/diaries/web/mqtt/MqttProjectionClient.java"
+  ],
+  "changedTestFiles": [
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/projection/ProjectionServiceTest.java"
+  ],
+  "checks": {
+    "mixedFragmentResolution": "PASS",
+    "unknownTypePreserved": "PASS",
+    "pageOwnedChronologyPreserved": "PASS",
+    "sharedImageReferences": "PASS",
+    "imageUpdateAndTombstoneResolution": "PASS",
+    "relationshipRepair": "PASS",
+    "typeSpecificDiagnostics": "PASS",
+    "invalidCurrentGenerationImageMetadataState": "PASS",
+    "focusedGradleProjectionContractMqtt": "PASS_ON_WINDOWS_JAVA25_DOCKER",
+    "fullGradleWebTestBuild": "PASS_ON_WINDOWS_JAVA25_DOCKER"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "baselineBundle": "diaries-sources-20260929-074901.zip",
+  "baselineBundleSha256": "ca98c21cbc2676fa0beb6341ceac9f71d7f64045a2c7dccfd9a5982997fb7bf7",
+  "changedExistingFiles": [
+    "change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/IMPLEMENTATION-STEPS.md",
+    "change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/README.md",
+    "diaries-web/src/main/java/com/rsmaxwell/diaries/web/http/WebServer.java",
+    "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/MutableProjectionState.java",
+    "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionService.java",
+    "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionSnapshot.java",
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/http/WebServerTest.java",
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/ImageReaderContractDefinitionTest.java",
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/MqttProjectionIntegrationTest.java",
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/MqttReaderAclIntegrationTest.java",
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/projection/ProjectionServiceTest.java"
+  ],
+  "newEvidenceFiles": [
+    "change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 5/README.md",
+    "change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 5/verification-command.txt",
+    "change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 5/static-verification.txt",
+    "change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 5/source-sha256.csv",
+    "change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 5/changed-files.txt",
+    "change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 5/projection-compile-and-harness.txt",
+    "change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 5/source-verification.json",
+    "change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 5/test-results.txt",
+    "change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 5/final-review.json"
+  ],
+  "checks": {
+    "mutableImageMap": true,
+    "imageUpsertUsesExistingPutChangedPolicy": true,
+    "imageTombstoneRemovesImage": true,
+    "snapshotCopiesImageMap": true,
+    "boundedSnapshotApi": [
+      "imageCount()",
+      "imageById(long)"
+    ],
+    "freshReplayCreatesEmptyMutableProjectionState": true,
+    "replayLogIncludesImages": true,
+    "readinessStatusIncludesImages": true,
+    "projectionJavacCompile": "PASS",
+    "imageLifecycleHarness": "PASS",
+    "gradleSuite": "PASS_ON_WINDOWS_JAVA25_DOCKER",
+    "gradleFocusedProjectionContractHttp": "PASS",
+    "gradleMqttIntegration": "PASS",
+    "gradleFullWebTestBuild": "PASS",
+    "firstPackageGenericInferenceCorrection": "PASS_AFTER_EXPLICIT_PROJECTIONEVENT_TYPE_WITNESS"
+  }
+}

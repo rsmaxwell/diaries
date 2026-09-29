@@ -1,0 +1,23 @@
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>git log -1
+commit 37a2a8d9ac57f19dbcc80d1f10a34f1e86adab75 (HEAD -> main, origin/main, origin/HEAD)
+Author: Richard Maxwell <richard@rsmaxwell.co.uk>
+Date:   Mon Sep 28 00:40:33 2026 +0100
+
+    Step 15 — Development deployment, controlled validation and close-out
+
+
+Docker Image tags
+
+set "DIARIES_CLIENT_IMAGE_TAG=0.0.9-build-73"
+set "DIARIES_WEB_IMAGE_TAG=0.0.9-build-6"
+set "DIARIES_RESPONDER_IMAGE_TAG=0.0.9-build-81"

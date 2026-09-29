@@ -21,10 +21,13 @@ topic readwrite diaries/people/#
 topic readwrite diaries/roles/#
 
 user diaries-web
+# Pattern ACLs apply to every user; override the shared client-ID reply pattern.
+topic deny diaries/rpc/#
 topic read diaries/diaries/+
 topic read diaries/pages/+
 topic read diaries/fragments/+
 topic read diaries/marquees/+
+topic read diaries/images/+
 
 user diaries-health
 topic read $SYS/broker/version

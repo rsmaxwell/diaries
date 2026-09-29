@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest" tests="3" skipped="0" failures="2" errors="0" timestamp="2026-09-28T14:56:13.471Z" hostname="RICHARD-PC" time="10.91">
+  <properties/>
+  <testcase name="readerCanReplayCanonicalImageMetadataWithReadOnlyPermission()" classname="com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest" time="0.944"/>
+  <testcase name="deniedImageSubscriptionCannotBecomeProjectionReady()" classname="com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest" time="8.679">
+    <failure message="org.opentest4j.AssertionFailedError: &#13;&#10;Expecting value to be false but was true" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: 
+Expecting value to be false but was true
+	at com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest.lambda$deniedImageSubscriptionCannotBecomeProjectionReady$0(MqttReaderAclIntegrationTest.java:143)
+</failure>
+  </testcase>
+  <testcase name="readerAclAllowsOnlyTheFiveCanonicalLookupFamilies()" classname="com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest" time="0.818">
+    <failure message="java.lang.AssertionError: [SUBACK must deny diaries/dates/#] &#13;&#10;Expecting actual:&#13;&#10;  1&#13;&#10;to be greater than or equal to:&#13;&#10;  128&#13;&#10;" type="java.lang.AssertionError">java.lang.AssertionError: [SUBACK must deny diaries/dates/#] 
+Expecting actual:
+  1
+to be greater than or equal to:
+  128
+
+	at com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest.assertDenied(MqttReaderAclIntegrationTest.java:231)
+	at com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest.assertReaderSubscribeDenied(MqttReaderAclIntegrationTest.java:168)
+	at com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest.readerAclAllowsOnlyTheFiveCanonicalLookupFamilies(MqttReaderAclIntegrationTest.java:119)
+</failure>
+  </testcase>
+  <system-out><![CDATA[2026-09-28T15:56:13,482 INFO  [Test worker] t.e.0.22 - Creating container for image: eclipse-mosquitto:2.0.22
+2026-09-28T15:56:13,617 INFO  [Test worker] t.e.0.22 - Container eclipse-mosquitto:2.0.22 is starting: 25683c3ee7d3cc10ec609e1f964bd9101c9a71e61adc1f9e78d3fb1bc7ac2a5b
+2026-09-28T15:56:13,928 INFO  [Test worker] t.e.0.22 - Container eclipse-mosquitto:2.0.22 started in PT0.4472969S
+2026-09-28T15:56:15,311 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Connecting diaries-web MQTT subscriber to tcp://localhost:56722
+2026-09-28T15:56:15,619 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T15:56:15,621 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/diaries/+
+2026-09-28T15:56:15,621 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/pages/+
+2026-09-28T15:56:15,622 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/fragments/+
+2026-09-28T15:56:15,622 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/marquees/+
+2026-09-28T15:56:15,622 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/images/+
+2026-09-28T15:56:15,724 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=0, pages=0, fragments=0, marquees=0)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

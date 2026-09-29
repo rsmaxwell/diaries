@@ -1,0 +1,72 @@
+[
+  {
+    "route": "/health/ready",
+    "status": 200,
+    "location": null,
+    "contentType": [
+      "application/json"
+    ],
+    "csp": [
+      "default-src 'none'; style-src 'self'; script-src 'self'; img-src http://127.0.0.1:18083 data:; connect-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    ]
+  },
+  {
+    "route": "/about",
+    "status": 200,
+    "location": null,
+    "contentType": [
+      "text/html; charset=utf-8"
+    ],
+    "csp": [
+      "default-src 'none'; style-src 'self'; script-src 'self'; img-src http://127.0.0.1:18083 data:; connect-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    ]
+  },
+  {
+    "route": "/fragments/33",
+    "status": 302,
+    "location": [
+      "/diaries/11/2026/09?fragment=33#fragment-33"
+    ],
+    "contentType": [
+      "text/plain"
+    ],
+    "csp": [
+      "default-src 'none'; style-src 'self'; script-src 'self'; img-src http://127.0.0.1:18083 data:; connect-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    ]
+  },
+  {
+    "route": "/diaries/11/2026/09/02",
+    "status": 302,
+    "location": [
+      "/diaries/11/2026/09?fragment=34#fragment-34"
+    ],
+    "contentType": [
+      "text/plain"
+    ],
+    "csp": [
+      "default-src 'none'; style-src 'self'; script-src 'self'; img-src http://127.0.0.1:18083 data:; connect-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    ]
+  },
+  {
+    "route": "/diaries/11/2026/09?fragment=33",
+    "status": 200,
+    "location": null,
+    "contentType": [
+      "text/html; charset=utf-8"
+    ],
+    "csp": [
+      "default-src 'none'; style-src 'self'; script-src 'self'; img-src http://127.0.0.1:18083 data:; connect-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    ]
+  },
+  {
+    "route": "/diaries/11/pages/22",
+    "status": 200,
+    "location": null,
+    "contentType": [
+      "text/html; charset=utf-8"
+    ],
+    "csp": [
+      "default-src 'none'; style-src 'self'; script-src 'self'; img-src http://127.0.0.1:18083 data:; connect-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    ]
+  }
+]

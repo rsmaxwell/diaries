@@ -1,0 +1,10 @@
+# Focused Step 7 configuration/URL/CSP regression verification
+.\gradlew.bat :diaries-web:test `
+  --tests "*ConfigLoaderTest" `
+  --tests "*RenderingSafetyTest" `
+  --tests "*WebServerTest" `
+  --rerun-tasks --console=plain
+
+# Full diaries-web regression/build gate
+.\gradlew.bat :diaries-web:test :diaries-web:build `
+  --rerun-tasks --console=plain

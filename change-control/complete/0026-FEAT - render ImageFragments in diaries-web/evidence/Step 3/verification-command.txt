@@ -1,0 +1,7 @@
+.\gradlew.bat :diaries-web:test `
+    --tests "com.rsmaxwell.diaries.web.model.ImageItemTest" `
+    --tests "com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" `
+    --tests "com.rsmaxwell.diaries.web.mqtt.ImageReaderContractDefinitionTest" `
+    --tests "com.rsmaxwell.diaries.web.projection.ProjectionServiceTest" `
+    --rerun-tasks `
+    --console=plain

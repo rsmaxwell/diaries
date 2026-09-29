@@ -1,0 +1,8 @@
+Packaging-environment verification (2026-09-29)
+
+PASS: changed projection production classes compiled with javac --release 21 using temporary stubs only for external Jackson/SLF4J types.
+PASS: standalone Image projection lifecycle harness exercised retained replay, duplicate upsert, metadata/version replacement, immutable old snapshot isolation, IMAGE tombstone, Image-before-Fragment, Fragment-before-Image, tombstone-before-later-reference, and reconnect without stale Image carry-over.
+
+The temporary stubs/harness are verification scaffolding only and are not included in the patch.
+
+NOT RUN HERE: Gradle/JUnit/Testcontainers suite. The container has Java 21 while the project targets Java 25, the Gradle 9.6.1 wrapper distribution is not cached, and outbound download is unavailable. Run verification-command.txt on the normal Windows Java 25/Docker development machine before marking Step 5 complete.

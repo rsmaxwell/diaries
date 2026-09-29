@@ -1,0 +1,24 @@
+// Evidence-only harness: leaves application source and normal build tasks unchanged.
+def evidenceDir = initscript.sourceFile.parentFile
+gradle.projectsEvaluated {
+    def web = gradle.rootProject.project(':diaries-web')
+    def output = web.layout.buildDirectory.dir('0026-baseline/classes')
+    web.tasks.register('compile0026Baseline', JavaCompile) {
+        dependsOn web.tasks.named('testClasses')
+        source new File(evidenceDir, 'BaselineSite.java')
+        classpath = web.sourceSets.test.runtimeClasspath
+        destinationDirectory = output
+        javaCompiler = web.javaToolchains.compilerFor {
+            languageVersion = JavaLanguageVersion.of(25)
+        }
+        options.encoding = 'UTF-8'
+    }
+    web.tasks.register('run0026Baseline', JavaExec) {
+        dependsOn web.tasks.named('compile0026Baseline')
+        classpath = web.files(output) + web.sourceSets.test.runtimeClasspath
+        mainClass = 'BaselineSite'
+        workingDir = gradle.rootProject.projectDir
+        args web.layout.buildDirectory.dir('0026-baseline').get().asFile.absolutePath,
+                evidenceDir.absolutePath
+    }
+}

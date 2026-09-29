@@ -1,0 +1,6 @@
+2026-09-29 source-level verification
+
+- Changed projection classes compiled successfully with javac --release 21 against minimal model/event stubs.
+- Focused harness result: STEP6 HARNESS PASS.
+- Harness covered IMAGE INVALID_METADATA and AVAILABLE transitions and the imagesReferencedButInvalid diagnostic.
+- Normal project verification is pending because the repository requires the Java 25 Gradle toolchain and Docker-backed tests.

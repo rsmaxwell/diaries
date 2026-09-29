@@ -1,0 +1,15 @@
+2026-09-29 source-level verification
+
+- Gradle project verification attempted but Gradle 9.6.1 wrapper distribution is not cached and outbound access to services.gradle.org is unavailable.
+- Available runtime: OpenJDK 21.0.11; project normal verification target: Java 25.
+- AppConfig + ImageUrlBuilder focused source compilation completed successfully against a validator stub matching ImageItem.validateCanonicalRelativePath.
+- Focused harness result: STEP7 HARNESS PASS.
+- Harness covered default/custom Files routes, public-base validation, unchanged Page/default-legacy URLs, exactly-once special-character encoding, percent-like traversal literals, and unsafe path rejection.
+- Normal Java 25 Gradle verification remains pending and is required before Step 7 is marked complete.
+
+2026-09-29 normal project verification
+
+- Focused ConfigLoaderTest + RenderingSafetyTest + WebServerTest Gradle run: BUILD SUCCESSFUL in 6s; 7/7 actionable tasks executed.
+- Full :diaries-web:test :diaries-web:build Gradle run: BUILD SUCCESSFUL in 49s; 15/15 actionable tasks executed.
+- Verification environment: user Windows development workspace with the normal Java 25/Docker project toolchain.
+- Step 7 completion status: COMPLETE_LOCALLY.

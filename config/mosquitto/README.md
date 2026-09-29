@@ -46,25 +46,57 @@ It does not grant the health user access to retained Diaries business-data topic
 
 ## Read-only web projection
 
-The `diaries-web` identity can subscribe only to the four canonical lookup
-families for diaries, pages, fragments and marquees. It has no write, RPC,
-date-index, people or role permission. Set its password through
-`DIARIES_WEB_MQTT_PASSWORD`; do not put it in the web JSON configuration.
+The `diaries-web` identity can receive only the five canonical lookup
+families for diaries, pages, fragments, marquees and Image metadata:
+
+```text
+diaries/diaries/+
+diaries/pages/+
+diaries/fragments/+
+diaries/marquees/+
+diaries/images/+
+```
+
+It has no write permission and no RPC, date-index, people, role or
+`diaries-sync/#` permission. The Image permission is metadata-only; image bytes
+continue to be served over HTTP from the configured Files route. Set the web
+password through `DIARIES_WEB_MQTT_PASSWORD`; do not put it in the web JSON
+configuration.
+
+The web identity also has an explicit `topic deny diaries/rpc/#` rule.
+Mosquitto `pattern` rules apply to every user, so the existing client-ID reply
+pattern otherwise permits the web reader to receive its own RPC response
+topic. The user-scoped deny overrides that shared grant without changing the
+client or health-check reply permissions. Apply the same deny in production.
+
+All three local Compose modes mount this same `aclfile.txt`, so changing this
+file updates the intended ACL source for development-infrastructure,
+local-docker-build and local-published-smoke. Restart/reload the selected
+Mosquitto broker after changing the file; a running broker can still be using
+the previous ACL.
+
+With Mosquitto's file ACL, a granted SUBACK does not prove read permission:
+unauthorized retained and live messages can be silently withheld. Verify a
+controlled canonical Image publication is received using the actual
+`diaries-web` identity after deployment/reload. Reader readiness cannot
+distinguish an empty catalogue from a silently filtered one. Explicit failed
+SUBACK codes do keep the reader unready.
 
 ## Responder configuration
 
 The responder has read/write permission on the canonical Image catalogue
-`diaries/images/+` for 0024 startup replay and retained tombstones. It also has
+`diaries/images/+` for startup replay and retained tombstones. It also has
 read/write permission on the transient `diaries-sync/#` namespace used only for
 non-retained QoS-1 retained-snapshot drain barriers. The bulk `diaries/#`
-snapshot now uses QoS 1 with MQTT 5 Receive Maximum 20. The separate barrier
-namespace prevents overlapping subscriptions. Keep broker queue capacity sufficient
-for the full retained tree (see `max_queued_messages` in `mosquitto.conf`). Client, web and
-health identities have neither Image-catalogue nor barrier permission. All three local
-Compose modes mount the same `aclfile.txt`. Reload Mosquitto's ACL (or restart
-the selected mode's broker) before starting a responder with Image replay;
-an already-running broker may still be using the previous ACL. Apply the
-equivalent responder-only permission during production deployment as well.
+snapshot uses QoS 1 with MQTT 5 Receive Maximum 20. The separate barrier
+namespace prevents overlapping subscriptions. Keep broker queue capacity
+sufficient for the full retained tree (see `max_queued_messages` in
+`mosquitto.conf`). Client, web and health identities have no synchronization
+barrier permission.
+
+The production Ansible-managed Diaries ACL must carry the same narrow
+`diaries-web` Image read permission. Do not replace it with `diaries/images/#`
+or a broad `diaries/#` web permission.
 
 The responder run directly with development-infrastructure uses the existing developer-owned `%USERPROFILE%\.diaries\responder.json`.
 

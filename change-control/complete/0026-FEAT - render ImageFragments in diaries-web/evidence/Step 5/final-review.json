@@ -1,0 +1,39 @@
+{
+  "verifiedDate": "2026-09-29",
+  "status": "COMPLETE_LOCALLY",
+  "verificationEnvironment": "user Windows development workspace; Java 25/Docker as normal project environment",
+  "evidenceFile": "test-results.txt",
+  "packagingCorrection": {
+    "area": "ProjectionServiceTest.imageStorageIsIndependentOfImageFragmentArrivalOrder",
+    "change": "explicit List.<ProjectionEvent>of(...) type witness",
+    "scope": "test-only; production behavior unchanged",
+    "verifiedAfterCorrection": true
+  },
+  "runs": [
+    {
+      "scope": "ProjectionServiceTest + ImageReaderContractDefinitionTest + WebServerTest",
+      "result": "PASS",
+      "build": "BUILD SUCCESSFUL",
+      "durationSeconds": 10,
+      "actionableTasks": 7,
+      "note": "evidence also contains a second successful repeat"
+    },
+    {
+      "scope": "MqttProjectionIntegrationTest + MqttReaderAclIntegrationTest",
+      "result": "PASS",
+      "build": "BUILD SUCCESSFUL",
+      "durationSeconds": 41,
+      "actionableTasks": 7
+    },
+    {
+      "scope": ":diaries-web:test :diaries-web:build",
+      "result": "PASS",
+      "build": "BUILD SUCCESSFUL",
+      "durationSeconds": 49,
+      "actionableTasks": 15
+    }
+  ],
+  "aggregateJUnitCount": "NOT_PRINTED_IN_SUPPLIED_CONSOLE_OUTPUT",
+  "productionDeploymentVerified": false,
+  "nextStep": "Step 6 \u2014 resolve mixed Fragment types and add diagnostics"
+}

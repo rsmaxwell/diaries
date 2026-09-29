@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.web.projection.ProjectionServiceTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-09-28T15:10:09.018Z" hostname="RICHARD-PC" time="3.766">
+  <properties/>
+  <testcase name="keepsPageOwnedMarqueeFragmentInChronologyWhenMarqueeIsMissing()" classname="com.rsmaxwell.diaries.web.projection.ProjectionServiceTest" time="0.104"/>
+  <testcase name="replayReadinessRequiresAcknowledgementAndQuietnessAndEmptyReplayIsValid()" classname="com.rsmaxwell.diaries.web.projection.ProjectionServiceTest" time="0.164"/>
+  <testcase name="tombstonesRemoveDerivedRelationshipsAndReaddingResolvesThem()" classname="com.rsmaxwell.diaries.web.projection.ProjectionServiceTest" time="0.103"/>
+  <testcase name="sortsNumericallyThenByIdAndPublishesImmutableSnapshots()" classname="com.rsmaxwell.diaries.web.projection.ProjectionServiceTest" time="0.103"/>
+  <testcase name="duplicateLiveDeliveryIsIdempotentAndConcurrentUpdatesAreSerialised()" classname="com.rsmaxwell.diaries.web.projection.ProjectionServiceTest" time="0.105"/>
+  <testcase name="reportsTypedPageOwnershipDiagnosticsWithoutGuessingRelationships()" classname="com.rsmaxwell.diaries.web.projection.ProjectionServiceTest" time="0.103"/>
+  <testcase name="unknownExplicitFragmentTypeKeepsOtherwiseValidPageOwnedChronology()" classname="com.rsmaxwell.diaries.web.projection.ProjectionServiceTest" time="0.104"/>
+  <testcase name="resolvesCompleteRelationshipInEveryArrivalOrder()" classname="com.rsmaxwell.diaries.web.projection.ProjectionServiceTest" time="2.461"/>
+  <testcase name="fragmentPageOwnershipWinsOverMismatchedMarqueePage()" classname="com.rsmaxwell.diaries.web.projection.ProjectionServiceTest" time="0.102"/>
+  <testcase name="sortsSourcePageFragmentsByDateThenSequenceThenId()" classname="com.rsmaxwell.diaries.web.projection.ProjectionServiceTest" time="0.103"/>
+  <testcase name="reconnectUsesEmptyStagingAndRemovesObjectsDeletedOffline()" classname="com.rsmaxwell.diaries.web.projection.ProjectionServiceTest" time="0.206"/>
+  <testcase name="discoversMarqueeByFragmentLinkInsteadOfCompatibilityMarqueeId()" classname="com.rsmaxwell.diaries.web.projection.ProjectionServiceTest" time="0.103"/>
+  <system-out><![CDATA[2026-09-28T16:10:09,020 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:09,041 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=0)
+2026-09-28T16:10:09,124 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:09,207 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=0, pages=0, fragments=0, marquees=0)
+2026-09-28T16:10:09,289 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:09,309 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:09,391 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:09,413 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=2, marquees=2)
+2026-09-28T16:10:09,494 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:09,517 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:09,601 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:09,622 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=2, fragments=4, marquees=0)
+2026-09-28T16:10:09,703 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:09,725 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=0)
+2026-09-28T16:10:09,807 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:09,829 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:09,910 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:09,932 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:10,014 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:10,035 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:10,116 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:10,137 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:10,218 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:10,240 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:10,319 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:10,341 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:10,422 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:10,443 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:10,524 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:10,545 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:10,627 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:10,648 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:10,730 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:10,751 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:10,832 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:10,853 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:10,934 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:10,956 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:11,038 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:11,058 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:11,140 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:11,162 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:11,244 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:11,267 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:11,346 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:11,367 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:11,450 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:11,471 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:11,553 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:11,574 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:11,656 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:11,676 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:11,758 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:11,779 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:11,860 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:11,881 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:11,962 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:11,983 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:12,064 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:12,086 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:12,166 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:12,188 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:12,269 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:12,291 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=2, fragments=1, marquees=1)
+2026-09-28T16:10:12,372 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:12,393 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=4, marquees=4)
+2026-09-28T16:10:12,476 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:12,498 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+2026-09-28T16:10:12,577 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 2 (reconnect=true)
+2026-09-28T16:10:12,600 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 2 as snapshot 2 (diaries=1, pages=0, fragments=0, marquees=0)
+2026-09-28T16:10:12,682 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:10:12,703 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=1, pages=1, fragments=1, marquees=1)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

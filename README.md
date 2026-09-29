@@ -109,8 +109,9 @@ More detailed responder notes belong in `diaries-responder/README.md`.
 
 ### diaries-web
 
-The web projection subscribes only to canonical retained Diary, Page, Fragment
-and Marquee lookup topics. It reconstructs relationships in memory and renders
+The web projection subscribes only to canonical retained Diary, Page, Fragment,
+Marquee and Image lookup topics. Image storage/rendering remains later work in
+0026 after the Step-4 subscription/ACL change. It reconstructs relationships in memory and renders
 accessible diary, day, scan and transcript pages. It has no MQTT publish/RPC,
 database, JPA, NAS or mutation endpoint. The responder remains authoritative.
 

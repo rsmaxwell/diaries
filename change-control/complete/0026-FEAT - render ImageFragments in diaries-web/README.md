@@ -6,7 +6,7 @@ Feature
 
 ## Status
 
-To do
+In progress — Steps 1–7 complete locally; Steps 8–16 pending.
 
 ## Priority
 
@@ -117,20 +117,29 @@ Selecting a MARQUEE fragment continues to select its overlay. Selecting an IMAGE
 
 ## Detailed Implementation Steps
 
-See [IMPLEMENTATION-STEPS.md](IMPLEMENTATION-STEPS.md) for the ordered implementation plan, current-source baseline, validation requirements, deployment sequence and close-out criteria. The plan does not mark any implementation work complete.
+See [IMPLEMENTATION-STEPS.md](IMPLEMENTATION-STEPS.md) for the ordered implementation plan, current-source baseline, validation requirements, deployment sequence and close-out criteria.
 
-- [ ] Add Image model and retained decoder tests.
-- [ ] Add IMAGE entity storage, replay and tombstone handling.
-- [ ] Generalize `ResolvedFragment` and type-aware diagnostics.
-- [ ] Prove all valid IMAGE fragments enter date/month indexes.
+- [x] Step 1 — freeze the web baseline and establish evidence ([record](evidence/Step%201/README.md), 2026-09-28). All 50 existing web tests passed, including both Docker-backed integration tests; build passed and synthetic MARQUEE browser behavior was recorded, including the existing source-page selection/history limitation. No application source or production state changed.
+
+- [x] Step 2 — define the Image reader contract and degraded states ([record](evidence/Step%202/README.md), [contract](IMAGE-READER-CONTRACT.md)).
+- [x] Step 3 — add canonical Image model, decoding and events ([record](evidence/Step%203/README.md), 2026-09-28). The recorded full web run passed all 94 tests with zero failures, errors or skips; the build passed and all 13 source hashes matched at Step-3 close-out.
+- [x] Step 4 — extend reader subscriptions and minimum broker permissions ([record](evidence/Step%204/README.md), 2026-09-28). Actual `diaries-web` identity and committed ACL verified; all 107 web tests passed without skips, full build and all three Compose configs passed. Production ACL reload/delivery verification remains release work.
+- [x] Step 5 — store Images in immutable projection snapshots ([record](evidence/Step%205/README.md), 2026-09-29). Image lifecycle/replay/tombstone storage and immutable snapshot access verified; focused projection/contract/HTTP tests passed, MQTT/Testcontainers integration tests passed, and the full web test/build completed successfully.
+- [x] Step 6 — resolve mixed Fragment types and add diagnostics ([record](evidence/Step%206/README.md), 2026-09-29). Mixed MARQUEE/IMAGE/unknown resolution, degraded media states, shared Image references, relationship repair and type-specific diagnostics verified; focused projection/contract/MQTT tests and the full web test/build passed.
+- [x] Step 7 — add runtime Files configuration and safe catalogue URLs ([record](evidence/Step%207/README.md), 2026-09-29). Backward-compatible `filesPath`, safe public-base validation, exactly-once catalogue path encoding, Page URL regression protection and legacy Files-route compatibility were verified; the focused configuration/rendering/HTTP tests and full web test/build passed.
+
+- [x] Add Image model and retained decoder tests.
+- [x] Add IMAGE entity storage, replay and tombstone handling.
+- [x] Generalize `ResolvedFragment` and type-aware diagnostics.
+- [x] Prove all valid IMAGE fragments enter date/month indexes.
 - [ ] Extend the web view model with Fragment type and optional Image.
-- [ ] Add a single configured Image URL builder with path-normalization tests.
+- [x] Add a single configured Image URL builder with path-normalization tests.
 - [ ] Update templates and CSS for Image preview, caption, alt text and missing state.
 - [ ] Make fragment-selection JavaScript tolerate fragments with no marquee.
-- [ ] Add tests for reused Images and mixed MARQUEE/IMAGE chronology.
-- [ ] Add tests for invalid cross-type retained data.
-- [ ] Test retained replay and Image tombstones.
-- [ ] Run diaries-web tests and build.
+- [x] Add tests for reused Images and mixed MARQUEE/IMAGE chronology.
+- [x] Add tests for invalid cross-type retained data.
+- [x] Test retained replay and Image tombstones.
+- [ ] Run final diaries-web tests and build after the remaining implementation (Steps 4 and 5 tests/build already passed).
 - [ ] Deploy and smoke-test this reader before enabling 0027 authoring.
 
 ## Acceptance Criteria
@@ -140,9 +149,9 @@ See [IMPLEMENTATION-STEPS.md](IMPLEMENTATION-STEPS.md) for the ordered implement
 - [ ] MARQUEE behaviour remains unchanged.
 - [ ] Missing Image metadata/file cannot remove a Fragment from chronology.
 - [ ] Reused Images render for every referring Fragment without catalogue duplication.
-- [ ] Runtime configuration determines URLs.
+- [x] Runtime configuration determines URLs.
 - [ ] Caption, alt text, focus and keyboard behaviour are accessible.
-- [ ] Projection diagnostics identify invalid cross-type relationships.
+- [x] Projection diagnostics identify invalid cross-type relationships.
 - [ ] Tests/build pass and a controlled mixed-type fixture is demonstrated.
 
 ## Dependencies

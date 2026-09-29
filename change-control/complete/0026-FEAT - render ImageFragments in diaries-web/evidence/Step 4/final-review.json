@@ -1,0 +1,43 @@
+{
+  "verifiedAt": "2026-09-28T15:12:11.5490668Z",
+  "sourceFiles": 12,
+  "sourceHashMismatches": [],
+  "diffChecks": [
+    {
+      "repository": "C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries",
+      "diffCheckExitCode": 0,
+      "diagnostics": [
+        "warning: in the working copy of 'ARCHITECTURE.md', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/IMPLEMENTATION-STEPS.md', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/README.md', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'config/mosquitto/README.md', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'config/mosquitto/aclfile.txt', LF will be replaced by CRLF the next time Git touches it"
+      ]
+    },
+    {
+      "repository": "C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/diaries-web",
+      "diffCheckExitCode": 0,
+      "diagnostics": [
+        "warning: in the working copy of 'AGENTS.md', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'src/main/java/com/rsmaxwell/diaries/web/model/FragmentItem.java', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'src/main/java/com/rsmaxwell/diaries/web/model/FragmentType.java', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'src/main/java/com/rsmaxwell/diaries/web/mqtt/EntityType.java', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'src/main/java/com/rsmaxwell/diaries/web/mqtt/MqttProjectionClient.java', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'src/main/java/com/rsmaxwell/diaries/web/mqtt/RetainedMessageDecoder.java', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'src/main/java/com/rsmaxwell/diaries/web/mqtt/TopicParser.java', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'src/main/java/com/rsmaxwell/diaries/web/projection/MutableProjectionState.java', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionEvent.java', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'src/test/java/com/rsmaxwell/diaries/web/mqtt/RetainedContractTest.java', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'src/test/java/com/rsmaxwell/diaries/web/projection/ProjectionServiceTest.java', LF will be replaced by CRLF the next time Git touches it",
+        "warning: in the working copy of 'src/test/resources/mosquitto/acl', LF will be replaced by CRLF the next time Git touches it"
+      ]
+    }
+  ],
+  "applicationTests": 107,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "productionDeploymentVerified": false
+}

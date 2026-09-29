@@ -1,0 +1,34 @@
+
+> Task :diaries-web:compileJava
+Note: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-web\src\main\java\com\rsmaxwell\diaries\web\config\ConfigLoader.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :diaries-web:generateBuildInfo
+> Task :diaries-web:processResources
+> Task :diaries-web:classes
+> Task :diaries-web:compileTestJava
+> Task :diaries-web:processTestResources
+> Task :diaries-web:testClasses
+
+> Task :diaries-web:test
+
+MqttReaderAclIntegrationTest > readerAclAllowsOnlyTheFiveCanonicalLookupFamilies() FAILED
+    org.opentest4j.AssertionFailedError at MqttReaderAclIntegrationTest.java:215
+
+
+1 test completed, 1 failed
+> Task :diaries-web:test FAILED
+
+
+[Incubating] Problems report is available at: file:///C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/build/reports/problems/problems-report.html
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':diaries-web:test'.
+> There were failing tests. See the report at: file:///C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/diaries-web/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 12s
+6 actionable tasks: 6 executed

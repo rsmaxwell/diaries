@@ -1,0 +1,27 @@
+{
+  "verifiedAt": "2026-09-28T15:05:26.6894271Z",
+  "productionReferencePath": "C:/Users/Richard/Downloads/0026-Step4-reader-subscriptions-minimum-permissions/0026-Step4-reader-subscriptions-minimum-permissions/playbooks/roles/diaries/files/sync/config/mosquitto/aclfile.txt",
+  "referenceKind": "downloaded Step 4 package; not a live deployment or active playbooks checkout",
+  "referenceSha256": "e73a705380496666bb6e2331c76e2fd551dcef59574c5af000ddc78b8cdc6732",
+  "localWebRules": [
+    "topic read diaries/diaries/+",
+    "topic read diaries/fragments/+",
+    "topic read diaries/images/+",
+    "topic read diaries/marquees/+",
+    "topic read diaries/pages/+"
+  ],
+  "referenceWebRules": [
+    "topic read diaries/diaries/+",
+    "topic read diaries/fragments/+",
+    "topic read diaries/images/+",
+    "topic read diaries/marquees/+",
+    "topic read diaries/pages/+"
+  ],
+  "productionModified": false,
+  "productionDeployedAclVerified": false,
+  "productionRpcDenyRequired": true,
+  "preparedPatch": "production-web-acl.patch",
+  "patchApplyCheckExitCode": 0,
+  "localAdditionalDeny": "topic deny diaries/rpc/#",
+  "fiveReadGrantsMatch": true
+}

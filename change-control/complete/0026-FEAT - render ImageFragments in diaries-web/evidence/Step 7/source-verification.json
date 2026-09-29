@@ -1,0 +1,32 @@
+{
+  "implementationPackage": "0026-Step7-runtime-files-safe-catalogue-urls.zip",
+  "implementationPackageSha256": "7ac2d5cf5e979802be25776e6e3cabfd16377c70b7cefd95fa603a328862e12a",
+  "status": "COMPLETE_LOCALLY",
+  "recordedSourceHashes": "source-sha256.csv",
+  "changedProductionFiles": [
+    "diaries-web/src/main/java/com/rsmaxwell/diaries/web/config/AppConfig.java",
+    "diaries-web/src/main/java/com/rsmaxwell/diaries/web/config/ConfigLoader.java",
+    "diaries-web/src/main/java/com/rsmaxwell/diaries/web/rendering/ImageUrlBuilder.java",
+    "diaries-web/config/diaries-web.example.json",
+    "diaries-web/config/diaries-web.docker.json",
+    "diaries-web/README.md"
+  ],
+  "changedTestFiles": [
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/TestData.java",
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/config/ConfigLoaderTest.java",
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/rendering/RenderingSafetyTest.java",
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/http/WebServerTest.java"
+  ],
+  "checks": {
+    "backwardCompatibleFilesPathDefault": "PASS",
+    "customNestedFilesRoute": "PASS",
+    "safePublicResponderBase": "PASS",
+    "cataloguePathValidation": "PASS",
+    "exactlyOnceSegmentEncoding": "PASS",
+    "pageUrlRegression": "PASS",
+    "legacyDefaultFilesUrlRegression": "PASS",
+    "cspReview": "PASS",
+    "focusedGradleConfigRenderingHttp": "PASS_ON_WINDOWS_JAVA25_DOCKER",
+    "fullGradleWebTestBuild": "PASS_ON_WINDOWS_JAVA25_DOCKER"
+  }
+}

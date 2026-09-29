@@ -2,7 +2,18 @@
 
 Prepared 2026-09-28 from the current workspace and the completed 0025 contract.
 
-This is an implementation plan, not evidence that the steps have been executed. Preserve the feature identifier and record each implementation step under `evidence/Step N/`. Do not mark a step complete solely because its source changes compile.
+This plan records execution only where explicitly linked to evidence. Preserve the feature identifier and record each implementation step under `evidence/Step N/`. Do not mark a step complete solely because its source changes compile.
+
+## Execution status — 2026-09-29
+
+- **Step 1 complete:** [frozen web baseline and evidence](evidence/Step%201/README.md). Parent/web/responder identities and 267 source hashes recorded; 50 web tests passed, including both Docker-backed integration tests, with zero skips; build passed; synthetic MARQUEE screenshots and browser/HTTP deep-link checks captured. Application source remains unchanged.
+- **Step 2 complete:** [Image reader contract and degraded states](evidence/Step%202/README.md), with the shared [contract](IMAGE-READER-CONTRACT.md), machine-readable cases and executable contract tests.
+- **Step 3 complete:** [canonical Image model, decoding and events](evidence/Step%203/README.md). Recorded focused tests and full web tests/build passed; that full suite contained 94 tests with zero failures, errors or skips, including both Docker-backed integration tests. All 13 recorded source hashes matched at Step-3 close-out, before Step-4 changes.
+- **Step 4 complete locally:** [reader subscriptions and minimum broker permissions](evidence/Step%204/README.md). Five canonical subscriptions and minimum Image read permission verified with the actual `diaries-web` identity and committed ACL. Full web tests/build: 107 passed, zero failures/errors/skips; all three Compose configs passed. Explicit SUBACK failure remains unready; Mosquitto's silent read filtering requires a separate deployed-delivery check, documented in the evidence.
+- **Step 5 complete locally:** [immutable Image projection storage](evidence/Step%205/README.md). Image upsert/update/tombstone lifecycle, immutable snapshot lookup/count APIs, reconnect isolation and status count are implemented and verified. After the test-only generic-inference correction, the focused projection/contract/HTTP run passed, the MQTT/Testcontainers integration run passed, and the full `:diaries-web:test :diaries-web:build` completed successfully on the normal Windows Java 25/Docker development machine.
+- **Step 6 complete locally:** [mixed Fragment resolution and diagnostics](evidence/Step%206/README.md). Mixed MARQUEE/IMAGE/unknown resolution, degraded media states, shared Image references, relationship repair and type-specific diagnostics are implemented. The focused projection/contract/MQTT suite passed and the full `:diaries-web:test :diaries-web:build` completed successfully on the normal Windows Java 25/Docker development machine.
+- **Step 7 complete locally:** [runtime Files configuration and safe catalogue URLs](evidence/Step%207/README.md). Backward-compatible `content.filesPath`, safe browser-visible responder-base validation, exactly-once catalogue path encoding, Page URL regression protection and legacy Files-route compatibility are implemented and verified. The focused configuration/rendering/HTTP suite passed and the full `:diaries-web:test :diaries-web:build` gate completed successfully on the normal Windows Java 25/Docker development machine.
+- Steps 8–16 remain pending. Production artifact/configuration and authoring-gate state have not been newly verified; Steps 1–7 are verified locally, so production reader readiness is still not established.
 
 ## Objective and boundaries
 
@@ -12,9 +23,9 @@ The responder remains authoritative. This feature introduces no database migrati
 
 0025 completion establishes a tested responder capability, not proof that its binary, migration, broker changes or authoring gate have been deployed to production. Verify actual deployment state when reaching the release steps. Keep production `imageFragmentWritesEnabled` disabled throughout 0026. Reader readiness is a prerequisite for the separately controlled 0027/0028 rollout, not permission to enable it here.
 
-## Current source baseline
+## Source baseline before implementation
 
-Paths below are relative to the top-level `diaries` repository.
+This table preserves the pre-change baseline captured in Step 1; subsequent completed work is recorded above and in the step evidence. Paths below are relative to the top-level `diaries` repository.
 
 | Area | Current behavior | Required extension |
 | --- | --- | --- |
@@ -75,6 +86,8 @@ Do not confuse an unknown explicit type with absent/null legacy type. Do not gue
 
 ## Step 1 — Freeze the web baseline and establish evidence
 
+**Completed 2026-09-28:** see [Step 1 evidence](evidence/Step%201/README.md), including reproducible commands, deployment limitations and fixture cleanup.
+
 1. Read this feature, completed 0023/0025 evidence, and repository/web guardrails. Record the current execution mode.
 2. Record main/web/responder Git HEADs, dirty status and source hashes. Preserve existing uncommitted work.
 3. Inspect current deployed reader/responder tags and embedded metadata read-only if available; distinguish verified deployment information from historical evidence.
@@ -87,6 +100,8 @@ Do not confuse an unknown explicit type with absent/null legacy type. Do not gue
 **Complete when:** the pre-change reader behavior is reproducible and the implementation can be attributed to a known working tree.
 
 ## Step 2 — Define the Image reader contract and degraded states
+
+**Completed 2026-09-28:** see [Step 2 evidence](evidence/Step%202/README.md) and the [Image reader contract](IMAGE-READER-CONTRACT.md). Its three contract tests also passed in the Step-3 full-suite run.
 
 1. Add a feature contract note or test fixtures documenting the Image fields above, nullable Fragment reference semantics, tombstones, topic/payload ID equality and unknown additive fields.
 2. Match authoritative `Image`/`ImagePublishDTO` validation: positive identity/dimensions, non-negative version, required valid path/MIME/checksum metadata. Do not invent a new retained schema or require a deployment URL.
@@ -101,6 +116,8 @@ Do not confuse an unknown explicit type with absent/null legacy type. Do not gue
 
 ## Step 3 — Add canonical Image model, decoding and events
 
+**Completed 2026-09-28:** see [Step 3 evidence](evidence/Step%203/README.md), including successful focused/full Gradle output, the 94-test summary, preserved XML reports and source-hash verification. Live subscriptions and Image storage remain deliberately deferred to Steps 4 and 5.
+
 **Files:** new `model/ImageItem.java`; `mqtt/EntityType.java`, `TopicParser.java`, `RetainedMessageDecoder.java`; `projection/ProjectionEvent.java`; relevant Fragment model/type handling.
 
 1. Add immutable Image metadata and validation; reuse existing validation helpers where appropriate.
@@ -113,6 +130,8 @@ Do not confuse an unknown explicit type with absent/null legacy type. Do not gue
 **Complete when:** the five canonical families and both known Fragment types have tested decoding contracts; malformed input cannot terminate the MQTT projection thread.
 
 ## Step 4 — Extend reader subscriptions and minimum broker permissions
+
+**Completed locally 2026-09-28:** see [Step 4 evidence](evidence/Step%204/README.md). Real-broker tests prove allowed Image replay and blocked reads/writes; a separate MQTT-5 peer proves explicit rejected SUBACK handling. The shared client-ID RPC reply pattern required a web-user deny. The supplied production-role ACL matches the five web read grants but needs that deny; a checked handoff patch is included. Actual production deployment/reload and delivery verification remain release work. A successful SUBACK alone cannot detect Mosquitto file-ACL silent filtering.
 
 **Files:** `MqttProjectionClient.java`, topic-filter tests; `config/mosquitto/aclfile.txt`, its README; web test broker ACL; `diaries-web/AGENTS.md` canonical-family wording.
 
@@ -127,6 +146,8 @@ Do not confuse an unknown explicit type with absent/null legacy type. Do not gue
 
 ## Step 5 — Store Images in immutable projection snapshots
 
+**Complete locally 2026-09-29:** see [Step 5 evidence](evidence/Step%205/README.md). After correcting the test-only Java generic-inference issue in `ProjectionServiceTest`, the focused projection/contract/HTTP tests, MQTT/Testcontainers integration tests, and full `:diaries-web:test :diaries-web:build` all passed on the normal Windows Java 25/Docker development machine.
+
 **Files:** `MutableProjectionState.java`, `ProjectionSnapshot.java`, `ProjectionService.java`, `ProjectionStatus.java` and related status/health serialization.
 
 1. Add the mutable Image map, upsert change detection and Image tombstone handling.
@@ -139,6 +160,8 @@ Do not confuse an unknown explicit type with absent/null legacy type. Do not gue
 **Complete when:** Image metadata has the same lifecycle guarantees as the existing canonical entity maps.
 
 ## Step 6 — Resolve mixed Fragment types and add diagnostics
+
+**Complete locally 2026-09-29:** see [Step 6 evidence](evidence/Step%206/README.md). Mixed MARQUEE/IMAGE/unknown resolution, degraded media states, per-generation invalid Image metadata tracking, shared Image references, relationship repair and type-specific diagnostics are implemented and verified. The focused Step 6 projection/contract/MQTT run and the full `:diaries-web:test :diaries-web:build` both passed on the normal Windows Java 25/Docker development machine.
 
 **Files:** `ResolvedFragment.java`, `ProjectionSnapshot.java`, `RelationshipDiagnostics.java`, `ProjectionServiceTest.java`.
 
@@ -153,6 +176,8 @@ Do not confuse an unknown explicit type with absent/null legacy type. Do not gue
 **Complete when:** missing media and invalid type-specific links never remove otherwise valid Page-owned chronology or silently change Fragment type.
 
 ## Step 7 — Add runtime Files configuration and safe catalogue URLs
+
+**Completed 2026-09-29:** see [Step 7 evidence](evidence/Step%207/README.md). The focused configuration/rendering/HTTP verification and full web test/build gate both passed on the normal Windows Java 25/Docker development machine.
 
 **Files:** `AppConfig.java`, `ConfigLoader.java`, `ImageUrlBuilder.java`, web example/Docker JSON, `ConfigLoaderTest.java`, `RenderingSafetyTest.java`; deployment config documentation.
 

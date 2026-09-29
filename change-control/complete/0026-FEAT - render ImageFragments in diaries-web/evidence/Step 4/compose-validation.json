@@ -1,0 +1,27 @@
+[
+  {
+    "mode": "development-infrastructure",
+    "command": "docker compose --env-file config/environments/development-infrastructure.env --env-file config/environments/local.env -f compose.development-infrastructure.yaml config --quiet",
+    "exitCode": 0,
+    "diagnostics": [],
+    "aclMount": "- ./config/mosquitto/aclfile.txt:/mosquitto/config/aclfile.txt:ro"
+  },
+  {
+    "mode": "local-docker-build",
+    "command": "docker compose --env-file config/environments/local-docker-build.env --env-file config/environments/local.env -f compose.local-docker-build.yaml config --quiet",
+    "exitCode": 0,
+    "diagnostics": [],
+    "aclMount": "- ./config/mosquitto/aclfile.txt:/mosquitto/config/aclfile.txt:ro"
+  },
+  {
+    "mode": "local-published-smoke",
+    "command": "docker compose --env-file config/environments/local-published-smoke.env --env-file config/environments/local.env -f compose.local-published-smoke.yaml config --quiet",
+    "exitCode": 0,
+    "diagnostics": [
+      "time=\"2026-09-28T16:04:44+01:00\" level=warning msg=\"The \\\"DIARIES_DB_USERNAME\\\" variable is not set. Defaulting to a blank string.\"",
+      "time=\"2026-09-28T16:04:44+01:00\" level=warning msg=\"The \\\"DIARIES_DB_PASSWORD\\\" variable is not set. Defaulting to a blank string.\"",
+      "time=\"2026-09-28T16:04:44+01:00\" level=warning msg=\"The \\\"DIARIES_DB_NAME\\\" variable is not set. Defaulting to a blank string.\""
+    ],
+    "aclMount": "- ./config/mosquitto/aclfile.txt:/mosquitto/config/aclfile.txt:ro"
+  }
+]

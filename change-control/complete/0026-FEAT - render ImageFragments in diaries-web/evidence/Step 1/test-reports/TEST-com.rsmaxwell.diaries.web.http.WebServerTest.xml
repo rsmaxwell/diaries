@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.web.http.WebServerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-09-28T07:44:14.068Z" hostname="RICHARD-PC" time="2.11">
+  <properties/>
+  <testcase name="acceptsAndClipsAMarqueeWhichExtendsBeyondThePageOrigin()" classname="com.rsmaxwell.diaries.web.http.WebServerTest" time="1.311"/>
+  <testcase name="implementsHeadConditionalGetControlledErrorsAndMutationRejection()" classname="com.rsmaxwell.diaries.web.http.WebServerTest" time="0.171"/>
+  <testcase name="distinguishesProcessLivenessFromProjectionReadiness()" classname="com.rsmaxwell.diaries.web.http.WebServerTest" time="0.075"/>
+  <testcase name="redirectsLegacyAndCanonicalRoutesToTheMonthReader()" classname="com.rsmaxwell.diaries.web.http.WebServerTest" time="0.142"/>
+  <testcase name="rendersPageOwnedFragmentWhenItsMarqueeIsUnavailable()" classname="com.rsmaxwell.diaries.web.http.WebServerTest" time="0.151"/>
+  <testcase name="rendersDiaryContentsAndMonthReaderFromOneSnapshot()" classname="com.rsmaxwell.diaries.web.http.WebServerTest" time="0.172"/>
+  <system-out><![CDATA[2026-09-28T08:44:14,438 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T08:44:14,478 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=3, pages=3, fragments=3, marquees=3)
+2026-09-28T08:44:15,026 INFO  [Test worker] i.j.Javalin - Starting Javalin ...
+2026-09-28T08:44:15,141 INFO  [Test worker] i.j.Javalin - 
+       __                  ___          _____
+      / /___ __   ______ _/ (_)___     /__  /
+ __  / / __ `/ | / / __ `/ / / __ \      / /
+/ /_/ / /_/ /| |/ / /_/ / / / / / /     / /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/     /_/
+
+       https://javalin.io/documentation
+
+2026-09-28T08:44:15,142 INFO  [Test worker] i.j.Javalin - Javalin started in 352ms \o/
+2026-09-28T08:44:15,144 INFO  [Test worker] i.j.Javalin - Listening on http://127.0.0.1:52819/
+2026-09-28T08:44:15,151 INFO  [Test worker] i.j.Javalin - You are running Javalin 7.2.3 (released August 11, 2026).
+2026-09-28T08:44:15,151 INFO  [Test worker] c.r.d.w.h.WebServer - diaries-web HTTP server listening on 127.0.0.1:52819/reader
+2026-09-28T08:44:15,449 INFO  [Test worker] i.j.Javalin - Stopping Javalin ...
+2026-09-28T08:44:15,457 INFO  [Test worker] i.j.Javalin - Javalin has stopped
+2026-09-28T08:44:15,461 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T08:44:15,482 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=3, pages=3, fragments=3, marquees=3)
+2026-09-28T08:44:15,569 INFO  [Test worker] i.j.Javalin - Starting Javalin ...
+2026-09-28T08:44:15,586 INFO  [Test worker] i.j.Javalin - 
+       __                  ___          _____
+      / /___ __   ______ _/ (_)___     /__  /
+ __  / / __ `/ | / / __ `/ / / __ \      / /
+/ /_/ / /_/ /| |/ / /_/ / / / / / /     / /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/     /_/
+
+       https://javalin.io/documentation
+
+2026-09-28T08:44:15,586 INFO  [Test worker] i.j.Javalin - Javalin started in 18ms \o/
+2026-09-28T08:44:15,586 INFO  [Test worker] i.j.Javalin - Listening on http://127.0.0.1:57702/
+2026-09-28T08:44:15,587 INFO  [Test worker] i.j.Javalin - You are running Javalin 7.2.3 (released August 11, 2026).
+2026-09-28T08:44:15,587 INFO  [Test worker] c.r.d.w.h.WebServer - diaries-web HTTP server listening on 127.0.0.1:57702/reader
+2026-09-28T08:44:15,627 INFO  [Test worker] i.j.Javalin - Stopping Javalin ...
+2026-09-28T08:44:15,631 INFO  [Test worker] i.j.Javalin - Javalin has stopped
+2026-09-28T08:44:15,640 INFO  [Test worker] i.j.Javalin - Starting Javalin ...
+2026-09-28T08:44:15,659 INFO  [Test worker] i.j.Javalin - 
+       __                  ___          _____
+      / /___ __   ______ _/ (_)___     /__  /
+ __  / / __ `/ | / / __ `/ / / __ \      / /
+/ /_/ / /_/ /| |/ / /_/ / / / / / /     / /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/     /_/
+
+       https://javalin.io/documentation
+
+2026-09-28T08:44:15,659 INFO  [Test worker] i.j.Javalin - Javalin started in 20ms \o/
+2026-09-28T08:44:15,659 INFO  [Test worker] i.j.Javalin - Listening on http://127.0.0.1:57704/
+2026-09-28T08:44:15,660 INFO  [Test worker] i.j.Javalin - You are running Javalin 7.2.3 (released August 11, 2026).
+2026-09-28T08:44:15,660 INFO  [Test worker] c.r.d.w.h.WebServer - diaries-web HTTP server listening on 127.0.0.1:57704/reader
+2026-09-28T08:44:15,703 INFO  [Test worker] i.j.Javalin - Stopping Javalin ...
+2026-09-28T08:44:15,708 INFO  [Test worker] i.j.Javalin - Javalin has stopped
+2026-09-28T08:44:15,712 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T08:44:15,733 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=3, pages=3, fragments=3, marquees=3)
+2026-09-28T08:44:15,819 INFO  [Test worker] i.j.Javalin - Starting Javalin ...
+2026-09-28T08:44:15,835 INFO  [Test worker] i.j.Javalin - 
+       __                  ___          _____
+      / /___ __   ______ _/ (_)___     /__  /
+ __  / / __ `/ | / / __ `/ / / __ \      / /
+/ /_/ / /_/ /| |/ / /_/ / / / / / /     / /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/     /_/
+
+       https://javalin.io/documentation
+
+2026-09-28T08:44:15,835 INFO  [Test worker] i.j.Javalin - Javalin started in 17ms \o/
+2026-09-28T08:44:15,835 INFO  [Test worker] i.j.Javalin - Listening on http://127.0.0.1:57706/
+2026-09-28T08:44:15,836 INFO  [Test worker] i.j.Javalin - You are running Javalin 7.2.3 (released August 11, 2026).
+2026-09-28T08:44:15,836 INFO  [Test worker] c.r.d.w.h.WebServer - diaries-web HTTP server listening on 127.0.0.1:57706/reader
+2026-09-28T08:44:15,847 INFO  [Test worker] i.j.Javalin - Stopping Javalin ...
+2026-09-28T08:44:15,851 INFO  [Test worker] i.j.Javalin - Javalin has stopped
+2026-09-28T08:44:15,854 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T08:44:15,876 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=3, pages=3, fragments=3, marquees=3)
+2026-09-28T08:44:15,962 INFO  [Test worker] i.j.Javalin - Starting Javalin ...
+2026-09-28T08:44:15,977 INFO  [Test worker] i.j.Javalin - 
+       __                  ___          _____
+      / /___ __   ______ _/ (_)___     /__  /
+ __  / / __ `/ | / / __ `/ / / __ \      / /
+/ /_/ / /_/ /| |/ / /_/ / / / / / /     / /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/     /_/
+
+       https://javalin.io/documentation
+
+2026-09-28T08:44:15,978 INFO  [Test worker] i.j.Javalin - Javalin started in 17ms \o/
+2026-09-28T08:44:15,978 INFO  [Test worker] i.j.Javalin - Listening on http://127.0.0.1:57708/
+2026-09-28T08:44:15,978 INFO  [Test worker] i.j.Javalin - You are running Javalin 7.2.3 (released August 11, 2026).
+2026-09-28T08:44:15,978 INFO  [Test worker] c.r.d.w.h.WebServer - diaries-web HTTP server listening on 127.0.0.1:57708/reader
+2026-09-28T08:44:16,000 INFO  [Test worker] i.j.Javalin - Stopping Javalin ...
+2026-09-28T08:44:16,004 INFO  [Test worker] i.j.Javalin - Javalin has stopped
+2026-09-28T08:44:16,008 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T08:44:16,030 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=3, pages=3, fragments=3, marquees=3)
+2026-09-28T08:44:16,115 INFO  [Test worker] i.j.Javalin - Starting Javalin ...
+2026-09-28T08:44:16,132 INFO  [Test worker] i.j.Javalin - 
+       __                  ___          _____
+      / /___ __   ______ _/ (_)___     /__  /
+ __  / / __ `/ | / / __ `/ / / __ \      / /
+/ /_/ / /_/ /| |/ / /_/ / / / / / /     / /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/     /_/
+
+       https://javalin.io/documentation
+
+2026-09-28T08:44:16,132 INFO  [Test worker] i.j.Javalin - Javalin started in 18ms \o/
+2026-09-28T08:44:16,132 INFO  [Test worker] i.j.Javalin - Listening on http://127.0.0.1:57710/
+2026-09-28T08:44:16,133 INFO  [Test worker] i.j.Javalin - You are running Javalin 7.2.3 (released August 11, 2026).
+2026-09-28T08:44:16,133 INFO  [Test worker] c.r.d.w.h.WebServer - diaries-web HTTP server listening on 127.0.0.1:57710/reader
+2026-09-28T08:44:16,175 INFO  [Test worker] i.j.Javalin - Stopping Javalin ...
+2026-09-28T08:44:16,178 INFO  [Test worker] i.j.Javalin - Javalin has stopped
+]]></system-out>
+  <system-err><![CDATA[SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+]]></system-err>
+</testsuite>

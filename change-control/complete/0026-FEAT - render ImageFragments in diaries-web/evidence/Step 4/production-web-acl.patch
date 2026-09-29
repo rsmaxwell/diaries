@@ -1,0 +1,11 @@
+--- a/roles/diaries/files/sync/config/mosquitto/aclfile.txt
++++ b/roles/diaries/files/sync/config/mosquitto/aclfile.txt
+@@ -25,6 +25,8 @@
+ 
+ user diaries-web
++# Pattern ACLs apply to every user; override the shared client-ID reply pattern.
++topic deny diaries/rpc/#
+ topic read diaries/diaries/+
+ topic read diaries/pages/+
+ topic read diaries/fragments/+
+ topic read diaries/marquees/+

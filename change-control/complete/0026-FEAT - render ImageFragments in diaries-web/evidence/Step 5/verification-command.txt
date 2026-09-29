@@ -1,0 +1,3 @@
+.\gradlew.bat :diaries-web:test --tests "*ProjectionServiceTest" --tests "*ImageReaderContractDefinitionTest" --tests "*WebServerTest" --rerun-tasks --console=plain
+.\gradlew.bat :diaries-web:test --tests "*MqttProjectionIntegrationTest" --tests "*MqttReaderAclIntegrationTest" --rerun-tasks --console=plain
+.\gradlew.bat :diaries-web:test :diaries-web:build --rerun-tasks --console=plain

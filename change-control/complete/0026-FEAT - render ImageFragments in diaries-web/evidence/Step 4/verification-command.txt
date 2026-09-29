@@ -1,0 +1,6 @@
+From the parent diaries repository (Windows Java 25, Docker available):
+
+.\gradlew.bat :diaries-web:test --tests '*MqttReaderAclIntegrationTest' --tests '*MqttSubscriptionTest' --rerun-tasks --console=plain
+.\gradlew.bat :diaries-web:test :diaries-web:build --rerun-tasks --console=plain
+
+The full-suite result, not merely BUILD SUCCESSFUL, must include the two MQTT integration classes and MqttSubscriptionTest with zero skips. See test-summary.csv and test-reports.

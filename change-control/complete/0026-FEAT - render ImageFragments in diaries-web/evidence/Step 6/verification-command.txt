@@ -1,0 +1,11 @@
+# Focused Step 6 projection/contract/MQTT verification
+.\gradlew.bat :diaries-web:test `
+  --tests "*ProjectionServiceTest" `
+  --tests "*ImageReaderContractDefinitionTest" `
+  --tests "*MqttProjectionIntegrationTest" `
+  --tests "*MqttReaderAclIntegrationTest" `
+  --rerun-tasks --console=plain
+
+# Full diaries-web regression/build gate
+.\gradlew.bat :diaries-web:test :diaries-web:build `
+  --rerun-tasks --console=plain

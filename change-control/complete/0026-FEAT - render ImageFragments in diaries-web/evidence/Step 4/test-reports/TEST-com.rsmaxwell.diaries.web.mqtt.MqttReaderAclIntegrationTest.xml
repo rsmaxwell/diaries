@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-09-28T15:09:31.138Z" hostname="RICHARD-PC" time="24.702">
+  <properties/>
+  <testcase name="readerCanReplayCanonicalImageMetadataWithReadOnlyPermission()" classname="com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest" time="0.949"/>
+  <testcase name="readerAclAllowsOnlyTheFiveCanonicalLookupFamilies()" classname="com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest" time="20.883"/>
+  <testcase name="missingImageReadPermissionWithholdsDataDespiteSuccessfulSuback()" classname="com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest" time="1.362"/>
+  <testcase name="actualProjectionSubscribesToImagesAndRejectsMalformedRetainedMetadata()" classname="com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest" time="1.026"/>
+  <system-out><![CDATA[2026-09-28T16:09:31,151 INFO  [Test worker] t.e.0.22 - Creating container for image: eclipse-mosquitto:2.0.22
+2026-09-28T16:09:31,281 INFO  [Test worker] t.e.0.22 - Container eclipse-mosquitto:2.0.22 is starting: 6cc097dd8920f9e712e6767b3ccd35a256d3d71dcc58d7c8033c515cf60d7052
+2026-09-28T16:09:31,604 INFO  [Test worker] t.e.0.22 - Container eclipse-mosquitto:2.0.22 started in PT0.4533428S
+2026-09-28T16:09:55,219 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Connecting diaries-web MQTT subscriber to tcp://localhost:55338
+2026-09-28T16:09:55,527 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Starting retained replay generation 1 (reconnect=false)
+2026-09-28T16:09:55,529 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/diaries/+
+2026-09-28T16:09:55,529 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/pages/+
+2026-09-28T16:09:55,529 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/fragments/+
+2026-09-28T16:09:55,529 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/marquees/+
+2026-09-28T16:09:55,529 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/images/+
+2026-09-28T16:09:55,627 WARN  [MQTT Call: step4-reader-5c2ad1f9] c.r.d.w.m.MqttProjectionClient - Rejected retained message on topic diaries/images/61: Cannot construct instance of `com.rsmaxwell.diaries.web.model.ImageItem`, problem: image id must be an integer
+ at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 1, column: 2]
+2026-09-28T16:09:55,630 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=0, pages=0, fragments=0, marquees=0)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

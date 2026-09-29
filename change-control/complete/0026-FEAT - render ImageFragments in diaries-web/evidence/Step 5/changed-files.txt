@@ -1,0 +1,11 @@
+change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/IMPLEMENTATION-STEPS.md
+change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/README.md
+diaries-web/src/main/java/com/rsmaxwell/diaries/web/http/WebServer.java
+diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/MutableProjectionState.java
+diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionService.java
+diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionSnapshot.java
+diaries-web/src/test/java/com/rsmaxwell/diaries/web/http/WebServerTest.java
+diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/ImageReaderContractDefinitionTest.java
+diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/MqttProjectionIntegrationTest.java
+diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/MqttReaderAclIntegrationTest.java
+diaries-web/src/test/java/com/rsmaxwell/diaries/web/projection/ProjectionServiceTest.java

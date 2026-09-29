@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" tests="48" skipped="0" failures="0" errors="0" timestamp="2026-09-28T13:55:58.784Z" hostname="RICHARD-PC" time="0.089">
+  <properties/>
+  <testcase name="keepsLiveSubscriptionFiltersAtStep2ScopeButCanBuildAndParseCanonicalImageTopics()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.004"/>
+  <testcase name="rejectsPayloadIdMismatchAndInvalidRequiredFields()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.004"/>
+  <testcase name="rejectsImageTopicPayloadMismatchJsonNullAndInvalidJson()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.003"/>
+  <testcase name="decodesExplicitImageFragmentAndIgnoresUnknownFields()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.002"/>
+  <testcase name="emptyPayloadIsATombstoneForExistingAndImageEntities()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="decodesCanonicalImageMetadataAndIgnoresUnknownAdditiveFields()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.002"/>
+  <testcase name="normalizesTheRespondersDottedPageExtension()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="absentCaptionAndAltTextDefaultToEmptyButExplicitNullIsRejected()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.004"/>
+  <testcase name="rejectsInvalidPresentFragmentRelationshipsAndNonStringType()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="[1] topic = &quot;diaries/diaries/11&quot;, fixture = &quot;/fixtures/diary.json&quot;, expectedType = class com.rsmaxwell.diaries.web.model.DiaryItem, expectedEntityType = DIARY" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.003"/>
+  <testcase name="[2] topic = &quot;diaries/pages/22&quot;, fixture = &quot;/fixtures/page.json&quot;, expectedType = class com.rsmaxwell.diaries.web.model.PageItem, expectedEntityType = PAGE" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="[3] topic = &quot;diaries/fragments/33&quot;, fixture = &quot;/fixtures/fragment.json&quot;, expectedType = class com.rsmaxwell.diaries.web.model.FragmentItem, expectedEntityType = FRAGMENT" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="[4] topic = &quot;diaries/marquees/44&quot;, fixture = &quot;/fixtures/marquee.json&quot;, expectedType = class com.rsmaxwell.diaries.web.model.MarqueeItem, expectedEntityType = MARQUEE" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.002"/>
+  <testcase name="[5] topic = &quot;diaries/images/60&quot;, fixture = &quot;/fixtures/image.json&quot;, expectedType = class com.rsmaxwell.diaries.web.model.ImageItem, expectedEntityType = IMAGE" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="decodesTypedLegacyAndUnknownFragmentPayloadsWithoutCoercingUnknownType()" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.002"/>
+  <testcase name="missing id" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.002"/>
+  <testcase name="zero id" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.002"/>
+  <testcase name="id wrong type" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="negative version" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="version wrong type" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="missing path" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="blank path" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="leading slash" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="trailing slash" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="empty segment" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="dot segment" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="dotdot segment" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="backslash path" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="colon path" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="control path" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.002"/>
+  <testcase name="non NFC path" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="missing mime" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="unsupported mime" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.0"/>
+  <testcase name="missing width" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="zero width" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="missing height" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="zero height" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="width wrong type" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.0"/>
+  <testcase name="missing checksum" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.0"/>
+  <testcase name="uppercase checksum" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.0"/>
+  <testcase name="short checksum" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="missing filename" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="blank filename" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.002"/>
+  <testcase name="directory filename" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="backslash filename" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.0"/>
+  <testcase name="colon filename" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="caption wrong type" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <testcase name="altText wrong type" classname="com.rsmaxwell.diaries.web.mqtt.RetainedContractTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

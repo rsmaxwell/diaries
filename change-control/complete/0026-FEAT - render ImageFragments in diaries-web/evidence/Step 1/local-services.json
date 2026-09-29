@@ -1,0 +1,14 @@
+[
+  {
+    "Names": "diaries-development-db",
+    "Image": "postgres:18-alpine",
+    "Status": "Up 11 days (healthy)",
+    "Ports": "0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp"
+  },
+  {
+    "Names": "diaries-development-mqtt",
+    "Image": "eclipse-mosquitto:2",
+    "Status": "Up 9 hours (healthy)",
+    "Ports": "0.0.0.0:1883->1883/tcp, [::]:1883->1883/tcp, 0.0.0.0:9001->9001/tcp, [::]:9001->9001/tcp"
+  }
+]

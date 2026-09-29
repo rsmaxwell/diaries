@@ -1,0 +1,29 @@
+{
+  "verifiedAt": "2026-09-28T07:52:51.4365095Z",
+  "diffCheckExitCode": 0,
+  "diffCheckOutput": [
+    "warning: in the working copy of 'change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/IMPLEMENTATION-STEPS.md', LF will be replaced by CRLF the next time Git touches it",
+    "warning: in the working copy of 'change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/README.md', LF will be replaced by CRLF the next time Git touches it"
+  ],
+  "browserChecks": 9,
+  "monthSelectionAndHistory": "passed",
+  "sourcePageSelection": "overlay changes but hash does not; reload restores original deep link; existing limitation recorded for Step 10",
+  "repositories": [
+    {
+      "repository": ".",
+      "status": [
+        " M \"change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/IMPLEMENTATION-STEPS.md\"",
+        " M \"change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/README.md\"",
+        "?? \"change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/\""
+      ]
+    },
+    {
+      "repository": "diaries-web",
+      "status": []
+    },
+    {
+      "repository": "diaries-responder",
+      "status": []
+    }
+  ]
+}

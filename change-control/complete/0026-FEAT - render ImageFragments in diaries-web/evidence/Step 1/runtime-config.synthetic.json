@@ -1,0 +1,33 @@
+{
+  "http" : {
+    "host" : "127.0.0.1",
+    "port" : 18082,
+    "basePath" : "",
+    "publicBaseUrl" : "http://127.0.0.1:18082"
+  },
+  "mqtt" : {
+    "host" : "127.0.0.1",
+    "port" : 18883,
+    "clientId" : "diaries-web-0026-baseline",
+    "topicPrefix" : "diaries0026baseline",
+    "keepAliveSeconds" : 30,
+    "connectTimeoutSeconds" : 2,
+    "reconnectDelaySeconds" : 1,
+    "cleanStart" : true
+  },
+  "projection" : {
+    "initialReplayQuietPeriodMillis" : 20,
+    "initialReplayTimeoutSeconds" : 2
+  },
+  "content" : {
+    "responderBaseUrl" : "http://127.0.0.1:18083",
+    "publicResponderBaseUrl" : "http://127.0.0.1:18083",
+    "diariesPath" : "diaries"
+  },
+  "site" : {
+    "title" : "Diaries",
+    "description" : "Read-only diary",
+    "defaultLocale" : "en-GB",
+    "zoneId" : "Europe/London"
+  }
+}

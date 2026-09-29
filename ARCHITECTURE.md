@@ -23,7 +23,7 @@ PostgreSQL database                     |
                                          |
 Static image/file server ---------------+
 
-Retained Diary/Page/Fragment/Marquee lookup topics
+Retained Diary/Page/Fragment/Marquee/Image lookup topics
    |
    v
 Java diaries-web
@@ -123,7 +123,7 @@ The client may prevent obvious invalid actions, but the responder must still enf
 
 `diaries-web` is a sibling Java process and read-only projection. It does not
 replace `diaries-client`. It subscribes to the responder's canonical retained
-Diary, Page, Fragment and Marquee lookup topics, rebuilds an in-memory model on
+Diary, Page, Fragment, Marquee and Image lookup topics, rebuilds an in-memory model on
 startup/reconnect, and atomically serves immutable generations as HTML.
 
 It has no database connection, JPA model, MQTT publish/RPC path, authentication

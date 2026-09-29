@@ -1,0 +1,12 @@
+sha256,path
+99524e44dc847e54e2fe23f9e10ef3359d9fd4d325f06420fafa418db0e50a1d,change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/IMPLEMENTATION-STEPS.md
+9543060fe522a8ffd67d37032ee82d63827c1db49b5f35d29292fddeb065ed30,change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/README.md
+c6c3509c57fc1df05e53af1dad6bcbd512b9a36b24f35f098bfb0ff2c4c30db9,diaries-web/src/main/java/com/rsmaxwell/diaries/web/http/WebServer.java
+97a3448919ee63bc1d882d075d4302fdadbcb7325f585db0d06c3900bfd65d78,diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/MutableProjectionState.java
+5a761f4d389b653036222549cbc51d0324e20188a2608ec08a75c0a39a04198d,diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionService.java
+d6c18463f8fcd32b6a15a7cdf66981b0be5acfcaf5e2ec7d98b4ec5404805ce3,diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionSnapshot.java
+0a5eb4d6e91e63ad3f9d2e1c637c6a953f1eafde495af47cf536cf71b932a2e2,diaries-web/src/test/java/com/rsmaxwell/diaries/web/http/WebServerTest.java
+99370a2662b62d80526f57593b9a3f6815ead24342e99c0f263240787596ca6c,diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/ImageReaderContractDefinitionTest.java
+bcfa9f23fe896cb4e2f53443e08807907219449e3c40e77e33f3d443948280d6,diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/MqttProjectionIntegrationTest.java
+e0e8b4592a7e32d2a21684326cb9b848bb71cebe7d76cffb64e7f376c1efb72f,diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/MqttReaderAclIntegrationTest.java
+151d5cb7051a84cf7323bf9aef0f1db873ee74133a037a32e58decee1d305b38,diaries-web/src/test/java/com/rsmaxwell/diaries/web/projection/ProjectionServiceTest.java

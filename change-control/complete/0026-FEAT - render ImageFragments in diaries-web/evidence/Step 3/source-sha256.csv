@@ -1,0 +1,14 @@
+sha256,path
+61ae024884df804e5a1375fde11527728c0d0d6fa51613f0bd3c54d8af8c509e,diaries-web/src/main/java/com/rsmaxwell/diaries/web/model/FragmentItem.java
+b44381ec31825772d96360f07dba36711cbd305ec2fed634a502c4c59f420d13,diaries-web/src/main/java/com/rsmaxwell/diaries/web/model/FragmentType.java
+c2f8ce05099b4e5df936b7d8b437c04c0626bd2fed32e92a29b40f928f2925d9,diaries-web/src/main/java/com/rsmaxwell/diaries/web/model/ImageItem.java
+2ca88952af1a28c530622057cd6e96f7a299eb702ea2f82313d0d170e9b282f0,diaries-web/src/main/java/com/rsmaxwell/diaries/web/mqtt/EntityType.java
+f2740d7df470e64c60d1bb13fac346ac46b0ee85750d9b424bcefb500a1cea9e,diaries-web/src/main/java/com/rsmaxwell/diaries/web/mqtt/TopicParser.java
+dd472e51dd29784810d29e69c49cefaf1a4de50dcea0831c4b349c1648989c17,diaries-web/src/main/java/com/rsmaxwell/diaries/web/mqtt/RetainedMessageDecoder.java
+a05fecf313ef2052e532d1b25288a289e27aee21ce20544c3c554036f4a9d491,diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionEvent.java
+85020e6dca2689032009283018baa25f81a3c82c08952e165c40880855bcf9bb,diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/MutableProjectionState.java
+f1cfad28fce969589ceb97554284263c6e627e6a13524ba1f2569a640259faf8,diaries-web/src/test/java/com/rsmaxwell/diaries/web/model/ImageItemTest.java
+84d92f3067737e0b96877dcad1cce5c8f9ef0fa6257eae8982618146b0030de5,diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/ImageReaderContractDefinitionTest.java
+7fb8c17ec4d71ff4286b5a7968621b537793708157f6e72a4ebcd07f8e30583c,diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/RetainedContractTest.java
+3f86fffeb7875bf0bb9f5928c9668b356d8330ead2090d3d1578d0c257df39a4,diaries-web/src/test/java/com/rsmaxwell/diaries/web/projection/ProjectionServiceTest.java
+d4c17a782d0c929d8169b7fec63157bec079ea07f294d38025d3e9a30425e798,diaries-web/src/test/resources/fixtures/image.json

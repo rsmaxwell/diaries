@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-09-28T15:08:32.074Z" hostname="RICHARD-PC" time="7.351">
+  <properties/>
+  <testcase name="readerAclAllowsOnlyTheFiveCanonicalLookupFamilies()" classname="com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest" time="6.871">
+    <failure message="org.opentest4j.AssertionFailedError: &#13;&#10;expected: &quot;diaries/images/998&quot;&#13;&#10; but was: &quot;diaries/rpc/diaries-web-57e14fea-6abc-487f-b85c-5cec6aa0c905/response&quot;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: 
+expected: &quot;diaries/images/998&quot;
+ but was: &quot;diaries/rpc/diaries-web-57e14fea-6abc-487f-b85c-5cec6aa0c905/response&quot;
+	at com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest.assertReaderSubscribeDenied(MqttReaderAclIntegrationTest.java:215)
+	at com.rsmaxwell.diaries.web.mqtt.MqttReaderAclIntegrationTest.readerAclAllowsOnlyTheFiveCanonicalLookupFamilies(MqttReaderAclIntegrationTest.java:143)
+</failure>
+  </testcase>
+  <system-out><![CDATA[2026-09-28T16:08:32,085 INFO  [Test worker] t.e.0.22 - Creating container for image: eclipse-mosquitto:2.0.22
+2026-09-28T16:08:32,221 INFO  [Test worker] t.e.0.22 - Container eclipse-mosquitto:2.0.22 is starting: 4f03a594c89e70c5550aa65847c32e0666c5a0f28872cf1c0a0ea86cbd539174
+2026-09-28T16:08:32,542 INFO  [Test worker] t.e.0.22 - Container eclipse-mosquitto:2.0.22 started in PT0.4574069S
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
