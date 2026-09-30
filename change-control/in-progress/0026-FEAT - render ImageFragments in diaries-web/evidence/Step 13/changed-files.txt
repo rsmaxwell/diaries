@@ -1,0 +1,27 @@
+Step 13 implementation files
+
+Validation tooling
+- scripts/windows/validation/verify-0026-step13.ps1
+- scripts/windows/validation/smoke-imagefragment-reader.cjs
+- scripts/windows/validation/README.md
+
+Change control / evidence
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/README.md
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/IMPLEMENTATION-STEPS.md
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 13/README.md
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 13/verification-commands.md
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 13/changed-files.txt
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 13/source-verification.json
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 13/static-verification.txt
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 13/source-sha256.csv
+
+Production runtime source changes: NONE.
+Implementation hardening in this revision:
+- require the shared-Image fixture to span different Pages and different dates;
+- verify the shared catalogue Image renders through both Fragment references;
+- capture browser evidence for MISSING_METADATA;
+- use a fresh browser context for FILE_LOAD_FAILED so cache cannot mask the fault;
+- emit cleanup.json and strengthen PowerShell Chrome/Pillow preflight;
+- clean build outputs and require exactly one fresh responder/web fat JAR to prevent stale-artifact selection.
+
+Step 13 status: IMPLEMENTED_VERIFICATION_PENDING.

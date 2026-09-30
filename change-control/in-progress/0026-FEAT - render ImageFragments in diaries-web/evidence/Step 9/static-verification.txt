@@ -1,0 +1,29 @@
+Step 9 static/source verification — 2026-09-29
+
+PASS: month uses explicit pageImageUrl
+PASS: source uses explicit pageImageUrl
+PASS: month gates img on mediaUrl
+PASS: month uses escaped alt slot
+PASS: month renders caption without raw
+PASS: month has direct image fallback link
+PASS: month has stable unavailable text
+PASS: source gates img on mediaUrl
+PASS: source uses escaped alt slot
+PASS: source renders caption without raw
+PASS: source has direct image fallback link
+PASS: source has stable unavailable text
+PASS: responsive media CSS
+PASS: mobile one-column reader layout remains present
+PASS: long caption wraps
+PASS: image selection wording avoids region promise
+PASS: tests cover escaped alt/caption
+PASS: tests cover empty alt
+PASS: tests cover tall wide small
+PASS: tests cover reused image without duplicate media ids
+PASS: tests reject empty/null media src
+
+Gradle execution in assistant environment:
+BLOCKED: wrapper attempted to download Gradle 9.6.1 from services.gradle.org.
+BLOCKED: environment has no outbound DNS/network access (UnknownHostException: services.gradle.org).
+
+No Gradle PASS is claimed by this implementation package. User verification is required before Step 9 completion.

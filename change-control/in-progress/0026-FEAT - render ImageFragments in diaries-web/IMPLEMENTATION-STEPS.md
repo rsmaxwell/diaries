@@ -13,7 +13,10 @@ This plan records execution only where explicitly linked to evidence. Preserve t
 - **Step 5 complete locally:** [immutable Image projection storage](evidence/Step%205/README.md). Image upsert/update/tombstone lifecycle, immutable snapshot lookup/count APIs, reconnect isolation and status count are implemented and verified. After the test-only generic-inference correction, the focused projection/contract/HTTP run passed, the MQTT/Testcontainers integration run passed, and the full `:diaries-web:test :diaries-web:build` completed successfully on the normal Windows Java 25/Docker development machine.
 - **Step 6 complete locally:** [mixed Fragment resolution and diagnostics](evidence/Step%206/README.md). Mixed MARQUEE/IMAGE/unknown resolution, degraded media states, shared Image references, relationship repair and type-specific diagnostics are implemented. The focused projection/contract/MQTT suite passed and the full `:diaries-web:test :diaries-web:build` completed successfully on the normal Windows Java 25/Docker development machine.
 - **Step 7 complete locally:** [runtime Files configuration and safe catalogue URLs](evidence/Step%207/README.md). Backward-compatible `content.filesPath`, safe browser-visible responder-base validation, exactly-once catalogue path encoding, Page URL regression protection and legacy Files-route compatibility are implemented and verified. The focused configuration/rendering/HTTP suite passed and the full `:diaries-web:test :diaries-web:build` gate completed successfully on the normal Windows Java 25/Docker development machine.
-- Steps 8–16 remain pending. Production artifact/configuration and authoring-gate state have not been newly verified; Steps 1–7 are verified locally, so production reader readiness is still not established.
+- **Step 8 complete locally:** [typed HTTP media view models](evidence/Step%208/README.md). Month-reader and source-page HTTP models now share the same typed-media resolution, distinguish Page scan fields from catalogue Image fields, expose stable degraded-media states, preserve type-safe `hasMarquee`, and retain existing redirects/HEAD/ownership behaviour. The focused HTTP/config/rendering suite passed and the full `:diaries-web:test :diaries-web:build` gate completed successfully on the normal Windows Java 25/Docker development machine.
+- **Step 9 complete locally:** [accessible mixed-media rendering](evidence/Step%209/README.md). Both reader templates render catalogue Images only for available media, use escaped catalogue alt/caption metadata, keep stable degraded-state text separate from alt text, preserve Page context, and use responsive intrinsic dimensions plus a no-JavaScript direct-image link. The focused rendering/safety suite passed and the full `:diaries-web:test :diaries-web:build` gate completed successfully on the normal Windows Java 25/Docker development machine.
+- **Step 10 complete locally:** [type-aware selection, history and media errors](evidence/Step%2010/README.md). IMAGE selection clears stale MARQUEE geometry and disables only region-specific controls; MARQUEE selection restores the region controls; month-reader and source-page Back/Forward restore typed selection; catalogue byte/decode failure is exposed as browser-only `FILE_LOAD_FAILED` while the broken `<img>` is hidden and retained media state remains unchanged. Focused tests and the full web test/build gate passed on the normal Windows Java 25/Docker development machine, and the core synthetic-browser completion criteria were demonstrated.
+- Steps 11–16 remain pending. Production artifact/configuration and authoring-gate state have not been newly verified; Steps 1–10 are verified locally, so production reader readiness is still not established.
 
 ## Objective and boundaries
 
@@ -195,6 +198,8 @@ Do not confuse an unknown explicit type with absent/null legacy type. Do not gue
 
 ## Step 8 — Extend HTTP view models for typed media
 
+**Complete locally 2026-09-29:** one shared typed-media view now feeds both month-reader and source-page models. It carries effective/raw Fragment type, type-safe `hasMarquee`, media state, catalogue URL, alt/caption/dimensions and stable unavailable text while keeping Page scan URL/dimensions distinct. Focused HTTP/model tests cover shared Images, missing/invalid metadata, no-selection IMAGE, unknown explicit type, invalid IMAGE→Marquee retained data, redirects and HEAD. The focused HTTP/config/rendering suite and full `:diaries-web:test :diaries-web:build` gate both passed on the normal Windows Java 25/Docker development machine. See [Step 8 evidence](evidence/Step%208/README.md).
+
 **Files:** `WebServer.java`, `SiteUrls.java` only if necessary, HTTP tests and fixture builders.
 
 1. Centralize the catalogue-media view model so month-reader and source-page responses use the same resolution policy and URL builder.
@@ -237,6 +242,8 @@ Do not confuse an unknown explicit type with absent/null legacy type. Do not gue
 
 ## Step 11 — Add focused projection, rendering and security coverage
 
+**Implementation status (2026-09-29): complete locally.** The Step 11 patch is test/harness/evidence only; no production runtime source changes were required. The focused Java 25 suite and full `diaries-web` test/build gate passed, and browser verification confirmed both successful catalogue-media loading and the browser-only media-error branch used by the deterministic failure fixtures.
+
 Extend existing suites rather than replacing their MARQUEE cases:
 
 | Test area | Required cases |
@@ -250,9 +257,11 @@ Extend existing suites rather than replacing their MARQUEE cases:
 
 Use deterministic fixtures. Avoid arbitrary long sleeps; await observable projection generation, readiness, DOM or network conditions with bounded deadlines. A missing external prerequisite must be reported as skipped/blocked, never as a pass.
 
-**Complete when:** tests distinguish reference absence, missing metadata, bad bytes, invalid cross-type links and missing Page ownership, and verify the visible behavior of each.
+**Completion result (2026-09-29): complete locally.** Tests distinguish reference absence, missing metadata, rejected metadata, bad/missing bytes, invalid cross-type links and missing Page ownership. Browser evidence confirms the normal IMAGE path, keyboard/focus behavior, type-aware selection/history and the browser-only `FILE_LOAD_FAILED` presentation. Step 12 remains responsible for the real broker → decoder → projection → HTTP path.
 
 ## Step 12 — Verify real MQTT replay, permissions and HTTP projection
+
+**Completion result (2026-09-29): complete locally.** A dedicated `Step12MqttHttpIntegrationTest` uses fresh owned Mosquitto containers, the committed `diaries-web` ACL, authenticated publisher/reader identities, the real `MqttProjectionClient`, `ProjectionService` and `WebServer`, plus a production-sized 5,376-topic retained tree. No production runtime source changed. The focused Java 25/Docker integration command was rerun under PowerShell 7.6.6 and completed successfully in 1m 16s with 7 actionable tasks executed; the complete `:diaries-web:test :diaries-web:build` gate completed successfully in 1m 35s with 15 actionable tasks executed. Exact PowerShell 7.6.6 console output is preserved under `evidence/Step 12/test-results.txt`. Step 13 is next.
 
 **Files:** extend `MqttProjectionIntegrationTest.java`, test broker config/ACL and fixtures; add focused cases if the existing class becomes unwieldy.
 
@@ -267,6 +276,8 @@ Use deterministic fixtures. Avoid arbitrary long sleeps; await observable projec
 **Complete when:** the real broker → decoder → immutable projection → HTTP path passes with reader permissions and fresh reconnect state.
 
 ## Step 13 — Run controlled cross-component development verification
+
+**Implementation status (2026-09-29): verification tooling implemented; controlled execution pending.** The disposable runner builds the exact current responder/web JARs, restores a supplied backup into owned PostgreSQL tmpfs, uses owned Mosquitto/responder/web services and a real browser, and records cleanup/evidence. It deliberately remains incomplete until that run succeeds on the Docker-enabled development workstation.
 
 1. Build candidate web and use the tested 0025-capable responder in disposable development services. Apply required schema only to a restored disposable database before starting that responder.
 2. Seed a small mixed fixture through supported responder operations: MARQUEE, IMAGE with selection, IMAGE without selection, two Fragments sharing one Image, different dates/Pages and nested file paths.

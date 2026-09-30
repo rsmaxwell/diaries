@@ -1,0 +1,42 @@
+{
+  "step": 12,
+  "status": "COMPLETE_LOCALLY",
+  "completedAt": "2026-09-29",
+  "productionRuntimeSourceChanged": false,
+  "testCoverage": {
+    "freshOwnedBroker": true,
+    "authenticatedFixturePublisher": true,
+    "committedReadOnlyWebAcl": true,
+    "lateRetainedReplay": true,
+    "realProjectionAndHttpServer": true,
+    "sharedImageMetadataUpdate": true,
+    "imageTombstoneAndRestore": true,
+    "reversedFragmentImageArrival": true,
+    "freshReconnectGeneration": true,
+    "staleImageRemovedAfterReconnect": true,
+    "httpBlockedDuringReplay": true,
+    "missingImagePermissionNegativeControl": true,
+    "rpcFreeSubscriber": true,
+    "forbiddenRpcAndImageWrites": true,
+    "productionSizedRetainedTree": {
+      "diaries": 10,
+      "pages": 683,
+      "fragments": 2329,
+      "marquees": 2269,
+      "images": 85,
+      "topics": 5376
+    },
+    "brokerMaxInflightMessages": 20,
+    "brokerMaxQueuedMessages": 10000,
+    "runtimeReplayQuietPeriodMillis": 1500,
+    "runtimeReplayTimeoutSeconds": 30
+  },
+  "verification": {
+    "focusedJava25DockerCommand": "PASS_BUILD_SUCCESSFUL_1M16S_7_TASKS",
+    "fullWebTestBuild": "PASS_BUILD_SUCCESSFUL_1M35S_15_TASKS",
+    "exactConsoleTranscript": "evidence/Step 12/test-results.txt",
+    "individualTestSkipCount": "NOT_EMITTED_BY_GRADLE_PLAIN_CONSOLE",
+    "shell": "PowerShell 7.6.6"
+  },
+  "nextStep": "Step 13 — Run controlled cross-component development verification"
+}

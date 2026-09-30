@@ -1,0 +1,39 @@
+{
+  "verifiedDate": "2026-09-29",
+  "status": "COMPLETE_LOCALLY",
+  "verificationEnvironment": "user Windows development workspace; normal project Java 25/Docker environment plus synthetic browser fixture",
+  "automatedEvidenceFile": "test-results.txt",
+  "browserEvidenceFile": "browser-verification-results.md",
+  "runs": [
+    {
+      "scope": "WebServerTest + RenderingSafetyTest",
+      "result": "PASS",
+      "build": "BUILD SUCCESSFUL",
+      "durationSeconds": 11,
+      "actionableTasks": 7
+    },
+    {
+      "scope": ":diaries-web:test :diaries-web:build",
+      "result": "PASS",
+      "build": "BUILD SUCCESSFUL",
+      "durationSeconds": 50,
+      "actionableTasks": 15
+    }
+  ],
+  "aggregateJUnitCount": "NOT_PRINTED_IN_SUPPLIED_CONSOLE_OUTPUT",
+  "browserChecks": {
+    "monthMarqueeToImageClearsMarquee": "PASS_USER_OBSERVED",
+    "imageDisablesRegionOnlyControls": "PASS_USER_OBSERVED",
+    "pageZoomAndFitPageRemainAvailable": "PASS_USER_OBSERVED_EXPECTED",
+    "imageToMarqueeRestoresRegion": "PASS_USER_OBSERVED",
+    "monthHistoryBackForward": "PASS_USER_OBSERVED",
+    "catalogueFileLoadFailedState": "PASS_USER_OBSERVED",
+    "catalogueBrokenImgHidden": "PASS_USER_OBSERVED",
+    "catalogueFailureStatusText": "PASS_USER_OBSERVED",
+    "sourcePageMarqueeAndImageSelection": "PASS_USER_OBSERVED",
+    "sourcePageHistoryBackForward": "PASS_USER_OBSERVED"
+  },
+  "exhaustiveKeyboardFocusBrowserMatrix": "DEFERRED_TO_STEP_11_FOCUSED_COVERAGE",
+  "productionDeploymentVerified": false,
+  "nextStep": "Step 11 \u2014 Add focused projection, rendering and security coverage"
+}

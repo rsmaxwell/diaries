@@ -1,0 +1,12 @@
+Focused Step 8 verification (Windows PowerShell / normal Java 25 + Docker development environment):
+
+.\gradlew.bat :diaries-web:test `
+  --tests "*WebServerTest" `
+  --tests "*RenderingSafetyTest" `
+  --tests "*ConfigLoaderTest" `
+  --rerun-tasks --console=plain
+
+Full regression/build gate:
+
+.\gradlew.bat :diaries-web:test :diaries-web:build `
+  --rerun-tasks --console=plain

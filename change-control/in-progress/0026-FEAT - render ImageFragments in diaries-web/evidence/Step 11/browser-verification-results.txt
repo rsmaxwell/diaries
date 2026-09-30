@@ -1,0 +1,17 @@
+
+
+- the source Page image loads without `The source image could not be loaded.`;				yes
+- Fragment 35 remains `data-media-state="AVAILABLE"`;										'AVAILABLE'
+- its catalogue `<img>` is not hidden and no `data-media-file-status` failure is shown;
+
+<article class="reader-fragment is-selected" id="fragment-35" data-reader-fragment="35" data-page-id="22" data-page-name="page 001" data-image-url="http://127.0.0.1:18083/diaries/Family%20diary/page%20001.jpg" data-page-width="1200" data-page-height="800" data-has-marquee="false" data-marquee-x="0.0" data-marquee-y="0.0" data-marquee-width="0.0" data-marquee-height="0.0" data-fragment-url="/diaries/11/2026/09?fragment=35#fragment-35" data-fragment-type="IMAGE" data-media-state="AVAILABLE" aria-current="true">
+        <div class="fragment__content" data-fragment-selector="35" role="button" tabindex="0" aria-pressed="true">
+          <span class="visually-hidden">Show the corresponding original source page. </span><p>Shared image one</p>        </div>
+                <figure class="fragment-media" data-fragment-media="35">
+          <img class="fragment-media__image" src="http://127.0.0.1:18083/files/diary-2026/images/shared%20detail%20%2B%23%3F.png" alt="Map &lt;east&gt; &amp; west" width="1600" height="900" loading="lazy" decoding="async" data-media-load-handlers="true">
+          <figcaption class="fragment-media__caption">Shared &lt;caption&gt; &amp; detail</figcaption>          <p class="fragment-media__fallback"><a href="http://127.0.0.1:18083/files/diary-2026/images/shared%20detail%20%2B%23%3F.png">Open image directly</a></p>
+        </figure>
+              </article>
+
+- IMAGE selection has no selected Marquee and the region-only controls stay disabled;		yes, all good
+- keyboard Enter/Space on Fragment selectors changes selection and focus remains visible.	yes, all good

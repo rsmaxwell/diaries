@@ -1,0 +1,27 @@
+{
+  "implementationPackage": "0026-Step8-http-view-models-typed-media.zip",
+  "implementationPackageSha256": "a04dfb354bd59d9adff889a251e636e84ebaf574745a53551575e570cfd2ee5b",
+  "status": "COMPLETE_LOCALLY",
+  "recordedSourceHashes": "source-sha256.csv",
+  "changedProductionFiles": [
+    "diaries-web/src/main/java/com/rsmaxwell/diaries/web/http/WebServer.java"
+  ],
+  "changedTestFiles": [
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/TestData.java",
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/http/WebServerTest.java"
+  ],
+  "checks": {
+    "sharedMonthSourceMediaView": "PASS",
+    "explicitFragmentType": "PASS",
+    "typeSafeHasMarquee": "PASS",
+    "catalogueMediaUrlViaRuntimeBuilder": "PASS",
+    "pageAndCatalogueDimensionsDistinct": "PASS",
+    "stableUnavailableStates": "PASS",
+    "sanitizerAndLegacyResolverPreserved": "PASS",
+    "sharedImageFixture": "PASS",
+    "missingInvalidUnknownNoSelectionFixture": "PASS",
+    "redirectHeadOwnershipRegression": "PASS",
+    "focusedGradleHttpRenderingConfig": "PASS_ON_WINDOWS_JAVA25_DOCKER",
+    "fullGradleWebTestBuild": "PASS_ON_WINDOWS_JAVA25_DOCKER"
+  }
+}

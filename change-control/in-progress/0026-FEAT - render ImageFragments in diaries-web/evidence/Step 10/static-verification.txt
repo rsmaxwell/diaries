@@ -1,0 +1,19 @@
+0026 Step 10 assistant-side static verification — 2026-09-29
+
+PASS: final diaries-web/src/main/resources/static/js/diaries.js parses with `node --check`.
+PASS: IMAGE/no-Marquee selection explicitly zeroes selected marquee and mask geometry.
+PASS: IMAGE/no-Marquee selection removes viewer has-selection state and disables both region-only controls.
+PASS: no-Marquee selection fits the whole Page, preventing stale fit-to-selection zoom from a previous MARQUEE.
+PASS: Page source-image load/error state is held separately from selection-specific viewer text.
+PASS: Page source replacements use a new SVG image node plus request generation checks, preventing detached late events from mutating current state.
+PASS: source-page selector markup exists for MARQUEE, IMAGE and other/degraded Fragment types.
+PASS: source-page browser selection updates aria-current/aria-pressed and hash history and restores from popstate/hashchange.
+PASS: catalogue media error path records FILE_LOAD_FAILED only on the owning figure and hides only the failed image.
+PASS: catalogue media error path does not modify src or canonical server-rendered media state, so it cannot introduce a fallback loop.
+PASS: catalogue handlers are protected from duplicate registration by data-media-load-handlers.
+PASS: direct-image fallback link remains outside the role=button month selector and outside source-page selector buttons.
+PASS: WebServerTest expectations were updated for disabled IMAGE region controls, all-type source selectors and served Step-10 JavaScript/CSS contracts.
+PASS: SyntheticSiteMain now uses the controlled mixed-media projection for later interactive browser verification.
+
+BLOCKED IN ASSISTANT ENVIRONMENT: normal Gradle 9.6.1 Java 25/Docker verification. The wrapper distribution is not cached here and outbound wrapper download is unavailable. No Gradle pass is inferred.
+PENDING ON DEVELOPMENT MACHINE: focused interactive browser checklist in browser-verification-checklist.md.

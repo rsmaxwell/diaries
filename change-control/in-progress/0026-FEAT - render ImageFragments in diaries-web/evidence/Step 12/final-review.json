@@ -1,0 +1,27 @@
+{
+  "feature": "0026-FEAT - render ImageFragments in diaries-web",
+  "step": 12,
+  "title": "Verify real MQTT replay, permissions and HTTP projection",
+  "status": "COMPLETE_LOCALLY",
+  "date": "2026-09-29",
+  "productionRuntimeChanges": false,
+  "automatedVerification": [
+    {
+      "command": ".\\gradlew.bat :diaries-web:test --tests *Step12MqttHttpIntegrationTest --tests *MqttReaderAclIntegrationTest --rerun-tasks --console=plain",
+      "result": "PASS",
+      "summary": "BUILD SUCCESSFUL in 1m 16s; 7 actionable tasks executed"
+    },
+    {
+      "command": ".\\gradlew.bat :diaries-web:test :diaries-web:build --rerun-tasks --console=plain",
+      "result": "PASS",
+      "summary": "BUILD SUCCESSFUL in 1m 35s; 15 actionable tasks executed"
+    }
+  ],
+  "verifiedPath": "fresh Mosquitto retained state -> production MQTT decoder/client -> immutable projection -> production HTTP server",
+  "verifiedAclBehavior": "read-only web identity plus no-Image negative control; forbidden RPC/Image writes covered",
+  "largeReplayTopics": 5376,
+  "completionDecision": "Step 12 is complete locally, verified under PowerShell 7.6.6. Controlled cross-component development verification remains Step 13.",
+  "nextStep": 13,
+  "verificationShell": "PowerShell 7.6.6",
+  "evidenceTranscript": "evidence/Step 12/test-results.txt"
+}

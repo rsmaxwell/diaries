@@ -1,0 +1,47 @@
+{
+  "step": 13,
+  "startedAtUtc": "2026-09-30T18:29:07.635Z",
+  "status": "PASSED",
+  "checks": [
+    "MARQUEE creation succeeds while IMAGE authoring gate is disabled; addImageFragment is rejected with 403",
+    "Browser MARQUEE selection/source rendering is healthy while Image authoring remains disabled",
+    "Every synthetic catalogued Image matches source bytes on disposable filesystem, direct responder HTTP and public reverse-proxy HTTP",
+    "Fixture IMAGE metadata is published by responder; shared Image has two Page/date Fragment references; nested paths use real HTTP bytes",
+    "Desktop/mobile month and source-page views, keyboard selection, deep links and Back/Forward pass through production-style /reader and /diaries-responder prefixes",
+    "A single catalogued Image renders successfully through both referring Fragments on distinct Pages/dates and resolves to the same public catalogue URL",
+    "Owned fixture proves NO_SELECTION, retained-metadata-unavailable fallback and a cache-independent physical missing-file FILE_LOAD_FAILED without touching NAS content",
+    "DeleteImage returns 409 while referenced; deleting fixture references through deleteFragment then DeleteImage removes DB/file/retained Image state",
+    "Responder/web restart restores authoritative metadata and deterministic surviving chronology with fresh retained replay"
+  ],
+  "backupFilename": "diaries-development-20260929-222038.dump",
+  "backupSha256": "d19d134ff10d6c5a78fff9b6787228f4c89d1bca46a1488dfc22f7efa2208f23",
+  "liveDevelopmentDatabaseModified": false,
+  "productionDatabaseModified": false,
+  "liveNasModified": false,
+  "imageFragmentWritesEnabledInitially": false,
+  "mqttUrl": "mqtt://127.0.0.1:50212",
+  "publicOrigin": "http://127.0.0.1:50214",
+  "responderDirectUrl": "http://127.0.0.1:64282",
+  "webDirectUrl": "http://127.0.0.1:54562",
+  "readerUrl": "http://127.0.0.1:50214/reader",
+  "imageFragmentWritesEnabledFixture": true,
+  "fixtureIds": {
+    "marqueeId": 2330,
+    "selectedFragmentId": 2331,
+    "noSelectionFragmentId": 2332,
+    "sharedFragmentIds": [
+      2333,
+      2334
+    ],
+    "missingFragmentId": 2335,
+    "metadataFragmentId": 2336
+  },
+  "counts": {
+    "survivingFixtureFragments": 5,
+    "deletedSharedFragments": 2,
+    "fixtureImagesUploaded": 4,
+    "fixtureImageDeleted": 1
+  },
+  "cleanupFailures": [],
+  "finishedAtUtc": "2026-09-30T18:30:09.168Z"
+}

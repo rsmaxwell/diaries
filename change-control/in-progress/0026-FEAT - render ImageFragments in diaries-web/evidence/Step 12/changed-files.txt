@@ -1,0 +1,20 @@
+Step 12 completion/evidence refresh (PowerShell 7.6.6 verification)
+
+Change control / evidence
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/README.md
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/IMPLEMENTATION-STEPS.md
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 12/README.md
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 12/verification-commands.md
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 12/source-verification.json
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 12/final-review.json
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 12/test-results.txt
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 12/changed-files.txt
+- change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 12/source-sha256.csv
+
+Already-tested Step 12 test source (not replaced by this completion-only ZIP)
+- diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/Step12MqttHttpIntegrationTest.java
+- diaries-web/src/test/resources/fixtures/step12/image-60.json
+- diaries-web/src/test/resources/fixtures/step12/fragment-image-35.json
+- diaries-web/src/test/resources/fixtures/step12/fragment-image-36.json
+
+Production runtime source changes: NONE.

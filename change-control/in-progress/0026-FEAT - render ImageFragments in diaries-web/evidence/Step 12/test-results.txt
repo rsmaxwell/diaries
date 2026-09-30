@@ -1,0 +1,74 @@
+PowerShell 7.6.6
+PS C:\Users\Richard> cd C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> .\gradlew.bat :diaries-web:test `
+>>   --tests "*Step12MqttHttpIntegrationTest" `
+>>   --tests "*MqttReaderAclIntegrationTest" `
+>>   --rerun-tasks --console=plain
+
+> Task :diaries-web:compileJava
+Note: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-web\src\main\java\com\rsmaxwell\diaries\web\config\ConfigLoader.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :diaries-web:generateBuildInfo
+> Task :diaries-web:processResources
+> Task :diaries-web:classes
+
+> Task :diaries-web:compileTestJava
+Note: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-web\src\test\java\com\rsmaxwell\diaries\web\projection\ProjectionServiceTest.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :diaries-web:processTestResources
+> Task :diaries-web:testClasses
+> Task :diaries-web:test
+> Task :diaries-web:jacocoTestReport
+
+[Incubating] Problems report is available at: file:///C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 1m 16s
+7 actionable tasks: 7 executed
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> .\gradlew.bat :diaries-web:test :diaries-web:build `
+>>   --rerun-tasks --console=plain
+
+> Task :diaries-web:compileJava
+Note: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-web\src\main\java\com\rsmaxwell\diaries\web\config\ConfigLoader.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :diaries-web:generateBuildInfo
+> Task :diaries-web:processResources
+> Task :diaries-web:classes
+> Task :diaries-web:jar
+> Task :diaries-web:shadowJar
+
+> Task :diaries-web:compileTestJava
+Note: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-web\src\test\java\com\rsmaxwell\diaries\web\projection\ProjectionServiceTest.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :diaries-web:processTestResources
+> Task :diaries-web:testClasses
+> Task :diaries-web:test
+> Task :diaries-web:startScripts
+> Task :diaries-web:distTar
+> Task :diaries-web:jacocoTestReport
+> Task :diaries-web:distZip
+> Task :diaries-web:startShadowScripts
+> Task :diaries-web:shadowDistTar
+> Task :diaries-web:shadowDistZip
+> Task :diaries-web:assemble
+> Task :diaries-web:check
+> Task :diaries-web:build
+
+[Incubating] Problems report is available at: file:///C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 1m 35s
+15 actionable tasks: 15 executed
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>

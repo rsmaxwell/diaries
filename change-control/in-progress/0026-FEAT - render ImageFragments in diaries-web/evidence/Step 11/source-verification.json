@@ -1,0 +1,38 @@
+{
+  "status": "COMPLETE_LOCALLY",
+  "completedAt": "2026-09-29",
+  "changedProductionFiles": [],
+  "changedTestFiles": [
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/SyntheticSiteMain.java",
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/config/ConfigLoaderTest.java",
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/http/WebServerTest.java",
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/RetainedContractTest.java",
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/projection/ProjectionServiceTest.java",
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/rendering/RenderingSafetyTest.java"
+  ],
+  "verification": {
+    "focusedJava25Suite": "PASS_BUILD_SUCCESSFUL_11S_7_TASKS",
+    "fullWebTestBuild": "PASS_BUILD_SUCCESSFUL_50S_15_TASKS",
+    "browserNormalImagePath": "PASS",
+    "browserKeyboardFocus": "PASS",
+    "browserImageHasNoSelectedMarquee": "PASS",
+    "browserFileLoadFailedBranch": "PASS_REUSED_STEP10_MANUAL_EVIDENCE",
+    "deterministicHttp404Fixture": "IMPLEMENTED",
+    "deterministicInvalidImageBytesFixture": "IMPLEMENTED"
+  },
+  "coverage": {
+    "retainedContractMatrix": "PASS",
+    "projectionDegradedStateMatrix": "PASS",
+    "configUnicodePercentRoute": "PASS",
+    "publicInternalUrlSeparation": "PASS",
+    "templateRawBoundary": "PASS",
+    "httpMixedReadOnlySecurityMatrix": "PASS",
+    "deterministicValidImageBytes": "PASS_BROWSER",
+    "deterministicInvalidImageBytes": "AVAILABLE_FOR_REPRODUCTION",
+    "deterministicHttp404Image": "AVAILABLE_FOR_REPRODUCTION",
+    "step10BrowserEvidenceReused": "YES"
+  },
+  "productionRuntimeSourceChanged": false,
+  "productionDeploymentVerified": false,
+  "nextStep": "Step 12 — Verify real MQTT replay, permissions and HTTP projection"
+}

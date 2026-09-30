@@ -1,0 +1,10 @@
+Step 11 static verification — 2026-09-29
+
+PASS: `node --check diaries-web/src/main/resources/static/js/diaries.js` (unchanged Step 10 browser JS remains syntactically valid).
+PASS: embedded synthetic valid PNG decodes successfully as a 32x32 PNG (123 bytes).
+PASS: `month-reader.peb` contains exactly one `| raw`, and it is the sanitized `fragment.html | raw` slot.
+PASS: `source-page.peb` contains exactly one `| raw`, and it is the sanitized `fragment.html | raw` slot.
+PASS: no Step 11 differences exist under `diaries-web/src/main`; Step 11 changes test/harness/evidence only.
+PASS: diff against the Step 10 implementation/completion baseline shows only the intended six test files plus 0026 Step 11 change-control/evidence files.
+
+Not run here: the Java 25 Gradle suites/build and interactive browser checklist. Those remain required before Step 11 can be marked complete.

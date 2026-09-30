@@ -1,0 +1,14 @@
+2026-09-30T18:29:26,612 INFO  [main] i.j.Javalin - Javalin started in 356ms \o/
+2026-09-30T18:29:26,941 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/diaries/+
+2026-09-30T18:29:26,941 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/pages/+
+2026-09-30T18:29:26,941 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/fragments/+
+2026-09-30T18:29:26,941 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/marquees/+
+2026-09-30T18:29:26,941 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/images/+
+2026-09-30T18:29:29,351 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=10, pages=683, fragments=2329, marquees=2269, images=85)
+2026-09-30T18:30:03,043 INFO  [main] i.j.Javalin - Javalin started in 364ms \o/
+2026-09-30T18:30:03,377 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/diaries/+
+2026-09-30T18:30:03,378 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/pages/+
+2026-09-30T18:30:03,378 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/fragments/+
+2026-09-30T18:30:03,378 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/marquees/+
+2026-09-30T18:30:03,378 INFO  [diaries-web-mqtt-lifecycle] c.r.d.w.m.MqttProjectionClient - Subscribed to canonical retained filter diaries/images/+
+2026-09-30T18:30:05,425 INFO  [diaries-web-projection] c.r.d.w.p.ProjectionService - Published replay generation 1 as snapshot 1 (diaries=10, pages=683, fragments=2334, marquees=2270, images=88)

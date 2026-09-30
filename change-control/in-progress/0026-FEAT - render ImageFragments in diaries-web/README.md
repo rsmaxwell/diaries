@@ -6,7 +6,7 @@ Feature
 
 ## Status
 
-In progress — Steps 1–7 complete locally; Steps 8–16 pending.
+In progress — Steps 1–12 complete locally; Step 13 verification tooling is implemented and awaiting its controlled workstation run; Steps 14–16 pending.
 
 ## Priority
 
@@ -127,15 +127,21 @@ See [IMPLEMENTATION-STEPS.md](IMPLEMENTATION-STEPS.md) for the ordered implement
 - [x] Step 5 — store Images in immutable projection snapshots ([record](evidence/Step%205/README.md), 2026-09-29). Image lifecycle/replay/tombstone storage and immutable snapshot access verified; focused projection/contract/HTTP tests passed, MQTT/Testcontainers integration tests passed, and the full web test/build completed successfully.
 - [x] Step 6 — resolve mixed Fragment types and add diagnostics ([record](evidence/Step%206/README.md), 2026-09-29). Mixed MARQUEE/IMAGE/unknown resolution, degraded media states, shared Image references, relationship repair and type-specific diagnostics verified; focused projection/contract/MQTT tests and the full web test/build passed.
 - [x] Step 7 — add runtime Files configuration and safe catalogue URLs ([record](evidence/Step%207/README.md), 2026-09-29). Backward-compatible `filesPath`, safe public-base validation, exactly-once catalogue path encoding, Page URL regression protection and legacy Files-route compatibility were verified; the focused configuration/rendering/HTTP tests and full web test/build passed.
+- [x] Step 8 — extend HTTP view models for typed media ([record](evidence/Step%208/README.md), 2026-09-29). Shared month/source typed-media fields, type-safe Marquee handling, catalogue-media state, controlled mixed-media fixtures and HTTP regressions were verified; the focused HTTP/config/rendering tests and full web test/build passed.
+- [x] Step 9 — render accessible media in month and source-page views ([record](evidence/Step%209/README.md), 2026-09-29). Both reader surfaces render available catalogue Images with escaped alt/caption metadata, intrinsic responsive dimensions, stable degraded-state text and a direct-image fallback link; focused rendering/safety verification and the full web test/build gate passed.
+- [x] Step 10 — make selection, history and media errors type-aware ([record](evidence/Step%2010/README.md), 2026-09-29). Type-aware month/source selection, URL history and browser-only `FILE_LOAD_FAILED` handling were verified; IMAGE selection clears stale MARQUEE state while Page zoom controls remain available, MARQUEE selection restores region controls, and Back/Forward restores the correct selection.
+- [x] Step 11 — add focused projection, rendering and security coverage ([record](evidence/Step%2011/README.md), 2026-09-29). Focused retained-contract/projection/config/rendering/HTTP security coverage passed, the full web test/build gate passed, and browser verification confirmed the successful catalogue-media path, keyboard/focus behavior and the existing browser-only file-failure path. No production runtime source changed.
+- [x] Step 12 — verify real MQTT replay, permissions and HTTP projection ([record](evidence/Step%2012/README.md), 2026-09-29). Fresh-broker/Testcontainers coverage verified late retained replay, live Image lifecycle, reversed arrival, reconnect staging, ACL degradation/no-write/no-RPC behavior, HTTP projection and a production-sized 5,376-topic replay; the focused Java 25/Docker run and full web test/build gate both completed successfully under PowerShell 7.6.6.
+- [ ] Step 13 — run controlled cross-component development verification ([implementation/evidence plan](evidence/Step%2013/README.md), 2026-09-29). The disposable restored-database/Mosquitto/responder/web/browser runner is implemented, including strict distinct-Page/date shared-Image coverage and cache-independent missing-file verification. Step 13 remains open until the runner passes on the Docker-enabled development workstation and its evidence is reviewed.
 
 - [x] Add Image model and retained decoder tests.
 - [x] Add IMAGE entity storage, replay and tombstone handling.
 - [x] Generalize `ResolvedFragment` and type-aware diagnostics.
 - [x] Prove all valid IMAGE fragments enter date/month indexes.
-- [ ] Extend the web view model with Fragment type and optional Image.
+- [x] Extend the web view model with Fragment type and optional Image.
 - [x] Add a single configured Image URL builder with path-normalization tests.
-- [ ] Update templates and CSS for Image preview, caption, alt text and missing state.
-- [ ] Make fragment-selection JavaScript tolerate fragments with no marquee.
+- [x] Update templates and CSS for Image preview, caption, alt text and missing state.
+- [x] Make fragment-selection JavaScript tolerate fragments with no marquee.
 - [x] Add tests for reused Images and mixed MARQUEE/IMAGE chronology.
 - [x] Add tests for invalid cross-type retained data.
 - [x] Test retained replay and Image tombstones.

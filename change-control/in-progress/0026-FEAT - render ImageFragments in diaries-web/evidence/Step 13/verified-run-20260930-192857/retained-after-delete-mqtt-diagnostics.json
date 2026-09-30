@@ -1,0 +1,64 @@
+{
+  "label": "retained-after-delete",
+  "startedAtUtc": "2026-09-30T18:29:48.732Z",
+  "marker": "diaries-sync/step13/6d46730c-a258-4ad7-8ddf-28beba4b45ba",
+  "snapshotFilters": [
+    "diaries/fragments/+",
+    "diaries/images/+"
+  ],
+  "subscriptions": [
+    {
+      "topic": "diaries-sync/step13/6d46730c-a258-4ad7-8ddf-28beba4b45ba",
+      "granted": [
+        {
+          "topic": "diaries-sync/step13/6d46730c-a258-4ad7-8ddf-28beba4b45ba",
+          "qos": 1,
+          "nl": false,
+          "rap": false,
+          "rh": 0
+        }
+      ]
+    },
+    {
+      "topic": "diaries/fragments/+",
+      "granted": [
+        {
+          "topic": "diaries/fragments/+",
+          "qos": 1,
+          "nl": false,
+          "rap": false,
+          "rh": 0
+        }
+      ]
+    },
+    {
+      "topic": "diaries/images/+",
+      "granted": [
+        {
+          "topic": "diaries/images/+",
+          "qos": 1,
+          "nl": false,
+          "rap": false,
+          "rh": 0
+        }
+      ]
+    }
+  ],
+  "markerPublished": true,
+  "markerReceived": true,
+  "replayMessages": 2421,
+  "liveMessages": 0,
+  "fragmentTopics": 2334,
+  "imageTopics": 87,
+  "subscriberDisconnect": null,
+  "subscriberError": null,
+  "publisherError": null,
+  "expectedBarrierTimeoutMs": 120000,
+  "ackTimeoutMs": 20000,
+  "markerPublishedAtUtc": "2026-09-30T18:29:48.739Z",
+  "markerReceivedAtUtc": "2026-09-30T18:29:49.109Z",
+  "status": "PASSED",
+  "finishedAtUtc": "2026-09-30T18:29:49.129Z",
+  "subscriberConnectedAtFinish": true,
+  "publisherConnectedAtFinish": true
+}

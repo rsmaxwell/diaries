@@ -1,0 +1,29 @@
+Step 8 static/source verification — 2026-09-29
+
+PASS: WebServer month-reader fragmentView delegates to baseFragmentView.
+PASS: WebServer source-page fragment construction delegates to the same baseFragmentView.
+PASS: fragmentMediaView supplies fragmentType, mediaState, hasMarquee, mediaUrl, mediaAltText, mediaCaption, mediaWidth, mediaHeight and mediaUnavailableText.
+PASS: IMAGE hasMarquee is explicitly type-gated false unless effective type is MARQUEE.
+PASS: AVAILABLE IMAGE URL uses ImageUrlBuilder.catalogueImageUrl(Image.relativePath).
+PASS: Page scan URL uses separately named pageImageUrl; existing imageUrl remains only as a Step-1..7 template compatibility alias.
+PASS: Fragment HTML continues through FragmentHtmlSanitizer + legacyFragmentImageBaseUrl.
+PASS: Step 8 changes no Pebble template, CSS or JavaScript file.
+PASS: controlled mixed fixture covers shared Image, missing metadata, invalid metadata, unknown explicit type, no-selection IMAGE and invalid IMAGE->Marquee retained link.
+PASS: HTTP test covers selected IMAGE month response, full source-page response, fragment redirect and HEAD.
+
+Gradle execution in assistant environment:
+BLOCKED: wrapper attempted to download Gradle 9.6.1 from services.gradle.org.
+BLOCKED: environment has no outbound DNS/network access (UnknownHostException: services.gradle.org).
+BLOCKED: environment Java is 21 while the project validation target is the user's normal Java 25 environment.
+
+No Gradle PASS is claimed by this implementation package. User verification is required before Step 8 completion.
+
+
+Normal development-machine verification — 2026-09-29
+
+PASS: WebServerTest + RenderingSafetyTest + ConfigLoaderTest Gradle run.
+PASS: BUILD SUCCESSFUL in 12s; 7 actionable tasks executed.
+PASS: Full :diaries-web:test :diaries-web:build gate.
+PASS: BUILD SUCCESSFUL in 50s; 15 actionable tasks executed.
+
+The earlier assistant-environment Gradle limitation is superseded by these normal Java 25/Docker development-machine results.

@@ -1,0 +1,28 @@
+From the top-level diaries directory on Windows:
+
+1. Focused Step 11 suites
+
+```powershell
+.\gradlew.bat :diaries-web:test `
+  --tests "*RetainedContractTest" `
+  --tests "*ProjectionServiceTest" `
+  --tests "*ConfigLoaderTest" `
+  --tests "*RenderingSafetyTest" `
+  --tests "*WebServerTest" `
+  --rerun-tasks --console=plain
+```
+
+2. Full web regression/build gate
+
+```powershell
+.\gradlew.bat :diaries-web:test :diaries-web:build `
+  --rerun-tasks --console=plain
+```
+
+3. Deterministic browser fixture
+
+```powershell
+.\gradlew.bat :diaries-web:runSyntheticSite
+```
+
+Then follow `evidence/Step 11/browser-verification-checklist.md`.

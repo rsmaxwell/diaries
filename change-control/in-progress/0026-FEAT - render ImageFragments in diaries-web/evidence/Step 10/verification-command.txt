@@ -1,0 +1,17 @@
+Focused tests:
+
+.\gradlew.bat :diaries-web:test `
+  --tests "*WebServerTest" `
+  --tests "*RenderingSafetyTest" `
+  --rerun-tasks --console=plain
+
+Full gate:
+
+.\gradlew.bat :diaries-web:test :diaries-web:build `
+  --rerun-tasks --console=plain
+
+Interactive mixed-media browser fixture:
+
+.\gradlew.bat :diaries-web:runSyntheticSite
+
+Then follow browser-verification-checklist.md.

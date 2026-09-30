@@ -1,0 +1,14 @@
+Step 12 static verification — 2026-09-29
+
+PASS: latest source baseline already records Steps 1–11 complete locally.
+PASS: Step 12 changes no diaries-web/src/main production runtime file.
+PASS: dedicated integration class uses real MqttProjectionClient + ProjectionService + WebServer.
+PASS: each Step 12 scenario owns a fresh eclipse-mosquitto:2.0.22 container.
+PASS: broker settings explicitly use max_inflight_messages=20 and max_queued_messages=10000.
+PASS: broker ACL is based on committed config/mosquitto/aclfile.txt with test-only publisher/negative-control identities appended.
+PASS: small Image/Fragment retained fixtures parse as JSON.
+PASS: production-sized deterministic fixture counts sum to 5,376 canonical retained topics.
+PASS: production-sized selected IMAGE Fragment 12270 resolves to Page 1221 / Diary 1 / 2026-09-02 by generator arithmetic.
+PASS: direct javac parsing reached dependency-resolution errors only; no Java syntax/parser error was reported.
+BLOCKED HERE: Gradle 9.6.1 is not cached, outbound services.gradle.org lookup fails, and the implementation container has Java 21 rather than the project Java 25 toolchain.
+REQUIRED ON USER MACHINE: focused Java 25/Docker Step 12 run and full diaries-web test/build gate.

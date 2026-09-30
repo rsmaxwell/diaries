@@ -1,0 +1,30 @@
+{
+  "implementationPackage": "0026-Step9-accessible-media-rendering.zip",
+  "implementationPackageSha256": "536a08d9f43697ea5817ac42d3e565ff68894f1721dc5bddcfb1a8e3f55ad49d",
+  "status": "COMPLETE_LOCALLY",
+  "recordedSourceHashes": "source-sha256.csv",
+  "changedProductionFiles": [
+    "diaries-web/src/main/resources/templates/month-reader.peb",
+    "diaries-web/src/main/resources/templates/source-page.peb",
+    "diaries-web/src/main/resources/static/css/diaries.css"
+  ],
+  "changedTestFiles": [
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/TestData.java",
+    "diaries-web/src/test/java/com/rsmaxwell/diaries/web/http/WebServerTest.java"
+  ],
+  "checks": {
+    "monthCatalogueMediaRendering": "PASS",
+    "sourcePageCatalogueMediaRendering": "PASS",
+    "altEscapedAndEmptyPreserved": "PASS",
+    "captionEscapedAndOptional": "PASS",
+    "stableUnavailableStates": "PASS",
+    "noEmptyOrNullMediaSrc": "PASS",
+    "responsiveIntrinsicDimensions": "PASS",
+    "noJavascriptDirectLinkFallback": "PASS",
+    "explicitPageImageUrlFields": "PASS",
+    "reusedImageNoDuplicateIds": "PASS",
+    "tallWideSmallLongCaptionEmptyTextFixture": "PASS",
+    "focusedGradleWebRenderingSafety": "PASS_ON_WINDOWS_JAVA25_DOCKER",
+    "fullGradleWebTestBuild": "PASS_ON_WINDOWS_JAVA25_DOCKER"
+  }
+}

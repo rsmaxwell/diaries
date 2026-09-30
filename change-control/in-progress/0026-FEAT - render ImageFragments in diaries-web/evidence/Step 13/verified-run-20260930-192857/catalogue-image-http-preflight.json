@@ -1,0 +1,94 @@
+[
+  {
+    "label": "selected",
+    "relativePath": "step13/maps/nested/selected image ü.png",
+    "publicPath": "/diaries-responder/files/step13/maps/nested/selected%20image%20%C3%BC.png",
+    "expectedSha256": "6ee6010320dc9090361fa3d5816a2a52ab4b7694af6fbe1a321418379f86fc86",
+    "containerSha256": "6ee6010320dc9090361fa3d5816a2a52ab4b7694af6fbe1a321418379f86fc86",
+    "containerError": null,
+    "direct": {
+      "url": "http://127.0.0.1:51400/files/step13/maps/nested/selected%20image%20%C3%BC.png",
+      "status": 200,
+      "contentType": "image/png",
+      "sha256": "6ee6010320dc9090361fa3d5816a2a52ab4b7694af6fbe1a321418379f86fc86",
+      "errorBody": null
+    },
+    "public": {
+      "url": "http://127.0.0.1:50214/diaries-responder/files/step13/maps/nested/selected%20image%20%C3%BC.png",
+      "status": 200,
+      "contentType": "image/png",
+      "sha256": "6ee6010320dc9090361fa3d5816a2a52ab4b7694af6fbe1a321418379f86fc86",
+      "errorBody": null
+    },
+    "ok": true
+  },
+  {
+    "label": "shared",
+    "relativePath": "step13/maps/shared/shared image.png",
+    "publicPath": "/diaries-responder/files/step13/maps/shared/shared%20image.png",
+    "expectedSha256": "23e75a59698d0da712b15e0de8127f5aba377b70e8f6e4cdabfad8f71dbc3101",
+    "containerSha256": "23e75a59698d0da712b15e0de8127f5aba377b70e8f6e4cdabfad8f71dbc3101",
+    "containerError": null,
+    "direct": {
+      "url": "http://127.0.0.1:51400/files/step13/maps/shared/shared%20image.png",
+      "status": 200,
+      "contentType": "image/png",
+      "sha256": "23e75a59698d0da712b15e0de8127f5aba377b70e8f6e4cdabfad8f71dbc3101",
+      "errorBody": null
+    },
+    "public": {
+      "url": "http://127.0.0.1:50214/diaries-responder/files/step13/maps/shared/shared%20image.png",
+      "status": 200,
+      "contentType": "image/png",
+      "sha256": "23e75a59698d0da712b15e0de8127f5aba377b70e8f6e4cdabfad8f71dbc3101",
+      "errorBody": null
+    },
+    "ok": true
+  },
+  {
+    "label": "missing",
+    "relativePath": "step13/maps/faults/missing file.png",
+    "publicPath": "/diaries-responder/files/step13/maps/faults/missing%20file.png",
+    "expectedSha256": "b1047b7308d9bca5836eb67a2b446392c137fbce76e564d2e69517709c16fc9b",
+    "containerSha256": "b1047b7308d9bca5836eb67a2b446392c137fbce76e564d2e69517709c16fc9b",
+    "containerError": null,
+    "direct": {
+      "url": "http://127.0.0.1:51400/files/step13/maps/faults/missing%20file.png",
+      "status": 200,
+      "contentType": "image/png",
+      "sha256": "b1047b7308d9bca5836eb67a2b446392c137fbce76e564d2e69517709c16fc9b",
+      "errorBody": null
+    },
+    "public": {
+      "url": "http://127.0.0.1:50214/diaries-responder/files/step13/maps/faults/missing%20file.png",
+      "status": 200,
+      "contentType": "image/png",
+      "sha256": "b1047b7308d9bca5836eb67a2b446392c137fbce76e564d2e69517709c16fc9b",
+      "errorBody": null
+    },
+    "ok": true
+  },
+  {
+    "label": "metadata",
+    "relativePath": "step13/maps/faults/metadata fault.png",
+    "publicPath": "/diaries-responder/files/step13/maps/faults/metadata%20fault.png",
+    "expectedSha256": "c06f3a8b62c37625acdd2a3028ca8e18b5fdeb4ed8443d05886c8719abe2b681",
+    "containerSha256": "c06f3a8b62c37625acdd2a3028ca8e18b5fdeb4ed8443d05886c8719abe2b681",
+    "containerError": null,
+    "direct": {
+      "url": "http://127.0.0.1:51400/files/step13/maps/faults/metadata%20fault.png",
+      "status": 200,
+      "contentType": "image/png",
+      "sha256": "c06f3a8b62c37625acdd2a3028ca8e18b5fdeb4ed8443d05886c8719abe2b681",
+      "errorBody": null
+    },
+    "public": {
+      "url": "http://127.0.0.1:50214/diaries-responder/files/step13/maps/faults/metadata%20fault.png",
+      "status": 200,
+      "contentType": "image/png",
+      "sha256": "c06f3a8b62c37625acdd2a3028ca8e18b5fdeb4ed8443d05886c8719abe2b681",
+      "errorBody": null
+    },
+    "ok": true
+  }
+]

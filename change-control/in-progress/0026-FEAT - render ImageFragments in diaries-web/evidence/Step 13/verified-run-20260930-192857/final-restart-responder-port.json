@@ -1,0 +1,17 @@
+{
+  "label": "final-restart",
+  "previousPort": 51400,
+  "attempts": [
+    {
+      "timestamp": "2026-09-30T18:30:00.752Z",
+      "publishedPort": 64282,
+      "directUrl": "http://127.0.0.1:64282/diaries/diary-1828-and-1829-and-jan-1830/img2833.jpg",
+      "status": 200,
+      "sha256": "a7ed45ae0f2c52ff8fba3b1cf753678f86e73a7593174352c12b39977618c765"
+    }
+  ],
+  "ready": true,
+  "currentPort": 64282,
+  "publishedPortChanged": true,
+  "containerState": "running (exit=0; restarting=false)"
+}

@@ -1,0 +1,32 @@
+{
+  "feature": "0026-FEAT - render ImageFragments in diaries-web",
+  "step": 11,
+  "title": "Add focused projection, rendering and security coverage",
+  "status": "COMPLETE_LOCALLY",
+  "date": "2026-09-29",
+  "productionRuntimeChanges": false,
+  "automatedVerification": [
+    {
+      "command": ".\\gradlew.bat :diaries-web:test --tests *RetainedContractTest --tests *ProjectionServiceTest --tests *ConfigLoaderTest --tests *RenderingSafetyTest --tests *WebServerTest --rerun-tasks --console=plain",
+      "result": "PASS",
+      "summary": "BUILD SUCCESSFUL in 11s; 7 actionable tasks executed"
+    },
+    {
+      "command": ".\\gradlew.bat :diaries-web:test :diaries-web:build --rerun-tasks --console=plain",
+      "result": "PASS",
+      "summary": "BUILD SUCCESSFUL in 50s; 15 actionable tasks executed"
+    }
+  ],
+  "browserVerification": {
+    "normalSourcePageBytes": "PASS",
+    "fragment35CanonicalMediaStateAvailable": "PASS",
+    "catalogueImageVisible": "PASS",
+    "encodedCatalogueUrl": "PASS",
+    "escapedAltAndCaption": "PASS",
+    "imageSelectionNoMarquee": "PASS",
+    "keyboardSelectionAndFocus": "PASS",
+    "fileLoadFailedPresentation": "PASS_REUSED_FROM_STEP10_MANUAL_EVIDENCE"
+  },
+  "completionDecision": "Step 11 is complete locally. Step 12 remains responsible for real MQTT replay, ACL and HTTP projection verification.",
+  "nextStep": 12
+}

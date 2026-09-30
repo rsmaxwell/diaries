@@ -1,0 +1,27 @@
+0026 Step 13 implementation static verification
+Date: 2026-09-29
+
+PASS: node --check scripts/windows/validation/smoke-imagefragment-reader.cjs
+PASS: source-verification.json parses as JSON
+PASS: current responder source exposes signin/addFragment/addImageFragment/uploadFile/deleteFragment/deleteImage with the argument shapes used by the runner
+PASS: current responder config exposes imageFragmentWritesEnabled and the runner starts it false before fixture-only enablement
+PASS: current diaries-web config exposes /reader base-path and publicResponderBaseUrl/filesPath routing used by the loopback proxy
+PASS: implementation uses uniquely named disposable PostgreSQL/Mosquitto/responder/web containers and network
+PASS: PostgreSQL fixture uses tmpfs
+PASS: responder fixture has no NAS mount; /data/files exists only inside its disposable container
+PASS: restored schema is mutated only inside the disposable database
+PASS: wrapper cleans responder/web build outputs before shadowJar and the runner requires exactly one fresh fat JAR for each component
+PASS: candidate responder/web JARs are mounted and hashed rather than trusting runtime-image application contents
+PASS: fixture authoring starts with imageFragmentWritesEnabled=false and enables it only after MARQUEE/browser baseline
+PASS: fixture creation uses signin/uploadFile/addFragment/addImageFragment/deleteFragment/deleteImage responder RPCs
+PASS: the second shared-Image reference must use a distinct Page and distinct date; there is no same-date fallback
+PASS: browser verification loads the same catalogue Image successfully through both referring Fragments
+PASS: missing-file verification uses a fresh browser context after the owned file is moved, preventing a cached success from masking FILE_LOAD_FAILED
+PASS: browser-visible routing uses /reader and /diaries-responder prefixes
+PASS: runner has finally cleanup for owned connections, containers and network and emits cleanup.json
+PASS: PowerShell preflight honours CHROME_BIN and explicitly checks Pillow
+
+NOT RUN IN AUTHORING ENVIRONMENT: Docker cross-component verification (Docker unavailable here)
+NOT RUN IN AUTHORING ENVIRONMENT: PowerShell wrapper execution (pwsh unavailable here)
+
+Operator execution is required before Step 13 can be marked complete locally.
