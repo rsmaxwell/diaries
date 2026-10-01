@@ -1,0 +1,19 @@
+{
+  "step": 14,
+  "status": "BLOCKED",
+  "startedUtc": "2026-09-30T19:08:34.656720+00:00",
+  "source": "/mnt/data/step14-work/diaries-application/diaries",
+  "checks": {},
+  "omissions": [
+    "Preflight-only: all regression/build/Compose/browser gates NOT RUN"
+  ],
+  "failures": [],
+  "sourceInventory": {
+    "files": 470,
+    "stable": true,
+    "removed": [],
+    "added": [],
+    "changed": []
+  },
+  "finishedUtc": "2026-09-30T19:08:34.769675+00:00"
+}

@@ -6,7 +6,7 @@ Feature
 
 ## Status
 
-In progress — Steps 1–12 complete locally; Step 13 verification tooling is implemented and awaiting its controlled workstation run; Steps 14–16 pending.
+In progress — Steps 1–13 complete locally, including verified disposable browser evidence on 2026-09-30; Step 14 tooling is implemented but its final Java 25/Docker/Compose workstation regression remains to be run. Steps 15–16 pending.
 
 ## Priority
 
@@ -132,7 +132,8 @@ See [IMPLEMENTATION-STEPS.md](IMPLEMENTATION-STEPS.md) for the ordered implement
 - [x] Step 10 — make selection, history and media errors type-aware ([record](evidence/Step%2010/README.md), 2026-09-29). Type-aware month/source selection, URL history and browser-only `FILE_LOAD_FAILED` handling were verified; IMAGE selection clears stale MARQUEE state while Page zoom controls remain available, MARQUEE selection restores region controls, and Back/Forward restores the correct selection.
 - [x] Step 11 — add focused projection, rendering and security coverage ([record](evidence/Step%2011/README.md), 2026-09-29). Focused retained-contract/projection/config/rendering/HTTP security coverage passed, the full web test/build gate passed, and browser verification confirmed the successful catalogue-media path, keyboard/focus behavior and the existing browser-only file-failure path. No production runtime source changed.
 - [x] Step 12 — verify real MQTT replay, permissions and HTTP projection ([record](evidence/Step%2012/README.md), 2026-09-29). Fresh-broker/Testcontainers coverage verified late retained replay, live Image lifecycle, reversed arrival, reconnect staging, ACL degradation/no-write/no-RPC behavior, HTTP projection and a production-sized 5,376-topic replay; the focused Java 25/Docker run and full web test/build gate both completed successfully under PowerShell 7.6.6.
-- [ ] Step 13 — run controlled cross-component development verification ([implementation/evidence plan](evidence/Step%2013/README.md), 2026-09-29). The disposable restored-database/Mosquitto/responder/web/browser runner is implemented, including strict distinct-Page/date shared-Image coverage and cache-independent missing-file verification. Step 13 remains open until the runner passes on the Docker-enabled development workstation and its evidence is reviewed.
+- [x] Step 13 — run controlled cross-component development verification ([evidence](evidence/Step%2013/README.md), 2026-09-30). The real disposable run PASSED, with browser MARQUEE/IMAGE/missing-media coverage, distinct-Page/date shared references, DeleteImage reference guard, responder/web restart/replay and no cleanup failures. Original recorded result: `evidence/Step 13/verified-run-20260930-192857/summary.json`.
+- [ ] Step 14 — full regression and artifact verification ([new verifier and instructions](evidence/Step%2014/README.md), 2026-09-30). Tooling and dependency-free negative-control tests are implemented. Full Java 25/Docker/Testcontainers regression and actual Compose/image inspection must run on the development workstation before marking this step complete.
 
 - [x] Add Image model and retained decoder tests.
 - [x] Add IMAGE entity storage, replay and tombstone handling.

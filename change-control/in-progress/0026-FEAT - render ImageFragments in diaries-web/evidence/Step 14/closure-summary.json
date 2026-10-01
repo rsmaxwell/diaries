@@ -1,0 +1,44 @@
+{
+  "feature": "0026-FEAT - render ImageFragments in diaries-web",
+  "step": 14,
+  "title": "Full regression and artifact verification",
+  "status": "COMPLETE",
+  "closedDate": "2026-10-01",
+  "evidenceDirectory": "build\\step14-20261001-080620",
+  "step13FreshEvidence": "build\\step14-20261001-080620\\step13-fresh",
+  "results": {
+    "diariesWebBuild": "PASSED",
+    "diariesResponderBuild": "PASSED",
+    "diariesClientTests": {
+      "status": "PASSED",
+      "passed": 132,
+      "total": 132
+    },
+    "diariesClientProductionBuild": "PASSED",
+    "sourceStability": "PASSED",
+    "freshStep13": "PASSED",
+    "step14": "PASSED"
+  },
+  "retainedSnapshots": {
+    "beforeFaults": {
+      "fragments": 2336,
+      "images": 89,
+      "barrierReceived": true
+    },
+    "afterDelete": {
+      "fragments": 2334,
+      "images": 87,
+      "barrierReceived": true
+    },
+    "afterRestart": {
+      "fragments": 2334,
+      "images": 88,
+      "barrierReceived": true
+    }
+  },
+  "notes": [
+    "Generated diaries-client/public/assets/build-info.json is excluded from source-stability comparison.",
+    "Unavailable optional published images are recorded without being treated as an application regression.",
+    "Non-blocking deprecation, Shadow JAR service-file and Angular CommonJS warnings remain."
+  ]
+}

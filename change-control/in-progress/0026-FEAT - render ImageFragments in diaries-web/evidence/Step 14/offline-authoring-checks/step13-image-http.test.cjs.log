@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: encodes each Unicode path segment without encoding the path separators
+ok 1 - encodes each Unicode path segment without encoding the path separators
+  ---
+  duration_ms: 2.077311
+  type: 'test'
+  ...
+# Subtest: successful byte preflight checks container, responder and public proxy hashes
+ok 2 - successful byte preflight checks container, responder and public proxy hashes
+  ---
+  duration_ms: 19.799767
+  type: 'test'
+  ...
+# Subtest: preflight retains HTTP status/body when public prefix returns 404
+ok 3 - preflight retains HTTP status/body when public prefix returns 404
+  ---
+  duration_ms: 0.728388
+  type: 'test'
+  ...
+# Subtest: preflight retains mismatched bytes, missing container and network errors
+ok 4 - preflight retains mismatched bytes, missing container and network errors
+  ---
+  duration_ms: 0.90874
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 72.295463

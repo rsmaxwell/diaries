@@ -4,7 +4,7 @@ Prepared 2026-09-28 from the current workspace and the completed 0025 contract.
 
 This plan records execution only where explicitly linked to evidence. Preserve the feature identifier and record each implementation step under `evidence/Step N/`. Do not mark a step complete solely because its source changes compile.
 
-## Execution status — 2026-09-29
+## Execution status — 2026-09-30
 
 - **Step 1 complete:** [frozen web baseline and evidence](evidence/Step%201/README.md). Parent/web/responder identities and 267 source hashes recorded; 50 web tests passed, including both Docker-backed integration tests, with zero skips; build passed; synthetic MARQUEE screenshots and browser/HTTP deep-link checks captured. Application source remains unchanged.
 - **Step 2 complete:** [Image reader contract and degraded states](evidence/Step%202/README.md), with the shared [contract](IMAGE-READER-CONTRACT.md), machine-readable cases and executable contract tests.
@@ -16,7 +16,9 @@ This plan records execution only where explicitly linked to evidence. Preserve t
 - **Step 8 complete locally:** [typed HTTP media view models](evidence/Step%208/README.md). Month-reader and source-page HTTP models now share the same typed-media resolution, distinguish Page scan fields from catalogue Image fields, expose stable degraded-media states, preserve type-safe `hasMarquee`, and retain existing redirects/HEAD/ownership behaviour. The focused HTTP/config/rendering suite passed and the full `:diaries-web:test :diaries-web:build` gate completed successfully on the normal Windows Java 25/Docker development machine.
 - **Step 9 complete locally:** [accessible mixed-media rendering](evidence/Step%209/README.md). Both reader templates render catalogue Images only for available media, use escaped catalogue alt/caption metadata, keep stable degraded-state text separate from alt text, preserve Page context, and use responsive intrinsic dimensions plus a no-JavaScript direct-image link. The focused rendering/safety suite passed and the full `:diaries-web:test :diaries-web:build` gate completed successfully on the normal Windows Java 25/Docker development machine.
 - **Step 10 complete locally:** [type-aware selection, history and media errors](evidence/Step%2010/README.md). IMAGE selection clears stale MARQUEE geometry and disables only region-specific controls; MARQUEE selection restores the region controls; month-reader and source-page Back/Forward restore typed selection; catalogue byte/decode failure is exposed as browser-only `FILE_LOAD_FAILED` while the broken `<img>` is hidden and retained media state remains unchanged. Focused tests and the full web test/build gate passed on the normal Windows Java 25/Docker development machine, and the core synthetic-browser completion criteria were demonstrated.
-- Steps 11–16 remain pending. Production artifact/configuration and authoring-gate state have not been newly verified; Steps 1–10 are verified locally, so production reader readiness is still not established.
+- **Steps 11–12 complete locally:** focused security/projection/HTTP tests, real broker/ACL/reconnect and 5,376-topic retained replay verified; see [Step 11](evidence/Step%2011/README.md) and [Step 12](evidence/Step%2012/README.md).
+- **Step 13 complete locally:** the owned development fixture ran successfully on 2026-09-30 with real responder, MQTT, web, desktop/mobile browsers, protected Image deletion and restart/replay; see [verified run](evidence/Step%2013/verified-run-20260930-192857/summary.json).
+- **Step 14 tooling implemented, workstation gate pending:** the safe [regression and artifact verifier](evidence/Step%2014/README.md) is ready, but full current-source Java 25/Docker/Compose execution is not yet recorded. Steps 15–16 remain pending; production authoring stays disabled.
 
 ## Objective and boundaries
 
@@ -277,7 +279,7 @@ Use deterministic fixtures. Avoid arbitrary long sleeps; await observable projec
 
 ## Step 13 — Run controlled cross-component development verification
 
-**Implementation status (2026-09-29): verification tooling implemented; controlled execution pending.** The disposable runner builds the exact current responder/web JARs, restores a supplied backup into owned PostgreSQL tmpfs, uses owned Mosquitto/responder/web services and a real browser, and records cleanup/evidence. It deliberately remains incomplete until that run succeeds on the Docker-enabled development workstation.
+**Completed locally (2026-09-30):** the controlled run is recorded at `evidence/Step 13/verified-run-20260930-192857/summary.json` with `status=PASSED`, zero cleanup failures and no live database/NAS modification. The disposable runner builds the exact current responder/web JARs, restores a supplied backup into owned PostgreSQL tmpfs, uses owned Mosquitto/responder/web services and a real browser, and records cleanup/evidence. It deliberately remains incomplete until that run succeeds on the Docker-enabled development workstation.
 
 1. Build candidate web and use the tested 0025-capable responder in disposable development services. Apply required schema only to a restored disposable database before starting that responder.
 2. Seed a small mixed fixture through supported responder operations: MARQUEE, IMAGE with selection, IMAGE without selection, two Fragments sharing one Image, different dates/Pages and nested file paths.
@@ -291,6 +293,8 @@ Use deterministic fixtures. Avoid arbitrary long sleeps; await observable projec
 **Complete when:** real browser behavior is demonstrated against authoritative responder metadata and HTTP bytes, beyond unit/template assertions.
 
 ## Step 14 — Full regression and artifact verification
+
+**Implementation status (2026-09-30): verification runner and negative controls implemented; final Java 25/Docker workstation run pending.** See [Step 14 verifier/commands](evidence/Step%2014/README.md). No full-suite or published-image acceptance is claimed until fresh machine evidence passes.
 
 From the top-level `diaries` directory on Windows:
 

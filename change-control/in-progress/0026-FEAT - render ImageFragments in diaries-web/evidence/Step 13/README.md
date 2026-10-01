@@ -2,7 +2,7 @@
 
 ## Status
 
-**Implemented — verification pending (2026-09-29).**
+**Completed locally (2026-09-30).** The controlled workstation run passed; its preserved `verified-run-20260930-192857/summary.json` records `PASSED`, no cleanup failures and no changes to live development/production databases or NAS content.
 
 Step 13 adds a disposable cross-component verification runner. It does not change production
 `diaries-web`, responder or client runtime source.

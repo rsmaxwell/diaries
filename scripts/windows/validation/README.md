@@ -187,3 +187,15 @@ rather than assuming a proxy/fixture-path defect.
 
 The PowerShell wrapper also runs the non-Docker
 `step13-proxy-routing.test.cjs` regression suite before the clean build.
+
+## 0026 Step 14 full regression and artifact verification
+
+`verify-0026-step14.ps1` runs the Java 25 full web suite/build, requires non-skipped selected
+real-MQTT/Testcontainers suites, seals the exact-source SHA inventory and final web JAR
+identity, and sanitizes both local Compose renderings. `-FullResponder` and `-Client`
+run the additional full suites; `-BackupFile` reruns the disposable Step 13 real-browser
+checks; `-InspectPublishedImages` opportunistically records exact IDs/digests for referenced published images that are already local; missing images are recorded as unavailable and are verified at the Step 15/16 deployment gate rather than blocking Step 14.
+Evidence must be written outside subproject generated-output directories; in particular do not use `diaries-web/build`, because the Step 14 full web gate begins with `:diaries-web:clean`. Use the top-level `build/step14-*` location documented in the Step 14 feature README.
+It never starts a Compose stack or accesses a live NAS/database. See
+`change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 14/README.md`
+for full commands, prerequisites, evidence and acceptance rules.
