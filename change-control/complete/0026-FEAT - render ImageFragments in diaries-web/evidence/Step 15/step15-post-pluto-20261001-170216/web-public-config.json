@@ -1,0 +1,12 @@
+{
+  "http": {
+    "basePath": "/diaries-web",
+    "publicBaseUrl": "https://pluto.rsmaxwell.co.uk/diaries-web"
+  },
+  "content": {
+    "responderBaseUrl": "http://diaries-responder:8081",
+    "publicResponderBaseUrl": "https://pluto.rsmaxwell.co.uk/diaries-responder",
+    "diariesPath": "diaries",
+    "filesPath": "files"
+  }
+}

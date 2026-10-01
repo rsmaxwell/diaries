@@ -1,0 +1,57 @@
+{
+  "feature": "0026-FEAT - render ImageFragments in diaries-web",
+  "step": 16,
+  "title": "Close out the feature and hand off to 0027/0028",
+  "status": "COMPLETE",
+  "completedDate": "2026-10-01",
+  "changeControlState": "complete",
+  "runtimeSourceChangedByStep16": false,
+  "release": {
+    "gitCommit": "e5aa410bcf83e73f83bf81cb5aee9571ccba2755",
+    "client": {
+      "tag": "rsmaxwell/diaries-client:0.0.9-build-74",
+      "imageId": "sha256:efe5e8b7c0a969ba0821d04a3b31cc0c83b079fd2d11a5e3c86cda2aa94ef45d"
+    },
+    "web": {
+      "tag": "rsmaxwell/diaries-web:0.0.9-build-7",
+      "imageId": "sha256:fac8a20418d26a86bbb49bea359fbd3fba271c8aa95f0510147da382f12a6e9f"
+    },
+    "responder": {
+      "tag": "rsmaxwell/diaries-responder:0.0.9-build-82",
+      "imageId": "sha256:27d58edf958a95c7c7dcca4688bb0203fc96f23f7bda5b82fde154acb79607ba"
+    }
+  },
+  "step14Regression": {
+    "status": "PASSED",
+    "diariesClientTests": {
+      "passed": 132,
+      "total": 132
+    },
+    "diariesClientProductionBuild": "PASSED",
+    "diariesWebBuild": "PASSED",
+    "diariesResponderBuild": "PASSED",
+    "freshStep13": "PASSED",
+    "sourceStability": "PASSED"
+  },
+  "step15Production": {
+    "target": "pluto",
+    "status": "PASSED",
+    "failures": 0,
+    "warnings": 1,
+    "filesPath": "files",
+    "imageFragmentWritesEnabled": false,
+    "imageFragmentRows": 0,
+    "webImageAcl": "read-only diaries/images/+",
+    "webRpc": "denied",
+    "webConfigSha256": "79b6e7fe8d1b3e42f98216f639ab9291353566aac1b3a5a371df36d5b2b35460"
+  },
+  "handoff": {
+    "0027": "reader prerequisite satisfied; authoring enablement remains separately gated",
+    "0028": "reader prerequisite satisfied; still waits for 0027/editor readiness and migration prerequisites",
+    "0029": "separate destructive cleanup/constraint phase; not part of 0026"
+  },
+  "step16Verification": {
+    "runtimeTestsRerun": false,
+    "reason": "Step 16 changes only close-out documentation/state; Step 14 and Step 15 are the frozen runtime regression/deployment gates."
+  }
+}

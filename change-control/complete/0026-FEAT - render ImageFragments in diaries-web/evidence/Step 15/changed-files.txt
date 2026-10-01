@@ -1,0 +1,18 @@
+Step 15 implementation package changed files
+
+Playbooks repository (relative to playbooks root)
+-------------------------------------------------
+roles/diaries/defaults/main.yaml
+roles/diaries/templates/config/web/diaries-web.json.j2
+
+Diaries repository (relative to diaries root)
+----------------------------------------------
+change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/README.md
+change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/IMPLEMENTATION-STEPS.md
+change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 15/README.md
+change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 15/DEPLOYMENT-RUNBOOK.md
+change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 15/step15-production-evidence.sh
+change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 15/static-verification.txt
+change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 15/source-review.json
+change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 15/changed-files.txt
+change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 15/SHA256SUMS.txt

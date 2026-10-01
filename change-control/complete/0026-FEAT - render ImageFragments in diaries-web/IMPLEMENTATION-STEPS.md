@@ -4,7 +4,7 @@ Prepared 2026-09-28 from the current workspace and the completed 0025 contract.
 
 This plan records execution only where explicitly linked to evidence. Preserve the feature identifier and record each implementation step under `evidence/Step N/`. Do not mark a step complete solely because its source changes compile.
 
-## Execution status — 2026-09-30
+## Execution status — 2026-10-01
 
 - **Step 1 complete:** [frozen web baseline and evidence](evidence/Step%201/README.md). Parent/web/responder identities and 267 source hashes recorded; 50 web tests passed, including both Docker-backed integration tests, with zero skips; build passed; synthetic MARQUEE screenshots and browser/HTTP deep-link checks captured. Application source remains unchanged.
 - **Step 2 complete:** [Image reader contract and degraded states](evidence/Step%202/README.md), with the shared [contract](IMAGE-READER-CONTRACT.md), machine-readable cases and executable contract tests.
@@ -18,7 +18,9 @@ This plan records execution only where explicitly linked to evidence. Preserve t
 - **Step 10 complete locally:** [type-aware selection, history and media errors](evidence/Step%2010/README.md). IMAGE selection clears stale MARQUEE geometry and disables only region-specific controls; MARQUEE selection restores the region controls; month-reader and source-page Back/Forward restore typed selection; catalogue byte/decode failure is exposed as browser-only `FILE_LOAD_FAILED` while the broken `<img>` is hidden and retained media state remains unchanged. Focused tests and the full web test/build gate passed on the normal Windows Java 25/Docker development machine, and the core synthetic-browser completion criteria were demonstrated.
 - **Steps 11–12 complete locally:** focused security/projection/HTTP tests, real broker/ACL/reconnect and 5,376-topic retained replay verified; see [Step 11](evidence/Step%2011/README.md) and [Step 12](evidence/Step%2012/README.md).
 - **Step 13 complete locally:** the owned development fixture ran successfully on 2026-09-30 with real responder, MQTT, web, desktop/mobile browsers, protected Image deletion and restart/replay; see [verified run](evidence/Step%2013/verified-run-20260930-192857/summary.json).
-- **Step 14 tooling implemented, workstation gate pending:** the safe [regression and artifact verifier](evidence/Step%2014/README.md) is ready, but full current-source Java 25/Docker/Compose execution is not yet recorded. Steps 15–16 remain pending; production authoring stays disabled.
+- **Step 14 complete:** the [full regression and artifact verification](evidence/Step%2014/README.md) passed against the exact release candidate on 2026-10-01.
+- **Step 15 complete in production:** the [production deployment evidence](evidence/Step%2015/README.md) records the exact image tags/IDs, explicit `content.filesPath=files`, disabled responder authoring gate, read-only Image ACL, healthy services and successful Pluto reader/File-route smoke checks.
+- **Step 16 complete:** [final close-out and handoff](evidence/Step%2016/README.md) records the acceptance mapping, final reader policies, release identities and 0027/0028 rollout boundaries; 0026 is moved to `change-control/complete`.
 
 ## Objective and boundaries
 
@@ -327,6 +329,8 @@ From the top-level `diaries` directory on Windows:
 
 ## Step 16 — Close out the feature and hand off to 0027/0028
 
+**Status: Complete — 2026-10-01.** Final acceptance, policy documentation, production release identity and 0027/0028 handoff are recorded in `evidence/Step 16/`. The feature directory is moved to `change-control/complete`.
+
 1. Update feature README checklists and this plan with actual completion status, exact changed files, commands/test counts, skipped checks, source/artifact hashes and evidence links.
 2. Record final unknown-type/degraded-media policies, Files configuration/defaults, URL validation, caption/alt semantics, diagnostic field compatibility and any deviations.
 3. Update web README, configuration examples, architecture documentation where needed, broker ACL documentation and the narrow canonical-topic guardrail change. Correct stale four-family assumptions.
@@ -354,19 +358,19 @@ From the top-level `diaries` directory on Windows:
 
 ## Final acceptance checklist
 
-- [ ] Read-only web consumes all five canonical retained entity families with minimum ACLs.
-- [ ] Image metadata and tombstones participate in immutable snapshots and atomic reconnect replay.
-- [ ] Every otherwise valid Page-owned IMAGE remains in date/month/source-page chronology, including missing media.
-- [ ] Fragment.pageId remains the ownership authority; ordering is unchanged.
-- [ ] IMAGE shows Page context, text and optional referenced Image, with no selected Marquee.
-- [ ] MARQUEE rendering and legacy null-type compatibility remain intact.
-- [ ] Invalid cross-type relationships and unknown explicit types have distinct diagnostics and safe rendering.
-- [ ] Runtime configuration alone determines Files URLs; paths are validated and encoded safely.
-- [ ] Caption/alt text are escaped, aspect ratio is preserved, and unavailable media has accessible text.
-- [ ] Keyboard selection, focus, deep links and browser history work across both types.
-- [ ] Shared Images, updates, tombstones and late metadata affect every reference without catalogue duplication.
-- [ ] HTML sanitization, CSP and GET/HEAD-only behavior remain effective.
-- [ ] Full web tests/build, real MQTT/ACL integration and controlled browser deployment checks pass.
-- [ ] Exact published reader artifact/configuration is verified before any production authoring enablement.
-- [ ] Production gate/rollback state and 0027/0028 handoff are recorded; no unrelated legacy conversion or destructive cleanup occurred.
-- [ ] Change-control evidence contains reproducible commands, source/artifact identities and actual results.
+- [x] Read-only web consumes all five canonical retained entity families with minimum ACLs.
+- [x] Image metadata and tombstones participate in immutable snapshots and atomic reconnect replay.
+- [x] Every otherwise valid Page-owned IMAGE remains in date/month/source-page chronology, including missing media.
+- [x] Fragment.pageId remains the ownership authority; ordering is unchanged.
+- [x] IMAGE shows Page context, text and optional referenced Image, with no selected Marquee.
+- [x] MARQUEE rendering and legacy null-type compatibility remain intact.
+- [x] Invalid cross-type relationships and unknown explicit types have distinct diagnostics and safe rendering.
+- [x] Runtime configuration alone determines Files URLs; paths are validated and encoded safely.
+- [x] Caption/alt text are escaped, aspect ratio is preserved, and unavailable media has accessible text.
+- [x] Keyboard selection, focus, deep links and browser history work across both types.
+- [x] Shared Images, updates, tombstones and late metadata affect every reference without catalogue duplication.
+- [x] HTML sanitization, CSP and GET/HEAD-only behavior remain effective.
+- [x] Full web tests/build, real MQTT/ACL integration and controlled browser deployment checks pass.
+- [x] Exact published reader artifact/configuration is verified before any production authoring enablement.
+- [x] Production gate/rollback state and 0027/0028 handoff are recorded; no unrelated legacy conversion or destructive cleanup occurred.
+- [x] Change-control evidence contains reproducible commands, source/artifact identities and actual results.

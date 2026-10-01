@@ -1,0 +1,6 @@
+service	configured_image	image_id	state	health	started_at
+diaries-client	rsmaxwell/diaries-client:0.0.9-build-74	sha256:efe5e8b7c0a969ba0821d04a3b31cc0c83b079fd2d11a5e3c86cda2aa94ef45d	running	healthy	2026-10-01T15:55:53.218629833Z
+diaries-web	rsmaxwell/diaries-web:0.0.9-build-7	sha256:fac8a20418d26a86bbb49bea359fbd3fba271c8aa95f0510147da382f12a6e9f	running	healthy	2026-10-01T15:56:08.745454567Z
+diaries-responder	rsmaxwell/diaries-responder:0.0.9-build-82	sha256:27d58edf958a95c7c7dcca4688bb0203fc96f23f7bda5b82fde154acb79607ba	running	healthy	2026-10-01T15:56:02.482974923Z
+diaries-mqtt	eclipse-mosquitto:2	sha256:8c4aa03990b1b9b542d42c0d4daabe03381d3e06c0279f82936eeee81cf2c905	running	healthy	2026-10-01T15:55:53.211099488Z
+diaries-db	postgres:18-alpine	sha256:c293117fcecda7344b5480222e813b9f673d7abd69b1dd95eff239b768b04f59	running	healthy	2026-10-01T15:55:53.214003437Z

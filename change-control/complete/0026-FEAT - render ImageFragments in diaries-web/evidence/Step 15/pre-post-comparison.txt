@@ -1,0 +1,71 @@
+Step 15 preserved pre/post production comparison
+================================================
+
+Authoritative pre-deployment capture:
+  step15-pre-pluto-20261001-133538
+  captured: 2026-10-01T13:35:38+01:00
+
+Authoritative post-deployment capture:
+  step15-post-pluto-20261001-170216
+  captured: 2026-10-01T17:02:16+01:00
+
+Release candidate
+-----------------
+Git commit: e5aa410bcf83e73f83bf81cb5aee9571ccba2755
+Client:     rsmaxwell/diaries-client:0.0.9-build-74
+Web:        rsmaxwell/diaries-web:0.0.9-build-7
+Responder:  rsmaxwell/diaries-responder:0.0.9-build-82
+
+Runtime configuration SHA-256 comparison
+----------------------------------------
+compose.yaml
+  pre:  f1910e9a0787f71258ad0e5e713aa0a7f3382d61206b41edca26acd16b9b07e6
+  post: f1910e9a0787f71258ad0e5e713aa0a7f3382d61206b41edca26acd16b9b07e6
+  result: UNCHANGED
+
+config/responder/responder.json
+  pre:  8d4cc6752b5abe4dd72e538c8b6b544635ab2614cd29becd6b1e4a9173e22e1f
+  post: 8d4cc6752b5abe4dd72e538c8b6b544635ab2614cd29becd6b1e4a9173e22e1f
+  result: UNCHANGED
+
+config/web/diaries-web.json
+  pre:  42c1c074e968ba30217ef8d02b04d24890b0a617426ae440abaae4191d8b1272
+  post: 79b6e7fe8d1b3e42f98216f639ab9291353566aac1b3a5a371df36d5b2b35460
+  result: CHANGED AS EXPECTED
+
+config/mosquitto/aclfile.txt
+  pre:  f94c20b9500ec79c6a16f4826342e15c823cfa08024d1ec732b0c51e6cc9a9a3
+  post: f94c20b9500ec79c6a16f4826342e15c823cfa08024d1ec732b0c51e6cc9a9a3
+  result: UNCHANGED
+
+Material web configuration change
+---------------------------------
+Pre-deployment content object:
+  responderBaseUrl
+  publicResponderBaseUrl
+  diariesPath
+
+Post-deployment content object additionally contains:
+  filesPath = files
+
+Safety and data state
+---------------------
+imageFragmentWritesEnabled: false -> false
+IMAGE Fragment rows:        0 -> 0
+MARQUEE Fragment rows:      2329 -> 2329
+catalogued Images:          85 -> 85
+old-reader rollback safe:   true -> true
+
+Post-deployment smoke verification
+----------------------------------
+Reader readiness:                   PASS
+Public reader root:                 HTTP 200
+Public reader /about:               HTTP 200
+Existing MARQUEE reader smoke:      HTTP 200
+Catalogued Image via Files route:   PASS
+
+Conclusion
+----------
+The preserved evidence confirms the intended production configuration change was applied
+to diaries-web while the responder authoring gate and reader ACL remained unchanged and
+safe. Post-deployment reader smoke verification passed.

@@ -1,0 +1,18 @@
+Step 15 static verification
+===========================
+
+PASS: client default tag is 0.0.9-build-74
+PASS: web default tag is 0.0.9-build-7
+PASS: responder default tag is 0.0.9-build-82
+PASS: web Files route default is files
+PASS: rendered web config contains content.filesPath=files
+PASS: rendered public responder base is Pluto production route
+PASS: rendered responder config hard-disables ImageFragment writes
+PASS: diaries-web ACL denies RPC
+PASS: diaries-web ACL permits canonical Image reads
+PASS: diaries-web ACL has no write/readwrite rule
+PASS: shared Nginx exposes /diaries-responder/
+PASS: shared Nginx routes responder to port 8081
+PASS: Step 15 pre/post evidence collector is present
+
+13 checks passed; 0 failed.

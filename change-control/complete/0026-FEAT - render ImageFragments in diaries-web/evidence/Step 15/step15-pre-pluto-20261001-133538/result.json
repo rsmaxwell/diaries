@@ -1,0 +1,26 @@
+{
+  "step": 15,
+  "mode": "pre",
+  "captured": "2026-10-01T13:35:38+01:00",
+  "host": "pluto",
+  "projectDirectory": "/home/richard/projects/diaries",
+  "releaseCandidate": {
+    "gitCommit": "e5aa410bcf83e73f83bf81cb5aee9571ccba2755",
+    "client": "rsmaxwell/diaries-client:0.0.9-build-74",
+    "web": "rsmaxwell/diaries-web:0.0.9-build-7",
+    "responder": "rsmaxwell/diaries-responder:0.0.9-build-82"
+  },
+  "preDeploymentConfiguration": {
+    "filesPath": "<missing>",
+    "imageFragmentWritesEnabled": false
+  },
+  "database": {
+    "imageFragmentRows": 0,
+    "marqueeFragmentRows": 2329,
+    "imageCatalogueRows": 85
+  },
+  "oldReaderRollbackSafe": true,
+  "failures": 0,
+  "warnings": 1,
+  "passed": true
+}

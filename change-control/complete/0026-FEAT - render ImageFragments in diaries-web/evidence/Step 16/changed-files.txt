@@ -1,0 +1,35 @@
+Step 16 changed files (relative to diaries repository root)
+
+Feature close-out / move
+------------------------
+change-control/complete/0026-FEAT - render ImageFragments in diaries-web/README.md
+change-control/complete/0026-FEAT - render ImageFragments in diaries-web/IMPLEMENTATION-STEPS.md
+change-control/complete/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 16/README.md
+change-control/complete/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 16/acceptance-matrix.md
+change-control/complete/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 16/handoff.md
+change-control/complete/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 16/changed-files.txt
+change-control/complete/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 16/source-sha256.csv
+change-control/complete/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 16/verification.txt
+change-control/complete/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 16/closeout.json
+change-control/complete/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 16/SHA256SUMS.txt
+
+Documentation refreshed for final reader behavior
+-------------------------------------------------
+README.md
+ARCHITECTURE.md
+diaries-web/README.md
+
+Downstream handoff records
+--------------------------
+change-control/todo/0027-FEAT - add ImageFragment editing to diaries-client/README.md
+change-control/todo/0028-FEAT - migrate reviewed legacy embedded-image fragments/README.md
+
+Directory state change
+----------------------
+The entire 0026 feature directory moves from:
+  change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/
+to:
+  change-control/complete/0026-FEAT - render ImageFragments in diaries-web/
+
+Step 16 production runtime source changes: NONE.
+Step 16 database/MQTT/production mutations: NONE.

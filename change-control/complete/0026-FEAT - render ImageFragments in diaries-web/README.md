@@ -6,7 +6,7 @@ Feature
 
 ## Status
 
-In progress — Steps 1–13 complete locally, including verified disposable browser evidence on 2026-09-30; Step 14 tooling is implemented but its final Java 25/Docker/Compose workstation regression remains to be run. Steps 15–16 pending.
+Complete — Steps 1–16 are complete. The exact reader release candidate was deployed and verified on production target `pluto` with ImageFragment authoring still disabled. Step 16 records the final acceptance mapping and handoff to 0027/0028.
 
 ## Priority
 
@@ -133,7 +133,9 @@ See [IMPLEMENTATION-STEPS.md](IMPLEMENTATION-STEPS.md) for the ordered implement
 - [x] Step 11 — add focused projection, rendering and security coverage ([record](evidence/Step%2011/README.md), 2026-09-29). Focused retained-contract/projection/config/rendering/HTTP security coverage passed, the full web test/build gate passed, and browser verification confirmed the successful catalogue-media path, keyboard/focus behavior and the existing browser-only file-failure path. No production runtime source changed.
 - [x] Step 12 — verify real MQTT replay, permissions and HTTP projection ([record](evidence/Step%2012/README.md), 2026-09-29). Fresh-broker/Testcontainers coverage verified late retained replay, live Image lifecycle, reversed arrival, reconnect staging, ACL degradation/no-write/no-RPC behavior, HTTP projection and a production-sized 5,376-topic replay; the focused Java 25/Docker run and full web test/build gate both completed successfully under PowerShell 7.6.6.
 - [x] Step 13 — run controlled cross-component development verification ([evidence](evidence/Step%2013/README.md), 2026-09-30). The real disposable run PASSED, with browser MARQUEE/IMAGE/missing-media coverage, distinct-Page/date shared references, DeleteImage reference guard, responder/web restart/replay and no cleanup failures. Original recorded result: `evidence/Step 13/verified-run-20260930-192857/summary.json`.
-- [ ] Step 14 — full regression and artifact verification ([new verifier and instructions](evidence/Step%2014/README.md), 2026-09-30). Tooling and dependency-free negative-control tests are implemented. Full Java 25/Docker/Testcontainers regression and actual Compose/image inspection must run on the development workstation before marking this step complete.
+- [x] Step 14 — full regression and artifact verification ([evidence](evidence/Step%2014/README.md), 2026-10-01). The final Java 25/Docker/Testcontainers regression, exact-candidate Step 13 rerun, source-stability gate and artifact/configuration inspection passed.
+- [x] Step 15 — deploy reader support with production authoring disabled ([evidence](evidence/Step%2015/README.md), 2026-10-01). The exact release candidate was deployed to `pluto`; all five services were healthy, `content.filesPath=files` was active, the read-only Image ACL remained in force, ImageFragment authoring remained disabled, and production reader/File-route smoke checks passed.
+- [x] Step 16 — close out the feature and hand off to 0027/0028 ([evidence](evidence/Step%2016/README.md), 2026-10-01). Final policies, acceptance-to-evidence mapping, release identities and downstream rollout prerequisites are recorded; 0026 is moved to `change-control/complete`.
 
 - [x] Add Image model and retained decoder tests.
 - [x] Add IMAGE entity storage, replay and tombstone handling.
@@ -146,20 +148,20 @@ See [IMPLEMENTATION-STEPS.md](IMPLEMENTATION-STEPS.md) for the ordered implement
 - [x] Add tests for reused Images and mixed MARQUEE/IMAGE chronology.
 - [x] Add tests for invalid cross-type retained data.
 - [x] Test retained replay and Image tombstones.
-- [ ] Run final diaries-web tests and build after the remaining implementation (Steps 4 and 5 tests/build already passed).
-- [ ] Deploy and smoke-test this reader before enabling 0027 authoring.
+- [x] Run final diaries-web tests and build against the exact release candidate (Step 14).
+- [x] Deploy and smoke-test this reader before enabling 0027 authoring (Step 15; authoring remains disabled).
 
 ## Acceptance Criteria
 
-- [ ] IMAGE fragments appear in the correct date/sequence order.
-- [ ] Selecting IMAGE displays its referenced Image and no selected marquee.
-- [ ] MARQUEE behaviour remains unchanged.
-- [ ] Missing Image metadata/file cannot remove a Fragment from chronology.
-- [ ] Reused Images render for every referring Fragment without catalogue duplication.
+- [x] IMAGE fragments appear in the correct date/sequence order.
+- [x] Selecting IMAGE displays its referenced Image and no selected marquee.
+- [x] MARQUEE behaviour remains unchanged.
+- [x] Missing Image metadata/file cannot remove a Fragment from chronology.
+- [x] Reused Images render for every referring Fragment without catalogue duplication.
 - [x] Runtime configuration determines URLs.
-- [ ] Caption, alt text, focus and keyboard behaviour are accessible.
+- [x] Caption, alt text, focus and keyboard behaviour are accessible.
 - [x] Projection diagnostics identify invalid cross-type relationships.
-- [ ] Tests/build pass and a controlled mixed-type fixture is demonstrated.
+- [x] Tests/build pass and a controlled mixed-type fixture is demonstrated.
 
 ## Dependencies
 
@@ -168,3 +170,14 @@ Requires 0022–0025. This feature is a deployment prerequisite for enabling 002
 ## Deployment and Rollback
 
 Deploying reader support is additive and may occur while production contains only MARQUEE fragments. Rollback is safe only while no production IMAGE fragments exist. Once 0027 or 0028 creates IMAGE rows, rolling back to a reader that omits them is not an acceptable application state.
+
+
+## Completion Summary
+
+0026 is complete. `diaries-web` now consumes the five canonical retained lookup families, resolves typed MARQUEE/IMAGE fragments without losing chronology when optional media is unavailable, constructs catalogue URLs from runtime Files configuration, renders accessible catalogue media and preserves type-aware selection/history behavior. The exact candidate was regression-tested, exercised with a controlled mixed fixture, deployed to `pluto`, and production-smoke-tested with ImageFragment authoring disabled.
+
+The production authoring gate remains disabled. 0027 owns the separately approved client-authoring rollout and gate enablement. 0028 owns reviewed legacy conversion after 0027 is available. 0029 remains the separate destructive cleanup/constraint phase.
+
+## Completed Date
+
+2026-10-01

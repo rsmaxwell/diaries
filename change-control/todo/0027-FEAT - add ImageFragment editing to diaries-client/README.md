@@ -28,6 +28,24 @@ Add first-class IMAGE Fragment creation and editing to `diaries-client` after th
 
 The IMAGE creation control must be feature-gated or withheld from production until these conditions are satisfied. Merely having the 0025 RPC available is not authorisation to expose authoring.
 
+
+## 0026 Reader Handoff — 2026-10-01
+
+The 0026 reader prerequisite is now satisfied. The exact candidate was regression-tested with controlled mixed MARQUEE/IMAGE fixtures and deployed/verified on production target `pluto`:
+
+```text
+Git commit: e5aa410bcf83e73f83bf81cb5aee9571ccba2755
+reader:      rsmaxwell/diaries-web:0.0.9-build-7
+responder:   rsmaxwell/diaries-responder:0.0.9-build-82
+client:      rsmaxwell/diaries-client:0.0.9-build-74
+filesPath:   files
+web MQTT:    read-only diaries/images/+; RPC denied
+```
+
+At 0026 production close-out, `imageFragmentWritesEnabled=false` and production contained zero IMAGE Fragment rows. 0026 therefore authorises **reader readiness only**; it does not authorise IMAGE creation. 0027 must retain its own feature gate/rollout decision, verify client behavior against the deployed reader, and enable production authoring only through its separately approved deployment. Once the first production IMAGE Fragment exists, the web reader must not be rolled back below 0026.
+
+Authoritative reader evidence is in `../../complete/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 15/`, with the final handoff in `evidence/Step 16/` of that completed feature.
+
 ## Expected User Workflows
 
 ### MARQUEE Fragment

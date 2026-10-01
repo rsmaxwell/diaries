@@ -1,0 +1,33 @@
+0026-FEAT — Step 15 POST-DEPLOYMENT Pluto evidence
+captured: 2026-10-01T17:02:16+01:00
+host: pluto
+project: /home/richard/projects/diaries
+output: /home/richard/step15-post-pluto-20261001-170216
+
+PASS: running on Pluto (pluto)
+PASS: Docker Compose configuration is valid
+PASS: diaries-client is running the expected release-candidate image rsmaxwell/diaries-client:0.0.9-build-74
+PASS: diaries-client is running (health=healthy, image=rsmaxwell/diaries-client:0.0.9-build-74)
+PASS: diaries-web is running the expected release-candidate image rsmaxwell/diaries-web:0.0.9-build-7
+PASS: diaries-web is running (health=healthy, image=rsmaxwell/diaries-web:0.0.9-build-7)
+PASS: diaries-responder is running the expected release-candidate image rsmaxwell/diaries-responder:0.0.9-build-82
+PASS: diaries-responder is running (health=healthy, image=rsmaxwell/diaries-responder:0.0.9-build-82)
+PASS: diaries-mqtt is running (health=healthy, image=eclipse-mosquitto:2)
+PASS: diaries-db is running (health=healthy, image=postgres:18-alpine)
+PASS: captured responder authoring-gate setting
+PASS: captured non-secret diaries-web public/content configuration
+PASS: ImageFragment production authoring gate is explicitly disabled
+PASS: post-deployment diaries-web content.filesPath is files
+PASS: diaries-web ACL denies RPC and permits canonical Image reads
+PASS: diaries-web ACL contains no write/readwrite rule
+PASS: 0025 Fragment/Image production schema is present
+PASS: no production IMAGE Fragment rows; old-reader rollback is not blocked by IMAGE data
+PASS: diaries-web readiness endpoint succeeded
+PASS: public reader root returned HTTP 200
+PASS: public reader about route returned HTTP 200
+PASS: existing MARQUEE month/fragment reader smoke returned HTTP 200
+PASS: catalogued Image is reachable through the configured public Files route
+WARN: previous step15-pre-pluto evidence directory not found on Pluto; pre/post hash comparison skipped
+
+Step 15 POST-deployment verification: PASSED (1 warning(s))
+Preserve this evidence in the Step 15 evidence directory; it is the production post-deployment verification record.

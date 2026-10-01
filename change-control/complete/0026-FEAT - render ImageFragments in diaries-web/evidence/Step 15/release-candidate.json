@@ -1,0 +1,38 @@
+{
+  "feature": "0026-FEAT - render ImageFragments in diaries-web",
+  "step": 15,
+  "step_title": "Deploy reader support with production authoring disabled",
+  "evidence_status": "release-candidate-recorded",
+  "recorded_date": "2026-10-01",
+  "production_target": "pluto",
+  "source": {
+    "git_commit": "e5aa410bcf83e73f83bf81cb5aee9571ccba2755",
+    "refs": [
+      "HEAD -> main",
+      "origin/main",
+      "origin/HEAD"
+    ],
+    "commit_date": "2026-10-01T08:34:47+01:00",
+    "commit_subject": "Step 14 — Full regression and artifact verification"
+  },
+  "docker_images": {
+    "diaries-client": {
+      "variable": "DIARIES_CLIENT_IMAGE_TAG",
+      "tag": "0.0.9-build-74"
+    },
+    "diaries-web": {
+      "variable": "DIARIES_WEB_IMAGE_TAG",
+      "tag": "0.0.9-build-7"
+    },
+    "diaries-responder": {
+      "variable": "DIARIES_RESPONDER_IMAGE_TAG",
+      "tag": "0.0.9-build-82"
+    }
+  },
+  "deployment_status": "not yet evidenced by this capture",
+  "authoring_gate_verification": "not yet evidenced by this capture",
+  "notes": [
+    "These are the just-built image tags intended for the production deployment to pluto.",
+    "This evidence records release-candidate identity only and does not close Step 15."
+  ]
+}

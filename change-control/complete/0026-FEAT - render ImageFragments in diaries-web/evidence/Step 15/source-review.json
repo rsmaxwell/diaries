@@ -1,0 +1,39 @@
+{
+  "feature": "0026-FEAT - render ImageFragments in diaries-web",
+  "step": 15,
+  "status": "complete-production-deployment-verified",
+  "release_candidate": {
+    "git_commit": "e5aa410bcf83e73f83bf81cb5aee9571ccba2755",
+    "client": "rsmaxwell/diaries-client:0.0.9-build-74",
+    "web": "rsmaxwell/diaries-web:0.0.9-build-7",
+    "responder": "rsmaxwell/diaries-responder:0.0.9-build-82"
+  },
+  "production_safety": {
+    "imageFragmentWritesEnabled": false,
+    "web_filesPath": "files",
+    "web_image_acl": "read-only diaries/images/+",
+    "web_rpc": "denied"
+  },
+  "playbooks_changed_files": [
+    "roles/diaries/defaults/main.yaml",
+    "roles/diaries/templates/config/web/diaries-web.json.j2"
+  ],
+  "deployment_target": "pluto",
+  "deployment_executed_in_evidence": true,
+  "post_deployment_evidence_present": true,
+  "authoritative_pre_deployment_capture": "step15-pre-pluto-20261001-133538",
+  "authoritative_post_deployment_capture": "step15-post-pluto-20261001-170216",
+  "post_deployment_verification": {
+    "failures": 0,
+    "warnings": 1,
+    "passed": true,
+    "warning_is_blocking": false,
+    "reader_readiness": "passed",
+    "reader_root_http": 200,
+    "reader_about_http": 200,
+    "marquee_reader_smoke_http": 200,
+    "catalogued_image_files_route": "passed"
+  },
+  "completion_basis": "Actual production deployment to Pluto completed and post-deployment verification passed.",
+  "supersedes": "Earlier external-deployment-handoff close-out wording."
+}

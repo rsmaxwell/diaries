@@ -1,0 +1,9 @@
+This pre-deployment capture is superseded by:
+
+  step15-pre-pluto-20261001-133538
+
+The first capture completed the substantive checks successfully, but its original
+capture script generated SHA256SUMS.txt before console.txt had finished writing. As a
+result, the console.txt checksum in this historical directory does not verify.
+
+Do not use this directory as the authoritative Step 15 pre-deployment evidence.

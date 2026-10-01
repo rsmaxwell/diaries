@@ -49,6 +49,15 @@ Therefore a legacy MARQUEE containing several embedded images cannot become one 
 - 0027 client editing is deployed or at least available for correcting migrated rows.
 - a production database backup and Files-root snapshot have been restored and rehearsed in a disposable environment.
 
+
+## 0026 Reader Handoff — 2026-10-01
+
+The 0026 web-reader prerequisite is satisfied: the exact reader candidate was verified with controlled IMAGE fixtures, deployed to `pluto`, and production smoke checks passed with `content.filesPath=files`, read-only Image MQTT access and `imageFragmentWritesEnabled=false`.
+
+This does **not** make 0028 executable yet. 0027 remains a prerequisite because migrated rows need an available editor/correction path, and 0028 still requires its own reviewed disposition manifest, disposable rehearsal, fresh production backup/Files snapshot and explicit writer-stop/apply runbook. No legacy conversion was performed by 0026, and the production database still had zero IMAGE Fragment rows at the 0026 deployment close-out.
+
+Authoritative reader evidence is in `../../complete/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 15/`; the completed feature handoff is in that feature's `evidence/Step 16/`.
+
 ## Inputs and Preserved Evidence
 
 The migration package must use versioned, reviewable inputs:

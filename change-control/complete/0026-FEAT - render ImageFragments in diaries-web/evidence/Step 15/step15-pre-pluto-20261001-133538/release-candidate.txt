@@ -1,0 +1,6 @@
+step=15
+production_target=pluto
+git_commit=e5aa410bcf83e73f83bf81cb5aee9571ccba2755
+diaries_client_image=rsmaxwell/diaries-client:0.0.9-build-74
+diaries_web_image=rsmaxwell/diaries-web:0.0.9-build-7
+diaries_responder_image=rsmaxwell/diaries-responder:0.0.9-build-82

@@ -1,0 +1,101 @@
+0026 Step 16 static close-out verification
+date=2026-10-01
+
+PASS: 0026 feature directory exists under change-control/complete
+PASS: no 0026 feature directory remains under change-control/in-progress in the prepared tree
+PASS: feature README contains no unchecked implementation/acceptance items
+PASS: IMPLEMENTATION-STEPS final acceptance checklist is fully checked
+PASS: implementation plan records Step 16 complete
+PASS: 0027 records the 0026 reader handoff
+PASS: 0028 records the 0026 reader handoff
+PASS: diaries-web README documents five retained families
+PASS: broker documentation retains canonical Image ACL topic
+
+Step 15 evidence checksum verification:
+./COMPLETION.md: OK
+./DEPLOYMENT-RUNBOOK.md: OK
+./README.md: OK
+./changed-files.txt: OK
+./completion.json: OK
+./pre-post-comparison.txt: OK
+./release-candidate-capture.txt: OK
+./release-candidate.json: OK
+./scripts/step15-capture-post-deployment-pluto.sh: OK
+./scripts/step15-capture-pre-deployment-pluto.sh: OK
+./source-review.json: OK
+./static-verification.txt: OK
+./step15-post-pluto-20261001-170216/SHA256SUMS.txt: OK
+./step15-post-pluto-20261001-170216/compose-images.txt: OK
+./step15-post-pluto-20261001-170216/compose-ps.txt: OK
+./step15-post-pluto-20261001-170216/console.txt: OK
+./step15-post-pluto-20261001-170216/container-identities.tsv: OK
+./step15-post-pluto-20261001-170216/database-readiness.txt: OK
+./step15-post-pluto-20261001-170216/diaries-web-acl.txt: OK
+./step15-post-pluto-20261001-170216/host-runtime.txt: OK
+./step15-post-pluto-20261001-170216/image-route-attempts.tsv: OK
+./step15-post-pluto-20261001-170216/image-route-success-url.txt: OK
+./step15-post-pluto-20261001-170216/marquee-smoke-status.txt: OK
+./step15-post-pluto-20261001-170216/marquee-smoke-url.txt: OK
+./step15-post-pluto-20261001-170216/reader-about-status.txt: OK
+./step15-post-pluto-20261001-170216/reader-root-status.txt: OK
+./step15-post-pluto-20261001-170216/release-candidate.txt: OK
+./step15-post-pluto-20261001-170216/responder-authoring-gate.json: OK
+./step15-post-pluto-20261001-170216/result.json: OK
+./step15-post-pluto-20261001-170216/rollback-state.txt: OK
+./step15-post-pluto-20261001-170216/runtime-config-sha256.txt: OK
+./step15-post-pluto-20261001-170216/web-public-config.json: OK
+./step15-post-pluto-20261001-170216/web-readiness.err: OK
+./step15-post-pluto-20261001-170216/web-readiness.json: OK
+./step15-pre-pluto-20261001-132408/SHA256SUMS.txt: OK
+./step15-pre-pluto-20261001-132408/SUPERSEDED.txt: OK
+./step15-pre-pluto-20261001-132408/compose-images.txt: OK
+./step15-pre-pluto-20261001-132408/compose-ps.txt: OK
+./step15-pre-pluto-20261001-132408/console.txt: OK
+./step15-pre-pluto-20261001-132408/container-identities.tsv: OK
+./step15-pre-pluto-20261001-132408/database-readiness.txt: OK
+./step15-pre-pluto-20261001-132408/diaries-web-acl.txt: OK
+./step15-pre-pluto-20261001-132408/host-runtime.txt: OK
+./step15-pre-pluto-20261001-132408/release-candidate.txt: OK
+./step15-pre-pluto-20261001-132408/responder-authoring-gate.json: OK
+./step15-pre-pluto-20261001-132408/result.json: OK
+./step15-pre-pluto-20261001-132408/rollback-state.txt: OK
+./step15-pre-pluto-20261001-132408/runtime-config-sha256.txt: OK
+./step15-pre-pluto-20261001-132408/web-public-config.json: OK
+./step15-pre-pluto-20261001-133538/SHA256SUMS.txt: OK
+./step15-pre-pluto-20261001-133538/compose-images.txt: OK
+./step15-pre-pluto-20261001-133538/compose-ps.txt: OK
+./step15-pre-pluto-20261001-133538/console.txt: OK
+./step15-pre-pluto-20261001-133538/container-identities.tsv: OK
+./step15-pre-pluto-20261001-133538/database-readiness.txt: OK
+./step15-pre-pluto-20261001-133538/diaries-web-acl.txt: OK
+./step15-pre-pluto-20261001-133538/host-runtime.txt: OK
+./step15-pre-pluto-20261001-133538/release-candidate.txt: OK
+./step15-pre-pluto-20261001-133538/responder-authoring-gate.json: OK
+./step15-pre-pluto-20261001-133538/result.json: OK
+./step15-pre-pluto-20261001-133538/rollback-state.txt: OK
+./step15-pre-pluto-20261001-133538/runtime-config-sha256.txt: OK
+./step15-pre-pluto-20261001-133538/web-public-config.json: OK
+./step15-production-evidence.sh: OK
+
+PASS: Step 15 post-deployment result is passed=true, failures=0, filesPath=files, authoring disabled, IMAGE rows=0
+
+Runtime-source comparison against input bundle:
+PASS: Step 16 did not modify diaries-web runtime/test source tree
+PASS: Step 16 did not modify diaries-responder runtime/test source tree
+PASS: Step 16 did not modify diaries-client source tree
+
+NOTE: no Gradle/npm test rerun was performed in Step 16 because this step changes close-out documentation/state only; Step 14 is the exact-candidate regression gate and Step 15 is the production deployment gate.
+
+Additional documentation checks:
+PASS: local Markdown links in the feature close-out, implementation plan and 0027/0028 handoff documents resolve in the prepared tree
+PASS: closeout.json parses successfully
+PASS: source-sha256.csv was generated for 39 final source/config/documentation surfaces
+
+Prepared-tree diff scope against diaries-sources-20261001-172810.zip:
+- README.md
+- ARCHITECTURE.md
+- diaries-web/README.md
+- change-control/todo/0027-FEAT - add ImageFragment editing to diaries-client/README.md
+- change-control/todo/0028-FEAT - migrate reviewed legacy embedded-image fragments/README.md
+- 0026 directory moved from change-control/in-progress to change-control/complete and its Step-16 close-out files added/updated
+No other repository path differs in the prepared tree.

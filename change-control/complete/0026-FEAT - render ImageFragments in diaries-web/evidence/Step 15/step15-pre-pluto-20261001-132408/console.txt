@@ -1,0 +1,27 @@
+0026-FEAT — Step 15 PRE-DEPLOYMENT Pluto evidence
+captured: 2026-10-01T13:24:08+01:00
+host: pluto
+project: /home/richard/projects/diaries
+output: /home/richard/step15-pre-pluto-20261001-132408
+
+PASS: running on Pluto (pluto)
+PASS: Docker Compose configuration is valid
+PASS: diaries-client is running (health=healthy, image=rsmaxwell/diaries-client:0.0.9-build-74)
+PASS: diaries-web is running (health=healthy, image=rsmaxwell/diaries-web:0.0.9-build-7)
+PASS: diaries-responder is running (health=healthy, image=rsmaxwell/diaries-responder:0.0.9-build-82)
+PASS: diaries-mqtt is running (health=healthy, image=eclipse-mosquitto:2)
+PASS: diaries-db is running (health=healthy, image=postgres:18-alpine)
+PASS: captured responder authoring-gate setting
+PASS: captured non-secret diaries-web public/content configuration
+PASS: ImageFragment production authoring gate is explicitly disabled
+WARN: pre-deployment diaries-web config has no explicit content.filesPath (this is expected if Step 15 has not yet been deployed)
+PASS: diaries-web ACL denies RPC and permits canonical Image reads
+PASS: diaries-web ACL contains no write/readwrite rule
+PASS: 0025 Fragment/Image production schema is present
+PASS: no production IMAGE Fragment rows; old-reader rollback is not blocked by IMAGE data
+PASS: created evidence archive /home/richard/step15-pre-pluto-20261001-132408.tar.gz
+
+Evidence directory: /home/richard/step15-pre-pluto-20261001-132408
+Evidence archive:   /home/richard/step15-pre-pluto-20261001-132408.tar.gz
+Step 15 PRE-deployment verification: PASSED (1 warning(s))
+Preserve this evidence before running the production deployment.

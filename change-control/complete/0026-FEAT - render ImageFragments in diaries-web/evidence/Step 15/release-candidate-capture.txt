@@ -1,0 +1,16 @@
+Step 15 release-candidate capture
+Captured: 2026-10-01
+Production target: pluto
+
+Git commit
+----------
+commit e5aa410bcf83e73f83bf81cb5aee9571ccba2755 (HEAD -> main, origin/main, origin/HEAD)
+Date:   Thu Oct 1 08:34:47 2026 +0100
+
+    Step 14 — Full regression and artifact verification
+
+Just-built Docker image tags
+----------------------------
+DIARIES_CLIENT_IMAGE_TAG=0.0.9-build-74
+DIARIES_WEB_IMAGE_TAG=0.0.9-build-7
+DIARIES_RESPONDER_IMAGE_TAG=0.0.9-build-82

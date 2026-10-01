@@ -1,0 +1,61 @@
+{
+  "feature": "0026-FEAT - render ImageFragments in diaries-web",
+  "step": 15,
+  "stepTitle": "Deploy reader support with production authoring disabled",
+  "decisionDate": "2026-10-01",
+  "status": "complete-production-deployment-verified",
+  "productionTarget": "pluto",
+  "productionDeploymentClaimedComplete": true,
+  "postDeploymentEvidencePresent": true,
+  "authoritativePreDeploymentEvidence": "step15-pre-pluto-20261001-133538",
+  "authoritativePostDeploymentEvidence": "step15-post-pluto-20261001-170216",
+  "preDeploymentResult": {
+    "failures": 0,
+    "warnings": 1,
+    "passed": true,
+    "expectedWarning": "pre-deployment web config has no explicit content.filesPath",
+    "imageFragmentWritesEnabled": false,
+    "filesPath": "<missing>",
+    "imageFragmentRows": 0,
+    "marqueeFragmentRows": 2329,
+    "imageCatalogueRows": 85,
+    "oldReaderRollbackSafe": true
+  },
+  "postDeploymentResult": {
+    "failures": 0,
+    "warnings": 1,
+    "passed": true,
+    "nonBlockingWarning": "previous step15-pre-pluto evidence directory not found on Pluto; pre/post hash comparison skipped",
+    "imageFragmentWritesEnabled": false,
+    "filesPath": "files",
+    "imageFragmentRows": 0,
+    "marqueeFragmentRows": 2329,
+    "imageCatalogueRows": 85,
+    "oldReaderRollbackSafe": true,
+    "readerReadiness": "passed",
+    "readerRootHttp": 200,
+    "readerAboutHttp": 200,
+    "marqueeReaderSmokeHttp": 200,
+    "cataloguedImageFilesRoute": "passed"
+  },
+  "releaseCandidate": {
+    "gitCommit": "e5aa410bcf83e73f83bf81cb5aee9571ccba2755",
+    "client": "rsmaxwell/diaries-client:0.0.9-build-74",
+    "web": "rsmaxwell/diaries-web:0.0.9-build-7",
+    "responder": "rsmaxwell/diaries-responder:0.0.9-build-82"
+  },
+  "productionConfiguration": {
+    "filesPath": "files",
+    "imageFragmentWritesEnabled": false,
+    "webImageAcl": "read-only diaries/images/+",
+    "webRpc": "denied"
+  },
+  "prePostRuntimeConfig": {
+    "composeChanged": false,
+    "responderConfigChanged": false,
+    "mosquittoAclChanged": false,
+    "webConfigChanged": true,
+    "webConfigPreSha256": "42c1c074e968ba30217ef8d02b04d24890b0a617426ae440abaae4191d8b1272",
+    "webConfigPostSha256": "79b6e7fe8d1b3e42f98216f639ab9291353566aac1b3a5a371df36d5b2b35460"
+  }
+}

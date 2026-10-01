@@ -1,0 +1,6 @@
+NAME                IMAGE                                        COMMAND                  SERVICE             CREATED         STATUS                   PORTS
+diaries-client      rsmaxwell/diaries-client:0.0.9-build-74      "/docker-entrypoint.…"   diaries-client      6 minutes ago   Up 6 minutes (healthy)   80/tcp, 8080/tcp
+diaries-mosquitto   eclipse-mosquitto:2                          "/docker-entrypoint.…"   diaries-mqtt        6 minutes ago   Up 6 minutes (healthy)   1883/tcp
+diaries-postgres    postgres:18-alpine                           "docker-entrypoint.s…"   diaries-db          6 minutes ago   Up 6 minutes (healthy)   0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp
+diaries-responder   rsmaxwell/diaries-responder:0.0.9-build-82   "/opt/diaries/bin/re…"   diaries-responder   6 minutes ago   Up 6 minutes (healthy)   
+diaries-web         rsmaxwell/diaries-web:0.0.9-build-7          "java -jar /opt/diar…"   diaries-web         6 minutes ago   Up 6 minutes (healthy)   8082/tcp
