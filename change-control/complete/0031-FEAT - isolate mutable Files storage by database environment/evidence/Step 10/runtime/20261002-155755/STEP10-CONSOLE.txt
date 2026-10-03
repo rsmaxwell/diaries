@@ -1,0 +1,40 @@
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>scripts\windows\0031-step10\seed-local-files-root.bat ^
+More?   -ProductionWriteFreezeConfirmed ^
+More?   -SharedFilesRoot "P:\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files" ^
+More?   -TargetFilesRoot "P:\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common"
+0031-FEAT Step 10 - seed independent non-production Files root
+Captured: 2026-10-02T15:57:55.2615008+01:00
+Mode used to resolve effective dataset: local-docker-build
+Effective database dataset: ./data/database/common
+Effective DIARIES_FILES_DIR: files-development-common
+Source shared Files root: P:\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files
+Target candidate Files root: P:\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common
+Step 8 source baseline: P:\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\.0031-backups\step8-20261002-143134
+Local write freeze: verified by container/port checks.
+Production write freeze: explicitly confirmed by operator switch.
+
+Generating full SHA-256 inventory of the frozen source tree...
+Source matches Step 8 baseline exactly: 90 files, 100032776 bytes.
+Generating approved seed inventory (entire source except .image-staging)...
+Approved seed inventory: 89 files, 100032776 bytes.
+Excluded .image-staging file count: 1.
+Excluded staging entry is the reviewed zero-byte .image-staging/catalogue.lock from Step 9.
+Copying approved source content into temporary seed root: P:\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\.0031-step10-seed-files-development-common-20261002-155755
+robocopy exit code: 1 (success is < 8).
+Temporary seed SHA-256 inventory matches the approved source seed inventory exactly.
+Target create/write/read/delete permission probe: PASS.
+Source and target ACL/SDDL captures written for operator review: SOURCE-ACL.txt, TARGET-ACL.txt.
+
+Step 10 candidate Files root created and byte-for-byte verified.
+  Dataset:                  ./data/database/common
+  Files selector:           files-development-common
+  Candidate root:           P:\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common
+  Files copied:             89
+  Bytes copied:             100032776
+  .image-staging propagated: no
+  Permission probe:         PASS
+  Evidence directory:       C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\change-control\in-progress\0031-FEAT - isolate mutable Files storage by database environment\evidence\Step 10\runtime\20261002-155755
+RESULT: CANDIDATE ROOT READY. Review SOURCE-ACL.txt and TARGET-ACL.txt before closing Step 10. Keep both responder write paths frozen.
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>

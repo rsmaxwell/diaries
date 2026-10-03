@@ -1,0 +1,517 @@
+===== scripts/windows/validation/verify-0031-step3.py
+PASS mode default: development-infrastructure: ./data/database/development-infrastructure <-> files-development-infrastructure
+PASS mode default: local-docker-build: ./data/database/local-docker-build <-> files-local-docker-build
+PASS mode default: local-published-smoke: ./data/database/local-published-smoke <-> files-local-published-smoke
+PASS common override: development-infrastructure: ./data/database/common <-> files-development-common
+PASS common override: local-docker-build: ./data/database/common <-> files-development-common
+PASS common override: local-published-smoke: ./data/database/common <-> files-development-common
+PASS compose: compose.local-docker-build.yaml: /data/files -> ${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR:?DIARIES_FILES_DIR must be set}
+PASS compose guard: compose.local-docker-build.yaml: missing DIARIES_FILES_DIR uses Compose :? failure
+PASS compose: compose.local-published-smoke.yaml: /data/files -> ${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR:?DIARIES_FILES_DIR must be set}
+PASS compose guard: compose.local-published-smoke.yaml: missing DIARIES_FILES_DIR uses Compose :? failure
+PASS: 0031-FEAT Step 3 local configuration contract verified
+===== scripts/windows/validation/verify-0031-step4.py
+0031 Step 4 static verification
+PASS: helper loads development-infrastructure.env before local.env
+PASS: helper requires DIARIES_DB_DATA_DIR
+PASS: helper requires DIARIES_FILES_DIR
+PASS: developer responder.json remains the default base
+PASS: effective responder config is generated beneath ignored build/
+PASS: root build/ directory is git-ignored
+PASS: PowerShell generator replaces diaries.files
+PASS: PowerShell generator preserves the base JSON object while rewriting the copy
+PASS: helper diagnostics do not echo password fields
+PASS: run-responder.bat uses the shared effective-config helper
+PASS: migration0024ImageCatalogue.bat uses the same helper
+PASS: Image reconciliation passes the generated effective config to Gradle
+PASS: direct responder runs with the generated effective config
+PASS: runtime verifier uses the same effective-config helper
+PASS: runtime verifier executes the non-default Files URL regression test
+PASS: runtime verifier passes the PowerShell pipeline without a literal CMD caret
+PASS: development-infrastructure start.bat validates both dataset selectors
+PASS: development-infrastructure status.bat validates both dataset selectors
+PASS: UploadFile defines a stable public /files context
+PASS: UploadFile URL no longer derives from the physical files directory
+PASS: responder regression test uses a non-default physical Files directory
+PASS: regression test requires stable /files upload URL
+PASS: regression test requires environment-neutral persisted Image.relativePath
+
+PASS: 23 checks
+===== scripts/windows/validation/verify-0031-step6.py
+PASS: development-infrastructure isolated default matches frozen database/Files pair
+PASS: local-docker-build isolated default matches frozen database/Files pair
+PASS: local-published-smoke isolated default matches frozen database/Files pair
+PASS: isolated defaults use three distinct database directories
+PASS: isolated defaults use three distinct mutable Files directories
+PASS: no local isolated default selects the production Files root
+PASS: local.env.example contains the approved paired common override
+PASS: all three modes resolve the same database and Files dataset under the common override
+PASS: runtime guard rejects one-sided local.env dataset overrides
+PASS: runtime guard reserves the production mutable Files root from local modes
+PASS: runtime guard contains approved path pairing development-infrastructure <-> files-development-infrastructure
+PASS: runtime guard contains approved path pairing local-docker-build <-> files-local-docker-build
+PASS: runtime guard contains approved path pairing local-published-smoke <-> files-local-published-smoke
+PASS: runtime guard contains approved path pairing common <-> files-development-common
+PASS: PowerShell guard has no unbraced variable immediately followed by a colon
+PASS: dataset-override error uses braced PowerShell interpolation before colon
+PASS: success heading uses braced PowerShell interpolation before colon
+PASS: batch wrapper invokes the shared PowerShell dataset-pair guard
+PASS: development-infrastructure start executes the dataset-pair guard before use
+PASS: local-docker-build start executes the dataset-pair guard before use
+PASS: local-published-smoke start executes the dataset-pair guard before use
+PASS: direct responder/reconciliation preparation executes the dataset-pair guard before use
+PASS: Windows regression suite covers: isolated defaults:
+PASS: Windows regression suite covers: shared common pair:
+PASS: Windows regression suite covers: reject DB-only local.env override
+PASS: Windows regression suite covers: reject Files-only local.env override
+PASS: Windows regression suite covers: reject local database with production Files root
+PASS: Windows regression suite covers: reject crossed approved local pair
+PASS: Windows regression suite allows expected child-process failures to be captured
+PASS: Windows regression suite captures child stdout/stderr before asserting exit code
+PASS: Windows regression suite restores strict ErrorActionPreference after each guard case
+PASS: compose.local-docker-build.yaml mutable Files mount uses explicit DIARIES_FILES_DIR
+PASS: compose.local-docker-build.yaml shared diary scans remain under /diaries
+PASS: compose.local-docker-build.yaml has no implicit production/shared mutable Files subpath
+PASS: compose.local-docker-build.yaml binds the selected root specifically to /data/files
+PASS: compose.local-published-smoke.yaml mutable Files mount uses explicit DIARIES_FILES_DIR
+PASS: compose.local-published-smoke.yaml shared diary scans remain under /diaries
+PASS: compose.local-published-smoke.yaml has no implicit production/shared mutable Files subpath
+PASS: compose.local-published-smoke.yaml binds the selected root specifically to /data/files
+PASS: public file URL remains rooted at /files independently of physical storage
+PASS: responder regression test protects stable public URL and environment-neutral relativePath
+PASS: 0031-FEAT Step 6 local regression guard contract verified
+===== scripts/windows/validation/verify-0031-step7.py
+PASS: dataset identity is derived from the effective database directory, not launch mode
+PASS: common local dataset is explicitly identified as cross-mode sharing
+PASS: database backup manifest explicitly says it is not a complete dataset backup
+PASS: sidecar manifest records logicalDataset
+PASS: sidecar manifest records effectiveDatabaseDataDir
+PASS: sidecar manifest records databaseBackupFile
+PASS: sidecar manifest records effectiveFilesDir
+PASS: sidecar manifest records resolvedPhysicalFilesRoot
+PASS: sidecar manifest records applicationSourceIdentity
+PASS: sidecar manifest records imageRowCount
+PASS: sidecar manifest records cataloguedFileCount
+PASS: manifest verification rejects a restore against a different database/Files pair
+PASS: legacy database backups remain usable with an explicit database-only warning
+PASS: development-infrastructure/backup-db-to-binary.bat validates the paired selectors
+PASS: development-infrastructure/backup-db-to-binary.bat resolves effective dataset identity
+PASS: development-infrastructure/backup-db-to-binary.bat uses effective-dataset backup directory
+PASS: development-infrastructure/backup-db-to-binary.bat reports the matching physical Files root
+PASS: development-infrastructure/backup-db-to-binary.bat labels its operation as database-only
+PASS: development-infrastructure/backup-db-to-binary.bat names default backups from effective dataset identity
+PASS: development-infrastructure/backup-db-to-binary.bat writes the Step-7 sidecar manifest
+PASS: development-infrastructure/backup-db-to-binary.bat captures Image catalogue row count
+PASS: development-infrastructure/backup-db-to-sql.bat validates the paired selectors
+PASS: development-infrastructure/backup-db-to-sql.bat resolves effective dataset identity
+PASS: development-infrastructure/backup-db-to-sql.bat uses effective-dataset backup directory
+PASS: development-infrastructure/backup-db-to-sql.bat reports the matching physical Files root
+PASS: development-infrastructure/backup-db-to-sql.bat labels its operation as database-only
+PASS: development-infrastructure/backup-db-to-sql.bat names default backups from effective dataset identity
+PASS: development-infrastructure/backup-db-to-sql.bat writes the Step-7 sidecar manifest
+PASS: development-infrastructure/backup-db-to-sql.bat captures Image catalogue row count
+PASS: development-infrastructure/restore-db-from-binary.bat validates the paired selectors
+PASS: development-infrastructure/restore-db-from-binary.bat resolves effective dataset identity
+PASS: development-infrastructure/restore-db-from-binary.bat uses effective-dataset backup directory
+PASS: development-infrastructure/restore-db-from-binary.bat reports the matching physical Files root
+PASS: development-infrastructure/restore-db-from-binary.bat labels its operation as database-only
+PASS: development-infrastructure/restore-db-from-binary.bat checks sidecar identity before destructive restore
+PASS: development-infrastructure/restore-db-from-binary.bat does not claim to restore a complete dataset
+PASS: development-infrastructure/restore-db-from-sql.bat validates the paired selectors
+PASS: development-infrastructure/restore-db-from-sql.bat resolves effective dataset identity
+PASS: development-infrastructure/restore-db-from-sql.bat uses effective-dataset backup directory
+PASS: development-infrastructure/restore-db-from-sql.bat reports the matching physical Files root
+PASS: development-infrastructure/restore-db-from-sql.bat labels its operation as database-only
+PASS: development-infrastructure/restore-db-from-sql.bat checks sidecar identity before destructive restore
+PASS: development-infrastructure/restore-db-from-sql.bat does not claim to restore a complete dataset
+PASS: local-docker-build/backup-db-to-binary.bat validates the paired selectors
+PASS: local-docker-build/backup-db-to-binary.bat resolves effective dataset identity
+PASS: local-docker-build/backup-db-to-binary.bat uses effective-dataset backup directory
+PASS: local-docker-build/backup-db-to-binary.bat reports the matching physical Files root
+PASS: local-docker-build/backup-db-to-binary.bat labels its operation as database-only
+PASS: local-docker-build/backup-db-to-binary.bat names default backups from effective dataset identity
+PASS: local-docker-build/backup-db-to-binary.bat writes the Step-7 sidecar manifest
+PASS: local-docker-build/backup-db-to-binary.bat captures Image catalogue row count
+PASS: local-docker-build/backup-db-to-sql.bat validates the paired selectors
+PASS: local-docker-build/backup-db-to-sql.bat resolves effective dataset identity
+PASS: local-docker-build/backup-db-to-sql.bat uses effective-dataset backup directory
+PASS: local-docker-build/backup-db-to-sql.bat reports the matching physical Files root
+PASS: local-docker-build/backup-db-to-sql.bat labels its operation as database-only
+PASS: local-docker-build/backup-db-to-sql.bat names default backups from effective dataset identity
+PASS: local-docker-build/backup-db-to-sql.bat writes the Step-7 sidecar manifest
+PASS: local-docker-build/backup-db-to-sql.bat captures Image catalogue row count
+PASS: local-docker-build/restore-db-from-binary.bat validates the paired selectors
+PASS: local-docker-build/restore-db-from-binary.bat resolves effective dataset identity
+PASS: local-docker-build/restore-db-from-binary.bat uses effective-dataset backup directory
+PASS: local-docker-build/restore-db-from-binary.bat reports the matching physical Files root
+PASS: local-docker-build/restore-db-from-binary.bat labels its operation as database-only
+PASS: local-docker-build/restore-db-from-binary.bat checks sidecar identity before destructive restore
+PASS: local-docker-build/restore-db-from-binary.bat does not claim to restore a complete dataset
+PASS: local-docker-build/restore-db-from-sql.bat validates the paired selectors
+PASS: local-docker-build/restore-db-from-sql.bat resolves effective dataset identity
+PASS: local-docker-build/restore-db-from-sql.bat uses effective-dataset backup directory
+PASS: local-docker-build/restore-db-from-sql.bat reports the matching physical Files root
+PASS: local-docker-build/restore-db-from-sql.bat labels its operation as database-only
+PASS: local-docker-build/restore-db-from-sql.bat checks sidecar identity before destructive restore
+PASS: local-docker-build/restore-db-from-sql.bat does not claim to restore a complete dataset
+PASS: local-published-smoke/backup-db-to-binary.bat validates the paired selectors
+PASS: local-published-smoke/backup-db-to-binary.bat resolves effective dataset identity
+PASS: local-published-smoke/backup-db-to-binary.bat uses effective-dataset backup directory
+PASS: local-published-smoke/backup-db-to-binary.bat reports the matching physical Files root
+PASS: local-published-smoke/backup-db-to-binary.bat labels its operation as database-only
+PASS: local-published-smoke/backup-db-to-binary.bat names default backups from effective dataset identity
+PASS: local-published-smoke/backup-db-to-binary.bat writes the Step-7 sidecar manifest
+PASS: local-published-smoke/backup-db-to-binary.bat captures Image catalogue row count
+PASS: local-published-smoke/backup-db-to-sql.bat validates the paired selectors
+PASS: local-published-smoke/backup-db-to-sql.bat resolves effective dataset identity
+PASS: local-published-smoke/backup-db-to-sql.bat uses effective-dataset backup directory
+PASS: local-published-smoke/backup-db-to-sql.bat reports the matching physical Files root
+PASS: local-published-smoke/backup-db-to-sql.bat labels its operation as database-only
+PASS: local-published-smoke/backup-db-to-sql.bat names default backups from effective dataset identity
+PASS: local-published-smoke/backup-db-to-sql.bat writes the Step-7 sidecar manifest
+PASS: local-published-smoke/backup-db-to-sql.bat captures Image catalogue row count
+PASS: local-published-smoke/restore-db-from-binary.bat validates the paired selectors
+PASS: local-published-smoke/restore-db-from-binary.bat resolves effective dataset identity
+PASS: local-published-smoke/restore-db-from-binary.bat uses effective-dataset backup directory
+PASS: local-published-smoke/restore-db-from-binary.bat reports the matching physical Files root
+PASS: local-published-smoke/restore-db-from-binary.bat labels its operation as database-only
+PASS: local-published-smoke/restore-db-from-binary.bat checks sidecar identity before destructive restore
+PASS: local-published-smoke/restore-db-from-binary.bat does not claim to restore a complete dataset
+PASS: local-published-smoke/restore-db-from-sql.bat validates the paired selectors
+PASS: local-published-smoke/restore-db-from-sql.bat resolves effective dataset identity
+PASS: local-published-smoke/restore-db-from-sql.bat uses effective-dataset backup directory
+PASS: local-published-smoke/restore-db-from-sql.bat reports the matching physical Files root
+PASS: local-published-smoke/restore-db-from-sql.bat labels its operation as database-only
+PASS: local-published-smoke/restore-db-from-sql.bat checks sidecar identity before destructive restore
+PASS: local-published-smoke/restore-db-from-sql.bat does not claim to restore a complete dataset
+PASS: no local database script selects a backup directory solely from launch mode
+PASS: 0031-FEAT Step 7 local matched backup/restore semantics verified
+===== scripts/windows/validation/verify-0031-step8.py
+PASS: local freeze stops both Docker responder variants
+PASS: local freeze checks TCP/8081 without the privileged Get-NetTCPConnection CIM query
+PASS: database backup and Files snapshot reuse the non-privileged TCP listener check
+PASS: local freeze explicitly preserves the write freeze for later migration steps
+PASS: local backup can identify running database mode diaries-development-db
+PASS: local backup can identify running database mode diaries-local-db
+PASS: local backup can identify running database mode diaries-published-smoke-db
+PASS: local backup refuses ambiguous simultaneous local database writers
+PASS: local Step 8 capture reuses the Step 7 binary database backup path with an explicit pre-migration name
+PASS: local Step 8 manifest records the old shared source tree separately from the configured target Files selector
+PASS: local Step 8 manifest records target selector and database backup checksum
+PASS: shared Files snapshot requires explicit production write-freeze confirmation
+PASS: shared Files snapshot re-verifies the local write freeze
+PASS: shared Files snapshot reviews staging and forbids blind propagation to new roots
+PASS: shared Files tree is copied with deterministic Windows/NAS copy tooling
+PASS: source and snapshot are verified using complete SHA-256 inventories
+PASS: staging content is retained in the rollback snapshot even when excluded from future seeding
+PASS: snapshot tooling keeps the migration write freeze in force for Step 9
+PASS: Step 8 remains defined in the implementation plan
+PASS: 0031-FEAT Step 8 local migration-safety tooling verified
+===== scripts/windows/validation/verify-0031-step9.py
+PASS: Step 9 preserves the local responder write freeze
+PASS: Step 9 rejects a running direct Windows responder
+PASS: Step 9 can identify local database mode diaries-development-db
+PASS: Step 9 can identify local database mode diaries-local-db
+PASS: Step 9 can identify local database mode diaries-published-smoke-db
+PASS: Step 9 refuses ambiguous concurrent local database datasets
+PASS: Step 9 starts from the Step 4 generated/effective responder configuration
+PASS: Step 9 uses a temporary pre-split Files override without changing normal configuration
+PASS: Step 9 invokes the existing 0024 reconciliation in dry-run mode
+PASS: Step 9 local tooling contains no apply path
+PASS: Step 9 separately inventories and hashes .image-staging recovery content
+PASS: Step 9 report records imageRowCount
+PASS: Step 9 report records matchingPhysicalFiles
+PASS: Step 9 report records missingPhysicalFiles
+PASS: Step 9 report records untrackedPhysicalFiles
+PASS: Step 9 report records untrackedSupportedImageFiles
+PASS: Step 9 report records metadataOrChecksumConflicts
+PASS: Step 9 report records requiresExplicitDisposition
+PASS: Step 9 report records step10Ready
+PASS: documentation treats the three normal local modes as one effective dataset
+PASS: Step 9 contract remains present in the implementation plan
+PASS: 0031-FEAT Step 9 local reconciliation tooling verified
+===== scripts/windows/validation/verify-0031-step10.py
+PASS: Step 10 requires explicit confirmation that the production write freeze remains active
+PASS: Step 10 checks the known local responder containers
+PASS: Step 10 rejects a running direct Windows responder
+PASS: Step 10 enforces frozen dataset pair development-infrastructure -> files-development-infrastructure
+PASS: Step 10 enforces frozen dataset pair local-docker-build -> files-local-docker-build
+PASS: Step 10 enforces frozen dataset pair local-published-smoke -> files-local-published-smoke
+PASS: Step 10 enforces frozen dataset pair common -> files-development-common
+PASS: Step 10 cannot target the production files leaf for a local dataset
+PASS: Step 10 refuses to merge into an existing candidate root
+PASS: Step 10 re-verifies the shared source against the Step 8 SHA-256 baseline
+PASS: Step 10 enforces the reviewed Step 9 staging disposition
+PASS: Step 10 deliberately excludes .image-staging from the new dataset seed
+PASS: Step 10 uses the approved attribute-preserving robocopy semantics
+PASS: Step 10 verifies a temporary sibling copy before promoting it to the configured target
+PASS: Step 10 verifies target mutation permissions and proves the probe leaves no data change
+PASS: Step 10 captures ACL evidence and keeps permission review as an explicit close-out gate
+PASS: documentation explains that the normal common local dataset receives one Files root
+PASS: Step 10 contract remains present in the implementation plan
+PASS: 0031-FEAT Step 10 Files-root seeding tooling verified
+===== scripts/windows/validation/verify-0031-step11.py
+PASS: common diagnostics report both halves of the durable dataset pair
+PASS: Docker diagnostics keep the responder runtime Files path stable at /data/files
+PASS: Docker diagnostics show the selected NAS Files subpath
+PASS: Docker diagnostics retain the shared read-only diary subpath
+PASS: development-infrastructure start.bat prints effective database/Files diagnostics
+PASS: development-infrastructure status.bat prints effective database/Files diagnostics
+PASS: development-infrastructure status path enforces the same database/Files pair guard as startup
+PASS: local-docker-build start.bat prints effective database/Files diagnostics
+PASS: local-docker-build status.bat prints effective database/Files diagnostics
+PASS: local-docker-build status path enforces the same database/Files pair guard as startup
+PASS: local-published-smoke start.bat prints effective database/Files diagnostics
+PASS: local-published-smoke status.bat prints effective database/Files diagnostics
+PASS: local-published-smoke status path enforces the same database/Files pair guard as startup
+PASS: Step 11 capture validates the dataset pair before evidence collection
+PASS: Step 11 capture requires explicit confirmation that the production write freeze remains active
+PASS: Step 11 collector covers all three local runtime modes
+PASS: Docker modes capture fully resolved Compose configuration
+PASS: resolved Compose evidence verifies the database mount after overrides
+PASS: rendered Compose evidence is redacted before it is persisted
+PASS: direct-development generated responder configuration is persisted only in redacted form
+PASS: responder/runtime text evidence is scrubbed for configured secrets before persistence
+PASS: runtime mount inspection checks /data/files and /data/diaries
+PASS: database verification is a read-only SELECT
+PASS: static verification uses HTTP HEAD and keeps the public /files route stable
+PASS: Files verification includes non-destructive list checks
+PASS: Docker runtime capture includes responder logs
+PASS: cross-mode comparison recognises the intended common local Files root
+PASS: cross-mode comparison verifies common override database identity
+PASS: cross-mode comparison requires stable public route and responder logs
+PASS: capture-local-mode.ps1 remains ASCII-only for Windows PowerShell 5.1 BOM-less source compatibility
+PASS: compare-local-mode-evidence.ps1 remains ASCII-only for Windows PowerShell 5.1 BOM-less source compatibility
+PASS: collector contains no mutating operation matching \bRemove-Item\b
+PASS: collector contains no mutating operation matching \bMove-Item\b
+PASS: collector contains no mutating operation matching \bRename-Item\b
+PASS: collector contains no mutating operation matching \bDELETE\s+FROM\b
+PASS: collector contains no mutating operation matching \bINSERT\s+INTO\b
+PASS: collector contains no mutating operation matching \bUPDATE\s+public\.
+PASS: collector contains no mutating operation matching \bdocker\s+exec\b.*\brm\b
+PASS: local-docker-build still maps the selected physical root to stable /data/files
+PASS: local-docker-build retains the shared diary mount as read-only
+PASS: local-published-smoke still maps the selected physical root to stable /data/files
+PASS: local-published-smoke retains the shared diary mount as read-only
+PASS: local-published-smoke uses the same safe local PostgreSQL defaults as the other local modes
+PASS: UploadFile keeps the public Files URL independent of the physical Files selector
+PASS: static responder Files context remains /files
+PASS: Step 11 contract remains present in the implementation plan
+PASS: implementation plan records the reviewed Step 11 runtime completion
+PASS: Step 11 runbook keeps production frozen during the local cut-over checks
+PASS: 0031-FEAT Step 11 source/runtime-path tooling verified
+===== scripts/windows/validation/verify-0031-step13.py
+PASS: local harness contains upload phase
+PASS: local harness contains observe phase
+PASS: local harness contains delete phase
+PASS: local harness contains cleanup phase
+PASS: local harness rejects concurrent local database modes
+PASS: local harness pins the approved shared common durable pair
+PASS: second-mode observation cannot be satisfied by the upload mode
+PASS: delete is gated on a successful second-mode proof
+PASS: database and physical file identity are captured
+PASS: PowerShell interpolation before colon uses a braced variable reference
+PASS: responder HTTP reachability honours the established /diaries 404 contract
+PASS: real supported Image lifecycle RPC operations are used
+PASS: retained-state observation uses responder MQTT credentials from the selected responder config
+PASS: retained Image verification is separated from the diaries-client RPC identity
+PASS: recovery cleanup is id-gated and restricted to generated Step 13 paths
+PASS: PowerShell callers preserve zero/one/many Image query results as arrays under StrictMode
+PASS: cleanup can safely resume after delete committed before evidence capture completed
+PASS: retained-only cleanup recovery check is available without application credentials
+PASS: Step 13 embedded PNG fixture is discoverable
+PASS: Step 13 embedded fixture has a PNG signature
+PASS: Step 13 embedded PNG chunks are not truncated
+PASS: Step 13 embedded PNG chunk IHDR has a valid CRC
+PASS: Step 13 embedded PNG chunks are not truncated
+PASS: Step 13 embedded PNG chunk IDAT has a valid CRC
+PASS: Step 13 embedded PNG chunks are not truncated
+PASS: Step 13 embedded PNG chunk IEND has a valid CRC
+PASS: Step 13 embedded PNG is complete through IEND
+PASS: retained publication and deletion tombstone are verified
+PASS: current catalogued overwrite rejection is explicitly verified
+PASS: stable public /files URL and static bytes are verified
+PASS: runbook brackets local mutation with production controls
+PASS: implementation plan records the Step 13 tooling state
+PASS: local Docker lifecycle rejects CIFS mounts that cannot present owner-only staging permissions
+PASS: container permission probe avoids nested PowerShell/docker/sh quoting
+PASS: local-docker-build synthesizes owner-only CIFS directory/file permissions for mutable Files
+PASS: local-published-smoke synthesizes owner-only CIFS directory/file permissions for mutable Files
+PASS: retained snapshot includes non-overlapping branch diaries/diaries/#
+PASS: retained snapshot includes non-overlapping branch diaries/pages/#
+PASS: retained snapshot includes non-overlapping branch diaries/fragments/#
+PASS: retained snapshot includes non-overlapping branch diaries/marquees/#
+PASS: retained snapshot includes non-overlapping branch diaries/images/#
+PASS: retained snapshot includes non-overlapping branch diaries/dates/#
+PASS: retained snapshot includes non-overlapping branch diaries/people/#
+PASS: retained snapshot includes non-overlapping branch diaries/roles/#
+PASS: retained snapshot drains each top-level branch before subscribing to the next
+PASS: large-tree regression exceeds the historical 10,000-message threshold across branches
+PASS: local broker retains bounded QoS in-flight flow
+PASS: local broker removes the finite retained-replay message-count queue ceiling
+PASS: large-tree test broker retains bounded QoS in-flight flow
+PASS: large-tree test broker removes the finite retained-replay message-count queue ceiling
+PASS: Mosquitto documentation records the interim unlimited queue and deferred redesign
+PASS: 0031-FEAT Step 13 local isolation tooling verified
+===== scripts/windows/validation/verify-0031-step16.py
+PASS: local.env.example selects the approved common database/Files pair
+PASS: development-infrastructure retains its independent committed database/Files defaults
+PASS: development-infrastructure resolves the paired common override when local.env is applied second
+PASS: local-docker-build retains its independent committed database/Files defaults
+PASS: local-docker-build resolves the paired common override when local.env is applied second
+PASS: local-published-smoke retains its independent committed database/Files defaults
+PASS: local-published-smoke resolves the paired common override when local.env is applied second
+PASS: one-sided database/Files overrides fail clearly
+PASS: local validation rejects the production mutable Files root
+PASS: pair validator contains frozen mapping development-infrastructure <-> files-development-infrastructure
+PASS: pair validator contains frozen mapping local-docker-build <-> files-local-docker-build
+PASS: pair validator contains frozen mapping local-published-smoke <-> files-local-published-smoke
+PASS: pair validator contains frozen mapping common <-> files-development-common
+PASS: compose.local-docker-build.yaml selects mutable /data/files through explicit DIARIES_FILES_DIR
+PASS: compose.local-docker-build.yaml keeps the original diary scan tree separate
+PASS: compose.local-docker-build.yaml does not reintroduce an implicit shared mutable files path
+PASS: compose.local-published-smoke.yaml selects mutable /data/files through explicit DIARIES_FILES_DIR
+PASS: compose.local-published-smoke.yaml keeps the original diary scan tree separate
+PASS: compose.local-published-smoke.yaml does not reintroduce an implicit shared mutable files path
+PASS: direct-development responder config loads mode env before local.env
+PASS: diaries-responder/scripts/windows/run-responder.bat consumes the shared effective responder configuration
+PASS: diaries-responder/scripts/windows/migration0024ImageCatalogue.bat consumes the shared effective responder configuration
+PASS: Step 9 reconciliation derives its local dataset from the selected mode + local override
+PASS: Step 12 reconciliation derives the common pair from development-infrastructure.env + local.env
+PASS: UploadFile public URL is independent of the physical Files directory
+PASS: ListFiles uses the same stable /files public contract
+PASS: responder regression covers stable /files URL with a non-default physical directory
+PASS: database-only restore tooling warns that Files reconciliation may be required
+PASS: development-infrastructure binary restore never claims to restore a complete durable dataset
+PASS: local-docker-build binary restore never claims to restore a complete durable dataset
+PASS: local-published-smoke binary restore never claims to restore a complete durable dataset
+PASS: Step 16 final runner gates both Diaries and Playbooks exact candidates
+PASS: Step 16 final runner explicitly tests common precedence, isolated defaults and mismatch rejection
+PASS: Step 16 runner executes the full Java responder/web test suite
+PASS: Step 16 runner builds the Angular client candidate
+PASS: Step 16 runner seals final cross-repository source identities
+PASS: restore rehearsal pins the frozen Step 8 local backup checksum
+PASS: restore rehearsal uses a disposable localhost PostgreSQL instance
+PASS: restore rehearsal restores the preserved Step 8 dump into the disposable database
+PASS: restore rehearsal reconciles the restored common database read-only against its intended Files root
+PASS: restore rehearsal requires the frozen 85-image catalogue to reconcile without conflicts
+PASS: restore rehearsal removes temporary config and disposable database resources
+PASS: restore rehearsal refuses to scan while a local responder may mutate the Files root
+PASS: Step 8 close-out evidence exists for final acceptance mapping
+PASS: Step 9 close-out evidence exists for final acceptance mapping
+PASS: Step 10 close-out evidence exists for final acceptance mapping
+PASS: Step 11 close-out evidence exists for final acceptance mapping
+PASS: Step 12 close-out evidence exists for final acceptance mapping
+PASS: Step 13 close-out evidence exists for final acceptance mapping
+PASS: Step 14 close-out evidence exists for final acceptance mapping
+PASS: Step 15 close-out evidence exists for final acceptance mapping
+PASS: Step 13 close-out preserves local common lifecycle plus production-isolation proof
+PASS: Step 14 close-out preserves explicit non-destructive production deployment proof
+PASS: Step 16 acceptance matrix covers the feature README acceptance criteria
+PASS: Step 16 rollback instructions preserve matched-pair recovery and no-auto-merge rules
+PASS: 0031-FEAT Step 16 final Diaries source/contract gate verified
+===== roles/diaries/tests/verify-0031-storage-isolation.py
+PASS: production .env renders the explicit diaries_files_dir selector
+PASS: production mutable /data/files mount is selected through DIARIES_FILES_DIR
+PASS: production shared diary scans remain on the common /diaries source
+PASS: production template has no hard-coded mutable /files source
+PASS: role defaults do not silently fall back to the production Files selector
+PASS: role preflight requires an explicit mutable Files selector
+PASS: deployment validates the rendered selector and mutable Files mount
+PASS: deployment validates that shared scans remain on /diaries
+PASS: 0031-FEAT Step 6 production storage-isolation contract verified
+===== roles/diaries/tests/verify-0031-backup-semantics.py
+PASS: production deployment includes dataset manifest helper
+PASS: backup-db-to-binary.sh labels database-only semantics
+PASS: backup-db-to-binary.sh writes a sidecar manifest
+PASS: backup-db-to-binary.sh records Image row count
+PASS: backup-db-to-binary.sh does not claim a complete dataset backup
+PASS: backup-db-to-sql.sh labels database-only semantics
+PASS: backup-db-to-sql.sh writes a sidecar manifest
+PASS: backup-db-to-sql.sh records Image row count
+PASS: backup-db-to-sql.sh does not claim a complete dataset backup
+PASS: restore-db-from-binary.sh labels database-only semantics
+PASS: restore-db-from-binary.sh verifies sidecar pairing
+PASS: restore-db-from-binary.sh does not claim a complete dataset restore
+PASS: restore-db-from-sql.sh labels database-only semantics
+PASS: restore-db-from-sql.sh verifies sidecar pairing
+PASS: restore-db-from-sql.sh does not claim a complete dataset restore
+PASS: manifest helper writes a production database sidecar
+PASS: production sidecar explicitly records database-only semantics
+PASS: production sidecar records the effective Files selector and physical root
+PASS: production sidecar records catalogue count
+PASS: matching production database + Files pair verifies
+PASS: production restore guard rejects a mismatched Files root
+PASS: 0031-FEAT Step 7 production backup/restore semantics verified
+===== roles/diaries/tests/verify-0031-step8.py
+PASS: production freeze stops only the responder write path
+PASS: production freeze keeps PostgreSQL available for pg_dump
+PASS: production freeze writes durable runtime evidence outside source sync content
+PASS: production capture refuses to run while responder writes are enabled
+PASS: production capture asserts that the pre-split production Files selector is files
+PASS: production Step 8 capture reuses the Step 7 binary backup helper
+PASS: production database backup and sidecar are checksummed and recorded
+PASS: production Step 8 manifest records runtime image identity
+PASS: underlying production backup helper still declares database-only semantics
+PASS: 0031-FEAT Step 8 production migration-safety tooling verified
+===== roles/diaries/tests/verify-0031-step9.py
+PASS: production Step 9 refuses to run with responder writes enabled
+PASS: production Step 9 requires PostgreSQL to remain available
+PASS: production Step 9 is pinned to the frozen pre-split files selector
+PASS: production Step 9 reuses the existing 0024 reconciliation in dry-run mode
+PASS: production Step 9 contains no reconciliation apply path
+PASS: production Step 9 separately inventories and hashes .image-staging
+PASS: production Step 9 report records imageRowCount
+PASS: production Step 9 report records matchingPhysicalFiles
+PASS: production Step 9 report records missingPhysicalFiles
+PASS: production Step 9 report records untrackedPhysicalFiles
+PASS: production Step 9 report records untrackedSupportedImageFiles
+PASS: production Step 9 report records metadataOrChecksumConflicts
+PASS: production Step 9 report records requiresExplicitDisposition
+PASS: production Step 9 report records step10Ready
+PASS: production documentation protects the live Step 8 freeze from a playbook-triggered restart
+PASS: 0031-FEAT Step 9 production reconciliation tooling verified
+===== roles/diaries/tests/verify-0031-step13.py
+PASS: production controls refuse to run with responder writes enabled
+PASS: production controls are pinned to the production files selector
+PASS: production Image catalogue is captured deterministically
+PASS: production mutable Files bytes are inventoried with SHA-256
+PASS: production Files inventory explicitly includes staging state
+PASS: after control fails on any production catalogue or Files difference
+PASS: production operating documentation covers Step 13
+PASS: 0031-FEAT Step 13 production control tooling verified
+===== roles/diaries/tests/verify-0031-step14.py
+PASS: production Diaries broker adopts the Step 13 complete-retained-snapshot flow-control policy
+PASS: production Diaries broker no longer retains the historical 10,000-message truncation ceiling
+PASS: Ansible validates the deployed broker queue policy before the restart handler runs
+PASS: Step 14 helper separates frozen pre-deploy controls from post-deploy verification
+PASS: Step 14 preflight preserves the Step 13 responder write freeze
+PASS: Step 14 preflight verifies both Step 8 recovery halves remain available
+PASS: Step 14 records production configuration without exposing secrets
+PASS: Step 14 rejects local override participation in production startup
+PASS: Step 14 brackets the deployment with SHA-256 controls for non-production Files roots
+PASS: Step 14 proves an existing /files route object is served after deployment
+PASS: Step 14 waits for the responder retained-tree startup synchronisation to succeed
+PASS: Step 14 briefly re-freezes only the responder for deterministic read-only verification
+PASS: Step 14 reuses the existing read-only production reconciliation under a responder write freeze
+PASS: Step 14 fails if production durable Image/File state changes across deployment
+PASS: Step 14 adds no direct reconciliation apply/mutation path
+PASS: production Compose keeps /data/files selected by the explicit Files selector
+PASS: production Compose/start templates do not load the local override file
+PASS: production operating documentation covers Step 14
+PASS: 0031-FEAT Step 14 production deployment tooling verified
+===== roles/diaries/tests/verify-0031-step16.py
+PASS: production .env renders the explicit diaries_files_dir selector
+PASS: production responder mounts the explicit selector at stable /data/files
+PASS: production keeps the original diary scan tree shared/read-only
+PASS: production Compose template contains no implicit hard-coded mutable files subpath
+PASS: Ansible fails fast when the production Files selector is missing/invalid
+PASS: production Files selector has no unsafe role default
+PASS: role documentation records the durable database/Files pairing invariant
+PASS: role documentation defines complete matched backup/restore semantics
+PASS: installed production operating notes warn about database-only restore/reconciliation
+PASS: Step 14 production validation still protects the deployed retained-snapshot policy
+PASS: production storage-isolation regression remains present
+PASS: 0031-FEAT Step 16 final Playbooks source gate verified
+
+ALL STATIC 0031 VALIDATIONS PASSED

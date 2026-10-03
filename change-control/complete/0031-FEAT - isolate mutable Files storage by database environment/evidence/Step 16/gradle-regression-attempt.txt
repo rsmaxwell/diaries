@@ -1,0 +1,16 @@
+Implementation-environment attempt only; this is not Step 16 runtime evidence.
+
+Command:
+  ./gradlew test --console=plain
+
+Result:
+  NOT RUN TO COMPLETION because the source-packaging container has no network access
+  and did not have Gradle 9.6.1 cached. The Gradle wrapper attempted to download:
+  https://services.gradle.org/distributions/gradle-9.6.1-bin.zip
+  and failed with java.net.UnknownHostException: services.gradle.org.
+
+Disposition:
+  The Windows Step 16 final regression runner executes `gradlew.bat test --console=plain`
+  on the developer workstation and a close-out-quality Step 16 run may not use
+  -SkipJavaTests. This container limitation therefore does not substitute for or weaken
+  the required final runtime gate.

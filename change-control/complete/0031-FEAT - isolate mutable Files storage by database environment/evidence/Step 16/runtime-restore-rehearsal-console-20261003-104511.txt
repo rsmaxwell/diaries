@@ -1,0 +1,37 @@
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>scripts\windows\0031-step16\rehearse-common-restore.bat
+> Task :diaries-responder:compileJava UP-TO-DATE
+
+> Task :diaries-responder:generateBuildInfo
+Generated responder build information: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\build\generated\resources\buildInfo\build-info.properties
+Responder version: 0.0.9-SNAPSHOT
+
+> Task :diaries-responder:processResources
+> Task :diaries-responder:classes
+
+> Task :diaries-responder:migration0024ImageCatalogue
+gradlew.bat : SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+At C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\0031-step16\rehearse-common-restore.ps1:188 char:9
++         & $gradle ':diaries-responder:migration0024ImageCatalogue' `
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (SLF4J(I): Conne...erviceProvider]:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+0024 reconciliation completed; inspect the evidence summary.
+
+[Incubating] Problems report is available at: file:///C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.6.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 16s
+4 actionable tasks: 3 executed, 1 up-to-date
+
+PASS: Step 16 disposable common-dataset restore/reconciliation rehearsal succeeded.
+Step 8 backup: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\database-backups\common\diaries-common-step8-premigration-20261002-142614.dump
+Files root: Microsoft.PowerShell.Core\FileSystem::\\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common
+Evidence: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\change-control\in-progress\0031-FEAT - isolate mutable Files storage by database environment\evidence\Step 16\runtime\restore-rehearsal-20261003-104511
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>

@@ -1,0 +1,27 @@
+﻿{
+    "feature":  "0031-FEAT",
+    "step":  11,
+    "mode":  "local-docker-build",
+    "capturedAt":  "2026-10-02T17:10:12.2814349+01:00",
+    "status":  "FAIL",
+    "effectiveDatabaseDataDir":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database\\common",
+    "databaseBacking":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database\\common",
+    "filesSelector":  "files-development-common",
+    "dockerFilesPath":  "/data/files",
+    "filesBacking":  "nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files-development-common",
+    "diaryBacking":  "nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/diaries",
+    "databaseContainer":  "diaries-local-db",
+    "responderContainer":  "diaries-local-responder",
+    "imageRelativePathChecked":  null,
+    "diaryRelativePathChecked":  null,
+    "publicFilesContext":  "/files",
+    "publicDiariesContext":  "/diaries",
+    "responderLogCaptured":  false,
+    "checks":  [
+                   "effective Files selector is non-production: files-development-common",
+                   "rendered Compose database mount matches the effective database data directory",
+                   "rendered Compose binds selected NAS subpath to /data/files",
+                   "rendered Compose keeps the shared /data/diaries mount read-only"
+               ],
+    "error":  "Responder container is not available: diaries-local-responder"
+}

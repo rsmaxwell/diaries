@@ -1,0 +1,25 @@
+{
+    "schemaVersion":  1,
+    "captureType":  "0031-step8-local-pre-migration-database",
+    "createdAt":  "2026-10-02T14:26:17.1521696+01:00",
+    "host":  "RICHARD-PC",
+    "launchMode":  "development-infrastructure",
+    "logicalDataset":  "common",
+    "effectiveDatabaseDataDir":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database\\common",
+    "configuredTargetFilesDir":  "files-development-common",
+    "preMigrationSharedFilesDir":  "files",
+    "preMigrationSharedFilesRoot":  "\\\\nas.localdomain\\photo\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files",
+    "databaseBackupFile":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database-backups\\common\\diaries-common-step8-premigration-20261002-142614.dump",
+    "databaseBackupSha256":  "d1af825c12ea21084d6dd240af15dfb22be96ee33db6f36ad0368f0bf67afcb7",
+    "databaseSidecarFile":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database-backups\\common\\diaries-common-step8-premigration-20261002-142614.dump.dataset.json",
+    "databaseSidecarSha256":  "c07a499c92fc91d65c032e2b360e1d4ad53c5f69c55779d832e6c2774ff96e3c",
+    "imageRowCount":  "85",
+    "applicationSourceIdentity":  {
+                                      "gitCommit":  "b89ca157b33181aa5df1077aeb342a3b5b32da7d"
+                                  },
+    "writeFreeze":  {
+                        "knownDockerRespondersStopped":  true,
+                        "tcp8081ListenerAbsent":  true
+                    },
+    "note":  "The Step-7 sidecar records the currently configured target Files selector. Step 8 separately records the pre-migration shared Files root whose snapshot must be preserved with this database backup for rollback."
+}

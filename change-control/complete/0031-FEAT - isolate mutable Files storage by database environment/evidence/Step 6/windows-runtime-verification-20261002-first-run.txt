@@ -1,0 +1,9 @@
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> powershell -NoProfile -ExecutionPolicy Bypass -File scripts\windows\validation\verify-0031-step6.ps1
+powershell.exe : At C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\common\validate-dataset-pair.ps1:81 char:45
+At C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\validation\verify-0031-step6.ps1:17 char:5
++     & powershell -NoProfile -ExecutionPolicy Bypass -File $Guard `
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (At C:\Users\Ric....ps1:81 char:45:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>

@@ -1,0 +1,13 @@
+richard@pluto:~/projects/diaries$ cat "$RUN_DIR/reconciliation/0024-file-inventory.csv" | grep UNSUPPORTED
+"diary-1828-and-1829-and-jan-1830/Thumbs.db","","UNSUPPORTED","file","19456","2026-08-04T10:20:12.363Z","271a4e6b72a249d2ebcca50b03fac1e1c0fdac6bc44191d47cfe018e829e1259","","0","0",""
+"diary-1828-and-1829-and-jan-1830/images/Thumbs.db","","UNSUPPORTED","file","522752","2026-09-23T13:43:52.887Z","b7ecff9fceec44e83568afd83abd31d0fd5ec928f9faee95caecd1d548ef11da","","0","0",""
+"diary-1830/images/Thumbs.db","","UNSUPPORTED","file","136192","2026-08-04T14:22:18.11Z","d5bbb36ec4f96a64ce147f7dd526cd793f2266f8d147c8c03aa38c8ab19c85e8","","0","0",""
+"diary-1832/images/Thumbs.db","","UNSUPPORTED","file","19968","2026-09-10T17:14:13.968Z","5780ef5250cd8277c3acd10263ded1e89aaa1dab9dbb70e9f8158cd8bc4de4e5","","0","0",""
+richard@pluto:~/projects/diaries$
+richard@pluto:~/projects/diaries$
+richard@pluto:~/projects/diaries$
+richard@pluto:~/projects/diaries$
+richard@pluto:~/projects/diaries$ cat "$RUN_DIR/STAGING-INVENTORY.tsv"
+relativePath    size    sha256
+.image-staging/catalogue.lock   0       e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+richard@pluto:~/projects/diaries$

@@ -1,0 +1,40 @@
+{
+    "capturedAt":  "2026-10-03T07:07:42.5021730Z",
+    "uploadMode":  "development-infrastructure",
+    "observeMode":  "local-docker-build",
+    "pair":  {
+                 "Database":  "./data/database/common",
+                 "Files":  "files-development-common"
+             },
+    "databaseRows":  [
+                         "88\t0\t0031-step13/0031-step13-20261003-080333-8f26d1bc.png\timage/png\t0031-step13-20261003-080333-8f26d1bc.png\t1\t1\tc47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96\t\t"
+                     ],
+    "physicalFile":  {
+                         "mode":  "container",
+                         "container":  "diaries-local-responder",
+                         "path":  "/data/files/0031-step13/0031-step13-20261003-080333-8f26d1bc.png",
+                         "present":  true,
+                         "sha256":  "c47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96"
+                     },
+    "retainedAndHttp":  {
+                            "operation":  "observe",
+                            "imageTopic":  "diaries/images/88",
+                            "retained":  [
+                                             {
+                                                 "topic":  "diaries/images/88",
+                                                 "retained":  true,
+                                                 "qos":  1,
+                                                 "payloadBytes":  301,
+                                                 "payload":  "{\"id\":88,\"version\":0,\"relativePath\":\"0031-step13/0031-step13-20261003-080333-8f26d1bc.png\",\"mimeType\":\"image/png\",\"originalFilename\":\"0031-step13-20261003-080333-8f26d1bc.png\",\"width\":1,\"height\":1,\"checksum\":\"c47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96\",\"caption\":\"\",\"altText\":\"\"}"
+                                             }
+                                         ],
+                            "http":  {
+                                         "url":  "http://127.0.0.1:8081/files/0031-step13/0031-step13-20261003-080333-8f26d1bc.png",
+                                         "status":  200,
+                                         "contentType":  "image/png",
+                                         "bytes":  69,
+                                         "sha256":  "c47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96",
+                                         "expectedSha256":  "c47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96"
+                                     }
+                        }
+}

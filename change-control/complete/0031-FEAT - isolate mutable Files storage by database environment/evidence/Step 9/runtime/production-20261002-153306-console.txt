@@ -1,0 +1,60 @@
+richard@pluto:~/projects/diaries$ ./scripts/step9-reconcile-production.sh
+0031-FEAT Step 9 - production shared-Files reconciliation
+Project:                  /home/richard/projects/diaries
+Database service:         diaries-db
+Reconciled Files selector: files
+Physical Files root:      //nas.tail636235.ts.net/photo/nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files
+Evidence:                 /home/richard/projects/diaries/data/0031-step9/production-20261002-153306
+
+Running existing 0024 reconciliation in DRY-RUN mode only...
+Container diaries-diaries-responder-run-fe31d537372c Creating
+Container diaries-diaries-responder-run-fe31d537372c Created
+SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+0024 reconciliation completed; inspect the evidence summary.
+Container diaries-diaries-responder-run-236ade7896e8 Creating
+Container diaries-diaries-responder-run-236ade7896e8 Created
+Image rows:                  85
+Matching physical files:     85
+Missing physical files:      0
+Untracked physical files:     4
+Untracked supported images:  0
+Unsupported physical files:  4
+Metadata/checksum conflicts: 0
+Conflict rows:               0
+.image-staging files:        1
+Report:                      /home/richard/projects/diaries/data/0031-step9/production-20261002-153306/STEP9-REPORT.json
+RESULT: REVIEW REQUIRED before Step 10
+
+Step 9 production reconciliation captured.
+Keep both production and local responder write paths frozen.
+Do not proceed to Step 10 unless STEP9-REPORT.json says step10Ready=true or every reported exception has an explicit reviewed disposition.
+richard@pluto:~/projects/diaries$
+richard@pluto:~/projects/diaries$
+richard@pluto:~/projects/diaries$
+richard@pluto:~/projects/diaries$
+richard@pluto:~/projects/diaries$
+richard@pluto:~/projects/diaries$ RUN_DIR=$(ls -dt data/0031-step9/production-* | head -1)
+
+cat "$RUN_DIR/STEP9-REPORT.md"
+# 0031-FEAT Step 9 — production reconciliation report
+
+- Dataset: `production`
+- Database identity: `diaries:16838:172.21.0.2/32:5432:18.6`
+- Shared Files root: `//nas.tail636235.ts.net/photo/nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files`
+- Runtime Files root: `/data/files`
+- Reconciliation outcome: `DRY_RUN_COMPLETE`
+- Image rows: 85
+- Matching physical files: 85
+- Missing physical files: 0
+- Untracked physical files: 4
+- Untracked supported image files: 0
+- Unsupported physical files: 4
+- Metadata/checksum conflicts: 0
+- Reconciliation conflict rows: 0
+- `.image-staging` files: 1
+- Decision: **REVIEW REQUIRED before Step 10**
+
+This run is read-only. It does not apply the 0024 create plan, mutate Image rows,
+or change Files bytes. Any non-zero anomaly above requires an explicit Step 9
+disposition before Step 10 copies the shared tree.
+richard@pluto:~/projects/diaries$

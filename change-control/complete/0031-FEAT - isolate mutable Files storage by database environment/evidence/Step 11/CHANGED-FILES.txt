@@ -1,0 +1,35 @@
+0031-FEAT Step 11 changed/new files
+===================================
+
+Implementation/source delivered for Step 11:
+compose.local-published-smoke.yaml
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/IMPLEMENTATION-STEPS.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 11/CHANGED-FILES.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 11/CLOSE-OUT.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 11/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 11/RUNBOOK.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 11/SHA256SUMS.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 11/regression-output.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 11/verification-output.txt
+scripts/windows/0031-step11/README.md
+scripts/windows/0031-step11/capture-local-mode.bat
+scripts/windows/0031-step11/capture-local-mode.ps1
+scripts/windows/0031-step11/compare-local-mode-evidence.ps1
+scripts/windows/common/report-effective-dataset.bat
+scripts/windows/development-infrastructure/start.bat
+scripts/windows/development-infrastructure/status.bat
+scripts/windows/local-docker-build/start.bat
+scripts/windows/local-docker-build/status.bat
+scripts/windows/local-published-smoke/start.bat
+scripts/windows/local-published-smoke/status.bat
+scripts/windows/validation/verify-0031-step11.py
+
+Authoritative runtime evidence generated on the Windows workstation (not duplicated in this close-out ZIP):
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 11/runtime/development-infrastructure-20261002-170911/
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 11/runtime/local-docker-build-20261002-172734/
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 11/runtime/local-published-smoke-20261002-172947/
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 11/STEP11-RUNTIME-SUMMARY.json
+
+No Java/Angular product source and no Playbooks source are changed by Step 11.
+The close-out overlay updates the feature/evidence records, the closure-aware Step 11 static verifier, refreshed verification/regression outputs, and SHA256SUMS.txt; it does not duplicate or overwrite the workstation-generated runtime evidence.

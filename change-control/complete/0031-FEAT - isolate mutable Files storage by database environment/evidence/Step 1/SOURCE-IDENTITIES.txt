@@ -1,0 +1,16 @@
+0031 Step 1 source identities — captured 2026-10-01
+
+Diaries source bundle:
+  file: diaries-sources-20261001-185002.zip
+  sha256: 6fa78679ca24011ac7beb317c4cb0561ba45a233b2f0c9426e61d6806040b446
+
+Playbooks source bundle:
+  file: playbook-sources-20261001-173438.zip
+  sha256: 81be5e48b543433423f8d76df9f703feff072e60cdeb824f4ca9268ae835dc6f
+
+Included production database archive used only to confirm the logical database name:
+  file: diaries-production-20260908-174443.dump
+  sha256: af13d682d08220c4d346e50ebdf7756f46da8db8d9fe1e850834798aeff5c28c
+  observed archive database name: diaries
+
+No live database, NAS share, MQTT broker, production host, ignored local.env, or developer-owned responder JSON was read or modified for this capture.

@@ -1,0 +1,43 @@
+richard@pluto:~/projects/diaries$ ./scripts/step14-production-deployment.sh postflight \
+  /home/richard/projects/diaries/data/0031-step14/preflight-20261003-090612
+0031-FEAT Step 14 production postflight
+Captured: 2026-10-03T09:18:28+01:00
+Preflight: /home/richard/projects/diaries/data/0031-step14/preflight-20261003-090612
+
+PASS: responder startup retained-tree synchronisation completed successfully.
+Stopping diaries-responder temporarily for deterministic read-only verification...
+ Container diaries-responder Stopping
+ Container diaries-responder Stopped
+ Container diaries-diaries-responder-run-226ac594449d Creating
+ Container diaries-diaries-responder-run-226ac594449d Created
+Running the existing Step 12 read-only reconciliation against the deployed production pair...
+Running production 0024 dry-run reconciliation...
+  Step 9 baseline : /home/richard/projects/diaries/data/0031-step9/production-20261002-153306
+  Files selector  : files
+  NAS subpath     : nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files
+  evidence        : /home/richard/projects/diaries/data/0031-step12/production-20261003-091922
+Running 0024 Image catalogue reconciliation in dry-run mode...
+Compose project: /home/richard/projects/diaries
+Evidence:        /home/richard/projects/diaries/data/0031-step12/production-20261003-091922/migration-runner/dry-run
+ Container diaries-diaries-responder-run-2c41cc8717d1 Creating
+ Container diaries-diaries-responder-run-2c41cc8717d1 Created
+SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+0024 reconciliation completed; inspect the evidence summary.
+0024 Image catalogue reconciliation completed.
+Review the evidence in: /home/richard/projects/diaries/data/0031-step12/production-20261003-091922/migration-runner/dry-run
+Step 12 comparison PASS: production
+JSON: /home/richard/projects/diaries/data/0031-step12/production-20261003-091922/STEP12-REPORT.json
+Markdown: /home/richard/projects/diaries/data/0031-step12/production-20261003-091922/STEP12-REPORT.md
+PASS: Step 12 production reconciliation matches the Step 9 semantic baseline.
+Evidence: /home/richard/projects/diaries/data/0031-step12/production-20261003-091922
+Copy/preserve this complete production-* directory with the Diaries Step 12 evidence before close-out.
+Restarting diaries-responder after all deterministic controls passed...
+ Container diaries-responder Starting
+ Container diaries-responder Started
+ Container diaries-responder Waiting
+ Container diaries-responder Healthy
+PASS: responder startup retained-tree synchronisation completed successfully.
+
+PASS: Step 14 production deployment is healthy and non-destructive.
+Evidence: /home/richard/projects/diaries/data/0031-step14/postflight-20261003-091828
+richard@pluto:~/projects/diaries$

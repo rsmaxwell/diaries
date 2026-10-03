@@ -1,0 +1,24 @@
+﻿{
+    "schemaVersion":  1,
+    "feature":  "0031-FEAT",
+    "step":  16,
+    "status":  "PASSED",
+    "rehearsal":  "disposable restore of Step 8 local common PostgreSQL backup plus read-only 0024 reconciliation",
+    "capturedAt":  "2026-10-03T09:45:30.9854657Z",
+    "step8Dump":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database-backups\\common\\diaries-common-step8-premigration-20261002-142614.dump",
+    "step8DumpSha256":  "d1af825c12ea21084d6dd240af15dfb22be96ee33db6f36ad0368f0bf67afcb7",
+    "expectedStep8DumpSha256":  "d1af825c12ea21084d6dd240af15dfb22be96ee33db6f36ad0368f0bf67afcb7",
+    "effectiveDbDataDir":  "./data/database/common",
+    "effectiveFilesDir":  "files-development-common",
+    "physicalFilesRoot":  "Microsoft.PowerShell.Core\\FileSystem::\\\\nas\\photo\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files-development-common",
+    "restoredDatabase":  "disposable Docker PostgreSQL; live local database not modified",
+    "reconciliationOutcome":  "DRY_RUN_COMPLETE",
+    "reconciliationCounts":  {
+                                 "CATALOGUED_MATCH":  85,
+                                 "DIRECTORY":  11,
+                                 "UNSUPPORTED":  4
+                             },
+    "expectedCatalogueMatches":  85,
+    "conflicts":  0,
+    "publicFilesRoute":  "/files/... unchanged; no browser namespace is derived from physical selector"
+}

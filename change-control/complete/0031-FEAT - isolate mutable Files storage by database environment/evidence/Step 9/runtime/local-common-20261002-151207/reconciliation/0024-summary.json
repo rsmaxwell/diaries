@@ -1,0 +1,26 @@
+{
+  "schemaVersion" : 1,
+  "toolVersion" : "0.0.9-SNAPSHOT:b89ca157b33181aa5df1077aeb342a3b5b32da7d",
+  "startedAt" : "2026-10-02T14:12:15.201678100Z",
+  "endedAt" : "2026-10-02T14:12:29.558749100Z",
+  "mode" : "dry-run",
+  "outcome" : "DRY_RUN_COMPLETE",
+  "failureType" : "",
+  "filesRoot" : "\\\\nas\\photo\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files",
+  "rootKey" : "null",
+  "databaseIdentity" : "diaries:16385:172.18.0.3/32:5432:18.6",
+  "inputs" : {
+    "candidatesFilename" : "",
+    "candidatesSha256" : "",
+    "configFilename" : "responder.shared-files.json",
+    "configSha256" : "53b7786ad066ded0e081740fd846ee09fac5f84aa67173d25b643d53b56572d4"
+  },
+  "reviewedPlanSha256" : null,
+  "counts" : {
+    "CATALOGUED_MATCH" : 85,
+    "DIRECTORY" : 10,
+    "UNSUPPORTED" : 4
+  },
+  "insertedRows" : 0,
+  "reservedDirectoryExcluded" : ".image-staging (inspect recovery material separately)"
+}

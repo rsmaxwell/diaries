@@ -1,0 +1,35 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261002171012
+Username: RICHARD-PC\Richard
+RunAs User: RICHARD-PC\Richard
+Configuration Name: 
+Machine: RICHARD-PC (Microsoft Windows NT 10.0.26200.0)
+Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\0031-step11\capture-local-mode.ps1 -Mode local-docker-build -ProjectDir C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries
+Process ID: 81740
+PSVersion: 5.1.26100.9444
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9444
+BuildVersion: 10.0.26100.9444
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+0031 Step 11 runtime capture: local-docker-build
+Evidence: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\change-control\in-progress\0031-FEAT - isolate mutable Files storage by database environment\evidence\Step 11\runtime\local-docker-build-20261002-171012
+PASS: effective Files selector is non-production: files-development-common
+PASS: rendered Compose database mount matches the effective database data directory
+PASS: rendered Compose binds selected NAS subpath to /data/files
+PASS: rendered Compose keeps the shared /data/diaries mount read-only
+docker.exe : error: no such object: diaries-local-responder
+At C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\0031-step11\capture-local-mode.
+ps1:120 char:23
++             $stdout = & $FilePath @Arguments 2> $StderrFile
++                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error: no such ...local-responder:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+**********************
+Windows PowerShell transcript end
+End time: 20261002171012
+**********************

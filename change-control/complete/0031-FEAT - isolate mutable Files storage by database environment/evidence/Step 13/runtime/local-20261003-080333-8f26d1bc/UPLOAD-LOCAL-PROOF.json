@@ -1,0 +1,17 @@
+{
+    "mode":  "development-infrastructure",
+    "pair":  {
+                 "Database":  "./data/database/common",
+                 "Files":  "files-development-common"
+             },
+    "databaseRows":  [
+                         "88\t0\t0031-step13/0031-step13-20261003-080333-8f26d1bc.png\timage/png\t0031-step13-20261003-080333-8f26d1bc.png\t1\t1\tc47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96\t\t"
+                     ],
+    "physicalFile":  {
+                         "mode":  "windows",
+                         "root":  "\\\\nas\\photo\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files-development-common",
+                         "path":  "\\\\nas\\photo\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files-development-common\\0031-step13\\0031-step13-20261003-080333-8f26d1bc.png",
+                         "present":  true,
+                         "sha256":  "c47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96"
+                     }
+}

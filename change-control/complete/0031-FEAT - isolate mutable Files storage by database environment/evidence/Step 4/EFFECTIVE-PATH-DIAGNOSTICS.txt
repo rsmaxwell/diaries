@@ -1,0 +1,17 @@
+0031 Step 4 expected direct-development diagnostics
+
+With config/environments/local.env selecting the approved common pair:
+
+  DIARIES_DB_DATA_DIR=./data/database/common
+  DIARIES_FILES_DIR=files-development-common
+
+the preparation helper reports only non-secret values in this shape:
+
+  Effective development dataset:
+    Database data: "<DIARIES project>\data\database\common"
+    Files root:    "<developer-owned diaries.root>\files-development-common"
+    Responder cfg: "<DIARIES project>\build\development-infrastructure\responder.effective.json"
+
+The first and third paths are generated from project-local configuration. The Files root combines the preserved diaries.root from the developer-owned base responder.json with the effective DIARIES_FILES_DIR. No password, token or responder secret is printed.
+
+This is a redacted expected diagnostic shape, not a capture of the user's developer-owned configuration.

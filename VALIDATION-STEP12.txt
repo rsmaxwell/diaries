@@ -1,0 +1,12 @@
+0031 Step 12 implementation validation
+
+Static validation performed before packaging:
+- compare-step9-step12.py: Python byte-compilation PASS.
+- semantic comparator positive fixture: PASS when only Files root, database address,
+  root key, timestamps and directory filesystem size differ.
+- semantic comparator negative fixture: correctly FAILS when a regular-file checksum differs.
+- Windows runner: static review completed. PowerShell was not installed in the packaging
+  environment, so the .ps1 script was not executed here.
+
+Runtime reconciliation is intentionally not pre-recorded. Run the local-common helper,
+then the production/pluto helper, and preserve both reports before closing Step 12.

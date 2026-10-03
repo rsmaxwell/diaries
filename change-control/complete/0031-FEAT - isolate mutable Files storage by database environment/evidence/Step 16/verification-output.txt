@@ -1,0 +1,56 @@
+PASS: local.env.example selects the approved common database/Files pair
+PASS: development-infrastructure retains its independent committed database/Files defaults
+PASS: development-infrastructure resolves the paired common override when local.env is applied second
+PASS: local-docker-build retains its independent committed database/Files defaults
+PASS: local-docker-build resolves the paired common override when local.env is applied second
+PASS: local-published-smoke retains its independent committed database/Files defaults
+PASS: local-published-smoke resolves the paired common override when local.env is applied second
+PASS: one-sided database/Files overrides fail clearly
+PASS: local validation rejects the production mutable Files root
+PASS: pair validator contains frozen mapping development-infrastructure <-> files-development-infrastructure
+PASS: pair validator contains frozen mapping local-docker-build <-> files-local-docker-build
+PASS: pair validator contains frozen mapping local-published-smoke <-> files-local-published-smoke
+PASS: pair validator contains frozen mapping common <-> files-development-common
+PASS: compose.local-docker-build.yaml selects mutable /data/files through explicit DIARIES_FILES_DIR
+PASS: compose.local-docker-build.yaml keeps the original diary scan tree separate
+PASS: compose.local-docker-build.yaml does not reintroduce an implicit shared mutable files path
+PASS: compose.local-published-smoke.yaml selects mutable /data/files through explicit DIARIES_FILES_DIR
+PASS: compose.local-published-smoke.yaml keeps the original diary scan tree separate
+PASS: compose.local-published-smoke.yaml does not reintroduce an implicit shared mutable files path
+PASS: direct-development responder config loads mode env before local.env
+PASS: diaries-responder/scripts/windows/run-responder.bat consumes the shared effective responder configuration
+PASS: diaries-responder/scripts/windows/migration0024ImageCatalogue.bat consumes the shared effective responder configuration
+PASS: Step 9 reconciliation derives its local dataset from the selected mode + local override
+PASS: Step 12 reconciliation derives the common pair from development-infrastructure.env + local.env
+PASS: UploadFile public URL is independent of the physical Files directory
+PASS: ListFiles uses the same stable /files public contract
+PASS: responder regression covers stable /files URL with a non-default physical directory
+PASS: database-only restore tooling warns that Files reconciliation may be required
+PASS: development-infrastructure binary restore never claims to restore a complete durable dataset
+PASS: local-docker-build binary restore never claims to restore a complete durable dataset
+PASS: local-published-smoke binary restore never claims to restore a complete durable dataset
+PASS: Step 16 final runner gates both Diaries and Playbooks exact candidates
+PASS: Step 16 final runner explicitly tests common precedence, isolated defaults and mismatch rejection
+PASS: Step 16 runner executes the full Java responder/web test suite
+PASS: Step 16 runner builds the Angular client candidate
+PASS: Step 16 runner seals final cross-repository source identities
+PASS: restore rehearsal pins the frozen Step 8 local backup checksum
+PASS: restore rehearsal uses a disposable localhost PostgreSQL instance
+PASS: restore rehearsal restores the preserved Step 8 dump into the disposable database
+PASS: restore rehearsal reconciles the restored common database read-only against its intended Files root
+PASS: restore rehearsal requires the frozen 85-image catalogue to reconcile without conflicts
+PASS: restore rehearsal removes temporary config and disposable database resources
+PASS: restore rehearsal refuses to scan while a local responder may mutate the Files root
+PASS: Step 8 close-out evidence exists for final acceptance mapping
+PASS: Step 9 close-out evidence exists for final acceptance mapping
+PASS: Step 10 close-out evidence exists for final acceptance mapping
+PASS: Step 11 close-out evidence exists for final acceptance mapping
+PASS: Step 12 close-out evidence exists for final acceptance mapping
+PASS: Step 13 close-out evidence exists for final acceptance mapping
+PASS: Step 14 close-out evidence exists for final acceptance mapping
+PASS: Step 15 close-out evidence exists for final acceptance mapping
+PASS: Step 13 close-out preserves local common lifecycle plus production-isolation proof
+PASS: Step 14 close-out preserves explicit non-destructive production deployment proof
+PASS: Step 16 acceptance matrix covers the feature README acceptance criteria
+PASS: Step 16 rollback instructions preserve matched-pair recovery and no-auto-merge rules
+PASS: 0031-FEAT Step 16 final Diaries source/contract gate verified

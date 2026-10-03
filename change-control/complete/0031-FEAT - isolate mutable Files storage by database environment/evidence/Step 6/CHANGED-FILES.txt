@@ -1,0 +1,16 @@
+# Diaries repository
+scripts/windows/common/validate-dataset-pair.bat
+scripts/windows/common/validate-dataset-pair.ps1
+scripts/windows/development-infrastructure/start.bat
+scripts/windows/development-infrastructure/prepare-responder-config.bat
+scripts/windows/local-docker-build/start.bat
+scripts/windows/local-published-smoke/start.bat
+scripts/windows/validation/verify-0031-step6.py
+scripts/windows/validation/verify-0031-step6.ps1
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/IMPLEMENTATION-STEPS.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 6/*
+
+# Playbooks repository
+roles/diaries/tasks/copy.yaml
+roles/diaries/tests/verify-0031-storage-isolation.py

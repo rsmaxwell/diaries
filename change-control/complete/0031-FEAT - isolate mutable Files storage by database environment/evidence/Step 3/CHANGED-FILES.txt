@@ -1,0 +1,14 @@
+compose.local-docker-build.yaml
+compose.local-published-smoke.yaml
+config/environments/development-infrastructure.env
+config/environments/local-docker-build.env
+config/environments/local-published-smoke.env
+config/environments/local.env.example
+scripts/windows/validation/verify-0031-step3.py
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/IMPLEMENTATION-STEPS.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 3/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 3/verification-output.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 3/SOURCE-SHA256SUMS.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 3/SHA256SUMS.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 3/CHANGED-FILES.txt

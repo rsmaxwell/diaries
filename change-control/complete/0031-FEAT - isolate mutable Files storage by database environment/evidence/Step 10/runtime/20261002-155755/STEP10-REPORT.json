@@ -1,0 +1,49 @@
+{
+    "schemaVersion":  1,
+    "feature":  "0031-FEAT",
+    "step":  10,
+    "status":  "CANDIDATE_ROOT_CREATED",
+    "createdAt":  "2026-10-02T15:58:03.7198936+01:00",
+    "mode":  "local-docker-build",
+    "dataset":  {
+                    "databaseDataDir":  "./data/database/common",
+                    "databaseLeaf":  "common",
+                    "filesDir":  "files-development-common"
+                },
+    "source":  {
+                   "root":  "P:\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files",
+                   "step8SnapshotParent":  "P:\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\.0031-backups\\step8-20261002-143134",
+                   "fullFileCount":  90,
+                   "fullTotalBytes":  100032776,
+                   "matchesStep8SourceInventory":  true,
+                   "approvedSeedFileCount":  89,
+                   "approvedSeedTotalBytes":  100032776
+               },
+    "staging":  {
+                    "sourcePath":  "P:\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files\\.image-staging",
+                    "excludedFromSeed":  true,
+                    "fileCount":  1,
+                    "disposition":  "Step 9 reviewed transient/control state; do not blindly propagate"
+                },
+    "target":  {
+                   "root":  "P:\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files-development-common",
+                   "fileCount":  89,
+                   "totalBytes":  100032776,
+                   "exactApprovedSeedInventoryMatch":  true,
+                   "writeReadDeleteProbe":  "PASS",
+                   "aclEvidence":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\change-control\\in-progress\\0031-FEAT - isolate mutable Files storage by database environment\\evidence\\Step 10\\runtime\\20261002-155755\\TARGET-ACL.txt"
+               },
+    "copy":  {
+                 "tool":  "robocopy /E /COPY:DAT /DCOPY:DAT /XJ with .image-staging excluded",
+                 "robocopyExitCode":  1,
+                 "usedVerifiedTemporaryRootBeforePromotion":  true
+             },
+    "writeFreeze":  {
+                        "local":  "verified",
+                        "production":  "operator-confirmed"
+                    },
+    "operatorReview":  {
+                           "aclReviewRequiredBeforeStep10CloseOut":  true,
+                           "note":  "Review SOURCE-ACL.txt and TARGET-ACL.txt/NAS permissions. Step 11 separately verifies the responder runtime can read the candidate while writes remain frozen."
+                       }
+}

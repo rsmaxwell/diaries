@@ -83,7 +83,7 @@ services:
         target: /data/files
         read_only: false
         volume:
-          subpath: ${DIARIES_NAS_CONTENT_PATH}/files
+          subpath: ${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR:?DIARIES_FILES_DIR must be set}
 
     healthcheck:
       test:
@@ -154,4 +154,4 @@ volumes:
     driver_opts:
       type: cifs
       device: //${DIARIES_NAS_HOST}/${DIARIES_NAS_SHARE}
-      o: username=${DIARIES_NAS_USERNAME},password=${DIARIES_NAS_PASSWORD},vers=3.0
+      o: username=${DIARIES_NAS_USERNAME},password=${DIARIES_NAS_PASSWORD},vers=3.0,dir_mode=0700,file_mode=0600

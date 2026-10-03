@@ -1,0 +1,30 @@
+﻿{
+    "feature":  "0031-FEAT",
+    "step":  11,
+    "generatedAt":  "2026-10-02T17:31:44.6170793+01:00",
+    "status":  "PASS",
+    "commonOverride":  true,
+    "modes":  [
+                  {
+                      "mode":  "development-infrastructure",
+                      "databaseDataDir":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database\\common",
+                      "filesSelector":  "files-development-common",
+                      "filesBacking":  "\\\\nas\\photo\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files-development-common",
+                      "report":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\change-control\\in-progress\\0031-FEAT - isolate mutable Files storage by database environment\\evidence\\Step 11\\runtime\\development-infrastructure-20261002-170911\\STEP11-REPORT.json"
+                  },
+                  {
+                      "mode":  "local-docker-build",
+                      "databaseDataDir":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database\\common",
+                      "filesSelector":  "files-development-common",
+                      "filesBacking":  "nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files-development-common",
+                      "report":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\change-control\\in-progress\\0031-FEAT - isolate mutable Files storage by database environment\\evidence\\Step 11\\runtime\\local-docker-build-20261002-172734\\STEP11-REPORT.json"
+                  },
+                  {
+                      "mode":  "local-published-smoke",
+                      "databaseDataDir":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database\\common",
+                      "filesSelector":  "files-development-common",
+                      "filesBacking":  "nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files-development-common",
+                      "report":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\change-control\\in-progress\\0031-FEAT - isolate mutable Files storage by database environment\\evidence\\Step 11\\runtime\\local-published-smoke-20261002-172947\\STEP11-REPORT.json"
+                  }
+              ]
+}

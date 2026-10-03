@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "feature": "0031-FEAT",
+  "step": 12,
+  "dataset": "local-common",
+  "modeUsedForReconciliation": "development-infrastructure direct responder configuration",
+  "effectiveDbDataDir": "./data/database/common",
+  "effectiveFilesDir": "files-development-common",
+  "physicalFilesRoot": "Microsoft.PowerShell.Core\\FileSystem::\\\\nas\\photo\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files-development-common",
+  "publicFilesRoute": "/files/...",
+  "responderConfig": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\build\\development-infrastructure\\responder.effective.json",
+  "step9BaselineRun": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\change-control\\in-progress\\0031-FEAT - isolate mutable Files storage by database environment\\evidence\\Step 9\\runtime\\local-common-20261002-151207",
+  "productionWriteFreezeConfirmed": true,
+  "capturedAt": "2026-10-02T17:24:52.0799381Z"
+}

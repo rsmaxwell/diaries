@@ -1,0 +1,16 @@
+36f8eae61dcfb73d57b797a323ea650b9b52c255b2728f1fb9fdec84901864e6  scripts/windows/common/resolve-effective-dataset.ps1
+63910264ed57f107a0560b25c814880453b04c8f6753668157a1f8c875a97041  scripts/windows/common/verify-db-backup-manifest.ps1
+3969a979f82f0a3f4ee705ee42773859db96875952ccc27bd275422c6678c144  scripts/windows/common/write-db-backup-manifest.ps1
+76f8457441f01b1f660ac7646f5812dcc56c74ca862225336f2bf4107e4d75db  scripts/windows/development-infrastructure/backup-db-to-binary.bat
+e7bd417c35e4a14514cf3de8b6192271779cd333506734143a749d27a472ed8c  scripts/windows/development-infrastructure/backup-db-to-sql.bat
+1c2e70243ecb6033f2b8bd4e3188fc2f2468b788589de151e71460bc867dcec3  scripts/windows/development-infrastructure/restore-db-from-binary.bat
+3482f6d9a97f5da9c8929591c1844d77831f29012a41b83d549fb6fd09c3f70d  scripts/windows/development-infrastructure/restore-db-from-sql.bat
+063021653173cddb40fa4d986f1389cab4fd0dce2e00ba6996792376922ac11b  scripts/windows/local-docker-build/backup-db-to-binary.bat
+275aa112a3700087c5cda05bec9c7027548be9a2a9350af72a6e48d67d34f4d1  scripts/windows/local-docker-build/backup-db-to-sql.bat
+1f37492d332f0aaa2a544b6090fc5a512b3825881e7200c193bbf66eb0646be8  scripts/windows/local-docker-build/restore-db-from-binary.bat
+f601a9aec5000ee97c273166823510b989008244286aa301a87ce4ec7ceaf68f  scripts/windows/local-docker-build/restore-db-from-sql.bat
+d86726b714a2892f8d028dc33057805d6873a261c652b741782c3efba62cc857  scripts/windows/local-published-smoke/backup-db-to-binary.bat
+4c8e431bd65610d4b2e221a5ae2b4869dab3a21926fd2a19c8a572e70dcf17aa  scripts/windows/local-published-smoke/backup-db-to-sql.bat
+4abce830153a5453e5342e686c4f3b2e7377a506a11d65e21df59bd24f3a3d97  scripts/windows/local-published-smoke/restore-db-from-binary.bat
+1cc8eb7c8a5f0001f150bc64018c2cd84f8497f446603d26f9b1366725379894  scripts/windows/local-published-smoke/restore-db-from-sql.bat
+cdd4a0950ae741dabeb206d7642e7a41bcb0f8c20e9ec63cc3a3ef8d0ca7bbbd  scripts/windows/validation/verify-0031-step7.py

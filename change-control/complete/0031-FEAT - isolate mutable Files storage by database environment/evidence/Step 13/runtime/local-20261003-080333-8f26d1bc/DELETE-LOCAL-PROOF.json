@@ -1,0 +1,61 @@
+{
+    "capturedAt":  "2026-10-03T07:30:20.5790362Z",
+    "deleteMode":  "local-docker-build",
+    "pair":  {
+                 "Database":  "./data/database/common",
+                 "Files":  "files-development-common"
+             },
+    "databaseRowsBefore":  [
+                               "88\t0\t0031-step13/0031-step13-20261003-080333-8f26d1bc.png\timage/png\t0031-step13-20261003-080333-8f26d1bc.png\t1\t1\tc47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96\t\t"
+                           ],
+    "physicalFileBefore":  {
+                               "mode":  "container",
+                               "container":  "diaries-local-responder",
+                               "path":  "/data/files/0031-step13/0031-step13-20261003-080333-8f26d1bc.png",
+                               "present":  true,
+                               "sha256":  "c47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96"
+                           },
+    "deleteRpc":  {
+                      "operation":  "delete",
+                      "deleteReply":  {
+                                          "status":  {
+                                                         "code":  200,
+                                                         "message":  "ok"
+                                                     },
+                                          "payload":  {
+                                                          "deleted":  true,
+                                                          "relativePath":  "0031-step13/0031-step13-20261003-080333-8f26d1bc.png",
+                                                          "id":  88
+                                                      }
+                                      },
+                      "liveTombstoneMessages":  [
+                                                    {
+                                                        "topic":  "diaries/images/88",
+                                                        "retained":  false,
+                                                        "qos":  1,
+                                                        "payloadBytes":  0
+                                                    }
+                                                ],
+                      "retainedAfterDelete":  [
+
+                                              ],
+                      "httpAfterDelete":  {
+                                              "url":  "http://127.0.0.1:8081/files/0031-step13/0031-step13-20261003-080333-8f26d1bc.png",
+                                              "status":  404,
+                                              "contentType":  null,
+                                              "bytes":  0,
+                                              "sha256":  null,
+                                              "expectedSha256":  null
+                                          }
+                  },
+    "databaseRowsAfter":  [
+
+                          ],
+    "physicalFileAfter":  {
+                              "mode":  "container",
+                              "container":  "diaries-local-responder",
+                              "path":  "/data/files/0031-step13/0031-step13-20261003-080333-8f26d1bc.png",
+                              "present":  false,
+                              "sha256":  null
+                          }
+}

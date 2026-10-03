@@ -1,0 +1,49 @@
+PASS: common diagnostics report both halves of the durable dataset pair
+PASS: Docker diagnostics keep the responder runtime Files path stable at /data/files
+PASS: Docker diagnostics show the selected NAS Files subpath
+PASS: Docker diagnostics retain the shared read-only diary subpath
+PASS: development-infrastructure start.bat prints effective database/Files diagnostics
+PASS: development-infrastructure status.bat prints effective database/Files diagnostics
+PASS: development-infrastructure status path enforces the same database/Files pair guard as startup
+PASS: local-docker-build start.bat prints effective database/Files diagnostics
+PASS: local-docker-build status.bat prints effective database/Files diagnostics
+PASS: local-docker-build status path enforces the same database/Files pair guard as startup
+PASS: local-published-smoke start.bat prints effective database/Files diagnostics
+PASS: local-published-smoke status.bat prints effective database/Files diagnostics
+PASS: local-published-smoke status path enforces the same database/Files pair guard as startup
+PASS: Step 11 capture validates the dataset pair before evidence collection
+PASS: Step 11 capture requires explicit confirmation that the production write freeze remains active
+PASS: Step 11 collector covers all three local runtime modes
+PASS: Docker modes capture fully resolved Compose configuration
+PASS: resolved Compose evidence verifies the database mount after overrides
+PASS: rendered Compose evidence is redacted before it is persisted
+PASS: direct-development generated responder configuration is persisted only in redacted form
+PASS: responder/runtime text evidence is scrubbed for configured secrets before persistence
+PASS: runtime mount inspection checks /data/files and /data/diaries
+PASS: database verification is a read-only SELECT
+PASS: static verification uses HTTP HEAD and keeps the public /files route stable
+PASS: Files verification includes non-destructive list checks
+PASS: Docker runtime capture includes responder logs
+PASS: cross-mode comparison recognises the intended common local Files root
+PASS: cross-mode comparison verifies common override database identity
+PASS: cross-mode comparison requires stable public route and responder logs
+PASS: capture-local-mode.ps1 remains ASCII-only for Windows PowerShell 5.1 BOM-less source compatibility
+PASS: compare-local-mode-evidence.ps1 remains ASCII-only for Windows PowerShell 5.1 BOM-less source compatibility
+PASS: collector contains no mutating operation matching \bRemove-Item\b
+PASS: collector contains no mutating operation matching \bMove-Item\b
+PASS: collector contains no mutating operation matching \bRename-Item\b
+PASS: collector contains no mutating operation matching \bDELETE\s+FROM\b
+PASS: collector contains no mutating operation matching \bINSERT\s+INTO\b
+PASS: collector contains no mutating operation matching \bUPDATE\s+public\.
+PASS: collector contains no mutating operation matching \bdocker\s+exec\b.*\brm\b
+PASS: local-docker-build still maps the selected physical root to stable /data/files
+PASS: local-docker-build retains the shared diary mount as read-only
+PASS: local-published-smoke still maps the selected physical root to stable /data/files
+PASS: local-published-smoke retains the shared diary mount as read-only
+PASS: local-published-smoke uses the same safe local PostgreSQL defaults as the other local modes
+PASS: UploadFile keeps the public Files URL independent of the physical Files selector
+PASS: static responder Files context remains /files
+PASS: Step 11 contract remains present in the implementation plan
+PASS: implementation plan records the reviewed Step 11 runtime completion
+PASS: Step 11 runbook keeps production frozen during the local cut-over checks
+PASS: 0031-FEAT Step 11 source/runtime-path tooling verified

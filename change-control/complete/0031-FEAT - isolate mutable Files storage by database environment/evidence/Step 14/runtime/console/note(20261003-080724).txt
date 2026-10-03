@@ -1,0 +1,12 @@
+richard@pluto:~/projects/diaries$ ./scripts/step14-production-deployment.sh preflight
+0031-FEAT Step 14 production preflight
+Captured: 2026-10-03T09:06:12+01:00
+Project: /home/richard/projects/diaries
+
+ Container diaries-diaries-responder-run-5c958366e82a Creating
+ Container diaries-diaries-responder-run-5c958366e82a Created
+
+PASS: Step 14 production preflight is clean.
+Production responder remains stopped for the normal Ansible deployment.
+Evidence: /home/richard/projects/diaries/data/0031-step14/preflight-20261003-090612
+richard@pluto:~/projects/diaries$

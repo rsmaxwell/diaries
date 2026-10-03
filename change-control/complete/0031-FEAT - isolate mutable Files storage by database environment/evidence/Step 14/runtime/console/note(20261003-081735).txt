@@ -1,0 +1,27 @@
+richard@pluto:~/projects/diaries$ sudo systemctl restart diaries-compose.service
+richard@pluto:~/projects/diaries$ sudo systemctl status diaries-compose.service --no-pager
+docker compose ps
+● diaries-compose.service - Diaries application
+     Loaded: loaded (/etc/systemd/system/diaries-compose.service; enabled; preset: enabled)
+     Active: active (exited) since Sat 2026-10-03 09:16:51 BST; 12s ago
+    Process: 634247 ExecStart=/home/richard/projects/diaries/scripts/start.sh (code=exited, status=0/SUCCESS)
+   Main PID: 634247 (code=exited, status=0/SUCCESS)
+        CPU: 748ms
+
+Oct 03 09:16:40 pluto start.sh[634362]:  Container diaries-responder Healthy
+Oct 03 09:16:40 pluto start.sh[634362]:  Container diaries-mosquitto Healthy
+Oct 03 09:16:40 pluto start.sh[634362]:  Container diaries-postgres Healthy
+Oct 03 09:16:40 pluto start.sh[634362]:  Container diaries-client Healthy
+Oct 03 09:16:51 pluto start.sh[634362]:  Container diaries-web Healthy
+Oct 03 09:16:51 pluto start.sh[634247]: Activating Diaries routes in shared Nginx...
+Oct 03 09:16:51 pluto start.sh[635304]: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+Oct 03 09:16:51 pluto start.sh[635304]: nginx: configuration file /etc/nginx/nginx.conf test is successful
+Oct 03 09:16:51 pluto start.sh[634247]: Diaries stack started successfully.
+Oct 03 09:16:51 pluto systemd[1]: Finished diaries-compose.service - Diaries application.
+NAME                IMAGE                                        COMMAND                  SERVICE             CREATED          STATUS                    PORTS
+diaries-client      rsmaxwell/diaries-client:0.0.9-build-74      "/docker-entrypoint.…"   diaries-client      42 seconds ago   Up 41 seconds (healthy)   80/tcp, 8080/tcp
+diaries-mosquitto   eclipse-mosquitto:2                          "/docker-entrypoint.…"   diaries-mqtt        42 seconds ago   Up 41 seconds (healthy)   1883/tcp
+diaries-postgres    postgres:18-alpine                           "docker-entrypoint.s…"   diaries-db          42 seconds ago   Up 41 seconds (healthy)   0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp
+diaries-responder   rsmaxwell/diaries-responder:0.0.9-build-82   "/opt/diaries/bin/re…"   diaries-responder   42 seconds ago   Up 33 seconds (healthy)
+diaries-web         rsmaxwell/diaries-web:0.0.9-build-7          "java -jar /opt/diar…"   diaries-web         42 seconds ago   Up 26 seconds (healthy)   8082/tcp
+richard@pluto:~/projects/diaries$

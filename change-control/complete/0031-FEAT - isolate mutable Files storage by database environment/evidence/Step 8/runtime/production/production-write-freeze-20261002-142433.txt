@@ -1,0 +1,15 @@
+0031-FEAT Step 8 - production mutable-write freeze
+Captured: 2026-10-02T14:24:33+01:00
+Host: pluto
+Project: /home/richard/projects/diaries
+
+Stopping production responder service: diaries-responder
+ Container diaries-responder Stopping 
+ Container diaries-responder Stopped 
+
+PASS: production responder is stopped.
+PASS: production database remains running for backup.
+Playbooks/runtime source identity: unknown
+Production mutable Image/File writes are frozen.
+Leave the responder stopped until the 0031 migration sequence says it is safe to restart.
+Evidence: /home/richard/projects/diaries/data/0031-step8/production-write-freeze-20261002-142433.txt

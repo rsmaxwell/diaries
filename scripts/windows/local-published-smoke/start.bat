@@ -87,6 +87,19 @@ if not exist "%LOCAL_ENV_FILE%" (
 
 
 rem ----------------------------------------------------------------------------
+rem Enforce the 0031 database + mutable Files pairing invariant before loading
+rem or using the effective environment.
+rem ----------------------------------------------------------------------------
+
+set "DATASET_PAIR_GUARD=%PROJECT_DIR%\scripts\windows\common\validate-dataset-pair.bat"
+call "%DATASET_PAIR_GUARD%" "local-published-smoke" "%ENV_FILE%" "%LOCAL_ENV_FILE%"
+if errorlevel 1 (
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+
+rem ----------------------------------------------------------------------------
 rem Load both environment files into the current batch process.
 rem
 rem Load the mode-specific environment first, followed by local.env so that
@@ -103,6 +116,13 @@ if errorlevel 1 (
 call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat" "%LOCAL_ENV_FILE%"
 if errorlevel 1 (
     echo ERROR: Could not load local environment file: "%LOCAL_ENV_FILE%" >&2
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+set "DATASET_REPORTER=%PROJECT_DIR%\scripts\windows\common\report-effective-dataset.bat"
+call "%DATASET_REPORTER%" "local-published-smoke"
+if errorlevel 1 (
     set "EXIT_CODE=1"
     goto :cleanup
 )

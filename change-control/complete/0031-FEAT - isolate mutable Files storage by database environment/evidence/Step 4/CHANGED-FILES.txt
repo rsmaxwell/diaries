@@ -1,0 +1,14 @@
+config/mosquitto/README.md
+diaries-responder/README.md
+diaries-responder/scripts/windows/migration0024ImageCatalogue.bat
+diaries-responder/scripts/windows/run-responder.bat
+diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/UploadFile.java
+diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/handlers/UploadStagingTest.java
+scripts/windows/development-infrastructure/prepare-responder-config.bat
+scripts/windows/development-infrastructure/prepare-responder-config.ps1
+scripts/windows/development-infrastructure/start.bat
+scripts/windows/development-infrastructure/status.bat
+scripts/windows/validation/verify-0031-step4-runtime.bat
+scripts/windows/validation/verify-0031-step4.py
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/IMPLEMENTATION-STEPS.md

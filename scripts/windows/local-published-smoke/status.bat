@@ -86,6 +86,13 @@ rem Load the mode-specific environment first, followed by local.env so that
 rem machine-specific values override the committed mode defaults.
 rem ----------------------------------------------------------------------------
 
+set "DATASET_PAIR_GUARD=%PROJECT_DIR%\scripts\windows\common\validate-dataset-pair.bat"
+call "%DATASET_PAIR_GUARD%" "local-published-smoke" "%ENV_FILE%" "%LOCAL_ENV_FILE%"
+if errorlevel 1 (
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
 call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat" "%ENV_FILE%"
 if errorlevel 1 (
     echo ERROR: Could not load environment file: "%ENV_FILE%" >&2
@@ -96,6 +103,13 @@ if errorlevel 1 (
 call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat" "%LOCAL_ENV_FILE%"
 if errorlevel 1 (
     echo ERROR: Could not load local environment file: "%LOCAL_ENV_FILE%" >&2
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+set "DATASET_REPORTER=%PROJECT_DIR%\scripts\windows\common\report-effective-dataset.bat"
+call "%DATASET_REPORTER%" "local-published-smoke"
+if errorlevel 1 (
     set "EXIT_CODE=1"
     goto :cleanup
 )

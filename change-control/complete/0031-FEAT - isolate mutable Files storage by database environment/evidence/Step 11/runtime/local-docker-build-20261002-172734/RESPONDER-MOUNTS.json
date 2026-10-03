@@ -1,0 +1,23 @@
+﻿[
+    {
+        "Type":  "bind",
+        "Name":  null,
+        "Source":  "C:/Users/Richard/.diaries/responder.docker.json",
+        "Destination":  "/config/responder.json",
+        "RW":  false
+    },
+    {
+        "Type":  "volume",
+        "Name":  "diaries-local-docker-build_nas-photo",
+        "Source":  "/var/lib/docker/volumes/diaries-local-docker-build_nas-photo/_data",
+        "Destination":  "/data/diaries",
+        "RW":  false
+    },
+    {
+        "Type":  "volume",
+        "Name":  "diaries-local-docker-build_nas-photo",
+        "Source":  "/var/lib/docker/volumes/diaries-local-docker-build_nas-photo/_data",
+        "Destination":  "/data/files",
+        "RW":  true
+    }
+]

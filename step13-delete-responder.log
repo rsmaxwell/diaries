@@ -1,0 +1,192 @@
+SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+07:06:32.418 [main] INFO  com.rsmaxwell.diaries.responder.Responder - Static server running at:
+07:06:32.422 [main] INFO  com.rsmaxwell.diaries.responder.Responder -   http://localhost:8081/diaries  ->  /data/diaries
+07:06:32.422 [main] INFO  com.rsmaxwell.diaries.responder.Responder -   http://localhost:8081/files  ->  /data/files
+07:06:34.432 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Capturing retained MQTT snapshot branch: diaries/diaries/#
+07:06:34.580 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Retained MQTT snapshot branch drained: diaries/diaries/# (2962 topics captured total)
+07:06:34.581 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Capturing retained MQTT snapshot branch: diaries/pages/#
+07:06:34.652 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Retained MQTT snapshot branch drained: diaries/pages/# (3645 topics captured total)
+07:06:34.652 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Capturing retained MQTT snapshot branch: diaries/fragments/#
+07:06:34.847 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Retained MQTT snapshot branch drained: diaries/fragments/# (5974 topics captured total)
+07:06:34.847 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Capturing retained MQTT snapshot branch: diaries/marquees/#
+07:06:34.998 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Retained MQTT snapshot branch drained: diaries/marquees/# (8243 topics captured total)
+07:06:34.998 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Capturing retained MQTT snapshot branch: diaries/images/#
+07:06:35.045 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Retained MQTT snapshot branch drained: diaries/images/# (8328 topics captured total)
+07:06:35.046 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Capturing retained MQTT snapshot branch: diaries/dates/#
+07:06:35.190 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Retained MQTT snapshot branch drained: diaries/dates/# (10657 topics captured total)
+07:06:35.190 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Capturing retained MQTT snapshot branch: diaries/people/#
+07:06:35.274 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Retained MQTT snapshot branch drained: diaries/people/# (10657 topics captured total)
+07:06:35.274 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Capturing retained MQTT snapshot branch: diaries/roles/#
+07:06:35.362 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Retained MQTT snapshot branch drained: diaries/roles/# (10657 topics captured total)
+07:06:40.705 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - sizeof(topicTreeMap) = 10657
+07:06:40.706 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - sizeof(databaseMap) = 10658
+07:06:40.719 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - Difference detected on topic: diaries/images/88
+07:06:40.719 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise -           DB:   {"id":88,"version":0,"relativePath":"0031-step13/0031-step13-20261003-080333-8f26d1bc.png","mimeType":"image/png","originalFilename":"0031-step13-20261003-080333-8f26d1bc.png","width":1,"height":1,"checksum":"c47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96","caption":"","altText":""}
+07:06:40.719 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise -           Tree: null
+07:06:40.720 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - publish: topic: diaries/images/88
+07:06:40.720 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise -          value: {"id":88,"version":0,"relativePath":"0031-step13/0031-step13-20261003-080333-8f26d1bc.png","mimeType":"image/png","originalFilename":"0031-step13-20261003-080333-8f26d1bc.png","width":1,"height":1,"checksum":"c47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96","caption":"","altText":""}
+07:06:41.768 [main] INFO  com.rsmaxwell.diaries.responder.sync.Synchronise - synchronise: ok
+07:06:41.871 [main] INFO  com.rsmaxwell.diaries.responder.Responder - Connecting to broker 'tcp://diaries-mqtt:1883' as 'responder'
+07:06:42.178 [main] INFO  com.rsmaxwell.diaries.responder.Responder - Connecting to broker 'tcp://diaries-mqtt:1883' as 'listener'
+07:06:42.481 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Connected, subscribing to: 'diaries/rpc/request'
+07:06:42.482 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - MQTT connect complete (reconnect=false)
+07:06:47.062 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:06:47.066 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:06:47.077 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:06:47.078 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:06:57.898 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:06:57.898 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:06:57.900 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:06:57.900 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:07:08.727 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:07:08.727 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:07:08.728 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:07:08.728 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:07:19.570 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:07:19.570 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:07:19.571 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:07:19.571 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:07:30.426 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:07:30.427 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:07:30.428 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:07:30.428 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:07:41.289 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:07:41.290 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:07:41.291 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:07:41.291 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:07:52.136 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:07:52.136 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:07:52.137 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:07:52.137 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:08:02.962 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:08:02.962 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:08:02.963 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:08:02.964 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:08:13.809 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:08:13.809 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:08:13.810 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:08:13.810 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:08:24.658 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:08:24.658 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:08:24.659 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:08:24.659 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:08:35.476 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:08:35.476 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:08:35.477 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:08:35.477 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:08:46.296 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:08:46.297 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:08:46.298 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:08:46.298 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:08:57.148 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:08:57.148 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:08:57.149 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:08:57.149 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:09:07.960 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:09:07.960 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:09:07.961 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:09:07.961 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:09:18.805 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:09:18.805 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:09:18.806 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:09:18.806 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:09:29.605 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:09:29.606 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:09:29.607 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:09:29.607 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:09:40.455 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:09:40.456 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:09:40.457 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:09:40.457 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:09:43.162 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"signin","args":{"username":"richard","password":"D4(oL+pwKvB(=LYFvR4c","sessionId":"7014d7a6-90b1-413a-ab62-a407b08aa891"}}
+07:09:43.163 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"signin","args":{"username":"richard","password":"D4(oL+pwKvB(=LYFvR4c","sessionId":"7014d7a6-90b1-413a-ab62-a407b08aa891"}}
+07:09:43.262 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:09:43.262 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"accessToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2Nlc3MiLCJleHAiOjE3OTEwNDczODMsInJvbGUiOiJFRElUT1IiLCJrbm93bkFzIjoicmljaGFyZCIsInNlc3Npb25JZCI6IjcwMTRkN2E2LTkwYjEtNDEzYS1hYjYyLWE0MDdiMDhhYTg5MSIsInVzZXJJZCI6NSwidXNlcm5hbWUiOiJyaWNoYXJkIiwic3RhdHVzIjoiQUNUSVZFIn0.K0LF-2pgVd3cBz-345JKw1t2cMJPsEZiD5HgcDjf4OU","refreshToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWZyZXNoIiwiZXhwIjoxNzkxNDQzMzgzLCJzZXNzaW9uSWQiOiI3MDE0ZDdhNi05MGIxLTQxM2EtYWI2Mi1hNDA3YjA4YWE4OTEiLCJ1c2VySWQiOjV9.wm-jJwa2N9WZJ7WjxvtNeQiMjF7JElkE7iSLlONPmSc","refreshPeriod":36000,"userId":5,"username":"richard","knownAs":"richard","sessionId":"7014d7a6-90b1-413a-ab62-a407b08aa891","status":"ACTIVE","role":"EDITOR"}
+07:09:43.306 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"deleteImage","args":{"name":"0031-step13-20261003-080333-8f26d1bc.png","subdir":"0031-step13"}}
+07:09:43.306 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"deleteImage","args":{"name":"0031-step13-20261003-080333-8f26d1bc.png","subdir":"0031-step13"}}
+07:09:43.307 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.getAccessToken
+07:09:43.307 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.Authorization - Authorization.checkToken
+07:09:43.322 [MQTT Call: listener] ERROR com.rsmaxwell.diaries.responder.handlers.DeleteImage - Image deletion failed
+java.io.IOException: Staging directory requires owner-only permissions
+	at com.rsmaxwell.diaries.responder.utilities.ImageCatalogueService.workDirectory(ImageCatalogueService.java:521) ~[diaries-responder.jar:0.0.1-SNAPSHOT]
+	at com.rsmaxwell.diaries.responder.utilities.ImageCatalogueService.withCatalogueLock(ImageCatalogueService.java:401) ~[diaries-responder.jar:0.0.1-SNAPSHOT]
+	at com.rsmaxwell.diaries.responder.utilities.ImageCatalogueService.delete(ImageCatalogueService.java:436) ~[diaries-responder.jar:0.0.1-SNAPSHOT]
+	at com.rsmaxwell.diaries.responder.handlers.DeleteImage.handleRequest(DeleteImage.java:45) [diaries-responder.jar:0.0.1-SNAPSHOT]
+	at com.rsmaxwell.mqtt.rpc.responder.MessageHandler.getResponse(MessageHandler.java:178) [diaries-responder.jar:0.0.1-SNAPSHOT]
+	at com.rsmaxwell.mqtt.rpc.responder.MessageHandler.messageArrived(MessageHandler.java:126) [diaries-responder.jar:0.0.1-SNAPSHOT]
+	at com.rsmaxwell.diaries.responder.utilities.ImageFragmentMessageHandler.messageArrived(ImageFragmentMessageHandler.java:42) [diaries-responder.jar:0.0.1-SNAPSHOT]
+	at com.rsmaxwell.diaries.responder.utilities.MyMessageHandler.messageArrived(MyMessageHandler.java:41) [diaries-responder.jar:0.0.1-SNAPSHOT]
+	at org.eclipse.paho.mqttv5.client.internal.CommsCallback.deliverMessage(CommsCallback.java:637) [diaries-responder.jar:0.0.1-SNAPSHOT]
+	at org.eclipse.paho.mqttv5.client.internal.CommsCallback.handleMessage(CommsCallback.java:481) [diaries-responder.jar:0.0.1-SNAPSHOT]
+	at org.eclipse.paho.mqttv5.client.internal.CommsCallback.run(CommsCallback.java:224) [diaries-responder.jar:0.0.1-SNAPSHOT]
+	at java.base/java.lang.Thread.run(Unknown Source) [?:?]
+07:09:43.327 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":500,"message":"internal error"}
+07:09:43.327 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: "Image deletion failed."
+07:09:51.300 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:09:51.301 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:09:51.302 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:09:51.302 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:10:02.155 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:10:02.155 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:10:02.156 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:10:02.156 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:10:12.990 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:10:12.990 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:10:12.991 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:10:12.991 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:10:23.839 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:10:23.839 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:10:23.840 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:10:23.840 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:10:34.681 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:10:34.681 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:10:34.682 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:10:34.682 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:10:45.516 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:10:45.516 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:10:45.517 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:10:45.517 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:10:56.353 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:10:56.353 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:10:56.354 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:10:56.354 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:11:07.207 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:11:07.207 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:11:07.208 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:11:07.208 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:11:18.058 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:11:18.058 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:11:18.059 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:11:18.059 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:11:28.914 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:11:28.914 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:11:28.915 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:11:28.915 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:11:39.758 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:11:39.759 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:11:39.759 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:11:39.759 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:11:50.604 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:11:50.604 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:11:50.605 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:11:50.605 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:12:01.465 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:12:01.466 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:12:01.467 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:12:01.467 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:12:12.291 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:12:12.292 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:12:12.293 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:12:12.293 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:12:23.127 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:12:23.128 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:12:23.129 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:12:23.129 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:12:33.949 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:12:33.950 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:12:33.951 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:12:33.951 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}
+07:12:44.781 [MQTT Call: listener] INFO  com.rsmaxwell.diaries.responder.utilities.MyMessageHandler - Message received on topic 'diaries/rpc/request': {"function":"health","args":{}}
+07:12:44.782 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Received request: {"function":"health","args":{}}
+07:12:44.783 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending status:  {"code":200,"message":"ok"}
+07:12:44.783 [MQTT Call: listener] INFO  com.rsmaxwell.mqtt.rpc.responder.MessageHandler - Sending payload: {"status":"UP"}

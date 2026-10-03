@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "captureType": "0031-step8-production-pre-migration-database",
+  "createdAt": "2026-10-02T14:28:40.172489+01:00",
+  "host": "pluto",
+  "logicalDataset": "production",
+  "databaseStorage": "diaries-db-data",
+  "preMigrationSharedFilesDir": "files",
+  "databaseBackupFile": "/home/richard/projects/diaries/data/database-backups/production/diaries-production-20261002-142838.dump",
+  "databaseBackupSha256": "0a3026f95ff100fd2d200dedab777242568af4ab22b3d3ef2315ef75f547f5d9",
+  "databaseSidecarFile": "/home/richard/projects/diaries/data/database-backups/production/diaries-production-20261002-142838.dump.dataset.json",
+  "databaseSidecarSha256": "ee7c360f805dbd1a69ea5dda35745fab322ef3f4ec617f541e0cd7e209d5b3b5",
+  "writeFreeze": {
+    "productionResponderStopped": true
+  },
+  "applicationSourceIdentity": {
+    "playbooksGitCommit": "unknown",
+    "runtimeImages": [
+      "rsmaxwell/diaries-client:0.0.9-build-74",
+      "rsmaxwell/diaries-web:0.0.9-build-7",
+      "postgres:18-alpine",
+      "eclipse-mosquitto:2",
+      "rsmaxwell/diaries-responder:0.0.9-build-82"
+    ]
+  },
+  "note": "Production database backup captured while responder writes were frozen. Pair it with the single Step-8 snapshot of the pre-split shared Files root."
+}

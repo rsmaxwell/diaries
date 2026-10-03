@@ -1,0 +1,24 @@
+﻿{
+    "feature":  "0031-FEAT",
+    "step":  11,
+    "mode":  "local-published-smoke",
+    "capturedAt":  "2026-10-02T17:10:35.7790995+01:00",
+    "status":  "FAIL",
+    "effectiveDatabaseDataDir":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database\\common",
+    "databaseBacking":  null,
+    "filesSelector":  "files-development-common",
+    "dockerFilesPath":  null,
+    "filesBacking":  null,
+    "diaryBacking":  null,
+    "databaseContainer":  "diaries-published-smoke-db",
+    "responderContainer":  "diaries-published-smoke-responder",
+    "imageRelativePathChecked":  null,
+    "diaryRelativePathChecked":  null,
+    "publicFilesContext":  "/files",
+    "publicDiariesContext":  "/diaries",
+    "responderLogCaptured":  false,
+    "checks":  [
+                   "effective Files selector is non-production: files-development-common"
+               ],
+    "error":  "Rendered Compose database environment does not contain POSTGRES_USER and POSTGRES_DB."
+}

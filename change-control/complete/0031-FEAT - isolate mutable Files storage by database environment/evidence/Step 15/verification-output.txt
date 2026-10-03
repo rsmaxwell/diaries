@@ -1,0 +1,34 @@
+PASS: top-level invariant
+PASS: local.env precedence documented
+PASS: common local pair documented
+PASS: one-sided override invalid
+PASS: isolated defaults documented
+PASS: restore isolated defaults documented
+PASS: read-only diaries separation
+PASS: DIARIES_FILES_DIR leaf semantics
+PASS: production diaries_files_dir documented
+PASS: direct Windows generated config documented
+PASS: stable /files namespace documented
+PASS: Image.relativePath environment-neutral
+PASS: complete dataset backup documented
+PASS: matched restore documented
+PASS: destructive-test effective root check
+PASS: divergent re-sharing danger
+PASS: production local.env separation
+PASS: development-infrastructure documented defaults match source
+PASS: local-docker-build documented defaults match source
+PASS: local-published-smoke documented defaults match source
+PASS: local.env.example common pair source
+PASS: production selector rendered
+PASS: production mount uses selector
+PASS: production diary scan stays read-only
+PASS: no control characters: README.md — 0 bad bytes
+PASS: no control characters: ARCHITECTURE.md — 0 bad bytes
+PASS: no control characters: README.md — 0 bad bytes
+PASS: no control characters: local.env.example — 0 bad bytes
+PASS: no control characters: README.md — 0 bad bytes
+PASS: no control characters: README.md — 0 bad bytes
+PASS: no control characters: README.md — 0 bad bytes
+
+Checks: 31, failed: 0
+PASS: 0031-FEAT Step 15 architecture and operating documentation is complete and consistent with the current configuration sources.

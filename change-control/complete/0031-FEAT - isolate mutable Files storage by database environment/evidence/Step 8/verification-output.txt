@@ -1,0 +1,20 @@
+PASS: local freeze stops both Docker responder variants
+PASS: local freeze checks TCP/8081 without the privileged Get-NetTCPConnection CIM query
+PASS: database backup and Files snapshot reuse the non-privileged TCP listener check
+PASS: local freeze explicitly preserves the write freeze for later migration steps
+PASS: local backup can identify running database mode diaries-development-db
+PASS: local backup can identify running database mode diaries-local-db
+PASS: local backup can identify running database mode diaries-published-smoke-db
+PASS: local backup refuses ambiguous simultaneous local database writers
+PASS: local Step 8 capture reuses the Step 7 binary database backup path with an explicit pre-migration name
+PASS: local Step 8 manifest records the old shared source tree separately from the configured target Files selector
+PASS: local Step 8 manifest records target selector and database backup checksum
+PASS: shared Files snapshot requires explicit production write-freeze confirmation
+PASS: shared Files snapshot re-verifies the local write freeze
+PASS: shared Files snapshot reviews staging and forbids blind propagation to new roots
+PASS: shared Files tree is copied with deterministic Windows/NAS copy tooling
+PASS: source and snapshot are verified using complete SHA-256 inventories
+PASS: staging content is retained in the rollback snapshot even when excluded from future seeding
+PASS: snapshot tooling keeps the migration write freeze in force for Step 9
+PASS: Step 8 remains defined in the implementation plan
+PASS: 0031-FEAT Step 8 local migration-safety tooling verified

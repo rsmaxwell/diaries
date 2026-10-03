@@ -1,0 +1,26 @@
+{
+  "schemaVersion" : 1,
+  "toolVersion" : "0.0.9-SNAPSHOT:b89ca157b33181aa5df1077aeb342a3b5b32da7d",
+  "startedAt" : "2026-10-03T09:41:12.725301900Z",
+  "endedAt" : "2026-10-03T09:41:26.297580900Z",
+  "mode" : "dry-run",
+  "outcome" : "DRY_RUN_COMPLETE",
+  "failureType" : "",
+  "filesRoot" : "\\\\nas\\photo\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files-development-common",
+  "rootKey" : "null",
+  "databaseIdentity" : "diaries:16384:172.17.0.2/32:5432:18.6",
+  "inputs" : {
+    "candidatesFilename" : "",
+    "candidatesSha256" : "",
+    "configFilename" : "REHEARSAL-CONFIG.json",
+    "configSha256" : "97d8a1bbe3ecf82737ce30ceffc586ebbf442023382945bf1858f5a33256d4fe"
+  },
+  "reviewedPlanSha256" : null,
+  "counts" : {
+    "CATALOGUED_MATCH" : 85,
+    "DIRECTORY" : 11,
+    "UNSUPPORTED" : 4
+  },
+  "insertedRows" : 0,
+  "reservedDirectoryExcluded" : ".image-staging (inspect recovery material separately)"
+}

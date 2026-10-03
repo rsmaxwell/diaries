@@ -1,0 +1,25 @@
+0031-FEAT Step 15 changed/new files
+===================================
+
+Diaries application repository:
+README.md
+ARCHITECTURE.md
+diaries-responder/README.md
+config/environments/local.env.example
+scripts/windows/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/IMPLEMENTATION-STEPS.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 15/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 15/DOCUMENTATION-MATRIX.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 15/CLOSE-OUT.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 15/verification-output.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 15/SOURCE-SHA256SUMS-DIARIES.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 15/SOURCE-SHA256SUMS-PLAYBOOKS.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 15/CHANGED-FILES.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 15/SHA256SUMS.txt
+
+Playbooks repository:
+roles/diaries/README.md
+roles/diaries/files/sync/scripts/README.md
+
+Step 15 is documentation-only; no runtime configuration, scripts, application code or mutable data are changed.

@@ -1,0 +1,33 @@
+﻿{
+    "feature":  "0031-FEAT",
+    "step":  11,
+    "mode":  "development-infrastructure",
+    "capturedAt":  "2026-10-02T17:09:11.1274035+01:00",
+    "status":  "PASS",
+    "effectiveDatabaseDataDir":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database\\common",
+    "databaseBacking":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database\\common",
+    "filesSelector":  "files-development-common",
+    "dockerFilesPath":  null,
+    "filesBacking":  "\\\\nas\\photo\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files-development-common",
+    "diaryBacking":  "\\\\nas\\photo\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\diaries",
+    "databaseContainer":  "diaries-development-db",
+    "responderContainer":  null,
+    "imageRelativePathChecked":  "diary-1828-and-1829-and-jan-1830/images/Lucia_Elizabeth_Vestris_by_Robert_William_Buss.jpg",
+    "diaryRelativePathChecked":  "diary-1828-and-1829-and-jan-1830/img2832.jpg",
+    "publicFilesContext":  "/files",
+    "publicDiariesContext":  "/diaries",
+    "responderLogCaptured":  true,
+    "checks":  [
+                   "effective Files selector is non-production: files-development-common",
+                   "rendered Compose database mount matches the effective database data directory",
+                   "generated direct responder config resolves diaries.files to files-development-common",
+                   "direct Files root exists",
+                   "shared diary root exists",
+                   "direct responder startup log captured",
+                   "catalogued Image path exists under the effective direct Files root",
+                   "stable /files static route returned HTTP 200",
+                   "shared /diaries static route returned HTTP 200",
+                   "Step 11 mode capture completed without upload/delete/rename operations"
+               ],
+    "error":  null
+}

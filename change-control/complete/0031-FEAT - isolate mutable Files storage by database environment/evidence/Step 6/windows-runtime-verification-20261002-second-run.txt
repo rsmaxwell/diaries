@@ -1,0 +1,16 @@
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> powershell -NoProfile -ExecutionPolicy Bypass -File scripts\windows\validation\verify-0031-step6.ps1
+PASS: isolated defaults: development-infrastructure
+PASS: shared common pair: development-infrastructure
+PASS: isolated defaults: local-docker-build
+PASS: shared common pair: local-docker-build
+PASS: isolated defaults: local-published-smoke
+PASS: shared common pair: local-published-smoke
+powershell.exe : C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\common\validate-dataset-pair.ps1 : Dataset override mismatch in
+C:\Users\Richard\AppData\Local\Temp\diaries-0031-step6-946077d3aabc4da5926a49a9a2fb4b7a\local-db-only.env:
+At C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\validation\verify-0031-step6.ps1:17 char:5
++     & powershell -NoProfile -ExecutionPolicy Bypass -File $Guard `
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\Richar...l-db-only.env: :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>

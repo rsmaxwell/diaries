@@ -19,14 +19,14 @@ rem
 rem The script:
 rem   - locates the Diaries project root;
 rem   - validates and loads the development-infrastructure environment files;
-rem   - creates the mode-specific backup directory when necessary;
+rem   - creates the effective-dataset backup directory when necessary;
 rem   - runs pg_dump inside the diaries-db container;
 rem   - writes the dump onto the Windows host;
 rem   - removes an incomplete or empty backup if the operation fails.
 rem
 rem Output directory:
 rem
-rem     data\database-backups\development-infrastructure
+rem     data\database-backups\<effective-dataset>
 rem ============================================================================
 
 
@@ -71,7 +71,6 @@ rem ----------------------------------------------------------------------------
 set "COMPOSE_FILE=%PROJECT_DIR%\compose.development-infrastructure.yaml"
 set "ENV_FILE=%PROJECT_DIR%\config\environments\development-infrastructure.env"
 set "LOCAL_ENV_FILE=%PROJECT_DIR%\config\environments\local.env"
-set "BACKUP_DIR=%PROJECT_DIR%\data\database-backups\development-infrastructure"
 
 if not exist "%COMPOSE_FILE%" (
     echo ERROR: Compose file not found: "%COMPOSE_FILE%" >&2
@@ -114,7 +113,40 @@ if not defined DIARIES_DB_NAME set "DIARIES_DB_NAME=diaries"
 if not defined DIARIES_DB_USERNAME set "DIARIES_DB_USERNAME=diaries"
 
 rem ----------------------------------------------------------------------------
-rem Create the mode-specific backup directory if it does not already exist.
+rem Validate and describe the effective durable dataset selected after local.env.
+rem Step 7 deliberately keys backup locations from DIARIES_DB_DATA_DIR rather
+rem than the launch-mode name so shared common data is backed up only as common.
+rem ----------------------------------------------------------------------------
+
+call "%PROJECT_DIR%\scripts\windows\common\validate-dataset-pair.bat" "development-infrastructure" "%ENV_FILE%" "%LOCAL_ENV_FILE%"
+if errorlevel 1 (
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+set "DIARIES_DATASET_NAME="
+set "DIARIES_EFFECTIVE_DB_DATA_DIR="
+set "DIARIES_EFFECTIVE_FILES_ROOT="
+set "DIARIES_DATASET_SHARING="
+
+for /f "usebackq tokens=1,* delims==" %%A in (`powershell -NoProfile -ExecutionPolicy Bypass -File "%PROJECT_DIR%\scripts\windows\common\resolve-effective-dataset.ps1" -ModeName "development-infrastructure" -ProjectDir "%PROJECT_DIR%" -DatabaseDataDir "%DIARIES_DB_DATA_DIR%" -FilesDir "%DIARIES_FILES_DIR%"`) do set "%%A=%%B"
+if errorlevel 1 (
+    echo ERROR: Unable to resolve the effective durable dataset. >&2
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+if not defined DIARIES_DATASET_NAME (
+    echo ERROR: Effective dataset name was not resolved. >&2
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+set "BACKUP_DIR=%PROJECT_DIR%\data\database-backups\%DIARIES_DATASET_NAME%"
+
+
+rem ----------------------------------------------------------------------------
+rem Create the effective-dataset backup directory if it does not already exist.
 rem ----------------------------------------------------------------------------
 
 if not exist "%BACKUP_DIR%" (
@@ -134,7 +166,7 @@ rem A supplied relative filename is resolved beneath BACKUP_DIR so that, for
 rem example, both of these commands refer to the same file:
 rem
 rem     backup-db-to-binary.bat rehearsal.dump
-rem     restore-db-from-binary.bat data\database-backups\development-infrastructure\rehearsal.dump
+rem     restore-db-from-binary.bat data\database-backups\<effective-dataset>\rehearsal.dump
 rem
 rem Drive-qualified, UNC and root-relative paths are treated as explicit.
 rem Without an argument, generate an unambiguous timestamped output name.
@@ -169,6 +201,15 @@ rem
 rem -T disables pseudo-TTY allocation so the custom-format binary stream can
 rem be redirected safely to a file on the Windows host.
 rem ----------------------------------------------------------------------------
+
+echo Operation: DATABASE-ONLY backup
+echo Effective dataset: %DIARIES_DATASET_NAME%
+echo Database data:    %DIARIES_EFFECTIVE_DB_DATA_DIR%
+echo Files selector:   %DIARIES_FILES_DIR%
+echo Files root:       %DIARIES_EFFECTIVE_FILES_ROOT%
+echo Sharing:          %DIARIES_DATASET_SHARING%
+echo Complete dataset: NO - mutable Files bytes are not included.
+echo.
 
 echo Backing up the development-infrastructure database...
 echo Database: %DIARIES_DB_NAME%
@@ -211,12 +252,35 @@ if "%BACKUP_SIZE%"=="0" (
 
 
 rem ----------------------------------------------------------------------------
+rem Capture the catalogue count and write a sidecar dataset manifest.
+rem The manifest makes the database-only nature explicit and records which
+rem effective mutable Files root belongs with this database snapshot.
+set "IMAGE_ROW_COUNT=unknown"
+set "IMAGE_COUNT_FILE=%TEMP%\diaries-image-count-%RANDOM%-%RANDOM%.txt"
+docker compose --env-file "%ENV_FILE%" --env-file "%LOCAL_ENV_FILE%" -f "%COMPOSE_FILE%" exec -T diaries-db psql -X -A -t --username "%DIARIES_DB_USERNAME%" --dbname "%DIARIES_DB_NAME%" -c "SELECT count(*) FROM public.image;" > "%IMAGE_COUNT_FILE%" 2>nul
+if not errorlevel 1 (
+    set /p "IMAGE_ROW_COUNT=" < "%IMAGE_COUNT_FILE%"
+)
+if exist "%IMAGE_COUNT_FILE%" del /q "%IMAGE_COUNT_FILE%"
+
+set "MANIFEST_FILE="
+for /f "usebackq delims=" %%I in (`powershell -NoProfile -ExecutionPolicy Bypass -File "%PROJECT_DIR%\scripts\windows\common\write-db-backup-manifest.ps1" -BackupFile "%BACKUP_FILE%" -BackupFormat "custom" -ModeName "development-infrastructure" -DatasetName "%DIARIES_DATASET_NAME%" -DatabaseDataDir "%DIARIES_EFFECTIVE_DB_DATA_DIR%" -DatabaseName "%DIARIES_DB_NAME%" -FilesDir "%DIARIES_FILES_DIR%" -FilesRoot "%DIARIES_EFFECTIVE_FILES_ROOT%" -ProjectDir "%PROJECT_DIR%" -ImageRowCount "%IMAGE_ROW_COUNT%"`) do set "MANIFEST_FILE=%%I"
+if not defined MANIFEST_FILE (
+    echo ERROR: Database backup succeeded but its Step-7 dataset manifest could not be written. >&2
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+
+rem ----------------------------------------------------------------------------
 rem Report successful completion.
 rem ----------------------------------------------------------------------------
 
 echo.
 echo Database backup completed successfully:
 echo %BACKUP_FILE%
+echo Manifest: %MANIFEST_FILE%
+echo NOTE: This is not a complete dataset backup; preserve matching Files separately.
 
 
 rem ----------------------------------------------------------------------------
@@ -271,5 +335,5 @@ if not defined TIMESTAMP (
     exit /b 1
 )
 
-set "BACKUP_FILE=%BACKUP_DIR%\diaries-development-%TIMESTAMP%.dump"
+set "BACKUP_FILE=%BACKUP_DIR%\diaries-%DIARIES_DATASET_NAME%-%TIMESTAMP%.dump"
 exit /b 0

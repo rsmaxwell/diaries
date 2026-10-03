@@ -1,0 +1,4 @@
+richard@mango:~/playbooks/scripts$ ansible pluto -b -m ansible.builtin.systemd \
+  -a "name=diaries-compose.service state=restarted"
+[ERROR]: Attempting to decrypt but no vault secrets found.
+richard@mango:~/playbooks/scripts$

@@ -1,0 +1,50 @@
+$ python3 roles/diaries/tests/verify-0031-step14.py
+PASS: production Diaries broker adopts the Step 13 complete-retained-snapshot flow-control policy
+PASS: production Diaries broker no longer retains the historical 10,000-message truncation ceiling
+PASS: Ansible validates the deployed broker queue policy before the restart handler runs
+PASS: Step 14 helper separates frozen pre-deploy controls from post-deploy verification
+PASS: Step 14 preflight preserves the Step 13 responder write freeze
+PASS: Step 14 preflight verifies both Step 8 recovery halves remain available
+PASS: Step 14 records production configuration without exposing secrets
+PASS: Step 14 rejects local override participation in production startup
+PASS: Step 14 brackets the deployment with SHA-256 controls for non-production Files roots
+PASS: Step 14 proves an existing /files route object is served after deployment
+PASS: Step 14 waits for the responder retained-tree startup synchronisation to succeed
+PASS: Step 14 briefly re-freezes only the responder for deterministic read-only verification
+PASS: Step 14 reuses the existing read-only production reconciliation under a responder write freeze
+PASS: Step 14 fails if production durable Image/File state changes across deployment
+PASS: Step 14 adds no direct reconciliation apply/mutation path
+PASS: production Compose keeps /data/files selected by the explicit Files selector
+PASS: production Compose/start templates do not load the local override file
+PASS: production operating documentation covers Step 14
+PASS: 0031-FEAT Step 14 production deployment tooling verified
+
+$ python3 roles/diaries/tests/verify-0031-storage-isolation.py
+PASS: production .env renders the explicit diaries_files_dir selector
+PASS: production mutable /data/files mount is selected through DIARIES_FILES_DIR
+PASS: production shared diary scans remain on the common /diaries source
+PASS: production template has no hard-coded mutable /files source
+PASS: role defaults do not silently fall back to the production Files selector
+PASS: role preflight requires an explicit mutable Files selector
+PASS: deployment validates the rendered selector and mutable Files mount
+PASS: deployment validates that shared scans remain on /diaries
+PASS: 0031-FEAT Step 6 production storage-isolation contract verified
+
+$ python3 roles/diaries/tests/verify-0031-step13.py
+PASS: production controls refuse to run with responder writes enabled
+PASS: production controls are pinned to the production files selector
+PASS: production Image catalogue is captured deterministically
+PASS: production mutable Files bytes are inventoried with SHA-256
+PASS: production Files inventory explicitly includes staging state
+PASS: after control fails on any production catalogue or Files difference
+PASS: production operating documentation covers Step 13
+PASS: 0031-FEAT Step 13 production control tooling verified
+
+$ bash -n roles/diaries/files/sync/scripts/step14-production-deployment.sh
+PASS: bash syntax
+
+$ bash -n roles/diaries/files/sync/scripts/step12-reconcile-production.sh
+PASS: bash syntax
+
+$ python YAML parse roles/diaries/tasks/copy.yaml
+PASS: roles/diaries/tasks/copy.yaml parses as a YAML task list

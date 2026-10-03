@@ -1,0 +1,105 @@
+PASS: dataset identity is derived from the effective database directory, not launch mode
+PASS: common local dataset is explicitly identified as cross-mode sharing
+PASS: database backup manifest explicitly says it is not a complete dataset backup
+PASS: sidecar manifest records logicalDataset
+PASS: sidecar manifest records effectiveDatabaseDataDir
+PASS: sidecar manifest records databaseBackupFile
+PASS: sidecar manifest records effectiveFilesDir
+PASS: sidecar manifest records resolvedPhysicalFilesRoot
+PASS: sidecar manifest records applicationSourceIdentity
+PASS: sidecar manifest records imageRowCount
+PASS: sidecar manifest records cataloguedFileCount
+PASS: manifest verification rejects a restore against a different database/Files pair
+PASS: legacy database backups remain usable with an explicit database-only warning
+PASS: development-infrastructure/backup-db-to-binary.bat validates the paired selectors
+PASS: development-infrastructure/backup-db-to-binary.bat resolves effective dataset identity
+PASS: development-infrastructure/backup-db-to-binary.bat uses effective-dataset backup directory
+PASS: development-infrastructure/backup-db-to-binary.bat reports the matching physical Files root
+PASS: development-infrastructure/backup-db-to-binary.bat labels its operation as database-only
+PASS: development-infrastructure/backup-db-to-binary.bat names default backups from effective dataset identity
+PASS: development-infrastructure/backup-db-to-binary.bat writes the Step-7 sidecar manifest
+PASS: development-infrastructure/backup-db-to-binary.bat captures Image catalogue row count
+PASS: development-infrastructure/backup-db-to-sql.bat validates the paired selectors
+PASS: development-infrastructure/backup-db-to-sql.bat resolves effective dataset identity
+PASS: development-infrastructure/backup-db-to-sql.bat uses effective-dataset backup directory
+PASS: development-infrastructure/backup-db-to-sql.bat reports the matching physical Files root
+PASS: development-infrastructure/backup-db-to-sql.bat labels its operation as database-only
+PASS: development-infrastructure/backup-db-to-sql.bat names default backups from effective dataset identity
+PASS: development-infrastructure/backup-db-to-sql.bat writes the Step-7 sidecar manifest
+PASS: development-infrastructure/backup-db-to-sql.bat captures Image catalogue row count
+PASS: development-infrastructure/restore-db-from-binary.bat validates the paired selectors
+PASS: development-infrastructure/restore-db-from-binary.bat resolves effective dataset identity
+PASS: development-infrastructure/restore-db-from-binary.bat uses effective-dataset backup directory
+PASS: development-infrastructure/restore-db-from-binary.bat reports the matching physical Files root
+PASS: development-infrastructure/restore-db-from-binary.bat labels its operation as database-only
+PASS: development-infrastructure/restore-db-from-binary.bat checks sidecar identity before destructive restore
+PASS: development-infrastructure/restore-db-from-binary.bat does not claim to restore a complete dataset
+PASS: development-infrastructure/restore-db-from-sql.bat validates the paired selectors
+PASS: development-infrastructure/restore-db-from-sql.bat resolves effective dataset identity
+PASS: development-infrastructure/restore-db-from-sql.bat uses effective-dataset backup directory
+PASS: development-infrastructure/restore-db-from-sql.bat reports the matching physical Files root
+PASS: development-infrastructure/restore-db-from-sql.bat labels its operation as database-only
+PASS: development-infrastructure/restore-db-from-sql.bat checks sidecar identity before destructive restore
+PASS: development-infrastructure/restore-db-from-sql.bat does not claim to restore a complete dataset
+PASS: local-docker-build/backup-db-to-binary.bat validates the paired selectors
+PASS: local-docker-build/backup-db-to-binary.bat resolves effective dataset identity
+PASS: local-docker-build/backup-db-to-binary.bat uses effective-dataset backup directory
+PASS: local-docker-build/backup-db-to-binary.bat reports the matching physical Files root
+PASS: local-docker-build/backup-db-to-binary.bat labels its operation as database-only
+PASS: local-docker-build/backup-db-to-binary.bat names default backups from effective dataset identity
+PASS: local-docker-build/backup-db-to-binary.bat writes the Step-7 sidecar manifest
+PASS: local-docker-build/backup-db-to-binary.bat captures Image catalogue row count
+PASS: local-docker-build/backup-db-to-sql.bat validates the paired selectors
+PASS: local-docker-build/backup-db-to-sql.bat resolves effective dataset identity
+PASS: local-docker-build/backup-db-to-sql.bat uses effective-dataset backup directory
+PASS: local-docker-build/backup-db-to-sql.bat reports the matching physical Files root
+PASS: local-docker-build/backup-db-to-sql.bat labels its operation as database-only
+PASS: local-docker-build/backup-db-to-sql.bat names default backups from effective dataset identity
+PASS: local-docker-build/backup-db-to-sql.bat writes the Step-7 sidecar manifest
+PASS: local-docker-build/backup-db-to-sql.bat captures Image catalogue row count
+PASS: local-docker-build/restore-db-from-binary.bat validates the paired selectors
+PASS: local-docker-build/restore-db-from-binary.bat resolves effective dataset identity
+PASS: local-docker-build/restore-db-from-binary.bat uses effective-dataset backup directory
+PASS: local-docker-build/restore-db-from-binary.bat reports the matching physical Files root
+PASS: local-docker-build/restore-db-from-binary.bat labels its operation as database-only
+PASS: local-docker-build/restore-db-from-binary.bat checks sidecar identity before destructive restore
+PASS: local-docker-build/restore-db-from-binary.bat does not claim to restore a complete dataset
+PASS: local-docker-build/restore-db-from-sql.bat validates the paired selectors
+PASS: local-docker-build/restore-db-from-sql.bat resolves effective dataset identity
+PASS: local-docker-build/restore-db-from-sql.bat uses effective-dataset backup directory
+PASS: local-docker-build/restore-db-from-sql.bat reports the matching physical Files root
+PASS: local-docker-build/restore-db-from-sql.bat labels its operation as database-only
+PASS: local-docker-build/restore-db-from-sql.bat checks sidecar identity before destructive restore
+PASS: local-docker-build/restore-db-from-sql.bat does not claim to restore a complete dataset
+PASS: local-published-smoke/backup-db-to-binary.bat validates the paired selectors
+PASS: local-published-smoke/backup-db-to-binary.bat resolves effective dataset identity
+PASS: local-published-smoke/backup-db-to-binary.bat uses effective-dataset backup directory
+PASS: local-published-smoke/backup-db-to-binary.bat reports the matching physical Files root
+PASS: local-published-smoke/backup-db-to-binary.bat labels its operation as database-only
+PASS: local-published-smoke/backup-db-to-binary.bat names default backups from effective dataset identity
+PASS: local-published-smoke/backup-db-to-binary.bat writes the Step-7 sidecar manifest
+PASS: local-published-smoke/backup-db-to-binary.bat captures Image catalogue row count
+PASS: local-published-smoke/backup-db-to-sql.bat validates the paired selectors
+PASS: local-published-smoke/backup-db-to-sql.bat resolves effective dataset identity
+PASS: local-published-smoke/backup-db-to-sql.bat uses effective-dataset backup directory
+PASS: local-published-smoke/backup-db-to-sql.bat reports the matching physical Files root
+PASS: local-published-smoke/backup-db-to-sql.bat labels its operation as database-only
+PASS: local-published-smoke/backup-db-to-sql.bat names default backups from effective dataset identity
+PASS: local-published-smoke/backup-db-to-sql.bat writes the Step-7 sidecar manifest
+PASS: local-published-smoke/backup-db-to-sql.bat captures Image catalogue row count
+PASS: local-published-smoke/restore-db-from-binary.bat validates the paired selectors
+PASS: local-published-smoke/restore-db-from-binary.bat resolves effective dataset identity
+PASS: local-published-smoke/restore-db-from-binary.bat uses effective-dataset backup directory
+PASS: local-published-smoke/restore-db-from-binary.bat reports the matching physical Files root
+PASS: local-published-smoke/restore-db-from-binary.bat labels its operation as database-only
+PASS: local-published-smoke/restore-db-from-binary.bat checks sidecar identity before destructive restore
+PASS: local-published-smoke/restore-db-from-binary.bat does not claim to restore a complete dataset
+PASS: local-published-smoke/restore-db-from-sql.bat validates the paired selectors
+PASS: local-published-smoke/restore-db-from-sql.bat resolves effective dataset identity
+PASS: local-published-smoke/restore-db-from-sql.bat uses effective-dataset backup directory
+PASS: local-published-smoke/restore-db-from-sql.bat reports the matching physical Files root
+PASS: local-published-smoke/restore-db-from-sql.bat labels its operation as database-only
+PASS: local-published-smoke/restore-db-from-sql.bat checks sidecar identity before destructive restore
+PASS: local-published-smoke/restore-db-from-sql.bat does not claim to restore a complete dataset
+PASS: no local database script selects a backup directory solely from launch mode
+PASS: 0031-FEAT Step 7 local matched backup/restore semantics verified

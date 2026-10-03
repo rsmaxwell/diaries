@@ -1,0 +1,143 @@
+﻿{
+    "name":  "diaries-development-infrastructure",
+    "networks":  {
+                     "default":  {
+                                     "name":  "diaries-development-infrastructure_default",
+                                     "ipam":  {
+
+                                              }
+                                 }
+                 },
+    "services":  {
+                     "diaries-db":  {
+                                        "command":  null,
+                                        "container_name":  "diaries-development-db",
+                                        "entrypoint":  null,
+                                        "environment":  {
+                                                            "POSTGRES_DB":  "diaries",
+                                                            "POSTGRES_PASSWORD":  "\u003credacted\u003e",
+                                                            "POSTGRES_USER":  "diaries"
+                                                        },
+                                        "healthcheck":  {
+                                                            "test":  [
+                                                                         "CMD-SHELL",
+                                                                         "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"
+                                                                     ],
+                                                            "timeout":  "5s",
+                                                            "interval":  "10s",
+                                                            "retries":  10,
+                                                            "start_period":  "10s"
+                                                        },
+                                        "image":  "postgres:18-alpine",
+                                        "networks":  {
+                                                         "default":  null
+                                                     },
+                                        "ports":  {
+                                                      "mode":  "ingress",
+                                                      "target":  5432,
+                                                      "published":  "5433",
+                                                      "protocol":  "tcp"
+                                                  },
+                                        "restart":  "unless-stopped",
+                                        "volumes":  {
+                                                        "type":  "bind",
+                                                        "source":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database\\common",
+                                                        "target":  "/var/lib/postgresql",
+                                                        "bind":  {
+
+                                                                 }
+                                                    }
+                                    },
+                     "diaries-mqtt":  {
+                                          "command":  null,
+                                          "container_name":  "diaries-development-mqtt",
+                                          "entrypoint":  null,
+                                          "environment":  {
+                                                              "DIARIES_MQTT_HEALTH_PASSWORD":  "\u003credacted\u003e",
+                                                              "DIARIES_MQTT_HEALTH_USERNAME":  "diaries-health"
+                                                          },
+                                          "healthcheck":  {
+                                                              "test":  [
+                                                                           "CMD-SHELL",
+                                                                           "mosquitto_sub -h localhost -p 1883 -u \"$${DIARIES_MQTT_HEALTH_USERNAME}\" -P \"$${DIARIES_MQTT_HEALTH_PASSWORD}\" -t \u0027$$SYS/broker/version\u0027 -C 1 -W 5 \u003e/dev/null 2\u003e\u00261"
+                                                                       ],
+                                                              "timeout":  "6s",
+                                                              "interval":  "10s",
+                                                              "retries":  10,
+                                                              "start_period":  "10s"
+                                                          },
+                                          "image":  "eclipse-mosquitto:2",
+                                          "networks":  {
+                                                           "default":  null
+                                                       },
+                                          "ports":  [
+                                                        {
+                                                            "mode":  "ingress",
+                                                            "target":  1883,
+                                                            "published":  "1883",
+                                                            "protocol":  "tcp"
+                                                        },
+                                                        {
+                                                            "mode":  "ingress",
+                                                            "target":  9001,
+                                                            "published":  "9001",
+                                                            "protocol":  "tcp"
+                                                        }
+                                                    ],
+                                          "restart":  "unless-stopped",
+                                          "volumes":  [
+                                                          {
+                                                              "type":  "bind",
+                                                              "source":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\config\\mosquitto\\mosquitto.conf",
+                                                              "target":  "/mosquitto/config/mosquitto.conf",
+                                                              "read_only":  true,
+                                                              "bind":  {
+
+                                                                       }
+                                                          },
+                                                          {
+                                                              "type":  "bind",
+                                                              "source":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\config\\mosquitto\\aclfile.txt",
+                                                              "target":  "/mosquitto/config/aclfile.txt",
+                                                              "read_only":  true,
+                                                              "bind":  {
+
+                                                                       }
+                                                          },
+                                                          {
+                                                              "type":  "bind",
+                                                              "source":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\config\\mosquitto\\pwfile.txt",
+                                                              "target":  "/mosquitto/config/pwfile.txt",
+                                                              "read_only":  true,
+                                                              "bind":  {
+
+                                                                       }
+                                                          },
+                                                          {
+                                                              "type":  "volume",
+                                                              "source":  "diaries-development-mqtt-data",
+                                                              "target":  "/mosquitto/data",
+                                                              "volume":  {
+
+                                                                         }
+                                                          },
+                                                          {
+                                                              "type":  "volume",
+                                                              "source":  "diaries-development-mqtt-log",
+                                                              "target":  "/mosquitto/log",
+                                                              "volume":  {
+
+                                                                         }
+                                                          }
+                                                      ]
+                                      }
+                 },
+    "volumes":  {
+                    "diaries-development-mqtt-data":  {
+                                                          "name":  "diaries-development-infrastructure_diaries-development-mqtt-data"
+                                                      },
+                    "diaries-development-mqtt-log":  {
+                                                         "name":  "diaries-development-infrastructure_diaries-development-mqtt-log"
+                                                     }
+                }
+}

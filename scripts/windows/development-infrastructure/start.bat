@@ -41,6 +41,13 @@ if not exist "%LOCAL_ENV_FILE%" (
     goto :cleanup
 )
 
+set "DATASET_PAIR_GUARD=%PROJECT_DIR%\scripts\windows\common\validate-dataset-pair.bat"
+call "%DATASET_PAIR_GUARD%" "development-infrastructure" "%ENV_FILE%" "%LOCAL_ENV_FILE%"
+if errorlevel 1 (
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
 call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat" "%ENV_FILE%"
 if errorlevel 1 (
     set "EXIT_CODE=1"
@@ -48,6 +55,25 @@ if errorlevel 1 (
 )
 
 call "%PROJECT_DIR%\scripts\windows\common\load-dotenv.bat" "%LOCAL_ENV_FILE%"
+if errorlevel 1 (
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+if not defined DIARIES_DB_DATA_DIR (
+    echo ERROR: DIARIES_DB_DATA_DIR is not set. >&2
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+if not defined DIARIES_FILES_DIR (
+    echo ERROR: DIARIES_FILES_DIR is not set. >&2
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+set "DATASET_REPORTER=%PROJECT_DIR%\scripts\windows\common\report-effective-dataset.bat"
+call "%DATASET_REPORTER%" "development-infrastructure"
 if errorlevel 1 (
     set "EXIT_CODE=1"
     goto :cleanup

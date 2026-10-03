@@ -1,0 +1,22 @@
+PASS: Step 9 preserves the local responder write freeze
+PASS: Step 9 rejects a running direct Windows responder
+PASS: Step 9 can identify local database mode diaries-development-db
+PASS: Step 9 can identify local database mode diaries-local-db
+PASS: Step 9 can identify local database mode diaries-published-smoke-db
+PASS: Step 9 refuses ambiguous concurrent local database datasets
+PASS: Step 9 starts from the Step 4 generated/effective responder configuration
+PASS: Step 9 uses a temporary pre-split Files override without changing normal configuration
+PASS: Step 9 invokes the existing 0024 reconciliation in dry-run mode
+PASS: Step 9 local tooling contains no apply path
+PASS: Step 9 separately inventories and hashes .image-staging recovery content
+PASS: Step 9 report records imageRowCount
+PASS: Step 9 report records matchingPhysicalFiles
+PASS: Step 9 report records missingPhysicalFiles
+PASS: Step 9 report records untrackedPhysicalFiles
+PASS: Step 9 report records untrackedSupportedImageFiles
+PASS: Step 9 report records metadataOrChecksumConflicts
+PASS: Step 9 report records requiresExplicitDisposition
+PASS: Step 9 report records step10Ready
+PASS: documentation treats the three normal local modes as one effective dataset
+PASS: Step 9 contract remains present in the implementation plan
+PASS: 0031-FEAT Step 9 local reconciliation tooling verified

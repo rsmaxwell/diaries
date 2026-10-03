@@ -1,0 +1,38 @@
+{
+    "schemaVersion":  1,
+    "captureType":  "0031-step8-shared-files-premigration-snapshot",
+    "createdAt":  "2026-10-02T14:31:42.3009926+01:00",
+    "sourceFilesDir":  "files",
+    "sourceRoot":  "P:\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files",
+    "snapshotRoot":  "P:\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\.0031-backups\\step8-20261002-143134\\files",
+    "copyTool":  "robocopy /E /COPY:DAT /DCOPY:DAT /XJ",
+    "sourceFileCount":  90,
+    "sourceTotalBytes":  100032776,
+    "snapshotFileCount":  90,
+    "snapshotTotalBytes":  100032776,
+    "sourceInventory":  {
+                            "path":  "P:\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\.0031-backups\\step8-20261002-143134\\SOURCE-SHA256.tsv",
+                            "sha256":  "0170fa4b359538f92532a10fb02658c8fffadca2aff5290891196075a2ee48ff"
+                        },
+    "snapshotInventory":  {
+                              "path":  "P:\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\.0031-backups\\step8-20261002-143134\\SNAPSHOT-SHA256.tsv",
+                              "sha256":  "0170fa4b359538f92532a10fb02658c8fffadca2aff5290891196075a2ee48ff"
+                          },
+    "inventoriesIdentical":  true,
+    "staging":  {
+                    "path":  ".image-staging",
+                    "fileCount":  1,
+                    "reviewFile":  "P:\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\.0031-backups\\step8-20261002-143134\\STAGING-REVIEW.tsv",
+                    "reviewSha256":  "7dd3297380164427ee8cbc0b2b6b37bafb8a7538603225df54655d1207523791",
+                    "includedInRollbackSnapshot":  true,
+                    "seedIntoNewRootsWithoutReview":  false
+                },
+    "writeFreeze":  {
+                        "localVerified":  true,
+                        "productionConfirmedByOperator":  true
+                    },
+    "applicationSourceIdentity":  {
+                                      "gitCommit":  "b89ca157b33181aa5df1077aeb342a3b5b32da7d"
+                                  },
+    "note":  "This is the exact rollback snapshot of the pre-split shared mutable Files tree. .image-staging is preserved for rollback only; Step 10 must decide explicitly whether any staging content belongs in newly seeded dataset roots."
+}

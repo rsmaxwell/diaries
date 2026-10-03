@@ -1,0 +1,62 @@
+{
+    "operation":  "upload",
+    "fixture":  {
+                    "name":  "0031-step13-20261003-080333-8f26d1bc.png",
+                    "subdir":  "0031-step13",
+                    "relativePath":  "0031-step13/0031-step13-20261003-080333-8f26d1bc.png",
+                    "size":  69,
+                    "sha256":  "c47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96"
+                },
+    "uploadReply":  {
+                        "status":  {
+                                       "code":  200,
+                                       "message":  "ok"
+                                   },
+                        "payload":  {
+                                        "name":  "0031-step13-20261003-080333-8f26d1bc.png",
+                                        "subdir":  "0031-step13",
+                                        "size":  69,
+                                        "path":  "\\\\nas\\photo\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files-development-common\\0031-step13\\0031-step13-20261003-080333-8f26d1bc.png",
+                                        "url":  "/files/0031-step13/0031-step13-20261003-080333-8f26d1bc.png",
+                                        "imageId":  88,
+                                        "image":  {
+                                                      "id":  88,
+                                                      "version":  0,
+                                                      "relativePath":  "0031-step13/0031-step13-20261003-080333-8f26d1bc.png",
+                                                      "mimeType":  "image/png",
+                                                      "originalFilename":  "0031-step13-20261003-080333-8f26d1bc.png",
+                                                      "width":  1,
+                                                      "height":  1,
+                                                      "checksum":  "c47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96",
+                                                      "caption":  "",
+                                                      "altText":  ""
+                                                  }
+                                    }
+                    },
+    "overwriteAttempt":  {
+                             "status":  {
+                                            "code":  409,
+                                            "message":  "conflict"
+                                        },
+                             "payload":  "Path belongs to the Image catalogue."
+                         },
+    "retained":  [
+                     {
+                         "topic":  "diaries/images/88",
+                         "retained":  true,
+                         "qos":  1,
+                         "payloadBytes":  301,
+                         "payload":  "{\"id\":88,\"version\":0,\"relativePath\":\"0031-step13/0031-step13-20261003-080333-8f26d1bc.png\",\"mimeType\":\"image/png\",\"originalFilename\":\"0031-step13-20261003-080333-8f26d1bc.png\",\"width\":1,\"height\":1,\"checksum\":\"c47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96\",\"caption\":\"\",\"altText\":\"\"}"
+                     }
+                 ],
+    "http":  {
+                 "url":  "http://127.0.0.1:8081/files/0031-step13/0031-step13-20261003-080333-8f26d1bc.png",
+                 "status":  200,
+                 "contentType":  "image/png",
+                 "bytes":  69,
+                 "sha256":  "c47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96",
+                 "expectedSha256":  "c47dd9465c00e9a0c8b85e9ea58d3034a0d23b9cf926113602f3460752a4eb96"
+             },
+    "imageId":  88,
+    "imageTopic":  "diaries/images/88"
+}

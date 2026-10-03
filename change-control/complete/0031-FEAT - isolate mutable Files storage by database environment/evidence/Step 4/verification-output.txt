@@ -1,0 +1,26 @@
+0031 Step 4 static verification
+PASS: helper loads development-infrastructure.env before local.env
+PASS: helper requires DIARIES_DB_DATA_DIR
+PASS: helper requires DIARIES_FILES_DIR
+PASS: developer responder.json remains the default base
+PASS: effective responder config is generated beneath ignored build/
+PASS: root build/ directory is git-ignored
+PASS: PowerShell generator replaces diaries.files
+PASS: PowerShell generator preserves the base JSON object while rewriting the copy
+PASS: helper diagnostics do not echo password fields
+PASS: run-responder.bat uses the shared effective-config helper
+PASS: migration0024ImageCatalogue.bat uses the same helper
+PASS: Image reconciliation passes the generated effective config to Gradle
+PASS: direct responder runs with the generated effective config
+PASS: runtime verifier uses the same effective-config helper
+PASS: runtime verifier executes the non-default Files URL regression test
+PASS: runtime verifier passes the PowerShell pipeline without a literal CMD caret
+PASS: development-infrastructure start.bat validates both dataset selectors
+PASS: development-infrastructure status.bat validates both dataset selectors
+PASS: UploadFile defines a stable public /files context
+PASS: UploadFile URL no longer derives from the physical files directory
+PASS: responder regression test uses a non-default physical Files directory
+PASS: regression test requires stable /files upload URL
+PASS: regression test requires environment-neutral persisted Image.relativePath
+
+PASS: 23 checks

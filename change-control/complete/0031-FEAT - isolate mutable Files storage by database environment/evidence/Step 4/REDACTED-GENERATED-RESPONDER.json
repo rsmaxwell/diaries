@@ -1,0 +1,28 @@
+{
+  "mqtt": {
+    "host": "localhost",
+    "port": 1883,
+    "user": {
+      "username": "<preserved-from-base>",
+      "password": "<redacted>"
+    }
+  },
+  "db": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "diaries",
+    "admin": {
+      "username": "<redacted>",
+      "password": "<redacted>"
+    }
+  },
+  "diaries": {
+    "root": "<preserved developer-owned NAS content root>",
+    "baseUrl": "<preserved-from-base>",
+    "diaries": "diaries",
+    "files": "files-development-common"
+  },
+  "refreshPeriod": "<preserved-from-base>",
+  "refreshExpiration": "<preserved-from-base>",
+  "secret": "<redacted>"
+}

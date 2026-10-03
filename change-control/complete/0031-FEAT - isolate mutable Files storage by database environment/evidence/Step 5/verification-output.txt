@@ -1,0 +1,12 @@
+PASS YAML: roles/diaries/defaults/main.yaml
+PASS YAML: roles/diaries/tasks/main.yaml
+PASS YAML: roles/diaries/tasks/copy.yaml
+PASS render: .env contains DIARIES_FILES_DIR=files
+PASS render: .env rejects undefined diaries_files_dir (UndefinedError)
+PASS render: Compose mutable Files mount uses DIARIES_FILES_DIR
+PASS render: Compose read-only diary mount remains /diaries
+PASS render: old hard-coded mutable /files subpath is absent
+PASS rendered YAML: responder mutable/read-only volume semantics are correct
+PASS guard: no implicit diaries_files_dir role default exists
+PASS guard: preflight requires an explicit valid leaf selector
+PASS guard: post-render validation tasks are present

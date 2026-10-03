@@ -1,0 +1,23 @@
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>scripts\windows\validation\verify-0031-step4-runtime.bat
+Effective development dataset:
+  Database data: "C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\database\common"
+  Files root:    "\\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common"
+  Responder cfg: "C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\build\development-infrastructure\responder.effective.json"
+Get-Content : A positional parameter cannot be found that accepts argument '^'.
+At line:1 char:6
++ $c = Get-Content -LiteralPath $env:DIARIES_EFFECTIVE_RESPONDER_CONFIG ...
++      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Get-Content], ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.GetContentCommand
+
+Generated diaries.files does not match DIARIES_FILES_DIR.
+At line:1 char:164
++ ... ILES_DIR) { throw 'Generated diaries.files does not match DIARIES_FIL ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Generated diari...RIES_FILES_DIR.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Generated diaries.files does not match DIARIES_FILES_DIR.
+
+
+ERROR: 0031 Step 4 runtime verification failed.
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>

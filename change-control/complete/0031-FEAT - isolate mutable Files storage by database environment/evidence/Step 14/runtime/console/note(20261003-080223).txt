@@ -1,0 +1,11 @@
+TASK [diaries : diaries:copy | Synchronize files] ******************************************************************************************************************
+changed: [pluto]
+
+TASK [diaries : diaries:copy | Debug sync output] ******************************************************************************************************************
+ok: [pluto] => {
+    "result.stdout_lines": [
+        "<f.stp..... config/mosquitto/mosquitto.conf",
+        "<f.st...... scripts/README.md",
+        "<f+++++++++ scripts/step14-production-deployment.sh"
+    ]
+}

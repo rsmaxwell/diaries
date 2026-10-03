@@ -1,0 +1,7 @@
+roles/diaries/defaults/main.yaml
+roles/diaries/tasks/main.yaml
+roles/diaries/tasks/copy.yaml
+roles/diaries/templates/.env.j2
+roles/diaries/templates/compose.yaml.j2
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/IMPLEMENTATION-STEPS.md

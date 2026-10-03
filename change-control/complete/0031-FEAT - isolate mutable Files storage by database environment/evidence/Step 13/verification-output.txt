@@ -1,0 +1,64 @@
+PASS: local harness contains upload phase
+PASS: local harness contains observe phase
+PASS: local harness contains delete phase
+PASS: local harness contains cleanup phase
+PASS: local harness rejects concurrent local database modes
+PASS: local harness pins the approved shared common durable pair
+PASS: second-mode observation cannot be satisfied by the upload mode
+PASS: delete is gated on a successful second-mode proof
+PASS: database and physical file identity are captured
+PASS: PowerShell interpolation before colon uses a braced variable reference
+PASS: responder HTTP reachability honours the established /diaries 404 contract
+PASS: real supported Image lifecycle RPC operations are used
+PASS: retained-state observation uses responder MQTT credentials from the selected responder config
+PASS: retained Image verification is separated from the diaries-client RPC identity
+PASS: recovery cleanup is id-gated and restricted to generated Step 13 paths
+PASS: PowerShell callers preserve zero/one/many Image query results as arrays under StrictMode
+PASS: cleanup can safely resume after delete committed before evidence capture completed
+PASS: retained-only cleanup recovery check is available without application credentials
+PASS: Step 13 embedded PNG fixture is discoverable
+PASS: Step 13 embedded fixture has a PNG signature
+PASS: Step 13 embedded PNG chunks are not truncated
+PASS: Step 13 embedded PNG chunk IHDR has a valid CRC
+PASS: Step 13 embedded PNG chunks are not truncated
+PASS: Step 13 embedded PNG chunk IDAT has a valid CRC
+PASS: Step 13 embedded PNG chunks are not truncated
+PASS: Step 13 embedded PNG chunk IEND has a valid CRC
+PASS: Step 13 embedded PNG is complete through IEND
+PASS: retained publication and deletion tombstone are verified
+PASS: current catalogued overwrite rejection is explicitly verified
+PASS: stable public /files URL and static bytes are verified
+PASS: runbook brackets local mutation with production controls
+PASS: implementation plan records the Step 13 tooling state
+PASS: local Docker lifecycle rejects CIFS mounts that cannot present owner-only staging permissions
+PASS: container permission probe avoids nested PowerShell/docker/sh quoting
+PASS: local-docker-build synthesizes owner-only CIFS directory/file permissions for mutable Files
+PASS: local-published-smoke synthesizes owner-only CIFS directory/file permissions for mutable Files
+PASS: retained snapshot includes non-overlapping branch diaries/diaries/#
+PASS: retained snapshot includes non-overlapping branch diaries/pages/#
+PASS: retained snapshot includes non-overlapping branch diaries/fragments/#
+PASS: retained snapshot includes non-overlapping branch diaries/marquees/#
+PASS: retained snapshot includes non-overlapping branch diaries/images/#
+PASS: retained snapshot includes non-overlapping branch diaries/dates/#
+PASS: retained snapshot includes non-overlapping branch diaries/people/#
+PASS: retained snapshot includes non-overlapping branch diaries/roles/#
+PASS: retained snapshot drains each top-level branch before subscribing to the next
+PASS: large-tree regression exceeds the historical 10,000-message threshold across branches
+PASS: local broker retains bounded QoS in-flight flow
+PASS: local broker removes the finite retained-replay message-count queue ceiling
+PASS: large-tree test broker retains bounded QoS in-flight flow
+PASS: large-tree test broker removes the finite retained-replay message-count queue ceiling
+PASS: Mosquitto documentation records the interim unlimited queue and deferred redesign
+PASS: 0031-FEAT Step 13 local isolation tooling verified
+
+Step 13 close-out runtime verification — 2026-10-03
+===================================================
+PASS: retained snapshot startup drained 10,657 retained topics and completed synchronise: ok.
+PASS: Image 87 recovery proof confirms the failed-verifier disposable Image is absent from DB/retained/file state.
+PASS: upload created Image 88 in development-infrastructure and proved DB row, retained topic, physical bytes and stable /files URL.
+PASS: local-docker-build resolved ./data/database/common + files-development-common and observed the same Image 88 state.
+PASS: local Docker CIFS mount exposes /data/files and /data/files/.image-staging as mode 700.
+PASS: deleteImage removed Image 88 database row, retained state and physical file in local-docker-build.
+PASS: production AFTER control matched production BEFORE control exactly.
+PASS: Step 13 production controls are unchanged.
+Decision: Step 13 COMPLETE — 2026-10-03.

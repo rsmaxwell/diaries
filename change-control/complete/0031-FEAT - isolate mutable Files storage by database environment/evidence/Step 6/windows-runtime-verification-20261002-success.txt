@@ -1,0 +1,13 @@
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> powershell -NoProfile -ExecutionPolicy Bypass -File scripts\windows\validation\verify-0031-step6.ps1
+PASS: isolated defaults: development-infrastructure
+PASS: shared common pair: development-infrastructure
+PASS: isolated defaults: local-docker-build
+PASS: shared common pair: local-docker-build
+PASS: isolated defaults: local-published-smoke
+PASS: shared common pair: local-published-smoke
+PASS: reject DB-only local.env override
+PASS: reject Files-only local.env override
+PASS: reject local database with production Files root
+PASS: reject crossed approved local pair
+PASS: 0031-FEAT Step 6 Windows dataset-pair regression checks
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>

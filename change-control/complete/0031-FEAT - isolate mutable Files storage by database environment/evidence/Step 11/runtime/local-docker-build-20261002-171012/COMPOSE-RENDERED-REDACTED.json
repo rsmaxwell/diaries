@@ -1,0 +1,306 @@
+﻿{
+    "name":  "diaries-local-docker-build",
+    "networks":  {
+                     "default":  {
+                                     "name":  "diaries-local-docker-build_default",
+                                     "ipam":  {
+
+                                              }
+                                 }
+                 },
+    "services":  {
+                     "diaries-client":  {
+                                            "build":  {
+                                                          "context":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\diaries-client",
+                                                          "dockerfile":  "scripts/files/Dockerfile",
+                                                          "args":  {
+                                                                       "VERSION":  "unknown"
+                                                                   }
+                                                      },
+                                            "command":  null,
+                                            "container_name":  "diaries-local-client",
+                                            "depends_on":  {
+                                                               "diaries-responder":  {
+                                                                                         "condition":  "service_healthy",
+                                                                                         "required":  true
+                                                                                     }
+                                                           },
+                                            "entrypoint":  null,
+                                            "healthcheck":  {
+                                                                "test":  [
+                                                                             "CMD-SHELL",
+                                                                             "wget --quiet --spider http://localhost:8080/diaries/"
+                                                                         ],
+                                                                "timeout":  "5s",
+                                                                "interval":  "10s",
+                                                                "retries":  12,
+                                                                "start_period":  "20s"
+                                                            },
+                                            "image":  "diaries-client:local",
+                                            "networks":  {
+                                                             "default":  null
+                                                         },
+                                            "ports":  {
+                                                          "mode":  "ingress",
+                                                          "target":  8080,
+                                                          "published":  "8080",
+                                                          "protocol":  "tcp"
+                                                      },
+                                            "restart":  "unless-stopped"
+                                        },
+                     "diaries-db":  {
+                                        "command":  null,
+                                        "container_name":  "diaries-local-db",
+                                        "entrypoint":  null,
+                                        "environment":  {
+                                                            "POSTGRES_DB":  "diaries",
+                                                            "POSTGRES_PASSWORD":  "\u003credacted\u003e",
+                                                            "POSTGRES_USER":  "diaries"
+                                                        },
+                                        "healthcheck":  {
+                                                            "test":  [
+                                                                         "CMD-SHELL",
+                                                                         "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"
+                                                                     ],
+                                                            "timeout":  "5s",
+                                                            "interval":  "10s",
+                                                            "retries":  10,
+                                                            "start_period":  "10s"
+                                                        },
+                                        "image":  "postgres:18-alpine",
+                                        "networks":  {
+                                                         "default":  null
+                                                     },
+                                        "ports":  {
+                                                      "mode":  "ingress",
+                                                      "target":  5432,
+                                                      "published":  "5433",
+                                                      "protocol":  "tcp"
+                                                  },
+                                        "restart":  "unless-stopped",
+                                        "volumes":  {
+                                                        "type":  "bind",
+                                                        "source":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\database\\common",
+                                                        "target":  "/var/lib/postgresql",
+                                                        "bind":  {
+
+                                                                 }
+                                                    }
+                                    },
+                     "diaries-mqtt":  {
+                                          "command":  null,
+                                          "container_name":  "diaries-local-mqtt",
+                                          "entrypoint":  null,
+                                          "environment":  {
+                                                              "DIARIES_MQTT_HEALTH_PASSWORD":  "\u003credacted\u003e",
+                                                              "DIARIES_MQTT_HEALTH_USERNAME":  "diaries-health"
+                                                          },
+                                          "healthcheck":  {
+                                                              "test":  [
+                                                                           "CMD-SHELL",
+                                                                           "mosquitto_sub -h localhost -p 1883 -u \"$${DIARIES_MQTT_HEALTH_USERNAME}\" -P \"$${DIARIES_MQTT_HEALTH_PASSWORD}\" -t \u0027$$SYS/broker/version\u0027 -C 1 -W 5 \u003e/dev/null 2\u003e\u00261"
+                                                                       ],
+                                                              "timeout":  "6s",
+                                                              "interval":  "10s",
+                                                              "retries":  10,
+                                                              "start_period":  "10s"
+                                                          },
+                                          "image":  "eclipse-mosquitto:2",
+                                          "networks":  {
+                                                           "default":  null
+                                                       },
+                                          "ports":  [
+                                                        {
+                                                            "mode":  "ingress",
+                                                            "target":  1883,
+                                                            "published":  "1883",
+                                                            "protocol":  "tcp"
+                                                        },
+                                                        {
+                                                            "mode":  "ingress",
+                                                            "target":  9001,
+                                                            "published":  "9001",
+                                                            "protocol":  "tcp"
+                                                        }
+                                                    ],
+                                          "restart":  "unless-stopped",
+                                          "volumes":  [
+                                                          {
+                                                              "type":  "bind",
+                                                              "source":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\config\\mosquitto\\mosquitto.conf",
+                                                              "target":  "/mosquitto/config/mosquitto.conf",
+                                                              "read_only":  true,
+                                                              "bind":  {
+
+                                                                       }
+                                                          },
+                                                          {
+                                                              "type":  "bind",
+                                                              "source":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\config\\mosquitto\\aclfile.txt",
+                                                              "target":  "/mosquitto/config/aclfile.txt",
+                                                              "read_only":  true,
+                                                              "bind":  {
+
+                                                                       }
+                                                          },
+                                                          {
+                                                              "type":  "bind",
+                                                              "source":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\config\\mosquitto\\pwfile.txt",
+                                                              "target":  "/mosquitto/config/pwfile.txt",
+                                                              "read_only":  true,
+                                                              "bind":  {
+
+                                                                       }
+                                                          },
+                                                          {
+                                                              "type":  "volume",
+                                                              "source":  "diaries-local-mqtt-data",
+                                                              "target":  "/mosquitto/data",
+                                                              "volume":  {
+
+                                                                         }
+                                                          },
+                                                          {
+                                                              "type":  "volume",
+                                                              "source":  "diaries-local-mqtt-log",
+                                                              "target":  "/mosquitto/log",
+                                                              "volume":  {
+
+                                                                         }
+                                                          }
+                                                      ]
+                                      },
+                     "diaries-responder":  {
+                                               "build":  {
+                                                             "context":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries",
+                                                             "dockerfile":  "diaries-responder/Dockerfile"
+                                                         },
+                                               "command":  null,
+                                               "container_name":  "diaries-local-responder",
+                                               "depends_on":  {
+                                                                  "diaries-db":  {
+                                                                                     "condition":  "service_healthy",
+                                                                                     "required":  true
+                                                                                 },
+                                                                  "diaries-mqtt":  {
+                                                                                       "condition":  "service_healthy",
+                                                                                       "required":  true
+                                                                                   }
+                                                              },
+                                               "entrypoint":  null,
+                                               "environment":  {
+                                                                   "DIARIES_MQTT_HEALTH_PASSWORD":  "\u003credacted\u003e",
+                                                                   "DIARIES_MQTT_HEALTH_USERNAME":  "diaries-health"
+                                                               },
+                                               "healthcheck":  {
+                                                                   "test":  [
+                                                                                "CMD-SHELL",
+                                                                                "loglevel=ERROR java -cp /opt/diaries/diaries-responder.jar com.rsmaxwell.diaries.responder.health.ResponderHealthCheck --config /config/responder.json"
+                                                                            ],
+                                                                   "timeout":  "5s",
+                                                                   "interval":  "10s",
+                                                                   "retries":  12,
+                                                                   "start_period":  "20s"
+                                                               },
+                                               "image":  "diaries-responder:local",
+                                               "networks":  {
+                                                                "default":  null
+                                                            },
+                                               "ports":  {
+                                                             "mode":  "ingress",
+                                                             "target":  8081,
+                                                             "published":  "8081",
+                                                             "protocol":  "tcp"
+                                                         },
+                                               "restart":  "unless-stopped",
+                                               "volumes":  [
+                                                               {
+                                                                   "type":  "bind",
+                                                                   "source":  "C:/Users/Richard/.diaries/responder.docker.json",
+                                                                   "target":  "/config/responder.json",
+                                                                   "read_only":  true
+                                                               },
+                                                               {
+                                                                   "type":  "volume",
+                                                                   "source":  "nas-photo",
+                                                                   "target":  "/data/diaries",
+                                                                   "read_only":  true,
+                                                                   "volume":  {
+                                                                                  "subpath":  "nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/diaries"
+                                                                              }
+                                                               },
+                                                               {
+                                                                   "type":  "volume",
+                                                                   "source":  "nas-photo",
+                                                                   "target":  "/data/files",
+                                                                   "volume":  {
+                                                                                  "subpath":  "nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files-development-common"
+                                                                              }
+                                                               }
+                                                           ]
+                                           },
+                     "diaries-web":  {
+                                         "build":  {
+                                                       "context":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries",
+                                                       "dockerfile":  "diaries-web/Dockerfile"
+                                                   },
+                                         "command":  null,
+                                         "container_name":  "diaries-local-web",
+                                         "depends_on":  {
+                                                            "diaries-mqtt":  {
+                                                                                 "condition":  "service_healthy",
+                                                                                 "required":  true
+                                                                             }
+                                                        },
+                                         "entrypoint":  null,
+                                         "environment":  {
+                                                             "DIARIES_WEB_MQTT_PASSWORD":  "\u003credacted\u003e",
+                                                             "DIARIES_WEB_MQTT_USERNAME":  "diaries-web"
+                                                         },
+                                         "healthcheck":  {
+                                                             "test":  [
+                                                                          "CMD-SHELL",
+                                                                          "wget --quiet --spider http://localhost:8082/health/ready"
+                                                                      ],
+                                                             "timeout":  "5s",
+                                                             "interval":  "10s",
+                                                             "retries":  12,
+                                                             "start_period":  "20s"
+                                                         },
+                                         "image":  "diaries-web:local",
+                                         "networks":  {
+                                                          "default":  null
+                                                      },
+                                         "ports":  {
+                                                       "mode":  "ingress",
+                                                       "target":  8082,
+                                                       "published":  "8082",
+                                                       "protocol":  "tcp"
+                                                   },
+                                         "restart":  "unless-stopped",
+                                         "volumes":  {
+                                                         "type":  "bind",
+                                                         "source":  "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\diaries-web\\config\\diaries-web.docker.json",
+                                                         "target":  "/config/diaries-web.json",
+                                                         "read_only":  true
+                                                     }
+                                     }
+                 },
+    "volumes":  {
+                    "diaries-local-mqtt-data":  {
+                                                    "name":  "diaries-local-docker-build_diaries-local-mqtt-data"
+                                                },
+                    "diaries-local-mqtt-log":  {
+                                                   "name":  "diaries-local-docker-build_diaries-local-mqtt-log"
+                                               },
+                    "nas-photo":  {
+                                      "name":  "diaries-local-docker-build_nas-photo",
+                                      "driver":  "local",
+                                      "driver_opts":  {
+                                                          "device":  "//nas.localdomain/photo",
+                                                          "o":  "username=diaries-docker,password=\u003credacted\u003e,vers=3.0",
+                                                          "type":  "cifs"
+                                                      }
+                                  }
+                }
+}

@@ -136,6 +136,43 @@ The database is the durable source of truth. The retained MQTT topic tree is a l
 
 Large binary content, especially images, is served separately from MQTT. MQTT messages should contain references and metadata, not the image file contents themselves.
 
+## Durable dataset and mutable Files storage
+
+PostgreSQL and the mutable uploaded-file tree are one durable dataset. The operating invariant is:
+
+```text
+one effective database dataset <-> one effective mutable Files root
+```
+
+`DIARIES_FILES_DIR` is the local/runtime selector for the mutable Files **leaf directory**. It is a directory name such as `files-development-infrastructure` or `files-development-common`, not an absolute path. Docker combines it with `DIARIES_NAS_CONTENT_PATH` and mounts the selected physical tree at the stable responder path `/data/files`. The original diary-page scans remain under the separate shared `diaries` tree and are mounted read-only.
+
+The three committed local environment files contain isolated defaults:
+
+| Mode | Database default | Files default |
+| --- | --- | --- |
+| `development-infrastructure` | `./data/database/development-infrastructure` | `files-development-infrastructure` |
+| `local-docker-build` | `./data/database/local-docker-build` | `files-local-docker-build` |
+| `local-published-smoke` | `./data/database/local-published-smoke` | `files-local-published-smoke` |
+
+Local scripts load the mode-specific environment first and ignored `config/environments/local.env` second. The normal developer configuration may deliberately override **both** selectors so all three modes use the same pair:
+
+```text
+DIARIES_DB_DATA_DIR=./data/database/common
+DIARIES_FILES_DIR=files-development-common
+```
+
+That sharing is intentional only because both durable sides are shared together. A database-only or Files-only override is invalid and the Windows launch tooling rejects it. To return to the isolated committed defaults, remove/comment both common overrides from `local.env`, or replace both with another valid matched pair; do not change only one selector.
+
+Direct Windows responder startup follows the same rule. `scripts/windows/development-infrastructure/prepare-responder-config.bat` loads the two environment files in the same order, validates the pair, and generates an ignored effective responder JSON from the developer-owned base configuration. Only `diaries.files` is replaced with the effective `DIARIES_FILES_DIR`, so direct development and Docker do not acquire separate storage-selection rules.
+
+The physical directory name is deliberately not part of the application data contract. Browser URLs remain `/files/...`, and persisted `Image.relativePath` values remain relative to the selected Files root with no environment prefix.
+
+Before an upload/delete/reconciliation test, database restore, or other destructive operation, identify the **effective** database and Files root after overrides. On Windows, the launch/maintenance scripts validate and report that pair; the reusable helpers are under `scripts/windows/common/`. Backup/restore is also pair-oriented: a database dump alone is a database-only backup. A complete recoverable dataset requires the database dump, the matching Files snapshot/copy, and identity/checksum information captured while mutable writers are frozen. Restore the matched pair together and reconcile before re-enabling destructive lifecycle operations.
+
+Never temporarily point independently changed databases back at one shared mutable Files tree merely to simplify rollback. Once roots have diverged, automatic re-sharing can make one dataset delete or overwrite bytes belonging to another. Preserve isolated copies and reconcile explicitly instead.
+
+See `scripts/windows/README.md` for local operating procedures and the Playbooks `roles/diaries/README.md` for production configuration.
+
 ## Typical development workflow
 
 Clone the top-level repository, including submodules if applicable:

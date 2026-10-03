@@ -1,0 +1,44 @@
+0031-FEAT Step 14 changed/new files
+===================================
+
+Diaries application repository:
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/IMPLEMENTATION-STEPS.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/RUNBOOK.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/CHANGED-FILES.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/verification-output.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/SOURCE-SHA256SUMS-DIARIES.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/SOURCE-SHA256SUMS-PLAYBOOKS.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/SHA256SUMS.txt
+
+Playbooks repository:
+roles/diaries/files/sync/config/mosquitto/mosquitto.conf
+roles/diaries/files/sync/scripts/README.md
+roles/diaries/files/sync/scripts/step14-production-deployment.sh
+roles/diaries/tasks/copy.yaml
+roles/diaries/tests/verify-0031-step14.py
+
+The production broker change is intentionally limited to the Diaries role copy of
+mosquitto.conf. The generic standalone roles/mosquitto template is not part of the
+Diaries production Compose stack and is not changed by Step 14.
+
+Runtime production evidence is not fabricated by this source package. It is
+created only by executing evidence/Step 14/RUNBOOK.md on mango/pluto.
+
+Step 14 close-out update (2026-10-03):
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/CLOSE-OUT.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/LATEST-PREFLIGHT.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/LATEST-POSTFLIGHT.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/LATEST-RECONCILIATION.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/runtime/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/runtime/console/note(20261003-080223).txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/runtime/console/note(20261003-080724).txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/runtime/console/note(20261003-081135).txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/runtime/console/note(20261003-081411).txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/runtime/console/note(20261003-081735).txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 14/runtime/console/note(20261003-082144).txt
+
+The close-out preserves the exact supplied console transcripts and records the
+remote helper-generated evidence directories by exact path. It does not fabricate
+copies of runtime evidence bytes that were not supplied in the source bundle.

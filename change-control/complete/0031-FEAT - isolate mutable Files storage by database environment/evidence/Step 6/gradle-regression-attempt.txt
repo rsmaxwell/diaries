@@ -1,0 +1,15 @@
+Command attempted from Diaries repository root:
+
+  ./gradlew :diaries-responder:test --tests com.rsmaxwell.diaries.responder.handlers.UploadStagingTest.publicUrlAndPersistedPathDoNotExposePhysicalFilesDirectory --no-daemon
+
+Result:
+
+  NOT EXECUTED TO TEST COMPLETION IN THE PACKAGING ENVIRONMENT.
+  The Gradle wrapper attempted to download Gradle 9.6.1 from services.gradle.org,
+  but the packaging environment has no external network access and failed with
+  java.net.UnknownHostException: services.gradle.org.
+
+This is not a source/test failure. The responder test itself was introduced in
+0031 Step 4 and Step 6 does not change UploadFile or UploadStagingTest. Step 6's
+portable verifier confirms that the stable `/files` implementation and the
+named regression test remain present.

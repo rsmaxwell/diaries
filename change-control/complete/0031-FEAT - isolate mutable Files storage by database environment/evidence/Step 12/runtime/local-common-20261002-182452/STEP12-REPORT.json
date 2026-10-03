@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "feature": "0031-FEAT",
+  "step": 12,
+  "dataset": "local-common",
+  "status": "PASS",
+  "baselineRun": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\change-control\\in-progress\\0031-FEAT - isolate mutable Files storage by database environment\\evidence\\Step 9\\runtime\\local-common-20261002-151207",
+  "currentRun": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\change-control\\in-progress\\0031-FEAT - isolate mutable Files storage by database environment\\evidence\\Step 12\\runtime\\local-common-20261002-182452",
+  "baseline": {
+    "summary": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\change-control\\in-progress\\0031-FEAT - isolate mutable Files storage by database environment\\evidence\\Step 9\\runtime\\local-common-20261002-151207\\reconciliation\\0024-summary.json",
+    "filesRoot": "\\\\nas\\photo\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files",
+    "rootKey": "null",
+    "databaseIdentity": "diaries:16385:172.18.0.3/32:5432:18.6",
+    "counts": {
+      "CATALOGUED_MATCH": 85,
+      "DIRECTORY": 10,
+      "UNSUPPORTED": 4
+    },
+    "inventoryRows": 99,
+    "inventorySemanticSha256": "2fa5fbe270bff7918ad6e09a2d5ac12e842ec7720bde902bae1899ceabf73444",
+    "pair": {}
+  },
+  "current": {
+    "summary": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\change-control\\in-progress\\0031-FEAT - isolate mutable Files storage by database environment\\evidence\\Step 12\\runtime\\local-common-20261002-182452\\reconciliation\\0024-summary.json",
+    "filesRoot": "\\\\nas\\photo\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files-development-common",
+    "rootKey": "null",
+    "databaseIdentity": "diaries:16385:172.18.0.2/32:5432:18.6",
+    "counts": {
+      "CATALOGUED_MATCH": 85,
+      "DIRECTORY": 10,
+      "UNSUPPORTED": 4
+    },
+    "inventoryRows": 99,
+    "inventorySemanticSha256": "2fa5fbe270bff7918ad6e09a2d5ac12e842ec7720bde902bae1899ceabf73444",
+    "pair": {
+      "schemaVersion": 1,
+      "feature": "0031-FEAT",
+      "step": 12,
+      "dataset": "local-common",
+      "modeUsedForReconciliation": "development-infrastructure direct responder configuration",
+      "effectiveDbDataDir": "./data/database/common",
+      "effectiveFilesDir": "files-development-common",
+      "physicalFilesRoot": "Microsoft.PowerShell.Core\\FileSystem::\\\\nas\\photo\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content\\files-development-common",
+      "publicFilesRoute": "/files/...",
+      "responderConfig": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\build\\development-infrastructure\\responder.effective.json",
+      "step9BaselineRun": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\change-control\\in-progress\\0031-FEAT - isolate mutable Files storage by database environment\\evidence\\Step 9\\runtime\\local-common-20261002-151207",
+      "productionWriteFreezeConfirmed": true,
+      "capturedAt": "2026-10-02T17:24:52.0799381Z"
+    }
+  },
+  "checks": {
+    "currentDryRunComplete": {
+      "pass": true,
+      "critical": true,
+      "detail": "outcome='DRY_RUN_COMPLETE', mode='dry-run'"
+    },
+    "sameDatabaseName": {
+      "pass": true,
+      "critical": true,
+      "detail": "Step 9='diaries'; Step 12='diaries'"
+    },
+    "sameReconciliationCounts": {
+      "pass": true,
+      "critical": true,
+      "detail": "Step 9={\"CATALOGUED_MATCH\": 85, \"DIRECTORY\": 10, \"UNSUPPORTED\": 4}; Step 12={\"CATALOGUED_MATCH\": 85, \"DIRECTORY\": 10, \"UNSUPPORTED\": 4}"
+    },
+    "sameSemanticInventory": {
+      "pass": true,
+      "critical": true,
+      "detail": "Step 9 rows=99, sha256=2fa5fbe270bff7918ad6e09a2d5ac12e842ec7720bde902bae1899ceabf73444; Step 12 rows=99, sha256=2fa5fbe270bff7918ad6e09a2d5ac12e842ec7720bde902bae1899ceabf73444"
+    },
+    "expectedFilesSelector": {
+      "pass": true,
+      "critical": true,
+      "detail": "expected='files-development-common'; current='files-development-common'"
+    },
+    "expectedDatabaseSelector": {
+      "pass": true,
+      "critical": true,
+      "detail": "expected='./data/database/common'; current='./data/database/common'"
+    },
+    "physicalFilesRootChanged": {
+      "pass": true,
+      "critical": true,
+      "detail": "Step 9='\\\\\\\\nas\\\\photo\\\\nancy-and-ronald-maxwell\\\\documents\\\\sea-captains-chest\\\\diaries-content\\\\files'; Step 12='\\\\\\\\nas\\\\photo\\\\nancy-and-ronald-maxwell\\\\documents\\\\sea-captains-chest\\\\diaries-content\\\\files-development-common'"
+    },
+    "summaryFilesRootLeaf": {
+      "pass": true,
+      "critical": true,
+      "detail": "summary leaf='files-development-common'; selector='files-development-common'"
+    },
+    "databaseIdentityExact": {
+      "pass": false,
+      "critical": false,
+      "detail": "Step 9='diaries:16385:172.18.0.3/32:5432:18.6'; Step 12='diaries:16385:172.18.0.2/32:5432:18.6'; address/port changes are informational"
+    },
+    "rootKeyExact": {
+      "pass": true,
+      "critical": false,
+      "detail": "Step 9='null'; Step 12='null'; copied roots normally differ"
+    }
+  },
+  "failures": [],
+  "comparisonPolicy": {
+    "ignoredInventoryColumns": [
+      "lastModified"
+    ],
+    "normalizedDirectoryMetadataColumns": [
+      "size"
+    ],
+    "stagingDirectory": ".image-staging is excluded by 0024 and is captured separately; catalogue.lock is transient and was intentionally not copied in Step 10"
+  }
+}

@@ -199,3 +199,55 @@ Evidence must be written outside subproject generated-output directories; in par
 It never starts a Compose stack or accesses a live NAS/database. See
 `change-control/in-progress/0026-FEAT - render ImageFragments in diaries-web/evidence/Step 14/README.md`
 for full commands, prerequisites, evidence and acceptance rules.
+
+## 0031 Step 8 pre-migration backup tooling
+
+`verify-0031-step8.py` performs portable source checks for the Step 8 Windows
+migration-safety tools under `scripts/windows/0031-step8/`. It verifies the
+local responder write-freeze guards, one-running-database selection, reuse of
+the Step-7 database backup helper, explicit old-shared-`files` identity,
+production-freeze confirmation gate, `.image-staging` review, `robocopy`
+snapshot semantics, and complete SHA-256 source/snapshot comparison.
+
+Run from the Diaries project root:
+
+```text
+python scripts/windows/validation/verify-0031-step8.py
+```
+
+This is a source/contract check only. Closing Step 8 requires the live runbook
+under the 0031 Step 8 evidence directory because the actual PostgreSQL backups
+and NAS snapshot must be taken while both responder write paths are frozen.
+
+
+## 0031 Step 10 non-production Files-root seeding tooling
+
+`verify-0031-step10.py` performs portable source/contract checks for the Step 10
+Windows tooling under `scripts/windows/0031-step10/`. It verifies the paired
+local dataset map, both write-freeze guards, Step 8 source-baseline comparison,
+Step 9 staging exclusion, non-overwriting temporary-copy/promotion flow,
+complete SHA-256 copy verification, the write/read/delete permission probe and
+ACL evidence capture.
+
+Run from the Diaries project root:
+
+```text
+python scripts/windows/validation/verify-0031-step10.py
+```
+
+This check does not create a NAS directory. Step 10 is complete only after the
+live seeding command has created the candidate root and the captured permissions
+have been reviewed.
+
+## 0031 Step 16 final regression and restore rehearsal
+
+`verify-0031-step16.py` is the portable static gate for the final 0031 release candidate. It checks the committed independent defaults, paired `local.env` precedence, fail-fast mismatch guard, local Compose mount selectors, direct-development effective configuration, stable `/files/...` contract, backup/restore warnings, and the Step 16 runtime tooling/acceptance/rollback records.
+
+Run from the Diaries root:
+
+```text
+python scripts/windows/validation/verify-0031-step16.py
+```
+
+Static verification is not sufficient to close Step 16. The Windows runtime gate under `scripts/windows/0031-step16/` must also be run. `run-final-regression.bat` executes the exact Diaries + Playbooks cross-repository regression, full Java tests and Angular build while capturing final source identities. `rehearse-common-restore.bat` restores the frozen Step 8 common database dump only into a disposable PostgreSQL container and reconciles it read-only against the intended `files-development-common` root. It never overwrites the live local database.
+

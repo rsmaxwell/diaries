@@ -1,0 +1,41 @@
+WINDOWS RUNTIME VERIFICATION — PASSED / STEP 4 CLOSED
+
+Successful workstation rerun: 2026-10-02
+Command:
+
+  scripts\windows\validation\verify-0031-step4-runtime.bat
+
+The corrected verifier completed successfully on the Windows development workstation.
+It confirmed the effective shared-local dataset pair:
+
+  Database data: ...\data\database\common
+  Files root:    ...\files-development-common
+  Responder cfg: ...\build\development-infrastructure\responder.effective.json
+
+The generated responder configuration check passed:
+
+  PASS: generated diaries.files = files-development-common
+
+The focused Gradle responder verification also passed:
+
+  BUILD SUCCESSFUL
+
+and the runtime verifier ended with:
+
+  PASS: 0031 Step 4 runtime verification completed.
+
+The full successful output is retained verbatim as:
+
+  runtime-verification-success-20261002-070435.txt
+
+The earlier failed workstation output remains retained as:
+
+  runtime-verification-failure-20261001-184521.txt
+
+That earlier failure was caused solely by the verifier's batch/PowerShell pipeline
+quoting (`^|` reaching PowerShell literally). The verifier was corrected to use
+`|`, and the static checker now guards against recurrence.
+
+Conclusion:
+
+  Step 4 runtime verification is complete and Step 4 is CLOSED.

@@ -87,18 +87,17 @@ SUBACK codes do keep the reader unready.
 The responder has read/write permission on the canonical Image catalogue
 `diaries/images/+` for startup replay and retained tombstones. It also has
 read/write permission on the transient `diaries-sync/#` namespace used only for
-non-retained QoS-1 retained-snapshot drain barriers. The bulk `diaries/#`
-snapshot uses QoS 1 with MQTT 5 Receive Maximum 20. The separate barrier
-namespace prevents overlapping subscriptions. Keep broker queue capacity
-sufficient for the full retained tree (see `max_queued_messages` in
-`mosquitto.conf`). Client, web and health identities have no synchronization
-barrier permission.
+non-retained QoS-1 retained-snapshot drain barriers. The retained snapshot uses QoS 1 with MQTT 5 Receive Maximum 20. The separate barrier
+namespace prevents overlapping subscriptions. Step 13 also requires the local broker
+to use `max_queued_messages 0` so an already-large retained replay cannot be silently
+truncated at an arbitrary fixed message-count limit. Client, web and health identities
+have no synchronization barrier permission.
 
 The production Ansible-managed Diaries ACL must carry the same narrow
 `diaries-web` Image read permission. Do not replace it with `diaries/images/#`
 or a broad `diaries/#` web permission.
 
-The responder run directly with development-infrastructure uses the existing developer-owned `%USERPROFILE%\.diaries\responder.json`.
+The responder run directly with development-infrastructure uses the developer-owned `%USERPROFILE%\.diaries\responder.json` as its base. `scripts/windows/development-infrastructure/prepare-responder-config.bat` generates an ignored effective copy whose `diaries.files` value comes from `development-infrastructure.env` followed by `local.env`, so the direct responder follows the same database/Files dataset selection as the local environment.
 
 For `local-docker-build` and `local-published-smoke`, create `%USERPROFILE%\.diaries\responder.docker.json` and set this in ignored `config/environments/local.env`:
 
@@ -109,3 +108,19 @@ DIARIES_RESPONDER_DOCKER_CONFIG_FILE=C:/Users/<username>/.diaries/responder.dock
 Use the real absolute path rather than embedding `${USERPROFILE}` in this value: Docker Compose does not recursively expand variables read from an `--env-file`.
 
 Keep the Docker MQTT host as `diaries-mqtt`, the port as `1883`, and the username as `diaries-responder`. Its password must match the `diaries-responder` entry in the external password source. Never copy the responder configuration into Git or change-control evidence.
+
+## Step 13 retained-snapshot queue safeguard (interim)
+
+`0031-FEAT` Step 13 exposed two different MQTT backlog risks: publishing a large database snapshot into an empty broker, and a newly attached responder snapshot client receiving an already-large retained tree. The first path can be paced by the application; the second path is broker-driven once a subscription is accepted.
+
+For the second path the local Diaries broker now uses:
+
+```text
+max_inflight_messages 20
+max_queued_messages 0
+```
+
+`max_inflight_messages 20` retains bounded QoS 1/2 flow on the wire. `max_queued_messages 0` removes the message-count queue ceiling so an already-populated retained tree cannot be truncated merely because the replay contains more than an arbitrary fixed number of messages. The responder also keeps the Step 13 branch-by-branch retained snapshot (`diaries/diaries/#`, `diaries/pages/#`, and so on) because smaller replay units remain useful for progress, diagnostics and peak backlog reduction.
+
+This is an **interim correctness safeguard**, not the final MQTT snapshot architecture. After the current TODO features are complete, revisit this design and consider a bounded protocol that segments the subscription space more finely and paces successive subscriptions (or otherwise makes complete retained-tree recovery explicit) before reintroducing a finite queue limit. Do not reduce `max_queued_messages` from `0` until the replacement design proves that a complete retained snapshot cannot be silently truncated.
+

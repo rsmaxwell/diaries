@@ -1,0 +1,12 @@
+bca3e64a6bd30f9df6e7867a31bda1fe5229d98c591bee17da2062a7f23eb920  diaries/scripts/windows/common/validate-dataset-pair.bat
+0702456d739d0a04ebb0e577fe930ca72cff8081f92f60e947f2fe87d34439c7  diaries/scripts/windows/common/validate-dataset-pair.ps1
+f292e6f20da8fc2e175c628c710173a8e73c4351551004a2a26e530dcaff747d  diaries/scripts/windows/development-infrastructure/start.bat
+255c44bc8db4d4058e613d71f956c21f9a68aee8ef7dd9f790835d461b9aa002  diaries/scripts/windows/development-infrastructure/prepare-responder-config.bat
+944ef5d1924d61140b235d6d105549dcdab0109ea35906e929cad8c5a7e3d4d2  diaries/scripts/windows/local-docker-build/start.bat
+584b87a0be03f45f9e5628f423a1c063b8ae3ed250b7b79c165f930515ebe65e  diaries/scripts/windows/local-published-smoke/start.bat
+a6e691af2664a2c9353b9d3bf9a2a8a6af0b79243065bd1d55d9b61b392b9e3b  diaries/scripts/windows/validation/verify-0031-step6.py
+bb85a90f0ece3de028dab97604778e14fe293087067637df64f52b793150190e  diaries/scripts/windows/validation/verify-0031-step6.ps1
+777cee9858529d051585099d1e976f4fdc2c944ee031ca9d742884b6afc50e41  diaries/change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/README.md
+09eb834a0876356e189f4bc095cedd10c4459d77a00e37d0cb9b82cec9575352  diaries/change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/IMPLEMENTATION-STEPS.md
+c63f043a3bcb161d7af46cd7e89accfbfa0304fb0e3596ff697cca6fe85e68be  playbooks/roles/diaries/tasks/copy.yaml
+9d838f2137e541c707d9ffbdb1a9dd0234b875d522766ad74c999fa10c4639ad  playbooks/roles/diaries/tests/verify-0031-storage-isolation.py

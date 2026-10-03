@@ -192,6 +192,49 @@ This keeps MQTT messages small and makes image display/cache behaviour simpler.
 
 ---
 
+## Durable storage pairing and environment-neutral file identity
+
+The durable application dataset has two mutable sides:
+
+```text
+PostgreSQL application rows
+        +
+selected mutable Files root
+```
+
+They must be selected as one pair. An execution-mode name is not sufficient to identify the dataset because local mode defaults can be overridden. The effective local selection is calculated by loading the mode environment and then `config/environments/local.env`; the second file wins.
+
+Committed defaults keep the three local modes isolated, but the normal developer override may intentionally make all three use:
+
+```text
+./data/database/common
+files-development-common
+```
+
+`DIARIES_DB_DATA_DIR` and `DIARIES_FILES_DIR` must therefore be overridden together. Switching only one side can associate catalogue rows with the wrong bytes and is rejected by the supported Windows tooling. Removing both common overrides returns each mode to its committed isolated database/Files pair.
+
+`DIARIES_FILES_DIR` is intentionally only a validated leaf-directory selector. The physical path is resolved by the environment:
+
+```text
+Docker/local:   ${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR} -> /data/files
+Direct Windows: <responder diaries.root>/<DIARIES_FILES_DIR>
+Production:     ${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR} -> /data/files
+```
+
+Production obtains the leaf from the Ansible variable `diaries_files_dir`; it has no implicit role default and is rendered as `DIARIES_FILES_DIR`.
+
+This storage selection does **not** alter application identity. The original diary-page scan tree remains `${DIARIES_NAS_CONTENT_PATH}/diaries` (shared/read-only in Docker/production), while mutable uploaded/catalogued content uses the selected Files root. The responder exposes mutable bytes under the stable `/files/...` HTTP namespace, and `Image.relativePath` remains relative to the selected Files root. Environment/mode names must never be persisted in that relative path simply because the physical root changes.
+
+Retained MQTT state is not a third durable side of the dataset. It is broker/mode-specific live state that can be rebuilt from the matching database.
+
+### Backup, restore and rollback consequence
+
+A database dump is not a complete Diaries dataset backup. A recoverable backup consists of the database dump plus the **matching** mutable Files snapshot/copy and enough path/checksum identity to prove the pairing. Capture both while mutable responder writers are frozen.
+
+For restore, first select and verify the target database/Files pair, keep the responder stopped, restore the matching Files snapshot and database dump, then reconcile before writes resume. A database-only restore may be valid for a deliberate operation, but it must be treated as potentially requiring Files reconciliation.
+
+If two formerly shared datasets have changed independently, never roll them back by silently pointing both at one shared Files root. Keep the independent roots, restore matched pairs, and reconcile explicitly; destructive Image/File operations should remain disabled until the relationship is understood.
+
 ## Typical operation flow
 
 ### Create fragment + marquee

@@ -1,0 +1,17 @@
+Operation: DATABASE-ONLY backup
+Effective dataset: production
+Database storage:  docker-volume:diaries-db-data
+Files selector:    files
+Files root:        //nas.tail636235.ts.net/photo/nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files
+Complete dataset:  NO - mutable Files bytes are not included.
+
+Creating custom-format Diaries database backup...
+Service:  diaries-db
+Database: diaries
+User:     postgres
+Output:   /home/richard/projects/diaries/data/database-backups/production/diaries-production-20261002-142838.dump
+
+Database backup completed successfully:
+  /home/richard/projects/diaries/data/database-backups/production/diaries-production-20261002-142838.dump
+Manifest: /home/richard/projects/diaries/data/database-backups/production/diaries-production-20261002-142838.dump.dataset.json
+NOTE: This is not a complete dataset backup; preserve the matching Files snapshot separately.

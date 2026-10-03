@@ -1,0 +1,11 @@
+PASS mode default: development-infrastructure: ./data/database/development-infrastructure <-> files-development-infrastructure
+PASS mode default: local-docker-build: ./data/database/local-docker-build <-> files-local-docker-build
+PASS mode default: local-published-smoke: ./data/database/local-published-smoke <-> files-local-published-smoke
+PASS common override: development-infrastructure: ./data/database/common <-> files-development-common
+PASS common override: local-docker-build: ./data/database/common <-> files-development-common
+PASS common override: local-published-smoke: ./data/database/common <-> files-development-common
+PASS compose: compose.local-docker-build.yaml: /data/files -> ${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR:?DIARIES_FILES_DIR must be set}
+PASS compose guard: compose.local-docker-build.yaml: missing DIARIES_FILES_DIR uses Compose :? failure
+PASS compose: compose.local-published-smoke.yaml: /data/files -> ${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR:?DIARIES_FILES_DIR must be set}
+PASS compose guard: compose.local-published-smoke.yaml: missing DIARIES_FILES_DIR uses Compose :? failure
+PASS: 0031-FEAT Step 3 local configuration contract verified

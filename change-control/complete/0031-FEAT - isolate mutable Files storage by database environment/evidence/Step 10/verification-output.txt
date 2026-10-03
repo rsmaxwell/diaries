@@ -1,0 +1,19 @@
+PASS: Step 10 requires explicit confirmation that the production write freeze remains active
+PASS: Step 10 checks the known local responder containers
+PASS: Step 10 rejects a running direct Windows responder
+PASS: Step 10 enforces frozen dataset pair development-infrastructure -> files-development-infrastructure
+PASS: Step 10 enforces frozen dataset pair local-docker-build -> files-local-docker-build
+PASS: Step 10 enforces frozen dataset pair local-published-smoke -> files-local-published-smoke
+PASS: Step 10 enforces frozen dataset pair common -> files-development-common
+PASS: Step 10 cannot target the production files leaf for a local dataset
+PASS: Step 10 refuses to merge into an existing candidate root
+PASS: Step 10 re-verifies the shared source against the Step 8 SHA-256 baseline
+PASS: Step 10 enforces the reviewed Step 9 staging disposition
+PASS: Step 10 deliberately excludes .image-staging from the new dataset seed
+PASS: Step 10 uses the approved attribute-preserving robocopy semantics
+PASS: Step 10 verifies a temporary sibling copy before promoting it to the configured target
+PASS: Step 10 verifies target mutation permissions and proves the probe leaves no data change
+PASS: Step 10 captures ACL evidence and keeps permission review as an explicit close-out gate
+PASS: documentation explains that the normal common local dataset receives one Files root
+PASS: Step 10 contract remains present in the implementation plan
+PASS: 0031-FEAT Step 10 Files-root seeding tooling verified

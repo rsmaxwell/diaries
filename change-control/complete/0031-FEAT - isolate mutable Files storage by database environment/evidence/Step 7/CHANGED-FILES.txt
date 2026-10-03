@@ -1,0 +1,38 @@
+Diaries repository:
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/IMPLEMENTATION-STEPS.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 7/BACKUP-RESTORE-SEMANTICS.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 7/CHANGED-FILES.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 7/CLOSE-OUT.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 7/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 7/playbooks-shell-syntax.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 7/playbooks-verification-output.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 7/verification-output.txt
+scripts/windows/common/resolve-effective-dataset.ps1
+scripts/windows/common/verify-db-backup-manifest.ps1
+scripts/windows/common/write-db-backup-manifest.ps1
+scripts/windows/development-infrastructure/backup-db-to-binary.bat
+scripts/windows/development-infrastructure/backup-db-to-sql.bat
+scripts/windows/development-infrastructure/restore-db-from-binary.bat
+scripts/windows/development-infrastructure/restore-db-from-sql.bat
+scripts/windows/local-docker-build/backup-db-to-binary.bat
+scripts/windows/local-docker-build/backup-db-to-sql.bat
+scripts/windows/local-docker-build/restore-db-from-binary.bat
+scripts/windows/local-docker-build/restore-db-from-sql.bat
+scripts/windows/local-published-smoke/backup-db-to-binary.bat
+scripts/windows/local-published-smoke/backup-db-to-sql.bat
+scripts/windows/local-published-smoke/restore-db-from-binary.bat
+scripts/windows/local-published-smoke/restore-db-from-sql.bat
+scripts/windows/validation/verify-0031-step7.py
+
+Playbooks repository:
+roles/diaries/files/sync/scripts/README.md
+roles/diaries/files/sync/scripts/backup-db-to-binary.sh
+roles/diaries/files/sync/scripts/backup-db-to-sql.sh
+roles/diaries/files/sync/scripts/dataset-backup-manifest.py
+roles/diaries/files/sync/scripts/restore-db-from-binary.sh
+roles/diaries/files/sync/scripts/restore-db-from-sql.sh
+roles/diaries/tests/verify-0031-backup-semantics.py
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 7/SHA256SUMS.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 7/SOURCE-SHA256SUMS-DIARIES.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 7/SOURCE-SHA256SUMS-PLAYBOOKS.txt

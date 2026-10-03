@@ -1,0 +1,13 @@
+﻿0031-FEAT Step 16 final regression
+Captured: 2026-10-03T09:37:15.8565347Z
+Diaries root: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries
+Playbooks SSH host: mango
+Playbooks remote root: /home/richard/playbooks
+
+PASS: exact-candidate source/contract regression
+PASS: isolated/default, common paired override and one-sided rejection regression
+PASS: full Java responder/web tests
+PASS: Angular client build
+
+This run is not by itself the Step 16 close-out: a successful disposable common-dataset restore/reconciliation rehearsal is also required.
+Evidence: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\change-control\in-progress\0031-FEAT - isolate mutable Files storage by database environment\evidence\Step 16\runtime\final-regression-20261003-103715

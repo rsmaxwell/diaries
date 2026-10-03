@@ -15,7 +15,7 @@ rem If dump-file is supplied, that exact file is restored and it may be located
 rem anywhere on the Windows host. If no file is supplied, the newest standard
 rem development-infrastructure .dump file is selected from:
 rem
-rem     data\database-backups\development-infrastructure
+rem     data\database-backups\<effective-dataset>
 rem
 rem The existing database is dropped and recreated. The script asks for an
 rem explicit RESTORE confirmation before making that destructive change.
@@ -52,7 +52,6 @@ rem ----------------------------------------------------------------------------
 set "COMPOSE_FILE=%PROJECT_DIR%\compose.development-infrastructure.yaml"
 set "ENV_FILE=%PROJECT_DIR%\config\environments\development-infrastructure.env"
 set "LOCAL_ENV_FILE=%PROJECT_DIR%\config\environments\local.env"
-set "BACKUP_DIR=%PROJECT_DIR%\data\database-backups\development-infrastructure"
 
 if not exist "%COMPOSE_FILE%" (
     echo ERROR: Compose file not found: "%COMPOSE_FILE%" >&2
@@ -94,12 +93,45 @@ if errorlevel 1 (
 if not defined DIARIES_DB_NAME set "DIARIES_DB_NAME=diaries"
 if not defined DIARIES_DB_USERNAME set "DIARIES_DB_USERNAME=diaries"
 
+rem ----------------------------------------------------------------------------
+rem Validate and describe the effective durable dataset selected after local.env.
+rem Step 7 deliberately keys backup locations from DIARIES_DB_DATA_DIR rather
+rem than the launch-mode name so shared common data is backed up only as common.
+rem ----------------------------------------------------------------------------
+
+call "%PROJECT_DIR%\scripts\windows\common\validate-dataset-pair.bat" "development-infrastructure" "%ENV_FILE%" "%LOCAL_ENV_FILE%"
+if errorlevel 1 (
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+set "DIARIES_DATASET_NAME="
+set "DIARIES_EFFECTIVE_DB_DATA_DIR="
+set "DIARIES_EFFECTIVE_FILES_ROOT="
+set "DIARIES_DATASET_SHARING="
+
+for /f "usebackq tokens=1,* delims==" %%A in (`powershell -NoProfile -ExecutionPolicy Bypass -File "%PROJECT_DIR%\scripts\windows\common\resolve-effective-dataset.ps1" -ModeName "development-infrastructure" -ProjectDir "%PROJECT_DIR%" -DatabaseDataDir "%DIARIES_DB_DATA_DIR%" -FilesDir "%DIARIES_FILES_DIR%"`) do set "%%A=%%B"
+if errorlevel 1 (
+    echo ERROR: Unable to resolve the effective durable dataset. >&2
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+if not defined DIARIES_DATASET_NAME (
+    echo ERROR: Effective dataset name was not resolved. >&2
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+set "BACKUP_DIR=%PROJECT_DIR%\data\database-backups\%DIARIES_DATASET_NAME%"
+
+
 
 rem ----------------------------------------------------------------------------
 rem Select the dump file.
 rem
 rem IMPORTANT: An explicitly supplied path is handled first and does NOT depend
-rem on the standard development-infrastructure backup directory existing.
+rem on the standard effective-dataset backup directory existing.
 rem
 rem Only when no argument is supplied do we require BACKUP_DIR and search it for
 rem the newest standard backup.
@@ -114,7 +146,7 @@ if not "%~1"=="" (
         goto :cleanup
     )
 
-    for /f "delims=" %%F in ('dir /b /a-d /o-d "%BACKUP_DIR%\diaries-development-*.dump" 2^>nul') do (
+    for /f "delims=" %%F in ('dir /b /a-d /o-d "%BACKUP_DIR%\diaries-%DIARIES_DATASET_NAME%-*.dump" 2^>nul') do (
         if not defined DUMP_FILE set "DUMP_FILE=%BACKUP_DIR%\%%F"
     )
 )
@@ -189,6 +221,27 @@ if errorlevel 1 (
     set "EXIT_CODE=1"
     goto :cleanup
 )
+
+
+rem ----------------------------------------------------------------------------
+rem Verify the optional Step-7 sidecar manifest before any destructive database
+rem change. Legacy dumps without a manifest remain usable, but are clearly
+rem identified as requiring manual Files-root verification.
+powershell -NoProfile -ExecutionPolicy Bypass -File "%PROJECT_DIR%\scripts\windows\common\verify-db-backup-manifest.ps1" -BackupFile "%DUMP_FILE%" -DatasetName "%DIARIES_DATASET_NAME%" -DatabaseDataDir "%DIARIES_EFFECTIVE_DB_DATA_DIR%" -FilesDir "%DIARIES_FILES_DIR%" -FilesRoot "%DIARIES_EFFECTIVE_FILES_ROOT%"
+if errorlevel 1 (
+    echo ERROR: Refusing database restore because the backup dataset identity does not match the current effective database + Files pair. >&2
+    set "EXIT_CODE=1"
+    goto :cleanup
+)
+
+echo.
+echo Operation: DATABASE-ONLY restore
+echo Effective dataset: %DIARIES_DATASET_NAME%
+echo Database data:    %DIARIES_EFFECTIVE_DB_DATA_DIR%
+echo Files selector:   %DIARIES_FILES_DIR%
+echo Files root:       %DIARIES_EFFECTIVE_FILES_ROOT%
+echo Complete restore: NO - mutable Files bytes will not be restored.
+echo.
 
 
 rem ----------------------------------------------------------------------------

@@ -1,0 +1,10 @@
+PASS: production freeze stops only the responder write path
+PASS: production freeze keeps PostgreSQL available for pg_dump
+PASS: production freeze writes durable runtime evidence outside source sync content
+PASS: production capture refuses to run while responder writes are enabled
+PASS: production capture asserts that the pre-split production Files selector is files
+PASS: production Step 8 capture reuses the Step 7 binary backup helper
+PASS: production database backup and sidecar are checksummed and recorded
+PASS: production Step 8 manifest records runtime image identity
+PASS: underlying production backup helper still declares database-only semantics
+PASS: 0031-FEAT Step 8 production migration-safety tooling verified

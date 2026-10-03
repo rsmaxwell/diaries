@@ -1,0 +1,47 @@
+﻿{
+    "mqtt":  {
+                 "host":  "localhost",
+                 "port":  1883,
+                 "user":  {
+                              "username":  "diaries-responder",
+                              "password":  "\u003credacted\u003e"
+                          }
+             },
+    "db":  {
+               "go":  {
+                          "driver":  "postgres"
+                      },
+               "jdbc":  {
+                            "dbms":  "postgresql",
+                            "driver":  "org.postgresql.Driver"
+                        },
+               "additionalConnectionProperties":  {
+                                                      "hibernate.show_sql":  "false",
+                                                      "hibernate.format_sql":  "true",
+                                                      "hibernate.hbm2ddl.auto":  "update"
+                                                  },
+               "host":  "localhost",
+               "port":  5433,
+               "database":  "diaries",
+               "admin":  {
+                             "username":  "diaries",
+                             "password":  "\u003credacted\u003e"
+                         },
+               "users":  {
+                             "username":  "richard",
+                             "password":  "\u003credacted\u003e"
+                         }
+           },
+    "diaries":  {
+                    "root":  "\\\\nas\\photo\\nancy-and-ronald-maxwell\\documents\\sea-captains-chest\\diaries-content",
+                    "baseUrl":  "http://localhost:8081",
+                    "diaries":  "diaries",
+                    "files":  "files-development-common"
+                },
+    "refreshPeriod":  "10h",
+    "refreshExpiration":  "120h",
+    "secret":  "\u003credacted\u003e",
+    "normaliseOnStartup":  true,
+    "fragmentLockTtlSeconds":  900,
+    "imageFragmentWritesEnabled":  false
+}

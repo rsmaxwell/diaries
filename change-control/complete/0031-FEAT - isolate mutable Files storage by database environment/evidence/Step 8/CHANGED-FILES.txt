@@ -1,0 +1,28 @@
+Diaries repository:
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/IMPLEMENTATION-STEPS.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 8/CHANGED-FILES.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 8/README.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 8/RUNBOOK.md
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 8/SHA256SUMS.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 8/SOURCE-SHA256SUMS-DIARIES.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 8/SOURCE-SHA256SUMS-PLAYBOOKS.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 8/playbooks-shell-syntax.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 8/playbooks-verification-output.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 8/regression-output.txt
+change-control/in-progress/0031-FEAT - isolate mutable Files storage by database environment/evidence/Step 8/verification-output.txt
+scripts/windows/0031-step8/README.md
+scripts/windows/0031-step8/freeze-local-writes.bat
+scripts/windows/0031-step8/freeze-local-writes.ps1
+scripts/windows/0031-step8/capture-local-database-backup.bat
+scripts/windows/0031-step8/capture-local-database-backup.ps1
+scripts/windows/0031-step8/capture-shared-files-snapshot.bat
+scripts/windows/0031-step8/capture-shared-files-snapshot.ps1
+scripts/windows/validation/README.md
+scripts/windows/validation/verify-0031-step8.py
+
+Playbooks repository:
+roles/diaries/files/sync/scripts/README.md
+roles/diaries/files/sync/scripts/step8-freeze-writes.sh
+roles/diaries/files/sync/scripts/step8-capture-production-database-backup.sh
+roles/diaries/tests/verify-0031-step8.py
