@@ -1,4 +1,4 @@
-/* 0026 Step 13: controlled cross-component ImageFragment reader verification. */
+/* Controlled cross-component ImageFragment reader verification. */
 'use strict';
 const fs = require('node:fs');
 const path = require('node:path');
@@ -9,9 +9,9 @@ const assert = require('node:assert/strict');
 const { execFile } = require('node:child_process');
 const { promisify } = require('node:util');
 const run = promisify(execFile);
-const { makeRetainedSnapshot } = require('./step13-retained-snapshot.cjs');
-const { inspectImageBytes } = require('./step13-image-http.cjs');
-const { startMutableProxy, setPublishedPort } = require('./step13-proxy-routing.cjs');
+const { makeRetainedSnapshot } = require('./imagefragment-retained-snapshot.cjs');
+const { inspectImageBytes } = require('./imagefragment-image-http.cjs');
+const { startMutableProxy, setPublishedPort } = require('./imagefragment-proxy-routing.cjs');
 const root = path.resolve(__dirname, '../../..');
 let playwright;
 try { playwright = require('playwright'); } catch (first) {

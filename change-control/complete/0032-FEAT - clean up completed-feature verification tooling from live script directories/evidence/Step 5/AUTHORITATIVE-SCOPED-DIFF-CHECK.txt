@@ -1,0 +1,8 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+git diff --check -- \
+  roles/diaries/files/sync/scripts \
+  roles/diaries/tests \
+  roles/diaries/tasks/copy.yaml \
+  roles/diaries/README.md
+richard@mango:~/playbooks$

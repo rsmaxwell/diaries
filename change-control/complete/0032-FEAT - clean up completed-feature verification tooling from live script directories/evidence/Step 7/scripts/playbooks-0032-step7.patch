@@ -1,0 +1,96 @@
+--- a/roles/diaries/README.md
++++ b/roles/diaries/README.md
+@@ -44,6 +44,13 @@
+ 
+ Do not temporarily re-point independently changed datasets to one shared Files directory as a rollback shortcut. Preserve isolated roots until reconciliation is complete.
+ 
++
++## Production helper lifecycle
++
++`roles/diaries/files/sync/scripts/` is reserved for permanent supported production operator tooling. Temporary feature-only migration, capture or verification helpers must be explicitly deployed for the feature and explicitly removed during feature close-out; they must not accumulate in the always-synchronized script tree. Where a deployed copy can survive source removal, the close-out must remove that exact remote helper and verify its absence.
++
++The permanent `roles/diaries/tests/verify-production-deployment-contract.py` regression enforces the approved synchronized script set and rejects unclassified feature/step-shaped helpers. Completed temporary tooling should be preserved, when needed, with the corresponding Diaries change-control evidence rather than left in the role.
++
+ ## Backup and restore
+ 
+ The installed `scripts/backup-db-*` and `scripts/restore-db-*` helpers are database-only operations. New database backups carry a sidecar that records the configured Files selector/root. A complete recoverable production backup additionally requires a matching Files snapshot/copy and identity/checksum evidence captured while responder writes are frozen.
+--- a/roles/diaries/files/sync/scripts/README.md
++++ b/roles/diaries/files/sync/scripts/README.md
+@@ -3,6 +3,15 @@
+ This directory contains the supported production operator tooling installed by
+ the Diaries Ansible role. Completed feature-migration and verification helpers
+ are retained in change-control evidence rather than deployed as live commands.
++
++
++## Production tooling lifecycle
++
++This synchronized directory is a small allow-list of permanent production operator tooling. Adding a file here means declaring that command part of the supported ongoing production surface; `roles/diaries/tests/verify-production-deployment-contract.py` fails if the source set grows without an explicit supported classification.
++
++A **temporary feature-only production helper** must not be left indefinitely in this always-synchronized tree. When a feature genuinely needs one, it must be explicitly deployed for that feature and explicitly removed during feature close-out, with deployed absence verified if source removal alone cannot remove the remote copy. Historical source belongs with the completed change-control evidence rather than in this directory.
++
++Feature/step-shaped names are additionally treated as suspicious by the permanent deployment-contract regression. A genuinely permanent command with such a name requires an exact documented exception as well as inclusion in the supported-script set.
+ 
+ ## Supported installed commands
+ 
+--- a/roles/diaries/tests/verify-production-deployment-contract.py
++++ b/roles/diaries/tests/verify-production-deployment-contract.py
+@@ -27,6 +27,17 @@
+     "restore-db-from-sql.sh",
+ }
+ 
++# Historical-looking names are not automatically forbidden: a genuinely permanent
++# command can be admitted only by adding it to both SUPPORTED_SCRIPTS and this
++# exact-path exception set with a documented classification. Keep exceptions rare.
++APPROVED_FEATURE_STYLE_SCRIPTS: set[str] = set()
++
++FEATURE_STYLE_PATTERNS = (
++    re.compile(r"^step\d+(?:[-_.].*)?$", re.IGNORECASE),
++    re.compile(r"^(?:verify|test|check|capture|prepare|run)[-_]\d{4}(?:[-_.].*)?$", re.IGNORECASE),
++    re.compile(r"^migration\d{4}(?:[-_.].*)?$", re.IGNORECASE),
++)
++
+ 
+ def require(ok: bool, message: str) -> None:
+     if not ok:
+@@ -36,6 +47,15 @@
+ 
+ def read(relative: str) -> str:
+     return (ROLE / relative).read_text(encoding="utf-8")
++
++
++def feature_style_scripts(names: set[str]) -> list[str]:
++    return sorted(
++        name
++        for name in names
++        if name not in APPROVED_FEATURE_STYLE_SCRIPTS
++        and any(pattern.match(name) for pattern in FEATURE_STYLE_PATTERNS)
++    )
+ 
+ 
+ def main() -> int:
+@@ -62,10 +82,25 @@
+                 "role documentation records the durable database/Files pairing invariant")
+         require("database-only" in scripts_readme.lower() and "matching mutable Files snapshot" in scripts_readme,
+                 "production operator documentation defines database-only and matched Files backup semantics")
++        require(
++            "temporary feature-only production helper" in scripts_readme.lower()
++            and "explicitly deployed" in scripts_readme.lower()
++            and "explicitly removed" in scripts_readme.lower(),
++            "production operator documentation defines temporary helper deploy/remove lifecycle",
++        )
+ 
+         present = {p.name for p in SCRIPTS.iterdir() if p.is_file()}
+         require(present == SUPPORTED_SCRIPTS,
+                 "role source contains only the approved supported production script set")
++        require(
++            not feature_style_scripts(present),
++            "role source contains no unclassified feature/step-shaped production helpers",
++        )
++        synthetic = set(SUPPORTED_SCRIPTS) | {"step99-capture-example.sh"}
++        require(
++            feature_style_scripts(synthetic) == ["step99-capture-example.sh"],
++            "production recurrence policy detects a newly accumulated stepN helper",
++        )
+         require(all(not (SCRIPTS / name).exists() for name in OBSOLETE_SCRIPTS),
+                 "completed-feature production helpers are absent from role source")
+ 

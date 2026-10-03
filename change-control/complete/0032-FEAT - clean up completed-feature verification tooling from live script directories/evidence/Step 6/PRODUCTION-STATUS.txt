@@ -1,0 +1,45 @@
+0032 Step 6 - production status POST
+host: pluto
+captured: 2026-10-03T16:29:39+01:00
+project: /home/richard/projects/diaries
+
+>>> docker compose config --quiet
+PASS: Docker Compose configuration is valid.
+
+>>> normal Diaries status output
+Diaries stack status
+Project directory: /home/richard/projects/diaries
+Compose file:     /home/richard/projects/diaries/compose.yaml
+Environment file: /home/richard/projects/diaries/.env
+Frontend mode:    shared
+
+NAME                IMAGE                                        COMMAND                  SERVICE             CREATED         STATUS                   PORTS
+diaries-client      rsmaxwell/diaries-client:0.0.9-build-74      "/docker-entrypoint.…"   diaries-client      2 minutes ago   Up 2 minutes (healthy)   80/tcp, 8080/tcp
+diaries-mosquitto   eclipse-mosquitto:2                          "/docker-entrypoint.…"   diaries-mqtt        2 minutes ago   Up 2 minutes (healthy)   1883/tcp
+diaries-postgres    postgres:18-alpine                           "docker-entrypoint.s…"   diaries-db          2 minutes ago   Up 2 minutes (healthy)   0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp
+diaries-responder   rsmaxwell/diaries-responder:0.0.9-build-82   "/opt/diaries/bin/re…"   diaries-responder   2 minutes ago   Up 2 minutes (healthy)   
+diaries-web         rsmaxwell/diaries-web:0.0.9-build-7          "java -jar /opt/diar…"   diaries-web         2 minutes ago   Up 2 minutes (healthy)   8082/tcp
+
+Shared frontend
+Network:          infrastructure_shared
+Nginx container:  infra-nginx
+Route source:     /home/richard/projects/infrastructure/nginx/config/files/diaries.conf
+Route location:   /home/richard/projects/infrastructure/nginx/config/conf.d/locations/diaries.conf
+Route active:     yes -> ../../files/diaries.conf
+NAMES         STATUS       PORTS
+infra-nginx   Up 5 weeks   0.0.0.0:80->80/tcp, [::]:80->80/tcp, 0.0.0.0:443->443/tcp, [::]:443->443/tcp, 0.0.0.0:9418->9418/tcp, [::]:9418->9418/tcp
+PASS: scripts/status.sh completed successfully.
+
+>>> required service state / health
+SERVICE: diaries-db state=running health=healthy
+PASS: diaries-db is running and healthy.
+SERVICE: diaries-mqtt state=running health=healthy
+PASS: diaries-mqtt is running and healthy.
+SERVICE: diaries-responder state=running health=healthy
+PASS: diaries-responder is running and healthy.
+SERVICE: diaries-client state=running health=healthy
+PASS: diaries-client is running and healthy.
+SERVICE: diaries-web state=running health=healthy
+PASS: diaries-web is running and healthy.
+
+PASS: Step 6 production health verification completed.

@@ -1,0 +1,161 @@
+--- a/roles/diaries/tasks/copy.yaml
++++ b/roles/diaries/tasks/copy.yaml
+@@ -32,45 +32,47 @@
+     - "{{ diaries_project_dir }}/data/files"
+     - "{{ diaries_project_dir }}/scripts"
+ 
+-- name: diaries:copy | Synchronize files
++- name: diaries:copy | Synchronize project files excluding managed scripts
+   ansible.posix.synchronize:
+     src: "sync/"
+     dest: "{{ diaries_project_dir }}/"
+     rsync_opts:
+       - "--omit-dir-times"
++      - "--exclude=/scripts/"
+   register: result
+   notify: Restart diaries stack
+ 
+-- name: diaries:copy | Debug sync output
++- name: diaries:copy | Debug project sync output
+   ansible.builtin.debug:
+     var: result.stdout_lines
+ 
+ 
++- name: diaries:copy | Synchronize managed scripts
++  ansible.posix.synchronize:
++    src: "sync/scripts/"
++    dest: "{{ diaries_project_dir }}/scripts/"
++    rsync_opts:
++      - "--omit-dir-times"
++      - "--delete"
++      - "--delete-excluded"
++      # These files are rendered by the template task below. Protect their
++      # deployed copies from this static-source sync while deleting every
++      # other unmanaged entry from the production scripts directory.
++      - "--filter=protect /start.sh"
++      - "--filter=protect /stop.sh"
++      - "--filter=protect /status.sh"
++      - "--filter=protect /logs.sh"
++      - "--filter=protect /shell-prompt-database.sh"
++      - "--filter=protect /shell-prompt-mosquitto.sh"
++      - "--filter=protect /shell-prompt-responder.sh"
++      - "--filter=protect /shell-prompt-client.sh"
++      - "--filter=protect /shell-prompt-nginx.sh"
++  register: scripts_sync_result
++  notify: Restart diaries stack
+ 
+-
+-
+-- name: diaries:copy | Remove obsolete pre-container responder scripts
+-  ansible.builtin.file:
+-    path: "{{ diaries_project_dir }}/scripts/{{ item }}"
+-    state: absent
+-  loop:
+-    - get-artifact.sh
+-    - run.sh
+-
+-
+-- name: diaries:copy | Remove obsolete completed-feature production scripts
+-  ansible.builtin.file:
+-    path: "{{ diaries_project_dir }}/scripts/{{ item }}"
+-    state: absent
+-  loop:
+-    - migration0024ImageCatalogue.sh
+-    - step8-freeze-writes.sh
+-    - step8-capture-production-database-backup.sh
+-    - step9-reconcile-production.sh
+-    - step12-compare-reconciliation.py
+-    - step12-reconcile-production.sh
+-    - step13-capture-production-control.sh
+-    - step14-production-deployment.sh
++- name: diaries:copy | Debug managed scripts sync output
++  ansible.builtin.debug:
++    var: scripts_sync_result.stdout_lines
+ 
+ 
+ - name: diaries:copy | Template files
+--- a/roles/diaries/README.md
++++ b/roles/diaries/README.md
+@@ -47,9 +47,11 @@
+ 
+ ## Production helper lifecycle
+ 
+-`roles/diaries/files/sync/scripts/` is reserved for permanent supported production operator tooling. Temporary feature-only migration, capture or verification helpers must be explicitly deployed for the feature and explicitly removed during feature close-out; they must not accumulate in the always-synchronized script tree. Where a deployed copy can survive source removal, the close-out must remove that exact remote helper and verify its absence.
++`roles/diaries/files/sync/scripts/` is reserved for permanent supported production operator tooling. The deployed `{{ diaries_project_dir }}/scripts/` directory is a **managed directory**: it is synchronized separately with `rsync --delete --delete-excluded`, while the permanent templated operator scripts are explicitly protected and then rendered by Ansible. Any other stale or feature-specific entry left in the deployed scripts directory is therefore removed automatically on the next normal copy deployment.
+ 
+-The permanent `roles/diaries/tests/verify-production-deployment-contract.py` regression enforces the approved synchronized script set and rejects unclassified feature/step-shaped helpers. Completed temporary tooling should be preserved, when needed, with the corresponding Diaries change-control evidence rather than left in the role.
++Temporary feature-only migration, capture or verification helpers must be explicitly deployed for the feature and explicitly removed during feature close-out; they must not accumulate in the permanent synchronized source set. If a feature temporarily installs a helper directly on production, the next normal managed-script synchronization also provides a safety net by deleting it unless it has been deliberately classified as permanent source or a protected permanent template.
++
++The project-root synchronization deliberately excludes `scripts/`, so `--delete` is never applied to the wider Diaries project directory. The permanent `roles/diaries/tests/verify-production-deployment-contract.py` regression enforces this scope, the approved synchronized script set, the protected template set and the absence of unclassified feature/step-shaped helpers. Completed temporary tooling should be preserved, when needed, with the corresponding Diaries change-control evidence rather than left in the role.
+ 
+ ## Backup and restore
+ 
+--- a/roles/diaries/files/sync/scripts/README.md
++++ b/roles/diaries/files/sync/scripts/README.md
+@@ -9,7 +9,9 @@
+ 
+ This synchronized directory is a small allow-list of permanent production operator tooling. Adding a file here means declaring that command part of the supported ongoing production surface; `roles/diaries/tests/verify-production-deployment-contract.py` fails if the source set grows without an explicit supported classification.
+ 
+-A **temporary feature-only production helper** must not be left indefinitely in this always-synchronized tree. When a feature genuinely needs one, it must be explicitly deployed for that feature and explicitly removed during feature close-out, with deployed absence verified if source removal alone cannot remove the remote copy. Historical source belongs with the completed change-control evidence rather than in this directory.
++The deployed production `scripts/` directory is managed separately from the project root. Its synchronize task uses `--delete` and `--delete-excluded`, so entries which are neither present in this static source directory nor explicitly protected permanent templates are removed from production. The protected files are the Ansible-rendered permanent commands (`start.sh`, `stop.sh`, `status.sh`, `logs.sh` and the `shell-prompt-*.sh` scripts); Ansible templates them after the managed static sync.
++
++A **temporary feature-only production helper** must not be left indefinitely in this always-synchronized tree. When a feature genuinely needs one, it must be explicitly deployed for that feature and explicitly removed during feature close-out. The managed-directory deletion is an additional safety net: a forgotten deployed helper is removed by the next normal copy deployment unless it has been deliberately promoted into the permanent managed set. Historical source belongs with the completed change-control evidence rather than in this directory.
+ 
+ Feature/step-shaped names are additionally treated as suspicious by the permanent deployment-contract regression. A genuinely permanent command with such a name requires an exact documented exception as well as inclusion in the supported-script set.
+ 
+--- a/roles/diaries/tests/verify-production-deployment-contract.py
++++ b/roles/diaries/tests/verify-production-deployment-contract.py
+@@ -18,6 +18,18 @@
+     "step13-capture-production-control.sh",
+     "step14-production-deployment.sh",
+ )
++
++TEMPLATED_SCRIPTS = {
++    "start.sh",
++    "stop.sh",
++    "status.sh",
++    "logs.sh",
++    "shell-prompt-database.sh",
++    "shell-prompt-mosquitto.sh",
++    "shell-prompt-responder.sh",
++    "shell-prompt-client.sh",
++    "shell-prompt-nginx.sh",
++}
+ SUPPORTED_SCRIPTS = {
+     "README.md",
+     "backup-db-to-binary.sh",
+@@ -103,12 +115,29 @@
+         )
+         require(all(not (SCRIPTS / name).exists() for name in OBSOLETE_SCRIPTS),
+                 "completed-feature production helpers are absent from role source")
++        require(all(name not in copy_tasks for name in OBSOLETE_SCRIPTS),
++                "one-off obsolete-script removal lists are no longer required")
+ 
+-        for name in OBSOLETE_SCRIPTS:
+-            require(re.search(rf"- {re.escape(name)}(?:\n|$)", copy_tasks) is not None,
+-                    f"Ansible explicitly removes deployed obsolete script {name}")
+-        require("--delete" not in copy_tasks,
+-                "production synchronization does not use unrestricted rsync --delete")
++        project_marker = "- name: diaries:copy | Synchronize project files excluding managed scripts"
++        scripts_marker = "- name: diaries:copy | Synchronize managed scripts"
++        require(project_marker in copy_tasks and scripts_marker in copy_tasks,
++                "Ansible has separate project-root and managed-scripts synchronization tasks")
++        project_sync = copy_tasks.split(project_marker, 1)[1].split("\n- name:", 1)[0]
++        scripts_sync = copy_tasks.split(scripts_marker, 1)[1].split("\n- name:", 1)[0]
++
++        require('src: "sync/"' in project_sync and '--exclude=/scripts/' in project_sync,
++                "project-root synchronization excludes the separately managed scripts directory")
++        require(re.search(r'^\s*-\s+"--delete"\s*$', project_sync, re.MULTILINE) is None,
++                "project-root synchronization does not use rsync --delete")
++        require('src: "sync/scripts/"' in scripts_sync and
++                'dest: "{{ diaries_project_dir }}/scripts/"' in scripts_sync,
++                "production scripts are synchronized as their own managed directory")
++        require(re.search(r'^\s*-\s+"--delete"\s*$', scripts_sync, re.MULTILINE) is not None and
++                re.search(r'^\s*-\s+"--delete-excluded"\s*$', scripts_sync, re.MULTILINE) is not None,
++                "managed scripts synchronization removes unmanaged and excluded destination entries")
++        for name in sorted(TEMPLATED_SCRIPTS):
++            require(f'--filter=protect /{name}' in scripts_sync,
++                    f"managed scripts synchronization protects templated permanent script {name}")
+     except (AssertionError, OSError) as exc:
+         print(f"FAIL: {exc}", file=sys.stderr)
+         return 1

@@ -1,0 +1,15 @@
+0032 Step 6 - production configuration fingerprint POST
+host: pluto
+captured: 2026-10-03T16:29:39+01:00
+project: /home/richard/projects/diaries
+
+TYPE	SHA256	PATH
+FILE	f0b0c2222d65d5cf31e500255b8d72279ae356d9597f7f513335aaf506dfd960	.env
+FILE	312ce03f36442a2afafe4c744e27acd0df90c54adc7798262ed3ee20a5bfddab	compose.yaml
+FILE	8d4cc6752b5abe4dd72e538c8b6b544635ab2614cd29becd6b1e4a9173e22e1f	config/responder/responder.json
+
+SELECTOR	DIARIES_FILES_DIR=files
+SELECTOR	DIARIES_DB_NAME=diaries
+CONTRACT	compose.files	subpath: ${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR}
+CONTRACT	compose.database	- diaries-db-data:/var/lib/postgresql
+CONTRACT	responder.diaries.files	files

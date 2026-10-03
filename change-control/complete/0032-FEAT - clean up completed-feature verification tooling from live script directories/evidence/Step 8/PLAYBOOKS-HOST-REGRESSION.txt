@@ -1,0 +1,71 @@
+=== Production storage isolation ===
+PASS: production .env renders the explicit diaries_files_dir selector
+PASS: production mutable /data/files mount is selected through DIARIES_FILES_DIR
+PASS: production shared diary scans remain on the common /diaries source
+PASS: production template has no hard-coded mutable /files source
+PASS: role defaults do not silently fall back to the production Files selector
+PASS: role preflight requires an explicit mutable Files selector
+PASS: deployment validates the rendered selector and mutable Files mount
+PASS: deployment validates that shared scans remain on /diaries
+PASS: production storage-isolation contract verified
+
+=== Production backup/restore semantics ===
+PASS: production deployment includes dataset manifest helper
+PASS: backup-db-to-binary.sh labels database-only semantics
+PASS: backup-db-to-binary.sh writes a sidecar manifest
+PASS: backup-db-to-binary.sh records Image row count
+PASS: backup-db-to-binary.sh does not claim a complete dataset backup
+PASS: backup-db-to-sql.sh labels database-only semantics
+PASS: backup-db-to-sql.sh writes a sidecar manifest
+PASS: backup-db-to-sql.sh records Image row count
+PASS: backup-db-to-sql.sh does not claim a complete dataset backup
+PASS: restore-db-from-binary.sh labels database-only semantics
+PASS: restore-db-from-binary.sh verifies sidecar pairing
+PASS: restore-db-from-binary.sh does not claim a complete dataset restore
+PASS: restore-db-from-sql.sh labels database-only semantics
+PASS: restore-db-from-sql.sh verifies sidecar pairing
+PASS: restore-db-from-sql.sh does not claim a complete dataset restore
+PASS: manifest helper writes a production database sidecar
+PASS: production sidecar explicitly records database-only semantics
+PASS: production sidecar records the effective Files selector and physical root
+PASS: production sidecar records catalogue count
+PASS: matching production database + Files pair verifies
+PASS: production restore guard rejects a mismatched Files root
+PASS: production backup/restore semantics verified
+
+=== Production deployment/managed-scripts contract ===
+PASS: production broker keeps the complete retained-snapshot flow-control policy
+PASS: production broker has no historical 10,000-message truncation ceiling
+PASS: Ansible validates the deployed retained-snapshot broker policy
+PASS: production Compose keeps /data/files selected by the explicit Files selector
+PASS: production Compose/start templates do not load local development overrides
+PASS: role documentation records the durable database/Files pairing invariant
+PASS: production operator documentation defines database-only and matched Files backup semantics
+PASS: production operator documentation defines temporary helper deploy/remove lifecycle
+PASS: role source contains only the approved supported production script set
+PASS: role source contains no unclassified feature/step-shaped production helpers
+PASS: production recurrence policy detects a newly accumulated stepN helper
+PASS: completed-feature production helpers are absent from role source
+PASS: one-off obsolete-script removal lists are no longer required
+PASS: Ansible has separate project-root and managed-scripts synchronization tasks
+PASS: project-root synchronization excludes the separately managed scripts directory
+PASS: project-root synchronization does not use rsync --delete
+PASS: production scripts are synchronized as their own managed directory
+PASS: managed scripts synchronization removes unmanaged and excluded destination entries
+PASS: managed scripts synchronization protects templated permanent script logs.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-client.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-database.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-mosquitto.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-nginx.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-responder.sh
+PASS: managed scripts synchronization protects templated permanent script start.sh
+PASS: managed scripts synchronization protects templated permanent script status.sh
+PASS: managed scripts synchronization protects templated permanent script stop.sh
+PASS: production deployment contract verified
+
+=== Ansible diaries.yaml syntax check ===
+
+playbook: diaries.yaml
+
+PASS: Playbooks Step 8 host regression completed successfully.
+Evidence: /tmp/0032-step8-playbooks-host-regression.txt

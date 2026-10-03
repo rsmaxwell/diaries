@@ -195,6 +195,8 @@ List documentation that must be updated.
 - [ ] Update configuration and documentation where required.
 - [ ] Run the relevant tests, builds, and smoke checks.
 - [ ] Review the final Git diff for unrelated changes.
+- [ ] Classify every script/tool introduced by the change as permanent operational tooling, permanent regression tooling, or historical feature tooling.
+- [ ] Archive/remove historical feature tooling from live script directories and verify deployed copies are removed where applicable.
 - [ ] Record validation evidence and remaining risks.
 
 ## Acceptance Criteria
@@ -207,6 +209,7 @@ List documentation that must be updated.
 - [ ] Applicable local or production modes have been considered.
 - [ ] Documentation and configuration match the implemented behaviour.
 - [ ] Deployment and rollback implications are understood.
+- [ ] Temporary feature-only tooling is not left in normal live/deployed script directories.
 
 ## Validation
 
@@ -339,6 +342,8 @@ Before moving an item to `complete`:
 - record affected repositories and Git references;
 - document deployment, compatibility, backup, and rollback implications;
 - update affected documentation;
+- classify every script introduced by the feature as permanent operational tooling, permanent regression tooling, or historical feature tooling;
+- archive/remove historical feature tooling from live script directories and, where applicable, verify that deployed copies have also been removed;
 - inspect the final diff for accidental or unrelated changes;
 - complete the summary and completion date.
 
@@ -354,6 +359,23 @@ Move an item to `will-not-fix` when the decision not to implement it is delibera
 - alternatives or mitigations;
 - conditions that would justify revisiting the decision;
 - the decision date.
+
+
+## Feature tooling close-out
+
+Feature implementation may legitimately need temporary migration, evidence-capture, reconciliation or verification helpers. Those helpers must not accumulate indefinitely in normal operator-facing or automatically deployed script trees.
+
+Before a feature is moved to `complete`, classify every script it introduced as exactly one of:
+
+```text
+permanent operational/admin tooling
+permanent regression/safety tooling
+historical feature tooling
+```
+
+Permanent tooling remains in the appropriate live directory under a behaviour-oriented name. Historical feature tooling is preserved with the completed change-control evidence where reproducibility is useful, then removed from live directories and from active callers. If the live tree has a source-layout guard, update an exception only for a deliberately supported permanent tool and record the reason.
+
+For production, a **temporary feature-only production helper** must be explicitly deployed for the feature and explicitly removed during feature close-out. Do not place temporary helpers indefinitely in an always-synchronized production tree. If deleting the source file does not guarantee deletion of the deployed copy, the close-out must include an explicit remote removal and evidence that the deployed helper is absent.
 
 ## End-to-End Investigation Guidance
 

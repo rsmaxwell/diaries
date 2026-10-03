@@ -1,0 +1,2570 @@
+diff --git a/roles/diaries/README.md b/roles/diaries/README.md
+index 30e8f8b..2ddd0d3 100644
+--- a/roles/diaries/README.md
++++ b/roles/diaries/README.md
+@@ -60,4 +60,4 @@ For a matched restore:
+ 
+ A database-only restore may be intentional, but it must be treated as potentially requiring Files reconciliation before destructive Image/File lifecycle operations.
+ 
+-See `roles/diaries/files/sync/scripts/README.md` for the installed production operating helpers and 0031 migration evidence procedures.
++See `roles/diaries/files/sync/scripts/README.md` for the supported production operator commands and durable database/Files backup-and-restore rules.
+diff --git a/roles/diaries/files/sync/config/mosquitto/mosquitto.conf b/roles/diaries/files/sync/config/mosquitto/mosquitto.conf
+index a72bc17..b24e323 100644
+--- a/roles/diaries/files/sync/config/mosquitto/mosquitto.conf
++++ b/roles/diaries/files/sync/config/mosquitto/mosquitto.conf
+@@ -16,7 +16,7 @@ log_type warning
+ 
+ acl_file /mosquitto/config/aclfile.txt
+ 
+-# 0031 Step 13/14 retained-snapshot correctness safeguard.
++# Retained-snapshot correctness safeguard.
+ # Revisit a bounded queue only after a bounded complete-snapshot protocol exists.
+ max_inflight_messages 20
+ max_queued_messages 0
+diff --git a/roles/diaries/files/sync/scripts/README.md b/roles/diaries/files/sync/scripts/README.md
+index b206769..026c1c0 100644
+--- a/roles/diaries/files/sync/scripts/README.md
++++ b/roles/diaries/files/sync/scripts/README.md
+@@ -1,208 +1,95 @@
+ # Diaries production storage and backup/restore scripts
+ 
+-The `backup-db-*` and `restore-db-*` scripts are **database-only** operations.
+-They do not back up or restore the mutable Diaries Files tree.
+-
+-## Normal production storage rule
+-
+-The production PostgreSQL dataset and mutable Files root are one durable pair. Inventory supplies the mutable leaf selector as `diaries_files_dir`; the role renders it to `DIARIES_FILES_DIR`, and Compose maps `${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR}` to stable `/data/files`. The separate `${DIARIES_NAS_CONTENT_PATH}/diaries` scan tree is shared/read-only. `/files/...` URLs and persisted `Image.relativePath` values remain environment-neutral regardless of the physical selector.
+-
+-Before any destructive Image/File test, database restore, reconciliation apply, or storage migration, inspect the deployed `.env`/Compose configuration and identify the effective database plus `DIARIES_FILES_DIR`. Do not continue if the pair is not the intended one. Changing only the database or only the Files selector is invalid.
+-
+-A complete recoverable production backup requires the database dump **and** a snapshot/copy of the selected mutable Files root, with identity/checksum evidence captured while responder writes are frozen. For a matched restore, keep the responder stopped, restore the Files snapshot associated with the chosen dump, restore the database, then reconcile before writes resume. A database-only restore remains potentially in need of Files reconciliation even when its sidecar validates the configured selector.
+-
+-Never revert independently changed datasets by pointing them temporarily at one old shared Files root. Preserve the separate roots and reconcile explicitly; destructive lifecycle operations must stay disabled while the relationship is uncertain.
+-
+-0031-FEAT Step 7 treats the production PostgreSQL database and the selected
+-mutable Files root as one durable dataset identity. A successful database
+-backup therefore writes a sidecar manifest next to the dump:
+-
+-```text
+-diaries-production-YYYYMMDD-HHMMSS.dump
+-diaries-production-YYYYMMDD-HHMMSS.dump.dataset.json
+-```
+-
+-The sidecar records the production database identity, `DIARIES_FILES_DIR`, the
+-resolved NAS Files root, runtime image identity, and Image/catalogue count. It
+-sets:
+-
+-```text
+-backupType = database-only
+-completeDatasetBackup = false
+-filesSnapshot = null
+-```
++This directory contains the supported production operator tooling installed by
++the Diaries Ansible role. Completed feature-migration and verification helpers
++are retained in change-control evidence rather than deployed as live commands.
+ 
+-Before a sidecar-backed restore changes PostgreSQL, the restore script verifies
+-that the sidecar Files selector/root still matches the current production
+-configuration. A mismatch is rejected. Legacy backups with no sidecar remain
+-usable, but the operator receives an explicit warning to verify the matching
+-Files snapshot/root manually.
++## Supported installed commands
+ 
+-A complete recoverable Diaries backup is a separate operational bundle:
++The role installs these persistent production helpers:
+ 
+ ```text
+-PostgreSQL dump
+-+ matching mutable Files snapshot/copy
+-+ dataset/path identity manifest
+-+ optional reconciliation/checksum inventory
++backup-db-to-binary.sh
++backup-db-to-sql.sh
++restore-db-from-binary.sh
++restore-db-from-sql.sh
++dataset-backup-manifest.py
+ ```
+ 
+-0031 Step 8 is responsible for taking the pre-migration database and Files
+-snapshots together while mutable writes are frozen. Do not describe a
+-`restore-db-*` operation as a complete dataset restore.
++The `backup-db-*` and `restore-db-*` commands are **database-only** operations.
++They do not back up or restore the mutable Diaries Files tree.
+ 
+-## 0031 Step 8 pre-migration capture
++## Production storage invariant
+ 
+-After these role files have been deployed, Step 8 adds two explicit production
+-operating helpers:
++The production PostgreSQL dataset and mutable Files root are one durable pair:
+ 
+ ```text
+-./scripts/step8-freeze-writes.sh
+-./scripts/step8-capture-production-database-backup.sh
++one effective database dataset <-> one effective mutable Files root
+ ```
+ 
+-Run `step8-freeze-writes.sh` first. It stops only `diaries-responder`, because the
+-responder owns mutable Image/File operations, and verifies PostgreSQL remains
+-running for backup. It writes a small runtime evidence file under:
+-
+-```text
+-data/0031-step8/
+-```
+-
+-Then run `step8-capture-production-database-backup.sh`. It refuses to continue if
+-the responder is running, asserts the frozen production selector is still
+-`DIARIES_FILES_DIR=files`, invokes the existing Step-7 binary database backup
+-helper, checksums the dump and sidecar, and writes a Step-8 production manifest
+-under the same evidence directory.
+-
+-These helpers do **not** copy the shared Files tree. The one old pre-split
+-`.../diaries-content/files` snapshot is captured separately by the Diaries
+-Windows Step-8 tooling after both production and local responder writes are
+-frozen. Keeping one authoritative snapshot avoids making multiple independently
+-timed copies of what is still one shared physical source tree.
++Inventory supplies the mutable leaf selector as `diaries_files_dir`; the role
++renders it to `DIARIES_FILES_DIR`, and Compose maps
++`${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR}` to stable `/data/files`.
++The separate `${DIARIES_NAS_CONTENT_PATH}/diaries` scan tree is shared and
++read-only. `/files/...` URLs and persisted `Image.relativePath` values remain
++environment-neutral regardless of the physical Files selector.
+ 
+-Do not restart the responder immediately after Step 8. The 0031 migration plan
+-keeps writes frozen through Step 9 reconciliation of the independent databases
+-against the pre-split source tree.
++Before a destructive Image/File operation, database restore, reconciliation or
++storage migration, inspect the deployed `.env`/Compose configuration and confirm
++the effective database plus `DIARIES_FILES_DIR`. Changing only the database or
++only the Files selector is invalid unless this is an intentional matched
++restore/reconciliation operation.
+ 
+-## 0031 Step 9 pre-split reconciliation
++Never point independently changed datasets temporarily at one old shared Files
++root as a rollback shortcut. Preserve separate roots and reconcile explicitly.
+ 
+-Step 9 adds:
++## Database-only backup sidecars
+ 
+-```text
+-./scripts/step9-reconcile-production.sh
+-```
+-
+-Run it only after Step 8 is complete and while `diaries-responder` remains
+-stopped. PostgreSQL must remain running. The helper refuses any production
+-selector other than the frozen pre-split `DIARIES_FILES_DIR=files`, then runs
+-the existing 0024 Image catalogue command in **dry-run mode only** inside a
+-disposable responder container.
+-
+-Evidence is written under:
++A successful database backup writes a dataset sidecar next to the dump, for
++example:
+ 
+ ```text
+-data/0031-step9/production-YYYYMMDD-HHMMSS/
++diaries-production-YYYYMMDD-HHMMSS.dump
++diaries-production-YYYYMMDD-HHMMSS.dump.dataset.json
+ ```
+ 
+-The 0024 tool intentionally excludes `.image-staging`, so the Step 9 helper also
+-creates a separate SHA-256 staging inventory from the same `/data/files` mount.
+-`STEP9-REPORT.json` combines the database identity, physical NAS Files-root
+-identity, Image-row count, matching/missing/untracked/conflict counts and staging
+-state. `step10Ready=false` means the migration must stop for explicit review;
+-the script never repairs or applies anything automatically.
+-
+-During the already-frozen live 0031 migration, do **not** rerun the whole
+-Diaries playbook merely to install this new helper if doing so would restart the
+-stack. Copy only `step9-reconcile-production.sh` into the deployed project's
+-`scripts` directory (and make it executable), run it, and let a later normal
+-playbook deployment install the same role-managed copy permanently.
+-
+-## 0031 Step 13 production isolation control
+-
+-Step 13 adds:
++The sidecar records the database identity, effective Files selector/root,
++runtime image identity and Image/catalogue count. It explicitly records:
+ 
+ ```text
+-./scripts/step13-capture-production-control.sh
+-```
+-
+-The helper is read-only and must be run while `diaries-responder` remains
+-stopped. `before` captures the complete production `image` table plus a sorted
+-SHA-256 inventory of every file in `/data/files`, including `.image-staging`.
+-After the controlled non-production upload/delete cycle, `after` takes the same
+-captures and requires the exact `before` directory:
+-
+-```bash
+-./scripts/step13-capture-production-control.sh before
+-./scripts/step13-capture-production-control.sh after /home/richard/projects/diaries/data/0031-step13/production-before-YYYYMMDD-HHMMSS
++backupType = database-only
++completeDatasetBackup = false
++filesSnapshot = null
+ ```
+ 
+-The `after` command fails if either the Image catalogue rows or production Files
+-inventory differs at all. This is the cross-dataset control proving that the
+-local lifecycle mutation did not cross into production.
+-
+-During the existing 0031 production write freeze, do **not** rerun the whole
+-Diaries playbook merely to install this helper if that would restart the stack.
+-Copy only `step13-capture-production-control.sh` into the deployed project's
+-`scripts` directory and make it executable. Step 14 can install the role-managed
+-copy through the normal playbook deployment.
+-
+-## 0031 Step 14 non-destructive production deployment
+-
+-Step 14 adds:
+-
+-```text
+-./scripts/step14-production-deployment.sh
+-```
++Before a sidecar-backed restore changes PostgreSQL, the restore command verifies
++that the sidecar Files selector/root still matches the current production
++configuration. A mismatch is rejected. Legacy backups without a sidecar remain
++usable, but the operator must verify the matching Files snapshot/root manually.
+ 
+-The helper has two deliberately separate phases. Run `preflight` while the
+-Step 13 production responder write freeze is still active. It requires
+-`DIARIES_FILES_DIR=files`, proves the production Compose path still selects
+-`${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR}`, rejects any `local.env`
+-participation in the production start path, verifies the Step 8 production
+-PostgreSQL dump/sidecar hashes, and confirms that the Step 8 Files rollback
+-snapshot is still present on the NAS. It also captures the production Image
+-rows, production Files SHA-256 inventory, and every `files-development-*`
+-SHA-256 inventory before deployment. The production controls must still match
+-the latest Step 13 AFTER control.
++## Complete matched backup and restore
+ 
+-The normal Ansible Diaries copy deployment is then allowed to restart the
+-stack. The production Diaries Mosquitto config now uses:
++A complete recoverable Diaries backup is an operational bundle containing:
+ 
+ ```text
+-max_inflight_messages 20
+-max_queued_messages 0
++PostgreSQL dump
+++ matching mutable Files snapshot/copy
+++ dataset/path identity manifest
+++ optional reconciliation/checksum inventory
+ ```
+ 
+-This deliberately aligns production with the retained-snapshot correctness
+-policy proven in Step 13 before the responder is restarted. It remains an
+-interim correctness safeguard; the later bounded retained-snapshot design
+-follow-up still applies.
+-
+-Run `postflight <preflight-directory>` immediately after the successful Ansible
+-run. The helper first requires all Compose services to be running/healthy,
+-requires the running broker to have loaded the queue policy above, and serves an
+-existing catalogue object through the responder `/files/...` route while
+-checking its bytes against `/data/files`.
++Capture the database dump and mutable Files snapshot while responder writes are
++frozen so they describe one durable state.
+ 
+-For deterministic durable-state comparison, postflight then stops **only**
+-`diaries-responder`, compares the Image table, production Files inventory and
+-non-production Files inventories byte-for-byte with preflight, and reruns the
+-existing Step 12 production reconciliation in dry-run mode. Only after every
+-check passes does it restart the responder and require the final stack to be
+-healthy again. If a durable comparison or reconciliation fails after that
+-temporary stop, the helper deliberately leaves the responder stopped so writes
+-cannot resume on an unexplained production state.
++For a matched restore:
+ 
+-Runtime evidence is written beneath:
+-
+-```text
+-data/0031-step14/preflight-YYYYMMDD-HHMMSS/
+-data/0031-step14/postflight-YYYYMMDD-HHMMSS/
+-```
++1. stop/freeze `diaries-responder` while keeping PostgreSQL available as needed;
++2. verify the effective database and Files selector;
++3. preserve the current database and Files root;
++4. restore the Files snapshot associated with the selected database dump;
++5. restore the database dump;
++6. run read-only reconciliation/checksum checks;
++7. restart the responder only after the pair is understood and consistent.
+ 
+-The Ansible command/result itself is controller-side evidence and should be
+-captured separately with `tee` and preserved with the Step 14 evidence. Do not
+-place vault passwords, generated `.env` contents, tokens or other secrets in
+-that log. The helper's `REDACTED-CONFIG*.txt` files are the safe configuration
+-artifacts intended for long-term change-control evidence.
++A database-only restore can be intentional, but it remains potentially in need
++of Files reconciliation before destructive Image/File lifecycle operations.
+diff --git a/roles/diaries/files/sync/scripts/migration0024ImageCatalogue.sh b/roles/diaries/files/sync/scripts/migration0024ImageCatalogue.sh
+deleted file mode 100644
+index 98bc44b..0000000
+--- a/roles/diaries/files/sync/scripts/migration0024ImageCatalogue.sh
++++ /dev/null
+@@ -1,221 +0,0 @@
+-#!/usr/bin/env bash
+-
+-set -euo pipefail
+-
+-# ==============================================================================
+-# migration0024ImageCatalogue.sh
+-#
+-# Reconcile the production Files root with the persistent Image catalogue using
+-# the responder image and configuration installed by the Diaries playbook.
+-#
+-# Usage:
+-#
+-#     migration0024ImageCatalogue.sh dry-run [0022_CANDIDATES_CSV]
+-#     migration0024ImageCatalogue.sh apply   [0022_CANDIDATES_CSV]
+-#
+-# Run dry-run first. It scans the configured Files root and database without
+-# changing them, then writes evidence beneath:
+-#
+-#     ${HOME}/temp/dry-run
+-#
+-# Review 0024-create-plan.json, 0024-conflicts.csv and the other dry-run
+-# evidence before running apply. Apply automatically reads the reviewed plan
+-# from the dry-run directory and writes its evidence beneath:
+-#
+-#     ${HOME}/temp/apply
+-#
+-# The evidence directory for the requested mode must be empty. Archive and
+-# empty both directories before starting another complete reconciliation.
+-# The optional 0022 candidate CSV cross-references legacy embedded-image
+-# candidates; when supplied for dry-run, supply the same unchanged file for
+-# apply. DIARIES_MIGRATION0024_EVIDENCE_ROOT can override ${HOME}/temp.
+-#
+-# Dry-run may run alongside the responder. Apply refuses to run while the
+-# deployed responder service is running, ensuring that normal responder writes
+-# cannot race the reviewed migration. Keep the database service running.
+-# ==============================================================================
+-
+-
+-# ------------------------------------------------------------------------------
+-# Display valid invocations when arguments are missing or invalid.
+-# ------------------------------------------------------------------------------
+-
+-usage() {
+-    cat >&2 <<EOF
+-Usage: $(basename -- "$0") dry-run [0022_CANDIDATES_CSV]
+-       $(basename -- "$0") apply [0022_CANDIDATES_CSV]
+-Evidence: ${DIARIES_MIGRATION0024_EVIDENCE_ROOT:-${HOME}/temp}/{dry-run,apply}
+-Run dry-run first, review its 0024-create-plan.json, then stop the responder
+-service and run apply.
+-EOF
+-    exit 2
+-}
+-
+-fail() {
+-    echo "ERROR: $*" >&2
+-    exit 1
+-}
+-
+-
+-# ------------------------------------------------------------------------------
+-# Select the requested mode and optional 0022 candidate inventory.
+-# ------------------------------------------------------------------------------
+-
+-[[ $# -ge 1 && $# -le 2 ]] || usage
+-
+-MODE="$1"
+-case "${MODE}" in
+-    dry-run | apply)
+-        ;;
+-    *)
+-        usage
+-        ;;
+-esac
+-
+-CANDIDATES=""
+-if [[ $# -eq 2 ]]; then
+-    [[ -f "$2" && -r "$2" ]] || fail "0022 candidate inventory not found or unreadable: $2"
+-    CANDIDATES="$(realpath -- "$2")"
+-fi
+-
+-
+-# ------------------------------------------------------------------------------
+-# Locate the installed Diaries project and its generated runtime files.
+-#
+-# The playbook installs this script beneath <project>/scripts, so the parent of
+-# the script directory is the production Compose project directory.
+-# ------------------------------------------------------------------------------
+-
+-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+-PROJECT_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
+-COMPOSE_FILE="${PROJECT_DIR}/compose.yaml"
+-ENV_FILE="${PROJECT_DIR}/.env"
+-HOST_CONFIG="${PROJECT_DIR}/config/responder/responder.json"
+-
+-[[ -f "${COMPOSE_FILE}" ]] || fail "Compose file not found: ${COMPOSE_FILE}"
+-[[ -f "${ENV_FILE}" ]] || fail "Environment file not found: ${ENV_FILE}"
+-[[ -f "${HOST_CONFIG}" ]] || fail "Responder configuration not found: ${HOST_CONFIG}"
+-command -v docker >/dev/null 2>&1 || fail "docker was not found on PATH."
+-command -v realpath >/dev/null 2>&1 || fail "realpath was not found on PATH."
+-
+-
+-# ------------------------------------------------------------------------------
+-# Prepare the fixed host evidence directories.
+-# ------------------------------------------------------------------------------
+-
+-EVIDENCE_ROOT="${DIARIES_MIGRATION0024_EVIDENCE_ROOT:-${HOME}/temp}"
+-DRY_RUN_OUTPUT="${EVIDENCE_ROOT}/dry-run"
+-APPLY_OUTPUT="${EVIDENCE_ROOT}/apply"
+-
+-mkdir -p -- "${DRY_RUN_OUTPUT}" "${APPLY_OUTPUT}"
+-EVIDENCE_ROOT="$(realpath -- "${EVIDENCE_ROOT}")"
+-DRY_RUN_OUTPUT="${EVIDENCE_ROOT}/dry-run"
+-APPLY_OUTPUT="${EVIDENCE_ROOT}/apply"
+-
+-if [[ "${MODE}" == "dry-run" ]]; then
+-    OUTPUT="${DRY_RUN_OUTPUT}"
+-else
+-    OUTPUT="${APPLY_OUTPUT}"
+-fi
+-
+-if [[ -n "$(find "${OUTPUT}" -mindepth 1 -maxdepth 1 -print -quit)" ]]; then
+-    fail "Evidence directory must be empty: ${OUTPUT}"
+-fi
+-
+-PLAN=""
+-if [[ "${MODE}" == "apply" ]]; then
+-    PLAN="${DRY_RUN_OUTPUT}/0024-create-plan.json"
+-    [[ -f "${PLAN}" && -r "${PLAN}" ]] || fail "Reviewed dry-run plan not found: ${PLAN}"
+-fi
+-
+-
+-# ------------------------------------------------------------------------------
+-# Validate the deployed Compose project and required services.
+-# ------------------------------------------------------------------------------
+-
+-RESPONDER_SERVICE="${DIARIES_RESPONDER_SERVICE:-diaries-responder}"
+-DB_SERVICE="${DIARIES_DB_SERVICE:-diaries-db}"
+-RESPONDER_CONFIG="${DIARIES_RESPONDER_CONFIG:-/config/responder.json}"
+-RESPONDER_JAR="${DIARIES_RESPONDER_JAR:-/opt/diaries/lib/diaries-responder.jar}"
+-MAIN_CLASS="com.rsmaxwell.diaries.responder.migration.migration0024.Migration0024ImageCatalogue"
+-COMPOSE=(docker compose --file "${COMPOSE_FILE}" --env-file "${ENV_FILE}")
+-
+-cd -- "${PROJECT_DIR}"
+-"${COMPOSE[@]}" config --quiet
+-
+-SERVICES="$("${COMPOSE[@]}" config --services)"
+-grep -Fxq "${RESPONDER_SERVICE}" <<<"${SERVICES}" ||
+-    fail "Responder service '${RESPONDER_SERVICE}' is not present in this deployment."
+-grep -Fxq "${DB_SERVICE}" <<<"${SERVICES}" ||
+-    fail "Database service '${DB_SERVICE}' is not present in this deployment."
+-
+-RUNNING_SERVICES="$("${COMPOSE[@]}" ps --status running --services)"
+-grep -Fxq "${DB_SERVICE}" <<<"${RUNNING_SERVICES}" ||
+-    fail "Database service '${DB_SERVICE}' is not running."
+-
+-if [[ "${MODE}" == "apply" ]] && grep -Fxq "${RESPONDER_SERVICE}" <<<"${RUNNING_SERVICES}"; then
+-    fail "Responder service '${RESPONDER_SERVICE}' is running. Stop it before apply."
+-fi
+-
+-
+-# ------------------------------------------------------------------------------
+-# Run the migration in a disposable container created from the deployed
+-# responder service. Compose supplies the production network, responder config,
+-# database identity and Files-root mounts. The host evidence root is mounted at
+-# a stable container path so the reviewed dry-run plan is reused by apply.
+-# ------------------------------------------------------------------------------
+-
+-CONTAINER_EVIDENCE_ROOT="/migration-evidence"
+-CONTAINER_OUTPUT="${CONTAINER_EVIDENCE_ROOT}/${MODE}"
+-RUN_ARGS=(
+-    run
+-    --rm
+-    --no-deps
+-    --no-tty
+-    --pull never
+-    --entrypoint java
+-    --volume "${EVIDENCE_ROOT}:${CONTAINER_EVIDENCE_ROOT}"
+-)
+-
+-MIGRATION_ARGS=(
+-    -cp "${RESPONDER_JAR}"
+-    "${MAIN_CLASS}"
+-    --config "${RESPONDER_CONFIG}"
+-    --output "${CONTAINER_OUTPUT}"
+-    --mode "${MODE}"
+-)
+-
+-if [[ -n "${PLAN}" ]]; then
+-    MIGRATION_ARGS+=(--plan "${CONTAINER_EVIDENCE_ROOT}/dry-run/0024-create-plan.json")
+-fi
+-
+-if [[ -n "${CANDIDATES}" ]]; then
+-    RUN_ARGS+=(--volume "${CANDIDATES}:/migration-input/candidates.csv:ro")
+-    MIGRATION_ARGS+=(--0022-candidates /migration-input/candidates.csv)
+-fi
+-
+-RUN_ARGS+=("${RESPONDER_SERVICE}")
+-
+-echo "Running 0024 Image catalogue reconciliation in ${MODE} mode..."
+-echo "Compose project: ${PROJECT_DIR}"
+-echo "Evidence:        ${OUTPUT}"
+-
+-if "${COMPOSE[@]}" "${RUN_ARGS[@]}" "${MIGRATION_ARGS[@]}"; then
+-    RESULT=0
+-else
+-    RESULT=$?
+-fi
+-
+-if [[ ${RESULT} -ne 0 ]]; then
+-    echo "ERROR: Reconciliation failed with exit code ${RESULT}." >&2
+-    echo "Review any evidence written beneath: ${OUTPUT}" >&2
+-    exit "${RESULT}"
+-fi
+-
+-[[ -f "${OUTPUT}/0024-summary.json" ]] ||
+-    fail "Reconciliation returned success without 0024-summary.json in ${OUTPUT}."
+-[[ -f "${OUTPUT}/SHA256SUMS.txt" ]] ||
+-    fail "Reconciliation returned success without SHA256SUMS.txt in ${OUTPUT}."
+-
+-echo "0024 Image catalogue reconciliation completed."
+-echo "Review the evidence in: ${OUTPUT}"
+diff --git a/roles/diaries/files/sync/scripts/step12-compare-reconciliation.py b/roles/diaries/files/sync/scripts/step12-compare-reconciliation.py
+deleted file mode 100644
+index f579725..0000000
+--- a/roles/diaries/files/sync/scripts/step12-compare-reconciliation.py
++++ /dev/null
+@@ -1,256 +0,0 @@
+-#!/usr/bin/env python3
+-"""Compare a 0031 Step 12 reconciliation run with its Step 9 pre-split baseline.
+-
+-The comparison is deliberately semantic. 0024 inventory timestamps are excluded,
+-because copying an otherwise identical Files tree may change filesystem metadata.
+-Image ids, paths, reconciliation status, byte sizes, checksums, MIME/type and image
+-dimensions remain part of the comparison.
+-"""
+-from __future__ import annotations
+-
+-import argparse
+-import csv
+-import hashlib
+-import json
+-import os
+-from pathlib import Path
+-from typing import Any
+-
+-IGNORED_INVENTORY_COLUMNS = {"lastModified"}
+-DIRECTORY_METADATA_COLUMNS = {"size"}
+-
+-
+-def canonical_sha(value: Any) -> str:
+-    payload = json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+-    return hashlib.sha256(payload).hexdigest()
+-
+-
+-def find_one(run_dir: Path, filename: str) -> Path:
+-    preferred = run_dir / "reconciliation" / filename
+-    if preferred.is_file():
+-        return preferred
+-    matches = sorted(p for p in run_dir.rglob(filename) if p.is_file())
+-    if len(matches) != 1:
+-        raise RuntimeError(f"Expected exactly one {filename} below {run_dir}; found {len(matches)}")
+-    return matches[0]
+-
+-
+-def read_json(path: Path) -> dict[str, Any]:
+-    with path.open("r", encoding="utf-8-sig") as handle:
+-        value = json.load(handle)
+-    if not isinstance(value, dict):
+-        raise RuntimeError(f"Expected JSON object in {path}")
+-    return value
+-
+-
+-def inventory_semantics(path: Path) -> list[dict[str, str]]:
+-    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+-        reader = csv.DictReader(handle)
+-        if not reader.fieldnames:
+-            raise RuntimeError(f"Inventory has no header: {path}")
+-        rows: list[dict[str, str]] = []
+-        for raw in reader:
+-            row = {
+-                key: (value if value is not None else "")
+-                for key, value in raw.items()
+-                if key and key not in IGNORED_INVENTORY_COLUMNS
+-            }
+-            # Directory byte-size is filesystem metadata, not application data, and
+-            # can differ after a correct copy into a new root. Preserve all other
+-            # directory semantics (path/status/kind/detail), and preserve file size.
+-            if row.get("kind") == "directory":
+-                for key in DIRECTORY_METADATA_COLUMNS:
+-                    if key in row:
+-                        row[key] = "<ignored-directory-metadata>"
+-            rows.append(row)
+-    rows.sort(key=lambda item: tuple(item.get(key, "") for key in sorted(item)))
+-    return rows
+-
+-
+-def database_name(identity: Any) -> str:
+-    text = "" if identity is None else str(identity)
+-    return text.split(":", 1)[0]
+-
+-
+-def leaf_name(path_text: Any) -> str:
+-    text = "" if path_text is None else str(path_text)
+-    text = text.replace("\\", "/").rstrip("/")
+-    return text.rsplit("/", 1)[-1] if text else ""
+-
+-
+-def maybe_pair(run_dir: Path) -> dict[str, Any]:
+-    path = run_dir / "PAIR.json"
+-    return read_json(path) if path.is_file() else {}
+-
+-
+-def add_check(checks: dict[str, Any], name: str, passed: bool, detail: str, *, critical: bool = True) -> None:
+-    checks[name] = {"pass": bool(passed), "critical": bool(critical), "detail": detail}
+-
+-
+-def render_markdown(report: dict[str, Any]) -> str:
+-    checks = report["checks"]
+-    lines = [
+-        f"# 0031 Step 12 reconciliation comparison — {report['dataset']}",
+-        "",
+-        f"**Status: {report['status']}**",
+-        "",
+-        f"Step 9 baseline: `{report['baselineRun']}`",
+-        f"Step 12 run: `{report['currentRun']}`",
+-        "",
+-        "## Comparison",
+-        "",
+-        "| Check | Result | Detail |",
+-        "| --- | --- | --- |",
+-    ]
+-    for name, value in checks.items():
+-        label = "PASS" if value["pass"] else ("INFO" if not value["critical"] else "FAIL")
+-        detail = str(value["detail"]).replace("|", "\\|")
+-        lines.append(f"| `{name}` | **{label}** | {detail} |")
+-    lines.extend([
+-        "",
+-        "## Semantic fingerprints",
+-        "",
+-        f"- Step 9 inventory: `{report['baseline']['inventorySemanticSha256']}`",
+-        f"- Step 12 inventory: `{report['current']['inventorySemanticSha256']}`",
+-        f"- Step 9 counts: `{json.dumps(report['baseline']['counts'], sort_keys=True)}`",
+-        f"- Step 12 counts: `{json.dumps(report['current']['counts'], sort_keys=True)}`",
+-        "",
+-        "`lastModified` is intentionally excluded from the semantic inventory fingerprint. Directory `size` is normalized because it is filesystem metadata; regular-file sizes remain compared. All other 0024 inventory columns are compared.",
+-        "",
+-    ])
+-    return "\n".join(lines)
+-
+-
+-def main() -> int:
+-    parser = argparse.ArgumentParser()
+-    parser.add_argument("--dataset", required=True)
+-    parser.add_argument("--baseline", required=True, type=Path)
+-    parser.add_argument("--current", required=True, type=Path)
+-    parser.add_argument("--expected-db-data-dir", default="")
+-    parser.add_argument("--expected-files-dir", required=True)
+-    parser.add_argument("--expect-files-root", choices=("changed", "same", "either"), default="either")
+-    parser.add_argument("--output-prefix", required=True, type=Path)
+-    args = parser.parse_args()
+-
+-    baseline_run = args.baseline.resolve()
+-    current_run = args.current.resolve()
+-    if not baseline_run.is_dir():
+-        raise RuntimeError(f"Step 9 baseline directory does not exist: {baseline_run}")
+-    if not current_run.is_dir():
+-        raise RuntimeError(f"Step 12 run directory does not exist: {current_run}")
+-
+-    baseline_summary_path = find_one(baseline_run, "0024-summary.json")
+-    current_summary_path = find_one(current_run, "0024-summary.json")
+-    baseline_inventory_path = find_one(baseline_run, "0024-file-inventory.csv")
+-    current_inventory_path = find_one(current_run, "0024-file-inventory.csv")
+-
+-    baseline_summary = read_json(baseline_summary_path)
+-    current_summary = read_json(current_summary_path)
+-    baseline_inventory = inventory_semantics(baseline_inventory_path)
+-    current_inventory = inventory_semantics(current_inventory_path)
+-    baseline_pair = maybe_pair(baseline_run)
+-    current_pair = maybe_pair(current_run)
+-
+-    baseline_root = str(baseline_summary.get("filesRoot", ""))
+-    current_root = str(current_summary.get("filesRoot", ""))
+-    baseline_root_key = str(baseline_summary.get("rootKey", ""))
+-    current_root_key = str(current_summary.get("rootKey", ""))
+-    baseline_db_identity = str(baseline_summary.get("databaseIdentity", ""))
+-    current_db_identity = str(current_summary.get("databaseIdentity", ""))
+-    baseline_counts = baseline_summary.get("counts", {}) or {}
+-    current_counts = current_summary.get("counts", {}) or {}
+-
+-    checks: dict[str, Any] = {}
+-    add_check(checks, "currentDryRunComplete", current_summary.get("outcome") == "DRY_RUN_COMPLETE",
+-              f"outcome={current_summary.get('outcome')!r}, mode={current_summary.get('mode')!r}")
+-    add_check(checks, "sameDatabaseName", database_name(baseline_db_identity) == database_name(current_db_identity),
+-              f"Step 9={database_name(baseline_db_identity)!r}; Step 12={database_name(current_db_identity)!r}")
+-    add_check(checks, "sameReconciliationCounts", baseline_counts == current_counts,
+-              f"Step 9={json.dumps(baseline_counts, sort_keys=True)}; Step 12={json.dumps(current_counts, sort_keys=True)}")
+-    add_check(checks, "sameSemanticInventory", baseline_inventory == current_inventory,
+-              f"Step 9 rows={len(baseline_inventory)}, sha256={canonical_sha(baseline_inventory)}; "
+-              f"Step 12 rows={len(current_inventory)}, sha256={canonical_sha(current_inventory)}")
+-    add_check(checks, "expectedFilesSelector", current_pair.get("effectiveFilesDir") == args.expected_files_dir,
+-              f"expected={args.expected_files_dir!r}; current={current_pair.get('effectiveFilesDir')!r}")
+-
+-    if args.expected_db_data_dir:
+-        add_check(checks, "expectedDatabaseSelector", current_pair.get("effectiveDbDataDir") == args.expected_db_data_dir,
+-                  f"expected={args.expected_db_data_dir!r}; current={current_pair.get('effectiveDbDataDir')!r}")
+-
+-    if args.expect_files_root == "changed":
+-        changed = baseline_root != current_root
+-        add_check(checks, "physicalFilesRootChanged", changed,
+-                  f"Step 9={baseline_root!r}; Step 12={current_root!r}")
+-    elif args.expect_files_root == "same":
+-        same = baseline_root == current_root
+-        add_check(checks, "physicalFilesRootUnchanged", same,
+-                  f"Step 9={baseline_root!r}; Step 12={current_root!r}")
+-
+-    # The direct Windows run sees the physical directory name; production Docker
+-    # sees /data/files. Both deliberately end in the configured selector leaf.
+-    add_check(checks, "summaryFilesRootLeaf", leaf_name(current_root) == args.expected_files_dir,
+-              f"summary leaf={leaf_name(current_root)!r}; selector={args.expected_files_dir!r}")
+-
+-    add_check(checks, "databaseIdentityExact", baseline_db_identity == current_db_identity,
+-              f"Step 9={baseline_db_identity!r}; Step 12={current_db_identity!r}; address/port changes are informational",
+-              critical=False)
+-    add_check(checks, "rootKeyExact", baseline_root_key == current_root_key,
+-              f"Step 9={baseline_root_key!r}; Step 12={current_root_key!r}; copied roots normally differ",
+-              critical=False)
+-
+-    failures = [name for name, value in checks.items() if value["critical"] and not value["pass"]]
+-    status = "PASS" if not failures else "FAIL"
+-
+-    report = {
+-        "schemaVersion": 1,
+-        "feature": "0031-FEAT",
+-        "step": 12,
+-        "dataset": args.dataset,
+-        "status": status,
+-        "baselineRun": os.fspath(baseline_run),
+-        "currentRun": os.fspath(current_run),
+-        "baseline": {
+-            "summary": os.fspath(baseline_summary_path),
+-            "filesRoot": baseline_root,
+-            "rootKey": baseline_root_key,
+-            "databaseIdentity": baseline_db_identity,
+-            "counts": baseline_counts,
+-            "inventoryRows": len(baseline_inventory),
+-            "inventorySemanticSha256": canonical_sha(baseline_inventory),
+-            "pair": baseline_pair,
+-        },
+-        "current": {
+-            "summary": os.fspath(current_summary_path),
+-            "filesRoot": current_root,
+-            "rootKey": current_root_key,
+-            "databaseIdentity": current_db_identity,
+-            "counts": current_counts,
+-            "inventoryRows": len(current_inventory),
+-            "inventorySemanticSha256": canonical_sha(current_inventory),
+-            "pair": current_pair,
+-        },
+-        "checks": checks,
+-        "failures": failures,
+-        "comparisonPolicy": {
+-            "ignoredInventoryColumns": sorted(IGNORED_INVENTORY_COLUMNS),
+-            "normalizedDirectoryMetadataColumns": sorted(DIRECTORY_METADATA_COLUMNS),
+-            "stagingDirectory": ".image-staging is excluded by 0024 and is captured separately; catalogue.lock is transient and was intentionally not copied in Step 10",
+-        },
+-    }
+-
+-    args.output_prefix.parent.mkdir(parents=True, exist_ok=True)
+-    json_path = args.output_prefix.with_suffix(".json")
+-    md_path = args.output_prefix.with_suffix(".md")
+-    json_path.write_text(json.dumps(report, indent=2, sort_keys=False) + "\n", encoding="utf-8")
+-    md_path.write_text(render_markdown(report), encoding="utf-8")
+-    print(f"Step 12 comparison {status}: {args.dataset}")
+-    print(f"JSON: {json_path}")
+-    print(f"Markdown: {md_path}")
+-    if failures:
+-        print("Critical failures: " + ", ".join(failures))
+-        return 1
+-    return 0
+-
+-
+-if __name__ == "__main__":
+-    raise SystemExit(main())
+diff --git a/roles/diaries/files/sync/scripts/step12-reconcile-production.sh b/roles/diaries/files/sync/scripts/step12-reconcile-production.sh
+deleted file mode 100644
+index 58ea3e7..0000000
+--- a/roles/diaries/files/sync/scripts/step12-reconcile-production.sh
++++ /dev/null
+@@ -1,156 +0,0 @@
+-#!/usr/bin/env bash
+-set -euo pipefail
+-
+-fail() {
+-    echo "ERROR: 0031 Step 12: $*" >&2
+-    exit 1
+-}
+-
+-usage() {
+-    cat >&2 <<'EOF'
+-Usage: step12-reconcile-production.sh --write-freeze-confirmed [STEP9_RUN]
+-
+-Runs the existing 0024 Image reconciliation in dry-run mode against the deployed
+-production database + Files pair, then compares the semantic result with the
+-Step 9 pre-split production baseline.
+-EOF
+-    exit 2
+-}
+-
+-[[ $# -ge 1 && $# -le 2 ]] || usage
+-[[ "$1" == "--write-freeze-confirmed" ]] || usage
+-STEP9_OVERRIDE="${2:-}"
+-
+-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+-PROJECT_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
+-ENV_FILE="${PROJECT_DIR}/.env"
+-COMPOSE_FILE="${PROJECT_DIR}/compose.yaml"
+-MIGRATION="${SCRIPT_DIR}/migration0024ImageCatalogue.sh"
+-COMPARATOR="${SCRIPT_DIR}/step12-compare-reconciliation.py"
+-
+-[[ -f "${ENV_FILE}" ]] || fail "Environment file not found: ${ENV_FILE}"
+-[[ -f "${COMPOSE_FILE}" ]] || fail "Compose file not found: ${COMPOSE_FILE}"
+-[[ -x "${MIGRATION}" ]] || fail "Existing 0024 migration helper not found/executable: ${MIGRATION}"
+-[[ -f "${COMPARATOR}" ]] || fail "Step 12 comparator not found: ${COMPARATOR}"
+-command -v docker >/dev/null 2>&1 || fail "docker was not found on PATH"
+-command -v python3 >/dev/null 2>&1 || fail "python3 was not found on PATH"
+-
+-read_env_value() {
+-    local key="$1"
+-    local line
+-    line="$(grep -E "^[[:space:]]*${key}=" "${ENV_FILE}" | tail -n 1 || true)"
+-    [[ -n "${line}" ]] || return 1
+-    local value="${line#*=}"
+-    value="${value%$'\r'}"
+-    if [[ "${value}" == \"*\" && "${value}" == *\" ]]; then value="${value:1:${#value}-2}"; fi
+-    if [[ "${value}" == \'*\' && "${value}" == *\' ]]; then value="${value:1:${#value}-2}"; fi
+-    printf '%s' "${value}"
+-}
+-
+-FILES_DIR="$(read_env_value DIARIES_FILES_DIR || true)"
+-CONTENT_PATH="$(read_env_value DIARIES_NAS_CONTENT_PATH || true)"
+-[[ "${FILES_DIR}" == "files" ]] || fail "Production DIARIES_FILES_DIR must be 'files'; found '${FILES_DIR}'"
+-[[ -n "${CONTENT_PATH}" ]] || fail "DIARIES_NAS_CONTENT_PATH is missing from ${ENV_FILE}"
+-
+-COMPOSE=(docker compose --file "${COMPOSE_FILE}" --env-file "${ENV_FILE}")
+-cd -- "${PROJECT_DIR}"
+-"${COMPOSE[@]}" config --quiet
+-
+-RUNNING="$("${COMPOSE[@]}" ps --status running --services)"
+-grep -Fxq 'diaries-db' <<<"${RUNNING}" || fail "Production database service diaries-db is not running"
+-if grep -Fxq 'diaries-responder' <<<"${RUNNING}"; then
+-    fail "Production responder is running. Keep the Step 8/12 write freeze in force and stop diaries-responder before this reconciliation."
+-fi
+-
+-STEP9_ROOT="${PROJECT_DIR}/data/0031-step9"
+-if [[ -n "${STEP9_OVERRIDE}" ]]; then
+-    [[ -d "${STEP9_OVERRIDE}" ]] || fail "Specified Step 9 run does not exist: ${STEP9_OVERRIDE}"
+-    STEP9_RUN="$(cd -- "${STEP9_OVERRIDE}" && pwd)"
+-else
+-    [[ -d "${STEP9_ROOT}" ]] || fail "Step 9 evidence root not found: ${STEP9_ROOT}"
+-    STEP9_RUN="$(find "${STEP9_ROOT}" -mindepth 1 -maxdepth 1 -type d -name 'production-*' -print | sort -r | head -n 1)"
+-    [[ -n "${STEP9_RUN}" ]] || fail "No production-* Step 9 baseline found under ${STEP9_ROOT}"
+-fi
+-
+-TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
+-RUN_DIR="${PROJECT_DIR}/data/0031-step12/production-${TIMESTAMP}"
+-RUNNER_ROOT="${RUN_DIR}/migration-runner"
+-mkdir -p -- "${RUN_DIR}" "${RUNNER_ROOT}"
+-
+-PHYSICAL_SUBPATH="${CONTENT_PATH%/}/${FILES_DIR}"
+-python3 - "${RUN_DIR}/PAIR.json" "${PHYSICAL_SUBPATH}" "${STEP9_RUN}" <<'PY'
+-import json, sys
+-from datetime import datetime, timezone
+-out, physical, baseline = sys.argv[1:]
+-value = {
+-    "schemaVersion": 1,
+-    "feature": "0031-FEAT",
+-    "step": 12,
+-    "dataset": "production",
+-    "effectiveFilesDir": "files",
+-    "effectiveDbDataDir": "production-compose-database",
+-    "physicalNasSubpath": physical,
+-    "dockerFilesRoot": "/data/files",
+-    "publicFilesRoute": "/files/...",
+-    "step9BaselineRun": baseline,
+-    "productionWriteFreezeConfirmed": True,
+-    "capturedAt": datetime.now(timezone.utc).isoformat(),
+-}
+-with open(out, "w", encoding="utf-8") as handle:
+-    json.dump(value, handle, indent=2)
+-    handle.write("\n")
+-PY
+-
+-STAGING="${RUN_DIR}/STAGING-INVENTORY.tsv"
+-printf 'relativePath\titemType\tsize\tmtime\n' > "${STAGING}"
+-set +e
+-"${COMPOSE[@]}" run --rm --no-deps --no-tty --pull never --entrypoint sh diaries-responder -c '
+-root=/data/files/.image-staging
+-if [ -d "$root" ]; then
+-  find "$root" -mindepth 1 -print | sort | while IFS= read -r p; do
+-    rel=${p#"$root"/}
+-    if [ -d "$p" ]; then kind=directory; size=0; else kind=file; size=$(wc -c < "$p" 2>/dev/null || echo unknown); fi
+-    printf "%s\t%s\t%s\t%s\n" "$rel" "$kind" "$size" "unrecorded"
+-  done
+-fi
+-' >> "${STAGING}" 2>"${RUN_DIR}/staging-inventory.stderr"
+-STAGING_RC=$?
+-set -e
+-if [[ ${STAGING_RC} -ne 0 ]]; then
+-    printf 'UNAVAILABLE\tprobe-failed\t0\tunrecorded\n' >> "${STAGING}"
+-fi
+-
+-echo "Running production 0024 dry-run reconciliation..."
+-echo "  Step 9 baseline : ${STEP9_RUN}"
+-echo "  Files selector  : ${FILES_DIR}"
+-echo "  NAS subpath     : ${PHYSICAL_SUBPATH}"
+-echo "  evidence        : ${RUN_DIR}"
+-
+-export DIARIES_MIGRATION0024_EVIDENCE_ROOT="${RUNNER_ROOT}"
+-if "${MIGRATION}" dry-run 2>&1 | tee "${RUN_DIR}/reconciliation-console.txt"; then
+-    :
+-else
+-    rc=${PIPESTATUS[0]}
+-    fail "0024 production dry-run failed with exit code ${rc}; evidence remains in ${RUN_DIR}"
+-fi
+-
+-[[ -d "${RUNNER_ROOT}/dry-run" ]] || fail "Migration helper did not produce ${RUNNER_ROOT}/dry-run"
+-mv -- "${RUNNER_ROOT}/dry-run" "${RUN_DIR}/reconciliation"
+-rmdir "${RUNNER_ROOT}/apply" 2>/dev/null || true
+-rmdir "${RUNNER_ROOT}" 2>/dev/null || true
+-
+-for required in 0024-summary.json 0024-file-inventory.csv 0024-conflicts.csv SHA256SUMS.txt; do
+-    [[ -f "${RUN_DIR}/reconciliation/${required}" ]] || fail "Missing reconciliation evidence: ${required}"
+-done
+-
+-python3 "${COMPARATOR}" \
+-    --dataset production \
+-    --baseline "${STEP9_RUN}" \
+-    --current "${RUN_DIR}" \
+-    --expected-files-dir files \
+-    --expect-files-root same \
+-    --output-prefix "${RUN_DIR}/STEP12-REPORT"
+-
+-echo "PASS: Step 12 production reconciliation matches the Step 9 semantic baseline."
+-echo "Evidence: ${RUN_DIR}"
+-echo "Copy/preserve this complete production-* directory with the Diaries Step 12 evidence before close-out."
+diff --git a/roles/diaries/files/sync/scripts/step13-capture-production-control.sh b/roles/diaries/files/sync/scripts/step13-capture-production-control.sh
+deleted file mode 100644
+index c1068f4..0000000
+--- a/roles/diaries/files/sync/scripts/step13-capture-production-control.sh
++++ /dev/null
+@@ -1,138 +0,0 @@
+-#!/usr/bin/env bash
+-set -euo pipefail
+-
+-fail() {
+-    echo "ERROR: 0031 Step 13: $*" >&2
+-    exit 1
+-}
+-
+-usage() {
+-    cat >&2 <<'USAGE'
+-Usage:
+-  step13-capture-production-control.sh before
+-  step13-capture-production-control.sh after BEFORE_RUN_DIRECTORY
+-
+-Captures the production Image table and a SHA-256 inventory of every mutable
+-Files file while diaries-responder is stopped. The after form requires the
+-before directory and fails if either durable control changed.
+-USAGE
+-    exit 2
+-}
+-
+-[[ $# -ge 1 && $# -le 2 ]] || usage
+-PHASE="$1"
+-[[ "${PHASE}" == "before" || "${PHASE}" == "after" ]] || usage
+-if [[ "${PHASE}" == "before" ]]; then
+-    [[ $# -eq 1 ]] || usage
+-    BEFORE_RUN=""
+-else
+-    [[ $# -eq 2 ]] || usage
+-    BEFORE_RUN="$2"
+-fi
+-
+-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+-PROJECT_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
+-ENV_FILE="${PROJECT_DIR}/.env"
+-COMPOSE_FILE="${PROJECT_DIR}/compose.yaml"
+-[[ -f "${ENV_FILE}" ]] || fail "Environment file not found: ${ENV_FILE}"
+-[[ -f "${COMPOSE_FILE}" ]] || fail "Compose file not found: ${COMPOSE_FILE}"
+-command -v docker >/dev/null 2>&1 || fail "docker was not found on PATH"
+-command -v sha256sum >/dev/null 2>&1 || fail "sha256sum was not found on PATH"
+-
+-read_env_value() {
+-    local key="$1" line value
+-    line="$(grep -E "^[[:space:]]*${key}=" "${ENV_FILE}" | tail -n 1 || true)"
+-    [[ -n "${line}" ]] || return 1
+-    value="${line#*=}"
+-    value="${value%$'\r'}"
+-    if [[ "${value}" == \"*\" && "${value}" == *\" ]]; then value="${value:1:${#value}-2}"; fi
+-    if [[ "${value}" == \'*\' && "${value}" == *\' ]]; then value="${value:1:${#value}-2}"; fi
+-    printf '%s' "${value}"
+-}
+-
+-FILES_DIR="$(read_env_value DIARIES_FILES_DIR || true)"
+-CONTENT_PATH="$(read_env_value DIARIES_NAS_CONTENT_PATH || true)"
+-DB_NAME="$(read_env_value DIARIES_DB_NAME || true)"
+-DB_USER="$(read_env_value DIARIES_DB_USERNAME || true)"
+-[[ "${FILES_DIR}" == "files" ]] || fail "Production DIARIES_FILES_DIR must be 'files'; found '${FILES_DIR}'"
+-[[ -n "${CONTENT_PATH}" && -n "${DB_NAME}" && -n "${DB_USER}" ]] || fail "Required production environment values are missing"
+-
+-COMPOSE=(docker compose --file "${COMPOSE_FILE}" --env-file "${ENV_FILE}")
+-cd -- "${PROJECT_DIR}"
+-"${COMPOSE[@]}" config --quiet
+-RUNNING="$("${COMPOSE[@]}" ps --status running --services)"
+-grep -Fxq 'diaries-db' <<<"${RUNNING}" || fail "Production database service diaries-db is not running"
+-if grep -Fxq 'diaries-responder' <<<"${RUNNING}"; then
+-    fail "Production responder is running. Step 13 production controls require the existing write freeze."
+-fi
+-
+-if [[ -n "${BEFORE_RUN}" ]]; then
+-    [[ -d "${BEFORE_RUN}" ]] || fail "Before control directory does not exist: ${BEFORE_RUN}"
+-    BEFORE_RUN="$(cd -- "${BEFORE_RUN}" && pwd)"
+-    [[ -f "${BEFORE_RUN}/IMAGE-ROWS.tsv" && -f "${BEFORE_RUN}/FILES-INVENTORY.tsv" ]] || fail "Before control is incomplete: ${BEFORE_RUN}"
+-fi
+-
+-TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
+-RUN_DIR="${PROJECT_DIR}/data/0031-step13/production-${PHASE}-${TIMESTAMP}"
+-mkdir -p -- "${RUN_DIR}"
+-
+-IMAGE_ROWS="${RUN_DIR}/IMAGE-ROWS.tsv"
+-FILES_INVENTORY="${RUN_DIR}/FILES-INVENTORY.tsv"
+-CONTROL="${RUN_DIR}/CONTROL.txt"
+-
+-"${COMPOSE[@]}" exec -T diaries-db psql -X -v ON_ERROR_STOP=1 -U "${DB_USER}" -d "${DB_NAME}" \
+-    -c "COPY (SELECT id,version,relative_path,mime_type,original_filename,width,height,checksum,caption,alt_text FROM public.image ORDER BY id) TO STDOUT WITH (FORMAT csv, HEADER true, DELIMITER E'\\t');" \
+-    > "${IMAGE_ROWS}"
+-
+-# Read-only disposable shell over the production /data/files mount. The sort is
+-# deterministic and the inventory includes .image-staging if it exists.
+-"${COMPOSE[@]}" run --rm --no-deps --no-tty --pull never --entrypoint sh diaries-responder -c '
+-set -eu
+-find /data/files -type f -print | LC_ALL=C sort | while IFS= read -r file; do
+-  rel=${file#/data/files/}
+-  bytes=$(wc -c < "$file" | tr -d " ")
+-  hash_line=$(sha256sum "$file")
+-  hash=${hash_line%% *}
+-  printf "%s\t%s\t%s\n" "$rel" "$bytes" "$hash"
+-done
+-' > "${FILES_INVENTORY}"
+-
+-IMAGE_HASH="$(sha256sum "${IMAGE_ROWS}" | awk '{print $1}')"
+-FILES_HASH="$(sha256sum "${FILES_INVENTORY}" | awk '{print $1}')"
+-IMAGE_COUNT="$(( $(wc -l < "${IMAGE_ROWS}") - 1 ))"
+-FILES_COUNT="$(wc -l < "${FILES_INVENTORY}")"
+-PHYSICAL_SUBPATH="${CONTENT_PATH%/}/${FILES_DIR}"
+-cat > "${CONTROL}" <<CONTROL
+-feature=0031-FEAT
+-step=13
+-phase=${PHASE}
+-capturedAt=$(date --iso-8601=seconds)
+-effectiveFilesDir=${FILES_DIR}
+-physicalNasSubpath=${PHYSICAL_SUBPATH}
+-imageRowCount=${IMAGE_COUNT}
+-imageRowsSha256=${IMAGE_HASH}
+-filesFileCount=${FILES_COUNT}
+-filesInventorySha256=${FILES_HASH}
+-productionResponderRunning=false
+-CONTROL
+-
+-if [[ "${PHASE}" == "after" ]]; then
+-    if ! cmp -s -- "${BEFORE_RUN}/IMAGE-ROWS.tsv" "${IMAGE_ROWS}"; then
+-        fail "Production Image catalogue changed during the Step 13 local lifecycle. Compare ${BEFORE_RUN}/IMAGE-ROWS.tsv with ${IMAGE_ROWS}"
+-    fi
+-    if ! cmp -s -- "${BEFORE_RUN}/FILES-INVENTORY.tsv" "${FILES_INVENTORY}"; then
+-        fail "Production mutable Files tree changed during the Step 13 local lifecycle. Compare ${BEFORE_RUN}/FILES-INVENTORY.tsv with ${FILES_INVENTORY}"
+-    fi
+-    cat > "${RUN_DIR}/COMPARISON.txt" <<COMPARE
+-PASS: production Image rows are byte-for-byte identical to the Step 13 BEFORE control.
+-PASS: production mutable Files SHA-256 inventory is byte-for-byte identical to the Step 13 BEFORE control.
+-before=${BEFORE_RUN}
+-after=${RUN_DIR}
+-COMPARE
+-    echo "PASS: Step 13 production controls are unchanged."
+-    echo "Comparison: ${RUN_DIR}/COMPARISON.txt"
+-else
+-    echo "PASS: Step 13 production BEFORE control captured with responder writes frozen."
+-fi
+-
+-echo "Evidence: ${RUN_DIR}"
+diff --git a/roles/diaries/files/sync/scripts/step14-production-deployment.sh b/roles/diaries/files/sync/scripts/step14-production-deployment.sh
+deleted file mode 100644
+index c30db93..0000000
+--- a/roles/diaries/files/sync/scripts/step14-production-deployment.sh
++++ /dev/null
+@@ -1,520 +0,0 @@
+-#!/usr/bin/env bash
+-set -euo pipefail
+-
+-RESPONDER_STOPPED_BY_SCRIPT=0
+-
+-fail() {
+-    echo "ERROR: 0031 Step 14: $*" >&2
+-    if [[ "${RESPONDER_STOPPED_BY_SCRIPT}" == "1" ]]; then
+-        echo "NOTICE: diaries-responder was stopped by Step 14 and is intentionally being left stopped for investigation." >&2
+-    fi
+-    exit 1
+-}
+-
+-usage() {
+-    cat >&2 <<'USAGE'
+-Usage:
+-  step14-production-deployment.sh preflight
+-  step14-production-deployment.sh postflight PREFLIGHT_RUN_DIRECTORY
+-
+-preflight must be run on production while the Step 13 responder write freeze is
+-still in force. It validates the deployed production mapping and Step 8 recovery
+-artifacts, captures immutable production/non-production controls, and writes a
+-redacted configuration review.
+-
+-After the normal Ansible Diaries deployment has completed successfully, run
+-postflight with the exact preflight directory. It first proves the restarted
+-stack is healthy and serves an existing /files object, then briefly stops only
+-diaries-responder to compare durable controls and rerun the existing read-only
+-Step 12 reconciliation. The responder is restarted only after every check passes.
+-USAGE
+-    exit 2
+-}
+-
+-[[ $# -ge 1 && $# -le 2 ]] || usage
+-ACTION="$1"
+-[[ "${ACTION}" == "preflight" || "${ACTION}" == "postflight" ]] || usage
+-if [[ "${ACTION}" == "preflight" ]]; then
+-    [[ $# -eq 1 ]] || usage
+-    PREFLIGHT_RUN=""
+-else
+-    [[ $# -eq 2 ]] || usage
+-    PREFLIGHT_RUN="$2"
+-fi
+-
+-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+-PROJECT_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
+-ENV_FILE="${PROJECT_DIR}/.env"
+-COMPOSE_FILE="${PROJECT_DIR}/compose.yaml"
+-MOSQUITTO_FILE="${PROJECT_DIR}/config/mosquitto/mosquitto.conf"
+-STEP12_RUNNER="${SCRIPT_DIR}/step12-reconcile-production.sh"
+-EVIDENCE_ROOT="${PROJECT_DIR}/data/0031-step14"
+-
+-for path in "${ENV_FILE}" "${COMPOSE_FILE}" "${MOSQUITTO_FILE}"; do
+-    [[ -f "${path}" ]] || fail "Required deployed file not found: ${path}"
+-done
+-command -v docker >/dev/null 2>&1 || fail "docker was not found on PATH"
+-command -v python3 >/dev/null 2>&1 || fail "python3 was not found on PATH"
+-command -v sha256sum >/dev/null 2>&1 || fail "sha256sum was not found on PATH"
+-
+-read_env_value() {
+-    local key="$1" line value
+-    line="$(grep -E "^[[:space:]]*${key}=" "${ENV_FILE}" | tail -n 1 || true)"
+-    [[ -n "${line}" ]] || return 1
+-    value="${line#*=}"
+-    value="${value%$'\r'}"
+-    if [[ "${value}" == \"*\" && "${value}" == *\" ]]; then value="${value:1:${#value}-2}"; fi
+-    if [[ "${value}" == \'*\' && "${value}" == *\' ]]; then value="${value:1:${#value}-2}"; fi
+-    printf '%s' "${value}"
+-}
+-
+-FILES_DIR="$(read_env_value DIARIES_FILES_DIR || true)"
+-CONTENT_PATH="$(read_env_value DIARIES_NAS_CONTENT_PATH || true)"
+-DB_NAME="$(read_env_value DIARIES_DB_NAME || true)"
+-DB_USER="$(read_env_value DIARIES_DB_USERNAME || true)"
+-NAS_HOST="$(read_env_value DIARIES_NAS_HOST || true)"
+-NAS_SHARE="$(read_env_value DIARIES_NAS_SHARE || true)"
+-[[ "${FILES_DIR}" == "files" ]] || fail "Production DIARIES_FILES_DIR must be 'files'; found '${FILES_DIR}'"
+-[[ -n "${CONTENT_PATH}" && -n "${DB_NAME}" && -n "${DB_USER}" && -n "${NAS_HOST}" && -n "${NAS_SHARE}" ]] || \
+-    fail "Required production environment values are missing"
+-
+-COMPOSE=(docker compose --file "${COMPOSE_FILE}" --env-file "${ENV_FILE}")
+-cd -- "${PROJECT_DIR}"
+-"${COMPOSE[@]}" config --quiet
+-
+-service_is_running() {
+-    local service="$1"
+-    "${COMPOSE[@]}" ps --status running --services | grep -Fxq "${service}"
+-}
+-
+-require_running() {
+-    local service="$1"
+-    service_is_running "${service}" || fail "Production service ${service} is not running"
+-}
+-
+-require_responder_stopped() {
+-    if service_is_running diaries-responder; then
+-        fail "Production responder is running; the Step 13/14 write freeze is required for this phase"
+-    fi
+-}
+-
+-container_id_all() {
+-    local service="$1"
+-    "${COMPOSE[@]}" ps --all --quiet "${service}" | head -n 1
+-}
+-
+-nas_volume_name() {
+-    local cid volume
+-    cid="$(container_id_all diaries-responder)"
+-    [[ -n "${cid}" ]] || fail "Unable to locate the deployed diaries-responder container needed to resolve the NAS volume"
+-    volume="$(docker inspect -f '{{range .Mounts}}{{if eq .Destination "/data/files"}}{{.Name}}{{end}}{{end}}' "${cid}" 2>/dev/null || true)"
+-    [[ -n "${volume}" ]] || fail "Unable to resolve the named NAS volume from the responder /data/files mount"
+-    printf '%s' "${volume}"
+-}
+-
+-capture_image_rows() {
+-    local output="$1"
+-    "${COMPOSE[@]}" exec -T diaries-db psql -X -v ON_ERROR_STOP=1 -U "${DB_USER}" -d "${DB_NAME}" \
+-        -c "COPY (SELECT id,version,relative_path,mime_type,original_filename,width,height,checksum,caption,alt_text FROM public.image ORDER BY id) TO STDOUT WITH (FORMAT csv, HEADER true, DELIMITER E'\\t');" \
+-        > "${output}"
+-}
+-
+-capture_files_inventory() {
+-    local output="$1"
+-    "${COMPOSE[@]}" run --rm --no-deps --no-tty --pull never --entrypoint sh diaries-responder -c '
+-set -eu
+-find /data/files -type f -print | LC_ALL=C sort | while IFS= read -r file; do
+-  rel=${file#/data/files/}
+-  bytes=$(wc -c < "$file" | tr -d " ")
+-  hash_line=$(sha256sum "$file")
+-  hash=${hash_line%% *}
+-  printf "%s\t%s\t%s\n" "$rel" "$bytes" "$hash"
+-done
+-' > "${output}"
+-}
+-
+-capture_nonproduction_inventory() {
+-    local output="$1" volume
+-    volume="$(nas_volume_name)"
+-    docker run --rm --pull never \
+-        -e CONTENT_PATH="${CONTENT_PATH}" \
+-        --mount "type=volume,src=${volume},dst=/nas,readonly" \
+-        postgres:18-alpine sh -c '
+-set -eu
+-base="/nas/${CONTENT_PATH#/}"
+-for root in "$base"/files-development-*; do
+-  [ -d "$root" ] || continue
+-  selector=${root##*/}
+-  find "$root" -type f -print | LC_ALL=C sort | while IFS= read -r file; do
+-    rel=${file#"$root"/}
+-    bytes=$(wc -c < "$file" | tr -d " ")
+-    hash_line=$(sha256sum "$file")
+-    hash=${hash_line%% *}
+-    printf "%s\t%s\t%s\t%s\n" "$selector" "$rel" "$bytes" "$hash"
+-  done
+-done
+-' > "${output}"
+-}
+-
+-write_redacted_config() {
+-    local output="$1"
+-    python3 - "${ENV_FILE}" "${COMPOSE_FILE}" "${MOSQUITTO_FILE}" > "${output}" <<'PY'
+-import re
+-import sys
+-from pathlib import Path
+-
+-env_path, compose_path, mosq_path = map(Path, sys.argv[1:])
+-values = {}
+-for raw in env_path.read_text(encoding="utf-8").splitlines():
+-    if not raw.strip() or raw.lstrip().startswith("#") or "=" not in raw:
+-        continue
+-    key, value = raw.split("=", 1)
+-    values[key.strip()] = value.strip()
+-
+-print("0031-FEAT Step 14 redacted production configuration review")
+-print(f"environmentFile={env_path}")
+-for key in sorted(values):
+-    upper = key.upper()
+-    if any(token in upper for token in ("PASSWORD", "TOKEN")):
+-        value = "<redacted>"
+-    elif key == "DIARIES_NAS_USERNAME":
+-        value = "<redacted>"
+-    else:
+-        value = values[key]
+-    print(f"{key}={value}")
+-
+-compose = compose_path.read_text(encoding="utf-8")
+-print("\ncomposeChecks:")
+-print("  dataFilesTarget=/data/files")
+-print("  dataFilesSubpath=${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR}")
+-print("  sharedScansSubpath=${DIARIES_NAS_CONTENT_PATH}/diaries")
+-print(f"  containsMutableSelector={'yes' if 'subpath: ${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR}' in compose else 'no'}")
+-print(f"  containsHardCodedMutableFiles={'yes' if 'subpath: ${DIARIES_NAS_CONTENT_PATH}/files' in compose else 'no'}")
+-print(f"  mentionsLocalEnv={'yes' if 'local.env' in compose else 'no'}")
+-
+-queue = []
+-for line in mosq_path.read_text(encoding="utf-8").splitlines():
+-    if re.match(r"^max_(?:inflight|queued)_messages\s+", line.strip()):
+-        queue.append(line.strip())
+-print("\nmosquittoFlowControl:")
+-for line in queue:
+-    print(f"  {line}")
+-PY
+-}
+-
+-verify_no_local_override_participation() {
+-    local candidate
+-    for candidate in "${COMPOSE_FILE}" "${PROJECT_DIR}/scripts/start.sh"; do
+-        [[ -f "${candidate}" ]] || continue
+-        if grep -Fq 'local.env' "${candidate}"; then
+-            fail "Production deployment path unexpectedly references local.env: ${candidate}"
+-        fi
+-    done
+-    if [[ -f /etc/systemd/system/diaries-compose.service ]] && grep -Fq 'local.env' /etc/systemd/system/diaries-compose.service; then
+-        fail "Production systemd unit unexpectedly references local.env"
+-    fi
+-}
+-
+-verify_step8_database_backup() {
+-    local output="$1" manifest details backup backup_sha sidecar sidecar_sha actual
+-    manifest="$(find "${PROJECT_DIR}/data/0031-step8" -maxdepth 1 -type f -name 'production-database-backup-*.json' -print 2>/dev/null | LC_ALL=C sort -r | head -n 1)"
+-    [[ -n "${manifest}" && -f "${manifest}" ]] || fail "No Step 8 production database-backup manifest remains under ${PROJECT_DIR}/data/0031-step8"
+-    details="$(python3 - "${manifest}" <<'PY'
+-import json, sys
+-m=json.load(open(sys.argv[1], encoding='utf-8'))
+-print(m.get('databaseBackupFile',''))
+-print(m.get('databaseBackupSha256',''))
+-print(m.get('databaseSidecarFile',''))
+-print(m.get('databaseSidecarSha256',''))
+-PY
+-)"
+-    backup="$(sed -n '1p' <<<"${details}")"
+-    backup_sha="$(sed -n '2p' <<<"${details}")"
+-    sidecar="$(sed -n '3p' <<<"${details}")"
+-    sidecar_sha="$(sed -n '4p' <<<"${details}")"
+-    [[ -s "${backup}" ]] || fail "Step 8 production database backup is missing/empty: ${backup}"
+-    [[ -s "${sidecar}" ]] || fail "Step 8 production database sidecar is missing/empty: ${sidecar}"
+-    actual="$(sha256sum "${backup}" | awk '{print $1}')"
+-    [[ "${actual}" == "${backup_sha}" ]] || fail "Step 8 production database backup SHA-256 no longer matches its manifest"
+-    actual="$(sha256sum "${sidecar}" | awk '{print $1}')"
+-    [[ "${actual}" == "${sidecar_sha}" ]] || fail "Step 8 production database sidecar SHA-256 no longer matches its manifest"
+-    cat > "${output}" <<CHECK
+-PASS: Step 8 production database backup and sidecar remain available and match their recorded SHA-256 values.
+-manifest=${manifest}
+-backup=${backup}
+-backupSha256=${backup_sha}
+-sidecar=${sidecar}
+-sidecarSha256=${sidecar_sha}
+-CHECK
+-}
+-
+-verify_step8_files_snapshot() {
+-    local output="$1" manifest_copy="$2" volume snapshot_manifest snapshot_dir details expected_hash expected_count actual_hash actual_count
+-    volume="$(nas_volume_name)"
+-    snapshot_manifest="$(docker run --rm --pull never \
+-        -e CONTENT_PATH="${CONTENT_PATH}" \
+-        --mount "type=volume,src=${volume},dst=/nas,readonly" \
+-        postgres:18-alpine sh -c '
+-set -eu
+-root="/nas/${CONTENT_PATH#/}/.0031-backups"
+-[ -d "$root" ] || exit 3
+-find "$root" -mindepth 2 -maxdepth 2 -type f -path "*/step8-*/SNAPSHOT-MANIFEST.json" -print | LC_ALL=C sort -r | head -n 1
+-' || true)"
+-    [[ -n "${snapshot_manifest}" ]] || fail "Unable to find the Step 8 Files rollback SNAPSHOT-MANIFEST.json on the production NAS share"
+-    docker run --rm --pull never \
+-        --mount "type=volume,src=${volume},dst=/nas,readonly" \
+-        postgres:18-alpine cat "${snapshot_manifest}" > "${manifest_copy}"
+-    details="$(python3 - "${manifest_copy}" <<'PY'
+-import json, sys
+-m=json.load(open(sys.argv[1], encoding='utf-8'))
+-if m.get('captureType') != '0031-step8-shared-files-premigration-snapshot':
+-    raise SystemExit('unexpected captureType')
+-if m.get('sourceFilesDir') != 'files' or not m.get('inventoriesIdentical'):
+-    raise SystemExit('snapshot identity/inventory flag is not the frozen Step 8 value')
+-print(m['snapshotInventory']['sha256'])
+-print(m['snapshotFileCount'])
+-PY
+-)" || fail "Step 8 Files snapshot manifest is invalid"
+-    expected_hash="$(sed -n '1p' <<<"${details}")"
+-    expected_count="$(sed -n '2p' <<<"${details}")"
+-    snapshot_dir="${snapshot_manifest%/SNAPSHOT-MANIFEST.json}"
+-    actual_hash="$(docker run --rm --pull never \
+-        --mount "type=volume,src=${volume},dst=/nas,readonly" \
+-        postgres:18-alpine sha256sum "${snapshot_dir}/SNAPSHOT-SHA256.tsv" | awk '{print $1}')"
+-    [[ "${actual_hash}" == "${expected_hash}" ]] || fail "Step 8 Files snapshot inventory SHA-256 no longer matches the rollback manifest"
+-    actual_count="$(docker run --rm --pull never \
+-        --mount "type=volume,src=${volume},dst=/nas,readonly" \
+-        postgres:18-alpine sh -c 'find "$1/files" -type f -print | wc -l' sh "${snapshot_dir}" | tr -d ' ')"
+-    [[ "${actual_count}" == "${expected_count}" ]] || fail "Step 8 Files snapshot file count no longer matches the rollback manifest"
+-    cat > "${output}" <<CHECK
+-PASS: Step 8 Files rollback snapshot remains available on the production NAS share.
+-manifest=${snapshot_manifest}
+-snapshotInventorySha256=${expected_hash}
+-snapshotFileCount=${expected_count}
+-CHECK
+-}
+-
+-capture_service_status() {
+-    local output="$1" service cid state health
+-    : > "${output}"
+-    while IFS= read -r service; do
+-        [[ -n "${service}" ]] || continue
+-        cid="$("${COMPOSE[@]}" ps --all --quiet "${service}" | head -n 1)"
+-        [[ -n "${cid}" ]] || fail "Compose service ${service} has no container after deployment"
+-        state="$(docker inspect -f '{{.State.Status}}' "${cid}")"
+-        health="$(docker inspect -f '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "${cid}")"
+-        printf '%s\t%s\t%s\n' "${service}" "${state}" "${health}" >> "${output}"
+-        [[ "${state}" == "running" ]] || fail "Compose service ${service} is not running (state=${state})"
+-        [[ "${health}" == "none" || "${health}" == "healthy" ]] || fail "Compose service ${service} is not healthy (health=${health})"
+-    done < <("${COMPOSE[@]}" config --services)
+-}
+-
+-require_responder_synchronised() {
+-    local cid started attempt logs
+-    cid="$("${COMPOSE[@]}" ps --quiet diaries-responder | head -n 1)"
+-    [[ -n "${cid}" ]] || fail "diaries-responder has no running container while checking startup synchronisation"
+-    started="$(docker inspect -f '{{.State.StartedAt}}' "${cid}")"
+-    for attempt in $(seq 1 90); do
+-        logs="$(docker logs --since "${started}" "${cid}" 2>&1 || true)"
+-        if grep -Fq 'synchronise: ok' <<<"${logs}"; then
+-            echo "PASS: responder startup retained-tree synchronisation completed successfully."
+-            return 0
+-        fi
+-        if [[ "$(docker inspect -f '{{.State.Running}}' "${cid}" 2>/dev/null || true)" != "true" ]]; then
+-            fail "diaries-responder stopped before startup synchronisation completed"
+-        fi
+-        sleep 2
+-    done
+-    fail "diaries-responder did not log 'synchronise: ok' for the current container start"
+-}
+-
+-verify_files_route() {
+-    local output="$1" rel encoded code physical_hash served_hash tmp_path
+-    rel="$("${COMPOSE[@]}" exec -T diaries-db psql -X -A -t -v ON_ERROR_STOP=1 -U "${DB_USER}" -d "${DB_NAME}" \
+-        -c "SELECT relative_path FROM public.image WHERE relative_path IS NOT NULL AND relative_path <> '' ORDER BY id LIMIT 1;" | tr -d '\r' | head -n 1)"
+-    [[ -n "${rel}" ]] || fail "Production Image catalogue has no relative_path available for the non-destructive /files route check"
+-    encoded="$(python3 - "${rel}" <<'PY'
+-import sys
+-from urllib.parse import quote
+-print('/'.join(quote(part, safe='') for part in sys.argv[1].split('/')))
+-PY
+-)"
+-    tmp_path="/tmp/0031-step14-files-check.$$"
+-    code="$("${COMPOSE[@]}" exec -T diaries-responder curl --silent --show-error --output "${tmp_path}" --write-out '%{http_code}' "http://localhost:8081/files/${encoded}")"
+-    [[ "${code}" == "200" ]] || fail "Existing production /files object returned HTTP ${code}: ${rel}"
+-    physical_hash="$("${COMPOSE[@]}" exec -T diaries-responder sha256sum "/data/files/${rel}" | awk '{print $1}')"
+-    served_hash="$("${COMPOSE[@]}" exec -T diaries-responder sha256sum "${tmp_path}" | awk '{print $1}')"
+-    "${COMPOSE[@]}" exec -T diaries-responder rm -f "${tmp_path}"
+-    [[ "${physical_hash}" == "${served_hash}" ]] || fail "Bytes served by /files differ from the selected production physical file: ${rel}"
+-    cat > "${output}" <<CHECK
+-PASS: existing production /files route served the same bytes as /data/files.
+-relativePath=${rel}
+-httpStatus=${code}
+-sha256=${served_hash}
+-CHECK
+-}
+-
+-require_step13_handoff_unchanged() {
+-    local image_rows="$1" files_inventory="$2" output="$3" prior
+-    prior="$(find "${PROJECT_DIR}/data/0031-step13" -mindepth 1 -maxdepth 1 -type d -name 'production-after-*' -print 2>/dev/null | LC_ALL=C sort -r | head -n 1)"
+-    [[ -n "${prior}" ]] || fail "No Step 13 production-after control is available for the Step 14 hand-off check"
+-    [[ -f "${prior}/IMAGE-ROWS.tsv" && -f "${prior}/FILES-INVENTORY.tsv" ]] || fail "Latest Step 13 production-after control is incomplete: ${prior}"
+-    cmp -s -- "${prior}/IMAGE-ROWS.tsv" "${image_rows}" || fail "Production Image rows drifted after the authoritative Step 13 AFTER control"
+-    cmp -s -- "${prior}/FILES-INVENTORY.tsv" "${files_inventory}" || fail "Production Files bytes drifted after the authoritative Step 13 AFTER control"
+-    cat > "${output}" <<CHECK
+-PASS: Step 14 preflight durable controls match the latest Step 13 production AFTER control byte-for-byte.
+-step13After=${prior}
+-CHECK
+-}
+-
+-TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
+-mkdir -p -- "${EVIDENCE_ROOT}"
+-
+-if [[ "${ACTION}" == "preflight" ]]; then
+-    RUN_DIR="${EVIDENCE_ROOT}/preflight-${TIMESTAMP}"
+-    mkdir -p -- "${RUN_DIR}"
+-    exec > >(tee -a "${RUN_DIR}/RUN.txt") 2>&1
+-
+-    echo "0031-FEAT Step 14 production preflight"
+-    echo "Captured: $(date --iso-8601=seconds)"
+-    echo "Project: ${PROJECT_DIR}"
+-    echo
+-
+-    require_running diaries-db
+-    require_responder_stopped
+-    verify_no_local_override_participation
+-    grep -Fq 'subpath: ${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR}' "${COMPOSE_FILE}" || \
+-        fail "Deployed Compose file does not select mutable /data/files through DIARIES_FILES_DIR"
+-    if grep -Fq 'subpath: ${DIARIES_NAS_CONTENT_PATH}/files' "${COMPOSE_FILE}"; then
+-        fail "Deployed Compose file hard-codes the mutable production files source instead of the explicit selector"
+-    fi
+-
+-    write_redacted_config "${RUN_DIR}/REDACTED-CONFIG.txt"
+-    verify_step8_database_backup "${RUN_DIR}/STEP8-DATABASE-BACKUP-CHECK.txt"
+-    verify_step8_files_snapshot "${RUN_DIR}/STEP8-FILES-SNAPSHOT-CHECK.txt" "${RUN_DIR}/STEP8-FILES-SNAPSHOT-MANIFEST.json"
+-    capture_image_rows "${RUN_DIR}/IMAGE-ROWS.tsv"
+-    capture_files_inventory "${RUN_DIR}/FILES-INVENTORY.tsv"
+-    capture_nonproduction_inventory "${RUN_DIR}/NONPRODUCTION-FILES-INVENTORY.tsv"
+-    require_step13_handoff_unchanged "${RUN_DIR}/IMAGE-ROWS.tsv" "${RUN_DIR}/FILES-INVENTORY.tsv" "${RUN_DIR}/STEP13-HANDOFF-CHECK.txt"
+-
+-    cat > "${RUN_DIR}/PAIR.txt" <<PAIR
+-feature=0031-FEAT
+-step=14
+-phase=preflight
+-capturedAt=$(date --iso-8601=seconds)
+-DIARIES_FILES_DIR=${FILES_DIR}
+-physicalNasRoot=//${NAS_HOST}/${NAS_SHARE}/${CONTENT_PATH%/}/${FILES_DIR}
+-dockerFilesRoot=/data/files
+-localOverrideParticipates=false
+-productionResponderRunning=false
+-PAIR
+-
+-    echo
+-    echo "PASS: Step 14 production preflight is clean."
+-    echo "Production responder remains stopped for the normal Ansible deployment."
+-    echo "Evidence: ${RUN_DIR}"
+-    exit 0
+-fi
+-
+-[[ -d "${PREFLIGHT_RUN}" ]] || fail "Preflight run directory does not exist: ${PREFLIGHT_RUN}"
+-PREFLIGHT_RUN="$(cd -- "${PREFLIGHT_RUN}" && pwd)"
+-for required in IMAGE-ROWS.tsv FILES-INVENTORY.tsv NONPRODUCTION-FILES-INVENTORY.tsv REDACTED-CONFIG.txt STEP8-DATABASE-BACKUP-CHECK.txt STEP8-FILES-SNAPSHOT-CHECK.txt; do
+-    [[ -f "${PREFLIGHT_RUN}/${required}" ]] || fail "Preflight evidence is incomplete; missing ${required}"
+-done
+-
+-RUN_DIR="${EVIDENCE_ROOT}/postflight-${TIMESTAMP}"
+-mkdir -p -- "${RUN_DIR}"
+-exec > >(tee -a "${RUN_DIR}/RUN.txt") 2>&1
+-
+-echo "0031-FEAT Step 14 production postflight"
+-echo "Captured: $(date --iso-8601=seconds)"
+-echo "Preflight: ${PREFLIGHT_RUN}"
+-echo
+-
+-# The playbook must have restarted the complete production stack successfully
+-# before we deliberately freeze only the responder for deterministic durable
+-# comparisons and the existing Step 12 dry-run reconciliation.
+-capture_service_status "${RUN_DIR}/SERVICE-STATUS-AFTER-DEPLOY.tsv"
+-require_responder_synchronised
+-
+-grep -Eq '^max_inflight_messages[[:space:]]+20([[:space:]]|$)' "${MOSQUITTO_FILE}" || \
+-    fail "Deployed production Mosquitto config does not retain max_inflight_messages 20"
+-grep -Eq '^max_queued_messages[[:space:]]+0([[:space:]]|$)' "${MOSQUITTO_FILE}" || \
+-    fail "Deployed production Mosquitto config has not adopted max_queued_messages 0"
+-"${COMPOSE[@]}" exec -T diaries-mqtt sh -c "grep -Eq '^max_inflight_messages[[:space:]]+20([[:space:]]|$)' /mosquitto/config/mosquitto.conf && grep -Eq '^max_queued_messages[[:space:]]+0([[:space:]]|$)' /mosquitto/config/mosquitto.conf" || \
+-    fail "Running production broker has not loaded the Step 13 retained-snapshot flow-control policy"
+-
+-write_redacted_config "${RUN_DIR}/REDACTED-CONFIG-AFTER-DEPLOY.txt"
+-verify_no_local_override_participation
+-verify_files_route "${RUN_DIR}/FILES-ROUTE-CHECK.txt"
+-"${COMPOSE[@]}" logs --no-color --tail 500 diaries-responder > "${RUN_DIR}/RESPONDER-STARTUP-LOG.txt" 2>&1 || true
+-
+-# Freeze only the responder after proving successful startup. If any durable
+-# check fails from here, leave it stopped rather than re-enable writes on an
+-# unexplained production state.
+-echo "Stopping diaries-responder temporarily for deterministic read-only verification..."
+-"${COMPOSE[@]}" stop diaries-responder
+-RESPONDER_STOPPED_BY_SCRIPT=1
+-require_responder_stopped
+-require_running diaries-db
+-
+-capture_image_rows "${RUN_DIR}/IMAGE-ROWS.tsv"
+-capture_files_inventory "${RUN_DIR}/FILES-INVENTORY.tsv"
+-capture_nonproduction_inventory "${RUN_DIR}/NONPRODUCTION-FILES-INVENTORY.tsv"
+-
+-cmp -s -- "${PREFLIGHT_RUN}/IMAGE-ROWS.tsv" "${RUN_DIR}/IMAGE-ROWS.tsv" || \
+-    fail "Production Image catalogue changed across the Step 14 deployment"
+-cmp -s -- "${PREFLIGHT_RUN}/FILES-INVENTORY.tsv" "${RUN_DIR}/FILES-INVENTORY.tsv" || \
+-    fail "Production mutable Files bytes changed across the Step 14 deployment"
+-cmp -s -- "${PREFLIGHT_RUN}/NONPRODUCTION-FILES-INVENTORY.tsv" "${RUN_DIR}/NONPRODUCTION-FILES-INVENTORY.tsv" || \
+-    fail "A non-production files-development-* root changed during the Step 14 production deployment window"
+-
+-[[ -x "${STEP12_RUNNER}" ]] || fail "Step 12 production reconciliation helper is missing/not executable: ${STEP12_RUNNER}"
+-echo "Running the existing Step 12 read-only reconciliation against the deployed production pair..."
+-if "${STEP12_RUNNER}" --write-freeze-confirmed 2>&1 | tee "${RUN_DIR}/RECONCILIATION.txt"; then
+-    :
+-else
+-    rc=${PIPESTATUS[0]}
+-    fail "Read-only production reconciliation failed with exit code ${rc}"
+-fi
+-RECONCILIATION_RUN="$(sed -n 's/^Evidence: //p' "${RUN_DIR}/RECONCILIATION.txt" | tail -n 1)"
+-[[ -n "${RECONCILIATION_RUN}" && -f "${RECONCILIATION_RUN}/STEP12-REPORT.json" ]] || \
+-    fail "Step 12 reconciliation passed without yielding its expected evidence path/report"
+-cp -- "${RECONCILIATION_RUN}/STEP12-REPORT.json" "${RUN_DIR}/RECONCILIATION-REPORT.json"
+-cp -- "${RECONCILIATION_RUN}/STEP12-REPORT.md" "${RUN_DIR}/RECONCILIATION-REPORT.md"
+-
+-cat > "${RUN_DIR}/COMPARISON.txt" <<COMPARE
+-PASS: production Image catalogue is byte-for-byte unchanged across Step 14 deployment.
+-PASS: production mutable Files SHA-256 inventory is byte-for-byte unchanged across Step 14 deployment.
+-PASS: non-production files-development-* SHA-256 inventory is byte-for-byte unchanged across Step 14 deployment.
+-PASS: read-only production reconciliation still matches the Step 9 semantic baseline.
+-preflight=${PREFLIGHT_RUN}
+-postflight=${RUN_DIR}
+-reconciliation=${RECONCILIATION_RUN}
+-COMPARE
+-
+-echo "Restarting diaries-responder after all deterministic controls passed..."
+-"${COMPOSE[@]}" up --detach --no-deps --wait diaries-responder
+-RESPONDER_STOPPED_BY_SCRIPT=0
+-require_responder_synchronised
+-capture_service_status "${RUN_DIR}/SERVICE-STATUS-FINAL.tsv"
+-verify_files_route "${RUN_DIR}/FILES-ROUTE-CHECK-FINAL.txt"
+-
+-cat > "${RUN_DIR}/RESULT.txt" <<RESULT
+-PASS: 0031-FEAT Step 14 production deployment verification completed non-destructively.
+-preflight=${PREFLIGHT_RUN}
+-postflight=${RUN_DIR}
+-DIARIES_FILES_DIR=${FILES_DIR}
+-physicalNasRoot=//${NAS_HOST}/${NAS_SHARE}/${CONTENT_PATH%/}/${FILES_DIR}
+-dockerFilesRoot=/data/files
+-maxInflightMessages=20
+-maxQueuedMessages=0
+-productionImageAndFilesUnchanged=true
+-nonProductionFilesRootsUnchanged=true
+-readOnlyReconciliationPassed=true
+-finalResponderRunning=true
+-RESULT
+-
+-echo
+-echo "PASS: Step 14 production deployment is healthy and non-destructive."
+-echo "Evidence: ${RUN_DIR}"
+diff --git a/roles/diaries/files/sync/scripts/step8-capture-production-database-backup.sh b/roles/diaries/files/sync/scripts/step8-capture-production-database-backup.sh
+deleted file mode 100644
+index b7c6a21..0000000
+--- a/roles/diaries/files/sync/scripts/step8-capture-production-database-backup.sh
++++ /dev/null
+@@ -1,136 +0,0 @@
+-#!/usr/bin/env bash
+-
+-set -euo pipefail
+-
+-# 0031-FEAT Step 8: take the production pre-migration PostgreSQL backup after
+-# mutable writes have been frozen. This deliberately remains database-only;
+-# the one shared pre-split Files snapshot is captured separately from Windows
+-# after both local and production responders are confirmed stopped.
+-
+-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+-PROJECT_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
+-COMPOSE_FILE="${PROJECT_DIR}/compose.yaml"
+-ENV_FILE="${PROJECT_DIR}/.env"
+-RESPONDER_SERVICE="${DIARIES_RESPONDER_SERVICE:-diaries-responder}"
+-DB_SERVICE="${DIARIES_DB_SERVICE:-diaries-db}"
+-BACKUP_SCRIPT="${SCRIPT_DIR}/backup-db-to-binary.sh"
+-EVIDENCE_DIR="${PROJECT_DIR}/data/0031-step8"
+-TIMESTAMP="$(date '+%Y%m%d-%H%M%S')"
+-EVIDENCE_FILE="${EVIDENCE_DIR}/production-database-backup-${TIMESTAMP}.txt"
+-STEP8_MANIFEST="${EVIDENCE_DIR}/production-database-backup-${TIMESTAMP}.json"
+-
+-for path in "${COMPOSE_FILE}" "${ENV_FILE}" "${BACKUP_SCRIPT}"; do
+-    if [[ ! -f "${path}" ]]; then
+-        echo "ERROR: required file not found: ${path}" >&2
+-        exit 1
+-    fi
+-done
+-if [[ ! -x "${BACKUP_SCRIPT}" ]]; then
+-    echo "ERROR: database backup helper is not executable: ${BACKUP_SCRIPT}" >&2
+-    exit 1
+-fi
+-mkdir -p "${EVIDENCE_DIR}"
+-
+-exec > >(tee -a "${EVIDENCE_FILE}") 2>&1
+-
+-echo "0031-FEAT Step 8 - production pre-migration database backup"
+-echo "Captured: $(date --iso-8601=seconds)"
+-echo "Host: $(hostname)"
+-echo "Project: ${PROJECT_DIR}"
+-echo
+-
+-cd "${PROJECT_DIR}"
+-docker compose --file "${COMPOSE_FILE}" --env-file "${ENV_FILE}" config --quiet
+-
+-if docker compose --file "${COMPOSE_FILE}" --env-file "${ENV_FILE}" ps --status running --services | grep -Fxq "${RESPONDER_SERVICE}"; then
+-    echo "ERROR: responder service '${RESPONDER_SERVICE}' is running." >&2
+-    echo "Run ${SCRIPT_DIR}/step8-freeze-writes.sh first." >&2
+-    exit 1
+-fi
+-if ! docker compose --file "${COMPOSE_FILE}" --env-file "${ENV_FILE}" ps --status running --services | grep -Fxq "${DB_SERVICE}"; then
+-    echo "ERROR: database service '${DB_SERVICE}' is not running." >&2
+-    exit 1
+-fi
+-
+-# Step 2 freezes production on the existing pre-split directory named "files".
+-# Refuse an unexpected selector so this capture cannot silently bless the wrong
+-# production/source Files identity.
+-PRODUCTION_FILES_DIR="$(python3 - "${ENV_FILE}" <<'PY'
+-import sys
+-from pathlib import Path
+-value = None
+-for raw in Path(sys.argv[1]).read_text(encoding='utf-8').splitlines():
+-    line = raw.strip()
+-    if not line or line.startswith('#') or '=' not in raw:
+-        continue
+-    key, val = raw.split('=', 1)
+-    if key.strip() == 'DIARIES_FILES_DIR':
+-        value = val.strip()
+-        break
+-print(value or '')
+-PY
+-)"
+-if [[ "${PRODUCTION_FILES_DIR}" != "files" ]]; then
+-    echo "ERROR: production DIARIES_FILES_DIR is '${PRODUCTION_FILES_DIR}', expected frozen Step-2 value 'files'." >&2
+-    exit 1
+-fi
+-
+-DB_LOG="${EVIDENCE_DIR}/production-database-backup-helper-${TIMESTAMP}.txt"
+-"${BACKUP_SCRIPT}" 2>&1 | tee "${DB_LOG}"
+-
+-DB_MANIFEST="$(sed -n 's/^Manifest: //p' "${DB_LOG}" | tail -n 1)"
+-if [[ -z "${DB_MANIFEST}" || ! -s "${DB_MANIFEST}" ]]; then
+-    echo "ERROR: unable to locate the Step-7 database sidecar from backup output." >&2
+-    exit 1
+-fi
+-DB_BACKUP="${DB_MANIFEST%.dataset.json}"
+-if [[ ! -s "${DB_BACKUP}" ]]; then
+-    echo "ERROR: database backup file referenced by sidecar is missing/empty: ${DB_BACKUP}" >&2
+-    exit 1
+-fi
+-
+-DB_SHA256="$(sha256sum "${DB_BACKUP}" | awk '{print $1}')"
+-SIDECAR_SHA256="$(sha256sum "${DB_MANIFEST}" | awk '{print $1}')"
+-RUNTIME_IMAGES="$(docker compose --file "${COMPOSE_FILE}" --env-file "${ENV_FILE}" config --images 2>/dev/null || true)"
+-SOURCE_IDENTITY="unknown"
+-if command -v git >/dev/null 2>&1 && git -C "${PROJECT_DIR}" rev-parse HEAD >/dev/null 2>&1; then
+-    SOURCE_IDENTITY="$(git -C "${PROJECT_DIR}" rev-parse HEAD)"
+-fi
+-
+-python3 - "${STEP8_MANIFEST}" "${DB_BACKUP}" "${DB_SHA256}" "${DB_MANIFEST}" "${SIDECAR_SHA256}" "${SOURCE_IDENTITY}" "${RUNTIME_IMAGES}" <<'PY'
+-import json
+-import socket
+-import sys
+-from datetime import datetime, timezone
+-from pathlib import Path
+-
+-out, backup, backup_sha, sidecar, sidecar_sha, source_identity, runtime_images = sys.argv[1:]
+-manifest = {
+-    'schemaVersion': 1,
+-    'captureType': '0031-step8-production-pre-migration-database',
+-    'createdAt': datetime.now(timezone.utc).astimezone().isoformat(),
+-    'host': socket.gethostname(),
+-    'logicalDataset': 'production',
+-    'databaseStorage': 'diaries-db-data',
+-    'preMigrationSharedFilesDir': 'files',
+-    'databaseBackupFile': backup,
+-    'databaseBackupSha256': backup_sha,
+-    'databaseSidecarFile': sidecar,
+-    'databaseSidecarSha256': sidecar_sha,
+-    'writeFreeze': {'productionResponderStopped': True},
+-    'applicationSourceIdentity': {
+-        'playbooksGitCommit': source_identity,
+-        'runtimeImages': [line for line in runtime_images.splitlines() if line.strip()],
+-    },
+-    'note': 'Production database backup captured while responder writes were frozen. Pair it with the single Step-8 snapshot of the pre-split shared Files root.',
+-}
+-Path(out).write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
+-PY
+-
+-echo
+-echo "PASS: production pre-migration database backup captured and hashed."
+-echo "Database backup: ${DB_BACKUP}"
+-echo "Database SHA-256: ${DB_SHA256}"
+-echo "Step-7 sidecar: ${DB_MANIFEST}"
+-echo "Step-8 manifest: ${STEP8_MANIFEST}"
+-echo "The shared Files bytes are captured separately after local and production freezes are both established."
+diff --git a/roles/diaries/files/sync/scripts/step8-freeze-writes.sh b/roles/diaries/files/sync/scripts/step8-freeze-writes.sh
+deleted file mode 100644
+index cd26603..0000000
+--- a/roles/diaries/files/sync/scripts/step8-freeze-writes.sh
++++ /dev/null
+@@ -1,71 +0,0 @@
+-#!/usr/bin/env bash
+-
+-set -euo pipefail
+-
+-# 0031-FEAT Step 8: freeze production mutable Image/File writes without
+-# stopping PostgreSQL. The responder owns all catalogue Files mutations, so
+-# stopping only that service preserves database availability for pg_dump.
+-
+-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+-PROJECT_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
+-COMPOSE_FILE="${PROJECT_DIR}/compose.yaml"
+-ENV_FILE="${PROJECT_DIR}/.env"
+-RESPONDER_SERVICE="${DIARIES_RESPONDER_SERVICE:-diaries-responder}"
+-EVIDENCE_DIR="${PROJECT_DIR}/data/0031-step8"
+-TIMESTAMP="$(date '+%Y%m%d-%H%M%S')"
+-EVIDENCE_FILE="${EVIDENCE_DIR}/production-write-freeze-${TIMESTAMP}.txt"
+-
+-require_file() {
+-    local path="$1"
+-    local description="$2"
+-    if [[ ! -f "${path}" ]]; then
+-        echo "ERROR: ${description} not found: ${path}" >&2
+-        exit 1
+-    fi
+-}
+-
+-require_file "${COMPOSE_FILE}" "Diaries Compose file"
+-require_file "${ENV_FILE}" "Diaries environment file"
+-mkdir -p "${EVIDENCE_DIR}"
+-
+-exec > >(tee -a "${EVIDENCE_FILE}") 2>&1
+-
+-echo "0031-FEAT Step 8 - production mutable-write freeze"
+-echo "Captured: $(date --iso-8601=seconds)"
+-echo "Host: $(hostname)"
+-echo "Project: ${PROJECT_DIR}"
+-echo
+-
+-cd "${PROJECT_DIR}"
+-docker compose --file "${COMPOSE_FILE}" --env-file "${ENV_FILE}" config --quiet
+-
+-if docker compose --file "${COMPOSE_FILE}" --env-file "${ENV_FILE}" ps --status running --services | grep -Fxq "${RESPONDER_SERVICE}"; then
+-    echo "Stopping production responder service: ${RESPONDER_SERVICE}"
+-    docker compose --file "${COMPOSE_FILE}" --env-file "${ENV_FILE}" stop "${RESPONDER_SERVICE}"
+-else
+-    echo "Production responder service already stopped/not running: ${RESPONDER_SERVICE}"
+-fi
+-
+-if docker compose --file "${COMPOSE_FILE}" --env-file "${ENV_FILE}" ps --status running --services | grep -Fxq "${RESPONDER_SERVICE}"; then
+-    echo "ERROR: responder service is still running; mutable-write freeze is not proven." >&2
+-    exit 1
+-fi
+-
+-DB_SERVICE="${DIARIES_DB_SERVICE:-diaries-db}"
+-if ! docker compose --file "${COMPOSE_FILE}" --env-file "${ENV_FILE}" ps --status running --services | grep -Fxq "${DB_SERVICE}"; then
+-    echo "ERROR: database service '${DB_SERVICE}' is not running. Leave the responder stopped and restore database availability before capture." >&2
+-    exit 1
+-fi
+-
+-SOURCE_IDENTITY="unknown"
+-if command -v git >/dev/null 2>&1 && git -C "${PROJECT_DIR}" rev-parse HEAD >/dev/null 2>&1; then
+-    SOURCE_IDENTITY="$(git -C "${PROJECT_DIR}" rev-parse HEAD)"
+-fi
+-
+-echo
+-echo "PASS: production responder is stopped."
+-echo "PASS: production database remains running for backup."
+-echo "Playbooks/runtime source identity: ${SOURCE_IDENTITY}"
+-echo "Production mutable Image/File writes are frozen."
+-echo "Leave the responder stopped until the 0031 migration sequence says it is safe to restart."
+-echo "Evidence: ${EVIDENCE_FILE}"
+diff --git a/roles/diaries/files/sync/scripts/step9-reconcile-production.sh b/roles/diaries/files/sync/scripts/step9-reconcile-production.sh
+deleted file mode 100644
+index af54a9e..0000000
+--- a/roles/diaries/files/sync/scripts/step9-reconcile-production.sh
++++ /dev/null
+@@ -1,254 +0,0 @@
+-#!/usr/bin/env bash
+-
+-set -euo pipefail
+-
+-# 0031-FEAT Step 9: read-only production Image-catalogue reconciliation against
+-# the frozen pre-split shared Files tree. This script never runs 0024 apply.
+-
+-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+-PROJECT_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
+-COMPOSE_FILE="${PROJECT_DIR}/compose.yaml"
+-ENV_FILE="${PROJECT_DIR}/.env"
+-HOST_CONFIG="${PROJECT_DIR}/config/responder/responder.json"
+-RESPONDER_SERVICE="${DIARIES_RESPONDER_SERVICE:-diaries-responder}"
+-DB_SERVICE="${DIARIES_DB_SERVICE:-diaries-db}"
+-RESPONDER_CONFIG="${DIARIES_RESPONDER_CONFIG:-/config/responder.json}"
+-RESPONDER_JAR="${DIARIES_RESPONDER_JAR:-/opt/diaries/lib/diaries-responder.jar}"
+-MAIN_CLASS="com.rsmaxwell.diaries.responder.migration.migration0024.Migration0024ImageCatalogue"
+-TIMESTAMP="$(date '+%Y%m%d-%H%M%S')"
+-RUN_DIR="${PROJECT_DIR}/data/0031-step9/production-${TIMESTAMP}"
+-RECON_DIR="${RUN_DIR}/reconciliation"
+-STAGING_INVENTORY="${RUN_DIR}/STAGING-INVENTORY.tsv"
+-REPORT_JSON="${RUN_DIR}/STEP9-REPORT.json"
+-REPORT_MD="${RUN_DIR}/STEP9-REPORT.md"
+-
+-fail() {
+-    echo "ERROR: $*" >&2
+-    exit 1
+-}
+-
+-read_env_value() {
+-    local key="$1"
+-    local value
+-    value="$(sed -n "s/^${key}=//p" "${ENV_FILE}" | tail -n 1 | tr -d '\r')"
+-    printf '%s' "${value}"
+-}
+-
+-for path in "${COMPOSE_FILE}" "${ENV_FILE}" "${HOST_CONFIG}"; do
+-    [[ -f "${path}" ]] || fail "Required production file not found: ${path}"
+-done
+-command -v docker >/dev/null 2>&1 || fail "docker was not found on PATH."
+-command -v python3 >/dev/null 2>&1 || fail "python3 was not found on PATH."
+-
+-FILES_DIR="$(read_env_value DIARIES_FILES_DIR)"
+-[[ "${FILES_DIR}" == "files" ]] || fail "Step 9 production reconciliation must inspect the frozen pre-split selector 'files'; .env contains '${FILES_DIR}'."
+-NAS_HOST="$(read_env_value DIARIES_NAS_HOST)"
+-NAS_SHARE="$(read_env_value DIARIES_NAS_SHARE)"
+-NAS_CONTENT_PATH="$(read_env_value DIARIES_NAS_CONTENT_PATH)"
+-[[ -n "${NAS_HOST}" && -n "${NAS_SHARE}" && -n "${NAS_CONTENT_PATH}" ]] || fail "Production NAS host/share/content path is incomplete in .env."
+-PHYSICAL_FILES_ROOT="//${NAS_HOST}/${NAS_SHARE}/${NAS_CONTENT_PATH#/}/files"
+-
+-COMPOSE=(docker compose --file "${COMPOSE_FILE}" --env-file "${ENV_FILE}")
+-cd -- "${PROJECT_DIR}"
+-"${COMPOSE[@]}" config --quiet
+-
+-RUNNING_SERVICES="$("${COMPOSE[@]}" ps --status running --services)"
+-if grep -Fxq "${RESPONDER_SERVICE}" <<<"${RUNNING_SERVICES}"; then
+-    fail "Production responder '${RESPONDER_SERVICE}' is running. Preserve the Step 8 write freeze before Step 9."
+-fi
+-if ! grep -Fxq "${DB_SERVICE}" <<<"${RUNNING_SERVICES}"; then
+-    fail "Production database service '${DB_SERVICE}' is not running."
+-fi
+-
+-mkdir -p -- "${RECON_DIR}"
+-[[ -z "$(find "${RECON_DIR}" -mindepth 1 -maxdepth 1 -print -quit)" ]] || fail "Reconciliation directory is not empty: ${RECON_DIR}"
+-
+-CONTAINER_EVIDENCE_ROOT="/migration-evidence"
+-echo "0031-FEAT Step 9 - production shared-Files reconciliation"
+-echo "Project:                  ${PROJECT_DIR}"
+-echo "Database service:         ${DB_SERVICE}"
+-echo "Reconciled Files selector: files"
+-echo "Physical Files root:      ${PHYSICAL_FILES_ROOT}"
+-echo "Evidence:                 ${RUN_DIR}"
+-echo
+-echo "Running existing 0024 reconciliation in DRY-RUN mode only..."
+-
+-"${COMPOSE[@]}" run \
+-    --rm \
+-    --no-deps \
+-    --no-tty \
+-    --pull never \
+-    --entrypoint java \
+-    --volume "${RUN_DIR}:${CONTAINER_EVIDENCE_ROOT}" \
+-    "${RESPONDER_SERVICE}" \
+-    -cp "${RESPONDER_JAR}" \
+-    "${MAIN_CLASS}" \
+-    --config "${RESPONDER_CONFIG}" \
+-    --output "${CONTAINER_EVIDENCE_ROOT}/reconciliation" \
+-    --mode dry-run
+-
+-[[ -f "${RECON_DIR}/0024-summary.json" ]] || fail "0024-summary.json was not produced."
+-[[ -f "${RECON_DIR}/0024-create-plan.json" ]] || fail "0024-create-plan.json was not produced."
+-[[ -f "${RECON_DIR}/0024-conflicts.csv" ]] || fail "0024-conflicts.csv was not produced."
+-
+-# The 0024 reconciler intentionally excludes .image-staging. Step 9 records that
+-# recovery/transient state separately, still read-only, from the same /data/files
+-# mount used by the reconciliation container.
+-printf 'relativePath\tsize\tsha256\n' > "${STAGING_INVENTORY}"
+-"${COMPOSE[@]}" run \
+-    --rm \
+-    --no-deps \
+-    --no-tty \
+-    --pull never \
+-    --entrypoint sh \
+-    "${RESPONDER_SERVICE}" \
+-    -c '
+-set -eu
+-root=/data/files/.image-staging
+-[ -d "$root" ] || exit 0
+-find "$root" -type f -print | sort | while IFS= read -r file; do
+-    rel=${file#/data/files/}
+-    size=$(wc -c < "$file" | tr -d " ")
+-    hash=$(sha256sum "$file")
+-    hash=${hash%% *}
+-    printf "%s\\t%s\\t%s\\n" "$rel" "$size" "$hash"
+-done
+-' >> "${STAGING_INVENTORY}"
+-
+-SOURCE_IDENTITY="unknown"
+-if command -v git >/dev/null 2>&1 && git -C "${PROJECT_DIR}" rev-parse HEAD >/dev/null 2>&1; then
+-    SOURCE_IDENTITY="$(git -C "${PROJECT_DIR}" rev-parse HEAD)"
+-fi
+-
+-python3 - "${RECON_DIR}" "${STAGING_INVENTORY}" "${REPORT_JSON}" "${REPORT_MD}" "${PHYSICAL_FILES_ROOT}" "${SOURCE_IDENTITY}" <<'PYREPORT'
+-import csv
+-import json
+-import sys
+-from pathlib import Path
+-from datetime import datetime, timezone
+-
+-recon = Path(sys.argv[1])
+-staging_path = Path(sys.argv[2])
+-report_json = Path(sys.argv[3])
+-report_md = Path(sys.argv[4])
+-physical_root = sys.argv[5]
+-source_identity = sys.argv[6]
+-
+-summary = json.loads((recon / '0024-summary.json').read_text(encoding='utf-8'))
+-plan = json.loads((recon / '0024-create-plan.json').read_text(encoding='utf-8'))
+-with (recon / '0024-conflicts.csv').open(newline='', encoding='utf-8') as handle:
+-    conflicts = list(csv.DictReader(handle))
+-
+-staging = []
+-with staging_path.open(newline='', encoding='utf-8') as handle:
+-    rows = csv.DictReader(handle, delimiter='\t')
+-    for row in rows:
+-        if not row.get('relativePath'):
+-            continue
+-        staging.append({
+-            'relativePath': row['relativePath'],
+-            'size': int(row['size']),
+-            'sha256': row['sha256'],
+-        })
+-
+-counts = summary.get('counts', {})
+-def count(name):
+-    return int(counts.get(name, 0))
+-
+-catalogued = len(plan.get('baselineRows', []))
+-matching = count('CATALOGUED_MATCH')
+-missing = count('DATABASE_ROW_MISSING_FILE')
+-untracked = count('CREATE_MISSING')
+-metadata = count('CATALOGUED_METADATA_CONFLICT')
+-unsupported = count('UNSUPPORTED')
+-untracked_physical = untracked + unsupported
+-staging_bytes = sum(item['size'] for item in staging)
+-requires_review = any((missing, untracked_physical, metadata, len(conflicts), len(staging)))
+-
+-report = {
+-    'schemaVersion': 1,
+-    'feature': '0031-FEAT',
+-    'step': 9,
+-    'reconciliationType': 'pre-split-read-only',
+-    'createdAt': datetime.now(timezone.utc).isoformat(),
+-    'applicationSourceIdentity': {'gitCommit': source_identity},
+-    'logicalDataset': 'production',
+-    'configuredTargetFilesDir': 'files',
+-    'reconciledSharedFilesDir': 'files',
+-    'reconciledSharedFilesRoot': physical_root,
+-    'runtimeFilesRoot': summary.get('filesRoot'),
+-    'databaseIdentity': summary.get('databaseIdentity'),
+-    'reconciliationOutcome': summary.get('outcome'),
+-    'catalogue': {
+-        'imageRowCount': catalogued,
+-        'matchingPhysicalFiles': matching,
+-        'missingPhysicalFiles': missing,
+-        'untrackedPhysicalFiles': untracked_physical,
+-        'untrackedSupportedImageFiles': untracked,
+-        'metadataOrChecksumConflicts': metadata,
+-        'unsupportedPhysicalFiles': unsupported,
+-        'reconciliationConflictRows': len(conflicts),
+-        'statusCounts': counts,
+-    },
+-    'staging': {
+-        'runtimePath': '/data/files/.image-staging',
+-        'fileCount': len(staging),
+-        'totalBytes': staging_bytes,
+-        'inventoryFile': str(staging_path),
+-        'copiedOrModified': False,
+-    },
+-    'readOnly': True,
+-    'step10Ready': not requires_review,
+-    'requiresExplicitDisposition': requires_review,
+-    'evidence': {
+-        'directory': str(recon.parent),
+-        'reconciliationDirectory': str(recon),
+-        'summary': str(recon / '0024-summary.json'),
+-        'plan': str(recon / '0024-create-plan.json'),
+-        'conflicts': str(recon / '0024-conflicts.csv'),
+-        'stagingInventory': str(staging_path),
+-    },
+-}
+-report_json.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
+-
+-decision = 'REVIEW REQUIRED before Step 10' if requires_review else 'READY for Step 10'
+-report_md.write_text(f'''# 0031-FEAT Step 9 — production reconciliation report
+-
+-- Dataset: `production`
+-- Database identity: `{summary.get("databaseIdentity", "")}`
+-- Shared Files root: `{physical_root}`
+-- Runtime Files root: `{summary.get("filesRoot", "")}`
+-- Reconciliation outcome: `{summary.get("outcome", "")}`
+-- Image rows: {catalogued}
+-- Matching physical files: {matching}
+-- Missing physical files: {missing}
+-- Untracked physical files: {untracked_physical}
+-- Untracked supported image files: {untracked}
+-- Unsupported physical files: {unsupported}
+-- Metadata/checksum conflicts: {metadata}
+-- Reconciliation conflict rows: {len(conflicts)}
+-- `.image-staging` files: {len(staging)}
+-- Decision: **{decision}**
+-
+-This run is read-only. It does not apply the 0024 create plan, mutate Image rows,
+-or change Files bytes. Any non-zero anomaly above requires an explicit Step 9
+-disposition before Step 10 copies the shared tree.
+-''', encoding='utf-8')
+-
+-print(f'Image rows:                  {catalogued}')
+-print(f'Matching physical files:     {matching}')
+-print(f'Missing physical files:      {missing}')
+-print(f'Untracked physical files:     {untracked_physical}')
+-print(f'Untracked supported images:  {untracked}')
+-print(f'Unsupported physical files:  {unsupported}')
+-print(f'Metadata/checksum conflicts: {metadata}')
+-print(f'Conflict rows:               {len(conflicts)}')
+-print(f'.image-staging files:        {len(staging)}')
+-print(f'Report:                      {report_json}')
+-print('RESULT: ' + decision)
+-PYREPORT
+-
+-echo
+-echo "Step 9 production reconciliation captured."
+-echo "Keep both production and local responder write paths frozen."
+-echo "Do not proceed to Step 10 unless STEP9-REPORT.json says step10Ready=true or every reported exception has an explicit reviewed disposition."
+diff --git a/roles/diaries/tasks/copy.yaml b/roles/diaries/tasks/copy.yaml
+index 261022c..2e2b757 100644
+--- a/roles/diaries/tasks/copy.yaml
++++ b/roles/diaries/tasks/copy.yaml
+@@ -58,6 +58,21 @@
+     - run.sh
+ 
+ 
++- name: diaries:copy | Remove obsolete completed-feature production scripts
++  ansible.builtin.file:
++    path: "{{ diaries_project_dir }}/scripts/{{ item }}"
++    state: absent
++  loop:
++    - migration0024ImageCatalogue.sh
++    - step8-freeze-writes.sh
++    - step8-capture-production-database-backup.sh
++    - step9-reconcile-production.sh
++    - step12-compare-reconciliation.py
++    - step12-reconcile-production.sh
++    - step13-capture-production-control.sh
++    - step14-production-deployment.sh
++
++
+ - name: diaries:copy | Template files
+   ansible.builtin.template:
+     src: "{{ item.path }}.j2"
+diff --git a/roles/diaries/tests/verify-0031-step13.py b/roles/diaries/tests/verify-0031-step13.py
+deleted file mode 100644
+index 9a3abc8..0000000
+--- a/roles/diaries/tests/verify-0031-step13.py
++++ /dev/null
+@@ -1,43 +0,0 @@
+-#!/usr/bin/env python3
+-"""Portable source verification for 0031-FEAT Step 13 production controls."""
+-from pathlib import Path
+-import sys
+-
+-ROOT = Path(__file__).resolve().parents[3]
+-SCRIPT = ROOT / "roles/diaries/files/sync/scripts/step13-capture-production-control.sh"
+-README = ROOT / "roles/diaries/files/sync/scripts/README.md"
+-
+-
+-def require(ok: bool, message: str) -> None:
+-    if not ok:
+-        raise AssertionError(message)
+-    print(f"PASS: {message}")
+-
+-
+-def main() -> int:
+-    try:
+-        text = SCRIPT.read_text(encoding="utf-8")
+-        readme = README.read_text(encoding="utf-8")
+-        require("Production responder is running" in text and "write freeze" in text,
+-                "production controls refuse to run with responder writes enabled")
+-        require("DIARIES_FILES_DIR" in text and '== "files"' in text,
+-                "production controls are pinned to the production files selector")
+-        require("SELECT id,version,relative_path" in text and "ORDER BY id" in text,
+-                "production Image catalogue is captured deterministically")
+-        require("find /data/files -type f" in text and "sha256sum" in text,
+-                "production mutable Files bytes are inventoried with SHA-256")
+-        require(".image-staging" in text,
+-                "production Files inventory explicitly includes staging state")
+-        require("cmp -s" in text and "Production Image catalogue changed" in text,
+-                "after control fails on any production catalogue or Files difference")
+-        require("0031 Step 13" in readme and "step13-capture-production-control.sh" in readme,
+-                "production operating documentation covers Step 13")
+-    except (AssertionError, OSError) as exc:
+-        print(f"FAIL: {exc}", file=sys.stderr)
+-        return 1
+-    print("PASS: 0031-FEAT Step 13 production control tooling verified")
+-    return 0
+-
+-
+-if __name__ == "__main__":
+-    raise SystemExit(main())
+diff --git a/roles/diaries/tests/verify-0031-step14.py b/roles/diaries/tests/verify-0031-step14.py
+deleted file mode 100644
+index f5cfdc9..0000000
+--- a/roles/diaries/tests/verify-0031-step14.py
++++ /dev/null
+@@ -1,76 +0,0 @@
+-#!/usr/bin/env python3
+-"""Portable source verification for 0031-FEAT Step 14 production deployment tooling."""
+-from pathlib import Path
+-import sys
+-
+-ROOT = Path(__file__).resolve().parents[3]
+-SCRIPT = ROOT / "roles/diaries/files/sync/scripts/step14-production-deployment.sh"
+-README = ROOT / "roles/diaries/files/sync/scripts/README.md"
+-MOSQUITTO = ROOT / "roles/diaries/files/sync/config/mosquitto/mosquitto.conf"
+-COMPOSE = ROOT / "roles/diaries/templates/compose.yaml.j2"
+-START = ROOT / "roles/diaries/templates/scripts/start.sh.j2"
+-COPY_TASKS = ROOT / "roles/diaries/tasks/copy.yaml"
+-
+-
+-def require(ok: bool, message: str) -> None:
+-    if not ok:
+-        raise AssertionError(message)
+-    print(f"PASS: {message}")
+-
+-
+-def main() -> int:
+-    try:
+-        script = SCRIPT.read_text(encoding="utf-8")
+-        readme = README.read_text(encoding="utf-8")
+-        mosquitto = MOSQUITTO.read_text(encoding="utf-8")
+-        compose = COMPOSE.read_text(encoding="utf-8")
+-        start = START.read_text(encoding="utf-8")
+-        copy_tasks = COPY_TASKS.read_text(encoding="utf-8")
+-
+-        require("max_inflight_messages 20" in mosquitto and "max_queued_messages 0" in mosquitto,
+-                "production Diaries broker adopts the Step 13 complete-retained-snapshot flow-control policy")
+-        require("max_queued_messages 10000" not in mosquitto,
+-                "production Diaries broker no longer retains the historical 10,000-message truncation ceiling")
+-        require("Validate retained-snapshot broker flow-control policy" in copy_tasks and
+-                "max_queued_messages[[:space:]]+0" in copy_tasks,
+-                "Ansible validates the deployed broker queue policy before the restart handler runs")
+-        require("preflight" in script and "postflight" in script,
+-                "Step 14 helper separates frozen pre-deploy controls from post-deploy verification")
+-        require("require_responder_stopped" in script and "Step 13/14 write freeze" in script,
+-                "Step 14 preflight preserves the Step 13 responder write freeze")
+-        require("STEP8-DATABASE-BACKUP-CHECK.txt" in script and "STEP8-FILES-SNAPSHOT-CHECK.txt" in script,
+-                "Step 14 preflight verifies both Step 8 recovery halves remain available")
+-        require("REDACTED-CONFIG" in script and "<redacted>" in script,
+-                "Step 14 records production configuration without exposing secrets")
+-        require("local.env" in script and "verify_no_local_override_participation" in script,
+-                "Step 14 rejects local override participation in production startup")
+-        require("NONPRODUCTION-FILES-INVENTORY.tsv" in script and "files-development-*" in script,
+-                "Step 14 brackets the deployment with SHA-256 controls for non-production Files roots")
+-        require("FILES-ROUTE-CHECK" in script and "http://localhost:8081/files/" in script,
+-                "Step 14 proves an existing /files route object is served after deployment")
+-        require("synchronise: ok" in script and "require_responder_synchronised" in script,
+-                "Step 14 waits for the responder retained-tree startup synchronisation to succeed")
+-        require("stop diaries-responder" in script and "up --detach --no-deps --wait diaries-responder" in script,
+-                "Step 14 briefly re-freezes only the responder for deterministic read-only verification")
+-        require("step12-reconcile-production.sh" in script and "--write-freeze-confirmed" in script,
+-                "Step 14 reuses the existing read-only production reconciliation under a responder write freeze")
+-        require("cmp -s" in script and "Production Image catalogue changed" in script and
+-                "Production mutable Files bytes changed" in script,
+-                "Step 14 fails if production durable Image/File state changes across deployment")
+-        require("migration0024ImageCatalogue.sh" not in script and "--mode apply" not in script,
+-                "Step 14 adds no direct reconciliation apply/mutation path")
+-        require("subpath: ${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR}" in compose,
+-                "production Compose keeps /data/files selected by the explicit Files selector")
+-        require("local.env" not in compose and "local.env" not in start,
+-                "production Compose/start templates do not load the local override file")
+-        require("0031 Step 14" in readme and "step14-production-deployment.sh" in readme,
+-                "production operating documentation covers Step 14")
+-    except (AssertionError, OSError) as exc:
+-        print(f"FAIL: {exc}", file=sys.stderr)
+-        return 1
+-    print("PASS: 0031-FEAT Step 14 production deployment tooling verified")
+-    return 0
+-
+-
+-if __name__ == "__main__":
+-    raise SystemExit(main())
+diff --git a/roles/diaries/tests/verify-0031-step16.py b/roles/diaries/tests/verify-0031-step16.py
+deleted file mode 100644
+index 8e7c84e..0000000
+--- a/roles/diaries/tests/verify-0031-step16.py
++++ /dev/null
+@@ -1,65 +0,0 @@
+-#!/usr/bin/env python3
+-"""Final portable Playbooks source gate for 0031-FEAT Step 16."""
+-from __future__ import annotations
+-
+-import sys
+-from pathlib import Path
+-
+-ROOT = Path(__file__).resolve().parents[3]
+-ROLE = ROOT / "roles/diaries"
+-
+-
+-def require(ok: bool, message: str) -> None:
+-    if not ok:
+-        raise AssertionError(message)
+-    print(f"PASS: {message}")
+-
+-
+-def read(relative: str) -> str:
+-    return (ROLE / relative).read_text(encoding="utf-8")
+-
+-
+-def main() -> int:
+-    try:
+-        env = read("templates/.env.j2")
+-        compose = read("templates/compose.yaml.j2")
+-        tasks = read("tasks/main.yaml")
+-        defaults = read("defaults/main.yaml")
+-        readme = read("README.md")
+-        scripts_readme = read("files/sync/scripts/README.md")
+-
+-        require("DIARIES_FILES_DIR={{ diaries_files_dir }}" in env,
+-                "production .env renders the explicit diaries_files_dir selector")
+-        require("${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR}" in compose and "target: /data/files" in compose,
+-                "production responder mounts the explicit selector at stable /data/files")
+-        require("${DIARIES_NAS_CONTENT_PATH}/diaries" in compose and "target: /data/diaries" in compose and "read_only: true" in compose,
+-                "production keeps the original diary scan tree shared/read-only")
+-        require("subpath: ${DIARIES_NAS_CONTENT_PATH}/files\n" not in compose,
+-                "production Compose template contains no implicit hard-coded mutable files subpath")
+-        require("diaries_files_dir is defined" in tasks and "leaf directory" in tasks and "explicitly supplied" in tasks,
+-                "Ansible fails fast when the production Files selector is missing/invalid")
+-        require("diaries_files_dir:" not in defaults,
+-                "production Files selector has no unsafe role default")
+-        require("one effective database dataset <-> one effective mutable Files root" in readme,
+-                "role documentation records the durable database/Files pairing invariant")
+-        require("database-only" in readme.lower() and "matching Files snapshot" in readme,
+-                "role documentation defines complete matched backup/restore semantics")
+-        require("database-only" in scripts_readme.lower() and "reconciliation" in scripts_readme.lower(),
+-                "installed production operating notes warn about database-only restore/reconciliation")
+-
+-        step14 = read("tests/verify-0031-step14.py")
+-        storage = read("tests/verify-0031-storage-isolation.py")
+-        require("max_queued_messages 0" in step14,
+-                "Step 14 production validation still protects the deployed retained-snapshot policy")
+-        require("DIARIES_FILES_DIR" in storage and "/data/files" in storage,
+-                "production storage-isolation regression remains present")
+-    except (AssertionError, OSError) as exc:
+-        print(f"FAIL: {exc}", file=sys.stderr)
+-        return 1
+-
+-    print("PASS: 0031-FEAT Step 16 final Playbooks source gate verified")
+-    return 0
+-
+-
+-if __name__ == "__main__":
+-    raise SystemExit(main())
+diff --git a/roles/diaries/tests/verify-0031-step8.py b/roles/diaries/tests/verify-0031-step8.py
+deleted file mode 100644
+index 42d1b9b..0000000
+--- a/roles/diaries/tests/verify-0031-step8.py
++++ /dev/null
+@@ -1,50 +0,0 @@
+-#!/usr/bin/env python3
+-"""Portable source verification for 0031-FEAT Step 8 production tooling."""
+-from pathlib import Path
+-import sys
+-
+-ROOT = Path(__file__).resolve().parents[3]
+-SCRIPTS = ROOT / "roles/diaries/files/sync/scripts"
+-
+-
+-def require(ok: bool, message: str) -> None:
+-    if not ok:
+-        raise AssertionError(message)
+-    print(f"PASS: {message}")
+-
+-
+-def main() -> int:
+-    try:
+-        freeze = (SCRIPTS / "step8-freeze-writes.sh").read_text(encoding="utf-8")
+-        capture = (SCRIPTS / "step8-capture-production-database-backup.sh").read_text(encoding="utf-8")
+-        existing = (SCRIPTS / "backup-db-to-binary.sh").read_text(encoding="utf-8")
+-
+-        require('stop "${RESPONDER_SERVICE}"' in freeze,
+-                "production freeze stops only the responder write path")
+-        require("database remains running" in freeze,
+-                "production freeze keeps PostgreSQL available for pg_dump")
+-        require("data/0031-step8" in freeze,
+-                "production freeze writes durable runtime evidence outside source sync content")
+-
+-        require("Run ${SCRIPT_DIR}/step8-freeze-writes.sh first" in capture,
+-                "production capture refuses to run while responder writes are enabled")
+-        require('PRODUCTION_FILES_DIR' in capture and 'expected frozen Step-2 value \'files\'' in capture,
+-                "production capture asserts that the pre-split production Files selector is files")
+-        require('"${BACKUP_SCRIPT}"' in capture,
+-                "production Step 8 capture reuses the Step 7 binary backup helper")
+-        require("sha256sum" in capture and "databaseBackupSha256" in capture,
+-                "production database backup and sidecar are checksummed and recorded")
+-        require("runtimeImages" in capture,
+-                "production Step 8 manifest records runtime image identity")
+-        require("database-only" in existing.lower(),
+-                "underlying production backup helper still declares database-only semantics")
+-    except (AssertionError, OSError) as exc:
+-        print(f"FAIL: {exc}", file=sys.stderr)
+-        return 1
+-
+-    print("PASS: 0031-FEAT Step 8 production migration-safety tooling verified")
+-    return 0
+-
+-
+-if __name__ == "__main__":
+-    raise SystemExit(main())
+diff --git a/roles/diaries/tests/verify-0031-step9.py b/roles/diaries/tests/verify-0031-step9.py
+deleted file mode 100644
+index 52e3fcd..0000000
+--- a/roles/diaries/tests/verify-0031-step9.py
++++ /dev/null
+@@ -1,43 +0,0 @@
+-#!/usr/bin/env python3
+-"""Portable source verification for 0031-FEAT Step 9 production reconciliation tooling."""
+-from pathlib import Path
+-import sys
+-
+-ROOT = Path(__file__).resolve().parents[3]
+-SCRIPTS = ROOT / "roles/diaries/files/sync/scripts"
+-
+-def require(ok: bool, message: str) -> None:
+-    if not ok:
+-        raise AssertionError(message)
+-    print(f"PASS: {message}")
+-
+-def main() -> int:
+-    try:
+-        script = (SCRIPTS / "step9-reconcile-production.sh").read_text(encoding="utf-8")
+-        readme = (SCRIPTS / "README.md").read_text(encoding="utf-8")
+-        require("Production responder" in script and "Step 8 write freeze" in script,
+-                "production Step 9 refuses to run with responder writes enabled")
+-        require("database service" in script and "is not running" in script,
+-                "production Step 9 requires PostgreSQL to remain available")
+-        require("FILES_DIR" in script and '== "files"' in script,
+-                "production Step 9 is pinned to the frozen pre-split files selector")
+-        require("Migration0024ImageCatalogue" in script and "--mode dry-run" in script,
+-                "production Step 9 reuses the existing 0024 reconciliation in dry-run mode")
+-        require("--mode apply" not in script and "migrationMode=apply" not in script,
+-                "production Step 9 contains no reconciliation apply path")
+-        require("STAGING-INVENTORY.tsv" in script and "sha256sum" in script,
+-                "production Step 9 separately inventories and hashes .image-staging")
+-        for field in ("imageRowCount", "matchingPhysicalFiles", "missingPhysicalFiles",
+-                      "untrackedPhysicalFiles", "untrackedSupportedImageFiles", "metadataOrChecksumConflicts",
+-                      "requiresExplicitDisposition", "step10Ready"):
+-            require(field in script, f"production Step 9 report records {field}")
+-        require("do **not** rerun the whole" in readme,
+-                "production documentation protects the live Step 8 freeze from a playbook-triggered restart")
+-    except (AssertionError, OSError) as exc:
+-        print(f"FAIL: {exc}", file=sys.stderr)
+-        return 1
+-    print("PASS: 0031-FEAT Step 9 production reconciliation tooling verified")
+-    return 0
+-
+-if __name__ == "__main__":
+-    raise SystemExit(main())
+diff --git a/roles/diaries/tests/verify-0031-backup-semantics.py b/roles/diaries/tests/verify-production-backup-restore-semantics.py
+similarity index 94%
+rename from roles/diaries/tests/verify-0031-backup-semantics.py
+rename to roles/diaries/tests/verify-production-backup-restore-semantics.py
+index a0005e1..e508a63 100644
+--- a/roles/diaries/tests/verify-0031-backup-semantics.py
++++ b/roles/diaries/tests/verify-production-backup-restore-semantics.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Regression checks for production 0031-FEAT Step 7 backup/restore semantics."""
++"""Regression checks for production database/Files backup and restore semantics."""
+ from __future__ import annotations
+ import json
+ from pathlib import Path
+@@ -71,9 +71,9 @@ def main() -> int:
+                   "production restore guard rejects a mismatched Files root")
+ 
+     if failures:
+-        print(f"FAILED: {len(failures)} Step-7 production backup/restore check(s)", file=sys.stderr)
++        print(f"FAILED: {len(failures)} production backup/restore check(s)", file=sys.stderr)
+         return 1
+-    print("PASS: 0031-FEAT Step 7 production backup/restore semantics verified")
++    print("PASS: production backup/restore semantics verified")
+     return 0
+ 
+ 
+diff --git a/roles/diaries/tests/verify-production-deployment-contract.py b/roles/diaries/tests/verify-production-deployment-contract.py
+new file mode 100755
+index 0000000..73a2fe2
+--- /dev/null
++++ b/roles/diaries/tests/verify-production-deployment-contract.py
+@@ -0,0 +1,86 @@
++#!/usr/bin/env python3
++"""Portable regression checks for the supported production deployment contract."""
++from pathlib import Path
++import re
++import sys
++
++ROOT = Path(__file__).resolve().parents[3]
++ROLE = ROOT / "roles/diaries"
++SCRIPTS = ROLE / "files/sync/scripts"
++
++OBSOLETE_SCRIPTS = (
++    "migration0024ImageCatalogue.sh",
++    "step8-freeze-writes.sh",
++    "step8-capture-production-database-backup.sh",
++    "step9-reconcile-production.sh",
++    "step12-compare-reconciliation.py",
++    "step12-reconcile-production.sh",
++    "step13-capture-production-control.sh",
++    "step14-production-deployment.sh",
++)
++SUPPORTED_SCRIPTS = {
++    "README.md",
++    "backup-db-to-binary.sh",
++    "backup-db-to-sql.sh",
++    "dataset-backup-manifest.py",
++    "restore-db-from-binary.sh",
++    "restore-db-from-sql.sh",
++}
++
++
++def require(ok: bool, message: str) -> None:
++    if not ok:
++        raise AssertionError(message)
++    print(f"PASS: {message}")
++
++
++def read(relative: str) -> str:
++    return (ROLE / relative).read_text(encoding="utf-8")
++
++
++def main() -> int:
++    try:
++        mosquitto = read("files/sync/config/mosquitto/mosquitto.conf")
++        compose = read("templates/compose.yaml.j2")
++        start = read("templates/scripts/start.sh.j2")
++        copy_tasks = read("tasks/copy.yaml")
++        role_readme = read("README.md")
++        scripts_readme = read("files/sync/scripts/README.md")
++
++        require("max_inflight_messages 20" in mosquitto and "max_queued_messages 0" in mosquitto,
++                "production broker keeps the complete retained-snapshot flow-control policy")
++        require("max_queued_messages 10000" not in mosquitto,
++                "production broker has no historical 10,000-message truncation ceiling")
++        require("Validate retained-snapshot broker flow-control policy" in copy_tasks and
++                "max_queued_messages[[:space:]]+0" in copy_tasks,
++                "Ansible validates the deployed retained-snapshot broker policy")
++        require("subpath: ${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR}" in compose,
++                "production Compose keeps /data/files selected by the explicit Files selector")
++        require("local.env" not in compose and "local.env" not in start,
++                "production Compose/start templates do not load local development overrides")
++        require("one effective database dataset <-> one effective mutable Files root" in role_readme,
++                "role documentation records the durable database/Files pairing invariant")
++        require("database-only" in scripts_readme.lower() and "matching mutable Files snapshot" in scripts_readme,
++                "production operator documentation defines database-only and matched Files backup semantics")
++
++        present = {p.name for p in SCRIPTS.iterdir() if p.is_file()}
++        require(present == SUPPORTED_SCRIPTS,
++                "role source contains only the approved supported production script set")
++        require(all(not (SCRIPTS / name).exists() for name in OBSOLETE_SCRIPTS),
++                "completed-feature production helpers are absent from role source")
++
++        for name in OBSOLETE_SCRIPTS:
++            require(re.search(rf"- {re.escape(name)}(?:\n|$)", copy_tasks) is not None,
++                    f"Ansible explicitly removes deployed obsolete script {name}")
++        require("--delete" not in copy_tasks,
++                "production synchronization does not use unrestricted rsync --delete")
++    except (AssertionError, OSError) as exc:
++        print(f"FAIL: {exc}", file=sys.stderr)
++        return 1
++
++    print("PASS: production deployment contract verified")
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/roles/diaries/tests/verify-0031-storage-isolation.py b/roles/diaries/tests/verify-production-storage-isolation.py
+similarity index 93%
+rename from roles/diaries/tests/verify-0031-storage-isolation.py
+rename to roles/diaries/tests/verify-production-storage-isolation.py
+index fb5ba2a..75894d2 100644
+--- a/roles/diaries/tests/verify-0031-storage-isolation.py
++++ b/roles/diaries/tests/verify-production-storage-isolation.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Regression checks for the production half of 0031-FEAT Step 6."""
++"""Regression checks for the production database/Files storage-isolation contract."""
+ 
+ from pathlib import Path
+ import sys
+@@ -50,7 +50,7 @@ def main() -> int:
+     if failures:
+         print(f"FAILED: {len(failures)} production storage-isolation regression check(s)", file=sys.stderr)
+         return 1
+-    print("PASS: 0031-FEAT Step 6 production storage-isolation contract verified")
++    print("PASS: production storage-isolation contract verified")
+     return 0
+ 
+ 

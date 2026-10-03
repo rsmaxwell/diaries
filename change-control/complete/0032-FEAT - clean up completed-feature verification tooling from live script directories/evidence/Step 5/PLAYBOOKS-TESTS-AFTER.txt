@@ -1,0 +1,6 @@
+# 0032 Step 5 - roles/diaries/tests AFTER
+# source bundle baseline: playbook-sources-20261003-145048.zip
+TYPE	MODE	SIZE_BYTES	SHA256	PATH
+FILE	644	4557	59bb7e213db7499a0459b3304029ab974966248fe7a58343527952e9651729f8	roles/diaries/tests/verify-production-backup-restore-semantics.py
+FILE	755	3680	bace00177aa7c119cd70f9e07f79c7fe7c544907efc6193c2e30fc49d1f4d38f	roles/diaries/tests/verify-production-deployment-contract.py
+FILE	644	2416	5af74dfbb7d1228428edff82db12099532228c92a82566976351a722f7298f46	roles/diaries/tests/verify-production-storage-isolation.py

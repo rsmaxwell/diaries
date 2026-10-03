@@ -1,0 +1,97 @@
+PASS: ARCHIVE absent live: scripts/windows/0031-step10/seed-local-files-root.bat
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step10/seed-local-files-root.bat
+PASS: ARCHIVE absent live: scripts/windows/0031-step10/seed-local-files-root.ps1
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step10/seed-local-files-root.ps1
+PASS: ARCHIVE absent live: scripts/windows/0031-step11/capture-local-mode.bat
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step11/capture-local-mode.bat
+PASS: ARCHIVE absent live: scripts/windows/0031-step11/capture-local-mode.ps1
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step11/capture-local-mode.ps1
+PASS: ARCHIVE absent live: scripts/windows/0031-step11/compare-local-mode-evidence.ps1
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step11/compare-local-mode-evidence.ps1
+PASS: ARCHIVE absent live: scripts/windows/0031-step12/compare-step9-step12.py
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step12/compare-step9-step12.py
+PASS: ARCHIVE absent live: scripts/windows/0031-step12/reconcile-common-pair.bat
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step12/reconcile-common-pair.bat
+PASS: ARCHIVE absent live: scripts/windows/0031-step12/reconcile-common-pair.ps1
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step12/reconcile-common-pair.ps1
+PASS: ARCHIVE absent live: scripts/windows/0031-step13/run-local-lifecycle.bat
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step13/run-local-lifecycle.bat
+PASS: ARCHIVE absent live: scripts/windows/0031-step13/run-local-lifecycle.ps1
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step13/run-local-lifecycle.ps1
+PASS: ARCHIVE absent live: scripts/windows/0031-step13/step13-rpc.cjs
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step13/step13-rpc.cjs
+PASS: ARCHIVE absent live: scripts/windows/0031-step16/rehearse-common-restore.bat
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step16/rehearse-common-restore.bat
+PASS: ARCHIVE absent live: scripts/windows/0031-step16/rehearse-common-restore.ps1
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step16/rehearse-common-restore.ps1
+PASS: ARCHIVE absent live: scripts/windows/0031-step16/run-final-regression.bat
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step16/run-final-regression.bat
+PASS: ARCHIVE absent live: scripts/windows/0031-step16/run-final-regression.ps1
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step16/run-final-regression.ps1
+PASS: ARCHIVE absent live: scripts/windows/0031-step8/capture-local-database-backup.bat
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step8/capture-local-database-backup.bat
+PASS: ARCHIVE absent live: scripts/windows/0031-step8/capture-local-database-backup.ps1
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step8/capture-local-database-backup.ps1
+PASS: ARCHIVE absent live: scripts/windows/0031-step8/capture-shared-files-snapshot.bat
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step8/capture-shared-files-snapshot.bat
+PASS: ARCHIVE absent live: scripts/windows/0031-step8/capture-shared-files-snapshot.ps1
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step8/capture-shared-files-snapshot.ps1
+PASS: ARCHIVE absent live: scripts/windows/0031-step8/freeze-local-writes.bat
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step8/freeze-local-writes.bat
+PASS: ARCHIVE absent live: scripts/windows/0031-step8/freeze-local-writes.ps1
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step8/freeze-local-writes.ps1
+PASS: ARCHIVE absent live: scripts/windows/0031-step9/reconcile-local-shared-files.bat
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step9/reconcile-local-shared-files.bat
+PASS: ARCHIVE absent live: scripts/windows/0031-step9/reconcile-local-shared-files.ps1
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/windows/step9/reconcile-local-shared-files.ps1
+PASS: old promoted name absent: scripts/windows/validation/step13-image-http.cjs
+PASS: promoted successor exists: scripts/windows/validation/imagefragment-image-http.cjs
+PASS: old promoted name absent: scripts/windows/validation/step13-image-http.test.cjs
+PASS: promoted successor exists: scripts/windows/validation/imagefragment-image-http.test.cjs
+PASS: old promoted name absent: scripts/windows/validation/step13-proxy-routing.cjs
+PASS: promoted successor exists: scripts/windows/validation/imagefragment-proxy-routing.cjs
+PASS: old promoted name absent: scripts/windows/validation/step13-proxy-routing.test.cjs
+PASS: promoted successor exists: scripts/windows/validation/imagefragment-proxy-routing.test.cjs
+PASS: old promoted name absent: scripts/windows/validation/step13-retained-snapshot.cjs
+PASS: promoted successor exists: scripts/windows/validation/imagefragment-retained-snapshot.cjs
+PASS: old promoted name absent: scripts/windows/validation/step13-retained-snapshot.test.cjs
+PASS: promoted successor exists: scripts/windows/validation/imagefragment-retained-snapshot.test.cjs
+PASS: ARCHIVE absent live: scripts/windows/validation/test-verify-0026-step14.py
+PASS: archive exists: change-control/complete/0026-FEAT - render ImageFragments in diaries-web/evidence/tooling/validation/test-verify-0026-step14.py
+PASS: old promoted name absent: scripts/windows/validation/verify-0026-step13.ps1
+PASS: promoted successor exists: scripts/windows/validation/verify-imagefragment-reader.ps1
+PASS: ARCHIVE absent live: scripts/windows/validation/verify-0026-step14.ps1
+PASS: archive exists: change-control/complete/0026-FEAT - render ImageFragments in diaries-web/evidence/tooling/validation/verify-0026-step14.ps1
+PASS: ARCHIVE absent live: scripts/windows/validation/verify-0026-step14.py
+PASS: archive exists: change-control/complete/0026-FEAT - render ImageFragments in diaries-web/evidence/tooling/validation/verify-0026-step14.py
+PASS: ARCHIVE absent live: scripts/windows/validation/verify-0031-step10.py
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/validation/diaries/verify-0031-step10.py
+PASS: old promoted name absent: scripts/windows/validation/verify-0031-step11.py
+PASS: promoted successor exists: scripts/windows/validation/verify-effective-dataset-diagnostics.py
+PASS: ARCHIVE absent live: scripts/windows/validation/verify-0031-step13.py
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/validation/diaries/verify-0031-step13.py
+PASS: ARCHIVE absent live: scripts/windows/validation/verify-0031-step16.py
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/validation/diaries/verify-0031-step16.py
+PASS: old promoted name absent: scripts/windows/validation/verify-0031-step3.py
+PASS: promoted successor exists: scripts/windows/validation/verify-local-dataset-layout.py
+PASS: old promoted name absent: scripts/windows/validation/verify-0031-step4-runtime.bat
+PASS: promoted successor exists: scripts/windows/validation/verify-direct-development-files-runtime.bat
+PASS: old promoted name absent: scripts/windows/validation/verify-0031-step4.py
+PASS: promoted successor exists: scripts/windows/validation/verify-direct-development-files-config.py
+PASS: old promoted name absent: scripts/windows/validation/verify-0031-step6.ps1
+PASS: promoted successor exists: scripts/windows/validation/verify-dataset-pair-guard.ps1
+PASS: old promoted name absent: scripts/windows/validation/verify-0031-step6.py
+PASS: promoted successor exists: scripts/windows/validation/verify-dataset-pair-guard.py
+PASS: old promoted name absent: scripts/windows/validation/verify-0031-step7.py
+PASS: promoted successor exists: scripts/windows/validation/verify-local-backup-restore-semantics.py
+PASS: ARCHIVE absent live: scripts/windows/validation/verify-0031-step8.py
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/validation/diaries/verify-0031-step8.py
+PASS: ARCHIVE absent live: scripts/windows/validation/verify-0031-step9.py
+PASS: archive exists: change-control/complete/0031-FEAT - isolate mutable Files storage by database environment/evidence/tooling/validation/diaries/verify-0031-step9.py
+PASS: directory absent: scripts/windows/0031-step8/
+PASS: directory absent: scripts/windows/0031-step9/
+PASS: directory absent: scripts/windows/0031-step10/
+PASS: directory absent: scripts/windows/0031-step11/
+PASS: directory absent: scripts/windows/0031-step12/
+PASS: directory absent: scripts/windows/0031-step13/
+PASS: directory absent: scripts/windows/0031-step16/

@@ -1,0 +1,32 @@
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\change-control\in-progress\0032-FEAT - clean up completed-feature verification tooling from live script directories\evidence\Step 6\scripts>dir
+ Volume in drive C is OS
+ Volume Serial Number is 7EF0-D23D
+
+ Directory of C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\change-control\in-progress\0032-FEAT - clean up completed-feature verification tooling from live script directories\evidence\Step 6\scripts
+
+03/10/2026  16:20    <DIR>          .
+03/10/2026  16:33    <DIR>          ..
+03/10/2026  15:18             5,297 capture-step6-pluto.sh
+03/10/2026  15:18             1,856 run-step6-deployment-on-mango.sh
+03/10/2026  15:18               238 verify-step6-evidence.bat
+03/10/2026  15:18            11,233 verify-step6-evidence.py
+               4 File(s)         18,624 bytes
+               2 Dir(s)  2,689,214,324,736 bytes free
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\change-control\in-progress\0032-FEAT - clean up completed-feature verification tooling from live script directories\evidence\Step 6\scripts>verify-step6-evidence.bat
+PASS: Fresh pre-deployment script filenames exactly match the Step 1 baseline.
+PASS: Fresh pre-deployment script hashes exactly match the Step 1 baseline.
+PASS: Post-deployment script names exactly match the approved permanent production set.
+PASS: All eight approved retired production helpers are absent after deployment.
+PASS: The deployment removed exactly the eight allow-listed obsolete helpers.
+PASS: All retained operational scripts are owner-executable.
+PASS: All five retained synchronized operational helpers match the approved Step 5 source hashes.
+PASS: Production .env, compose.yaml and responder.json fingerprints are unchanged.
+PASS: Non-secret production database/Files selectors and contract lines are unchanged.
+PASS: Controlled Playbooks deployment completed successfully with failed=0, unreachable=0 and exit code 0.
+PASS: All five required Diaries services are running and healthy after deployment.
+Wrote: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\change-control\in-progress\0032-FEAT - clean up completed-feature verification tooling from live script directories\evidence\Step 6\DIFF.md
+PASS: Step 6 production cleanup evidence verified.
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\change-control\in-progress\0032-FEAT - clean up completed-feature verification tooling from live script directories\evidence\Step 6\scripts>

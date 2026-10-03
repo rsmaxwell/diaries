@@ -1,0 +1,16 @@
+0032 Step 5 - exact obsolete deployed production script removal list
+
+Source: Step 2 PRODUCTION-REMOVAL-LIST.txt / FINAL-DISPOSITION.csv
+Implemented in: roles/diaries/tasks/copy.yaml
+Task: diaries:copy | Remove obsolete completed-feature production scripts
+
+migration0024ImageCatalogue.sh
+step8-freeze-writes.sh
+step8-capture-production-database-backup.sh
+step9-reconcile-production.sh
+step12-compare-reconciliation.py
+step12-reconcile-production.sh
+step13-capture-production-control.sh
+step14-production-deployment.sh
+
+Safety rule: this is an explicit allow-list. The role continues to synchronize without unrestricted rsync --delete.

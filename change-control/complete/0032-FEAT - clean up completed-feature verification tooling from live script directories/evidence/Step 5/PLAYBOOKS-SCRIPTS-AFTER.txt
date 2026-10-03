@@ -1,0 +1,9 @@
+# 0032 Step 5 - roles/diaries/files/sync/scripts AFTER
+# source bundle baseline: playbook-sources-20261003-145048.zip
+TYPE	MODE	SIZE_BYTES	SHA256	PATH
+FILE	644	3837	e2a82f92ec3d998cc0d38da4981ce247accb059d4c7874d022712ba80ac8b676	roles/diaries/files/sync/scripts/backup-db-to-binary.sh
+FILE	644	3837	def2e53c496e09f05c31364bd057d2b54e109ed97d5423dd96a10fb4fbf9d842	roles/diaries/files/sync/scripts/backup-db-to-sql.sh
+FILE	644	6111	24da768a7ab09bb40200faeca068a2e1cd1d362c8170d31f200497b0bc4be9ab	roles/diaries/files/sync/scripts/dataset-backup-manifest.py
+FILE	644	3540	2cee482ca0651729757484cf61d0180942d22ee2ae9bd31ce5aff39809464dc8	roles/diaries/files/sync/scripts/README.md
+FILE	644	5821	d2429cfc5c443543916edc33fec259e29fb723ebc670bb25d33e4ed3cc555228	roles/diaries/files/sync/scripts/restore-db-from-binary.sh
+FILE	644	5695	5898cbbd328353937dfc41c9ca37744ed48956654f14dbaa21db59389d7159aa	roles/diaries/files/sync/scripts/restore-db-from-sql.sh

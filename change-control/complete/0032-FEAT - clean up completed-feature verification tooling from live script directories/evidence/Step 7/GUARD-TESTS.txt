@@ -1,0 +1,188 @@
+# 0032 Step 7 - permanent anti-accumulation guard tests
+# Date: 2026-10-03
+
+## Diaries: synthetic and real Windows live-tree policy
+>>> python scripts/windows/validation/verify-live-script-policy.py --self-test
+PASS: policy accepts the supported top-level layout
+PASS: policy rejects a new NNNN-step directory in the live Windows tree
+PASS: policy rejects a feature-numbered validator without permanent classification
+PASS: policy permits an exact explicitly classified exception
+PASS: policy rejects a step-numbered helper inside an otherwise supported live area
+PASS: current scripts/windows tree contains only explicitly supported live areas and no unclassified feature/step-shaped tooling
+PASS: Windows live-script anti-accumulation policy verified
+
+## Diaries: normal local safety regression entry point
+>>> python scripts/windows/validation/verify-dataset-pair-guard.py
+PASS: current scripts/windows tree contains only explicitly supported live areas and no unclassified feature/step-shaped tooling
+PASS: Windows live-script anti-accumulation policy verified
+PASS: normal local guard regression includes the live-script anti-accumulation policy
+PASS: development-infrastructure isolated default matches frozen database/Files pair
+PASS: local-docker-build isolated default matches frozen database/Files pair
+PASS: local-published-smoke isolated default matches frozen database/Files pair
+PASS: isolated defaults use three distinct database directories
+PASS: isolated defaults use three distinct mutable Files directories
+PASS: no local isolated default selects the production Files root
+PASS: local.env.example contains the approved paired common override
+PASS: all three modes resolve the same database and Files dataset under the common override
+PASS: runtime guard rejects one-sided local.env dataset overrides
+PASS: runtime guard reserves the production mutable Files root from local modes
+PASS: runtime guard contains approved path pairing development-infrastructure <-> files-development-infrastructure
+PASS: runtime guard contains approved path pairing local-docker-build <-> files-local-docker-build
+PASS: runtime guard contains approved path pairing local-published-smoke <-> files-local-published-smoke
+PASS: runtime guard contains approved path pairing common <-> files-development-common
+PASS: PowerShell guard has no unbraced variable immediately followed by a colon
+PASS: dataset-override error uses braced PowerShell interpolation before colon
+PASS: success heading uses braced PowerShell interpolation before colon
+PASS: batch wrapper invokes the shared PowerShell dataset-pair guard
+PASS: development-infrastructure start executes the dataset-pair guard before use
+PASS: local-docker-build start executes the dataset-pair guard before use
+PASS: local-published-smoke start executes the dataset-pair guard before use
+PASS: direct responder/reconciliation preparation executes the dataset-pair guard before use
+PASS: Windows regression suite covers: isolated defaults:
+PASS: Windows regression suite covers: shared common pair:
+PASS: Windows regression suite covers: reject DB-only local.env override
+PASS: Windows regression suite covers: reject Files-only local.env override
+PASS: Windows regression suite covers: reject local database with production Files root
+PASS: Windows regression suite covers: reject crossed approved local pair
+PASS: Windows regression suite allows expected child-process failures to be captured
+PASS: Windows regression suite captures child stdout/stderr before asserting exit code
+PASS: Windows regression suite restores strict ErrorActionPreference after each guard case
+PASS: compose.local-docker-build.yaml mutable Files mount uses explicit DIARIES_FILES_DIR
+PASS: compose.local-docker-build.yaml shared diary scans remain under /diaries
+PASS: compose.local-docker-build.yaml has no implicit production/shared mutable Files subpath
+PASS: compose.local-docker-build.yaml binds the selected root specifically to /data/files
+PASS: compose.local-published-smoke.yaml mutable Files mount uses explicit DIARIES_FILES_DIR
+PASS: compose.local-published-smoke.yaml shared diary scans remain under /diaries
+PASS: compose.local-published-smoke.yaml has no implicit production/shared mutable Files subpath
+PASS: compose.local-published-smoke.yaml binds the selected root specifically to /data/files
+PASS: public file URL remains rooted at /files independently of physical storage
+PASS: responder regression test protects stable public URL and environment-neutral relativePath
+PASS: local dataset-pair regression guard contract verified
+
+## Playbooks: permanent production deployment-contract regression
+>>> python roles/diaries/tests/verify-production-deployment-contract.py
+PASS: production broker keeps the complete retained-snapshot flow-control policy
+PASS: production broker has no historical 10,000-message truncation ceiling
+PASS: Ansible validates the deployed retained-snapshot broker policy
+PASS: production Compose keeps /data/files selected by the explicit Files selector
+PASS: production Compose/start templates do not load local development overrides
+PASS: role documentation records the durable database/Files pairing invariant
+PASS: production operator documentation defines database-only and matched Files backup semantics
+PASS: production operator documentation defines temporary helper deploy/remove lifecycle
+PASS: role source contains only the approved supported production script set
+PASS: role source contains no unclassified feature/step-shaped production helpers
+PASS: production recurrence policy detects a newly accumulated stepN helper
+PASS: completed-feature production helpers are absent from role source
+PASS: Ansible explicitly removes deployed obsolete script migration0024ImageCatalogue.sh
+PASS: Ansible explicitly removes deployed obsolete script step8-freeze-writes.sh
+PASS: Ansible explicitly removes deployed obsolete script step8-capture-production-database-backup.sh
+PASS: Ansible explicitly removes deployed obsolete script step9-reconcile-production.sh
+PASS: Ansible explicitly removes deployed obsolete script step12-compare-reconciliation.py
+PASS: Ansible explicitly removes deployed obsolete script step12-reconcile-production.sh
+PASS: Ansible explicitly removes deployed obsolete script step13-capture-production-control.sh
+PASS: Ansible explicitly removes deployed obsolete script step14-production-deployment.sh
+PASS: production synchronization does not use unrestricted rsync --delete
+PASS: production deployment contract verified
+
+## Supplemental permanent source regressions executed during Step 7
+>>> python scripts/windows/validation/verify-local-dataset-layout.py
+PASS: local dataset/Files configuration contract verified
+>>> python scripts/windows/validation/verify-direct-development-files-config.py
+PASS: 23 checks
+>>> python scripts/windows/validation/verify-local-backup-restore-semantics.py
+PASS: local matched backup/restore semantics verified
+>>> python scripts/windows/validation/verify-effective-dataset-diagnostics.py
+PASS: effective dataset diagnostics and stable runtime paths verified
+>>> python roles/diaries/tests/verify-production-backup-restore-semantics.py
+PASS: production backup/restore semantics verified
+>>> python roles/diaries/tests/verify-production-storage-isolation.py
+PASS: production storage-isolation contract verified
+
+>>> python -m py_compile [three Step 7 Python sources]
+PASS: Python compilation completed.
+
+PASS: Step 7 anti-accumulation guards and integration tests completed.
+
+## Cross-repository patch reproducibility
+>>> git apply --check evidence/Step 7/scripts/playbooks-0032-step7.patch  # against uploaded Playbooks baseline
+PASS: Step 7 Playbooks patch applies cleanly and reproduces all three changed Playbooks files.
+
+## Same-day managed production scripts refinement
+>>> python roles/diaries/tests/verify-production-deployment-contract.py
+PASS: production broker keeps the complete retained-snapshot flow-control policy
+PASS: production broker has no historical 10,000-message truncation ceiling
+PASS: Ansible validates the deployed retained-snapshot broker policy
+PASS: production Compose keeps /data/files selected by the explicit Files selector
+PASS: production Compose/start templates do not load local development overrides
+PASS: role documentation records the durable database/Files pairing invariant
+PASS: production operator documentation defines database-only and matched Files backup semantics
+PASS: production operator documentation defines temporary helper deploy/remove lifecycle
+PASS: role source contains only the approved supported production script set
+PASS: role source contains no unclassified feature/step-shaped production helpers
+PASS: production recurrence policy detects a newly accumulated stepN helper
+PASS: completed-feature production helpers are absent from role source
+PASS: one-off obsolete-script removal lists are no longer required
+PASS: Ansible has separate project-root and managed-scripts synchronization tasks
+PASS: project-root synchronization excludes the separately managed scripts directory
+PASS: project-root synchronization does not use rsync --delete
+PASS: production scripts are synchronized as their own managed directory
+PASS: managed scripts synchronization removes unmanaged and excluded destination entries
+PASS: managed scripts synchronization protects templated permanent script logs.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-client.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-database.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-mosquitto.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-nginx.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-responder.sh
+PASS: managed scripts synchronization protects templated permanent script start.sh
+PASS: managed scripts synchronization protects templated permanent script status.sh
+PASS: managed scripts synchronization protects templated permanent script stop.sh
+PASS: production deployment contract verified
+
+>>> python roles/diaries/tests/verify-production-storage-isolation.py
+PASS: production .env renders the explicit diaries_files_dir selector
+PASS: production mutable /data/files mount is selected through DIARIES_FILES_DIR
+PASS: production shared diary scans remain on the common /diaries source
+PASS: production template has no hard-coded mutable /files source
+PASS: role defaults do not silently fall back to the production Files selector
+PASS: role preflight requires an explicit mutable Files selector
+PASS: deployment validates the rendered selector and mutable Files mount
+PASS: deployment validates that shared scans remain on /diaries
+PASS: production storage-isolation contract verified
+
+>>> python roles/diaries/tests/verify-production-backup-restore-semantics.py
+PASS: production deployment includes dataset manifest helper
+PASS: backup-db-to-binary.sh labels database-only semantics
+PASS: backup-db-to-binary.sh writes a sidecar manifest
+PASS: backup-db-to-binary.sh records Image row count
+PASS: backup-db-to-binary.sh does not claim a complete dataset backup
+PASS: backup-db-to-sql.sh labels database-only semantics
+PASS: backup-db-to-sql.sh writes a sidecar manifest
+PASS: backup-db-to-sql.sh records Image row count
+PASS: backup-db-to-sql.sh does not claim a complete dataset backup
+PASS: restore-db-from-binary.sh labels database-only semantics
+PASS: restore-db-from-binary.sh verifies sidecar pairing
+PASS: restore-db-from-binary.sh does not claim a complete dataset restore
+PASS: restore-db-from-sql.sh labels database-only semantics
+PASS: restore-db-from-sql.sh verifies sidecar pairing
+PASS: restore-db-from-sql.sh does not claim a complete dataset restore
+PASS: manifest helper writes a production database sidecar
+PASS: production sidecar explicitly records database-only semantics
+PASS: production sidecar records the effective Files selector and physical root
+PASS: production sidecar records catalogue count
+PASS: matching production database + Files pair verifies
+PASS: production restore guard rejects a mismatched Files root
+PASS: production backup/restore semantics verified
+
+>>> python -m py_compile roles/diaries/tests/verify-production-deployment-contract.py
+PASS: Python compilation completed.
+
+>>> YAML parse roles/diaries/tasks/copy.yaml
+PASS: copy.yaml parses as YAML with 11 tasks
+
+>>> rsync semantics smoke test
+PASS: rsync --delete --delete-excluded removes unmanaged entries and preserves protected templates.
+
+PASS: managed production scripts refinement validated.
+
+>>> patch -p1 --dry-run < evidence/Step 7/scripts/playbooks-0032-step7-managed-scripts.patch
+PASS: managed-scripts patch applies cleanly to the uploaded Playbooks source baseline.

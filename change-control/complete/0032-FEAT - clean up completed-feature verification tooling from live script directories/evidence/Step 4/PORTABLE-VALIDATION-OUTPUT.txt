@@ -1,0 +1,317 @@
+>>> python3 scripts/windows/validation/verify-local-dataset-layout.py
+PASS mode default: development-infrastructure: ./data/database/development-infrastructure <-> files-development-infrastructure
+PASS mode default: local-docker-build: ./data/database/local-docker-build <-> files-local-docker-build
+PASS mode default: local-published-smoke: ./data/database/local-published-smoke <-> files-local-published-smoke
+PASS common override: development-infrastructure: ./data/database/common <-> files-development-common
+PASS common override: local-docker-build: ./data/database/common <-> files-development-common
+PASS common override: local-published-smoke: ./data/database/common <-> files-development-common
+PASS compose: compose.local-docker-build.yaml: /data/files -> ${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR:?DIARIES_FILES_DIR must be set}
+PASS compose guard: compose.local-docker-build.yaml: missing DIARIES_FILES_DIR uses Compose :? failure
+PASS compose: compose.local-published-smoke.yaml: /data/files -> ${DIARIES_NAS_CONTENT_PATH}/${DIARIES_FILES_DIR:?DIARIES_FILES_DIR must be set}
+PASS compose guard: compose.local-published-smoke.yaml: missing DIARIES_FILES_DIR uses Compose :? failure
+PASS: local dataset/Files configuration contract verified
+
+>>> python3 scripts/windows/validation/verify-direct-development-files-config.py
+Direct-development Files configuration static verification
+PASS: helper loads development-infrastructure.env before local.env
+PASS: helper requires DIARIES_DB_DATA_DIR
+PASS: helper requires DIARIES_FILES_DIR
+PASS: developer responder.json remains the default base
+PASS: effective responder config is generated beneath ignored build/
+PASS: root build/ directory is git-ignored
+PASS: PowerShell generator replaces diaries.files
+PASS: PowerShell generator preserves the base JSON object while rewriting the copy
+PASS: helper diagnostics do not echo password fields
+PASS: run-responder.bat uses the shared effective-config helper
+PASS: migration0024ImageCatalogue.bat uses the same helper
+PASS: Image reconciliation passes the generated effective config to Gradle
+PASS: direct responder runs with the generated effective config
+PASS: runtime verifier uses the same effective-config helper
+PASS: runtime verifier executes the non-default Files URL regression test
+PASS: runtime verifier passes the PowerShell pipeline without a literal CMD caret
+PASS: development-infrastructure start.bat validates both dataset selectors
+PASS: development-infrastructure status.bat validates both dataset selectors
+PASS: UploadFile defines a stable public /files context
+PASS: UploadFile URL no longer derives from the physical files directory
+PASS: responder regression test uses a non-default physical Files directory
+PASS: regression test requires stable /files upload URL
+PASS: regression test requires environment-neutral persisted Image.relativePath
+
+PASS: 23 checks
+
+>>> python3 scripts/windows/validation/verify-dataset-pair-guard.py
+PASS: development-infrastructure isolated default matches frozen database/Files pair
+PASS: local-docker-build isolated default matches frozen database/Files pair
+PASS: local-published-smoke isolated default matches frozen database/Files pair
+PASS: isolated defaults use three distinct database directories
+PASS: isolated defaults use three distinct mutable Files directories
+PASS: no local isolated default selects the production Files root
+PASS: local.env.example contains the approved paired common override
+PASS: all three modes resolve the same database and Files dataset under the common override
+PASS: runtime guard rejects one-sided local.env dataset overrides
+PASS: runtime guard reserves the production mutable Files root from local modes
+PASS: runtime guard contains approved path pairing development-infrastructure <-> files-development-infrastructure
+PASS: runtime guard contains approved path pairing local-docker-build <-> files-local-docker-build
+PASS: runtime guard contains approved path pairing local-published-smoke <-> files-local-published-smoke
+PASS: runtime guard contains approved path pairing common <-> files-development-common
+PASS: PowerShell guard has no unbraced variable immediately followed by a colon
+PASS: dataset-override error uses braced PowerShell interpolation before colon
+PASS: success heading uses braced PowerShell interpolation before colon
+PASS: batch wrapper invokes the shared PowerShell dataset-pair guard
+PASS: development-infrastructure start executes the dataset-pair guard before use
+PASS: local-docker-build start executes the dataset-pair guard before use
+PASS: local-published-smoke start executes the dataset-pair guard before use
+PASS: direct responder/reconciliation preparation executes the dataset-pair guard before use
+PASS: Windows regression suite covers: isolated defaults:
+PASS: Windows regression suite covers: shared common pair:
+PASS: Windows regression suite covers: reject DB-only local.env override
+PASS: Windows regression suite covers: reject Files-only local.env override
+PASS: Windows regression suite covers: reject local database with production Files root
+PASS: Windows regression suite covers: reject crossed approved local pair
+PASS: Windows regression suite allows expected child-process failures to be captured
+PASS: Windows regression suite captures child stdout/stderr before asserting exit code
+PASS: Windows regression suite restores strict ErrorActionPreference after each guard case
+PASS: compose.local-docker-build.yaml mutable Files mount uses explicit DIARIES_FILES_DIR
+PASS: compose.local-docker-build.yaml shared diary scans remain under /diaries
+PASS: compose.local-docker-build.yaml has no implicit production/shared mutable Files subpath
+PASS: compose.local-docker-build.yaml binds the selected root specifically to /data/files
+PASS: compose.local-published-smoke.yaml mutable Files mount uses explicit DIARIES_FILES_DIR
+PASS: compose.local-published-smoke.yaml shared diary scans remain under /diaries
+PASS: compose.local-published-smoke.yaml has no implicit production/shared mutable Files subpath
+PASS: compose.local-published-smoke.yaml binds the selected root specifically to /data/files
+PASS: public file URL remains rooted at /files independently of physical storage
+PASS: responder regression test protects stable public URL and environment-neutral relativePath
+PASS: local dataset-pair regression guard contract verified
+
+>>> python3 scripts/windows/validation/verify-local-backup-restore-semantics.py
+PASS: dataset identity is derived from the effective database directory, not launch mode
+PASS: common local dataset is explicitly identified as cross-mode sharing
+PASS: database backup manifest explicitly says it is not a complete dataset backup
+PASS: sidecar manifest records logicalDataset
+PASS: sidecar manifest records effectiveDatabaseDataDir
+PASS: sidecar manifest records databaseBackupFile
+PASS: sidecar manifest records effectiveFilesDir
+PASS: sidecar manifest records resolvedPhysicalFilesRoot
+PASS: sidecar manifest records applicationSourceIdentity
+PASS: sidecar manifest records imageRowCount
+PASS: sidecar manifest records cataloguedFileCount
+PASS: manifest verification rejects a restore against a different database/Files pair
+PASS: legacy database backups remain usable with an explicit database-only warning
+PASS: development-infrastructure/backup-db-to-binary.bat validates the paired selectors
+PASS: development-infrastructure/backup-db-to-binary.bat resolves effective dataset identity
+PASS: development-infrastructure/backup-db-to-binary.bat uses effective-dataset backup directory
+PASS: development-infrastructure/backup-db-to-binary.bat reports the matching physical Files root
+PASS: development-infrastructure/backup-db-to-binary.bat labels its operation as database-only
+PASS: development-infrastructure/backup-db-to-binary.bat names default backups from effective dataset identity
+PASS: development-infrastructure/backup-db-to-binary.bat writes the dataset sidecar manifest
+PASS: development-infrastructure/backup-db-to-binary.bat captures Image catalogue row count
+PASS: development-infrastructure/backup-db-to-sql.bat validates the paired selectors
+PASS: development-infrastructure/backup-db-to-sql.bat resolves effective dataset identity
+PASS: development-infrastructure/backup-db-to-sql.bat uses effective-dataset backup directory
+PASS: development-infrastructure/backup-db-to-sql.bat reports the matching physical Files root
+PASS: development-infrastructure/backup-db-to-sql.bat labels its operation as database-only
+PASS: development-infrastructure/backup-db-to-sql.bat names default backups from effective dataset identity
+PASS: development-infrastructure/backup-db-to-sql.bat writes the dataset sidecar manifest
+PASS: development-infrastructure/backup-db-to-sql.bat captures Image catalogue row count
+PASS: development-infrastructure/restore-db-from-binary.bat validates the paired selectors
+PASS: development-infrastructure/restore-db-from-binary.bat resolves effective dataset identity
+PASS: development-infrastructure/restore-db-from-binary.bat uses effective-dataset backup directory
+PASS: development-infrastructure/restore-db-from-binary.bat reports the matching physical Files root
+PASS: development-infrastructure/restore-db-from-binary.bat labels its operation as database-only
+PASS: development-infrastructure/restore-db-from-binary.bat checks sidecar identity before destructive restore
+PASS: development-infrastructure/restore-db-from-binary.bat does not claim to restore a complete dataset
+PASS: development-infrastructure/restore-db-from-sql.bat validates the paired selectors
+PASS: development-infrastructure/restore-db-from-sql.bat resolves effective dataset identity
+PASS: development-infrastructure/restore-db-from-sql.bat uses effective-dataset backup directory
+PASS: development-infrastructure/restore-db-from-sql.bat reports the matching physical Files root
+PASS: development-infrastructure/restore-db-from-sql.bat labels its operation as database-only
+PASS: development-infrastructure/restore-db-from-sql.bat checks sidecar identity before destructive restore
+PASS: development-infrastructure/restore-db-from-sql.bat does not claim to restore a complete dataset
+PASS: local-docker-build/backup-db-to-binary.bat validates the paired selectors
+PASS: local-docker-build/backup-db-to-binary.bat resolves effective dataset identity
+PASS: local-docker-build/backup-db-to-binary.bat uses effective-dataset backup directory
+PASS: local-docker-build/backup-db-to-binary.bat reports the matching physical Files root
+PASS: local-docker-build/backup-db-to-binary.bat labels its operation as database-only
+PASS: local-docker-build/backup-db-to-binary.bat names default backups from effective dataset identity
+PASS: local-docker-build/backup-db-to-binary.bat writes the dataset sidecar manifest
+PASS: local-docker-build/backup-db-to-binary.bat captures Image catalogue row count
+PASS: local-docker-build/backup-db-to-sql.bat validates the paired selectors
+PASS: local-docker-build/backup-db-to-sql.bat resolves effective dataset identity
+PASS: local-docker-build/backup-db-to-sql.bat uses effective-dataset backup directory
+PASS: local-docker-build/backup-db-to-sql.bat reports the matching physical Files root
+PASS: local-docker-build/backup-db-to-sql.bat labels its operation as database-only
+PASS: local-docker-build/backup-db-to-sql.bat names default backups from effective dataset identity
+PASS: local-docker-build/backup-db-to-sql.bat writes the dataset sidecar manifest
+PASS: local-docker-build/backup-db-to-sql.bat captures Image catalogue row count
+PASS: local-docker-build/restore-db-from-binary.bat validates the paired selectors
+PASS: local-docker-build/restore-db-from-binary.bat resolves effective dataset identity
+PASS: local-docker-build/restore-db-from-binary.bat uses effective-dataset backup directory
+PASS: local-docker-build/restore-db-from-binary.bat reports the matching physical Files root
+PASS: local-docker-build/restore-db-from-binary.bat labels its operation as database-only
+PASS: local-docker-build/restore-db-from-binary.bat checks sidecar identity before destructive restore
+PASS: local-docker-build/restore-db-from-binary.bat does not claim to restore a complete dataset
+PASS: local-docker-build/restore-db-from-sql.bat validates the paired selectors
+PASS: local-docker-build/restore-db-from-sql.bat resolves effective dataset identity
+PASS: local-docker-build/restore-db-from-sql.bat uses effective-dataset backup directory
+PASS: local-docker-build/restore-db-from-sql.bat reports the matching physical Files root
+PASS: local-docker-build/restore-db-from-sql.bat labels its operation as database-only
+PASS: local-docker-build/restore-db-from-sql.bat checks sidecar identity before destructive restore
+PASS: local-docker-build/restore-db-from-sql.bat does not claim to restore a complete dataset
+PASS: local-published-smoke/backup-db-to-binary.bat validates the paired selectors
+PASS: local-published-smoke/backup-db-to-binary.bat resolves effective dataset identity
+PASS: local-published-smoke/backup-db-to-binary.bat uses effective-dataset backup directory
+PASS: local-published-smoke/backup-db-to-binary.bat reports the matching physical Files root
+PASS: local-published-smoke/backup-db-to-binary.bat labels its operation as database-only
+PASS: local-published-smoke/backup-db-to-binary.bat names default backups from effective dataset identity
+PASS: local-published-smoke/backup-db-to-binary.bat writes the dataset sidecar manifest
+PASS: local-published-smoke/backup-db-to-binary.bat captures Image catalogue row count
+PASS: local-published-smoke/backup-db-to-sql.bat validates the paired selectors
+PASS: local-published-smoke/backup-db-to-sql.bat resolves effective dataset identity
+PASS: local-published-smoke/backup-db-to-sql.bat uses effective-dataset backup directory
+PASS: local-published-smoke/backup-db-to-sql.bat reports the matching physical Files root
+PASS: local-published-smoke/backup-db-to-sql.bat labels its operation as database-only
+PASS: local-published-smoke/backup-db-to-sql.bat names default backups from effective dataset identity
+PASS: local-published-smoke/backup-db-to-sql.bat writes the dataset sidecar manifest
+PASS: local-published-smoke/backup-db-to-sql.bat captures Image catalogue row count
+PASS: local-published-smoke/restore-db-from-binary.bat validates the paired selectors
+PASS: local-published-smoke/restore-db-from-binary.bat resolves effective dataset identity
+PASS: local-published-smoke/restore-db-from-binary.bat uses effective-dataset backup directory
+PASS: local-published-smoke/restore-db-from-binary.bat reports the matching physical Files root
+PASS: local-published-smoke/restore-db-from-binary.bat labels its operation as database-only
+PASS: local-published-smoke/restore-db-from-binary.bat checks sidecar identity before destructive restore
+PASS: local-published-smoke/restore-db-from-binary.bat does not claim to restore a complete dataset
+PASS: local-published-smoke/restore-db-from-sql.bat validates the paired selectors
+PASS: local-published-smoke/restore-db-from-sql.bat resolves effective dataset identity
+PASS: local-published-smoke/restore-db-from-sql.bat uses effective-dataset backup directory
+PASS: local-published-smoke/restore-db-from-sql.bat reports the matching physical Files root
+PASS: local-published-smoke/restore-db-from-sql.bat labels its operation as database-only
+PASS: local-published-smoke/restore-db-from-sql.bat checks sidecar identity before destructive restore
+PASS: local-published-smoke/restore-db-from-sql.bat does not claim to restore a complete dataset
+PASS: no local database script selects a backup directory solely from launch mode
+PASS: local matched backup/restore semantics verified
+
+>>> python3 scripts/windows/validation/verify-effective-dataset-diagnostics.py
+PASS: common diagnostics report both halves of the durable dataset pair
+PASS: Docker diagnostics keep the responder runtime Files path stable at /data/files
+PASS: Docker diagnostics show the selected NAS Files subpath
+PASS: Docker diagnostics retain the shared read-only diary subpath
+PASS: development-infrastructure start.bat prints effective database/Files diagnostics
+PASS: development-infrastructure status.bat prints effective database/Files diagnostics
+PASS: development-infrastructure status path enforces the same database/Files pair guard as startup
+PASS: local-docker-build start.bat prints effective database/Files diagnostics
+PASS: local-docker-build status.bat prints effective database/Files diagnostics
+PASS: local-docker-build status path enforces the same database/Files pair guard as startup
+PASS: local-published-smoke start.bat prints effective database/Files diagnostics
+PASS: local-published-smoke status.bat prints effective database/Files diagnostics
+PASS: local-published-smoke status path enforces the same database/Files pair guard as startup
+PASS: local-docker-build maps the selected physical root to stable /data/files
+PASS: local-docker-build retains the shared diary mount as read-only
+PASS: local-published-smoke maps the selected physical root to stable /data/files
+PASS: local-published-smoke retains the shared diary mount as read-only
+PASS: local-published-smoke uses safe local PostgreSQL defaults
+PASS: UploadFile keeps the public Files URL independent of the physical Files selector
+PASS: static responder Files context remains /files
+PASS: effective dataset diagnostics and stable runtime paths verified
+
+>>> node --test scripts/windows/validation/imagefragment-retained-snapshot.test.cjs
+TAP version 13
+# Subtest: 5376-topic retained replay drains before the independent QoS-1 barrier
+ok 1 - 5376-topic retained replay drains before the independent QoS-1 barrier
+  ---
+  duration_ms: 96.636059
+  type: 'test'
+  ...
+# Subtest: denied SUBACK fails immediately with diagnostic evidence instead of waiting for marker
+ok 2 - denied SUBACK fails immediately with diagnostic evidence instead of waiting for marker
+  ---
+  duration_ms: 1.040195
+  type: 'test'
+  ...
+# Subtest: missing barrier fails with received-message counts and retains partial diagnostics
+ok 3 - missing barrier fails with received-message counts and retains partial diagnostics
+  ---
+  duration_ms: 102.274764
+  type: 'test'
+  ...
+# Subtest: missing SUBACK terminates promptly and reports the blocked topic
+ok 4 - missing SUBACK terminates promptly and reports the blocked topic
+  ---
+  duration_ms: 76.549977
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 325.86607
+
+>>> node --test scripts/windows/validation/imagefragment-image-http.test.cjs
+TAP version 13
+# Subtest: encodes each Unicode path segment without encoding the path separators
+ok 1 - encodes each Unicode path segment without encoding the path separators
+  ---
+  duration_ms: 2.17358
+  type: 'test'
+  ...
+# Subtest: successful byte preflight checks container, responder and public proxy hashes
+ok 2 - successful byte preflight checks container, responder and public proxy hashes
+  ---
+  duration_ms: 19.076799
+  type: 'test'
+  ...
+# Subtest: preflight retains HTTP status/body when public prefix returns 404
+ok 3 - preflight retains HTTP status/body when public prefix returns 404
+  ---
+  duration_ms: 0.785271
+  type: 'test'
+  ...
+# Subtest: preflight retains mismatched bytes, missing container and network errors
+ok 4 - preflight retains mismatched bytes, missing container and network errors
+  ---
+  duration_ms: 0.646343
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 71.220714
+
+>>> node --test scripts/windows/validation/imagefragment-proxy-routing.test.cjs
+TAP version 13
+# Subtest: reverse proxy follows new Docker host mapping after responder restart
+ok 1 - reverse proxy follows new Docker host mapping after responder restart
+  ---
+  duration_ms: 56.212676
+  type: 'test'
+  ...
+# Subtest: reverse proxy follows new web published port after restart
+ok 2 - reverse proxy follows new web published port after restart
+  ---
+  duration_ms: 17.419421
+  type: 'test'
+  ...
+# Subtest: published-port update rejects missing/malformed ports
+ok 3 - published-port update rejects missing/malformed ports
+  ---
+  duration_ms: 1.047827
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 146.828299
+

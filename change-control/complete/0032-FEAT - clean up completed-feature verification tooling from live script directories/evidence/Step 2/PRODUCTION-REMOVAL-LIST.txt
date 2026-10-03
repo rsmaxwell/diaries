@@ -1,0 +1,15 @@
+# 0032 Step 2 - approved production live-script removal list
+#
+# Remove from roles/diaries/files/sync/scripts/ only after Step 3 has
+# preserved the approved historical copies. Remove the corresponding deployed
+# /home/richard/projects/diaries/scripts/ files in the controlled production
+# cleanup step; do not rely on rsync --delete.
+#
+migration0024ImageCatalogue.sh
+step8-capture-production-database-backup.sh
+step8-freeze-writes.sh
+step9-reconcile-production.sh
+step12-compare-reconciliation.py
+step12-reconcile-production.sh
+step13-capture-production-control.sh
+step14-production-deployment.sh

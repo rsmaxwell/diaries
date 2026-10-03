@@ -1,0 +1,20 @@
+Run on pluto exactly as shown. It is read-only.
+
+cd /home/richard/projects/diaries && {
+  printf '%s\n' '0032 Step 1 - pluto deployed scripts BEFORE'
+  printf 'host: '; hostname
+  printf 'captured: '; date --iso-8601=seconds
+  printf 'project: %s\n\n' "$PWD"
+  printf 'TYPE\tMODE\tOWNER\tGROUP\tSIZE_BYTES\tSHA256\tPATH\n'
+  find scripts -mindepth 1 -maxdepth 1 -type f -printf '%f\n' | LC_ALL=C sort | while IFS= read -r name; do
+    path="scripts/$name"
+    mode=$(stat -c '%a' "$path")
+    owner=$(stat -c '%U' "$path")
+    group=$(stat -c '%G' "$path")
+    size=$(stat -c '%s' "$path")
+    digest=$(sha256sum "$path" | awk '{print $1}')
+    printf 'FILE\t%s\t%s\t%s\t%s\t%s\t%s\n' "$mode" "$owner" "$group" "$size" "$digest" "$path"
+  done
+} | tee /tmp/PLUTO-SCRIPTS-BEFORE.txt
+
+Then copy/upload /tmp/PLUTO-SCRIPTS-BEFORE.txt so it can replace the pending placeholder in evidence/Step 1/.

@@ -1,0 +1,14 @@
+0032 Step 1 - Playbooks Diaries tests BEFORE
+Captured: 2026-10-03
+Source bundle: playbook-sources-20261003-115130.zip
+Source bundle SHA-256: 0cacf4845e3b55aa3189d39eee0556929304d0a3863cc76684ef5bbf3c3638e6
+Inventory root: /mnt/data/playbook_0032_work/playbook-sources-20261003-115130/playbooks/roles/diaries/tests
+
+TYPE	SIZE_BYTES	SHA256	PATH
+FILE	4579	da68fc9ed848e983d86a14a6ae2e2c8611440a556dfb978cd76857976bb4dfa6	verify-0031-backup-semantics.py
+FILE	1939	25bb5ac75a24bfcf8445f5056970dfb50531fc332de747d9263aa980094cd17a	verify-0031-step13.py
+FILE	4801	3f970456802bd3f3d5091b5db12e3e20d004a0a9a908daf237860dd0e9728ea4	verify-0031-step14.py
+FILE	3116	27acc29c55b21ecb08f9814f1a3a9dc34cc477b18ca4ccfacf9a0adbbf91ba39	verify-0031-step16.py
+FILE	2265	81eb3f610fe2ed7efc533900da032ca0ad4cf6cfaf2e2e5d69750cd2304805fb	verify-0031-step8.py
+FILE	2315	401a15493aec1d4e565bcc8a9a6db6cff39f0f35e94c80bda200d6997fbc4003	verify-0031-step9.py
+FILE	2416	9d838f2137e541c707d9ffbdb1a9dd0234b875d522766ad74c999fa10c4639ad	verify-0031-storage-isolation.py

@@ -1,0 +1,39 @@
+richard@mango:~/temp/scripts$ ls -al
+total 132
+drwxrwxr-x 2 richard richard   4096 Oct  3 14:53 .
+drwxrwxr-x 3 richard richard   4096 Oct  3 14:53 ..
+-rw-rw-r-- 1 richard richard   1764 Oct  3 13:44 apply-step5-playbooks-source.ps1
+-rwxr--r-- 1 richard richard   1193 Oct  3 13:44 apply-step5-playbooks-source.sh
+-rw-rw-r-- 1 richard richard 116816 Oct  3 13:44 playbooks-0032-step5.patch
+richard@mango:~/temp/scripts$ ./apply-step5-playbooks-source.sh /home/richard/playbooks
+warning: roles/diaries/files/sync/scripts/migration0024ImageCatalogue.sh has type 100755, expected 100644
+warning: roles/diaries/files/sync/scripts/step12-compare-reconciliation.py has type 100755, expected 100644
+warning: roles/diaries/files/sync/scripts/step12-reconcile-production.sh has type 100755, expected 100644
+warning: roles/diaries/files/sync/scripts/step13-capture-production-control.sh has type 100755, expected 100644
+warning: roles/diaries/files/sync/scripts/step14-production-deployment.sh has type 100755, expected 100644
+warning: roles/diaries/files/sync/scripts/step8-capture-production-database-backup.sh has type 100755, expected 100644
+warning: roles/diaries/files/sync/scripts/step8-freeze-writes.sh has type 100755, expected 100644
+warning: roles/diaries/files/sync/scripts/step9-reconcile-production.sh has type 100755, expected 100644
+warning: roles/diaries/tests/verify-0031-step13.py has type 100755, expected 100644
+warning: roles/diaries/tests/verify-0031-step14.py has type 100755, expected 100644
+warning: roles/diaries/tests/verify-0031-step16.py has type 100755, expected 100644
+warning: roles/diaries/tests/verify-0031-step8.py has type 100755, expected 100644
+warning: roles/diaries/tests/verify-0031-step9.py has type 100755, expected 100644
+warning: roles/diaries/tests/verify-0031-backup-semantics.py has type 100755, expected 100644
+warning: roles/diaries/files/sync/scripts/migration0024ImageCatalogue.sh has type 100755, expected 100644
+warning: roles/diaries/files/sync/scripts/step12-compare-reconciliation.py has type 100755, expected 100644
+warning: roles/diaries/files/sync/scripts/step12-reconcile-production.sh has type 100755, expected 100644
+warning: roles/diaries/files/sync/scripts/step13-capture-production-control.sh has type 100755, expected 100644
+warning: roles/diaries/files/sync/scripts/step14-production-deployment.sh has type 100755, expected 100644
+warning: roles/diaries/files/sync/scripts/step8-capture-production-database-backup.sh has type 100755, expected 100644
+warning: roles/diaries/files/sync/scripts/step8-freeze-writes.sh has type 100755, expected 100644
+warning: roles/diaries/files/sync/scripts/step9-reconcile-production.sh has type 100755, expected 100644
+warning: roles/diaries/tests/verify-0031-step13.py has type 100755, expected 100644
+warning: roles/diaries/tests/verify-0031-step14.py has type 100755, expected 100644
+warning: roles/diaries/tests/verify-0031-step16.py has type 100755, expected 100644
+warning: roles/diaries/tests/verify-0031-step8.py has type 100755, expected 100644
+warning: roles/diaries/tests/verify-0031-step9.py has type 100755, expected 100644
+warning: roles/diaries/tests/verify-0031-backup-semantics.py has type 100755, expected 100644
+Applied Step 5 Playbooks source patch.
+./apply-step5-playbooks-source.sh: line 30: python: command not found
+richard@mango:~/temp/scripts$

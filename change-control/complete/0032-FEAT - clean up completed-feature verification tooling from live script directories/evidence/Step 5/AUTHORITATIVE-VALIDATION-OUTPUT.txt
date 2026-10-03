@@ -1,0 +1,116 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+python3 roles/diaries/tests/verify-production-backup-restore-semantics.py
+python3 roles/diaries/tests/verify-production-storage-isolation.py
+python3 roles/diaries/tests/verify-production-deployment-contract.py
+
+git diff --check
+git status --short
+PASS: production deployment includes dataset manifest helper
+PASS: backup-db-to-binary.sh labels database-only semantics
+PASS: backup-db-to-binary.sh writes a sidecar manifest
+PASS: backup-db-to-binary.sh records Image row count
+PASS: backup-db-to-binary.sh does not claim a complete dataset backup
+PASS: backup-db-to-sql.sh labels database-only semantics
+PASS: backup-db-to-sql.sh writes a sidecar manifest
+PASS: backup-db-to-sql.sh records Image row count
+PASS: backup-db-to-sql.sh does not claim a complete dataset backup
+PASS: restore-db-from-binary.sh labels database-only semantics
+PASS: restore-db-from-binary.sh verifies sidecar pairing
+PASS: restore-db-from-binary.sh does not claim a complete dataset restore
+PASS: restore-db-from-sql.sh labels database-only semantics
+PASS: restore-db-from-sql.sh verifies sidecar pairing
+PASS: restore-db-from-sql.sh does not claim a complete dataset restore
+PASS: manifest helper writes a production database sidecar
+PASS: production sidecar explicitly records database-only semantics
+PASS: production sidecar records the effective Files selector and physical root
+PASS: production sidecar records catalogue count
+PASS: matching production database + Files pair verifies
+PASS: production restore guard rejects a mismatched Files root
+PASS: production backup/restore semantics verified
+PASS: production .env renders the explicit diaries_files_dir selector
+PASS: production mutable /data/files mount is selected through DIARIES_FILES_DIR
+PASS: production shared diary scans remain on the common /diaries source
+PASS: production template has no hard-coded mutable /files source
+PASS: role defaults do not silently fall back to the production Files selector
+PASS: role preflight requires an explicit mutable Files selector
+PASS: deployment validates the rendered selector and mutable Files mount
+PASS: deployment validates that shared scans remain on /diaries
+PASS: production storage-isolation contract verified
+PASS: production broker keeps the complete retained-snapshot flow-control policy
+PASS: production broker has no historical 10,000-message truncation ceiling
+PASS: Ansible validates the deployed retained-snapshot broker policy
+PASS: production Compose keeps /data/files selected by the explicit Files selector
+PASS: production Compose/start templates do not load local development overrides
+PASS: role documentation records the durable database/Files pairing invariant
+PASS: production operator documentation defines database-only and matched Files backup semantics
+PASS: role source contains only the approved supported production script set
+PASS: completed-feature production helpers are absent from role source
+PASS: Ansible explicitly removes deployed obsolete script migration0024ImageCatalogue.sh
+PASS: Ansible explicitly removes deployed obsolete script step8-freeze-writes.sh
+PASS: Ansible explicitly removes deployed obsolete script step8-capture-production-database-backup.sh
+PASS: Ansible explicitly removes deployed obsolete script step9-reconcile-production.sh
+PASS: Ansible explicitly removes deployed obsolete script step12-compare-reconciliation.py
+PASS: Ansible explicitly removes deployed obsolete script step12-reconcile-production.sh
+PASS: Ansible explicitly removes deployed obsolete script step13-capture-production-control.sh
+PASS: Ansible explicitly removes deployed obsolete script step14-production-deployment.sh
+PASS: production synchronization does not use unrestricted rsync --delete
+PASS: production deployment contract verified
+roles/diaries/defaults/main.yaml:6: trailing whitespace.
++# Mutable Files storage selector.^M
+roles/diaries/defaults/main.yaml:7: trailing whitespace.
++#^M
+roles/diaries/defaults/main.yaml:8: trailing whitespace.
++# diaries_files_dir intentionally has no role default. It identifies the^M
+roles/diaries/defaults/main.yaml:9: trailing whitespace.
++# mutable Files root paired with the deployed database dataset and must be^M
+roles/diaries/defaults/main.yaml:10: trailing whitespace.
++# supplied explicitly by inventory (for production today: files).^M
+roles/diaries/defaults/main.yaml:11: trailing whitespace.
++^M
+roles/diaries/defaults/main.yaml:58: trailing whitespace.
++# Browser-visible responder Files route used by diaries-web for catalogue Images.^M
+roles/diaries/defaults/main.yaml:59: trailing whitespace.
++# This is emitted into content.filesPath in the generated production web config.^M
+roles/diaries/defaults/main.yaml:60: trailing whitespace.
++diaries_web_files_path: "files"^M
+roles/diaries/defaults/main.yaml:63: trailing whitespace.
++diaries_client_image_tag: "0.0.9-build-74"^M
+roles/diaries/defaults/main.yaml:66: trailing whitespace.
++diaries_responder_image_tag: "0.0.9-build-82"^M
+roles/diaries/defaults/main.yaml:70: trailing whitespace.
++diaries_web_image_tag: "0.0.9-build-7"^M
+roles/diaries/templates/.env.j2:6: trailing whitespace.
++DIARIES_FILES_DIR={{ diaries_files_dir }}^M
+roles/diaries/templates/config/responder/responder.json.j2:46: trailing whitespace.
++  "fragmentLockTtlSeconds": 900,^M
+roles/diaries/templates/config/responder/responder.json.j2:47: trailing whitespace.
++  "imageFragmentWritesEnabled": false^M
+roles/diaries/templates/config/web/diaries-web.json.j2:25: trailing whitespace.
++    "diariesPath": "diaries",^M
+roles/diaries/templates/config/web/diaries-web.json.j2:26: trailing whitespace.
++    "filesPath": "{{ diaries_web_files_path }}"^M
+ M roles/diaries/defaults/main.yaml
+ M roles/diaries/files/sync/config/mosquitto/aclfile.txt
+ M roles/diaries/files/sync/config/mosquitto/mosquitto.conf
+ M roles/diaries/files/sync/scripts/backup-db-to-binary.sh
+ M roles/diaries/files/sync/scripts/backup-db-to-sql.sh
+ M roles/diaries/files/sync/scripts/restore-db-from-binary.sh
+ M roles/diaries/files/sync/scripts/restore-db-from-sql.sh
+ M roles/diaries/tasks/copy.yaml
+ M roles/diaries/tasks/main.yaml
+ M roles/diaries/templates/.env.j2
+ M roles/diaries/templates/compose.yaml.j2
+ M roles/diaries/templates/config/responder/responder.json.j2
+ M roles/diaries/templates/config/web/diaries-web.json.j2
+ M roles/mosquitto/files/misc/config/aclfile.txt
+ M roles/mosquitto/templates/config/mosquitto.conf.j2
+ M scripts/diaries.sh
+?? PACKAGE-SHA256SUMS.txt
+?? README-STEP12-APPLY.txt
+?? VALIDATION-STEP12.txt
+?? roles/diaries/README.md
+?? roles/diaries/files/sync/scripts/README.md
+?? roles/diaries/files/sync/scripts/dataset-backup-manifest.py
+?? roles/diaries/tests/
+richard@mango:~/playbooks$

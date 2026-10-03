@@ -1,0 +1,15 @@
+old path,new path
+scripts/windows/validation/step13-image-http.cjs,scripts/windows/validation/imagefragment-image-http.cjs
+scripts/windows/validation/step13-image-http.test.cjs,scripts/windows/validation/imagefragment-image-http.test.cjs
+scripts/windows/validation/step13-proxy-routing.cjs,scripts/windows/validation/imagefragment-proxy-routing.cjs
+scripts/windows/validation/step13-proxy-routing.test.cjs,scripts/windows/validation/imagefragment-proxy-routing.test.cjs
+scripts/windows/validation/step13-retained-snapshot.cjs,scripts/windows/validation/imagefragment-retained-snapshot.cjs
+scripts/windows/validation/step13-retained-snapshot.test.cjs,scripts/windows/validation/imagefragment-retained-snapshot.test.cjs
+scripts/windows/validation/verify-0026-step13.ps1,scripts/windows/validation/verify-imagefragment-reader.ps1
+scripts/windows/validation/verify-0031-step11.py,scripts/windows/validation/verify-effective-dataset-diagnostics.py
+scripts/windows/validation/verify-0031-step3.py,scripts/windows/validation/verify-local-dataset-layout.py
+scripts/windows/validation/verify-0031-step4-runtime.bat,scripts/windows/validation/verify-direct-development-files-runtime.bat
+scripts/windows/validation/verify-0031-step4.py,scripts/windows/validation/verify-direct-development-files-config.py
+scripts/windows/validation/verify-0031-step6.ps1,scripts/windows/validation/verify-dataset-pair-guard.ps1
+scripts/windows/validation/verify-0031-step6.py,scripts/windows/validation/verify-dataset-pair-guard.py
+scripts/windows/validation/verify-0031-step7.py,scripts/windows/validation/verify-local-backup-restore-semantics.py

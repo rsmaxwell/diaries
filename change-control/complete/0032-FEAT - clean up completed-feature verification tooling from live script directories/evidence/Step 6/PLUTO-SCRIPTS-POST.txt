@@ -1,0 +1,21 @@
+0032 Step 6 - pluto deployed scripts POST
+host: pluto
+captured: 2026-10-03T16:29:39+01:00
+project: /home/richard/projects/diaries
+
+TYPE	MODE	OWNER	GROUP	SIZE_BYTES	SHA256	PATH
+FILE	755	richard	richard	3837	e2a82f92ec3d998cc0d38da4981ce247accb059d4c7874d022712ba80ac8b676	scripts/backup-db-to-binary.sh
+FILE	755	richard	richard	3837	def2e53c496e09f05c31364bd057d2b54e109ed97d5423dd96a10fb4fbf9d842	scripts/backup-db-to-sql.sh
+FILE	755	richard	richard	6111	24da768a7ab09bb40200faeca068a2e1cd1d362c8170d31f200497b0bc4be9ab	scripts/dataset-backup-manifest.py
+FILE	744	richard	richard	2208	a5b12f598a5fac44e8bcfd5f2f7a9a087f6970a404bb5b8ee9c56d4e212742f6	scripts/logs.sh
+FILE	664	richard	richard	3540	2cee482ca0651729757484cf61d0180942d22ee2ae9bd31ce5aff39809464dc8	scripts/README.md
+FILE	755	richard	richard	5821	d2429cfc5c443543916edc33fec259e29fb723ebc670bb25d33e4ed3cc555228	scripts/restore-db-from-binary.sh
+FILE	755	richard	richard	5695	5898cbbd328353937dfc41c9ca37744ed48956654f14dbaa21db59389d7159aa	scripts/restore-db-from-sql.sh
+FILE	744	richard	richard	3192	2e203f6993b5370517a47a843282debc43e6c3c2a6c8c7b70617a0e418e823ce	scripts/shell-prompt-client.sh
+FILE	744	richard	richard	3224	261df20b870729464b9fe9564008f3269b8de4ca90c1b72093e7085de1ebd15e	scripts/shell-prompt-database.sh
+FILE	744	richard	richard	3219	b3ab50b7cdcf5b3068ab2223581a6b1abb12db13e594944e3954625725ad0e35	scripts/shell-prompt-mosquitto.sh
+FILE	744	richard	richard	3227	b3bb65fd84dfc745d28d47b2e34ce2bdff37fe9f4afd3bee29d7ed9880fa1313	scripts/shell-prompt-nginx.sh
+FILE	744	richard	richard	3198	3eba3ccafe74b29103694a723fba05d47888e698b15dddeebc147c4a490eb74e	scripts/shell-prompt-responder.sh
+FILE	744	richard	richard	2807	5346d82d57f1c61cd2f3d84d19b9bf94f56bd33048c29d7265273743c880f4f1	scripts/start.sh
+FILE	744	richard	richard	1763	dbb0e3c15af7e203c05332479db7a88a5a66caa704b23fb2de2672bc654018f9	scripts/status.sh
+FILE	744	richard	richard	1486	72f7bf606a2d2432da4850c65567e9dc4c9d7e307e5efa81575a969f5ea86602	scripts/stop.sh

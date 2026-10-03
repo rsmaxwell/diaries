@@ -1,0 +1,12 @@
+PASS: the prepared after-state contains no retired live path/filename references under scripts/windows.
+
+Checked retired forms:
+- scripts/windows/0031-step* and scripts\windows\0031-step*
+- verify-0031-*
+- verify-0026-step13*
+- verify-0026-step14*
+- step13-image-http*
+- step13-proxy-routing*
+- step13-retained-snapshot*
+
+A wider source scan still finds the old Step 12 paths in the root-level README-STEP12-APPLY.txt and PACKAGE-SHA256SUMS.txt. Those are historical package/application artefacts, not normal Windows script callers, and are outside the frozen Step 4 live-tree disposition. No supported start/status/backup/restore/reconciliation command references the retired directories.

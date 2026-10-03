@@ -1,0 +1,35 @@
+31dba3109beb599f291f4ff57b8411fc4021061404c20a2f16f7e8ed95e67581  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/IMPLEMENTATION-STEPS.md
+ac465a4a6cc981c8479be70e8aac7075cdca35972dc336992a5d6212b1dbf512  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/README.md
+206002e1388660b00f65b447e4d7482cbc92e923ef86fb67ae6640bd0ed76179  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/DELETE-LIST.txt
+9c52689d0766d002762d0a69157f466196897a70918d0237c380644756a95465  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/EXPECTED-WINDOWS-SCRIPTS-AFTER.txt
+6f0d723f0df79d4b0231233e9440bd69bd85be46fcf1934ca219e06eeadf02ae  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/EXPECTED-WINDOWS-VALIDATION-AFTER.txt
+a9b727a59da8db3a9ab63c8b84288ae01741380cd060bdd3f5accd01e7e33581  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/PORTABLE-VALIDATION-OUTPUT.txt
+66b48f6f33ac856e0632879dad5dfd6fddda1091880ee9ef35ab3a3afade0e4e  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/PREPARED-CHANGE-SUMMARY.md
+8ea36c15e2e84828abd01644820f863d69c7fae86f91ff66c989ff7833530228  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/PREPARED-DISPOSITION-CHECK.txt
+460af3cf4e34944cbf3d5930902ce6ec552bd71a6c4fe606f58c25cef32ac325  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/PREPARED-REFERENCE-CHECK.txt
+48f3336e9d6d6aaaf34f5db5931685415871546e1d40f0d475ff8e6ed541a13b  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/PREPARED-SHA256SUMS.txt
+255f6447245aea7554669194726fb8c53839d1508e4f6e6e2a934b27ae4002a3  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/README.md
+b484f35900cd2e11d8c7691246fda30f8b946d153af992e300abd0ce56152a65  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/REFERENCE-CHECK.txt
+05f6189317f750c829974fecc5eac4e1a1f89155075eebe315f98e1db96a3ef9  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/RENAME-MAP.csv
+b484f35900cd2e11d8c7691246fda30f8b946d153af992e300abd0ce56152a65  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/VALIDATION-OUTPUT.txt
+b484f35900cd2e11d8c7691246fda30f8b946d153af992e300abd0ce56152a65  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/WINDOWS-SCRIPTS-AFTER.txt
+b484f35900cd2e11d8c7691246fda30f8b946d153af992e300abd0ce56152a65  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/WINDOWS-VALIDATION-AFTER.txt
+35b9fb979ee0f9146ec7a6574148f2135bb25d4b2f5f5843d59192f0dd98c1af  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/scripts/apply-step4-windows-cleanup.ps1
+eca2413ad0615133d4e9061e2f104c37699af0f816675d1adaae31644c88f825  change-control/in-progress/0032-FEAT - clean up completed-feature verification tooling from live script directories/evidence/Step 4/scripts/run-step4-windows-cleanup.bat
+32665042e3bfa446a153a761d6912384b9dcec5787b5d82d8ac1d3b061a0f772  scripts/windows/README.md
+2e58d70011b515d710a89474aa942257c7a24ace2f0025d23356ca8663a0c8de  scripts/windows/validation/README.md
+1d8a4559ff0e0b529b9c2f40ccd793a2f44228667a46ad380acaca1063a15de4  scripts/windows/validation/imagefragment-image-http.cjs
+a94a40f08645f9042253552efff39496160ae6294995c2666b57a109d93d5a8c  scripts/windows/validation/imagefragment-image-http.test.cjs
+88ada5a728cd7e7af319c33cb170e2e4ff6dcaf8d8d7fa1e0ba7267d5fb9c757  scripts/windows/validation/imagefragment-proxy-routing.cjs
+36225cb9f0399f0fb3e2f6adc7798ed41c0d4cf4680b292daa87c499fc81fb4f  scripts/windows/validation/imagefragment-proxy-routing.test.cjs
+2b4efdefeefebd7dc8ea58569c0528ea0fc84c538684791ad4ede218f54fb695  scripts/windows/validation/imagefragment-retained-snapshot.cjs
+057a767e01a5b5f566b410535e622ece4cc7ce29cf77ab8f50096f136e44238a  scripts/windows/validation/imagefragment-retained-snapshot.test.cjs
+c5eb7c864d0ba2174a7a83d3034567027a06428e1654639ea48e99f046df6238  scripts/windows/validation/smoke-imagefragment-reader.cjs
+0210af48f9abe65c33612160d85d0230f74983883f1e3738d03892f645ffeeca  scripts/windows/validation/verify-dataset-pair-guard.ps1
+54ef8485df361900b12b8aae242d5049ec73734ae0dbb5c228573d6d9a9a693d  scripts/windows/validation/verify-dataset-pair-guard.py
+a944bc86a59b280ead759c515c9e45c79c2b63faf1331d69cf314f0776746b54  scripts/windows/validation/verify-direct-development-files-config.py
+01438de54bcba8545843e8ad2fdadad5a5e47940d76c87c5aebd1c177ee4fc40  scripts/windows/validation/verify-direct-development-files-runtime.bat
+88235fec5bc04c4f8a6b7f0fbfbca5355bdb9a5da2077cfc489379df40667d46  scripts/windows/validation/verify-effective-dataset-diagnostics.py
+d3a3afbff260779bf098e37c1a38e7b1edae2f13f142b533162a130a4f98bf92  scripts/windows/validation/verify-imagefragment-reader.ps1
+30eaa6bbe2c01ac541fb48d7527967a346a84fd16e5aaa80091f9776fee8ebfb  scripts/windows/validation/verify-local-backup-restore-semantics.py
+699fd5a9a97c6f0bdd62b35cec7734bb12a16c815585ddb5cd1141f534b1e143  scripts/windows/validation/verify-local-dataset-layout.py

@@ -1,0 +1,85 @@
+0032 Step 5 - prepared Playbooks source validation output
+baseline: playbook-sources-20261003-145048.zip
+
+>>> patch application check against clean baseline
+PASS: git apply --check playbooks-0032-step5.patch
+PASS: patch applied successfully to a clean extracted baseline
+
+>>> python roles/diaries/tests/verify-production-backup-restore-semantics.py
+PASS: production deployment includes dataset manifest helper
+PASS: backup-db-to-binary.sh labels database-only semantics
+PASS: backup-db-to-binary.sh writes a sidecar manifest
+PASS: backup-db-to-binary.sh records Image row count
+PASS: backup-db-to-binary.sh does not claim a complete dataset backup
+PASS: backup-db-to-sql.sh labels database-only semantics
+PASS: backup-db-to-sql.sh writes a sidecar manifest
+PASS: backup-db-to-sql.sh records Image row count
+PASS: backup-db-to-sql.sh does not claim a complete dataset backup
+PASS: restore-db-from-binary.sh labels database-only semantics
+PASS: restore-db-from-binary.sh verifies sidecar pairing
+PASS: restore-db-from-binary.sh does not claim a complete dataset restore
+PASS: restore-db-from-sql.sh labels database-only semantics
+PASS: restore-db-from-sql.sh verifies sidecar pairing
+PASS: restore-db-from-sql.sh does not claim a complete dataset restore
+PASS: manifest helper writes a production database sidecar
+PASS: production sidecar explicitly records database-only semantics
+PASS: production sidecar records the effective Files selector and physical root
+PASS: production sidecar records catalogue count
+PASS: matching production database + Files pair verifies
+PASS: production restore guard rejects a mismatched Files root
+PASS: production backup/restore semantics verified
+
+>>> python roles/diaries/tests/verify-production-storage-isolation.py
+PASS: production .env renders the explicit diaries_files_dir selector
+PASS: production mutable /data/files mount is selected through DIARIES_FILES_DIR
+PASS: production shared diary scans remain on the common /diaries source
+PASS: production template has no hard-coded mutable /files source
+PASS: role defaults do not silently fall back to the production Files selector
+PASS: role preflight requires an explicit mutable Files selector
+PASS: deployment validates the rendered selector and mutable Files mount
+PASS: deployment validates that shared scans remain on /diaries
+PASS: production storage-isolation contract verified
+
+>>> python roles/diaries/tests/verify-production-deployment-contract.py
+PASS: production broker keeps the complete retained-snapshot flow-control policy
+PASS: production broker has no historical 10,000-message truncation ceiling
+PASS: Ansible validates the deployed retained-snapshot broker policy
+PASS: production Compose keeps /data/files selected by the explicit Files selector
+PASS: production Compose/start templates do not load local development overrides
+PASS: role documentation records the durable database/Files pairing invariant
+PASS: production operator documentation defines database-only and matched Files backup semantics
+PASS: role source contains only the approved supported production script set
+PASS: completed-feature production helpers are absent from role source
+PASS: Ansible explicitly removes deployed obsolete script migration0024ImageCatalogue.sh
+PASS: Ansible explicitly removes deployed obsolete script step8-freeze-writes.sh
+PASS: Ansible explicitly removes deployed obsolete script step8-capture-production-database-backup.sh
+PASS: Ansible explicitly removes deployed obsolete script step9-reconcile-production.sh
+PASS: Ansible explicitly removes deployed obsolete script step12-compare-reconciliation.py
+PASS: Ansible explicitly removes deployed obsolete script step12-reconcile-production.sh
+PASS: Ansible explicitly removes deployed obsolete script step13-capture-production-control.sh
+PASS: Ansible explicitly removes deployed obsolete script step14-production-deployment.sh
+PASS: production synchronization does not use unrestricted rsync --delete
+PASS: production deployment contract verified
+
+>>> YAML parse check
+PASS: YAML parsed: roles/diaries/tasks/copy.yaml
+PASS: YAML parsed: roles/diaries/tasks/main.yaml
+PASS: YAML parsed: diaries.yaml
+
+>>> live role feature-number/reference check
+PASS: no live verify-0031 / 0031 Step / 0031-FEAT references remain under roles/diaries
+
+>>> approved obsolete names check
+PASS: role source removed migration0024ImageCatalogue.sh
+PASS: role source removed step8-freeze-writes.sh
+PASS: role source removed step8-capture-production-database-backup.sh
+PASS: role source removed step9-reconcile-production.sh
+PASS: role source removed step12-compare-reconciliation.py
+PASS: role source removed step12-reconcile-production.sh
+PASS: role source removed step13-capture-production-control.sh
+PASS: role source removed step14-production-deployment.sh
+
+>>> synchronization safety check
+PASS: no rsync --delete in roles/diaries/tasks/copy.yaml
+
+PASS: Step 5 prepared Playbooks source validations completed.

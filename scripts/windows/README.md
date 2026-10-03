@@ -111,4 +111,17 @@ A sidecar-backed database restore rejects a configured Files selector/root that 
 
 Do not roll back by pointing two independently changed databases at one old shared Files root. A later delete or overwrite from one dataset can damage the other dataset's bytes. If roots have diverged, keep separate copies and reconcile them explicitly. If intentionally returning all local modes to the common model, restore **both** `DIARIES_DB_DATA_DIR=./data/database/common` and `DIARIES_FILES_DIR=files-development-common` together.
 
-For migration-specific 0031 capture/reconciliation tooling, see the `0031-step*` subdirectory READMEs. The rules above are the normal operating contract after 0031 is complete.
+
+## Live tooling lifecycle
+
+The live `scripts/windows` tree contains only supported operational/admin commands and permanent regression/safety tooling. Completed-feature migration, evidence-capture and step-specific verification helpers belong under the corresponding completed change-control record rather than in this operator-facing tree.
+
+Before closing a feature, classify every script it introduced as permanent operational tooling, permanent regression tooling, or historical feature tooling. Archive/remove historical tooling from `scripts/windows` and update callers atomically. A historical-looking name that really is permanent must be explicitly classified in `scripts/windows/validation/verify-live-script-policy.py`; do not bypass the guard by weakening its patterns.
+
+Run the recurrence guard with:
+
+```text
+python scripts/windows/validation/verify-live-script-policy.py
+```
+
+Completed-feature migration and evidence-capture tooling is not kept in this live script tree. Historical tooling is preserved with the corresponding completed change-control evidence under `change-control/complete/`. The rules above are the supported operating contract.
