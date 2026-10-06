@@ -1,0 +1,20 @@
+PASS explicit IMAGE type guard exists
+PASS workspace renders Image reference panel
+PASS panel exposes Select/replace Image
+PASS panel exposes Clear Image
+PASS panel shows unresolved retained state
+PASS panel uses derived catalogue URL helper
+PASS chooser uses catalogue-image mode
+PASS chooser happens before Fragment lock
+PASS same Image exits before lock
+PASS post-lock retained Fragment is fetched
+PASS post-lock retained lock state is awaited
+PASS explicit mutation API used
+PASS clear sends explicit null
+PASS success does not call unlock in success branch
+PASS failure invokes failed-edit unlock fallback
+PASS ordinary update still omits imageId
+PASS responder enforces lock ownership
+PASS responder checks version before image mutation
+PASS responder clears lock on successful update
+PASS responder preserves omitted imageId

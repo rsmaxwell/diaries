@@ -1,0 +1,42 @@
+$ tsc diaries-client/src/app/model/fragment.ts --target ES2022 --module commonjs --strict --skipLibCheck --outDir /mnt/data/step6-ts
+PASS: fragment.ts strict focused compile
+
+$ node focused tri-state serialization smoke
+UpdateFragmentRequest.fromFragment { id: 84, version: 7, marqueeId: null }
+{
+  "preserve": {
+    "id": 84,
+    "marqueeId": null,
+    "year": 1830,
+    "month": 2,
+    "day": 3,
+    "sequence": 4.5,
+    "version": 7,
+    "text": "Text"
+  },
+  "preserveHasImageId": false,
+  "set": {
+    "id": 84,
+    "marqueeId": null,
+    "year": 1830,
+    "month": 2,
+    "day": 3,
+    "sequence": 4.5,
+    "version": 7,
+    "text": "Text",
+    "imageId": 202
+  },
+  "clear": {
+    "id": 84,
+    "marqueeId": null,
+    "year": 1830,
+    "month": 2,
+    "day": 3,
+    "sequence": 4.5,
+    "version": 7,
+    "text": "Text",
+    "imageId": null
+  }
+}
+cross-type guard: Only an IMAGE Fragment without a Marquee can change its Image reference
+PASS: preserve/set/clear serialization and cross-type guard

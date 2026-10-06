@@ -1,0 +1,14 @@
+PASS - CatalogueImage interface
+PASS - all responder metadata fields
+PASS - no Image byte payload field
+PASS - image topic
+PASS - selectedImage observable
+PASS - explicit IMAGE type
+PASS - positive image id
+PASS - unresolved starts null
+PASS - retained replay test
+PASS - retained update test
+PASS - tombstone test
+PASS - imageId switch test
+PASS - url helper
+PASS - segment encoding

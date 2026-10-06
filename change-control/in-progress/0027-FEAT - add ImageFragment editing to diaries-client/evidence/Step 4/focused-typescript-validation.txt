@@ -1,0 +1,3 @@
+$ tsc --strict --target ES2022 --module commonjs --outDir /tmp/step4-ts src/app/model/image.ts src/app/model/FileEntry.ts src/app/model/UploadFileResponse.ts
+PASS: typed Image/FileEntry/UploadFileResponse models compile under strict TypeScript.
+PASS: hasCatalogueImage accepts only non-directory entries with a positive imageId.

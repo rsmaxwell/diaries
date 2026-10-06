@@ -1,0 +1,27 @@
+PASS 01: TextPanel ordinary save uses updateFragment$
+PASS 02: TextPanel production code does not call updateImageFragment$
+PASS 03: save completion is bound to original fragment id
+PASS 04: switch does not race a save with unlock
+PASS 05: destroy does not race a save with unlock
+PASS 06: late body lock checks destroyed state
+PASS 07: late date lock checks destroyed state
+PASS 08: failed save unlock targets saved fragment id
+PASS 09: same-selection rollback remains local
+PASS 10: IMAGE text preserve-path regression exists
+PASS 11: IMAGE date preserve-path regression exists
+PASS 12: lock-in-flight type-switch regression exists
+PASS 13: destroy-during-lock regression exists
+PASS 14: save-success-after-switch regression exists
+PASS 15: save-failure-after-switch regression exists
+PASS 16: day reorder uses ordinary updateFragment$
+PASS 17: day reorder failed-edit unlock exists
+PASS 18: mixed retained normalisation regression exists
+PASS 19: ordinary update serializer has no imageId member
+PASS 20: MARQUEE controls blocked for IMAGE regression remains
+PASS 21: responder gate-disabled preserve test exists
+PASS 22: responder gate false live lifecycle test exists
+PASS 23: gate-false ordinary update omits imageId
+PASS 24: responder retained publication checks DB image/version relationship
+PASS 25: responder mixed normalisation preserves image references
+PASS 26: responder update separates Image selection from ordinary field copy
+PASS: 26 Step 9 static contract checks

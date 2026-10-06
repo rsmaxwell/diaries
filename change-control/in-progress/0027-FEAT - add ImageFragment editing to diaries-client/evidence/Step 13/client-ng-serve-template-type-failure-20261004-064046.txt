@@ -1,0 +1,34 @@
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client>cd C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client>npm start
+
+> diaries-client@0.0.0 prestart
+> npm run generate-build-info
+
+
+> diaries-client@0.0.0 generate-build-info
+> node scripts/generate-build-info.js
+
+Generated client build information: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client\public\assets\build-info.json
+Client version: 0.0.9-SNAPSHOT
+
+> diaries-client@0.0.0 start
+> ng serve
+
+Application bundle generation failed. [3.018 seconds]
+
+✘ [ERROR] NG5: Argument of type 'Event' is not assignable to parameter of type 'KeyboardEvent'.
+  Type 'Event' is missing the following properties from type 'KeyboardEvent': altKey, charCode, code, ctrlKey, and 17 more. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.component.html:153:40:
+      153 │         (keydown.space)="onFileSpace(f, $event)"
+          ╵                                         ~~~~~~
+
+  Error occurs in the template of component FilesListDialogComponent.
+
+    src/app/files-list-dialog/files-list-dialog.component.ts:60:15:
+      60 │   templateUrl: './files-list-dialog.component.html',
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Watch mode enabled. Watching for file changes...

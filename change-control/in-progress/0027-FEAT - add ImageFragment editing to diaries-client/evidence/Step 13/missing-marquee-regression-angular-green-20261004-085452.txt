@@ -1,0 +1,1314 @@
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client>npm test -- --watch=false --browsers=ChromeHeadless
+
+> diaries-client@0.0.0 test
+> ng test --watch=false --browsers=ChromeHeadless
+
+Initial chunk files                                 | Names                                            |  Raw size
+chunk-YBP4H67D.js                                   | -                                                |   1.14 MB |
+chunk-IZFPYZSS.js                                   | -                                                |   1.10 MB |
+polyfills.js                                        | polyfills                                        |   1.01 MB |
+chunk-GFXYD2EA.js                                   | -                                                | 494.60 kB |
+chunk-QKOY2YNS.js                                   | -                                                | 369.08 kB |
+chunk-PNWTGROQ.js                                   | -                                                | 366.98 kB |
+spec-alert.component.spec.js                        | spec-alert.component.spec                        | 263.34 kB |
+chunk-4VC5VHKG.js                                   | -                                                | 242.46 kB |
+chunk-5SQDCHGD.js                                   | -                                                | 239.26 kB |
+chunk-NYLGZ7NL.js                                   | -                                                | 229.08 kB |
+chunk-BGQAKIH5.js                                   | -                                                | 195.68 kB |
+chunk-VDMABVTY.js                                   | -                                                | 169.71 kB |
+chunk-UURWDRXA.js                                   | -                                                | 157.32 kB |
+chunk-JK54GOUK.js                                   | -                                                | 155.24 kB |
+chunk-PSDAOZV4.js                                   | -                                                | 137.52 kB |
+chunk-35OA5RAU.js                                   | -                                                | 129.78 kB |
+chunk-FNLAJVLO.js                                   | -                                                | 123.26 kB |
+chunk-PQUIUYMP.js                                   | -                                                |  87.94 kB |
+chunk-STC3EPSN.js                                   | -                                                |  82.78 kB |
+chunk-LR7ZJQXT.js                                   | -                                                |  72.80 kB |
+jasmine-cleanup-1.js                                | jasmine-cleanup-1                                |  67.20 kB |
+chunk-5K3XDE6G.js                                   | -                                                |  63.60 kB |
+styles.css                                          | styles                                           |  62.08 kB |
+spec-thing.component.spec.js                        | spec-thing.component.spec                        |  57.20 kB |
+chunk-HGEKBXHF.js                                   | -                                                |  52.55 kB |
+chunk-2D3A4J24.js                                   | -                                                |  43.56 kB |
+chunk-OBJ53O43.js                                   | -                                                |  40.01 kB |
+chunk-WXCBZWK5.js                                   | -                                                |  36.36 kB |
+chunk-EAWEC5DZ.js                                   | -                                                |  34.55 kB |
+chunk-CSRY4SAK.js                                   | -                                                |  27.00 kB |
+spec-fragment.component.spec.js                     | spec-fragment.component.spec                     |  24.54 kB |
+chunk-CTOA5ZWY.js                                   | -                                                |  22.64 kB |
+test_main.js                                        | test_main                                        |  21.83 kB |
+chunk-3RNN2KL5.js                                   | -                                                |  21.01 kB |
+spec-file-rpc-compatibility.spec.js                 | spec-file-rpc-compatibility.spec                 |  19.27 kB |
+spec-diary.component.spec.js                        | spec-diary.component.spec                        |  17.75 kB |
+spec-text-panel.component.spec.js                   | spec-text-panel.component.spec                   |  17.46 kB |
+spec-dayview.component.spec.js                      | spec-dayview.component.spec                      |  17.40 kB |
+chunk-FEMMDWV5.js                                   | -                                                |  17.07 kB |
+spec-diaries.component.spec.js                      | spec-diaries.component.spec                      |  16.40 kB |
+chunk-5UPOVAAJ.js                                   | -                                                |  14.73 kB |
+spec-register.component.spec.js                     | spec-register.component.spec                     |  13.31 kB |
+chunk-ZY25HU5J.js                                   | -                                                |  12.37 kB |
+spec-model-context.spec.js                          | spec-model-context.spec                          |  12.18 kB |
+spec-files-list-dialog.context-menu.spec.js         | spec-files-list-dialog.context-menu.spec         |  11.77 kB |
+spec-pageheader.component.spec.js                   | spec-pageheader.component.spec                   |  10.91 kB |
+chunk-KDCXJGUE.js                                   | -                                                |  10.71 kB |
+spec-image-fragment-rpc.spec.js                     | spec-image-fragment-rpc.spec                     |  10.63 kB |
+chunk-5X7MJU44.js                                   | -                                                |  10.02 kB |
+spec-signin.component.spec.js                       | spec-signin.component.spec                       |   9.74 kB |
+spec-files-list-dialog.compatibility.spec.js        | spec-files-list-dialog.compatibility.spec        |   8.68 kB |
+spec-image-fragment-step12-regression.spec.js       | spec-image-fragment-step12-regression.spec       |   7.46 kB |
+spec-marquee-fragment-compatibility.spec.js         | spec-marquee-fragment-compatibility.spec         |   7.42 kB |
+spec-image-fragment-reference.component.spec.js     | spec-image-fragment-reference.component.spec     |   6.39 kB |
+spec-image-viewer.component.spec.js                 | spec-image-viewer.component.spec                 |   6.12 kB |
+chunk-MO4D7ZVT.js                                   | -                                                |   5.87 kB |
+chunk-VEKR5HFJ.js                                   | -                                                |   5.44 kB |
+chunk-XS3Q3XRG.js                                   | -                                                |   5.04 kB |
+spec-fragment.spec.js                               | spec-fragment.spec                               |   4.99 kB |
+spec-image-fragment-action-state.service.spec.js    | spec-image-fragment-action-state.service.spec    |   4.86 kB |
+chunk-54ZV6EYK.js                                   | -                                                |   4.85 kB |
+chunk-GSETVEM6.js                                   | -                                                |   4.79 kB |
+chunk-BC3BDPTI.js                                   | -                                                |   4.63 kB |
+chunk-7CYOWFSZ.js                                   | -                                                |   4.62 kB |
+chunk-FDUTXX6K.js                                   | -                                                |   4.56 kB |
+spec-image-fragment-reference.accessibility.spec.js | spec-image-fragment-reference.accessibility.spec |   4.32 kB |
+chunk-NJSIUJJK.js                                   | -                                                |   4.13 kB |
+chunk-4Q4WMZH4.js                                   | -                                                |   4.08 kB |
+chunk-Q7ZEO7UW.js                                   | -                                                |   3.86 kB |
+chunk-E7GEXGS5.js                                   | -                                                |   3.79 kB |
+chunk-USNIRGBS.js                                   | -                                                |   3.45 kB |
+chunk-NUZB2AGM.js                                   | -                                                |   3.25 kB |
+chunk-PPP7C5JA.js                                   | -                                                |   3.22 kB |
+spec-pagefooter.component.spec.js                   | spec-pagefooter.component.spec                   |   3.12 kB |
+chunk-OMNX2T4F.js                                   | -                                                |   3.12 kB |
+spec-legacy-fragment-html.pipe.spec.js              | spec-legacy-fragment-html.pipe.spec              |   2.69 kB |
+spec-fullfooter.component.spec.js                   | spec-fullfooter.component.spec                   |   2.64 kB |
+chunk-I3MFCB2R.js                                   | -                                                |   2.56 kB |
+spec-image-projection.spec.js                       | spec-image-projection.spec                       |   2.52 kB |
+spec-app.component.spec.js                          | spec-app.component.spec                          |   2.44 kB |
+spec-plainfooter.component.spec.js                  | spec-plainfooter.component.spec                  |   2.31 kB |
+spec-image-fragment-authoring.spec.js               | spec-image-fragment-authoring.spec               |   2.31 kB |
+spec-image-fragment-authoring-errors.spec.js        | spec-image-fragment-authoring-errors.spec        |   2.24 kB |
+spec-alerts.component.spec.js                       | spec-alerts.component.spec                       |   2.08 kB |
+chunk-OU3TSYDK.js                                   | -                                                |   2.02 kB |
+chunk-6NOSSKOX.js                                   | -                                                |   1.99 kB |
+chunk-LHTDODKP.js                                   | -                                                |   1.76 kB |
+spec-fullheader.component.spec.js                   | spec-fullheader.component.spec                   |   1.72 kB |
+chunk-6AQCVKW6.js                                   | -                                                |   1.60 kB |
+spec-plainheader.component.spec.js                  | spec-plainheader.component.spec                  |   1.40 kB |
+spec-catalogue-image-url.spec.js                    | spec-catalogue-image-url.spec                    |   1.27 kB |
+spec-alertbuttons.component.spec.js                 | spec-alertbuttons.component.spec                 |   1.24 kB |
+spec-FileEntry.spec.js                              | spec-FileEntry.spec                              |   1.14 kB |
+chunk-Y4ECTCXR.js                                   | -                                                | 979 bytes |
+chunk-SNTK24OI.js                                   | -                                                | 929 bytes |
+spec-alert.service.spec.js                          | spec-alert.service.spec                          | 569 bytes |
+jasmine-cleanup-0.js                                | jasmine-cleanup-0                                | 519 bytes |
+spec-mqtt.service.spec.js                           | spec-mqtt.service.spec                           | 485 bytes |
+spec-config.service.spec.js                         | spec-config.service.spec                         | 452 bytes |
+chunk-YQUK52PK.js                                   | -                                                | 377 bytes |
+
+                                                    | Initial total                                    |   7.72 MB
+
+Lazy chunk files                                    | Names                                            |  Raw size
+chunk-RRAZGOX7.js                                   | ngx-quill-quill-CUw8Q_m0                         | 487.21 kB |
+
+Application bundle generation complete. [3.015 seconds]
+
+04 10 2026 08:54:52.024:INFO [karma-server]: Karma v6.4.4 server started at http://localhost:9876/
+04 10 2026 08:54:52.026:INFO [launcher]: Launching browsers ChromeHeadless with concurrency unlimited
+04 10 2026 08:54:52.034:INFO [launcher]: Starting browser ChromeHeadless
+04 10 2026 08:54:52.407:INFO [Chrome Headless 154.0.0.0 (Windows 10)]: Connected on socket SD9Q49NUzk9hHi4TAAAB with id 3264514
+LOG: 'FragmentComponent.onClearImageForFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 1 of 224 SUCCESS (0 secs / 0.003 secs)
+WARN: 'FragmentComponent.mutateImageReference failed', RpcError: Status 409: Synthetic lock conflict
+RpcError: Status 409: Synthetic lock conflict
+    at http://localhost:9876/base/src/app/fragment/image-fragment-step12-regression.spec.ts:99:26
+    at _Observable.init [as _subscribe] (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/observable/throwError.js:5:51)
+    at _Observable._trySubscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:37:25)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:31:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+    at _Observable.subscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:22:9)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/operators/take.js:10:20
+    at SafeSubscriber.<anonymous> (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/lift.js:10:28)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:26:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+Chrome Headless 154.0.0.0 (Windows 10): Executed 1 of 224 SUCCESS (0 secs / 0.003 secs)
+WARN: 'FragmentComponent.mutateImageReference failed', RpcError: Status 409: Synthetic lock conflict
+RpcError: Status 409: Synthetic lock conflict
+    at http://localhost:9876/base/src/app/fragment/image-fragment-step12-regression.spec.ts:99:26
+    at _Observable.init [as _subscribe] (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/observable/throwError.js:5:51)
+    at _Observable._trySubscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:37:25)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:31:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+    at _Observable.subscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:22:9)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/operators/take.js:10:20
+    at SafeSubscriber.<anonymous> (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/lift.js:10:28)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:26:30
+LOG: 'FragmentComponent.onEditMarqueeClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 3 of 224 SUCCESS (0 secs / 0.102 secs)
+LOG: 'ImageViewerComponent.onAddButtonClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 4 of 224 SUCCESS (0 secs / 0.102 secs)
+LOG: 'ImageViewerComponent.onAddButtonClick: fragment 34 added'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 4 of 224 SUCCESS (0 secs / 0.102 secs)
+LOG: 'ImageViewerComponent.deleteSelectedFragment: deleting MARQUEE fragment 33; marquee=44, imageId=null'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 5 of 224 SUCCESS (0 secs / 0.102 secs)
+LOG: 'ImageViewerComponent.deleteSelectedFragment: delete succeeded: id: 33'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 5 of 224 SUCCESS (0 secs / 0.102 secs)
+LOG: 'DiaryComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 39 of 224 SUCCESS (0 secs / 0.38 secs)
+LOG: 'DiaryComponent.ngOnInit: Route changed: diaryId: 7'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 39 of 224 SUCCESS (0 secs / 0.38 secs)
+LOG: 'DiaryComponent.ngOnInit: diary.id: 7'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 39 of 224 SUCCESS (0 secs / 0.38 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 39 of 224 SUCCESS (0 secs / 0.38 secs)
+LOG: 'UpdatePage succeeded: n: 1'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 39 of 224 SUCCESS (0 secs / 0.38 secs)
+LOG: 'NormalisePages succeeded: n: 1'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 39 of 224 SUCCESS (0 secs / 0.38 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 39 of 224 SUCCESS (0 secs / 0.38 secs)
+LOG: 'DiaryComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 39 of 224 SUCCESS (0 secs / 0.38 secs)
+LOG: 'DiaryComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 40 of 224 SUCCESS (0 secs / 0.395 secs)
+LOG: 'DiaryComponent.ngOnInit: Route changed: diaryId: 7'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 40 of 224 SUCCESS (0 secs / 0.395 secs)
+LOG: 'DiaryComponent.ngOnInit: diary.id: 7'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 40 of 224 SUCCESS (0 secs / 0.395 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 40 of 224 SUCCESS (0 secs / 0.395 secs)
+LOG: 'DiaryComponent.selectItem: id: 11'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 40 of 224 SUCCESS (0 secs / 0.395 secs)
+LOG: 'DiaryComponent.selectItem: this.diary: {"id":7,"version":0,"sequence":1000,"name":"Travel diary"}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 40 of 224 SUCCESS (0 secs / 0.395 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 40 of 224 SUCCESS (0 secs / 0.395 secs)
+LOG: 'DiaryComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 40 of 224 SUCCESS (0 secs / 0.395 secs)
+LOG: 'DiaryComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 41 of 224 SUCCESS (0 secs / 0.398 secs)
+LOG: 'DiaryComponent.ngOnInit: Route changed: diaryId: 7'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 41 of 224 SUCCESS (0 secs / 0.398 secs)
+LOG: 'DiaryComponent.ngOnInit: diary.id: 7'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 41 of 224 SUCCESS (0 secs / 0.398 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 41 of 224 SUCCESS (0 secs / 0.398 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 41 of 224 SUCCESS (0 secs / 0.398 secs)
+LOG: 'DiaryComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 41 of 224 SUCCESS (0 secs / 0.398 secs)
+LOG: 'ModelContext.cleanupTopicTree'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 42 of 224 SUCCESS (0 secs / 0.401 secs)
+LOG: 'ModelContext.cleanupTopicTree'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 43 of 224 SUCCESS (0 secs / 0.401 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 44 of 224 SUCCESS (0 secs / 0.402 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 44 of 224 SUCCESS (0 secs / 0.402 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'c1a9f14d-8e43-4376-9902-206aeb154a85', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 44 of 224 SUCCESS (0 secs / 0.402 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 44 of 224 SUCCESS (0 secs / 0.402 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 44 of 224 SUCCESS (0 secs / 0.402 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 45 of 224 SUCCESS (0 secs / 0.403 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 45 of 224 SUCCESS (0 secs / 0.403 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'cd7aef37-9d3d-466d-a057-e1dcdc2a0620', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 45 of 224 SUCCESS (0 secs / 0.403 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 46 of 224 SUCCESS (0 secs / 0.404 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 46 of 224 SUCCESS (0 secs / 0.404 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: 'f59e8804-9734-406a-ba7d-149c995e92eb', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 46 of 224 SUCCESS (0 secs / 0.404 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 46 of 224 SUCCESS (0 secs / 0.404 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 46 of 224 SUCCESS (0 secs / 0.404 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 47 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 47 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'c930d615-6f41-4333-8a8f-981d2cee0601', replyTopic: 'test/delete-image/reply', hasAccessToken: false}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 47 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 47 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 47 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 48 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 48 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: '9fa19a2b-6e09-4387-b016-d516de62a9a2', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 48 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 48 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 48 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 49 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 49 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'a3ab1755-9884-4676-b79d-7bb6327bb1a8', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 49 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 49 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 49 of 224 SUCCESS (0 secs / 0.405 secs)
+WARN: 'RpcService: access token missing/rejected; refreshing and retrying once'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 49 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'RpcService.refreshAccessToken$: refreshing access token'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 49 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'RpcService.refreshAccessToken$: received new access token'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 49 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 49 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '62c7671e-748d-4488-b587-3e933aee3463', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 49 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 49 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 49 of 224 SUCCESS (0 secs / 0.405 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 50 of 224 SUCCESS (0 secs / 0.406 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 50 of 224 SUCCESS (0 secs / 0.406 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteFile', correlationId: 'dde244cf-5a71-486b-986a-692fd53f7a09', replyTopic: 'test/delete/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 50 of 224 SUCCESS (0 secs / 0.406 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 50 of 224 SUCCESS (0 secs / 0.406 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 409, message: 'Catalogued file cannot be deleted'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 50 of 224 SUCCESS (0 secs / 0.406 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 51 of 224 SUCCESS (0 secs / 0.406 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 51 of 224 SUCCESS (0 secs / 0.406 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: '278e3471-4fc6-4f21-a315-150ee68756bb', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 51 of 224 SUCCESS (0 secs / 0.406 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 51 of 224 SUCCESS (0 secs / 0.406 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 51 of 224 SUCCESS (0 secs / 0.406 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 52 of 224 SUCCESS (0 secs / 0.407 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 52 of 224 SUCCESS (0 secs / 0.407 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'def945ec-c64b-4043-bad9-fcabb50410f3', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 52 of 224 SUCCESS (0 secs / 0.407 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 52 of 224 SUCCESS (0 secs / 0.407 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 52 of 224 SUCCESS (0 secs / 0.407 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 53 of 224 SUCCESS (0 secs / 0.407 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 53 of 224 SUCCESS (0 secs / 0.407 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'ba8b5e3e-cd8d-40dc-9ccd-097740148022', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 53 of 224 SUCCESS (0 secs / 0.407 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 53 of 224 SUCCESS (0 secs / 0.407 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 53 of 224 SUCCESS (0 secs / 0.407 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 54 of 224 SUCCESS (0 secs / 0.408 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 54 of 224 SUCCESS (0 secs / 0.408 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: 'c561e847-9344-4c31-89fb-fa50b301e67a', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 54 of 224 SUCCESS (0 secs / 0.408 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 54 of 224 SUCCESS (0 secs / 0.408 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 54 of 224 SUCCESS (0 secs / 0.408 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 55 of 224 SUCCESS (0 secs / 0.408 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 55 of 224 SUCCESS (0 secs / 0.408 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '64ef128e-94d4-4f49-8f0e-ee600b52b835', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 55 of 224 SUCCESS (0 secs / 0.408 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 55 of 224 SUCCESS (0 secs / 0.408 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 55 of 224 SUCCESS (0 secs / 0.408 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 56 of 224 SUCCESS (0 secs / 0.409 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 56 of 224 SUCCESS (0 secs / 0.409 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteFile', correlationId: 'c5ace14a-e28d-42d1-9e68-43062fe60eb4', replyTopic: 'test/delete/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 56 of 224 SUCCESS (0 secs / 0.409 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 56 of 224 SUCCESS (0 secs / 0.409 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 56 of 224 SUCCESS (0 secs / 0.409 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 57 of 224 SUCCESS (0 secs / 0.409 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 57 of 224 SUCCESS (0 secs / 0.409 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: '22b0bfa2-861e-458f-98d9-91dc028223db', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 57 of 224 SUCCESS (0 secs / 0.409 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 57 of 224 SUCCESS (0 secs / 0.409 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 57 of 224 SUCCESS (0 secs / 0.409 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 58 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 58 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '4639d297-ff6c-42fa-8e8f-652061367dbd', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 58 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 58 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 58 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 59 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 59 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteFile', correlationId: '4e6cc926-6cef-43f5-a380-5f96168746e4', replyTopic: 'test/delete/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 59 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 59 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 59 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 60 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 60 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'a67023ca-fde2-4ce0-ba04-4e744fdc2b03', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 60 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 60 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 60 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 61 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 61 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'uploadFile', correlationId: '70628b1d-7d2c-484b-a878-588f231ec734', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 61 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 61 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 61 of 224 SUCCESS (0 secs / 0.41 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 62 of 224 SUCCESS (0 secs / 0.411 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 62 of 224 SUCCESS (0 secs / 0.411 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: 'e4cee9f4-ca86-4352-b670-b70bbea3e5e5', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 62 of 224 SUCCESS (0 secs / 0.411 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 62 of 224 SUCCESS (0 secs / 0.411 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 62 of 224 SUCCESS (0 secs / 0.411 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 63 of 224 SUCCESS (0 secs / 0.411 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 63 of 224 SUCCESS (0 secs / 0.411 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'listFiles', correlationId: '5568baa6-b121-40bf-a485-23ad1fdaba9a', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 63 of 224 SUCCESS (0 secs / 0.411 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 63 of 224 SUCCESS (0 secs / 0.411 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 63 of 224 SUCCESS (0 secs / 0.411 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 64 of 224 SUCCESS (0 secs / 0.412 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 64 of 224 SUCCESS (0 secs / 0.412 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '95c79e7e-c61f-49d4-9dde-48326e40a44c', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 64 of 224 SUCCESS (0 secs / 0.412 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 64 of 224 SUCCESS (0 secs / 0.412 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 64 of 224 SUCCESS (0 secs / 0.412 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 65 of 224 SUCCESS (0 secs / 0.412 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 66 of 224 SUCCESS (0 secs / 0.413 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 66 of 224 SUCCESS (0 secs / 0.413 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'e1d8abe6-bf99-4879-ab17-7199db41ed81', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 66 of 224 SUCCESS (0 secs / 0.413 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 66 of 224 SUCCESS (0 secs / 0.413 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 66 of 224 SUCCESS (0 secs / 0.413 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 67 of 224 SUCCESS (0 secs / 0.413 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 67 of 224 SUCCESS (0 secs / 0.413 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'a3c6300b-718b-4af8-b840-a3d64cc761d4', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 67 of 224 SUCCESS (0 secs / 0.413 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 67 of 224 SUCCESS (0 secs / 0.413 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 67 of 224 SUCCESS (0 secs / 0.413 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 68 of 224 SUCCESS (0 secs / 0.413 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 68 of 224 SUCCESS (0 secs / 0.413 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '0be56471-af2d-4923-9cfe-b9114894742c', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 68 of 224 SUCCESS (0 secs / 0.413 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 68 of 224 SUCCESS (0 secs / 0.413 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 68 of 224 SUCCESS (0 secs / 0.413 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 409, message: 'conflict'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 69 of 224 SUCCESS (0 secs / 0.414 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 70 of 224 SUCCESS (0 secs / 0.415 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 70 of 224 SUCCESS (0 secs / 0.415 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '6a664ac6-f080-4790-8898-8f9117fbf434', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 70 of 224 SUCCESS (0 secs / 0.415 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 70 of 224 SUCCESS (0 secs / 0.415 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 70 of 224 SUCCESS (0 secs / 0.415 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 71 of 224 SUCCESS (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 71 of 224 SUCCESS (0 secs / 0.416 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 72 of 224 SUCCESS (0 secs / 0.416 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 72 of 224 SUCCESS (0 secs / 0.416 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '94e622a5-7fb0-49ef-bb82-33ecb2a15530', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 72 of 224 SUCCESS (0 secs / 0.416 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 72 of 224 SUCCESS (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'unauthorized'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 72 of 224 SUCCESS (0 secs / 0.416 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 73 of 224 SUCCESS (0 secs / 0.416 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 73 of 224 SUCCESS (0 secs / 0.416 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '91057a8b-2d05-4b7a-a673-17fb11c2d822', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 73 of 224 SUCCESS (0 secs / 0.416 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 73 of 224 SUCCESS (0 secs / 0.416 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 73 of 224 SUCCESS (0 secs / 0.416 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 74 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 74 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '95005cdc-5ad0-4a10-9970-4ad9be7f6564', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 74 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 74 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 404, message: 'not found'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 74 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 75 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 75 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'a15ad939-1df6-415d-9f85-5889997a7287', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 75 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 75 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 409, message: 'conflict'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 75 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 76 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 76 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'a897b2a2-c6d8-4e25-a721-b587b212c8a2', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 76 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 76 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 409, message: 'conflict'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 76 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 77 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 77 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '3816b4bb-89c0-4a5f-973f-276247134dcb', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 77 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 77 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 77 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 78 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 78 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'ac57c31c-e646-4a43-860f-a4a0081f439b', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 78 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 78 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 404, message: 'not found'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 78 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 79 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 79 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'c7c86d87-a372-42ff-9a5d-92c9c095a4a3', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 79 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 79 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'internal error'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 79 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 80 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 80 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '1f8915ba-98cc-4b92-987f-84b7180c1fa2', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 80 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 80 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 80 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 81 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 81 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'af503cfc-5e6c-414a-9f73-088b16f4095a', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 81 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 81 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'ok'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 81 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 82 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 82 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: '25648ae6-0c88-4145-979e-708ec2b0412a', replyTopic: 'diaries/rpc/fixture-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 82 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 82 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'bad request'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 82 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 83 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 83 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'deleteImage', correlationId: 'e2837be0-bf9d-47a2-ba76-3b411c6a45a2', replyTopic: 'test/delete-image/reply', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 83 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 83 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 409, message: 'conflict'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 83 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'FragmentComponent.onSelectImageForFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 84 of 224 SUCCESS (0 secs / 0.417 secs)
+LOG: 'FragmentComponent.onClearImageForFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 85 of 224 SUCCESS (0 secs / 0.418 secs)
+LOG: 'FragmentComponent.onClearImageForFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 86 of 224 SUCCESS (0 secs / 0.418 secs)
+LOG: 'FragmentComponent.onSelectImageForFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 87 of 224 SUCCESS (0 secs / 0.419 secs)
+LOG: 'FragmentComponent.onClearImageForFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 87 of 224 SUCCESS (0 secs / 0.419 secs)
+LOG: 'FragmentComponent.onSelectImageForFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 88 of 224 SUCCESS (0 secs / 0.419 secs)
+LOG: 'FragmentComponent.onSelectImageForFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 89 of 224 SUCCESS (0 secs / 0.419 secs)
+WARN: 'FragmentComponent.mutateImageReference failed', RpcError: Status 400: Stale update
+RpcError: Status 400: Stale update
+    at http://localhost:9876/base/src/app/fragment/fragment.component.spec.ts:472:24
+    at _Observable.init [as _subscribe] (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/observable/throwError.js:5:51)
+    at _Observable._trySubscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:37:25)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:31:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+    at _Observable.subscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:22:9)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/operators/take.js:10:20
+    at SafeSubscriber.<anonymous> (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/lift.js:10:28)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:26:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+Chrome Headless 154.0.0.0 (Windows 10): Executed 89 of 224 SUCCESS (0 secs / 0.419 secs)
+WARN: 'FragmentComponent.mutateImageReference failed', RpcError: Status 400: Stale update
+RpcError: Status 400: Stale update
+    at http://localhost:9876/base/src/app/fragment/fragment.component.spec.ts:472:24
+    at _Observable.init [as _subscribe] (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/observable/throwError.js:5:51)
+    at _Observable._trySubscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:37:25)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:31:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+    at _Observable.subscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:22:9)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/operators/take.js:10:20
+    at SafeSubscriber.<anonymous> (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/lift.js:10:28)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:26:30
+LOG: 'FragmentComponent.onSelectImageForFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 90 of 224 SUCCESS (0 secs / 0.42 secs)
+LOG: 'FragmentComponent.onSelectImageForFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 91 of 224 SUCCESS (0 secs / 0.421 secs)
+LOG: 'FragmentComponent.onSelectImageForFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 92 of 224 SUCCESS (0 secs / 0.421 secs)
+WARN: 'FragmentComponent.mutateImageReference failed', RpcError: Status 500: Synthetic internal failure
+RpcError: Status 500: Synthetic internal failure
+    at http://localhost:9876/base/src/app/fragment/fragment.component.spec.ts:490:24
+    at _Observable.init [as _subscribe] (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/observable/throwError.js:5:51)
+    at _Observable._trySubscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:37:25)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:31:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+    at _Observable.subscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:22:9)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/operators/take.js:10:20
+    at SafeSubscriber.<anonymous> (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/lift.js:10:28)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:26:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+Chrome Headless 154.0.0.0 (Windows 10): Executed 92 of 224 SUCCESS (0 secs / 0.421 secs)
+WARN: 'FragmentComponent.mutateImageReference failed', RpcError: Status 500: Synthetic internal failure
+RpcError: Status 500: Synthetic internal failure
+    at http://localhost:9876/base/src/app/fragment/fragment.component.spec.ts:490:24
+    at _Observable.init [as _subscribe] (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/observable/throwError.js:5:51)
+    at _Observable._trySubscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:37:25)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:31:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+    at _Observable.subscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:22:9)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/operators/take.js:10:20
+    at SafeSubscriber.<anonymous> (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/lift.js:10:28)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:26:30
+LOG: 'FragmentComponent.onSelectImageForFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 93 of 224 SUCCESS (0 secs / 0.421 secs)
+LOG: 'FragmentComponent.onClearImageForFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 94 of 224 SUCCESS (0 secs / 0.422 secs)
+LOG: 'ConfigService.constructor'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 96 of 224 SUCCESS (0 secs / 0.423 secs)
+LOG: 'MqttService.getConnection: getting configuration'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 96 of 224 SUCCESS (0 secs / 0.423 secs)
+LOG: 'ConfigService.getConfig'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 96 of 224 SUCCESS (0 secs / 0.423 secs)
+LOG: 'ConfigService.getConfig'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 96 of 224 SUCCESS (0 secs / 0.423 secs)
+LOG: 'ConfigService.getConfig from pending request'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 96 of 224 SUCCESS (0 secs / 0.423 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 96 of 224 SUCCESS (0 secs / 0.423 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 96 of 224 SUCCESS (0 secs / 0.423 secs)
+LOG: 'UpdateFragmentRequest.fromFragment', Object{id: 1, version: 0, marqueeId: null}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 101 of 224 SUCCESS (0 secs / 0.432 secs)
+LOG: 'ImageViewerComponent.deleteSelectedFragment: deleting IMAGE fragment 84; marquee=null, imageId=101'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 109 of 224 SUCCESS (0 secs / 0.434 secs)
+LOG: 'ImageViewerComponent.deleteSelectedFragment: delete succeeded: id: 84'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 109 of 224 SUCCESS (0 secs / 0.434 secs)
+LOG: 'ImageViewerComponent.onKeyDown: Control + Delete pressed'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 110 of 224 SUCCESS (0 secs / 0.434 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 113 of 224 SUCCESS (0 secs / 0.434 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 114 of 224 SUCCESS (0 secs / 0.436 secs)
+LOG: 'FragmentComponent.onAddImageFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 119 of 224 SUCCESS (0 secs / 0.437 secs)
+WARN: 'FragmentComponent.onAddImageFragmentClick failed', RpcError: Status 500: Synthetic publication failure
+RpcError: Status 500: Synthetic publication failure
+    at http://localhost:9876/base/src/app/fragment/fragment.component.spec.ts:274:24
+    at _Observable.init [as _subscribe] (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/observable/throwError.js:5:51)
+    at _Observable._trySubscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:37:25)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:31:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+    at _Observable.subscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:22:9)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/operators/take.js:10:20
+    at SafeSubscriber.<anonymous> (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/lift.js:10:28)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:26:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+Chrome Headless 154.0.0.0 (Windows 10): Executed 119 of 224 SUCCESS (0 secs / 0.437 secs)
+WARN: 'FragmentComponent.onAddImageFragmentClick failed', RpcError: Status 500: Synthetic publication failure
+RpcError: Status 500: Synthetic publication failure
+    at http://localhost:9876/base/src/app/fragment/fragment.component.spec.ts:274:24
+    at _Observable.init [as _subscribe] (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/observable/throwError.js:5:51)
+    at _Observable._trySubscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:37:25)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:31:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+    at _Observable.subscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:22:9)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/operators/take.js:10:20
+    at SafeSubscriber.<anonymous> (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/lift.js:10:28)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:26:30
+LOG: 'FragmentComponent.onAddImageFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 120 of 224 SUCCESS (0 secs / 0.437 secs)
+LOG: 'FragmentComponent.onAddImageFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 121 of 224 SUCCESS (0 secs / 0.438 secs)
+LOG: 'FragmentComponent.onAddImageFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 122 of 224 SUCCESS (0 secs / 0.438 secs)
+LOG: 'FragmentComponent.onAddImageFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 122 of 224 SUCCESS (0 secs / 0.438 secs)
+LOG: 'FragmentComponent.onAddImageFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 123 of 224 SUCCESS (0 secs / 0.439 secs)
+WARN: 'FragmentComponent.onAddImageFragmentClick failed', RpcError: Status 401: Unauthorized
+RpcError: Status 401: Unauthorized
+    at http://localhost:9876/base/src/app/fragment/fragment.component.spec.ts:220:24
+    at _Observable.init [as _subscribe] (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/observable/throwError.js:5:51)
+    at _Observable._trySubscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:37:25)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:31:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+    at _Observable.subscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:22:9)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/operators/take.js:10:20
+    at SafeSubscriber.<anonymous> (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/lift.js:10:28)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:26:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+Chrome Headless 154.0.0.0 (Windows 10): Executed 123 of 224 SUCCESS (0 secs / 0.439 secs)
+WARN: 'FragmentComponent.onAddImageFragmentClick failed', RpcError: Status 401: Unauthorized
+RpcError: Status 401: Unauthorized
+    at http://localhost:9876/base/src/app/fragment/fragment.component.spec.ts:220:24
+    at _Observable.init [as _subscribe] (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/observable/throwError.js:5:51)
+    at _Observable._trySubscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:37:25)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:31:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+    at _Observable.subscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:22:9)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/operators/take.js:10:20
+    at SafeSubscriber.<anonymous> (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/lift.js:10:28)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:26:30
+LOG: 'FragmentComponent.onAddImageFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 124 of 224 SUCCESS (0 secs / 0.44 secs)
+LOG: 'FragmentComponent.onAddImageFragmentClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 125 of 224 SUCCESS (0 secs / 0.44 secs)
+WARN: 'FragmentComponent.onAddImageFragmentClick failed', RpcError: Status 403: ImageFragment writes disabled
+RpcError: Status 403: ImageFragment writes disabled
+    at http://localhost:9876/base/src/app/fragment/fragment.component.spec.ts:256:24
+    at _Observable.init [as _subscribe] (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/observable/throwError.js:5:51)
+    at _Observable._trySubscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:37:25)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:31:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+    at _Observable.subscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:22:9)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/operators/take.js:10:20
+    at SafeSubscriber.<anonymous> (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/lift.js:10:28)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:26:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+Chrome Headless 154.0.0.0 (Windows 10): Executed 125 of 224 SUCCESS (0 secs / 0.44 secs)
+WARN: 'FragmentComponent.onAddImageFragmentClick failed', RpcError: Status 403: ImageFragment writes disabled
+RpcError: Status 403: ImageFragment writes disabled
+    at http://localhost:9876/base/src/app/fragment/fragment.component.spec.ts:256:24
+    at _Observable.init [as _subscribe] (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/observable/throwError.js:5:51)
+    at _Observable._trySubscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:37:25)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:31:30
+    at errorContext (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/errorContext.js:19:9)
+    at _Observable.subscribe (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:22:9)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/operators/take.js:10:20
+    at SafeSubscriber.<anonymous> (http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/util/lift.js:10:28)
+    at http://localhost:9876/base/node_modules/rxjs/dist/esm/internal/Observable.js:26:30
+LOG: 'TextPanelComponent.onSave', Object{fragmentId: 17, version: 4}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 127 of 224 SUCCESS (0 secs / 0.441 secs)
+LOG: 'TextPanelComponent.onSave', Object{fragmentId: 17, version: 5}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 127 of 224 SUCCESS (0 secs / 0.441 secs)
+LOG: 'TextPanelComponent.onSave: success (optimistic accepted)'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 127 of 224 SUCCESS (0 secs / 0.441 secs)
+LOG: 'TextPanelComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 128 of 224 SUCCESS (0 secs / 0.442 secs)
+LOG: 'TextPanelComponent: we are leaving fragment.id=undefined'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 128 of 224 SUCCESS (0 secs / 0.442 secs)
+LOG: 'TextPanelComponent.onSave', Object{fragmentId: 17, version: 4}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 128 of 224 SUCCESS (0 secs / 0.442 secs)
+LOG: 'TextPanelComponent: we are leaving fragment.id=17'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 128 of 224 SUCCESS (0 secs / 0.442 secs)
+LOG: 'TextPanelComponent.onSave: error -> rolling back: Error: update failed'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 128 of 224 SUCCESS (0 secs / 0.442 secs)
+LOG: 'TextPanelComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 128 of 224 SUCCESS (0 secs / 0.442 secs)
+LOG: 'TextPanelComponent.onSave', Object{fragmentId: 17, version: 4}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 130 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'TextPanelComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 130 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'TextPanelComponent.onSave: success (optimistic accepted)'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 130 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'TextPanelComponent.onSave', Object{fragmentId: 17, version: 4}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 131 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'TextPanelComponent.onSave: error -> rolling back: Error: update failed'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 131 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'TextPanelComponent.editDate'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 132 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'TextPanelComponent.onSave', Object{fragmentId: 17, version: 4}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 132 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'UpdateFragmentRequest.fromFragment', Object{id: 17, version: 4, marqueeId: null}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 132 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'TextPanelComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 133 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'TextPanelComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 134 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'TextPanelComponent: we are leaving fragment.id=undefined'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 134 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'TextPanelComponent.onSave', Object{fragmentId: 17, version: 4}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 134 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'TextPanelComponent: we are leaving fragment.id=17'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 134 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'TextPanelComponent.onSave: success (optimistic accepted)'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 134 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'TextPanelComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 134 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'TextPanelComponent.destroy: unlockFragment$, id=18'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 134 of 224 SUCCESS (0 secs / 0.443 secs)
+LOG: 'TextPanelComponent.editDate'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 135 of 224 SUCCESS (0 secs / 0.444 secs)
+LOG: 'TextPanelComponent.onDatePickerClosed'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 135 of 224 SUCCESS (0 secs / 0.444 secs)
+LOG: 'TextPanelComponent.date picker closed without edits: unlockFragment$, id=17'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 135 of 224 SUCCESS (0 secs / 0.444 secs)
+LOG: 'TextPanelComponent.onSave', Object{fragmentId: 17, version: 4}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 136 of 224 SUCCESS (0 secs / 0.445 secs)
+LOG: 'UpdateFragmentRequest.fromFragment', Object{id: 17, version: 4, marqueeId: null}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 136 of 224 SUCCESS (0 secs / 0.445 secs)
+LOG: 'TextPanelComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 137 of 224 SUCCESS (0 secs / 0.445 secs)
+LOG: 'TextPanelComponent: we are leaving fragment.id=undefined'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 137 of 224 SUCCESS (0 secs / 0.445 secs)
+LOG: 'TextPanelComponent.onSave', Object{fragmentId: 17, version: 4}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 137 of 224 SUCCESS (0 secs / 0.445 secs)
+LOG: 'TextPanelComponent.onSave: success (optimistic accepted)'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 137 of 224 SUCCESS (0 secs / 0.445 secs)
+LOG: 'TextPanelComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 137 of 224 SUCCESS (0 secs / 0.445 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 142 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 142 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'addImageFragment', correlationId: '4b128d81-f79f-421b-8625-11b7f3de35b0', replyTopic: 'diaries/rpc/image-fragment-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 142 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 142 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'OK'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 142 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'addImageFragment', correlationId: 'f5016235-67cc-4641-a148-4cbf40a6cec5', replyTopic: 'diaries/rpc/image-fragment-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'synthetic 401'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+WARN: 'RpcService: access token missing/rejected; refreshing and retrying once'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: 'RpcService.refreshAccessToken$: refreshing access token'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'refreshToken', correlationId: '651a5900-21bc-4bd8-ba26-7e1336678df3', replyTopic: 'diaries/rpc/image-fragment-client/response', hasAccessToken: false}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'OK'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: 'RpcService.refreshAccessToken$: received new access token'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'addImageFragment', correlationId: '5b9b2c7a-c955-464a-93c0-9e5328e9c0d2', replyTopic: 'diaries/rpc/image-fragment-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 401, message: 'synthetic 401'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+WARN: 'RpcService: refresh/retry failed; redirecting to signin', RpcError: Status 401: synthetic 401
+RpcError: Status 401: synthetic 401
+    at RpcService2.rpcDispatcher (http://localhost:9876/base/src/app/mqtt/rpc.service.ts:120:17)
+    at http://localhost:9876/base/src/app/mqtt/image-fragment-rpc.spec.ts:53:30
+    at _ZoneDelegate.invokeTask (http://localhost:9876/base/node_modules/zone.js/fesm2015/zone.js:431:33)
+    at _ProxyZoneSpec.onInvokeTask (http://localhost:9876/base/node_modules/zone.js/fesm2015/zone-testing.js:2163:39)
+    at _ZoneDelegate.invokeTask (http://localhost:9876/base/node_modules/zone.js/fesm2015/zone.js:430:38)
+    at ZoneImpl.runTask (http://localhost:9876/base/node_modules/zone.js/fesm2015/zone.js:161:47)
+    at drainMicroTaskQueue (http://localhost:9876/base/node_modules/zone.js/fesm2015/zone.js:612:35)
+Chrome Headless 154.0.0.0 (Windows 10): Executed 143 of 224 SUCCESS (0 secs / 0.45 secs)
+WARN: 'RpcService: refresh/retry failed; redirecting to signin', RpcError: Status 401: synthetic 401
+RpcError: Status 401: synthetic 401
+    at RpcService2.rpcDispatcher (http://localhost:9876/base/src/app/mqtt/rpc.service.ts:120:17)
+    at http://localhost:9876/base/src/app/mqtt/image-fragment-rpc.spec.ts:53:30
+    at _ZoneDelegate.invokeTask (http://localhost:9876/base/node_modules/zone.js/fesm2015/zone.js:431:33)
+    at _ProxyZoneSpec.onInvokeTask (http://localhost:9876/base/node_modules/zone.js/fesm2015/zone-testing.js:2163:39)
+    at _ZoneDelegate.invokeTask (http://localhost:9876/base/node_modules/zone.js/fesm2015/zone.js:430:38)
+    at ZoneImpl.runTask (http://localhost:9876/base/node_modules/zone.js/fesm2015/zone.js:161:47)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 144 of 224 SUCCESS (0 secs / 0.457 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 144 of 224 SUCCESS (0 secs / 0.457 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'updateFragment', correlationId: '66bd67b8-5165-4286-88bd-c8d50739a2a2', replyTopic: 'diaries/rpc/image-fragment-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 144 of 224 SUCCESS (0 secs / 0.457 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 144 of 224 SUCCESS (0 secs / 0.457 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'OK'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 144 of 224 SUCCESS (0 secs / 0.457 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 145 of 224 SUCCESS (0 secs / 0.458 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 145 of 224 SUCCESS (0 secs / 0.458 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'updateFragment', correlationId: 'acd92cf1-4fcd-445c-91b7-9c318182543c', replyTopic: 'diaries/rpc/image-fragment-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 145 of 224 SUCCESS (0 secs / 0.458 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 145 of 224 SUCCESS (0 secs / 0.458 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'OK'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 145 of 224 SUCCESS (0 secs / 0.458 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 146 of 224 SUCCESS (0 secs / 0.458 secs)
+LOG: 'UpdateFragmentRequest.fromFragment', Object{id: 84, version: 7, marqueeId: null}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 146 of 224 SUCCESS (0 secs / 0.458 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 146 of 224 SUCCESS (0 secs / 0.458 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'updateFragment', correlationId: '00a4efec-03ca-481d-a30d-02c5debfc858', replyTopic: 'diaries/rpc/image-fragment-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 146 of 224 SUCCESS (0 secs / 0.458 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 146 of 224 SUCCESS (0 secs / 0.458 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'OK'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 146 of 224 SUCCESS (0 secs / 0.458 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 147 of 224 SUCCESS (0 secs / 0.459 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 147 of 224 SUCCESS (0 secs / 0.459 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'addImageFragment', correlationId: '3124228b-cded-47c1-bd99-cd3538b4b632', replyTopic: 'diaries/rpc/image-fragment-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 147 of 224 SUCCESS (0 secs / 0.459 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 147 of 224 SUCCESS (0 secs / 0.459 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'OK'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 147 of 224 SUCCESS (0 secs / 0.459 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 148 of 224 SUCCESS (0 secs / 0.459 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 148 of 224 SUCCESS (0 secs / 0.459 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'addFragment', correlationId: '43f95453-6317-419d-8080-cf729b2a7cb7', replyTopic: 'diaries/rpc/image-fragment-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 148 of 224 SUCCESS (0 secs / 0.459 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 148 of 224 SUCCESS (0 secs / 0.459 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'OK'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 148 of 224 SUCCESS (0 secs / 0.459 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 149 of 224 SUCCESS (0 secs / 0.459 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 149 of 224 SUCCESS (0 secs / 0.459 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'addImageFragment', correlationId: '14357e4c-9c9d-452e-a31a-5e46637ce334', replyTopic: 'diaries/rpc/image-fragment-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 149 of 224 SUCCESS (0 secs / 0.459 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 149 of 224 SUCCESS (0 secs / 0.459 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 500, message: 'synthetic 500'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 149 of 224 SUCCESS (0 secs / 0.459 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 150 of 224 SUCCESS (0 secs / 0.46 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 150 of 224 SUCCESS (0 secs / 0.46 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'addImageFragment', correlationId: 'cd4c80c4-27e7-4e80-94a0-79848036c3ea', replyTopic: 'diaries/rpc/image-fragment-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 150 of 224 SUCCESS (0 secs / 0.46 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 150 of 224 SUCCESS (0 secs / 0.46 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 400, message: 'synthetic 400'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 150 of 224 SUCCESS (0 secs / 0.46 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 151 of 224 SUCCESS (0 secs / 0.46 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 151 of 224 SUCCESS (0 secs / 0.46 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'addImageFragment', correlationId: '7c1849f7-ebd7-447b-a5f1-cd6c4db38779', replyTopic: 'diaries/rpc/image-fragment-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 151 of 224 SUCCESS (0 secs / 0.46 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 151 of 224 SUCCESS (0 secs / 0.46 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 403, message: 'synthetic 403'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 151 of 224 SUCCESS (0 secs / 0.46 secs)
+LOG: 'RpcService.ensureListener: ListenerCount after attaching dispatcher:', 1
+Chrome Headless 154.0.0.0 (Windows 10): Executed 152 of 224 SUCCESS (0 secs / 0.46 secs)
+LOG: 'RpcService.rpcRequest'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 152 of 224 SUCCESS (0 secs / 0.46 secs)
+LOG: 'RpcService.rpcRequest: sending', Object{requestTopic: 'diaries/rpc/request', function: 'addImageFragment', correlationId: 'e49fbe16-c250-42f5-9253-9efafa5d9673', replyTopic: 'diaries/rpc/image-fragment-client/response', hasAccessToken: true}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 152 of 224 SUCCESS (0 secs / 0.46 secs)
+LOG: '[rpcRequest] Publish succeeded'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 152 of 224 SUCCESS (0 secs / 0.46 secs)
+LOG: 'rpcDispatcher: received status:', Object{code: 200, message: 'OK'}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 152 of 224 SUCCESS (0 secs / 0.46 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 155 of 224 SUCCESS (0 secs / 0.461 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 173 of 224 SUCCESS (0 secs / 0.475 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 174 of 224 SUCCESS (0 secs / 0.476 secs)
+LOG: 'AlertComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 175 of 224 SUCCESS (0 secs / 0.478 secs)
+LOG: 'AlertComponent.getAlert: id: 1'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 175 of 224 SUCCESS (0 secs / 0.478 secs)
+LOG: 'AlertComponent.getAlert - next: alert: {"id":0,"type":3,"message":"Check this notice","autoClose":false}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 175 of 224 SUCCESS (0 secs / 0.478 secs)
+LOG: 'AlertComponent.getAlert - complete'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 175 of 224 SUCCESS (0 secs / 0.478 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 175 of 224 SUCCESS (0 secs / 0.478 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 175 of 224 SUCCESS (0 secs / 0.478 secs)
+LOG: 'AlertComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 176 of 224 SUCCESS (0 secs / 0.483 secs)
+LOG: 'AlertComponent.getAlert: id: 1'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 176 of 224 SUCCESS (0 secs / 0.483 secs)
+LOG: 'AlertComponent.getAlert - next: alert: {"id":0,"type":3,"message":"Check this notice","autoClose":false}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 176 of 224 SUCCESS (0 secs / 0.483 secs)
+LOG: 'AlertComponent.getAlert - complete'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 176 of 224 SUCCESS (0 secs / 0.483 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 176 of 224 SUCCESS (0 secs / 0.483 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 176 of 224 SUCCESS (0 secs / 0.483 secs)
+LOG: 'PagefooterComponent.onUpClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 178 of 224 SUCCESS (0 secs / 0.486 secs)
+LOG: 'PagefooterComponent.onBackClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 178 of 224 SUCCESS (0 secs / 0.486 secs)
+LOG: 'PagefooterComponent.onForwardClick'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 178 of 224 SUCCESS (0 secs / 0.486 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 178 of 224 SUCCESS (0 secs / 0.486 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 179 of 224 SUCCESS (0 secs / 0.489 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 180 of 224 SUCCESS (0 secs / 0.49 secs)
+LOG: 'ImageViewerComponent.fitPage', Object{reason: 'user', pageId: 3, scaleBefore: 1.2, offsetXBefore: -120, offsetYBefore: -180}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 182 of 224 SUCCESS (0 secs / 0.492 secs)
+LOG: 'DiariesComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 186 of 224 SUCCESS (0 secs / 0.492 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 186 of 224 SUCCESS (0 secs / 0.492 secs)
+LOG: 'DiariesComponent.selectItem: id: 7'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 186 of 224 SUCCESS (0 secs / 0.492 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 186 of 224 SUCCESS (0 secs / 0.492 secs)
+LOG: 'DiariesComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 186 of 224 SUCCESS (0 secs / 0.492 secs)
+LOG: 'DiariesComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 187 of 224 SUCCESS (0 secs / 0.498 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 187 of 224 SUCCESS (0 secs / 0.498 secs)
+LOG: 'UpdateDiary succeeded: n: 1'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 187 of 224 SUCCESS (0 secs / 0.498 secs)
+LOG: 'NormaliseDiaries succeeded: n: 1'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 187 of 224 SUCCESS (0 secs / 0.498 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 187 of 224 SUCCESS (0 secs / 0.498 secs)
+LOG: 'DiariesComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 187 of 224 SUCCESS (0 secs / 0.498 secs)
+LOG: 'DiariesComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 188 of 224 SUCCESS (0 secs / 0.5 secs)
+LOG: 'AlertsComponent.getAlerts: complete'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 188 of 224 SUCCESS (0 secs / 0.5 secs)
+LOG: 'AlertsComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 188 of 224 SUCCESS (0 secs / 0.5 secs)
+LOG: 'DiariesComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 188 of 224 SUCCESS (0 secs / 0.5 secs)
+LOG: 'PageheaderComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 189 of 224 SUCCESS (0 secs / 0.503 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 189 of 224 SUCCESS (0 secs / 0.503 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":22,"diaryId":11}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 189 of 224 SUCCESS (0 secs / 0.503 secs)
+LOG: 'Create Marquee button clicked'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 189 of 224 SUCCESS (0 secs / 0.503 secs)
+LOG: 'Edit Marquee button clicked'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 189 of 224 SUCCESS (0 secs / 0.503 secs)
+LOG: 'Delete Marquee button clicked'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 189 of 224 SUCCESS (0 secs / 0.503 secs)
+LOG: 'Add button clicked'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 189 of 224 SUCCESS (0 secs / 0.503 secs)
+LOG: 'Add Image Fragment button clicked'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 189 of 224 SUCCESS (0 secs / 0.503 secs)
+LOG: 'Delete button clicked'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 189 of 224 SUCCESS (0 secs / 0.503 secs)
+LOG: 'List Files button clicked'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 189 of 224 SUCCESS (0 secs / 0.503 secs)
+LOG: 'PageheaderComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 190 of 224 SUCCESS (0 secs / 0.509 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 190 of 224 SUCCESS (0 secs / 0.509 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":22,"diaryId":11}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 190 of 224 SUCCESS (0 secs / 0.509 secs)
+LOG: 'PageheaderComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 191 of 224 SUCCESS (0 secs / 0.512 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 191 of 224 SUCCESS (0 secs / 0.512 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":22,"diaryId":11}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 191 of 224 SUCCESS (0 secs / 0.512 secs)
+LOG: 'PageheaderComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 192 of 224 SUCCESS (0 secs / 0.514 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 192 of 224 SUCCESS (0 secs / 0.514 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":22,"diaryId":11}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 192 of 224 SUCCESS (0 secs / 0.514 secs)
+LOG: 'Upload button clicked'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 192 of 224 SUCCESS (0 secs / 0.514 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":12,"name":"diary-1831"}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 192 of 224 SUCCESS (0 secs / 0.514 secs)
+LOG: 'PageheaderComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 193 of 224 SUCCESS (0 secs / 0.516 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 193 of 224 SUCCESS (0 secs / 0.516 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":22,"diaryId":11}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 193 of 224 SUCCESS (0 secs / 0.516 secs)
+LOG: 'PageheaderComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 194 of 224 SUCCESS (0 secs / 0.518 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 194 of 224 SUCCESS (0 secs / 0.518 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":22,"diaryId":11}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 194 of 224 SUCCESS (0 secs / 0.518 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: null'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 194 of 224 SUCCESS (0 secs / 0.518 secs)
+LOG: 'PageheaderComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 195 of 224 SUCCESS (0 secs / 0.52 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 195 of 224 SUCCESS (0 secs / 0.52 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":22,"diaryId":11}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 195 of 224 SUCCESS (0 secs / 0.52 secs)
+LOG: 'PageheaderComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 196 of 224 SUCCESS (0 secs / 0.522 secs)
+LOG: 'PageheaderComponent.ngOnInit: diary: {"id":11,"name":"diary-1830"}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 196 of 224 SUCCESS (0 secs / 0.522 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":22,"diaryId":11}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 196 of 224 SUCCESS (0 secs / 0.522 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":23,"diaryId":11}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 196 of 224 SUCCESS (0 secs / 0.522 secs)
+LOG: 'PageheaderComponent.ngOnInit: page: {"id":22,"diaryId":11}'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 196 of 224 SUCCESS (0 secs / 0.522 secs)
+LOG: 'ConfigService.constructor'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 208 of 224 SUCCESS (0 secs / 0.526 secs)
+LOG: 'DayviewComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 209 of 224 SUCCESS (0 secs / 0.526 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+Chrome Headless 154.0.0.0 (Windows 10): Executed 209 of 224 SUCCESS (0 secs / 0.526 secs)
+LOG: 'DayviewComponent.goToFragment: fragmentId: 84'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 209 of 224 SUCCESS (0 secs / 0.526 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 209 of 224 SUCCESS (0 secs / 0.526 secs)
+LOG: 'DayviewComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 210 of 224 SUCCESS (0 secs / 0.533 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+Chrome Headless 154.0.0.0 (Windows 10): Executed 210 of 224 SUCCESS (0 secs / 0.533 secs)
+LOG: 'DayviewComponent.goToFragment: fragmentId: 7'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 210 of 224 SUCCESS (0 secs / 0.533 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 210 of 224 SUCCESS (0 secs / 0.533 secs)
+LOG: 'DayviewComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 211 of 224 SUCCESS (0 secs / 0.534 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+Chrome Headless 154.0.0.0 (Windows 10): Executed 211 of 224 SUCCESS (0 secs / 0.534 secs)
+LOG: 'DayviewComponent.goToFragment: fragmentId: 7'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 211 of 224 SUCCESS (0 secs / 0.534 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 211 of 224 SUCCESS (0 secs / 0.534 secs)
+LOG: 'DayviewComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 212 of 224 SUCCESS (0 secs / 0.535 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+Chrome Headless 154.0.0.0 (Windows 10): Executed 212 of 224 SUCCESS (0 secs / 0.535 secs)
+LOG: 'DayviewComponent.handleError: RPC error: Error: update failed'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 212 of 224 SUCCESS (0 secs / 0.535 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 212 of 224 SUCCESS (0 secs / 0.535 secs)
+LOG: 'DayviewComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 213 of 224 SUCCESS (0 secs / 0.537 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+Chrome Headless 154.0.0.0 (Windows 10): Executed 213 of 224 SUCCESS (0 secs / 0.537 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', [3, 1, 2]
+Chrome Headless 154.0.0.0 (Windows 10): Executed 213 of 224 SUCCESS (0 secs / 0.537 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 213 of 224 SUCCESS (0 secs / 0.537 secs)
+LOG: 'DayviewComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 214 of 224 SUCCESS (0 secs / 0.539 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+Chrome Headless 154.0.0.0 (Windows 10): Executed 214 of 224 SUCCESS (0 secs / 0.539 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', [1]
+Chrome Headless 154.0.0.0 (Windows 10): Executed 214 of 224 SUCCESS (0 secs / 0.539 secs)
+LOG: 'DayviewComponent.goToFragment: fragmentId: 1'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 214 of 224 SUCCESS (0 secs / 0.539 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 214 of 224 SUCCESS (0 secs / 0.539 secs)
+LOG: 'DayviewComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 215 of 224 SUCCESS (0 secs / 0.541 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+Chrome Headless 154.0.0.0 (Windows 10): Executed 215 of 224 SUCCESS (0 secs / 0.541 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', [7]
+Chrome Headless 154.0.0.0 (Windows 10): Executed 215 of 224 SUCCESS (0 secs / 0.541 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 215 of 224 SUCCESS (0 secs / 0.541 secs)
+LOG: 'DayviewComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 216 of 224 SUCCESS (0 secs / 0.542 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+Chrome Headless 154.0.0.0 (Windows 10): Executed 216 of 224 SUCCESS (0 secs / 0.542 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', [1, 2]
+Chrome Headless 154.0.0.0 (Windows 10): Executed 216 of 224 SUCCESS (0 secs / 0.542 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 216 of 224 SUCCESS (0 secs / 0.542 secs)
+LOG: 'DayviewComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 217 of 224 SUCCESS (0 secs / 0.544 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+Chrome Headless 154.0.0.0 (Windows 10): Executed 217 of 224 SUCCESS (0 secs / 0.544 secs)
+LOG: 'DayviewComponent.drop: UpdateFragment succeeded: n: 3'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 217 of 224 SUCCESS (0 secs / 0.544 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 217 of 224 SUCCESS (0 secs / 0.544 secs)
+LOG: 'DayviewComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 218 of 224 SUCCESS (0 secs / 0.545 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+Chrome Headless 154.0.0.0 (Windows 10): Executed 218 of 224 SUCCESS (0 secs / 0.545 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', [1]
+Chrome Headless 154.0.0.0 (Windows 10): Executed 218 of 224 SUCCESS (0 secs / 0.545 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 218 of 224 SUCCESS (0 secs / 0.545 secs)
+LOG: 'DayviewComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 219 of 224 SUCCESS (0 secs / 0.547 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+Chrome Headless 154.0.0.0 (Windows 10): Executed 219 of 224 SUCCESS (0 secs / 0.547 secs)
+LOG: 'DayviewComponent.drop: UpdateFragment succeeded: n: 3'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 219 of 224 SUCCESS (0 secs / 0.547 secs)
+LOG: 'UpdateFragmentRequest.fromFragment', Object{id: 3, version: 0, marqueeId: null}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 219 of 224 SUCCESS (0 secs / 0.547 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 219 of 224 SUCCESS (0 secs / 0.547 secs)
+LOG: 'DayviewComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 220 of 224 SUCCESS (0 secs / 0.548 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+Chrome Headless 154.0.0.0 (Windows 10): Executed 220 of 224 SUCCESS (0 secs / 0.548 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', [1]
+Chrome Headless 154.0.0.0 (Windows 10): Executed 220 of 224 SUCCESS (0 secs / 0.548 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 220 of 224 SUCCESS (0 secs / 0.548 secs)
+LOG: 'DayviewComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 221 of 224 SUCCESS (0 secs / 0.549 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+Chrome Headless 154.0.0.0 (Windows 10): Executed 221 of 224 SUCCESS (0 secs / 0.549 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', [1, 2, 3]
+Chrome Headless 154.0.0.0 (Windows 10): Executed 221 of 224 SUCCESS (0 secs / 0.549 secs)
+LOG: 'DayviewComponent.drop: UpdateFragment succeeded: n: 3'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 221 of 224 SUCCESS (0 secs / 0.549 secs)
+LOG: 'UpdateFragmentRequest.fromFragment', Object{id: 3, version: 8, marqueeId: null}
+Chrome Headless 154.0.0.0 (Windows 10): Executed 221 of 224 SUCCESS (0 secs / 0.549 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', [3, 1, 2]
+Chrome Headless 154.0.0.0 (Windows 10): Executed 221 of 224 SUCCESS (0 secs / 0.549 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 221 of 224 SUCCESS (0 secs / 0.549 secs)
+LOG: 'DayviewComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 222 of 224 SUCCESS (0 secs / 0.554 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+Chrome Headless 154.0.0.0 (Windows 10): Executed 222 of 224 SUCCESS (0 secs / 0.554 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 222 of 224 SUCCESS (0 secs / 0.554 secs)
+LOG: 'DayviewComponent.ngOnInit'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 223 of 224 SUCCESS (0 secs / 0.555 secs)
+LOG: 'DayviewComponent.<subscribe fragments>: fragments:', []
+Chrome Headless 154.0.0.0 (Windows 10): Executed 223 of 224 SUCCESS (0 secs / 0.555 secs)
+LOG: 'DayviewComponent.ngOnDestroy'
+Chrome Headless 154.0.0.0 (Windows 10): Executed 223 of 224 SUCCESS (0 secs / 0.555 secs)
+Chrome Headless 154.0.0.0 (Windows 10): Executed 224 of 224 SUCCESS (0.624 secs / 0.556 secs)
+TOTAL: 224 SUCCESS
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client>

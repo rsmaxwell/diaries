@@ -12,12 +12,13 @@ if (!(Test-Path -LiteralPath $backup -PathType Leaf)) { throw 'BackupFile must b
 if (Test-Path -LiteralPath $EvidenceDirectory) { throw 'Choose a new evidence directory.' }
 $evidence = (New-Item -ItemType Directory -Path $EvidenceDirectory).FullName
 $migration = Join-Path $repository 'change-control/complete/0024-FEAT - introduce reusable persistent Image catalogue/migration'
+$imageFragmentMigration = Join-Path $repository 'change-control/complete/0025-FEAT - add responder ImageFragment persistence and RPC/migration'
 $runId = [guid]::NewGuid().ToString('N').Substring(0,12)
 $sqlContainer = "diaries-0024-phase9-$runId-sql-test"
 $dbContainer = "diaries-0024-phase9-$runId-db-test"
 $brokerContainer = "diaries-0024-phase9-$runId-mqtt-test"
 $owned = [Collections.Generic.List[string]]::new()
-$environmentNames = @('DIARIES_IMAGE_REPOSITORY_TEST_URL','DIARIES_IMAGE_WIRING_TEST_URL','DIARIES_IMAGE_MQTT_TEST_URL','CHROME_BIN')
+$environmentNames = @('DIARIES_IMAGE_REPOSITORY_TEST_URL','DIARIES_IMAGE_WIRING_TEST_URL','DIARIES_IMAGE_MQTT_TEST_URL','DIARIES_BROWSER_TEST_CLIENT','DIARIES_BROWSER_TEST_EVIDENCE','DIARIES_BROWSER_TEST_MQTT','CHROME_BIN')
 $savedEnvironment = @{}
 foreach ($name in $environmentNames) { $savedEnvironment[$name] = [Environment]::GetEnvironmentVariable($name,'Process') }
 $result = [ordered]@{ phase=9; startedAtUtc=[DateTime]::UtcNow.ToString('o'); status='RUNNING'; backupFilename=[IO.Path]::GetFileName($backup); backupSha256=(Get-FileHash -LiteralPath $backup).Hash.ToLowerInvariant(); productionOrDevelopmentDatabaseUsed=$false; productionFilesRootUsed=$false }
@@ -68,13 +69,14 @@ try {
     Write-Host 'Starting disposable SQL, JPA and MQTT fixtures.'
     Start-Fixture $sqlContainer @('--network','none','--tmpfs','/var/lib/postgresql','-e','POSTGRES_USER=diaries','-e','POSTGRES_DB=diaries','-e','POSTGRES_HOST_AUTH_METHOD=trust','postgres:18-alpine')
     Start-Fixture $dbContainer @('--tmpfs','/var/lib/postgresql','-e','POSTGRES_USER=diaries','-e','POSTGRES_DB=image_repository_test','-e','POSTGRES_HOST_AUTH_METHOD=trust','-p','127.0.0.1::5432','postgres:18-alpine')
-    $brokerBase = Join-Path $repository 'change-control/complete/0024-FEAT - introduce reusable persistent Image catalogue/evidence/phase-04-catalogue/mosquitto.conf'
-    $queueSetting = (Select-String -LiteralPath (Join-Path $repository 'config/mosquitto/mosquitto.conf') -Pattern '^max_queued_messages\s+').Line
-    if (!$queueSetting) { throw 'Application broker queue setting missing; review fixture parity.' }
+    $brokerBase = Join-Path $repository 'scripts/windows/validation/image-catalogue-test-mosquitto.conf'
+    if (!(Test-Path -LiteralPath $brokerBase -PathType Leaf)) { throw "Permanent MQTT fixture config missing: $brokerBase" }
     $brokerConfig = Join-Path $evidence 'fixture-mosquitto.conf'
-    [IO.File]::WriteAllText($brokerConfig,(Get-Content -LiteralPath $brokerBase -Raw)+"`n"+$queueSetting+"`n")
-    $acl = Join-Path $repository 'config/mosquitto/aclfile.txt'
-    Start-Fixture $brokerContainer @('-p','127.0.0.1::1883','--mount',"type=bind,source=$brokerConfig,target=/mosquitto/config/mosquitto.conf,readonly",'--mount',"type=bind,source=$acl,target=/mosquitto/config/aclfile.txt,readonly",'--entrypoint','sh','eclipse-mosquitto:2.0.22','-c','mosquitto_passwd -b -c /tmp/phase4-passwords diaries-responder phase4-fixture && chown mosquitto:mosquitto /tmp/phase4-passwords && exec mosquitto -c /mosquitto/config/mosquitto.conf')
+    Copy-Item -LiteralPath $brokerBase -Destination $brokerConfig
+    # This disposable fixture intentionally accepts anonymous clients so the browser-level
+    # Angular test and responder MQTT integration tests exercise the same broker. Production
+    # authentication/ACL policy is deliberately outside this functional fixture.
+    Start-Fixture $brokerContainer @('-p','127.0.0.1::1883','-p','127.0.0.1::9001','--mount',"type=bind,source=$brokerConfig,target=/mosquitto/config/mosquitto.conf,readonly",'--entrypoint','mosquitto','eclipse-mosquitto:2.0.22','-c','/mosquitto/config/mosquitto.conf')
     Wait-Postgres $sqlContainer
     Wait-Postgres $dbContainer
     Write-Host 'Running SQL preflight, schema, postflight and negative cases.'
@@ -87,12 +89,32 @@ try {
     foreach ($database in @('image_repository_test','image_wiring_test')) {
         $null = Invoke-Checked docker @('exec',$dbContainer,'psql','-X','-U','diaries','-d',$database,'-v','ON_ERROR_STOP=1','-f','/tmp/schema.sql')
     }
+
+    # The full responder EntityManagerFactory validates the current Fragment mapping, which
+    # includes the nullable fragment.image_id reference introduced by 0025. The frozen 0024
+    # baseline intentionally predates that migration, so advance only the restored wiring
+    # fixture to the current post-0025 schema before running the full-JPA integration tests.
+    # image_repository_test remains an Image-only fixture and therefore needs only 0024.
+    $null = Invoke-Checked docker @('cp',$imageFragmentMigration,"${dbContainer}:/tmp/image-fragment-migration")
+    $null = Invoke-Checked docker @(
+        'exec',$dbContainer,'psql','-X','-U','diaries','-d','image_wiring_test','-v','ON_ERROR_STOP=1',
+        '-f','/tmp/image-fragment-migration/001-preflight.sql',
+        '-f','/tmp/image-fragment-migration/002-add-fragment-image-reference.sql',
+        '-f','/tmp/image-fragment-migration/003-postflight.sql'
+    ) 'image-fragment-schema.log'
+
     $dbBinding = (Invoke-Checked docker @('port',$dbContainer,'5432') | Out-String).Trim()
     $brokerBinding = (Invoke-Checked docker @('port',$brokerContainer,'1883') | Out-String).Trim()
-    if ($dbBinding -notmatch '^127\.0\.0\.1:[0-9]+$' -or $brokerBinding -notmatch '^127\.0\.0\.1:[0-9]+$') { throw 'Fixture bindings must be loopback only.' }
+    $browserBinding = (Invoke-Checked docker @('port',$brokerContainer,'9001') | Out-String).Trim()
+    if ($dbBinding -notmatch '^127\.0\.0\.1:[0-9]+$' -or $brokerBinding -notmatch '^127\.0\.0\.1:[0-9]+$' -or $browserBinding -notmatch '^127\.0\.0\.1:[0-9]+$') { throw 'Fixture bindings must be loopback only.' }
     $env:DIARIES_IMAGE_REPOSITORY_TEST_URL = "jdbc:postgresql://$dbBinding/image_repository_test"
     $env:DIARIES_IMAGE_WIRING_TEST_URL = "jdbc:postgresql://$dbBinding/image_wiring_test"
     $env:DIARIES_IMAGE_MQTT_TEST_URL = "tcp://$brokerBinding"
+    $env:DIARIES_BROWSER_TEST_CLIENT = Join-Path $repository 'diaries-client'
+    $browserEvidence = Join-Path $evidence 'browser-e2e'
+    New-Item -ItemType Directory -Path $browserEvidence -Force | Out-Null
+    $env:DIARIES_BROWSER_TEST_EVIDENCE = $browserEvidence
+    $env:DIARIES_BROWSER_TEST_MQTT = "ws://$browserBinding"
     Write-Host 'Running responder/web tests and builds with database and MQTT integration enabled.'
     $null = Invoke-Checked (Join-Path $repository 'gradlew.bat') @('-p',$repository,':diaries-responder:test',':diaries-responder:build',':diaries-web:test',':diaries-web:build','--rerun-tasks','--console=plain') 'java-test-build.log'
     $result.responder = Read-TestResults 'diaries-responder'

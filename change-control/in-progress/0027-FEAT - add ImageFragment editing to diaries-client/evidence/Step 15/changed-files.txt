@@ -1,0 +1,27 @@
+Diaries repository
+------------------
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/IMPLEMENTATION-STEPS.md
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/README.md
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 14/tooling/step14-rollout-rehearsal.ps1
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 15/README.md
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 15/RUNBOOK.md
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 15/CHECKLIST.md
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 15/MANUAL-EVIDENCE.md
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 15/tooling/step15-common.ps1
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 15/tooling/step15-begin.ps1
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 15/tooling/step15-preflight.ps1
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 15/tooling/step15-capture-production.ps1
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 15/tooling/step15-finalize.ps1
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 15/validate-step15-tooling.py
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 15/changed-files.txt
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 15/source-files.sha256
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 15/validation.txt
+
+Playbooks repository
+--------------------
+roles/diaries/README.md
+roles/diaries/defaults/main.yaml
+roles/diaries/tasks/main.yaml
+roles/diaries/tasks/copy.yaml
+roles/diaries/templates/config/responder/responder.json.j2
+roles/diaries/tests/verify-production-deployment-contract.py

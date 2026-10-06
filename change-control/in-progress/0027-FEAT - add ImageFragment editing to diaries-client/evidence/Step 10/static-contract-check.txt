@@ -1,0 +1,26 @@
+PASS 01: day view retains one ordered list
+PASS 02: day view sorts all Fragment types by sequence
+PASS 03: day view renders explicit type badge
+PASS 04: legacy/null type remains MARQUEE fallback
+PASS 05: IMAGE entries expose Image-reference state
+PASS 06: empty state no longer requires a Marquee
+PASS 07: navigation sets selected Fragment
+PASS 08: navigation clears Marquee selection
+PASS 09: navigation uses Fragment authoritative pageId
+PASS 10: IMAGE navigation regression exists
+PASS 11: mixed presentation regression exists
+PASS 12: Fragment deletion calls deleteFragment
+PASS 13: Fragment deletion does not call deleteImage
+PASS 14: IMAGE Fragment deletion states Image/file retention
+PASS 15: Ctrl+Delete is not gated by Marquee presence
+PASS 16: IMAGE delete regression asserts no deleteImage call
+PASS 17: Image reference panel visibly explains delete semantics
+PASS 18: Files dialog distinguishes referenced 409 conflict
+PASS 19: Files dialog distinguishes missing-file 409 conflict
+PASS 20: Files dialog has referenced-conflict regression
+PASS 21: responder maps ImageReferencedException to conflict
+PASS 22: live responder integration asserts deleteImage 409 while referenced
+PASS 23: live responder integration deletes Fragment while retaining Image
+PASS 24: live responder integration deletes Image after reference removal
+PASS 25: multi-reference integration keeps 409 until final reference removed
+PASS: 25 of 25 Step 10 static contract checks

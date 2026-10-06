@@ -1,0 +1,11 @@
+Step 13 redacted RPC diagnostic capture - package validation
+Date: 2026-10-05
+
+PASS: step13-rpc-diagnostics.ts compiled with TypeScript 5.8.3 using strict/noImplicitReturns/noPropertyAccessFromIndexSignature and DOM ES2022 libs.
+PASS: TypeScript transpile/parse check passed for rpc.service.ts, step13-rpc-diagnostics.ts and step13-rpc-diagnostics.spec.ts.
+PASS: runtime harness proved request/reply correlation, positive and explicit-null imageId state, committed addImageFragment reply summarisation, and redaction of access-token-like values and raw transcription text.
+PASS: validate-step13-tooling.py reports Step 13 tooling, redacted RPC diagnostics and client Image-topic ACL present.
+PASS: diagnostic capture is instantiated only when Angular isDevMode() is true; capture is off by default and must be explicitly enabled in sessionStorage through the browser helper.
+PASS: step13-import-rpc-diagnostics.ps1 uses allow-listed evidence requirements and rejects forbidden authentication/password keys or a raw text field before importing.
+
+NOT RUN HERE: Angular/Karma suite. The supplied source bundle does not include diaries-client/node_modules. Run the focused/new spec or normal Angular suite on the development workstation after applying the drop-in.

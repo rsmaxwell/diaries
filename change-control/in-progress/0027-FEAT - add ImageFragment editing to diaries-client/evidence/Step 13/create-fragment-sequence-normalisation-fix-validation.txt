@@ -1,0 +1,61 @@
+Step 13 create-time sequence normalisation correction validation
+Date: 2026-10-05
+
+Java parser-only syntax validation (JavacTask.parse):
+- production create/normalisation sources: previously PARSE OK
+- FragmentLifecycleContractTest.java after focused-test alignment: PARSE OK
+
+Development focused-test attempt after the create-normalisation production fix:
+
+  .\gradlew.bat :diaries-responder:test `
+    --tests com.rsmaxwell.diaries.responder.handlers.FragmentLifecycleContractTest `
+    --tests com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest `
+    --tests com.rsmaxwell.diaries.responder.handlers.AddFragmentContractTest `
+    --no-daemon
+
+Observed result:
+- 15 tests completed, 1 failed
+- failing test: FragmentLifecycleContractTest.addingMiddleMarqueeFragmentNormalisesAndPublishesSurvivingChronology()
+- failure occurred at the AddFragment.handleRequest(...) invocation before the normalisation assertions
+
+Root cause of that focused-test failure:
+- the new MARQUEE lifecycle test passed sequence as String "2.5000"
+- the established AddFragment handler uses mqtt-rpc Utilities.getBigDecimal(...), which requires a Number
+- therefore AddFragment correctly rejected the test argument as bad input
+- this does not identify a production create-normalisation failure
+
+Correction:
+- MARQUEE lifecycle test now passes new BigDecimal("2.5000")
+- production source is unchanged by this test alignment
+- IMAGE lifecycle test keeps its String value because AddImageFragment deliberately accepts Number or String
+
+Required rerun on the development workstation:
+
+  .\gradlew.bat :diaries-responder:test `
+    --tests com.rsmaxwell.diaries.responder.handlers.FragmentLifecycleContractTest `
+    --tests com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest `
+    --tests com.rsmaxwell.diaries.responder.handlers.AddFragmentContractTest `
+    --no-daemon
+
+Expected result before resuming live Phase B: BUILD SUCCESSFUL.
+
+Development workstation rerun — 2026-10-05
+
+Command:
+
+  .\gradlew.bat :diaries-responder:test `
+    --tests com.rsmaxwell.diaries.responder.handlers.FragmentLifecycleContractTest `
+    --tests com.rsmaxwell.diaries.responder.handlers.AddImageFragmentTest `
+    --tests com.rsmaxwell.diaries.responder.handlers.AddFragmentContractTest `
+    --no-daemon
+
+Observed result:
+- BUILD SUCCESSFUL in 5s
+- 6 actionable tasks: 3 executed, 3 up-to-date
+
+Live post-fix proof:
+- Fragment 2334 / Image 89 was inserted into the middle of 1828-01-01.
+- The complete mixed chronology was immediately contiguous without responder restart.
+- Deleting Fragment 2334 immediately left the surviving chronology contiguous without responder restart.
+
+Final status: PASS. The create-time sequence-normalisation correction and focused regression coverage are accepted for Step 13.

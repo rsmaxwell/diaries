@@ -1,0 +1,9 @@
+PASS: dedicated AddImageFragmentRequest exists
+PASS: request type does not expose Fragment id
+PASS: request type does not expose Fragment type
+PASS: request type does not expose marqueeId
+PASS: RPC wrapper sends addImageFragment
+PASS: RPC wrapper deserializes ImageFragment
+PASS: responder sets IMAGE identity
+PASS: responder returns FragmentPublishDTO with no marquee
+PASS: existing addFragment$ method text is unchanged from the Step 4 cumulative baseline.

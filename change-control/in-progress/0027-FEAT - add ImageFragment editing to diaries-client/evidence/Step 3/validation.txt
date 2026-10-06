@@ -1,0 +1,42 @@
+Step 3 validation
+=================
+Date: 2026-10-03
+
+PASS - dependency-free TypeScript compile
+  tsc --target ES2022 --module commonjs --strict
+      src/app/model/image.ts
+      src/app/utilities/catalogue-image-url.ts
+
+PASS - focused buildCatalogueImageUrl behavior smoke
+  - configured responder base URL + Files root
+  - path-segment encoding
+  - empty path rejection
+  - repeated-separator rejection
+  - parent-segment rejection
+  - backslash rejection
+
+PASS - TypeScript syntax transpile of all Step 3 changed TS files
+  src/app/model/image.ts
+  src/app/model/model-context.ts
+  src/app/model/model-context.spec.ts
+  src/app/utilities/catalogue-image-url.ts
+  src/app/utilities/catalogue-image-url.spec.ts
+
+STATIC CONTRACT CHECKS
+  PASS - retained topic is diaries/images/<id>
+  PASS - selectedImage$ requires explicit type IMAGE and positive imageId
+  PASS - selectedImage$ starts unresolved references at null
+  PASS - selectedImage$ is distinct on imageId before switching topics
+  PASS - getLiveImage$ and selectedImage$ use shareReplay(bufferSize=1, refCount=true)
+  PASS - CatalogueImage contains responder metadata only; no bytes/blob/base64 field
+  PASS - shared URL helper uses runtime responder base + configured Files root + relativePath
+
+ENVIRONMENT-BLOCKED - full Angular/Karma suite
+  npm test -- --watch=false --browsers=ChromeHeadless
+  -> ng: not found
+
+ENVIRONMENT-BLOCKED - offline dependency bootstrap
+  npm ci --offline --ignore-scripts
+  -> zone.js-0.15.1.tgz is not cached
+
+See angular-test-attempt.txt for exact output.

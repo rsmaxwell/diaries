@@ -1,0 +1,12 @@
+Responder retained Image contract source:
+diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/ImagePublishDTO.java
+
+38:	private String relativePath;
+40:	private String mimeType;
+42:	private String originalFilename;
+44:	private Integer width;
+46:	private Integer height;
+48:	private String checksum;
+52:	private String caption = "";
+56:	private String altText = "";
+103:		return "diaries/images/" + id;

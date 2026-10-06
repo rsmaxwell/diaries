@@ -1,0 +1,836 @@
+client:783 [vite] connecting...
+client:906 [vite] connected.
+config.service.ts:46 ConfigService.constructor
+mqtt.service.ts:20 MqttService.initialise
+mqtt.service.ts:31 MqttService.getConnection: getting configuration
+config.service.ts:50 ConfigService.getConfig
+tokenRequestor.ts:26 TokenRequestor: sendRefreshRequest() called
+config.service.ts:50 ConfigService.getConfig
+config.service.ts:58 ConfigService.getConfig from pending request
+debug_node-JnOYh9kg.mjs:17812 Angular is running in development mode.
+auth.guard.ts:11 AuthGuard: constructor()
+config.service.ts:50 ConfigService.getConfig
+config.service.ts:58 ConfigService.getConfig from pending request
+config.service.ts:50 ConfigService.getConfig
+config.service.ts:58 ConfigService.getConfig from pending request
+live.object.service.ts:55 LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/fragments/4', refCount incremented to 1
+pageheader.component.ts:148 PageheaderComponent.ngOnInit
+live.object.service.ts:55 LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/diaries/1', refCount incremented to 1
+live.object.service.ts:55 LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/pages/685', refCount incremented to 1
+image-viewer.component.ts:131 ImageViewerComponent.ngOnInit {instance: _ImageViewerComponent}
+config.service.ts:50 ConfigService.getConfig
+config.service.ts:58 ConfigService.getConfig from pending request
+image-viewer.component.ts:235 ImageViewerComponent.ngAfterViewInit: svg focused
+text-panel.component.ts:108 TextPanelComponent.ngOnInit
+config.service.ts:50 ConfigService.getConfig
+config.service.ts:58 ConfigService.getConfig from pending request
+dayview.component.ts:58 DayviewComponent.ngOnInit
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: []
+config.service.ts:50 ConfigService.getConfig
+config.service.ts:58 ConfigService.getConfig from pending request
+config.service.ts:70 ConfigService.getConfig new:  {brokerMode: 'direct', brokerDirectUrl: 'ws://localhost:9001', responderBaseUrlMode: 'same-host-port', responderBaseUrlPort: 8081, username: 'diaries-client', …}
+mqtt.service.ts:40 MqttService.getConnection: connecting with MQTT config {brokerUrl: 'ws://localhost:9001', clientId: 'client-1791100762769', clean: false, protocolVersion: 5}
+mqtt.service.ts:60 MqttService.getConnection: [MQTT] connect clientId=client-1791100762769 clean=false
+rpc.service.ts:75 RpcService.ensureListener: ListenerCount after attaching dispatcher: 1
+rpc.service.ts:144 RpcService.rpcRequest
+live.object.service.ts:95 LiveObjectService.ensureListener: attaching MQTT message dispatcher
+live.object.service.ts:100 LiveObjectService.ensureListener: ListenerCount after attaching dispatcher: 2
+rpc.service.ts:144 RpcService.rpcRequest
+rpc.service.ts:186 RpcService.rpcRequest: sending {requestTopic: 'diaries/rpc/request', function: 'getVersion', correlationId: 'fcdde689-8e35-4f4f-92be-e27f52e4920f', replyTopic: 'diaries/rpc/client-1791100762769/response', hasAccessToken: false}
+live.object.list.service.ts:84 LiveObjectListService.ensureListener: attaching MQTT message dispatcher
+live.object.list.service.ts:89 LiveObjectListService.ensureListener: ListenerCount after attaching dispatcher: 3
+live.object.list.service.ts:208 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE -> diaries/diaries/1/+ (client.connected=true)
+live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/diaries/1/+', refCount incremented to 1
+live.object.list.service.ts:208 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE -> diaries/diaries/1/685/+ (client.connected=true)
+live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/diaries/1/685/+', refCount incremented to 1
+live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/diaries/1/685/+', refCount incremented to 2
+live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/fragments/4 (client.connected=true)
+live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/diaries/1 (client.connected=true)
+live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/pages/685 (client.connected=true)
+live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/diaries/1/685/+', refCount incremented to 3
+image-viewer.component.ts:205 ImageViewerComponent.<subscribe marquees>: ids= []
+rpc.service.ts:201 [rpcRequest] Publish succeeded
+rpc.service.ts:186 RpcService.rpcRequest: sending {requestTopic: 'diaries/rpc/request', function: 'refreshToken', correlationId: '30aa38d4-b21d-4ebd-838d-a674a22fc45b', replyTopic: 'diaries/rpc/client-1791100762769/response', hasAccessToken: false}
+rpc.service.ts:201 [rpcRequest] Publish succeeded
+live.object.list.service.ts:216 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE ACK <- diaries/diaries/1/+ {err: null}
+live.object.list.service.ts:227 LiveObjectListService.subscribeToTopicFilters: subscribed to 'diaries/diaries/1/+' using shared dispatcher
+live.object.list.service.ts:230 LiveObjectListService.subscribeToTopicFilters: ListenerCount after subscribeToTopicTree: 3
+live.object.list.service.ts:216 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE ACK <- diaries/diaries/1/685/+ {err: null}
+live.object.list.service.ts:227 LiveObjectListService.subscribeToTopicFilters: subscribed to 'diaries/diaries/1/685/+' using shared dispatcher
+live.object.list.service.ts:230 LiveObjectListService.subscribeToTopicFilters: ListenerCount after subscribeToTopicTree: 3
+live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/fragments/4 {err: null}
+live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/fragments/4'
+live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/diaries/1 {err: null}
+live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/diaries/1'
+live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/pages/685 {err: null}
+live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/pages/685'
+image-viewer.component.ts:205 ImageViewerComponent.<subscribe marquees>: ids= [1]
+live.object.service.ts:272 LiveObjectService.liveObjectDispatcher: [MQTT] RX diaries/fragments/4 {id: 4, version: 0, locked: false, hasLockSessionId: false, retain: true, …}
+live.object.service.ts:55 LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/marquees/1', refCount incremented to 1
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: []
+live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/marquees/1 (client.connected=true)
+live.object.list.service.ts:208 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE -> diaries/dates/1828/1/1/+ (client.connected=true)
+live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/dates/1828/1/1/+', refCount incremented to 1
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: []
+pageheader.component.ts:155 PageheaderComponent.ngOnInit: diary: {"id":1,"version":6,"name":"diary-1828-and-1829-and-jan-1830","sequence":1}
+text-panel.component.ts:153 TextPanelComponent: we are leaving fragment.id=undefined
+pageheader.component.ts:165 PageheaderComponent.ngOnInit: page: {"id":685,"version":0,"diaryId":1,"name":"img2833","sequence":2,"extension":".jpg","width":6191,"height":4657}
+image-viewer.component.ts:162 ImageViewer.ngOnInit: config.baseUrl:  http://localhost:8081
+image-viewer.component.ts:163 ImageViewer page/image subscription emitted {diaryId: 1, diaryName: 'diary-1828-and-1829-and-jan-1830', pageId: 685, pageName: 'img2833', pageVersion: 0, …}
+image-viewer.component.ts:1380 ImageViewerComponent.fitPage {reason: 'source image changed', pageId: 685, scaleBefore: 1, offsetXBefore: 0, offsetYBefore: 0}
+image-viewer.component.ts:1388 fitPage stack
+fitPage @ image-viewer.component.ts:1388
+(anonymous) @ image-viewer.component.ts:186
+(anonymous) @ Subscriber.js:96
+(anonymous) @ Subscriber.js:63
+(anonymous) @ Subscriber.js:34
+(anonymous) @ combineLatest.js:47
+(anonymous) @ OperatorSubscriber.js:15
+(anonymous) @ Subscriber.js:34
+(anonymous) @ filter.js:6
+(anonymous) @ OperatorSubscriber.js:15
+(anonymous) @ Subscriber.js:34
+(anonymous) @ switchMap.js:14
+(anonymous) @ OperatorSubscriber.js:15
+(anonymous) @ Subscriber.js:34
+(anonymous) @ Subject.js:41
+errorContext @ errorContext.js:19
+(anonymous) @ Subject.js:31
+(anonymous) @ ReplaySubject.js:28
+next @ share.js:46
+(anonymous) @ Subscriber.js:96
+(anonymous) @ Subscriber.js:63
+(anonymous) @ Subscriber.js:34
+(anonymous) @ filter.js:6
+(anonymous) @ OperatorSubscriber.js:15
+(anonymous) @ Subscriber.js:34
+(anonymous) @ Subject.js:41
+errorContext @ errorContext.js:19
+(anonymous) @ Subject.js:31
+(anonymous) @ ReplaySubject.js:28
+liveObjectDispatcher @ live.object.service.ts:142
+(anonymous) @ mqtt.esm.js:2
+(anonymous) @ mqtt.esm.js:2
+(anonymous) @ mqtt.esm.js:2
+(anonymous) @ mqtt.esm.js:2
+(anonymous) @ mqtt.esm.js:2
+(anonymous) @ mqtt.esm.js:2
+(anonymous) @ mqtt.esm.js:2
+D_ @ mqtt.esm.js:2
+lh @ mqtt.esm.js:2
+(anonymous) @ mqtt.esm.js:2
+g @ mqtt.esm.js:2
+(anonymous) @ mqtt.esm.js:2
+to @ mqtt.esm.js:2
+zc @ mqtt.esm.js:2
+(anonymous) @ mqtt.esm.js:2
+(anonymous) @ mqtt.esm.js:5
+(anonymous) @ mqtt.esm.js:2
+to @ mqtt.esm.js:2
+zc @ mqtt.esm.js:2
+(anonymous) @ mqtt.esm.js:2
+w @ mqtt.esm.js:5
+invokeTask @ zone.js:431
+(anonymous) @ debug_node-JnOYh9kg.mjs:16160
+onInvokeTask @ debug_node-JnOYh9kg.mjs:16160
+invokeTask @ zone.js:430
+(anonymous) @ debug_node-JnOYh9kg.mjs:16483
+invokeTask @ zone.js:430
+runTask @ zone.js:161
+invokeTask @ zone.js:515
+(anonymous) @ zone.js:1141
+globalCallback @ zone.js:1172
+(anonymous) @ zone.js:1205
+Zone - WebSocket.addEventListener:message
+onScheduleTask @ debug_node-JnOYh9kg.mjs:16154
+scheduleTask @ zone.js:411
+(anonymous) @ zone.js:273
+scheduleTask @ zone.js:411
+scheduleTask @ zone.js:207
+scheduleEventTask @ zone.js:233
+(anonymous) @ zone.js:1498
+(anonymous) @ mqtt.esm.js:5
+s @ mqtt.esm.js:5
+connect @ mqtt.esm.js:2
+constructor @ mqtt.esm.js:2
+Pg @ mqtt.esm.js:5
+(anonymous) @ mqtt.service.ts:47
+invoke @ zone.js:398
+(anonymous) @ debug_node-JnOYh9kg.mjs:16496
+invoke @ zone.js:397
+run @ zone.js:113
+(anonymous) @ zone.js:2537
+invokeTask @ zone.js:431
+(anonymous) @ debug_node-JnOYh9kg.mjs:16160
+onInvokeTask @ debug_node-JnOYh9kg.mjs:16160
+invokeTask @ zone.js:430
+(anonymous) @ debug_node-JnOYh9kg.mjs:16483
+invokeTask @ zone.js:430
+runTask @ zone.js:161
+drainMicroTaskQueue @ zone.js:612
+invokeTask @ zone.js:519
+(anonymous) @ zone.js:1141
+globalCallback @ zone.js:1184
+(anonymous) @ zone.js:1205
+Zone - Promise.then
+onScheduleTask @ debug_node-JnOYh9kg.mjs:16154
+scheduleTask @ zone.js:411
+(anonymous) @ zone.js:273
+scheduleTask @ zone.js:411
+scheduleTask @ zone.js:207
+scheduleMicroTask @ zone.js:227
+scheduleResolveOrReject @ zone.js:2527
+resolvePromise @ zone.js:2461
+(anonymous) @ zone.js:2369
+(anonymous) @ zone.js:2385
+invoke @ zone.js:398
+(anonymous) @ debug_node-JnOYh9kg.mjs:16496
+invoke @ zone.js:397
+run @ zone.js:113
+(anonymous) @ zone.js:2537
+invokeTask @ zone.js:431
+(anonymous) @ debug_node-JnOYh9kg.mjs:16160
+onInvokeTask @ debug_node-JnOYh9kg.mjs:16160
+invokeTask @ zone.js:430
+(anonymous) @ debug_node-JnOYh9kg.mjs:16483
+invokeTask @ zone.js:430
+runTask @ zone.js:161
+drainMicroTaskQueue @ zone.js:612
+invokeTask @ zone.js:519
+(anonymous) @ zone.js:1141
+globalCallback @ zone.js:1184
+(anonymous) @ zone.js:1205
+Zone - Promise.then
+onScheduleTask @ debug_node-JnOYh9kg.mjs:16154
+scheduleTask @ zone.js:411
+(anonymous) @ zone.js:273
+scheduleTask @ zone.js:411
+scheduleTask @ zone.js:207
+scheduleMicroTask @ zone.js:227
+scheduleResolveOrReject @ zone.js:2527
+resolvePromise @ zone.js:2461
+(anonymous) @ zone.js:2540
+invokeTask @ zone.js:431
+(anonymous) @ debug_node-JnOYh9kg.mjs:16160
+onInvokeTask @ debug_node-JnOYh9kg.mjs:16160
+invokeTask @ zone.js:430
+(anonymous) @ debug_node-JnOYh9kg.mjs:16483
+invokeTask @ zone.js:430
+runTask @ zone.js:161
+drainMicroTaskQueue @ zone.js:612
+invokeTask @ zone.js:519
+(anonymous) @ zone.js:1141
+globalCallback @ zone.js:1184
+(anonymous) @ zone.js:1205
+Zone - Promise.then
+onScheduleTask @ debug_node-JnOYh9kg.mjs:16154
+scheduleTask @ zone.js:411
+(anonymous) @ zone.js:273
+scheduleTask @ zone.js:411
+scheduleTask @ zone.js:207
+scheduleMicroTask @ zone.js:227
+scheduleResolveOrReject @ zone.js:2527
+resolvePromise @ zone.js:2461
+(anonymous) @ zone.js:2540
+invokeTask @ zone.js:431
+(anonymous) @ debug_node-JnOYh9kg.mjs:16160
+onInvokeTask @ debug_node-JnOYh9kg.mjs:16160
+invokeTask @ zone.js:430
+(anonymous) @ debug_node-JnOYh9kg.mjs:16483
+invokeTask @ zone.js:430
+runTask @ zone.js:161
+drainMicroTaskQueue @ zone.js:612
+invokeTask @ zone.js:519
+(anonymous) @ zone.js:1141
+globalCallback @ zone.js:1184
+(anonymous) @ zone.js:1205
+Zone - Promise.then
+onScheduleTask @ debug_node-JnOYh9kg.mjs:16154
+scheduleTask @ zone.js:411
+(anonymous) @ zone.js:273
+scheduleTask @ zone.js:411
+scheduleTask @ zone.js:207
+scheduleMicroTask @ zone.js:227
+scheduleResolveOrReject @ zone.js:2527
+resolvePromise @ zone.js:2461
+(anonymous) @ zone.js:2369
+(anonymous) @ zone.js:2385
+complete @ lastValueFrom.js:15
+(anonymous) @ Subscriber.js:121
+(anonymous) @ Subscriber.js:75
+(anonymous) @ Subscriber.js:52
+(anonymous) @ Subscriber.js:75
+(anonymous) @ Subscriber.js:52
+(anonymous) @ Subscriber.js:75
+(anonymous) @ Subscriber.js:52
+(anonymous) @ mergeInternals.js:11
+(anonymous) @ mergeInternals.js:45
+(anonymous) @ OperatorSubscriber.js:55
+(anonymous) @ OperatorSubscriber.js:44
+(anonymous) @ Subscriber.js:52
+(anonymous) @ switchMap.js:9
+(anonymous) @ switchMap.js:16
+(anonymous) @ OperatorSubscriber.js:38
+(anonymous) @ Subscriber.js:52
+(anonymous) @ module-CBsxN_3E.mjs:2443
+invokeTask @ zone.js:431
+(anonymous) @ debug_node-JnOYh9kg.mjs:16160
+onInvokeTask @ debug_node-JnOYh9kg.mjs:16160
+invokeTask @ zone.js:430
+(anonymous) @ debug_node-JnOYh9kg.mjs:16483
+invokeTask @ zone.js:430
+runTask @ zone.js:161
+invokeTask @ zone.js:515
+(anonymous) @ zone.js:1141
+globalCallback @ zone.js:1184
+(anonymous) @ zone.js:1205
+Zone - XMLHttpRequest.addEventListener:load
+onScheduleTask @ debug_node-JnOYh9kg.mjs:16154
+scheduleTask @ zone.js:411
+(anonymous) @ zone.js:273
+scheduleTask @ zone.js:411
+scheduleTask @ zone.js:207
+scheduleEventTask @ zone.js:233
+(anonymous) @ zone.js:1498
+(anonymous) @ module-CBsxN_3E.mjs:2521
+(anonymous) @ Observable.js:38
+(anonymous) @ Observable.js:32
+errorContext @ errorContext.js:19
+(anonymous) @ Observable.js:23
+(anonymous) @ switchMap.js:14
+(anonymous) @ OperatorSubscriber.js:15
+(anonymous) @ Subscriber.js:34
+(anonymous) @ innerFrom.js:51
+(anonymous) @ Observable.js:38
+(anonymous) @ Observable.js:32
+errorContext @ errorContext.js:19
+(anonymous) @ Observable.js:23
+(anonymous) @ switchMap.js:10
+(anonymous) @ lift.js:10
+(anonymous) @ Observable.js:27
+errorContext @ errorContext.js:19
+(anonymous) @ Observable.js:23
+(anonymous) @ finalize.js:5
+(anonymous) @ lift.js:10
+(anonymous) @ Observable.js:27
+errorContext @ errorContext.js:19
+(anonymous) @ Observable.js:23
+(anonymous) @ mergeInternals.js:19
+(anonymous) @ mergeInternals.js:14
+(anonymous) @ OperatorSubscriber.js:15
+(anonymous) @ Subscriber.js:34
+(anonymous) @ innerFrom.js:51
+(anonymous) @ Observable.js:38
+(anonymous) @ Observable.js:32
+errorContext @ errorContext.js:19
+(anonymous) @ Observable.js:23
+mergeInternals @ mergeInternals.js:53
+(anonymous) @ mergeMap.js:14
+(anonymous) @ lift.js:10
+(anonymous) @ Observable.js:27
+errorContext @ errorContext.js:19
+(anonymous) @ Observable.js:23
+(anonymous) @ filter.js:6
+(anonymous) @ lift.js:10
+(anonymous) @ Observable.js:27
+errorContext @ errorContext.js:19
+(anonymous) @ Observable.js:23
+(anonymous) @ map.js:6
+(anonymous) @ lift.js:10
+(anonymous) @ Observable.js:27
+errorContext @ errorContext.js:19
+(anonymous) @ Observable.js:23
+(anonymous) @ lastValueFrom.js:7
+constructor @ zone.js:2701
+lastValueFrom @ lastValueFrom.js:4
+(anonymous) @ config.service.ts:62
+(anonymous) @ main.js:41
+constructor @ zone.js:2701
+__async @ main.js:25
+getConfig @ config.service.ts:49
+(anonymous) @ mqtt.service.ts:33
+constructor @ zone.js:2701
+(anonymous) @ mqtt.service.ts:30
+(anonymous) @ main.js:41
+constructor @ zone.js:2701
+__async @ main.js:25
+getConnection @ mqtt.service.ts:23
+ensureListener @ rpc.service.ts:66
+constructor @ rpc.service.ts:61
+RpcService_Factory @ rpc.service.ts:766
+(anonymous) @ root_effect_scheduler-DCy1y1b8.mjs:2095
+runInInjectorProfilerContext @ root_effect_scheduler-DCy1y1b8.mjs:720
+hydrate @ root_effect_scheduler-DCy1y1b8.mjs:2093
+get @ root_effect_scheduler-DCy1y1b8.mjs:1957
+retrieve @ root_effect_scheduler-DCy1y1b8.mjs:1853
+injectInjectorOnly @ root_effect_scheduler-DCy1y1b8.mjs:945
+ɵɵinject @ root_effect_scheduler-DCy1y1b8.mjs:957
+TokenRequestor_Factory @ tokenRequestor.ts:11
+(anonymous) @ root_effect_scheduler-DCy1y1b8.mjs:2095
+runInInjectorProfilerContext @ root_effect_scheduler-DCy1y1b8.mjs:720
+hydrate @ root_effect_scheduler-DCy1y1b8.mjs:2093
+get @ root_effect_scheduler-DCy1y1b8.mjs:1957
+get @ debug_node-JnOYh9kg.mjs:12211
+lookupTokenUsingModuleInjector @ debug_node-JnOYh9kg.mjs:1714
+getOrCreateInjectable @ debug_node-JnOYh9kg.mjs:1762
+ɵɵdirectiveInject @ debug_node-JnOYh9kg.mjs:12262
+AppComponent_Factory @ app.component.ts:18
+getNodeInjectable @ debug_node-JnOYh9kg.mjs:1974
+instantiateAllDirectives @ debug_node-JnOYh9kg.mjs:7379
+createDirectivesInstances @ debug_node-JnOYh9kg.mjs:7154
+create @ debug_node-JnOYh9kg.mjs:13366
+(anonymous) @ debug_node-JnOYh9kg.mjs:19994
+invoke @ zone.js:398
+(anonymous) @ debug_node-JnOYh9kg.mjs:16496
+invoke @ zone.js:397
+run @ zone.js:113
+run @ debug_node-JnOYh9kg.mjs:16342
+bootstrapImpl @ debug_node-JnOYh9kg.mjs:19963
+bootstrap @ debug_node-JnOYh9kg.mjs:19959
+(anonymous) @ core.mjs:959
+invoke @ zone.js:398
+(anonymous) @ debug_node-JnOYh9kg.mjs:16496
+invoke @ zone.js:397
+run @ zone.js:113
+(anonymous) @ zone.js:2537
+invokeTask @ zone.js:431
+(anonymous) @ debug_node-JnOYh9kg.mjs:16160
+onInvokeTask @ debug_node-JnOYh9kg.mjs:16160
+invokeTask @ zone.js:430
+(anonymous) @ debug_node-JnOYh9kg.mjs:16483
+invokeTask @ zone.js:430
+runTask @ zone.js:161
+drainMicroTaskQueue @ zone.js:612
+Zone - Promise.then
+onScheduleTask @ debug_node-JnOYh9kg.mjs:16154
+scheduleTask @ zone.js:411
+(anonymous) @ zone.js:273
+scheduleTask @ zone.js:411
+scheduleTask @ zone.js:207
+scheduleMicroTask @ zone.js:227
+scheduleResolveOrReject @ zone.js:2527
+then @ zone.js:2732
+(anonymous) @ core.mjs:940
+_callAndReportToErrorHandler @ core.mjs:1000
+(anonymous) @ core.mjs:937
+invoke @ zone.js:398
+(anonymous) @ debug_node-JnOYh9kg.mjs:16496
+invoke @ zone.js:397
+run @ zone.js:113
+run @ debug_node-JnOYh9kg.mjs:16342
+bootstrap @ core.mjs:896
+internalCreateApplication @ core.mjs:2647
+bootstrapApplication @ browser-DKgH74dt.mjs:430
+(anonymous) @ main.ts:10
+rpc.service.ts:115 rpcDispatcher: received status: {code: 200, message: 'ok'}
+live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/marquees/1 {err: null}
+ LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/marquees/1'
+ LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE ACK <- diaries/dates/1828/1/1/+ 
+ LiveObjectListService.subscribeToTopicFilters: subscribed to 'diaries/dates/1828/1/1/+' using shared dispatcher
+ LiveObjectListService.subscribeToTopicFilters: ListenerCount after subscribeToTopicTree: 3
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ TextPanelComponent.onEditorCreated
+ rpcDispatcher: received status: 
+ TokenRequestor: sendRefreshRequest: refreshInterval: 36000
+ TokenRequestor.start: 2026-10-04T07:59:22.974Z
+ TokenRequestor.start: refreshInterval: 36000 seconds
+ ImageViewer.onPointerLeave
+ ImageViewer.onPointerLeave
+ DayviewComponent.goToFragment: fragmentId: 2332
+ LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/fragments/4', refCount decremented to 0
+live.object.service.ts:55 LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/fragments/2332', refCount incremented to 1
+live.object.service.ts:227 LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/fragments/4
+live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/fragments/2332 (client.connected=true)
+live.object.service.ts:235 LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/fragments/4'
+live.object.service.ts:236 LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/fragments/4': 3
+live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/fragments/2332 {err: null}
+live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/fragments/2332'
+live.object.service.ts:272 LiveObjectService.liveObjectDispatcher: [MQTT] RX diaries/fragments/2332 {id: 2332, version: 0, locked: false, hasLockSessionId: false, retain: true, …}
+live.object.service.ts:209 LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/marquees/1', refCount decremented to 0
+live.object.service.ts:55 LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/images/1', refCount incremented to 1
+text-panel.component.ts:153 TextPanelComponent: we are leaving fragment.id=4
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+live.object.list.service.ts:249 LiveObjectListService.releaseTopicTreeReference: UNSUBSCRIBE 'diaries/dates/1828/1/1/+', refCount decremented to 0
+live.object.list.service.ts:276 LiveObjectListService.unsubscribeAndDeleteTopicTree: [MQTT] UNSUBSCRIBE -> diaries/dates/1828/1/1/+
+live.object.service.ts:227 LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/marquees/1
+live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/images/1 (client.connected=true)
+live.object.list.service.ts:208 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE -> diaries/dates/1828/1/1/+ (client.connected=true)
+live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/dates/1828/1/1/+', refCount incremented to 1
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: []
+live.object.list.service.ts:287 LiveObjectListService.unsubscribeAndDeleteTopicTree: unsubscribed 'diaries/dates/1828/1/1/+'
+live.object.list.service.ts:288 LiveObjectListService.unsubscribeAndDeleteTopicTree: ListenerCount after unsubscribeTopicTree cleanup: 3
+live.object.service.ts:235 LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/marquees/1'
+live.object.service.ts:236 LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/marquees/1': 3
+live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/images/1 {err: null}
+live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/images/1'
+live.object.list.service.ts:216 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE ACK <- diaries/dates/1828/1/1/+ {err: null}
+live.object.list.service.ts:227 LiveObjectListService.subscribeToTopicFilters: subscribed to 'diaries/dates/1828/1/1/+' using shared dispatcher
+live.object.list.service.ts:230 LiveObjectListService.subscribeToTopicFilters: ListenerCount after subscribeToTopicTree: 3
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: [1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (2) [4, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (3) [4, 5, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (4) [4, 5, 1, 2]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (5) [4, 5, 1, 2, 3]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+image-viewer.component.ts:710 ImageViewer.onPointerLeave
+image-viewer.component.ts:710 ImageViewer.onPointerLeave
+dayview.component.ts:219 DayviewComponent.goToFragment: fragmentId: 2332
+dayview.component.ts:219 DayviewComponent.goToFragment: fragmentId: 4
+live.object.service.ts:209 LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/fragments/2332', refCount decremented to 0
+live.object.service.ts:55 LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/fragments/4', refCount incremented to 1
+live.object.service.ts:227 LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/fragments/2332
+live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/fragments/4 (client.connected=true)
+live.object.service.ts:235 LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/fragments/2332'
+live.object.service.ts:236 LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/fragments/2332': 3
+live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/fragments/4 {err: null}
+live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/fragments/4'
+live.object.service.ts:272 LiveObjectService.liveObjectDispatcher: [MQTT] RX diaries/fragments/4 {id: 4, version: 0, locked: false, hasLockSessionId: false, retain: true, …}
+live.object.service.ts:55 LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/marquees/1', refCount incremented to 1
+live.object.service.ts:209 LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/images/1', refCount decremented to 0
+text-panel.component.ts:153 TextPanelComponent: we are leaving fragment.id=2332
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+live.object.list.service.ts:249 LiveObjectListService.releaseTopicTreeReference: UNSUBSCRIBE 'diaries/dates/1828/1/1/+', refCount decremented to 0
+live.object.list.service.ts:276 LiveObjectListService.unsubscribeAndDeleteTopicTree: [MQTT] UNSUBSCRIBE -> diaries/dates/1828/1/1/+
+live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/marquees/1 (client.connected=true)
+live.object.service.ts:227 LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/images/1
+live.object.list.service.ts:208 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE -> diaries/dates/1828/1/1/+ (client.connected=true)
+live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/dates/1828/1/1/+', refCount incremented to 1
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: []
+live.object.list.service.ts:287 LiveObjectListService.unsubscribeAndDeleteTopicTree: unsubscribed 'diaries/dates/1828/1/1/+'
+live.object.list.service.ts:288 LiveObjectListService.unsubscribeAndDeleteTopicTree: ListenerCount after unsubscribeTopicTree cleanup: 3
+live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/marquees/1 {err: null}
+live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/marquees/1'
+ LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/images/1'
+ LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/images/1': 3
+ LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE ACK <- diaries/dates/1828/1/1/+ 
+ LiveObjectListService.subscribeToTopicFilters: subscribed to 'diaries/dates/1828/1/1/+' using shared dispatcher
+ LiveObjectListService.subscribeToTopicFilters: ListenerCount after subscribeToTopicTree: 3
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.goToFragment: fragmentId: 4
+ DayviewComponent.goToFragment: fragmentId: 4
+ ImageViewer.onPointerLeave
+ DayviewComponent.goToFragment: fragmentId: 2332
+ LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/fragments/4', refCount decremented to 0
+ LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/fragments/2332', refCount incremented to 1
+ LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/fragments/4
+ LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/fragments/2332 (client.connected=true)
+ LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/fragments/4'
+ LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/fragments/4': 3
+ LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/fragments/2332 
+ LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/fragments/2332'
+ LiveObjectService.liveObjectDispatcher: [MQTT] RX diaries/fragments/2332 
+ LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/marquees/1', refCount decremented to 0
+ LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/images/1', refCount incremented to 1
+ TextPanelComponent: we are leaving fragment.id=4
+ DayviewComponent.<subscribe fragments>: fragments: 
+live.object.list.service.ts:249 LiveObjectListService.releaseTopicTreeReference: UNSUBSCRIBE 'diaries/dates/1828/1/1/+', refCount decremented to 0
+live.object.list.service.ts:276 LiveObjectListService.unsubscribeAndDeleteTopicTree: [MQTT] UNSUBSCRIBE -> diaries/dates/1828/1/1/+
+live.object.service.ts:227 LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/marquees/1
+live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/images/1 (client.connected=true)
+live.object.list.service.ts:208 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE -> diaries/dates/1828/1/1/+ (client.connected=true)
+live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/dates/1828/1/1/+', refCount incremented to 1
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: []
+live.object.list.service.ts:287 LiveObjectListService.unsubscribeAndDeleteTopicTree: unsubscribed 'diaries/dates/1828/1/1/+'
+live.object.list.service.ts:288 LiveObjectListService.unsubscribeAndDeleteTopicTree: ListenerCount after unsubscribeTopicTree cleanup: 3
+live.object.service.ts:235 LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/marquees/1'
+live.object.service.ts:236 LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/marquees/1': 3
+live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/images/1 {err: null}
+live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/images/1'
+live.object.list.service.ts:216 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE ACK <- diaries/dates/1828/1/1/+ {err: null}
+live.object.list.service.ts:227 LiveObjectListService.subscribeToTopicFilters: subscribed to 'diaries/dates/1828/1/1/+' using shared dispatcher
+live.object.list.service.ts:230 LiveObjectListService.subscribeToTopicFilters: ListenerCount after subscribeToTopicTree: 3
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: [1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (2) [4, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (3) [4, 5, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (4) [4, 5, 1, 2]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (5) [4, 5, 1, 2, 3]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+image-viewer.component.ts:710 ImageViewer.onPointerLeave
+dayview.component.ts:219 DayviewComponent.goToFragment: fragmentId: 2332
+dayview.component.ts:219 DayviewComponent.goToFragment: fragmentId: 4
+live.object.service.ts:209 LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/fragments/2332', refCount decremented to 0
+live.object.service.ts:55 LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/fragments/4', refCount incremented to 1
+live.object.service.ts:227 LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/fragments/2332
+live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/fragments/4 (client.connected=true)
+live.object.service.ts:235 LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/fragments/2332'
+live.object.service.ts:236 LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/fragments/2332': 3
+live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/fragments/4 {err: null}
+live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/fragments/4'
+live.object.service.ts:272 LiveObjectService.liveObjectDispatcher: [MQTT] RX diaries/fragments/4 {id: 4, version: 0, locked: false, hasLockSessionId: false, retain: true, …}
+live.object.service.ts:55 LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/marquees/1', refCount incremented to 1
+live.object.service.ts:209 LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/images/1', refCount decremented to 0
+text-panel.component.ts:153 TextPanelComponent: we are leaving fragment.id=2332
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+live.object.list.service.ts:249 LiveObjectListService.releaseTopicTreeReference: UNSUBSCRIBE 'diaries/dates/1828/1/1/+', refCount decremented to 0
+live.object.list.service.ts:276 LiveObjectListService.unsubscribeAndDeleteTopicTree: [MQTT] UNSUBSCRIBE -> diaries/dates/1828/1/1/+
+live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/marquees/1 (client.connected=true)
+live.object.service.ts:227 LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/images/1
+live.object.list.service.ts:208 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE -> diaries/dates/1828/1/1/+ (client.connected=true)
+live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/dates/1828/1/1/+', refCount incremented to 1
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: []
+live.object.list.service.ts:287 LiveObjectListService.unsubscribeAndDeleteTopicTree: unsubscribed 'diaries/dates/1828/1/1/+'
+live.object.list.service.ts:288 LiveObjectListService.unsubscribeAndDeleteTopicTree: ListenerCount after unsubscribeTopicTree cleanup: 3
+live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/marquees/1 {err: null}
+live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/marquees/1'
+live.object.service.ts:235 LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/images/1'
+live.object.service.ts:236 LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/images/1': 3
+live.object.list.service.ts:216 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE ACK <- diaries/dates/1828/1/1/+ {err: null}
+live.object.list.service.ts:227 LiveObjectListService.subscribeToTopicFilters: subscribed to 'diaries/dates/1828/1/1/+' using shared dispatcher
+live.object.list.service.ts:230 LiveObjectListService.subscribeToTopicFilters: ListenerCount after subscribeToTopicTree: 3
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: [1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (2) [4, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (3) [4, 5, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (4) [4, 5, 1, 2]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (5) [4, 5, 1, 2, 3]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+dayview.component.ts:219 DayviewComponent.goToFragment: fragmentId: 2332
+ LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/fragments/4', refCount decremented to 0
+ LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/fragments/2332', refCount incremented to 1
+ LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/fragments/4
+ LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/fragments/2332 (client.connected=true)
+ LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/fragments/4'
+ LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/fragments/4': 3
+ LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/fragments/2332 
+ LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/fragments/2332'
+ LiveObjectService.liveObjectDispatcher: [MQTT] RX diaries/fragments/2332 
+ LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/marquees/1', refCount decremented to 0
+ LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/images/1', refCount incremented to 1
+ TextPanelComponent: we are leaving fragment.id=4
+ DayviewComponent.<subscribe fragments>: fragments: 
+ LiveObjectListService.releaseTopicTreeReference: UNSUBSCRIBE 'diaries/dates/1828/1/1/+', refCount decremented to 0
+ LiveObjectListService.unsubscribeAndDeleteTopicTree: [MQTT] UNSUBSCRIBE -> diaries/dates/1828/1/1/+
+ LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/marquees/1
+ LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/images/1 (client.connected=true)
+ LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE -> diaries/dates/1828/1/1/+ (client.connected=true)
+ LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/dates/1828/1/1/+', refCount incremented to 1
+ DayviewComponent.<subscribe fragments>: fragments: 
+ LiveObjectListService.unsubscribeAndDeleteTopicTree: unsubscribed 'diaries/dates/1828/1/1/+'
+ LiveObjectListService.unsubscribeAndDeleteTopicTree: ListenerCount after unsubscribeTopicTree cleanup: 3
+ LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/marquees/1'
+ LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/marquees/1': 3
+ LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/images/1 
+ LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/images/1'
+ LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE ACK <- diaries/dates/1828/1/1/+ 
+ LiveObjectListService.subscribeToTopicFilters: subscribed to 'diaries/dates/1828/1/1/+' using shared dispatcher
+ LiveObjectListService.subscribeToTopicFilters: ListenerCount after subscribeToTopicTree: 3
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ TextPanelComponent: edits detected -> lockFragment, fragmentId=2332
+ FragmentLockService: locking fragment 2332 for edit
+config.service.ts:50 ConfigService.getConfig
+config.service.ts:53 ConfigService.getConfig from cache:  {brokerMode: 'direct', brokerDirectUrl: 'ws://localhost:9001', responderBaseUrlMode: 'same-host-port', responderBaseUrlPort: 8081, username: 'diaries-client', …}
+rpc.service.ts:144 RpcService.rpcRequest
+rpc.service.ts:186 RpcService.rpcRequest: sending {requestTopic: 'diaries/rpc/request', function: 'lockFragment', correlationId: '77f59393-63da-4270-9521-0ceafeae3b8a', replyTopic: 'diaries/rpc/client-1791100762769/response', hasAccessToken: true}
+rpc.service.ts:201 [rpcRequest] Publish succeeded
+live.object.service.ts:272 LiveObjectService.liveObjectDispatcher: [MQTT] RX diaries/fragments/2332 {id: 2332, version: 0, locked: true, hasLockSessionId: true, retain: false, …}
+text-panel.component.ts:153 TextPanelComponent: we are leaving fragment.id=2332
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+live.object.list.service.ts:249 LiveObjectListService.releaseTopicTreeReference: UNSUBSCRIBE 'diaries/dates/1828/1/1/+', refCount decremented to 0
+live.object.list.service.ts:276 LiveObjectListService.unsubscribeAndDeleteTopicTree: [MQTT] UNSUBSCRIBE -> diaries/dates/1828/1/1/+
+live.object.list.service.ts:208 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE -> diaries/dates/1828/1/1/+ (client.connected=true)
+live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/dates/1828/1/1/+', refCount incremented to 1
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: []
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: [2332]
+rpc.service.ts:115 rpcDispatcher: received status: {code: 200, message: 'ok'}
+fragment-lock.service.ts:26 FragmentLockService: locked fragment 2332 for edit
+live.object.list.service.ts:287 LiveObjectListService.unsubscribeAndDeleteTopicTree: unsubscribed 'diaries/dates/1828/1/1/+'
+live.object.list.service.ts:288 LiveObjectListService.unsubscribeAndDeleteTopicTree: ListenerCount after unsubscribeTopicTree cleanup: 3
+live.object.list.service.ts:216 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE ACK <- diaries/dates/1828/1/1/+ {err: null}
+live.object.list.service.ts:227 LiveObjectListService.subscribeToTopicFilters: subscribed to 'diaries/dates/1828/1/1/+' using shared dispatcher
+live.object.list.service.ts:230 LiveObjectListService.subscribeToTopicFilters: ListenerCount after subscribeToTopicTree: 3
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (2) [2332, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (3) [4, 2332, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (4) [4, 2332, 5, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (5) [4, 2332, 5, 1, 2]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+text-panel.component.ts:435 TextPanelComponent.onSave {fragmentId: 2332, version: 0}
+config.service.ts:50 ConfigService.getConfig
+config.service.ts:53 ConfigService.getConfig from cache:  {brokerMode: 'direct', brokerDirectUrl: 'ws://localhost:9001', responderBaseUrlMode: 'same-host-port', responderBaseUrlPort: 8081, username: 'diaries-client', …}
+fragment.ts:108 UpdateFragmentRequest.fromFragment {id: 2332, version: 0, marqueeId: null}
+rpc.service.ts:144 RpcService.rpcRequest
+rpc.service.ts:186 RpcService.rpcRequest: sending {requestTopic: 'diaries/rpc/request', function: 'updateFragment', correlationId: '36865ce5-1bdf-42b6-8f15-e60781c0c33c', replyTopic: 'diaries/rpc/client-1791100762769/response', hasAccessToken: true}
+rpc.service.ts:201 [rpcRequest] Publish succeeded
+rpc.service.ts:115 rpcDispatcher: received status: {code: 400, message: 'bad request'}
+text-panel.component.ts:514 TextPanelComponent.onSave: error -> rolling back: RpcError: Status 400: bad request
+fragment-lock.service.ts:51 FragmentLockService: unlocking fragment 2332: after failed edit
+config.service.ts:50 ConfigService.getConfig
+config.service.ts:53 ConfigService.getConfig from cache:  {brokerMode: 'direct', brokerDirectUrl: 'ws://localhost:9001', responderBaseUrlMode: 'same-host-port', responderBaseUrlPort: 8081, username: 'diaries-client', …}
+rpc.service.ts:144 RpcService.rpcRequest
+rpc.service.ts:186 RpcService.rpcRequest: sending {requestTopic: 'diaries/rpc/request', function: 'unlockFragment', correlationId: 'b4f69573-b9f3-4c0f-aa2a-e4b1ecc1f05c', replyTopic: 'diaries/rpc/client-1791100762769/response', hasAccessToken: true}
+rpc.service.ts:201 [rpcRequest] Publish succeeded
+live.object.service.ts:272 LiveObjectService.liveObjectDispatcher: [MQTT] RX diaries/fragments/2332 {id: 2332, version: 0, locked: false, hasLockSessionId: false, retain: false, …}
+text-panel.component.ts:153 TextPanelComponent: we are leaving fragment.id=2332
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+live.object.list.service.ts:249 LiveObjectListService.releaseTopicTreeReference: UNSUBSCRIBE 'diaries/dates/1828/1/1/+', refCount decremented to 0
+live.object.list.service.ts:276 LiveObjectListService.unsubscribeAndDeleteTopicTree: [MQTT] UNSUBSCRIBE -> diaries/dates/1828/1/1/+
+live.object.list.service.ts:208 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE -> diaries/dates/1828/1/1/+ (client.connected=true)
+live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/dates/1828/1/1/+', refCount incremented to 1
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: []
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: [2332]
+rpc.service.ts:115 rpcDispatcher: received status: {code: 200, message: 'ok'}
+fragment-lock.service.ts:57 FragmentLockService: unlocked fragment 2332: after failed edit
+live.object.list.service.ts:287 LiveObjectListService.unsubscribeAndDeleteTopicTree: unsubscribed 'diaries/dates/1828/1/1/+'
+live.object.list.service.ts:288 LiveObjectListService.unsubscribeAndDeleteTopicTree: ListenerCount after unsubscribeTopicTree cleanup: 3
+live.object.list.service.ts:216 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE ACK <- diaries/dates/1828/1/1/+ {err: null}
+live.object.list.service.ts:227 LiveObjectListService.subscribeToTopicFilters: subscribed to 'diaries/dates/1828/1/1/+' using shared dispatcher
+live.object.list.service.ts:230 LiveObjectListService.subscribeToTopicFilters: ListenerCount after subscribeToTopicTree: 3
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (2) [2332, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (3) [4, 2332, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (4) [4, 2332, 5, 1]
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.<subscribe fragments>: fragments: 
+ DayviewComponent.goToFragment: fragmentId: 2332
+ DayviewComponent.goToFragment: fragmentId: 4
+ LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/fragments/2332', refCount decremented to 0
+live.object.service.ts:55 LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/fragments/4', refCount incremented to 1
+live.object.service.ts:227 LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/fragments/2332
+live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/fragments/4 (client.connected=true)
+live.object.service.ts:235 LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/fragments/2332'
+live.object.service.ts:236 LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/fragments/2332': 3
+live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/fragments/4 {err: null}
+live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/fragments/4'
+live.object.service.ts:272 LiveObjectService.liveObjectDispatcher: [MQTT] RX diaries/fragments/4 {id: 4, version: 0, locked: false, hasLockSessionId: false, retain: true, …}
+live.object.service.ts:55 LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/marquees/1', refCount incremented to 1
+live.object.service.ts:209 LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/images/1', refCount decremented to 0
+text-panel.component.ts:153 TextPanelComponent: we are leaving fragment.id=2332
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+live.object.list.service.ts:249 LiveObjectListService.releaseTopicTreeReference: UNSUBSCRIBE 'diaries/dates/1828/1/1/+', refCount decremented to 0
+live.object.list.service.ts:276 LiveObjectListService.unsubscribeAndDeleteTopicTree: [MQTT] UNSUBSCRIBE -> diaries/dates/1828/1/1/+
+live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/marquees/1 (client.connected=true)
+live.object.service.ts:227 LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/images/1
+live.object.list.service.ts:208 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE -> diaries/dates/1828/1/1/+ (client.connected=true)
+live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/dates/1828/1/1/+', refCount incremented to 1
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: []
+live.object.list.service.ts:287 LiveObjectListService.unsubscribeAndDeleteTopicTree: unsubscribed 'diaries/dates/1828/1/1/+'
+live.object.list.service.ts:288 LiveObjectListService.unsubscribeAndDeleteTopicTree: ListenerCount after unsubscribeTopicTree cleanup: 3
+live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/marquees/1 {err: null}
+live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/marquees/1'
+live.object.service.ts:235 LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/images/1'
+live.object.service.ts:236 LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/images/1': 3
+live.object.list.service.ts:216 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE ACK <- diaries/dates/1828/1/1/+ {err: null}
+live.object.list.service.ts:227 LiveObjectListService.subscribeToTopicFilters: subscribed to 'diaries/dates/1828/1/1/+' using shared dispatcher
+live.object.list.service.ts:230 LiveObjectListService.subscribeToTopicFilters: ListenerCount after subscribeToTopicTree: 3
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: [1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (2) [4, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (3) [4, 5, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (4) [4, 5, 1, 2]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (5) [4, 5, 1, 2, 3]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+dayview.component.ts:219 DayviewComponent.goToFragment: fragmentId: 2332
+live.object.service.ts:209 LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/fragments/4', refCount decremented to 0
+live.object.service.ts:55 LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/fragments/2332', refCount incremented to 1
+live.object.service.ts:227 LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/fragments/4
+live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/fragments/2332 (client.connected=true)
+live.object.service.ts:235 LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/fragments/4'
+live.object.service.ts:236 LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/fragments/4': 3
+live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/fragments/2332 {err: null}
+live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/fragments/2332'
+live.object.service.ts:272 LiveObjectService.liveObjectDispatcher: [MQTT] RX diaries/fragments/2332 {id: 2332, version: 0, locked: false, hasLockSessionId: false, retain: true, …}
+live.object.service.ts:209 LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/marquees/1', refCount decremented to 0
+live.object.service.ts:55 LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/images/1', refCount incremented to 1
+text-panel.component.ts:153 TextPanelComponent: we are leaving fragment.id=4
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+live.object.list.service.ts:249 LiveObjectListService.releaseTopicTreeReference: UNSUBSCRIBE 'diaries/dates/1828/1/1/+', refCount decremented to 0
+live.object.list.service.ts:276 LiveObjectListService.unsubscribeAndDeleteTopicTree: [MQTT] UNSUBSCRIBE -> diaries/dates/1828/1/1/+
+live.object.service.ts:227 LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/marquees/1
+live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/images/1 (client.connected=true)
+live.object.list.service.ts:208 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE -> diaries/dates/1828/1/1/+ (client.connected=true)
+live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/dates/1828/1/1/+', refCount incremented to 1
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: []
+live.object.list.service.ts:287 LiveObjectListService.unsubscribeAndDeleteTopicTree: unsubscribed 'diaries/dates/1828/1/1/+'
+live.object.list.service.ts:288 LiveObjectListService.unsubscribeAndDeleteTopicTree: ListenerCount after unsubscribeTopicTree cleanup: 3
+live.object.service.ts:235 LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/marquees/1'
+live.object.service.ts:236 LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/marquees/1': 3
+live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/images/1 {err: null}
+live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/images/1'
+live.object.list.service.ts:216 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE ACK <- diaries/dates/1828/1/1/+ {err: null}
+live.object.list.service.ts:227 LiveObjectListService.subscribeToTopicFilters: subscribed to 'diaries/dates/1828/1/1/+' using shared dispatcher
+live.object.list.service.ts:230 LiveObjectListService.subscribeToTopicFilters: ListenerCount after subscribeToTopicTree: 3
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: [1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (2) [4, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (3) [4, 5, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (4) [4, 5, 1, 2]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (5) [4, 5, 1, 2, 3]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+text-panel.component.ts:247 TextPanelComponent: edits detected -> lockFragment, fragmentId=2332
+fragment-lock.service.ts:20 FragmentLockService: locking fragment 2332 for edit
+config.service.ts:50 ConfigService.getConfig
+config.service.ts:53 ConfigService.getConfig from cache:  {brokerMode: 'direct', brokerDirectUrl: 'ws://localhost:9001', responderBaseUrlMode: 'same-host-port', responderBaseUrlPort: 8081, username: 'diaries-client', …}
+rpc.service.ts:144 RpcService.rpcRequest
+rpc.service.ts:186 RpcService.rpcRequest: sending {requestTopic: 'diaries/rpc/request', function: 'lockFragment', correlationId: '5213ad27-b502-4a02-a383-cdd4479bbc23', replyTopic: 'diaries/rpc/client-1791100762769/response', hasAccessToken: true}
+rpc.service.ts:201 [rpcRequest] Publish succeeded
+live.object.service.ts:272 LiveObjectService.liveObjectDispatcher: [MQTT] RX diaries/fragments/2332 {id: 2332, version: 0, locked: true, hasLockSessionId: true, retain: false, …}
+text-panel.component.ts:153 TextPanelComponent: we are leaving fragment.id=2332
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+live.object.list.service.ts:249 LiveObjectListService.releaseTopicTreeReference: UNSUBSCRIBE 'diaries/dates/1828/1/1/+', refCount decremented to 0
+live.object.list.service.ts:276 LiveObjectListService.unsubscribeAndDeleteTopicTree: [MQTT] UNSUBSCRIBE -> diaries/dates/1828/1/1/+
+live.object.list.service.ts:208 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE -> diaries/dates/1828/1/1/+ (client.connected=true)
+live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/dates/1828/1/1/+', refCount incremented to 1
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: []
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: [2332]
+rpc.service.ts:115 rpcDispatcher: received status: {code: 200, message: 'ok'}
+fragment-lock.service.ts:26 FragmentLockService: locked fragment 2332 for edit
+live.object.list.service.ts:287 LiveObjectListService.unsubscribeAndDeleteTopicTree: unsubscribed 'diaries/dates/1828/1/1/+'
+live.object.list.service.ts:288 LiveObjectListService.unsubscribeAndDeleteTopicTree: ListenerCount after unsubscribeTopicTree cleanup: 3
+live.object.list.service.ts:216 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE ACK <- diaries/dates/1828/1/1/+ {err: null}
+live.object.list.service.ts:227 LiveObjectListService.subscribeToTopicFilters: subscribed to 'diaries/dates/1828/1/1/+' using shared dispatcher
+live.object.list.service.ts:230 LiveObjectListService.subscribeToTopicFilters: ListenerCount after subscribeToTopicTree: 3
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (2) [2332, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (3) [4, 2332, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (4) [4, 2332, 5, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (5) [4, 2332, 5, 1, 2]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+text-panel.component.ts:435 TextPanelComponent.onSave {fragmentId: 2332, version: 0}
+config.service.ts:50 ConfigService.getConfig
+config.service.ts:53 ConfigService.getConfig from cache:  {brokerMode: 'direct', brokerDirectUrl: 'ws://localhost:9001', responderBaseUrlMode: 'same-host-port', responderBaseUrlPort: 8081, username: 'diaries-client', …}
+fragment.ts:108 UpdateFragmentRequest.fromFragment {id: 2332, version: 0, marqueeId: null}
+rpc.service.ts:144 RpcService.rpcRequest
+rpc.service.ts:186 RpcService.rpcRequest: sending {requestTopic: 'diaries/rpc/request', function: 'updateFragment', correlationId: '292ee776-9a3f-4e7c-bb8c-b78d7be874ce', replyTopic: 'diaries/rpc/client-1791100762769/response', hasAccessToken: true}
+rpc.service.ts:201 [rpcRequest] Publish succeeded
+rpc.service.ts:115 rpcDispatcher: received status: {code: 400, message: 'bad request'}
+text-panel.component.ts:514 TextPanelComponent.onSave: error -> rolling back: RpcError: Status 400: bad request
+fragment-lock.service.ts:51 FragmentLockService: unlocking fragment 2332: after failed edit
+config.service.ts:50 ConfigService.getConfig
+config.service.ts:53 ConfigService.getConfig from cache:  {brokerMode: 'direct', brokerDirectUrl: 'ws://localhost:9001', responderBaseUrlMode: 'same-host-port', responderBaseUrlPort: 8081, username: 'diaries-client', …}
+rpc.service.ts:144 RpcService.rpcRequest
+rpc.service.ts:186 RpcService.rpcRequest: sending {requestTopic: 'diaries/rpc/request', function: 'unlockFragment', correlationId: 'd4db9348-5456-4826-bc8f-83d906fe59ee', replyTopic: 'diaries/rpc/client-1791100762769/response', hasAccessToken: true}
+rpc.service.ts:201 [rpcRequest] Publish succeeded
+live.object.service.ts:272 LiveObjectService.liveObjectDispatcher: [MQTT] RX diaries/fragments/2332 {id: 2332, version: 0, locked: false, hasLockSessionId: false, retain: false, …}
+text-panel.component.ts:153 TextPanelComponent: we are leaving fragment.id=2332
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+live.object.list.service.ts:249 LiveObjectListService.releaseTopicTreeReference: UNSUBSCRIBE 'diaries/dates/1828/1/1/+', refCount decremented to 0
+live.object.list.service.ts:276 LiveObjectListService.unsubscribeAndDeleteTopicTree: [MQTT] UNSUBSCRIBE -> diaries/dates/1828/1/1/+
+live.object.list.service.ts:208 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE -> diaries/dates/1828/1/1/+ (client.connected=true)
+live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/dates/1828/1/1/+', refCount incremented to 1
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: []
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: [2332]
+rpc.service.ts:115 rpcDispatcher: received status: {code: 200, message: 'ok'}
+fragment-lock.service.ts:57 FragmentLockService: unlocked fragment 2332: after failed edit
+live.object.list.service.ts:287 LiveObjectListService.unsubscribeAndDeleteTopicTree: unsubscribed 'diaries/dates/1828/1/1/+'
+live.object.list.service.ts:288 LiveObjectListService.unsubscribeAndDeleteTopicTree: ListenerCount after unsubscribeTopicTree cleanup: 3
+live.object.list.service.ts:216 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE ACK <- diaries/dates/1828/1/1/+ {err: null}
+live.object.list.service.ts:227 LiveObjectListService.subscribeToTopicFilters: subscribed to 'diaries/dates/1828/1/1/+' using shared dispatcher
+live.object.list.service.ts:230 LiveObjectListService.subscribeToTopicFilters: ListenerCount after subscribeToTopicTree: 3
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (2) [2332, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (3) [4, 2332, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (4) [4, 2332, 5, 1]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (5) [4, 2332, 5, 1, 2]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]
+dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: (6) [4, 2332, 5, 1, 2, 3]

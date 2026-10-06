@@ -1,0 +1,13 @@
+$ npm test -- --watch=false --browsers=ChromeHeadless
+
+> diaries-client@0.0.0 test
+> ng test --watch=false --browsers=ChromeHeadless
+
+sh: 1: ng: not found
+exit=127
+
+$ npm ci --offline --ignore-scripts
+npm error code ENOTCACHED
+npm error request to https://registry.npmjs.org/zone.js/-/zone.js-0.15.1.tgz failed: cache mode is 'only-if-cached' but no cached response is available.
+npm error A complete log of this run can be found in: /home/oai/.npm/_logs/2026-10-03T18_55_03_067Z-debug-0.log
+exit=1

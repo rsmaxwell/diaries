@@ -1,0 +1,21 @@
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> $step13 = '.\change-control\in-progress\0027-FEAT - add ImageFragment editing to diaries-client\evidence\Step 13\tooling'
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> & "$step13\step13-begin.ps1"
+Step 13 live-evidence run created: 20261004-002349
+Run directory: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\build\0027-step13\runs\20261004-002349
+No responder configuration or credentials are copied into the run directory.
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\build\0027-step13\runs\20261004-002349
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> & "$step13\step13-preflight.ps1"
+PASS: diaries-development-db state is running|healthy
+PASS: diaries-development-mqtt state is running|healthy
+PASS: config/environments/local.env exists
+PASS: Angular dependencies are installed
+PASS: diaries-client ACL can read diaries/images/+
+PASS: client MQTT identity is diaries-client
+PASS: client MQTT password is configured (value not printed)
+PASS: effective Files root exists: \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common
+WARN: development dataset contains no IMAGE Fragment. Create a disposable fixture with the gate enabled, then restart the responder with the gate disabled before Phase A.
+PASS: preflight evidence written to C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\build\0027-step13\runs\20261004-002349\preflight.txt
+Warnings: 1
+Step 13 preflight passed.
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>

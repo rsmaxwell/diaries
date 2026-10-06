@@ -1,0 +1,97 @@
+# Existing responder tests freezing the Step 1 authoring contract
+
+## AddImageFragment gate
+48-    }
+49:    @Test void disabledGateRejectsBeforePageLookupPersistenceOrPublication() {
+50-        context.getConfig().setImageFragmentWritesEnabled(null);
+51-        missingPage = true;
+52-        status(403,args(),auth("EDITOR","ACTIVE",5));
+53-        status(401,args(),auth("VIEWER","ACTIVE",5));
+54-        context.setConfig(null);
+55-        status(403,args(),auth("EDITOR","ACTIVE",5));
+56-        assertFalse(committed); assertTrue(retained.isEmpty());
+57-    }
+
+## updateFragment preserve/set/clear and disabled gate
+25-    }
+26:    @Test void disabledGateAllowsPreservationButRejectsAttachReplaceAndClear() throws Exception {
+27-        context.getConfig().setImageFragmentWritesEnabled(false);
+28-        var selected=fragment(FragmentType.IMAGE,91L);
+29-        UpdateFragment.applyImageSelection(context,Map.of(),selected);
+30-        UpdateFragment.applyImageSelection(context,Map.of("imageId",91),selected);
+31-        Map<String,Object> clear=new HashMap<>();clear.put("imageId",null);
+32-        for(var args:List.of(clear,Map.<String,Object>of("imageId",92))) {
+33-            assertEquals(403,assertThrows(RpcStatusException.class,()->UpdateFragment.applyImageSelection(context,args,selected)).getStatus().code());
+34-            assertEquals(91L,selected.getImageId());
+35-        }
+36-        var empty=fragment(FragmentType.IMAGE,null);
+37-        UpdateFragment.applyImageSelection(context,clear,empty);
+38-        assertEquals(403,assertThrows(RpcStatusException.class,()->UpdateFragment.applyImageSelection(context,Map.of("imageId",91),empty)).getStatus().code());
+39-        assertNull(empty.getImageId());
+40-    }
+41-    @Test void absentPreservesNullClearsAndValueReplaces() throws Exception {
+42-        var f=fragment(FragmentType.IMAGE,91L);
+43-        UpdateFragment.applyImageSelection(context,Map.of(),f);assertEquals(91L,f.getImageId());
+44-        UpdateFragment.applyImageSelection(context,Map.of("imageId",92L),f);assertEquals(92L,f.getImageId());
+45-        Map<String,Object> clear=new HashMap<>();clear.put("imageId",null);
+46-        UpdateFragment.applyImageSelection(context,clear,f);assertNull(f.getImageId());
+47-        UpdateFragment.applyImageSelection(context,Map.of("imageId",91L),f);assertEquals(91L,f.getImageId());
+48-    }
+49-    @Test void marqueeAndLegacyNullCannotAcquireImages() throws Exception {
+50-        for(var type:new FragmentType[]{FragmentType.MARQUEE,null}) {
+51-            var f=fragment(type,null);
+
+## live gate: mutation rejected, ordinary text edit allowed
+119-    @Test
+120-    @EnabledIfEnvironmentVariable(named = "DIARIES_IMAGE_MQTT_TEST_URL", matches = ".+")
+121:    void authoringGateRejectsMutationsButPreservesLifecycle(@org.junit.jupiter.api.io.TempDir java.nio.file.Path root) throws Exception {
+122-        String broker=System.getenv("DIARIES_IMAGE_MQTT_TEST_URL");
+123-        assertTrue(broker.matches("tcp://127\\.0\\.0\\.1:[0-9]+"));
+124-        var page=context.inflatePage(context.getPageRepository().findAll().iterator().next().getId());
+125-        Image first=context.saveImage(candidate("gate-first.png")),second=context.saveImage(candidate("gate-second.png"));
+126-        java.nio.file.Files.createDirectory(root.resolve("files"));java.nio.file.Files.writeString(root.resolve("files/gate-first.png"),"preserve");
+127-        var fc=new com.rsmaxwell.diaries.responder.config.DiariesConfig();fc.setRoot(root.toString());fc.setFiles("files");config.setDiaries(fc);
+128-        var ids=new java.util.ArrayList<Long>();
+129-        long originalCount=context.getFragmentRepository().count();
+130-        try(var rpc=new Step12Rpc(broker,factory)) {
+131-            var create=new HashMap<String,Object>(Map.of("pageId",page.getId(),"year",2095,"month",3,"day",13,"sequence",1,"text","Gate"));
+132-            // Missing configuration value is the production default, including explicit-null wire requests.
+133-            config.setImageFragmentWritesEnabled(null);
+134-            rpc.call("addImageFragment",create,403);create.put("imageId",null);rpc.call("addImageFragment",create,403);
+135-            create.put("imageId",first.getId());rpc.call("addImageFragment",create,403);
+136-            assertEquals(originalCount,context.getFragmentRepository().count());
+137-            assertTrue(step11RetainedSnapshot(broker,rpc.publisher,"diaries/images/"+first.getId(),"diaries/images/"+second.getId()).isEmpty());
+138-            config.setImageFragmentWritesEnabled(true);
+139-            Long selected=rpc.call("addImageFragment",create).get("id").longValue();ids.add(selected);
+140-            create.put("imageId",null);create.put("sequence",2);
+141-            Long empty=rpc.call("addImageFragment",create).get("id").longValue();ids.add(empty);
+142-            new ImagePublishDTO(first).publish(rpc.publisher);
+143-            String[] gateTopics={"diaries/fragments/"+selected,"diaries/fragments/"+empty,
+144-                    "diaries/dates/2095/3/13/"+selected,"diaries/dates/2095/3/13/"+empty,"diaries/images/"+first.getId()};
+145-            config.setImageFragmentWritesEnabled(false);
+146-            for(Long id:ids) {
+147-                rpc.call("lockFragment",Map.of("id",id));
+148-                var before=context.getFragmentRepository().findById(id).orElseThrow();
+149-                var topics=step11RetainedSnapshot(broker,rpc.publisher,gateTopics);
+150-                for(Long reference:id.equals(selected)?new Long[]{second.getId(),null}:new Long[]{first.getId()}) {
+151-                    var edit=step7Args(context.inflateFragment(id));edit.put("imageId",reference);edit.put("text","Must not change");
+152-                    rpc.call("updateFragment",edit,403);
+153-                    assertEquals(before,context.getFragmentRepository().findById(id).orElseThrow());
+154-                    assertEquals(topics,step11RetainedSnapshot(broker,rpc.publisher,gateTopics));
+155-                }
+156-                var edit=step7Args(context.inflateFragment(id));edit.put("text","Allowed text edit");
+157-                rpc.call("updateFragment",edit);
+158-                assertEquals(before.getImageId(),context.getFragmentRepository().findById(id).orElseThrow().getImageId());
+159-                rpc.call("lockFragment",Map.of("id",id));rpc.call("unlockFragment",Map.of("id",id));
+160-            }
+161-            rpc.call("normaliseFragments",Map.of("year",2095,"month",3,"day",13));step12AssertRetained(broker,rpc.publisher,ids);
+162-            rpc.call("deleteImage",Map.of("name","gate-first.png"),409);
+163-            try(var reader=factory.createEntityManager()) {
+164-                var restarted=Responder.createContext(config,factory,reader);assertFalse(restarted.getConfig().isImageFragmentWritesEnabled());
+165-                var replay=restarted.loadFromDatabase();
+166-                var payload=new com.fasterxml.jackson.databind.ObjectMapper().readTree(replay.get("diaries/fragments/"+selected));
+167-                assertEquals(first.getId().longValue(),payload.get("imageId").longValue());assertTrue(payload.get("marqueeId").isNull());
+168-            }
+169-            rpc.call("deleteFragment",Map.of("id",selected));
+170-            assertFalse(context.getFragmentRepository().existsById(selected));assertTrue(context.getImageRepository().existsById(first.getId()));
+171-            assertEquals("preserve",java.nio.file.Files.readString(root.resolve("files/gate-first.png")));

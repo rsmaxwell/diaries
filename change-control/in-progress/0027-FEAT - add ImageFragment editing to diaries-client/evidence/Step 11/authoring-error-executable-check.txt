@@ -1,0 +1,14 @@
+PASS: create 400 invalid/stale
+PASS: create 401 authentication
+PASS: create 403 authoring gate
+PASS: create 409 conflict
+PASS: create 500 unconfirmed
+PASS: update 400 invalid/stale
+PASS: update 401 authentication
+PASS: update 403 authoring gate
+PASS: update 409 lock/conflict
+PASS: update 500 unconfirmed
+PASS: create timeout unconfirmed
+PASS: update timeout unconfirmed
+
+12/12 checks passed

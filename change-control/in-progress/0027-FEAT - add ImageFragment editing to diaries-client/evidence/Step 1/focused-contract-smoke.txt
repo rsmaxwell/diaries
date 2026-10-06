@@ -1,0 +1,17 @@
+# Focused serializer smoke using globally installed ts-node
+
+UpdateFragmentRequest.fromFragment { id: 123, version: 7, marqueeId: null }
+{
+  "id": 123,
+  "marqueeId": null,
+  "year": 1830,
+  "month": 3,
+  "day": 8,
+  "sequence": 2.125,
+  "version": 7,
+  "text": "Entry"
+}
+PASS: ordinary updateFragment request omits pageId/type/imageId/lock
+
+TypeScript syntax/type smoke for fragment.ts + fragment.spec.ts with minimal Jasmine global declarations:
+PASS: tsc --noEmit --target es2022 --module commonjs --skipLibCheck

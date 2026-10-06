@@ -1,0 +1,434 @@
+# Contract source baseline excerpts
+
+## diaries-client/src/app/model/fragment.ts
+     1	
+     2	export type FragmentType = 'MARQUEE' | 'IMAGE';
+     3	
+     4	export interface Fragment {
+     5	  id: number;
+     6	  pageId?: number | null;
+     7	  type?: FragmentType | null;
+     8	  imageId?: number | null;
+     9	  marqueeId: number | null;
+    10	  year: number;
+    11	  month: number;
+    12	  day: number;
+    13	  sequence: number;
+    14	  version: number;
+    15	  text: string;
+    16	
+    17	  lock?: EditLockInfo | null;
+    18	}
+    19	
+    20	export type MarqueeFragment = Fragment & { type?: 'MARQUEE' | null };
+    21	export type PageOwnedFragment = Fragment & { pageId: number };
+    22	
+    23	/** Null/absent type is the documented rolling-migration MARQUEE fallback. */
+    24	export function effectiveFragmentType(fragment: Fragment): FragmentType {
+    25	  return fragment.type ?? 'MARQUEE';
+    26	}
+    27	
+    28	export function isMarqueeFragment(fragment: Fragment | null | undefined): fragment is MarqueeFragment {
+    29	  return !!fragment && effectiveFragmentType(fragment) === 'MARQUEE';
+    30	}
+    31	
+    32	export function hasAuthoritativePage(fragment: Fragment | null | undefined): fragment is PageOwnedFragment {
+    33	  return !!fragment && Number.isInteger(fragment.pageId) && (fragment.pageId as number) > 0;
+    34	}
+    35	
+    36	export class NormaliseFragmentsRequest {
+    37	  constructor(
+    38	    public year: number,
+    39	    public month: number,
+    40	    public day: number
+    41	  ) { };
+    42	}
+    43	
+    44	export class AddFragmentRequest {
+    45	  constructor(
+    46	    public pageId: number,
+    47	    public year: number,
+    48	    public month: number,
+    49	    public day: number,
+    50	    public sequence: number,
+    51	    public text: string,
+    52	    public x: number,
+    53	    public y: number,
+    54	    public width: number,
+    55	    public height: number
+    56	  ) { }
+    57	}
+    58	
+    59	export class UpdateFragmentRequest {
+    60	  constructor(
+    61	    public id: number,
+    62	    public marqueeId: number | null,
+    63	    public year: number,
+    64	    public month: number,
+    65	    public day: number,
+    66	    public sequence: number,
+    67	    public version: number,
+    68	    public text: string
+    69	  ) { };
+    70	
+    71	  static fromFragment(fragment: Fragment): UpdateFragmentRequest {
+    72	
+    73	    console.log('UpdateFragmentRequest.fromFragment', {
+    74	      id: fragment.id,
+    75	      version: fragment.version,
+    76	      marqueeId: fragment.marqueeId
+    77	    });
+    78	
+    79	    return new UpdateFragmentRequest(
+    80	      fragment.id,
+    81	      fragment.marqueeId,
+    82	      fragment.year,
+    83	      fragment.month,
+    84	      fragment.day,
+    85	      fragment.sequence,
+    86	      fragment.version,
+    87	      fragment.text,
+    88	    );
+    89	  }
+    90	}
+    91	
+    92	export class DeleteFragmentRequest {
+    93	  constructor(public id: number) { }
+    94	}
+    95	
+    96	export interface EditLockInfo {
+    97	  lockUserId: number | null;
+    98	  lockUserName: string | null;
+    99	  lockKnownAs: string | null;
+   100	  lockTimeStamp: number | null;    // epoch millis
+   101	  lockSessionId: string | null;
+   102	}
+   103	
+   104	export class LockFragmentRequest {
+   105	  constructor(public id: number) { }
+   106	  static fromId(id: number): LockFragmentRequest {
+   107	    return new LockFragmentRequest(id);
+   108	  }
+   109	}
+   110	
+   111	export class UnlockFragmentRequest {
+   112	  constructor(public id: number) { }
+   113	  static fromId(id: number): UnlockFragmentRequest {
+   114	    return new UnlockFragmentRequest(id);
+   115	  }
+
+## diaries-responder FragmentPublishDTO
+    24	import lombok.NoArgsConstructor;
+    25	import lombok.ToString;
+    26	import lombok.experimental.SuperBuilder;
+    27	
+    28	@Data
+    29	@EqualsAndHashCode(callSuper = true)
+    30	@ToString(callSuper = true)
+    31	@SuperBuilder
+    32	@NoArgsConstructor
+    33	@AllArgsConstructor
+    34	public class FragmentPublishDTO extends Base implements Jsonable {
+    35	
+    36		private static final Logger log = LoggerFactory.getLogger(FragmentPublishDTO.class);
+    37		private static final ObjectMapper objectMapper = new ObjectMapper();
+    38	
+    39		private Integer year;
+    40		private Integer month;
+    41		private Integer day;
+    42		private BigDecimal sequence;
+    43		private String text;
+    44		private Long pageId;
+    45		private FragmentType type;
+    46		/** Optional reusable Image reference, published explicitly even when null. */
+    47		private Long imageId;
+    48		private Long marqueeId;
+    49	
+    50		/**
+    51		 * Lock state for this fragment (may be null / empty => unlocked).
+    52		 */
+    53		private LockInfo lock;
+    54	
+    55		@JsonIgnore
+    56		private final Publisher publisher = new Publisher();
+    57	
+    58		public FragmentPublishDTO(Fragment fragment, Marquee marquee) {
+    59			this.id = fragment.getId();
+    60			this.version = fragment.getVersion();
+    61			this.sequence = fragment.getSequence();
+    62			this.year = fragment.getYear();
+    63			this.month = fragment.getMonth();
+    64			this.day = fragment.getDay();
+    65			this.text = fragment.getText();
+    66			this.pageId = fragment.getPageId();
+    67			this.type = fragment.getType();
+    68			this.imageId = fragment.getImageId();
+    69	
+    70			// Include lock state in MQTT payloads (if present)
+    71			this.lock = fragment.getLock();
+    72	
+    73			this.marqueeId = null;
+    74			if (marquee != null) {
+    75				this.marqueeId = marquee.getId();
+    76			} else {
+    77				this.marqueeId = null;
+    78			}
+    79		}
+    80	
+    81		@Override
+    82		public String toJson() throws JsonProcessingException {
+    83			return objectMapper.writeValueAsString(this);
+    84		}
+    85	
+    86		@Override
+    87		public byte[] toJsonAsBytes() throws JsonProcessingException {
+    88			return objectMapper.writeValueAsBytes(this);
+    89		}
+    90	
+    91		List<String> getTopics() {
+    92			List<String> topics = new ArrayList<String>();
+
+## diaries-responder AddImageFragment
+    18	/** Creates an IMAGE fragment in the existing Page/date chronology. */
+    19	public class AddImageFragment extends RequestHandler {
+    20	    @Override
+    21	    public Response handleRequest(Object ctx, Map<String, Object> args, List<UserProperty> properties) throws Exception {
+    22	        DiaryContext context = (DiaryContext) ctx;
+    23	        try {
+    24	            var claims = Authorization.checkToken(context, "access", Authorization.getAccessToken(properties == null ? List.of() : properties));
+    25	            Authorization.checkActive(claims);
+    26	            Authorization.checkRoleAtLeast(claims, Role.EDITOR);
+    27	        } catch (RpcStatusException | io.jsonwebtoken.JwtException | IllegalArgumentException | ClassCastException failure) {
+    28	            throw RpcStatusException.unauthorized("Active editor authorization required");
+    29	        }
+    30	
+    31	        com.rsmaxwell.diaries.responder.utilities.ImageFragmentWritePolicy.requireEnabled(context);
+    32	
+    33	        Fragment candidate;
+    34	        long pageId;
+    35	        try {
+    36	            pageId = positiveId(args.get("pageId"));
+    37	            int year = number(args.get("year")).intValueExact();
+    38	            int month = number(args.get("month")).intValueExact();
+    39	            int day = number(args.get("day")).intValueExact();
+    40	            LocalDate.of(year, month, day);
+    41	            // Same four-decimal, no-rounding insertion semantics as AddFragment.
+    42	            BigDecimal sequence = number(args.get("sequence")).setScale(4);
+    43	            if (sequence.precision() > 10) throw new IllegalArgumentException("Sequence exceeds database precision");
+    44	            if (!(args.get("text") instanceof String text) || text.length() > 4096)
+    45	                throw new IllegalArgumentException("Text must be a string of at most 4096 characters");
+    46	            Long imageId = args.get("imageId") == null ? null : positiveId(args.get("imageId"));
+    47	            // Caller type/marquee/id fields cannot override server-authoritative identity.
+    48	            candidate = Fragment.builder().version(0L).type(FragmentType.IMAGE).persistedImageId(imageId)
+    49	                    .year(year).month(month).day(day).sequence(sequence).text(text).build();
+    50	        } catch (Exception invalid) {
+    51	            throw RpcStatusException.badRequest("Invalid pageId, date, sequence, text or imageId");
+    52	        }
+    53	        try {
+    54	            candidate.setPage(context.inflatePage(pageId));
+    55	        } catch (Exception missingPage) {
+    56	            throw RpcStatusException.badRequest("Page could not be resolved: " + pageId);
+    57	        }
+    58	        Fragment saved;
+    59	        try {
+    60	            saved = context.saveImageFragment(candidate).getFragment();
+    61	        } catch (IllegalArgumentException invalidReference) {
+    62	            throw RpcStatusException.badRequest("Image reference could not be resolved");
+    63	        } catch (Exception failure) {
+    64	            throw RpcStatusException.internalError("Unable to save Image Fragment");
+    65	        }
+    66	        FragmentPublishDTO dto = new FragmentPublishDTO(saved, null);
+    67	        try {
+    68	            dto.publish(context.getPublisherClient());
+    69	        } catch (Exception failure) {
+    70	            throw RpcStatusException.internalError("Fragment " + saved.getId()
+    71	                    + " was saved, but retained publication failed; do not repeat creation blindly");
+    72	        }
+    73	        return Response.success(dto);
+    74	    }
+    75	
+    76	    private static BigDecimal number(Object value) {
+    77	        if (!(value instanceof Number) && !(value instanceof String))
+    78	            throw new IllegalArgumentException("Number required");
+    79	        return new BigDecimal(value.toString());
+    80	    }
+    81	
+    82	    private static long positiveId(Object value) {
+    83	        long id = number(value).longValueExact();
+    84	        if (id <= 0) throw new IllegalArgumentException("Positive id required");
+    85	        return id;
+    86	    }
+    87	}
+
+## diaries-responder UpdateFragment image selection
+   132				 */
+   133				incomingFragment = context.inflateFragment(id);
+   134	
+   135			} catch (RpcStatusException e) {
+   136				log.warn("UpdateFragment.handleRequest: request failed; rolling back transaction: {}", e.getMessage(), e);
+   137				if (tx.isActive()) {
+   138					tx.rollback();
+   139				}
+   140				throw e;
+   141			} catch (Exception e) {
+   142				log.error("UpdateFragment.handleRequest: unexpected error; rolling back transaction", e);
+   143				if (tx.isActive()) {
+   144					tx.rollback();
+   145				}
+   146				throw e;
+   147			}
+   148	
+   149			// (7) get the marquee associated with the fragment (can be null)
+   150			ResolvedFragmentState resolvedState = context.resolveFragmentState(incomingFragment);
+   151	
+   152			// (8) If the fragment keys have changed, then remove the fragment from the topicTree
+   153			MqttAsyncClient client = context.getPublisherClient();
+   154			if (originalFragment.keyFieldsChanged(incomingFragment)) {
+   155				log.info("UpdateFragment.handleRequest: removing the original fragment from the TopicTree");
+   156				FragmentPublishDTO dto = new FragmentPublishDTO(originalFragment, resolvedState.getMarquee());
+   157				dto.remove(client);
+   158			}
+   159	
+   160			// (9) publish the final incoming fragment and every fragment renumbered on
+   161			// either date. De-duplicate by id because the incoming fragment may itself
+   162			// have been renumbered.
+   163			Map<Long, Fragment> fragmentsToPublish = new LinkedHashMap<>();
+   164			for (Fragment fragment : normalisedFragments) {
+   165				fragmentsToPublish.put(fragment.getId(), fragment);
+   166			}
+   167			fragmentsToPublish.put(incomingFragment.getId(), incomingFragment);
+   168			log.info("UpdateFragment.handleRequest: publishing {} affected fragment(s) to the TopicTree", fragmentsToPublish.size());
+   169			FragmentSequenceNormaliser.publish(context, fragmentsToPublish.values());
+   170	
+   171			return Response.success(incomingFragment.getId());
+   172		}
+   173		static void requireUnchangedIdentity(Map<String, Object> args, Fragment original) throws RpcStatusException {
+   174			if (args.containsKey("pageId")) {
+   175				Long pageId = args.get("pageId") == null ? null : positiveImageOrPageId(args.get("pageId"));
+   176				if (!Objects.equals(pageId, original.getPageId()))
+   177					throw RpcStatusException.badRequest("Fragment Page cannot be changed");
+   178			}
+   179			if (args.containsKey("type") && !Objects.equals(args.get("type"),
+   180					original.getType() == null ? null : original.getType().name()))
+   181				throw RpcStatusException.badRequest("Fragment type cannot be changed");
+   182		}
+   183	
+   184		static void applyImageSelection(DiaryContext context, Map<String, Object> args, Fragment fragment) throws Exception {
+   185			if (fragment.getType() != FragmentType.IMAGE) {
+   186				if (args.get("imageId") != null || fragment.getImageId() != null)
+   187					throw RpcStatusException.badRequest("Only IMAGE Fragments can reference an Image");
+   188				return;
+   189			}
+   190			if (!args.containsKey("imageId")) return; // Preserve the persisted id, including during text-only edits.
+   191			Long imageId = args.get("imageId") == null ? null : positiveImageOrPageId(args.get("imageId"));
+   192	        if (!com.rsmaxwell.diaries.responder.utilities.ImageFragmentWritePolicy.enabled(context)) {
+   193	            if (!Objects.equals(imageId, fragment.getImageId()))
+   194	                com.rsmaxwell.diaries.responder.utilities.ImageFragmentWritePolicy.requireEnabled(context);
+   195	            return; // An unchanged explicit reference is not an authoring mutation.
+   196	        }
+   197			try {
+   198				fragment.setImage(context.lockImageForFragmentWrite(imageId));
+   199			} catch (IllegalArgumentException missing) {
+   200				throw RpcStatusException.badRequest("Image reference could not be resolved");
+   201			}
+   202		}
+   203	
+   204		private static Long positiveImageOrPageId(Object value) throws RpcStatusException {
+   205			try {
+
+## Files RPC additive Image metadata compatibility
+    30	        outgoingTopic = _topic;
+    31	        outgoingOptions = options;
+    32	        outgoing = JSON.parse(payload);
+    33	        const body = structuredClone(reply.payload);
+    34	        if (addFields && body && typeof body === 'object') {
+    35	          body.imageId = 101;
+    36	          body.image = { id: 101, relativePath: 'plain.png', caption: '', altText: '' };
+    37	          if (body.items) body.items.forEach((item: any) => { item.imageId = item.dir ? null : 101; });
+    38	        }
+    39	        callback();
+    40	        queueMicrotask(() => received(options.properties.responseTopic, Buffer.from(JSON.stringify(body)), {
+    41	          properties: {
+    42	            correlationData: options.properties.correlationData,
+    43	            userProperties: { status: JSON.stringify(reply.status) }
+    44	          }
+    45	        }));
+    46	      }
+    47	    };
+    48	    service = new RpcService(
+    49	      { getConnection: () => Promise.resolve(client), getClientId: () => 'fixture-client' } as any,
+    50	      { getConfig: () => Promise.resolve({ baseUrl: 'http://localhost/diaries/' }) } as any,
+    51	      { getCurrentToken: () => 'synthetic-client-token' } as any,
+    52	      {} as any,
+    53	      {} as any
+    54	    );
+    55	    await Promise.resolve();
+    56	  });
+    57	
+    58	  for (const generic of [false, true]) {
+    59	    it(`reads the catalogue upload response including explicit nulls (generic=${generic})`, async () => {
+    60	      // Use any captured successful upload as the stable five-field compatibility baseline.
+    61	      reply = structuredClone(fileRpcBaseline.find(c => c.function === 'uploadFile' && c.status.code === 200));
+    62	      const image = generic ? null : {
+    63	        id: 101, version: 0, relativePath: reply.payload.name, mimeType: 'image/png',
+    64	        originalFilename: reply.payload.name, width: 16, height: 12, checksum: 'ab'.repeat(32), caption: '', altText: ''
+    65	      };
+    66	      reply.payload.imageId = image?.id ?? null;
+    67	      reply.payload.image = image;
+    68	      const value: any = await firstValueFrom(service.uploadFile$(new File(['synthetic'], 'plain.png')));
+    69	      expect(value).toEqual(reply.payload);
+    70	      expect(Object.hasOwn(value, 'imageId')).toBeTrue();
+    71	      expect(Object.hasOwn(value, 'image')).toBeTrue();
+    72	      expect(value.image).toEqual(image);
+    73	    });
+    74	  }
+    75	
+    76	  for (const additions of [false, true]) {
+    77	    it(`reads the captured upload response through uploadFile$ (additions=${additions})`, async () => {
+    78	      reply = baseline('upload-image-root'); addFields = additions;
+    79	      const value: any = await firstValueFrom(service.uploadFile$(new File(['synthetic'], 'plain.png', { type: 'image/png' })));
+    80	      expect(outgoing.function).toBe('uploadFile');
+    81	      expect(Object.hasOwn(outgoing.args, 'subdir')).toBeFalse();
+    82	      expect(value.name).toBe(reply.payload.name);
+    83	      expect(value.size).toBe(reply.payload.size);
+    84	      expect(value.url).toBe(reply.payload.url);
+    85	      expect(Object.hasOwn(value, 'mtime')).toBeFalse();
+    86	      if (additions) expect(value.imageId).toBe(101);
+    87	    });
+    88	
+    89	    it(`reads captured directory and image entries through listFiles$ (additions=${additions})`, async () => {
+    90	      reply = baseline('list-populated-root'); addFields = additions;
+    91	      const value = await firstValueFrom(service.listFiles$());
+    92	      expect(outgoing).toEqual({ function: 'listFiles', args: {} });
+    93	      expect(value.subdir).toBe('');
+    94	      expect(value.items.map(i => i.name)).toEqual(['alpha', 'empty', 'zeta', 'dated.jpg', 'plain.png']);
+    95	      expect(Object.hasOwn(value.items[0], 'url')).toBeFalse();
+    96	      expect(Object.hasOwn(value.items[4], 'dateTaken')).toBeFalse();
+    97	      expect(value.items[3].dateTaken).toBe(1577934245000);
+    98	    });
+    99	  }
+   100	
+   101	  it('sends the diary upload directory without URL encoding or enabling overwrite', async () => {
+   102	    reply = baseline('upload-image-root');
+
+    10	
+    11	describe('FilesListDialog captured additive compatibility', () => {
+    12	  for (const baseUrl of ['http://localhost:8081', 'https://example.test/diaries-responder', 'https://example.test/diaries-responder/']) {
+    13	    for (const additions of [false, true]) {
+    14	      it(`renders captured folders/images, dates and selection (baseUrl=${baseUrl}, additions=${additions})`, async () => {
+    15	        const expectedUrl = baseUrl.replace(/\/$/, '') + '/files/dated.jpg';
+    16	        const reply: any = structuredClone(fileRpcBaseline.find(c => c.caseId === 'list-populated-root')!.payload);
+    17	        if (additions) {
+    18	          reply.catalogueVersion = 1;
+    19	          reply.items.forEach((item: any) => {
+    20	            item.imageId = item.dir ? null : 101;
+    21	            item.image = item.dir ? null : { id: 101, caption: 'Future caption', altText: 'Future alt' };
+    22	          });
+    23	        }
+    24	        const path$ = new BehaviorSubject('/');
+    25	        const close = jasmine.createSpy('close');
+    26	        await TestBed.configureTestingModule({
+    27	          imports: [FilesListDialogComponent],
+    28	          providers: [
+    29	            { provide: DIALOG_DATA, useValue: { path$, select: true } },
+    30	            { provide: DialogRef, useValue: { close } },

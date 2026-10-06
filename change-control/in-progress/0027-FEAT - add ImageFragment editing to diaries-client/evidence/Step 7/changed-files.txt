@@ -1,0 +1,19 @@
+Step 7 production/test source changes relative to the cumulative Step 6 baseline:
+
+diaries-client/src/app/fragment/image-fragment-authoring.ts                         NEW
+diaries-client/src/app/fragment/image-fragment-authoring.spec.ts                    NEW
+diaries-client/src/app/fragment/fragment.component.ts                               MODIFIED
+diaries-client/src/app/fragment/fragment.component.html                             MODIFIED
+diaries-client/src/app/fragment/fragment.component.spec.ts                          MODIFIED
+diaries-client/src/app/fragment/image-viewer/image-viewer.component.ts               MODIFIED
+diaries-client/src/app/headers/pageheader/pageheader.component.ts                    MODIFIED
+diaries-client/src/app/headers/pageheader/pageheader.component.html                  MODIFIED
+diaries-client/src/app/headers/pageheader/pageheader.component.spec.ts               MODIFIED
+
+Change-control updates:
+
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/IMPLEMENTATION-STEPS.md  MODIFIED
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/README.md                MODIFIED
+change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 7/*       NEW
+
+No diaries-responder production or test source changed in Step 7.

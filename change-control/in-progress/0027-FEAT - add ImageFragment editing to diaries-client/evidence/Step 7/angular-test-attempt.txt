@@ -1,0 +1,5 @@
+
+> diaries-client@0.0.0 test
+> ng test --watch=false --browsers=ChromeHeadless --include=src/app/fragment/image-fragment-authoring.spec.ts --include=src/app/fragment/fragment.component.spec.ts --include=src/app/headers/pageheader/pageheader.component.spec.ts
+
+sh: 1: ng: not found

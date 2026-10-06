@@ -1,0 +1,34 @@
+PASS: derived selected Fragment is IMAGE observable
+PASS: derived selected IMAGE has attached Image observable
+PASS: derived valid Add Image Fragment context observable
+PASS: derived in-flight Image mutation observable
+PASS: single busy state suppresses overlapping authoring workflows
+PASS: Fragment workspace scopes shared Image action state
+PASS: Add workflow guarded against duplicate invocation
+PASS: Image mutation workflow guarded against duplicate invocation
+PASS: catalogue chooser has accessible label/autofocus/focus restore
+PASS: Add Image Fragment toolbar exposes title/aria busy/disabled state
+PASS: header consumes shared derived Add state
+PASS: Image-reference panel consumes shared deterministic action state
+PASS: Image-reference buttons have labels/titles/disabled/busy semantics
+PASS: Image-reference busy state announced politely
+PASS: Files chooser labels selectable entries for screen readers
+PASS: uncatalogued catalogue entries removed from tab order
+PASS: Space keyboard selection supported
+PASS: authoring error mapping contains 400
+PASS: authoring error mapping contains 401
+PASS: authoring error mapping contains 403
+PASS: authoring error mapping contains 409
+PASS: authoring error mapping contains 500
+PASS: create 401 distinct from 403
+PASS: unconfirmed create and mutation outcomes require refresh before retry
+PASS: Fragment workflow uses centralized status mapping
+PASS: failed Image mutation does not optimistically assign imageId
+PASS: duplicate-click regression tests present
+PASS: authentication-vs-gate regression test present
+PASS: non-optimistic failure regression test present
+PASS: toolbar accessibility/busy tests present
+PASS: Image-reference accessibility tests present
+PASS: Files chooser keyboard/tab-order regression tests present
+
+32/32 checks passed

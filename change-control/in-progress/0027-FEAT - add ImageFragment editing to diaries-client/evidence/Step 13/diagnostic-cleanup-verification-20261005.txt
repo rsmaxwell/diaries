@@ -1,0 +1,27 @@
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> . "$step13\step13-common.ps1"
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> Invoke-Step13Sql -Sql @"
+>> select id,type,image_id,version,year,month,day,sequence
+>> from fragment
+>> where id in (2335,2336)
+>> order by id;
+>>
+>> select id,type,image_id,version,sequence
+>> from fragment
+>> where year=1828 and month=1 and day=1
+>> order by sequence,id;
+>>
+>> select id,version,relative_path,original_filename
+>> from image
+>> where id=89;
+>> "@
+id|type|image_id|version|year|month|day|sequence
+id|type|image_id|version|sequence
+4|MARQUEE||0|1.0000
+5|MARQUEE||8|2.0000
+1|||11|3.0000
+2|||11|4.0000
+3|||11|5.0000
+id|version|relative_path|original_filename
+89|0|diary-1828-and-1829-and-jan-1830/images/test-2.jpg|test-2.jpg
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>

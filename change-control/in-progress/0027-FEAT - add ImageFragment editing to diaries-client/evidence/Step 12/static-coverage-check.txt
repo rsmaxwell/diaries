@@ -1,0 +1,23 @@
+PASS: 01 legacy null type -> model/fragment.spec.ts
+PASS: 02 retained image projection -> model/image-projection.spec.ts
+PASS: 03 selected image tombstone -> model/model-context.spec.ts
+PASS: 04 catalogue selection -> files-list-dialog/files-list-dialog.compatibility.spec.ts
+PASS: 05 add image wire -> mqtt/image-fragment-rpc.spec.ts
+PASS: 06 preserve wire -> mqtt/image-fragment-rpc.spec.ts
+PASS: 06 set wire -> mqtt/image-fragment-rpc.spec.ts
+PASS: 06 clear wire -> mqtt/image-fragment-rpc.spec.ts
+PASS: 07 text preserve -> fragment/text-panel/text-panel.component.spec.ts
+PASS: 08 reorder preserve -> dayview/dayview.component.spec.ts
+PASS: 09 control type boundary -> fragment/image-fragment-step12-regression.spec.ts
+PASS: 10 add cancel -> fragment/fragment.component.spec.ts
+PASS: 10 add 403 -> fragment/fragment.component.spec.ts
+PASS: 11 replace success -> fragment/fragment.component.spec.ts
+PASS: 11 replace no-op -> fragment/fragment.component.spec.ts
+PASS: 11 replace failure -> fragment/fragment.component.spec.ts
+PASS: 12 clear success -> fragment/fragment.component.spec.ts
+PASS: 12 clear failure -> fragment/image-fragment-step12-regression.spec.ts
+PASS: 15 image fragment delete -> fragment/image-viewer/image-viewer.component.spec.ts
+PASS: 16 marquee create -> fragment/marquee-fragment-compatibility.spec.ts
+PASS: 16 marquee edit -> fragment/marquee-fragment-compatibility.spec.ts
+PASS: 16 marquee delete -> fragment/marquee-fragment-compatibility.spec.ts
+PASS: 22 focused coverage anchors found across all 16 required Step 12 areas.

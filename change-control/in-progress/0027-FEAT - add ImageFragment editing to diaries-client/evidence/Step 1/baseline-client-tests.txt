@@ -1,0 +1,24 @@
+# 0027 Step 1 client regression baseline attempt
+Captured: 2026-10-03
+
+## Environment
+node: v22.16.0
+npm:  10.9.2
+chromium: Chromium 144.0.7559.96 built on Debian GNU/Linux 13 (trixie)
+node_modules: absent in source bundle
+
+## npm ci --offline
+npm error code ENOTCACHED
+npm error request to https://registry.npmjs.org/zone.js/-/zone.js-0.15.1.tgz failed: cache mode is 'only-if-cached' but no cached response is available.
+npm error A complete log of this run can be found in: /home/oai/.npm/_logs/2026-10-03T18_23_48_658Z-debug-0.log
+exit-code: 1
+
+## npm test -- --watch=false --browsers=ChromeHeadless
+
+> diaries-client@0.0.0 test
+> ng test --watch=false --browsers=ChromeHeadless
+
+sh: 1: ng: not found
+exit-code: 127
+
+Result: full Angular unit-test execution was not available in this sandbox because package dependencies are not bundled and network downloads are disabled.

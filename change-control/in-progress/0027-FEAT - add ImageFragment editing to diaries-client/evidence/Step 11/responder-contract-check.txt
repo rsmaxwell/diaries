@@ -1,0 +1,34 @@
+Step 11 responder contract inspection (no responder production changes in this step)
+
+AddImageFragment authorisation/gate/400/500:
+28:            throw RpcStatusException.unauthorized("Active editor authorization required");
+31:        com.rsmaxwell.diaries.responder.utilities.ImageFragmentWritePolicy.requireEnabled(context);
+51:            throw RpcStatusException.badRequest("Invalid pageId, date, sequence, text or imageId");
+56:            throw RpcStatusException.badRequest("Page could not be resolved: " + pageId);
+62:            throw RpcStatusException.badRequest("Image reference could not be resolved");
+64:            throw RpcStatusException.internalError("Unable to save Image Fragment");
+70:            throw RpcStatusException.internalError("Fragment " + saved.getId()
+
+ImageFragment write gate -> forbidden/403:
+12:        if (!enabled(context)) throw RpcStatusException.forbidden("Image Fragment authoring is disabled by responder configuration");
+
+UpdateFragment 400/409 and gate invocation:
+77:				throw RpcStatusException.badRequest("Fragment not found");
+110:				throw RpcStatusException.badRequest("IMAGE Fragment cannot have a Marquee");
+118:				throw RpcStatusException.conflict("Fragment changed during update");
+177:				throw RpcStatusException.badRequest("Fragment Page cannot be changed");
+181:			throw RpcStatusException.badRequest("Fragment type cannot be changed");
+187:				throw RpcStatusException.badRequest("Only IMAGE Fragments can reference an Image");
+194:                com.rsmaxwell.diaries.responder.utilities.ImageFragmentWritePolicy.requireEnabled(context);
+200:			throw RpcStatusException.badRequest("Image reference could not be resolved");
+211:			throw RpcStatusException.badRequest("Image/Page id must be a positive integer");
+
+Authorisation tests prove 401:
+88:		assertEquals(Status.UNAUTHORIZED.code(), missing.getStatus().code());
+93:		assertEquals(Status.UNAUTHORIZED.code(), expiredError.getStatus().code());
+98:		assertEquals(Status.UNAUTHORIZED.code(), wrongSubject.getStatus().code());
+111:			assertEquals(Status.UNAUTHORIZED.code(), error.getStatus().code());
+125:			assertEquals(Status.UNAUTHORIZED.code(), error.getStatus().code());
+
+LockFragment maps lock conflict to HTTP 409:
+118:			if (e.getStatus().getCode() == HttpURLConnection.HTTP_CONFLICT) {

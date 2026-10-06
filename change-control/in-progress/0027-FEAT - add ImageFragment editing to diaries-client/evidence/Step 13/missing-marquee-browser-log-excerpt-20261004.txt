@@ -1,0 +1,73 @@
+# Focused browser evidence for missing-Marquee regression
+
+## Original log lines 273-285
+273:  DiaryComponent.selectItem: id: 685
+274:  DiaryComponent.selectItem: this.diary: {"id":1,"version":6,"name":"diary-1828-and-1829-and-jan-1830","sequence":1}
+275:  AlertsComponent.ngOnDestroy
+276:  DiaryComponent.ngOnDestroy
+277:  LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/diaries/1', refCount decremented to 0
+278:  ModelContext.cleanupTopicTree
+279:  LiveObjectListService.unsubscribeTopicTree: topicFilters: diaries/diaries/1/+
+280:  LiveObjectListService.unsubscribeTopicTree: topicFilters: diaries/diaries/1/732/+
+281:  LiveObjectListService.unsubscribeTopicTree: topic tree 'diaries/diaries/1/732/+' not found
+282:  LiveObjectListService.unsubscribeTopicTree: topicFilters: diaries/diaries/1/684/+
+283:  LiveObjectListService.unsubscribeTopicTree: topic tree 'diaries/diaries/1/684/+' not found
+284:  LiveObjectListService.unsubscribeTopicTree: topicFilters: diaries/diaries/1/685/+
+285:  ConfigService.getConfig
+
+## Original log lines 346-355
+346:  ImageViewerComponent.onPointerDown: pointerType=mouse
+347:  ImageViewerComponent.beginPanInteraction
+348:  ImageViewerComponent.onPointerUpBoundInternal: pointerId=1
+349:  ImageViewerComponent.onPointerDown: pointerType=mouse
+350:  ImageViewerComponent.beginSinglePointerInteraction: selecting clicked marquee 1
+351:  ImageViewerComponent.onSelectMarquee: marquee: {"id":1,"version":5,"pageId":685,"fragmentId":4,"rectangle":{"x":3187.549560546875,"y":2000.0304260253906,"width":2770.9175568304136,"height":2540.7054838329923}}
+352:  LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/marquees/1', refCount incremented to 1
+353:  LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/fragments/4', refCount incremented to 1
+354:  LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/marquees/1 (client.connected=true)
+355:  LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/fragments/4 (client.connected=true)
+
+## Original log lines 959-965
+959: image-viewer.component.ts:205 ImageViewerComponent.<subscribe marquees>: ids= Array(1)
+960: live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/pages/685 Object
+961: live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/pages/685'
+962: pageheader.component.ts:165 PageheaderComponent.ngOnInit: page: {"id":685,"version":0,"diaryId":1,"name":"img2833","sequence":2,"extension":".jpg","width":6191,"height":4657}
+963: image-viewer.component.ts:162 ImageViewer.ngOnInit: config.baseUrl:  http://localhost:8081
+964: image-viewer.component.ts:163 ImageViewer page/image subscription emitted Object
+965: image-viewer.component.ts:1380 ImageViewerComponent.fitPage Object
+
+## Original log lines 1031-1063
+1031: dayview.component.ts:219 DayviewComponent.goToFragment: fragmentId: 4
+1032: live.object.service.ts:209 LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/fragments/2332', refCount decremented to 0
+1033: live.object.service.ts:55 LiveObjectService.getObjectById$: SUBSCRIBE 'diaries/fragments/4', refCount incremented to 1
+1034: live.object.service.ts:227 LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/fragments/2332
+1035: live.object.service.ts:176 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE -> diaries/fragments/4 (client.connected=true)
+1036: live.object.service.ts:235 LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/fragments/2332'
+1037: live.object.service.ts:236 LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/fragments/2332': 3
+1038: live.object.service.ts:184 LiveObjectService.subscribeToTopic: [MQTT] SUBSCRIBE ACK <- diaries/fragments/4 Object
+1039: live.object.service.ts:193 LiveObjectService.subscribeToTopic: SUBSCRIBED to 'diaries/fragments/4'
+1040: live.object.service.ts:272 LiveObjectService.liveObjectDispatcher: [MQTT] RX diaries/fragments/4 Object
+1041: live.object.service.ts:209 LiveObjectService.releaseTopicReference: UNSUBSCRIBE 'diaries/images/1', refCount decremented to 0
+1042: text-panel.component.ts:153 TextPanelComponent: we are leaving fragment.id=2332
+1043: dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: Array(6)
+1044: live.object.list.service.ts:249 LiveObjectListService.releaseTopicTreeReference: UNSUBSCRIBE 'diaries/dates/1828/1/1/+', refCount decremented to 0
+1045: live.object.list.service.ts:276 LiveObjectListService.unsubscribeAndDeleteTopicTree: [MQTT] UNSUBSCRIBE -> diaries/dates/1828/1/1/+
+1046: live.object.service.ts:227 LiveObjectService.unsubscribeAndDeleteTopic: [MQTT] UNSUBSCRIBE -> diaries/images/1
+1047: live.object.list.service.ts:208 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE -> diaries/dates/1828/1/1/+ (client.connected=true)
+1048: live.object.list.service.ts:39 LiveObjectListService.subscribeToTopicTree$: SUBSCRIBE 'diaries/dates/1828/1/1/+', refCount incremented to 1
+1049: dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: Array(0)
+1050: live.object.list.service.ts:287 LiveObjectListService.unsubscribeAndDeleteTopicTree: unsubscribed 'diaries/dates/1828/1/1/+'
+1051: live.object.list.service.ts:288 LiveObjectListService.unsubscribeAndDeleteTopicTree: ListenerCount after unsubscribeTopicTree cleanup: 3
+1052: live.object.service.ts:235 LiveObjectService.unsubscribeAndDeleteTopic: unsubscribed 'diaries/images/1'
+1053: live.object.service.ts:236 LiveObjectService.unsubscribeAndDeleteTopic: ListenerCount after UNSUBSCRIBE 'diaries/images/1': 3
+1054: live.object.list.service.ts:216 LiveObjectListService.subscribeToTopicFilters: [MQTT] SUBSCRIBE ACK <- diaries/dates/1828/1/1/+ Object
+1055: live.object.list.service.ts:227 LiveObjectListService.subscribeToTopicFilters: subscribed to 'diaries/dates/1828/1/1/+' using shared dispatcher
+1056: live.object.list.service.ts:230 LiveObjectListService.subscribeToTopicFilters: ListenerCount after subscribeToTopicTree: 3
+1057: dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: Array(1)
+1058: dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: Array(2)
+1059: dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: Array(3)
+1060: dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: Array(4)
+1061: dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: Array(5)
+1062: dayview.component.ts:65 DayviewComponent.<subscribe fragments>: fragments: Array(6)
+1063: image-viewer.component.ts:710 ImageViewer.onPointerLeave
+

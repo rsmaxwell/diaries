@@ -1,0 +1,8 @@
+PASS: ordinary request constructor omits marqueeId
+PASS: ordinary request constructor omits imageId
+PASS: IMAGE replace inherits null-free base
+PASS: clear still carries explicit imageId property
+PASS: responder update handler does not consume marqueeId
+PASS: responder preserves persisted page/type/image by default
+PASS: responder preserves image when imageId absent
+PASS: 7/7 focused static checks

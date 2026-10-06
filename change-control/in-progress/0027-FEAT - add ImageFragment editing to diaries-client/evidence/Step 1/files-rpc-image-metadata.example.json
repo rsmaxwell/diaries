@@ -1,0 +1,32 @@
+{
+  "uploadFileAdditiveFields": {
+    "imageId": 101,
+    "image": {
+      "id": 101,
+      "version": 0,
+      "relativePath": "plain.png",
+      "mimeType": "image/png",
+      "originalFilename": "plain.png",
+      "width": 16,
+      "height": 12,
+      "checksum": "abababababababababababababababababababababababababababababababab",
+      "caption": "",
+      "altText": ""
+    }
+  },
+  "listFilesAdditiveFields": {
+    "catalogueVersion": 1,
+    "cataloguedFile": {
+      "imageId": 101,
+      "image": {
+        "id": 101,
+        "relativePath": "plain.png",
+        "caption": "",
+        "altText": ""
+      }
+    },
+    "directory": {
+      "imageId": null
+    }
+  }
+}

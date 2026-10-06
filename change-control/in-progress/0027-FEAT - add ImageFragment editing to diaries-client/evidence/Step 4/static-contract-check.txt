@@ -1,0 +1,8 @@
+PASS: Step 4 static contract checks
+  diaries-client/src/app/model/FileEntry.ts
+  diaries-client/src/app/model/UploadFileResponse.ts
+  diaries-client/src/app/files-list-dialog/files-list-dialog.component.ts
+  diaries-client/src/app/files-list-dialog/files-list-dialog.component.html
+  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageItem.java
+  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/ListFiles.java
+  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/handlers/UploadStagingTest.java

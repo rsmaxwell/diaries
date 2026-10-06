@@ -1,0 +1,25 @@
+Step 2 validation
+=================
+
+Scope:
+  Documentation/design freeze only.
+
+Checks performed:
+  PASS - Step 2 completion status recorded in IMPLEMENTATION-STEPS.md.
+  PASS - Feature README records the frozen action boundaries and invariants.
+  PASS - AUTHORING-UX.md defines Add / Select-replace / Clear / Delete workflows.
+  PASS - INVARIANTS.md explicitly freezes IMAGE-vs-MARQUEE relationship rules.
+  PASS - ACTION-MATRIX.md separates Fragment lifecycle and Image lifecycle operations.
+  PASS - DESIGN-DECISIONS.md records rationale for later implementation reviews.
+  PASS - Existing MARQUEE action label is retained as "Add fragment with default marquee".
+  PASS - Normal IMAGE creation chooses one catalogued Image before addImageFragment.
+  PASS - Chooser cancellation sends no mutation RPC.
+  PASS - Chooser browsing holds no Fragment edit lock.
+  PASS - Clear Image is an explicit confirmed imageId=null mutation and never deletes Image.
+  PASS - Fragment type/pageId are frozen as immutable after creation.
+  PASS - Responder remains authoritative for permissions/gate/locks/version/Image existence.
+  PASS - No production TypeScript/HTML/Java files changed in Step 2.
+
+Tests:
+  No runtime test suite is required for this documentation-only step. Step 1 retained the
+  executable serializer characterization guard and recorded the sandbox dependency limitations.

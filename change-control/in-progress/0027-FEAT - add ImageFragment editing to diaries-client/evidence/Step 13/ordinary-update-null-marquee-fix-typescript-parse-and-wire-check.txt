@@ -1,0 +1,9 @@
+diaries-client/src/app/model/fragment.ts: PARSE OK
+diaries-client/src/app/model/fragment.spec.ts: PARSE OK
+diaries-client/src/app/fragment/text-panel/text-panel.component.spec.ts: PARSE OK
+diaries-client/src/app/dayview/dayview.component.spec.ts: PARSE OK
+UpdateFragmentRequest.fromFragment { id: 2332, version: 0 }
+ordinary: {"id":2332,"year":1828,"month":1,"day":1,"sequence":2,"version":0,"text":"Step 13"}
+replace: {"id":2332,"year":1828,"month":1,"day":1,"sequence":2,"version":0,"text":"Step 13","imageId":2}
+clear: {"id":2332,"year":1828,"month":1,"day":1,"sequence":2,"version":0,"text":"Step 13","imageId":null}
+WIRE CONTRACT: PASS

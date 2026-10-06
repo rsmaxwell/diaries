@@ -1,0 +1,20 @@
+PASS distinct Add Image Fragment output exists
+PASS accessible Add Image Fragment control exists
+PASS control availability uses frozen authoring context helper
+PASS workspace wires Add Image Fragment separately from existing add
+PASS chooser opens at diary images root
+PASS chooser uses catalogue-image selection mode
+PASS creation requires positive persisted imageId
+PASS context is revalidated after chooser
+PASS creation uses explicit addImageFragment RPC
+PASS 403 has specific authoring-disabled message
+PASS ambiguous failure tells user to refresh before retrying
+PASS workflow contains no retry operator
+PASS workflow does not acquire Fragment lock
+PASS success clears marquee selection
+PASS success navigates using returned owning page
+PASS shared sequence helper is used by IMAGE creation
+PASS existing MARQUEE creation uses same shared sequence helper
+PASS only one production sequence helper definition remains
+PASS catalogue dialog still rejects uncatalogued IMAGE selection
+PASS 19 static Step 7 contract checks

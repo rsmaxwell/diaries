@@ -44,6 +44,22 @@ The ACL grants `diaries-health` only the permissions needed by the two health ch
 
 It does not grant the health user access to retained Diaries business-data topics.
 
+## Editing-client Image projection
+
+The `diaries-client` identity can read the canonical retained Image metadata
+lookup topic:
+
+```text
+diaries/images/+
+```
+
+This permission is required by the first-class ImageFragment editor so a
+selected IMAGE Fragment can resolve its `imageId` to retained Image metadata.
+It is read-only and metadata-only; Image bytes continue to use HTTP/static
+Files routes. The existing RPC, Fragment, Marquee and date-index permissions
+remain unchanged. Restart/reload Mosquitto after ACL changes before live client
+verification.
+
 ## Read-only web projection
 
 The `diaries-web` identity can receive only the five canonical lookup

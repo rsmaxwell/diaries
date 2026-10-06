@@ -1,0 +1,15 @@
+0027 Step 15 implementation validation — 2026-10-06
+
+PASS: Step 15 static tooling validator completed successfully.
+PASS: Step 15 begin tooling requires a PASSED Step 14 final summary before creating a production run.
+PASS: Step 15 preflight checks the fail-closed Playbooks gate contract and production gate=false state.
+PASS: Step 15 capture tooling supports pre-deploy, post-client-disabled, pre-enable, post-enable and rollback-disabled boundaries.
+PASS: Step 15 finalizer requires the automatic production captures plus completed run-local checklist/manual evidence.
+PASS: Playbooks YAML parsed successfully for roles/diaries/defaults/main.yaml, tasks/main.yaml and tasks/copy.yaml.
+PASS: Playbooks permanent verify-production-deployment-contract.py passed with the new fail-closed authoring-gate assertions.
+PASS: Python validators compile successfully.
+PASS: Diff review shows only the intended Diaries and Playbooks files changed.
+
+NOT EXECUTED IN THIS SOURCE ENVIRONMENT: PowerShell runtime execution, Ansible template rendering/playbook execution, SSH production checks, 0027 client image deployment, production gate enablement and controlled production lifecycle. These are deliberately guarded by the Step 14 PASSED prerequisite and are the runtime work of Step 15.
+PASS: 2026-10-06 corrective validation: production gate probes now match the quoted JSON property name and preserve explicit true/false validation.
+PASS: 2026-10-06 corrective validation: Step 15 SSH commands are streamed to remote bash stdin so nested Docker-format and SQL quoting is preserved under Windows PowerShell/OpenSSH.

@@ -1,0 +1,30 @@
+Step 5 responder source inspection
+==================================
+
+Source: diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/AddImageFragment.java
+
+Confirmed request inputs read by the responder:
+- pageId
+- year
+- month
+- day
+- sequence
+- text
+- optional imageId
+
+Confirmed responder-authoritative identity:
+- Fragment.type is set to FragmentType.IMAGE
+- no Marquee is constructed
+- caller type/marquee/id fields are not used to override identity
+
+Confirmed response:
+- FragmentPublishDTO(saved, null)
+- therefore committed Fragment payload is returned with marqueeId null
+
+Confirmed status paths in handler/shared authorisation:
+- authorisation failure -> 401
+- authoring gate disabled -> 403
+- malformed/missing references -> 400
+- persistence/publication failure -> 500
+
+No responder production changes are required for Step 5.

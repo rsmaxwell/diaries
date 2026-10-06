@@ -1,0 +1,8 @@
+Step 1 validation performed in implementation sandbox:
+
+PASS - all six JSON evidence files parse successfully.
+PASS - focused UpdateFragmentRequest serializer smoke confirms exact ordinary-update field set and omission of pageId/type/imageId/lock.
+PASS - fragment.ts + fragment.spec.ts compile with TypeScript 5 tooling using minimal Jasmine global declarations.
+PASS - responder source/test baseline captures addImageFragment disabled gate, updateFragment preserve/set/clear behaviour, and live ordinary IMAGE edit while gate disabled.
+BLOCKED - full Angular test suite: source bundle contains no node_modules; npm cache lacks zone.js@0.15.1; network package download unavailable. Exact output in baseline-client-tests.txt.
+BLOCKED - responder Gradle execution in sandbox: Gradle wrapper distribution is not cached and services.gradle.org is unreachable. Existing source tests are captured, but no new green Gradle claim is made.

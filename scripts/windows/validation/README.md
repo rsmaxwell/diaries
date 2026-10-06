@@ -73,7 +73,7 @@ test-image-catalogue.ps1
 smoke-image-catalogue.cjs
 ```
 
-These commands use disposable fixtures and have their own backup/evidence arguments. They are not required merely to verify script-directory cleanup.
+These commands use disposable fixtures and have their own backup/evidence arguments. `test-image-catalogue.ps1` is also the supported full client/responder/web regression gate: it provisions disposable PostgreSQL plus MQTT/TCP/WebSocket fixtures, enables the responder's opt-in database/MQTT/browser integration tests, runs the Java suites/builds and Angular suite/production build, and rejects failed or skipped tests. Its broker fixture is the permanent `image-catalogue-test-mosquitto.conf`; it must not depend on historical completed-feature evidence. The fixture is functional/test-only, loopback-published and deliberately accepts anonymous clients because the browser integration fixture has no broker credentials; production Mosquitto authentication/ACL configuration remains separate. They are not required merely to verify script-directory cleanup.
 
 ## Production image inspection helpers
 

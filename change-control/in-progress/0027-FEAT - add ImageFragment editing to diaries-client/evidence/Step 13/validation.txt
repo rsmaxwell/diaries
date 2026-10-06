@@ -1,0 +1,14 @@
+PASS: diaries-client has narrow retained Image metadata read permission
+PASS: diaries-client has no Image topic write permission
+PASS: runbook contains 'Phase A — authoring gate disabled'
+PASS: runbook contains 'Phase B — authoring gate enabled'
+PASS: runbook contains 'phase-b-13-after-image-delete'
+PASS: runbook contains 'imageFragmentWritesEnabled=false'
+PASS: runbook contains 'imageFragmentWritesEnabled=true'
+PASS: Step 12 recorded complete after green development run
+PASS: Step 13 recorded implemented but not falsely closed
+PASS: final Step 12 Angular/Karma evidence is green
+PASS: no Step 13 feature tooling added to live scripts directory
+PASS: Step 13 runtime artifacts target ignored build/0027-step13
+PASS: gate helper clones developer responder config instead of editing it
+PASS: Step 13 tooling does not embed the sample/client MQTT password

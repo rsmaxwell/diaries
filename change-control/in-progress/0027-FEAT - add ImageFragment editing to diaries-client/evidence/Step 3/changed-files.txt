@@ -1,0 +1,18 @@
+Step 3 changed files relative to the Step 2 baseline
+=====================================================
+
+Production client:
+  diaries-client/src/app/model/image.ts                                  NEW
+  diaries-client/src/app/model/model-context.ts                          MODIFIED
+  diaries-client/src/app/utilities/catalogue-image-url.ts                NEW
+
+Client regression tests:
+  diaries-client/src/app/model/model-context.spec.ts                     MODIFIED
+  diaries-client/src/app/utilities/catalogue-image-url.spec.ts           NEW
+
+Change-control/evidence:
+  change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/IMPLEMENTATION-STEPS.md  MODIFIED
+  change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/README.md                MODIFIED
+  change-control/in-progress/0027-FEAT - add ImageFragment editing to diaries-client/evidence/Step 3/         NEW
+
+No diaries-responder, HTML/template, RPC service, environment/configuration or deployment script files changed.

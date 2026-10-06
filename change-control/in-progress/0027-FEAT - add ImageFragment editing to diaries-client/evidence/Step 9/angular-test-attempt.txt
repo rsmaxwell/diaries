@@ -1,0 +1,6 @@
+$ npm test -- --watch=false --browsers=ChromeHeadless --include=src/app/fragment/text-panel/text-panel.component.spec.ts --include=src/app/dayview/dayview.component.spec.ts --include=src/app/headers/pageheader/pageheader.component.spec.ts
+
+> diaries-client@0.0.0 test
+> ng test --watch=false --browsers=ChromeHeadless --include=src/app/fragment/text-panel/text-panel.component.spec.ts --include=src/app/dayview/dayview.component.spec.ts --include=src/app/headers/pageheader/pageheader.component.spec.ts
+
+sh: 1: ng: not found

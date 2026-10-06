@@ -1,0 +1,6 @@
+UpdateFragmentRequest.fromFragment { id: 84, version: 7, marqueeId: null }
+PASS isImageFragment valid IMAGE
+PASS isImageFragment rejects MARQUEE
+PASS replacement request carries positive imageId
+PASS clear request carries explicit null
+PASS ordinary update omits imageId

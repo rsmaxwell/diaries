@@ -1,0 +1,30 @@
+Step 2 source/design baseline
+=============================
+
+Source bundle used as application baseline:
+  diaries-sources-20261003-190733.zip
+
+Step 1 cumulative overlay:
+  diaries-0027-step1-contract-baseline.zip
+
+Current client behaviours inspected for this design freeze:
+
+1. diaries-client/src/app/headers/pageheader/pageheader.component.html
+   - existing label: "Add fragment with default marquee"
+   - existing label: "Delete selected fragment"
+   - marquee create/edit/delete are separate controls
+   - Upload file and List files are separate controls
+
+2. diaries-client/src/app/fragment/image-viewer/image-viewer.component.ts
+   - current Add action creates AddFragmentRequest with a default Marquee rectangle
+   - current Delete action uses deleteFragment$ after acquiring the Fragment lock
+
+3. diaries-client/src/app/files-list-dialog/files-list-dialog.component.ts
+   - current selection mode returns {url, name}
+   - current Image deletion is a separate deleteImage$ operation with confirmation/error handling
+
+4. diaries-client/src/app/model/fragment.ts
+   - effectiveFragmentType maps absent/null type to MARQUEE
+   - ordinary UpdateFragmentRequest.fromFragment omits imageId/pageId/type/lock
+
+No production source behaviour is modified by Step 2.

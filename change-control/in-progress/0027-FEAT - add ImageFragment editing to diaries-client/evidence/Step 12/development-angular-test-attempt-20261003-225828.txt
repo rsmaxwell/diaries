@@ -1,0 +1,121 @@
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client>npm test -- --watch=false --browsers=ChromeHeadless
+
+> diaries-client@0.0.0 test
+> ng test --watch=false --browsers=ChromeHeadless
+
+Application bundle generation failed. [5.750 seconds]
+
+✘ [ERROR] TS2347: Untyped function calls may not accept type arguments. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts:101:29:
+      101 │ ...rray.from(fixture.nativeElement.querySelectorAll<HTMLAnchorEle...
+          ╵              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+✘ [ERROR] TS18046: 'card' is of type 'unknown'. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts:102:41:
+      102 │ ...tedCard = cards.find(card => card.textContent?.includes('dated...
+          ╵                                 ~~~~
+
+
+✘ [ERROR] TS18046: 'card' is of type 'unknown'. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts:103:41:
+      103 │ ...ainCard = cards.find(card => card.textContent?.includes('plain...
+          ╵                                 ~~~~
+
+
+✘ [ERROR] TS2339: Property 'getAttribute' does not exist on type '{}'. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts:104:21:
+      104 │     expect(datedCard.getAttribute('aria-disabled')).toBeNull();
+          ╵                      ~~~~~~~~~~~~
+
+
+✘ [ERROR] TS2339: Property 'getAttribute' does not exist on type '{}'. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts:105:21:
+      105 │     expect(datedCard.getAttribute('aria-label')).toBe('Select cat...
+          ╵                      ~~~~~~~~~~~~
+
+
+✘ [ERROR] TS2339: Property 'tabIndex' does not exist on type '{}'. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts:106:21:
+      106 │     expect(datedCard.tabIndex).toBe(0);
+          ╵                      ~~~~~~~~
+
+
+✘ [ERROR] TS2339: Property 'getAttribute' does not exist on type '{}'. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts:107:21:
+      107 │     expect(plainCard.getAttribute('aria-disabled')).toBe('true');
+          ╵                      ~~~~~~~~~~~~
+
+
+✘ [ERROR] TS2339: Property 'getAttribute' does not exist on type '{}'. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts:108:21:
+      108 │     expect(plainCard.getAttribute('aria-label')).toContain('not r...
+          ╵                      ~~~~~~~~~~~~
+
+
+✘ [ERROR] TS2339: Property 'getAttribute' does not exist on type '{}'. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts:109:21:
+      109 │     expect(plainCard.getAttribute('tabindex')).toBe('-1');
+          ╵                      ~~~~~~~~~~~~
+
+
+✘ [ERROR] TS2339: Property 'hasAttribute' does not exist on type '{}'. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts:110:21:
+      110 │     expect(plainCard.hasAttribute('href')).toBeFalse();
+          ╵                      ~~~~~~~~~~~~
+
+
+✘ [ERROR] TS2339: Property 'classList' does not exist on type '{}'. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts:111:21:
+      111 │     expect(plainCard.classList).toContain('selection-disabled');
+          ╵                      ~~~~~~~~~
+
+
+✘ [ERROR] TS2339: Property 'title' does not exist on type '{}'. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts:112:21:
+      112 │     expect(plainCard.title).toContain('not registered in the Imag...
+          ╵                      ~~~~~
+
+
+✘ [ERROR] TS2339: Property 'click' does not exist on type '{}'. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts:114:14:
+      114 │     plainCard.click();
+          ╵               ~~~~~
+
+
+✘ [ERROR] TS2339: Property 'click' does not exist on type '{}'. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts:116:14:
+      116 │     datedCard.click();
+          ╵               ~~~~~
+
+
+✘ [ERROR] TS2339: Property 'dispatchEvent' does not exist on type '{}'. [plugin angular-compiler]
+
+    src/app/files-list-dialog/files-list-dialog.compatibility.spec.ts:126:14:
+      126 │     datedCard.dispatchEvent(new KeyboardEvent('keydown', { key: '...
+          ╵               ~~~~~~~~~~~~~
+
+
+✘ [ERROR] TS2740: Type '{ id: number; version: number; relativePath: string; mimeType: string; }' is missing the following properties from type 'CatalogueImage': originalFilename, width, height, checksum, and 2 more. [plugin angular-compiler]
+
+    src/app/fragment/image-fragment-reference.accessibility.spec.ts:17:8:
+      17 │   const image: CatalogueImage = {
+         ╵         ~~~~~
+
+
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-client>

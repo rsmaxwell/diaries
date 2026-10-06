@@ -1,0 +1,26 @@
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> $diag = Get-ChildItem "$env:USERPROFILE\Downloads\step13-rpc-diagnostics-*.json" -ErrorAction SilentlyContinue |
+>>     Sort-Object LastWriteTime -Descending |
+>>     Select-Object -First 1
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> if ($null -eq $diag) {
+>>     throw "No Step 13 RPC diagnostics JSON found in Downloads"
+>> }
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> $diag.FullName
+C:\Users\Richard\Downloads\step13-rpc-diagnostics-2026-10-05T13-44-49-403Z.json
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> & "$step13\step13-import-rpc-diagnostics.ps1" -Path $diag.FullName
+Step 13 redacted RPC diagnostic validation
+Source: C:\Users\Richard\Downloads\step13-rpc-diagnostics-2026-10-05T13-44-49-403Z.json
+Entries: 5
+
+PASS: Phase A addImageFragment -> 403 correlationId=71938f00-c436-446a-96ec-3dbcdf957b41 imageIdState=positive
+PASS: Phase A image-reference updateFragment -> 403 correlationId=988c5859-f9e8-4e4d-bd4e-599aecf6ccc0 imageIdState=null
+PASS: Phase B addImageFragment -> 200 correlationId=c2d1b1b7-36c5-43a2-8142-3a007a591d61 imageIdState=positive committedFragmentId=2336
+PASS: Phase B updateFragment positive imageId -> 200 correlationId=4f09c858-165f-423a-adb2-99efc832efc7 imageIdState=positive
+PASS: Phase B updateFragment imageId:null -> 200 correlationId=dd588fdc-0f74-4e6d-9244-b0add8930371 imageIdState=null
+
+PASS: no forbidden authentication/password keys or raw text field found
+Copied validated diagnostic JSON to: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\build\0027-step13\runs\20261004-002349\rpc-diagnostics.json
+Validation summary: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\build\0027-step13\runs\20261004-002349\rpc-diagnostics-validation.txt
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>

@@ -1,0 +1,3 @@
+$ tsc --strict --target ES2022 --module commonjs --outDir /mnt/data/step5-ts diaries-client/src/app/model/fragment.ts
+PASS: Fragment/AddImageFragmentRequest model compiles under strict TypeScript.
+PASS: positive, omitted and explicit-null imageId serialization semantics are correct.

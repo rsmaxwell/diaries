@@ -1,0 +1,4 @@
+$ tsc --strict --target ES2022 --module commonjs --outDir <tmp> model/diary.ts model/page.ts model/fragment.ts fragment/image-fragment-authoring.ts
+$ node focused-authoring-helper-smoke
+PASS canAddImageFragment valid/mismatch checks
+PASS nextFragmentSequence shared gap/tail checks

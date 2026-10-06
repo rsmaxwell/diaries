@@ -1,0 +1,38 @@
+Step 13 delete-time sequence normalisation correction validation
+Date: 2026-10-04
+
+Java parser-only syntax validation (JavacTask.parse):
+PARSE OK: 2 file(s)
+  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/DeleteFragment.java
+  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/handlers/FragmentLifecycleContractTest.java
+
+Focused Gradle command attempted in package environment:
+./gradlew :diaries-responder:test --tests com.rsmaxwell.diaries.responder.handlers.FragmentLifecycleContractTest --no-daemon
+
+Execution status:
+BLOCKED BEFORE BUILD/TEST EXECUTION.
+The Gradle wrapper attempted to download Gradle 9.6.1 from services.gradle.org, but this environment has no outbound network access and no cached Gradle distribution. The source therefore requires the focused test to be run on the development workstation after extraction.
+
+Expected focused-test command on Windows project root:
+gradlew.bat :diaries-responder:test --tests com.rsmaxwell.diaries.responder.handlers.FragmentLifecycleContractTest --no-daemon
+
+Development workstation validation — 2026-10-04 / 2026-10-05
+
+Focused command:
+
+  .\gradlew.bat :diaries-responder:test `
+    --tests com.rsmaxwell.diaries.responder.handlers.FragmentLifecycleContractTest `
+    --no-daemon
+
+Observed result:
+- BUILD SUCCESSFUL in 5s
+- 6 actionable tasks: 3 executed, 3 up-to-date
+
+The broader create/delete contract rerun on 2026-10-05 also completed BUILD SUCCESSFUL with FragmentLifecycleContractTest, AddImageFragmentTest and AddFragmentContractTest.
+
+Live post-fix proof:
+- Deleting disposable Fragment 2334 immediately left the 1828-01-01 day contiguous without responder restart.
+- Later deleting Phase B IMAGE Fragment 2333 from the middle of the day again immediately left survivors contiguous.
+- Image lifecycle remained separate; deleting the Fragment did not delete the referenced catalogue Image.
+
+Final status: PASS. The delete-time sequence-normalisation correction is accepted for Step 13.

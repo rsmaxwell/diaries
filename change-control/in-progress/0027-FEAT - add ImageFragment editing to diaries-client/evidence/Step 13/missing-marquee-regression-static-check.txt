@@ -1,0 +1,11 @@
+PASS: ModelContext relationship sync has no takeUntil
+PASS: ModelContext has no route-cleanup destroy subject
+PASS: cleanupTopicTree is transport-only
+PASS: Fragment-Marquee relationship synchronizer remains present
+PASS: Dayview goToFragment does not set Marquee directly
+PASS: Dayview delegates Marquee selection to ModelContext
+PASS: Regression test covers MARQUEE after cleanup
+PASS: Regression test covers IMAGE clear after cleanup
+PASS: Dayview tests assert no direct Marquee mutation
+
+Result: 9/9 checks passed

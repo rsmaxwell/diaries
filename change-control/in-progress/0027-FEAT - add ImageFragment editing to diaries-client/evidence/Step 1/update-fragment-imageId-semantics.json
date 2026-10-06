@@ -1,0 +1,41 @@
+{
+  "preserve": {
+    "description": "Ordinary update. imageId is absent, so the responder preserves the stored Image reference.",
+    "args": {
+      "id": 123,
+      "marqueeId": null,
+      "year": 1830,
+      "month": 3,
+      "day": 8,
+      "sequence": 2.125,
+      "version": 7,
+      "text": "Edited text"
+    }
+  },
+  "setOrReplace": {
+    "description": "Deliberate Image-reference mutation. Requires ImageFragment authoring to be enabled.",
+    "args": {
+      "id": 123,
+      "year": 1830,
+      "month": 3,
+      "day": 8,
+      "sequence": 2.125,
+      "version": 7,
+      "text": "Entry",
+      "imageId": 92
+    }
+  },
+  "clear": {
+    "description": "Deliberate Image-reference clear. Requires ImageFragment authoring to be enabled when the stored value changes.",
+    "args": {
+      "id": 123,
+      "year": 1830,
+      "month": 3,
+      "day": 8,
+      "sequence": 2.125,
+      "version": 7,
+      "text": "Entry",
+      "imageId": null
+    }
+  }
+}
