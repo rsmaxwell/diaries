@@ -51,6 +51,8 @@ def main() -> int:
         require("docker compose --file compose.yaml --env-file .env ps --all --quiet" in capture and
                 "DB_CONTAINER=" in capture and "RESPONDER_CONTAINER=" in capture,
                 "production capture resolves live containers from Compose service names")
+        require("Archived previous $Phase capture" in capture and "history" in capture,
+                "production capture preserves prior attempts before replacing the canonical phase capture")
         require("production-post-enable.txt" in finalize and "expectedGate=true" in finalize,
                 "finalizer requires a successful post-enable capture")
         require("diaries_image_fragment_writes_enabled: false" in runbook and

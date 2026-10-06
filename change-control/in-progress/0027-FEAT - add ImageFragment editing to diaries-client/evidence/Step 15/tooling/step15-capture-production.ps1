@@ -88,6 +88,14 @@ $status = if ($failures.Count -eq 0) { 'PASSED' } else { 'FAILED' }
 $lines.Add("status=$status")
 foreach($failure in $failures){$lines.Add("FAIL: $failure")}
 $out = Join-Path $runDir ("production-$Phase.txt")
+if (Test-Path -LiteralPath $out) {
+    $historyDir = Join-Path $runDir 'history'
+    New-Item -ItemType Directory -Force -Path $historyDir | Out-Null
+    $stamp = (Get-Date).ToString('yyyyMMdd-HHmmssfff')
+    $archived = Join-Path $historyDir ("production-$Phase-$stamp.txt")
+    Move-Item -LiteralPath $out -Destination $archived
+    Write-Host "Archived previous $Phase capture: $archived" -ForegroundColor DarkGray
+}
 Write-Utf8NoBom -Path $out -Text (($lines -join [Environment]::NewLine)+[Environment]::NewLine)
 if ($failures.Count -gt 0) { throw "Production capture $Phase FAILED with $($failures.Count) condition(s). See $out" }
 Write-Host "Production capture $Phase PASSED: $out" -ForegroundColor Green

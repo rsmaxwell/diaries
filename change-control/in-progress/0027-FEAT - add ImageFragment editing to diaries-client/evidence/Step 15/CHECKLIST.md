@@ -27,6 +27,7 @@ Reader image retained/deployed: ____________________
 - [ ] Rendered responder JSON still says `"imageFragmentWritesEnabled": false`.
 - [ ] Existing MARQUEE editing smoke test passed.
 - [ ] Existing IMAGE viewing and ordinary text/date/sequence editing passed where applicable.
+- [ ] Image Catalogue `listFiles` completed and displayed its entries while the gate was false.
 - [ ] Add Image Fragment or attach/replace/clear Image reference received the expected 403 while the gate was false.
 
 ## Pre-enable evidence

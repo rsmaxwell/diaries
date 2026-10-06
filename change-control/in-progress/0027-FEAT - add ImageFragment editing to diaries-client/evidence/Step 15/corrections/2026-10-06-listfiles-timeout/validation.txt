@@ -1,0 +1,17 @@
+0027 Step 15 listFiles timeout correction validation — 2026-10-06
+
+PASS: production rollback-disabled capture was reported green before preparing this correction.
+PASS: listFiles$ has an explicit 30-second client deadline while the shared default remains five seconds.
+PASS: responder ListFiles snapshots the Image catalogue once per request using findAllOrderedByRelativePath().
+PASS: responder ListFiles has no per-file findByRelativePath() repository call.
+PASS: catalogue matching remains case-insensitive using Locale.ROOT folding.
+PASS: responder ListFiles logs returned item count and total elapsed milliseconds.
+PASS: focused client regression asserts no timeout at 5 seconds and timeout at 30 seconds.
+PASS: focused responder regression asserts one catalogue snapshot and zero per-file path queries.
+PASS: Step 15 capture tooling archives an existing same-phase capture before a retry overwrites the canonical phase filename.
+PASS: existing Step 15 static tooling validator completed successfully after the retry/evidence update.
+
+NOT EXECUTED IN THIS container: Gradle/JUnit tests. The Gradle wrapper attempted to download Gradle 9.6.1, but this execution environment has no external network access and no cached Gradle distribution.
+NOT EXECUTED IN THIS container: Angular/Karma tests. The source bundle does not contain node_modules and this execution environment cannot install dependencies from the network.
+
+The normal Diaries CI/build job must therefore execute the actual Java and Angular test suites before corrected Docker images are accepted for production retry.

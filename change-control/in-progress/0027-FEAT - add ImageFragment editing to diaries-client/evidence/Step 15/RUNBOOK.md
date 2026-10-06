@@ -134,6 +134,14 @@ powershell -ExecutionPolicy Bypass -File ".\change-control\in-progress\0027-FEAT
 
 Existing IMAGE data stays intact. Ordinary edits that do not change `imageId` and established deletion semantics remain governed by the responder contract; new ImageFragment creation and Image-reference mutations stop.
 
+### Retry after a rolled-back production defect
+
+If the rollback was caused by a code defect, do not resume at the enablement boundary after publishing a fix. Deploy the corrected client/responder images with the gate still `false`, repeat the disabled-gate smoke test (including opening the Image Catalogue and reaching the expected 403 on the actual Image-reference mutation), then take a fresh `pre-enable` capture. Only after that boundary is green may the gate be deliberately enabled again and `post-enable` recaptured. Preserve the failed attempt and rollback evidence; do not rewrite it as a successful first pass.
+
+`step15-capture-production.ps1` preserves retries automatically: if the canonical `production-<phase>.txt` already exists, it is moved to the run-local `history` directory with a timestamp before the fresh canonical capture is written. The finalizer therefore sees the latest successful boundary while the earlier attempt remains auditable.
+
+The 2026-10-06 first production attempt exposed a `listFiles` timing mismatch: the NAS-backed responder request completed successfully after roughly 11.8 seconds while the client used the generic five-second RPC timeout. `LISTFILES-TIMEOUT-CORRECTION.md` records the correction and retry rule.
+
 ## 9. Close Step 15
 
 Complete the run-local copies under `build\0027-step15\runs\<run-id>`:

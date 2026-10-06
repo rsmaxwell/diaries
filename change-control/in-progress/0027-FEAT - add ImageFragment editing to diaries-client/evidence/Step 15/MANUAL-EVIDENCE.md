@@ -21,9 +21,17 @@ Result: ____________________
 Existing IMAGE view/edit fixture used, if present (Fragment ID only): ____________________
 Result: ____________________
 
+Image Catalogue opened/listFiles result while gate false: ____________________
 403 authoring action attempted while gate false: ____________________
 Observed client message/status: ____________________
 Responder/MQTT response evidence file or note: ____________________
+
+## Rolled-back attempts / corrections
+
+Failed attempt/cause, if any: ____________________
+Rollback-disabled capture: ____________________
+Correction/rebuilt image tags: ____________________
+Fresh disabled-gate smoke after correction: ____________________
 
 ## Pre-enable state
 
