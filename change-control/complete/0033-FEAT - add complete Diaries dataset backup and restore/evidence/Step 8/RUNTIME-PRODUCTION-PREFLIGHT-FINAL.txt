@@ -1,0 +1,14 @@
+richard@pluto:~/projects/diaries$ ./scripts/backup-dataset.sh preflight
+/var/run/postgresql:5432 - accepting connections
+Diaries production complete-dataset backup preflight
+  Logical dataset:    production
+  Database identity:  docker-volume:diaries-db-data / diaries
+  Files selector:     files
+  Files root:         //nas.tail636235.ts.net/photo/nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files
+  Docker NAS volume:  diaries_nas-photo
+  Responder running:  True
+  Staging:            excluded-benign (1 entries)
+  Candidate:          /home/richard/projects/diaries/data/dataset-backups/production/.20261007-144909Z.partial
+
+PREFLIGHT OK: no writer was stopped and no backup workspace was created.
+richard@pluto:~/projects/diaries$

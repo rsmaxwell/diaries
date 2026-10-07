@@ -1,0 +1,72 @@
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure>restore-dataset.bat postflight 20261007-105033Z
+Validated Diaries dataset pair for development-infrastructure:
+  Database data: ./data/database/common
+  Files dir:     files-development-common
+  Source:        paired local.env override
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261007-105033Z
+  Logical dataset: common
+  Workspace:       completed backup
+  Files:           89
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261007-114623Z
+  Logical dataset: common
+  Workspace:       completed backup
+  Files:           89
+Valid staged Diaries replacement Files tree
+  Files:       89
+  Total bytes: 100032776
+  Inventory:   exact paths/sizes/SHA-256
+  Staging:     benign runtime .image-staging ignored
+Valid restored Diaries Image catalogue / Files reconciliation
+  Image rows:             85
+  Catalogued matches:     85
+  Durable physical files: 89
+  Reviewed untracked:     4 (Thumbs.db only)
+  Missing/untracked/conflicting: 0 unexplained
+  Report:                 C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-restores\common\20261007-105033Z.prepared\postflight\catalogue-files-reconciliation.json
+Validated Diaries dataset pair for development-infrastructure:
+  Database data: ./data/database/common
+  Files dir:     files-development-common
+  Source:        paired local.env override
+Effective development dataset:
+  Database data: "C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\database\common"
+  Files root:    "\\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common"
+  Responder cfg: "C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\build\development-infrastructure\responder.effective.json"
+Preparing direct responder distribution for Step-7 startup/replay verification...
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.6.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :diaries-responder:compileJava
+
+> Task :diaries-responder:generateBuildInfo
+Generated responder build information: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\diaries-responder\build\generated\resources\buildInfo\build-info.properties
+Responder version: 0.0.9-SNAPSHOT
+
+> Task :diaries-responder:processResources
+> Task :diaries-responder:classes
+> Task :diaries-responder:jar
+> Task :diaries-responder:startScripts
+> Task :diaries-responder:installDist
+
+[Incubating] Problems report is available at: file:///C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.6.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 7s
+6 actionable tasks: 6 executed
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\common\restore-dataset.ps1 : SLF4J(I): Connected with provider of type [org.apache.logging.slf4j.SLF4JServiceProvider]
+At C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\common\restore-dataset.ps1:1125 char:9
++         Write-Error $message
++         ~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,restore-dataset.ps1
+
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure>

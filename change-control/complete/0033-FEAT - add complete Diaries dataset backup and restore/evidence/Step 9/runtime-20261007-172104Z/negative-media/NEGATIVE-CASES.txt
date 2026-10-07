@@ -1,0 +1,38 @@
+0033 Step 9 complete-backup negative media cases
+
+BASELINE
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261007-172105Z
+  Logical dataset: 0033-step9-rehearsal
+  Workspace:       completed backup
+  Files:           89
+
+CASE missing dump
+ERROR: missing required component database.customDump: database/diaries.dump
+PASS: rejected missing dump
+
+CASE modified dump
+ERROR: database.customDump size does not match manifest
+PASS: rejected modified dump
+
+CASE missing Files item
+ERROR: Files inventory does not exactly match Files snapshot paths, sizes and hashes
+PASS: rejected missing Files item
+
+CASE modified Files item
+ERROR: Files inventory does not exactly match Files snapshot paths, sizes and hashes
+PASS: rejected modified Files item
+
+CASE extra item inside backup snapshot
+ERROR: Files inventory does not exactly match Files snapshot paths, sizes and hashes
+PASS: rejected extra item inside backup snapshot
+
+CASE invalid manifest
+ERROR: status must be 'complete'
+PASS: rejected invalid manifest
+
+CASE interrupted .partial backup
+ERROR: partial workspace '.20261007-172105Z.partial' is non-restorable; use --allow-partial-workspace only during backup finalisation
+PASS: rejected interrupted .partial backup
+

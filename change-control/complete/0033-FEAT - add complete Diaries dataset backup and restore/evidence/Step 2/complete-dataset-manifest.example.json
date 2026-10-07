@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 2,
+  "backupType": "complete-dataset",
+  "completeDatasetBackup": true,
+  "status": "complete",
+  "backupId": "20261007-120000Z",
+  "createdStartedAt": "2026-10-07T11:59:00+00:00",
+  "createdCompletedAt": "2026-10-07T12:00:00+00:00",
+  "logicalDataset": "common",
+  "source": {
+    "launchMode": "local-docker-build",
+    "knownConsumers": [
+      "development-infrastructure",
+      "local-docker-build",
+      "local-published-smoke"
+    ],
+    "applicationIdentity": {
+      "gitCommit": "0123456789abcdef0123456789abcdef01234567"
+    }
+  },
+  "writerQuiescence": {
+    "status": "quiesced",
+    "method": "synthetic-contract-example",
+    "writers": [
+      "diaries-responder"
+    ],
+    "evidence": "responder stopped before synthetic capture"
+  },
+  "staging": {
+    "relativePath": ".image-staging",
+    "disposition": "empty",
+    "entryCount": 0,
+    "snapshotIncluded": false,
+    "note": "source .image-staging inspected empty; transient staging excluded from snapshot"
+  },
+  "counts": {
+    "imageRowCount": 2,
+    "cataloguedFileCount": 2,
+    "durableFileCount": 2
+  },
+  "database": {
+    "storageIdentity": "./data/database/common",
+    "name": "diaries",
+    "customDump": {
+      "path": "database/diaries.dump",
+      "format": "postgresql-custom",
+      "sizeBytes": 33,
+      "sha256": "64c63f23614c69ce070322cdaefdf3ed7af063c3b419f448e523ab9f5eda161d",
+      "verification": "verified"
+    },
+    "sqlDump": {
+      "path": "database/diaries.sql",
+      "format": "postgresql-plain-sql",
+      "sizeBytes": 38,
+      "sha256": "b396261f7a97ec71d2088dc2ae1608134935699f758f9e90311223c5fc2b8196",
+      "verification": "verified"
+    }
+  },
+  "files": {
+    "selector": "files-development-common",
+    "resolvedPhysicalRoot": "//nas.localdomain/photo/nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/diaries/files-development-common",
+    "snapshot": {
+      "path": "files",
+      "format": "directory",
+      "fileCount": 2,
+      "totalBytes": 29,
+      "inventoryPath": "verification/inventory.json",
+      "inventorySha256": "3f709bfb1f94f53f3d725cc87a162c44e8527f2ecfec8e11d28e3355c0f6848a",
+      "hashListPath": "verification/files.sha256",
+      "hashListSha256": "d1c1a190e45513e0a7ed94059b5b24a34cb0421f944a66768b7e36b200436445",
+      "verification": "verified"
+    }
+  },
+  "verification": {
+    "databaseHashList": {
+      "path": "verification/database.sha256",
+      "format": "sha256-list",
+      "sizeBytes": 175,
+      "sha256": "86a763725d17a82fb0075280d8a2917625fe1fad193e6c77738253b080a1b411",
+      "verification": "verified"
+    }
+  }
+}

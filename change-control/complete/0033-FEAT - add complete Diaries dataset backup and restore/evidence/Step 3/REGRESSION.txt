@@ -1,0 +1,48 @@
+PASS: common engine invokes the existing dataset-pair validator
+PASS: mode environment is loaded before local.env
+PASS: engine resolves logical dataset, effective database identity and Files root
+PASS: capture namespace is data/dataset-backups/<logical-dataset>/.<UTC-id>.partial
+PASS: backup IDs use the Step-2 UTC naming contract
+PASS: unavailable Files roots fail before writer quiescence
+PASS: expected zero-byte catalogue.lock is accepted while unexplained .image-staging content is rejected
+PASS: benign staging exception is limited to one zero-byte catalogue.lock entry
+PASS: staging is inspected before quiescence and re-inspected after all writers stop
+PASS: direct-development responder writer state is identified
+PASS: known migration/maintenance Java writers cause conservative refusal
+PASS: Docker and direct responders are stopped and writer quiescence is re-proved
+PASS: selected PostgreSQL service/container is identified and must remain available
+PASS: custom and plain PostgreSQL dumps are captured into the same workspace
+PASS: durable Files copy preserves data/attributes/timestamps and excludes staging
+PASS: prior writer state is retained for Step-4-only restoration after successful finalisation
+PASS: failed captures remain explicit incomplete artifacts without silently resuming writers
+PASS: non-mutating preflight mode is available
+PASS: committed local defaults resolve to three isolated dataset namespaces
+PREFLIGHT MODEL isolated development-infrastructure: dataset=development-infrastructure files=files-development-infrastructure
+PREFLIGHT MODEL isolated local-docker-build: dataset=local-docker-build files=files-local-docker-build
+PREFLIGHT MODEL isolated local-published-smoke: dataset=local-published-smoke files=files-local-published-smoke
+PASS: paired local.env common override resolves all three launch modes to one common backup namespace
+PREFLIGHT MODEL shared development-infrastructure: dataset=common files=files-development-common
+PREFLIGHT MODEL shared local-docker-build: dataset=common files=files-development-common
+PREFLIGHT MODEL shared local-published-smoke: dataset=common files=files-development-common
+PASS: development-infrastructure has a thin wrapper over the common engine
+PASS: development-infrastructure wrapper exposes the non-mutating preflight command
+PASS: development-infrastructure wrapper contains no duplicated backup implementation
+PASS: local-docker-build has a thin wrapper over the common engine
+PASS: local-docker-build wrapper exposes the non-mutating preflight command
+PASS: local-docker-build wrapper contains no duplicated backup implementation
+PASS: local-published-smoke has a thin wrapper over the common engine
+PASS: local-published-smoke wrapper exposes the non-mutating preflight command
+PASS: local-published-smoke wrapper contains no duplicated backup implementation
+PASS: development-infrastructure/backup-db-to-binary.bat remains explicitly database-only
+PASS: development-infrastructure/backup-db-to-binary.bat was not silently redirected to complete-dataset semantics
+PASS: development-infrastructure/backup-db-to-sql.bat remains explicitly database-only
+PASS: development-infrastructure/backup-db-to-sql.bat was not silently redirected to complete-dataset semantics
+PASS: local-docker-build/backup-db-to-binary.bat remains explicitly database-only
+PASS: local-docker-build/backup-db-to-binary.bat was not silently redirected to complete-dataset semantics
+PASS: local-docker-build/backup-db-to-sql.bat remains explicitly database-only
+PASS: local-docker-build/backup-db-to-sql.bat was not silently redirected to complete-dataset semantics
+PASS: local-published-smoke/backup-db-to-binary.bat remains explicitly database-only
+PASS: local-published-smoke/backup-db-to-binary.bat was not silently redirected to complete-dataset semantics
+PASS: local-published-smoke/backup-db-to-sql.bat remains explicitly database-only
+PASS: local-published-smoke/backup-db-to-sql.bat was not silently redirected to complete-dataset semantics
+PASS: local complete-dataset Step-3 capture engine contract verified

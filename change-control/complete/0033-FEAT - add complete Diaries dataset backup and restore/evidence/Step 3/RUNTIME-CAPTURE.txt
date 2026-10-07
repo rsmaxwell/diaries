@@ -1,0 +1,67 @@
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure>backup-dataset.bat
+Validated Diaries dataset pair for development-infrastructure:
+  Database data: ./data/database/common
+  Files dir:     files-development-common
+  Source:        paired local.env override
+
+Diaries complete-dataset backup preflight
+  Invoking mode:      development-infrastructure
+  Logical dataset:    common
+  Database data:      C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\database\common
+  Files selector:     files-development-common
+  Files root:         \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common
+  Dataset sharing:    shared by all three local launch modes through the paired local.env override
+  Known consumers:    development-infrastructure, local-docker-build, local-published-smoke
+  Database container: 9cd3eb795d9f4debf305b36c0c0c23b64d9b2959464f7238df5c97fc74740199 (running)
+  Staging:            excluded-benign/excluded (1 entries)
+  Candidate:          C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\.20261007-105033Z.partial
+  Writer:             docker:local-docker-build/diaries-responder running=False
+  Writer:             docker:local-published-smoke/diaries-responder running=False
+  Writer:             windows:direct-diaries-responder running=False pids=
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows
+-------------------------------------------------------------------------------
+
+  Started : 07 October 2026 11:50:37
+   Source : \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common\
+     Dest : C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\.20261007-105033Z.partial\files\
+
+    Files : *.*
+
+ Exc Dirs : \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common\.image-staging
+
+  Options : *.* /NDL /NFL /S /E /DCOPY:DAT /COPY:DAT /NP /XJ /R:2 /W:1
+
+------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :        13        11         2         0         0         0
+   Files :        89        89         0         0         0         0
+   Bytes :   95.39 m   95.39 m         0         0         0         0
+   Times :   0:00:01   0:00:01                       0:00:00   0:00:00
+
+
+   Speed :           61,070,070 Bytes/sec.
+   Speed :            3,494.458 MegaBytes/min.
+   Ended : 07 October 2026 11:50:39
+
+
+STEP 3 CAPTURE COMPLETE.
+  Incomplete workspace: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\.20261007-105033Z.partial
+  Database custom dump: database\diaries.dump
+  Database SQL dump:    database\diaries.sql
+  Durable Files copy:   files\
+  Image rows:           85
+  Catalogued files:     85
+
+IMPORTANT: this is deliberately still a .partial workspace and is NOT yet a restorable complete backup.
+Step 4 must generate/verify hashes and inventory, write/validate the schema-2 manifest, atomically promote the directory,
+and only then restore the prior writer-running state recorded in capture-state.json.
+Writers stopped by this capture remain quiesced now.
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure>

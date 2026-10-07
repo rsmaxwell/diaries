@@ -1,0 +1,104 @@
+richard@mango:~/playbooks$ python3 roles/diaries/tests/verify-production-complete-dataset-tooling.py
+PASS: production complete-dataset tooling file exists: backup-dataset.sh
+PASS: production tooling is executable in role source: backup-dataset.sh
+PASS: production complete-dataset tooling file exists: restore-dataset.sh
+PASS: production tooling is executable in role source: restore-dataset.sh
+PASS: production complete-dataset tooling file exists: production-complete-dataset.py
+PASS: production tooling is executable in role source: production-complete-dataset.py
+PASS: production complete-dataset tooling file exists: complete-dataset-manifest.py
+PASS: production tooling is executable in role source: complete-dataset-manifest.py
+PASS: production complete-dataset tooling file exists: complete-dataset-verification.py
+PASS: production tooling is executable in role source: complete-dataset-verification.py
+PASS: production complete-dataset tooling file exists: complete-dataset-restore-stage.py
+PASS: production tooling is executable in role source: complete-dataset-restore-stage.py
+PASS: production complete-dataset tooling file exists: complete-dataset-postflight.py
+PASS: production tooling is executable in role source: complete-dataset-postflight.py
+PASS: production shell/Python complete-dataset tooling parses successfully
+PASS: complete-dataset-manifest.py matches the frozen local schema/inventory helper used by 0033
+PASS: complete-dataset-verification.py matches the frozen local schema/inventory helper used by 0033
+PASS: complete-dataset-restore-stage.py matches the frozen local schema/inventory helper used by 0033
+PASS: complete-dataset-postflight.py matches the frozen local schema/inventory helper used by 0033
+PASS: production complete-dataset engine contains required contract: DIARIES_NAS_CONTENT_PATH
+PASS: production complete-dataset engine contains required contract: DIARIES_FILES_DIR
+PASS: production complete-dataset engine contains required contract: "docker", "compose"
+PASS: production complete-dataset engine contains required contract: data" / "dataset-backups" / DATASET
+PASS: production complete-dataset engine contains required contract: data" / "dataset-restores" / DATASET
+PASS: production complete-dataset engine contains required contract: docker-compose-service-stop
+PASS: production complete-dataset engine contains required contract: database/diaries.dump
+PASS: production complete-dataset engine contains required contract: database/diaries.sql
+PASS: production complete-dataset engine contains required contract: complete-dataset-manifest.py
+PASS: production complete-dataset engine contains required contract: complete-dataset-verification.py
+PASS: production complete-dataset engine contains required contract: complete-dataset-restore-stage.py
+PASS: production complete-dataset engine contains required contract: complete-dataset-postflight.py
+PASS: production complete-dataset engine contains required contract: Type RESTORE
+PASS: production complete-dataset engine contains required contract: Type APPLY
+PASS: production complete-dataset engine contains required contract: automaticRollbackAvailable
+PASS: production complete-dataset engine contains required contract: dropdb
+PASS: production complete-dataset engine contains required contract: pg_restore
+PASS: production complete-dataset engine contains required contract: synchronise: ok
+PASS: production complete-dataset engine contains required contract: diaries/marquees/
+PASS: production complete-dataset engine contains required contract: diaries/images/
+PASS: production complete-dataset engine contains required contract: http://localhost:8081/files/
+PASS: production complete-dataset engine contains required contract: mv "$live" "$rollback"
+PASS: production complete-dataset engine contains required contract: mv "$stage" "$live"
+PASS: complete-dataset tooling never stops PostgreSQL as a writer-quiescence action
+PASS: complete-dataset tooling explicitly quiesces/restores the responder service
+PASS: production backup independently rereads quiesced Files before schema-2 promotion
+PASS: root maintenance copies return host backup/verification trees to the invoking operator ownership
+PASS: production backup defensively excludes transient .image-staging from host-side snapshots
+PASS: production tar data-plane pipelines propagate source/extraction failures
+PASS: production restore preflight structurally validates the custom dump before destructive work
+PASS: production apply restores only the custom dump and never reapplies the SQL companion
+PASS: production restore stages and independently verifies replacement Files before apply
+PASS: production restore retains executable database+Files rollback semantics
+PASS: routine Ansible role execution deploys complete-dataset tools but never invokes them
+PASS: Ansible creates production complete backup/restore state roots outside NAS Files
+PASS: production complete-dataset identity remains driven by explicit diaries_files_dir
+PASS: production responder still mounts the explicit Files selector at /data/files
+PASS: existing production binary backup remains explicitly database-only
+PASS: existing production binary restore remains explicitly database-only
+PASS: production complete-dataset Step-8 tooling contract verified
+richard@mango:~/playbooks$
+
+richard@mango:~/playbooks$ python3 roles/diaries/tests/verify-production-deployment-contract.py
+PASS: production broker keeps the complete retained-snapshot flow-control policy
+PASS: production broker has no historical 10,000-message truncation ceiling
+PASS: production diaries-client can read canonical retained Image metadata
+PASS: production diaries-responder can publish canonical retained Image metadata
+PASS: production diaries-web can read canonical retained Image metadata
+PASS: Ansible validates the deployed retained-snapshot broker policy
+PASS: production Compose keeps /data/files selected by the explicit Files selector
+PASS: production Compose/start templates do not load local development overrides
+PASS: production ImageFragment authoring gate defaults enabled after 0027 close-out
+PASS: responder config renders the explicit production ImageFragment authoring variable
+PASS: Ansible rejects non-boolean production authoring-gate values
+PASS: Ansible validates the rendered production authoring-gate value
+PASS: role documentation defines normal enablement and non-destructive rollback
+PASS: role documentation records the durable database/Files pairing invariant
+PASS: production operator documentation defines database-only and matched Files backup semantics
+PASS: production operator documentation defines the complete-backup manifest and partial-workspace contract
+PASS: production operator documentation exposes permanent complete backup/restore commands without automatic restore
+PASS: Ansible creates project-local complete backup/restore state roots outside the mutable Files tree
+PASS: production operator documentation defines temporary helper deploy/remove lifecycle
+PASS: role source contains only the approved supported production script set
+PASS: role source contains no unclassified feature/step-shaped production helpers
+PASS: production recurrence policy detects a newly accumulated stepN helper
+PASS: completed-feature production helpers are absent from role source
+PASS: one-off obsolete-script removal lists are no longer required
+PASS: Ansible has separate project-root and managed-scripts synchronization tasks
+PASS: project-root synchronization excludes the separately managed scripts directory
+PASS: project-root synchronization does not use rsync --delete
+PASS: production scripts are synchronized as their own managed directory
+PASS: managed scripts synchronization removes unmanaged and excluded destination entries
+PASS: managed scripts synchronization excludes transient Python interpreter caches
+PASS: managed scripts synchronization protects templated permanent script logs.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-client.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-database.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-mosquitto.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-nginx.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-responder.sh
+PASS: managed scripts synchronization protects templated permanent script start.sh
+PASS: managed scripts synchronization protects templated permanent script status.sh
+PASS: managed scripts synchronization protects templated permanent script stop.sh
+PASS: production deployment contract verified
+richard@mango:~/playbooks$

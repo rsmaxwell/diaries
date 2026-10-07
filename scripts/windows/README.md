@@ -78,34 +78,92 @@ call scripts\windows\common\report-effective-dataset.bat MODE
 
 Do not proceed with destructive Image/File lifecycle testing if the reported database and Files root are not the intended matched pair.
 
+## Choose database-only or complete-dataset backup
+
+Use a **database-only** backup when the task is intentionally limited to PostgreSQL and you are separately controlling the matching Files state, for example a database inspection or tightly-scoped migration rollback. The `.dataset.json` sidecar records the effective Files identity but does not contain Files bytes.
+
+Use a **complete-dataset** backup for disaster recovery, a durable rollback point, before a risky database+Files change, or whenever the backup must be independently recoverable without separately locating a matching Files snapshot. This is the normal full-data protection command.
+
+The complete-dataset boundary is deliberately limited to PostgreSQL durable application data plus the selected mutable Files root. It excludes the shared read-only original diary scans, MQTT retained state (rebuilt from PostgreSQL), Docker/application images, environment files, credentials and external NAS/platform backup policy.
+
 ## Backup semantics
 
 The per-mode `backup-db-to-binary.bat` and `backup-db-to-sql.bat` commands are **database-only** backups. They derive their backup namespace from the effective database dataset and write a dataset sidecar describing the matching Files selector/root. They do not copy Files bytes.
 
-A complete recoverable Diaries dataset backup is:
+A complete recoverable Diaries dataset backup uses the 0033 schema-2 directory contract:
 
 ```text
-PostgreSQL dump
-+ matching mutable Files snapshot/copy
-+ dataset/path identity manifest
-+ preferably a deterministic checksum inventory
+<dataset-backup-root>/<logical-dataset>/<YYYYMMDD-HHmmssZ>/
+    dataset-manifest.json
+    database/diaries.dump
+    database/diaries.sql
+    files/
+    verification/database.sha256
+    verification/files.sha256
+    verification/inventory.json
 ```
 
-Freeze mutable responder writers that can access the pair before taking the matched database and Files captures. Keep the original diary scan tree separate; it is shared read-only source material, not the mutable Files side of this invariant.
+An in-progress candidate is named `.<YYYYMMDD-HHmmssZ>.partial` and is deliberately non-restorable. `backup-dataset.bat` in each local mode delegates to the common engine, captures both database formats plus durable Files while writers are quiesced, verifies hashes/inventory, writes the schema-2 manifest and promotes the directory only after successful validation. The existing `backup-db-*` commands remain deliberately database-only.
+
+The writer-quiescence window covers the database dumps, Files capture and final source/media verification. PostgreSQL remains available; known responder writers for the effective pair are stopped. On success only writers that were running before the backup are restored. On failure after quiescence, the safe state is stopped with a non-restorable `.partial` workspace retained for review.
+
+After a completed backup, independently verify the media before relying on it:
+
+```powershell
+python .\scripts\windows\common\complete-dataset-manifest.py verify --backup-dir .\data\dataset-backups\<dataset>\<backup-id>
+```
+
+The validator rechecks the schema-2 completion markers, component paths, database hashes, exact Files inventory and Files hashes. A successful normal verification must target the promoted directory, never a `.partial` candidate.
+
+Keep the original diary scan tree separate; it is shared read-only source material, not the mutable Files side of this invariant.
 
 ## Restore semantics
 
-Before restoring:
+0033 Step 5 adds a common local complete-restore preparation engine with thin wrappers in all three local modes. The restore input is a **completed complete-backup directory** or its backup ID; an arbitrary `.dump`, `.sql` or `.dataset.json` database-only artifact is not accepted.
 
-1. stop/freeze the responder that can write the target pair;
-2. identify and validate the effective database + Files selection;
-3. select a database dump and Files snapshot captured from that same pair;
-4. preserve the current database/Files copies until recovery is verified;
-5. restore the matching Files snapshot to the selected Files root;
-6. run the appropriate `restore-db-from-*.bat` for the database side;
-7. perform read-only reconciliation/checksum review before re-enabling writes.
+Use the non-mutating preflight first:
 
-A sidecar-backed database restore rejects a configured Files selector/root that does not match the backup identity, but that check cannot prove that the current Files **bytes** are the matching snapshot. A database-only reset/restore must therefore be labelled as potentially requiring Files reconciliation.
+```bat
+restore-dataset.bat preflight YYYYMMDD-HHmmssZ
+```
+
+It validates the current effective database/Files pair, the schema-2 manifest and every recorded backup hash/inventory, validates the custom dump with `pg_restore --list`, checks target staging state, checks known free space where Windows can report it, and reports every writer which can reach the target pair. It does not stop writers or create restore work.
+
+Step-5 preparation is then:
+
+```bat
+restore-dataset.bat prepare YYYYMMDD-HHmmssZ
+```
+
+The command requires the operator to type `RESTORE`. It then quiesces every target writer, rechecks `.image-staging`, creates and independently validates a fresh **complete-dataset safety backup**, copies the selected backup's durable Files into a sibling staging directory, and revalidates that staged tree by exact relative path, size and SHA-256 inventory. Successful preparation leaves writers stopped and records the prior writer-running state under `data\dataset-restores\<dataset>\<backup-id>.prepared\restore-state.json`.
+
+Step 5 deliberately does **not** drop/recreate/restore PostgreSQL and does **not** replace or merge the live Files root. If preparation fails after quiescence, writers remain stopped and the `.preparing` work directory / staged Files directory are retained for diagnosis rather than silently returning the dataset to service.
+
+Step 6 applies an already-prepared restore with:
+
+```bat
+restore-dataset.bat apply YYYYMMDD-HHmmssZ
+```
+
+The command revalidates the source complete backup, mandatory safety backup, prepared state and staged Files, then requires the exact token `APPLY`. It restores **only** `database/diaries.dump` using the proven drop/recreate/custom `pg_restore --exit-on-error --no-owner --no-privileges` path; `database/diaries.sql` is not applied afterwards. The staged Files directory is promoted by same-parent rename rather than merged: the old live Files root is first renamed to `.<files-leaf>.pre-restore-<backup-id>.rollback`, then the exact staged tree takes the live name. This guarantees that durable files absent from the selected backup do not survive merely because they existed before restore. A new empty `.image-staging` directory is created after the swap; stale staging payloads are never restored.
+
+Successful Step-6 apply ends in `applied-awaiting-step7`. The old live Files directory and mandatory complete safety backup remain present, and **all writers remain stopped** until Step 7 postflight/reconciliation succeeds. If either half fails, `restore-state.json` records whether the database and/or Files root changed and the command prints the rollback assets. Before Step 7 acceptance the operator can restore the pre-restore safety state with:
+
+```bat
+restore-dataset.bat rollback YYYYMMDD-HHmmssZ
+```
+
+Rollback restores PostgreSQL from the safety backup custom dump and restores the preserved original live Files directory where available, independently verifies the safety Files inventory, retains a failed replacement tree for diagnosis when useful, and still leaves writers stopped for review.
+
+Step 7 accepts an applied restore with:
+
+```bat
+restore-dataset.bat postflight YYYYMMDD-HHmmssZ
+```
+
+Postflight keeps normal writers stopped while it rechecks the restored database/Image count, exact live Files inventory and Image-catalogue/physical reconciliation. It then runs a controlled responder startup probe, requires MQTT RPC health and `synchronise: ok` retained replay, reads representative MARQUEE and IMAGE retained payloads, and fetches the representative Image through `/files` with a matching SHA-256. The probe is stopped before the exact prior writer-running state is restored. Any failure records `step7-postflight-failed`, stops all known responders and leaves `rollback` executable. Success records `restore-complete` and closes automatic rollback while retaining the complete safety backup and pre-restore Files rollback sibling as evidence.
+
+The older `restore-db-from-*.bat` commands remain **database-only** restore tools. Their sidecar pairing check cannot prove current Files bytes are the matching snapshot, so they must not be confused with complete-dataset restore.
 
 ## Re-sharing and rollback warning
 

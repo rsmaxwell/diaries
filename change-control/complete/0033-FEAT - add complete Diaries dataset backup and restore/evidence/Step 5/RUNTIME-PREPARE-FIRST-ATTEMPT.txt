@@ -1,0 +1,100 @@
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure>restore-dataset.bat prepare 20261007-105033Z
+Validated Diaries dataset pair for development-infrastructure:
+  Database data: ./data/database/common
+  Files dir:     files-development-common
+  Source:        paired local.env override
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261007-105033Z
+  Logical dataset: common
+  Workspace:       completed backup
+  Files:           89
+
+Diaries complete-dataset restore Step-5 preflight
+  Invoking mode:          development-infrastructure
+  Logical dataset:        common
+  Database target:        C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\database\common / diaries
+  Files target:           files-development-common -> \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common
+  Dataset sharing:        shared by all three local launch modes through the paired local.env override
+  Complete backup:        C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\20261007-105033Z
+  Backup ID:              20261007-105033Z
+  Backup Files:           89 files / 100032776 bytes
+  Backup manifest:        schema-2 complete/verified
+  Custom dump:            pg_restore --list verified
+  Target staging:         excluded-benign (1 entries)
+  Replacement stage:      \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\.files-development-common.restore-20261007-105033Z.staged
+  Current durable Files:  100032776 bytes
+  Safety-backup estimate: 168461298 bytes
+  Local free space:       2725591109632 bytes (checked)
+  Target free space:      unavailable for UNC/network path; actual staging copy remains authoritative
+  Writer:                 docker:local-docker-build/diaries-responder running=False
+  Writer:                 docker:local-published-smoke/diaries-responder running=False
+  Writer:                 windows:direct-diaries-responder running=False pids=
+
+WARNING: Step 5 will stop all writers for this dataset and leave them stopped for Step 6.
+It will create a mandatory complete safety backup and a verified sibling replacement Files stage.
+It will NOT drop/restore PostgreSQL and will NOT replace the live Files root in this step.
+Type RESTORE to prepare this complete-dataset restore: RESTORE
+
+Creating mandatory pre-restore COMPLETE DATASET safety backup: 20261007-114623Z
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261007-114623Z
+  Logical dataset: common
+  Workspace:       completed backup
+  Files:           89
+
+Staging replacement Files to sibling path: \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\.files-development-common.restore-20261007-105033Z.staged
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows
+-------------------------------------------------------------------------------
+
+  Started : 07 October 2026 12:46:34
+   Source : C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\20261007-105033Z\files\
+     Dest : \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\.files-development-common.restore-20261007-105033Z.staged\
+
+    Files : *.*
+
+  Options : *.* /NDL /NFL /S /E /DCOPY:DAT /COPY:DAT /PURGE /MIR /NP /XJ /R:2 /W:1
+
+------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :        12        11         1         0         0         0
+   Files :        89        89         0         0         0         0
+   Bytes :   95.39 m   95.39 m         0         0         0         0
+   Times :   0:00:01   0:00:01                       0:00:00   0:00:00
+
+
+   Speed :           57,292,540 Bytes/sec.
+   Speed :            3,278.305 MegaBytes/min.
+   Ended : 07 October 2026 12:46:36
+
+Valid staged Diaries replacement Files tree
+  Files:       89
+  Total bytes: 100032776
+  Inventory:   exact paths/sizes/SHA-256
+  Staging:     transient .image-staging absent
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261007-105033Z
+  Logical dataset: common
+  Workspace:       completed backup
+  Files:           89
+
+STEP 5 RESTORE PREPARATION COMPLETE.
+  Restore source:       C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\20261007-105033Z
+  Safety backup:        Validated Diaries dataset pair for development-infrastructure:   Database data: ./data/database/common   Files dir:     files-development-common   Source:        paired local.env override  Diaries complete-dataset backup preflight   Invoking mode:      development-infrastructure   Logical dataset:    common   Database data:      C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\database\common   Files selector:     files-development-common   Files root:         \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common   Dataset sharing:    shared by all three local launch modes through the paired local.env override   Known consumers:    development-infrastructure, local-docker-build, local-published-smoke   Database container: 9cd3eb795d9f4debf305b36c0c0c23b64d9b2959464f7238df5c97fc74740199 (running)   Staging:            excluded-benign/excluded (1 entries)   Candidate:          C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\.20261007-114623Z.partial   Writer:             docker:local-docker-build/diaries-responder running=False   Writer:             docker:local-published-smoke/diaries-responder running=False   Writer:             windows:direct-diaries-responder running=False pids=  -------------------------------------------------------------------------------    ROBOCOPY     ::     Robust File Copy for Windows                               -------------------------------------------------------------------------------    Started : 07 October 2026 12:46:27    Source : \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common\      Dest : C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\.20261007-114623Z.partial\files\      Files : *.*          Exc Dirs : \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common\.image-staging          Options : *.* /NDL /NFL /S /E /DCOPY:DAT /COPY:DAT /NP /XJ /R:2 /W:1   ------------------------------------------------------------------------------   ------------------------------------------------------------------------------                 Total    Copied   Skipped  Mismatch    FAILED    Extras     Dirs :        13        11         2         0         0         0    Files :        89        89         0         0         0         0    Bytes :   95.39 m   95.39 m         0         0         0         0    Times :   0:00:01   0:00:01                       0:00:00   0:00:00      Speed :           80,026,220 Bytes/sec.    Speed :            4,579.137 MegaBytes/min.    Ended : 07 October 2026 12:46:28   STEP 3 CAPTURE COMPLETE; proceeding directly to Step 4 verification/finalisation while writers remain quiesced.   Incomplete workspace: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\.20261007-114623Z.partial   Database custom dump: database\diaries.dump   Database SQL dump:    database\diaries.sql   Durable Files copy:   files\   Image rows:           85   Catalogued files:     85  Step 4 complete-backup verification   Candidate:          C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\.20261007-114623Z.partial   Writer state:       quiesced   Source Files root:  \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common   Custom dump:        pg_restore --list verified Prepared complete-dataset verification artifacts   Durable files: 89   Total bytes:   100032776   Source match:  exact paths/sizes/SHA-256   SQL dump:      readable PostgreSQL plain dump C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\.20261007-114623Z.partial\dataset-manifest.json Valid complete Diaries dataset backup manifest   Schema:          2   Backup ID:       20261007-114623Z   Logical dataset: common   Workspace:       partial candidate   Files:           89 Valid complete Diaries dataset backup manifest   Schema:          2   Backup ID:       20261007-114623Z   Logical dataset: common   Workspace:       completed backup   Files:           89  COMPLETE DATASET BACKUP COMPLETE.   Operation:           COMPLETE DATASET backup   Logical dataset:     common   Database identity:   C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\database\common / diaries   Files identity:      files-development-common -> \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common   Final backup:        C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\20261007-114623Z   Binary dump:         database\diaries.dump   SQL dump:            database\diaries.sql   Durable Files:       89 files / 100032776 bytes   Image rows:          85   Catalogued files:    85   Manifest:            dataset-manifest.json   Verification:        hashes/inventory/source comparison/pg_restore/manifest all verified   Partial workspace:   none (atomically promoted)   Prior writer state:  restored C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\20261007-114623Z
+  Staged replacement:   \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\.files-development-common.restore-20261007-105033Z.staged
+  Prepared state:       C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-restores\common\20261007-105033Z.prepared\restore-state.json
+  Writers:              quiesced and intentionally left stopped
+  Live database:         UNCHANGED
+  Live Files root:       UNCHANGED
+  Next action:           Step 6 applies database + Files as one controlled operation.
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure>

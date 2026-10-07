@@ -1,0 +1,40 @@
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure>backup-dataset.bat finalise 20261007-105033Z
+Validated Diaries dataset pair for development-infrastructure:
+  Database data: ./data/database/common
+  Files dir:     files-development-common
+  Source:        paired local.env override
+
+Diaries complete-dataset backup preflight
+  Invoking mode:      development-infrastructure
+  Logical dataset:    common
+  Database data:      C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\database\common
+  Files selector:     files-development-common
+  Files root:         \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common
+  Dataset sharing:    shared by all three local launch modes through the paired local.env override
+  Known consumers:    development-infrastructure, local-docker-build, local-published-smoke
+  Database container: 9cd3eb795d9f4debf305b36c0c0c23b64d9b2959464f7238df5c97fc74740199 (running)
+  Staging:            excluded-benign/excluded (1 entries)
+  Candidate:          C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\.20261007-105033Z.partial
+  Writer:             docker:local-docker-build/diaries-responder running=False
+  Writer:             docker:local-published-smoke/diaries-responder running=False
+  Writer:             windows:direct-diaries-responder running=False pids=
+
+Step 4 complete-backup verification
+  Candidate:          C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\.20261007-105033Z.partial
+  Writer state:       quiesced
+  Source Files root:  \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common
+  Custom dump:        pg_restore --list verified
+Prepared complete-dataset verification artifacts
+  Durable files: 89
+  Total bytes:   100032776
+  Source match:  exact paths/sizes/SHA-256
+  SQL dump:      readable PostgreSQL plain dump
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\common\backup-dataset.ps1 : ERROR: --application-identity-json must be valid JSON
+At C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\common\backup-dataset.ps1:890 char:5
++     Write-Error $message
++     ~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,backup-dataset.ps1
+
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure>

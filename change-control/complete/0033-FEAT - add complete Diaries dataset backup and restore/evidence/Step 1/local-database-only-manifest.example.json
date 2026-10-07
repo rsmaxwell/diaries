@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "backupType": "database-only",
+  "completeDatasetBackup": false,
+  "createdAt": "2026-10-07T10:00:00+01:00",
+  "launchMode": "local-docker-build",
+  "logicalDataset": "common",
+  "effectiveDatabaseDataDir": "C:\\example\\diaries\\data\\database\\common",
+  "databaseName": "diaries",
+  "databaseBackupFile": "diaries-common-20261007-100000.dump",
+  "databaseBackupFormat": "custom",
+  "effectiveFilesDir": "files-development-common",
+  "resolvedPhysicalFilesRoot": "\\\\nas.localdomain\\photo\\example\\diaries-content\\files-development-common",
+  "applicationSourceIdentity": {
+    "gitCommit": "<source-commit>"
+  },
+  "imageRowCount": 1508,
+  "cataloguedFileCount": 1508,
+  "filesSnapshot": null,
+  "note": "Database-only backup. No mutable Files bytes are included. Restore only with the matching Files root/snapshot."
+}

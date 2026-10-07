@@ -1,0 +1,92 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261007184032
+Username: RICHARD-PC\Richard
+RunAs User: RICHARD-PC\Richard
+Configuration Name: 
+Machine: RICHARD-PC (Microsoft Windows NT 10.0.26200.0)
+Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File .\change-control\in-progress\0033-FEAT - add complete Diaries dataset backup and restore\evidence\Step 9\tooling\run-disposable-rehearsal.ps1 -SourceBackup .\data\dataset-backups\common\20261007-105033Z -ResetDisposable
+Process ID: 76540
+PSVersion: 5.1.26100.9444
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9444
+BuildVersion: 10.0.26100.9444
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+0033 Step 9 - full disposable backup/restore rehearsal
+  Source seed backup: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\20261007-105033Z
+  Disposable dataset: 0033-step9-rehearsal
+  Disposable Files:   files-0033-step9-rehearsal
+  Evidence:           C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\change-control\in-progress\0033-FEAT - add complete Diaries dataset backup and restore\evidence\Step 9\runtime-20261007-174032Z
+
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261007-105033Z
+  Logical dataset: common
+  Workspace:       completed backup
+  Files:           89
+PASS: disposable Docker Compose project isolated as diaries-step9-rehearsal
+INFO: Windows NAS access unavailable through \\nas.localdomain\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content
+PASS: Windows NAS access available through \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content
+INFO: temporarily overriding DIARIES_NAS_HOST 'nas.localdomain' -> 'nas' for Windows SMB access during rehearsal.
+Resetting previous disposable database directory: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\database\0033-step9-rehearsal
+Resetting previous disposable backup namespace: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\0033-step9-rehearsal
+Resetting previous disposable restore namespace: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-restores\0033-step9-rehearsal
+Resetting previous disposable Files root: \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-0033-step9-rehearsal
+Starting disposable PostgreSQL + MQTT foundation...
+ Network diaries-step9-rehearsal_default Creating
+ Network diaries-step9-rehearsal_default Created
+ Volume diaries-step9-rehearsal_diaries-local-mqtt-data Creating
+ Volume diaries-step9-rehearsal_diaries-local-mqtt-data Created
+ Volume diaries-step9-rehearsal_diaries-local-mqtt-log Creating
+ Volume diaries-step9-rehearsal_diaries-local-mqtt-log Created
+ Container diaries-local-db Creating
+ Container diaries-local-mqtt Creating
+ Container diaries-local-mqtt Created
+ Container diaries-local-db Created
+ Container diaries-local-mqtt Starting
+ Container diaries-local-db Starting
+ Container diaries-local-db Started
+ Container diaries-local-mqtt Started
+Seeding disposable PostgreSQL from the verified source backup...
+Seeding disposable Files root from the same source backup...
+   Times :   0:00:01   0:00:01                       0:00:00   0:00:00
+
+
+   Speed :           64,288,416 Bytes/sec.
+   Speed :            3,678.613 MegaBytes/min.
+   Ended : 07 October 2026 18:40:48
+Starting the complete local-docker-build stack against the disposable pair...
+
+PASS: representative disposable state present: MARQUEE + IMAGE + reused Image references + nested Files
+Creating new complete rehearsal backup 20261007-174032Z ...
+
+
+Running destructive-media negative cases against disposable backup copies...
+
+Running mismatched-target restore-preflight negative case...
+
+PASS: mismatched target dataset rejected.
+Mutating both disposable durable halves after the backup...
+Running unexpected staging payload negative case...
+
+PASS: unexplained staging payload rejected.
+Restoring the complete rehearsal backup through the real Step 5-7 commands...
+
+
+
+Forcing one failed postflight to prove failure leaves writers stopped...
+
+PASS: failed postflight rejected and writer remained stopped.
+Retrying postflight after removing the injected fault...
+
+Stopping disposable local-docker-build stack before restoring local.env...
+PASS: original COMPOSE_PROJECT_NAME process setting restored.
+PASS: original local.env restored byte-for-byte.
+**********************
+Windows PowerShell transcript end
+End time: 20261007191419
+**********************

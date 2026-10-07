@@ -27,6 +27,10 @@ python scripts/windows/validation/verify-local-dataset-layout.py
 python scripts/windows/validation/verify-direct-development-files-config.py
 python scripts/windows/validation/verify-dataset-pair-guard.py
 python scripts/windows/validation/verify-local-backup-restore-semantics.py
+python scripts/windows/validation/verify-complete-dataset-manifest.py
+python scripts/windows/validation/verify-local-complete-dataset-backup-engine.py
+python scripts/windows/validation/verify-local-complete-dataset-finalisation.py
+python scripts/windows/validation/verify-local-complete-dataset-restore-preparation.py
 python scripts/windows/validation/verify-effective-dataset-diagnostics.py
 ```
 
@@ -40,7 +44,19 @@ python scripts/windows/validation/verify-effective-dataset-diagnostics.py
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\windows\validation\verify-dataset-pair-guard.ps1
 ```
 
-`verify-local-backup-restore-semantics.py` protects the database-only backup/restore contract, dataset sidecar identity and matched database/Files selection across all three local modes.
+`verify-local-backup-restore-semantics.py` protects the database-only backup/restore contract, dataset sidecar identity and matched database/Files selection across all three local modes. It is also the permanent 0033 Step 1 freeze: it protects mode-then-`local.env` precedence, the shared `common` pairing, effective-dataset backup naming, PostgreSQL custom/plain formats, current manual local writer-quiescence warning, destructive confirmation and the rule that these sidecars remain explicitly database-only.
+
+`verify-complete-dataset-manifest.py` protects the 0033 complete-backup directory and schema-2 manifest contract. It creates only synthetic temporary fixtures: it proves candidate generation/validation, partial-workspace rejection, final promotion semantics, relative component paths, supported schema/completion markers, required hashes/components and exact Files inventory validation. It does not access a real PostgreSQL database or mutable Files root.
+
+`verify-local-complete-dataset-backup-engine.py` protects the 0033 Step 3 local capture engine. It statically proves that the three mode wrappers remain thin, the common engine preserves mode-then-`local.env` precedence, derives the backup namespace from the effective dataset, refuses unavailable/staged Files, identifies/quiesces local writers while retaining PostgreSQL, captures both dump formats plus durable Files into one `.partial` workspace, preserves prior writer state for Step 4, and leaves failures incomplete with writers stopped. It also models both isolated committed defaults and the shared `common` override without touching live data.
+
+`verify-local-complete-dataset-finalisation.py` protects the 0033 Step 4 local finalisation path. It exercises the permanent hash/inventory helper on synthetic source/captured Files, proves source drift and malformed SQL are rejected, drives the schema-2 manifest through partial-candidate validation and promotion, verifies final media independently, deliberately corrupts/restores a completed fixture, and statically protects the verify-before-promote-before-writer-restart orchestration order.
+
+`verify-local-complete-dataset-restore-preparation.py` protects the 0033 Step 5 local restore-preparation path. It statically protects complete-media/target identity validation, database-only input rejection, `pg_restore --list`, explicit confirmation, writer quiescence, the mandatory verified complete safety backup, and the non-destructive Step-5 boundary. Its synthetic staged-Files fixture proves exact path/size/SHA-256 verification and rejection of changed, extra, missing or transient `.image-staging` content.
+
+`verify-local-complete-dataset-restore-apply.py` protects the 0033 Step 6 destructive apply/rollback path. It freezes custom-dump-only drop/recreate/`pg_restore --exit-on-error` semantics, same-parent Files replacement with an explicit pre-restore rollback sibling, fresh/benign-only runtime staging, changed-half failure state and executable safety-backup rollback. Its synthetic filesystem rehearsal proves pre-restore extra durable files disappear after exact replacement, rollback restores the old tree, and the immediate post-rename promotion-failure point remains recoverable.
+
+`verify-local-complete-dataset-restore-postflight.py` protects the 0033 Step 7 acceptance path. It freezes the writers-stopped failure state, rollback availability after failed postflight, database/Files/catalogue verification before service restoration, responder health + retained replay checks, representative MARQUEE/IMAGE MQTT and `/files` verification, prior-writer restoration only after successful postflight, and rollback closure only after `restore-complete`. Its synthetic catalogue fixture accepts only catalogued matches plus the previously reviewed legacy `Thumbs.db` exception and rejects changed checksums or unexplained untracked Files.
 
 `verify-effective-dataset-diagnostics.py` protects the effective-dataset diagnostics printed by normal start/status commands and the stable runtime paths used after local overrides.
 

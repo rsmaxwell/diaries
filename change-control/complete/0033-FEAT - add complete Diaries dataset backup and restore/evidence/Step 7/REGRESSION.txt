@@ -1,0 +1,15 @@
+0033 Step 7 permanent regression after Windows native-stderr correction
+
+PASS: local complete-dataset Step-7 postflight/restart/failure contract verified
+PASS: local complete-dataset Step-6 apply/rollback contract verified
+PASS: local complete-dataset Step-5 restore preparation contract verified
+PASS: local database-only backup/restore and effective-dataset contract frozen
+PASS: local dataset-pair regression guard contract verified
+PASS: Windows live-script anti-accumulation policy verified
+
+Additional Step-7 guard:
+- permanent Invoke-NativeCapture boundary is present;
+- benign native stderr is made non-terminating while output is captured;
+- native exit code remains the success criterion;
+- direct Java health check uses Invoke-NativeCapture;
+- raw `@(& java.exe ... 2>&1)` capture under ErrorActionPreference=Stop is forbidden.

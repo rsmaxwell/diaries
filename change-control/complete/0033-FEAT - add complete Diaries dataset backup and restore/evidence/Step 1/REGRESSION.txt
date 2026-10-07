@@ -1,0 +1,221 @@
+# 0033 Step 1 regression capture
+
+## Diaries local database-only semantics
+PASS: dataset identity is derived from the effective database directory, not launch mode
+PASS: common local dataset is explicitly identified as cross-mode sharing
+PASS: 0031 pair guard freezes common database -> common Files selector
+PASS: local.env.example proves the supported shared common database + Files pair
+PASS: database sidecar freezes schemaVersion = 1
+PASS: database sidecar freezes backupType = 'database-only'
+PASS: database sidecar freezes completeDatasetBackup = $false
+PASS: database sidecar freezes filesSnapshot = $null
+PASS: sidecar manifest records logicalDataset
+PASS: sidecar manifest records effectiveDatabaseDataDir
+PASS: sidecar manifest records databaseBackupFile
+PASS: sidecar manifest records databaseBackupFormat
+PASS: sidecar manifest records effectiveFilesDir
+PASS: sidecar manifest records resolvedPhysicalFilesRoot
+PASS: sidecar manifest records applicationSourceIdentity
+PASS: sidecar manifest records imageRowCount
+PASS: sidecar manifest records cataloguedFileCount
+PASS: manifest verification rejects a restore against a different database/Files pair
+PASS: legacy database backups remain usable with an explicit database-only warning
+PASS: development-infrastructure/backup-db-to-binary.bat validates the paired selectors
+PASS: development-infrastructure/backup-db-to-binary.bat resolves effective dataset identity
+PASS: development-infrastructure/backup-db-to-binary.bat uses effective-dataset backup directory
+PASS: development-infrastructure/backup-db-to-binary.bat reports the matching physical Files root
+PASS: development-infrastructure/backup-db-to-binary.bat labels its operation as database-only
+PASS: development-infrastructure/backup-db-to-binary.bat loads committed mode environment before local.env
+PASS: development-infrastructure/backup-db-to-binary.bat names default backups from effective dataset identity
+PASS: development-infrastructure/backup-db-to-binary.bat writes the database-only dataset sidecar
+PASS: development-infrastructure/backup-db-to-binary.bat captures Image catalogue row count
+PASS: development-infrastructure/backup-db-to-binary.bat executes pg_dump in diaries-db
+PASS: development-infrastructure/backup-db-to-sql.bat validates the paired selectors
+PASS: development-infrastructure/backup-db-to-sql.bat resolves effective dataset identity
+PASS: development-infrastructure/backup-db-to-sql.bat uses effective-dataset backup directory
+PASS: development-infrastructure/backup-db-to-sql.bat reports the matching physical Files root
+PASS: development-infrastructure/backup-db-to-sql.bat labels its operation as database-only
+PASS: development-infrastructure/backup-db-to-sql.bat loads committed mode environment before local.env
+PASS: development-infrastructure/backup-db-to-sql.bat names default backups from effective dataset identity
+PASS: development-infrastructure/backup-db-to-sql.bat writes the database-only dataset sidecar
+PASS: development-infrastructure/backup-db-to-sql.bat captures Image catalogue row count
+PASS: development-infrastructure/backup-db-to-sql.bat executes pg_dump in diaries-db
+PASS: development-infrastructure/restore-db-from-binary.bat validates the paired selectors
+PASS: development-infrastructure/restore-db-from-binary.bat resolves effective dataset identity
+PASS: development-infrastructure/restore-db-from-binary.bat uses effective-dataset backup directory
+PASS: development-infrastructure/restore-db-from-binary.bat reports the matching physical Files root
+PASS: development-infrastructure/restore-db-from-binary.bat labels its operation as database-only
+PASS: development-infrastructure/restore-db-from-binary.bat loads committed mode environment before local.env
+PASS: development-infrastructure/restore-db-from-binary.bat checks sidecar identity before destructive restore
+PASS: development-infrastructure/restore-db-from-binary.bat does not claim to restore a complete dataset
+PASS: development-infrastructure/restore-db-from-binary.bat freezes current manual writer-quiescence responsibility
+PASS: development-infrastructure/restore-db-from-binary.bat requires explicit destructive confirmation
+PASS: development-infrastructure/restore-db-from-sql.bat validates the paired selectors
+PASS: development-infrastructure/restore-db-from-sql.bat resolves effective dataset identity
+PASS: development-infrastructure/restore-db-from-sql.bat uses effective-dataset backup directory
+PASS: development-infrastructure/restore-db-from-sql.bat reports the matching physical Files root
+PASS: development-infrastructure/restore-db-from-sql.bat labels its operation as database-only
+PASS: development-infrastructure/restore-db-from-sql.bat loads committed mode environment before local.env
+PASS: development-infrastructure/restore-db-from-sql.bat checks sidecar identity before destructive restore
+PASS: development-infrastructure/restore-db-from-sql.bat does not claim to restore a complete dataset
+PASS: development-infrastructure/restore-db-from-sql.bat freezes current manual writer-quiescence responsibility
+PASS: development-infrastructure/restore-db-from-sql.bat requires explicit destructive confirmation
+PASS: development-infrastructure binary backup remains PostgreSQL custom format
+PASS: development-infrastructure SQL backup remains PostgreSQL plain format
+PASS: development-infrastructure binary restore validates and restores through pg_restore in diaries-db
+PASS: development-infrastructure SQL restore validates plain SQL then restores through psql in diaries-db
+PASS: local-docker-build/backup-db-to-binary.bat validates the paired selectors
+PASS: local-docker-build/backup-db-to-binary.bat resolves effective dataset identity
+PASS: local-docker-build/backup-db-to-binary.bat uses effective-dataset backup directory
+PASS: local-docker-build/backup-db-to-binary.bat reports the matching physical Files root
+PASS: local-docker-build/backup-db-to-binary.bat labels its operation as database-only
+PASS: local-docker-build/backup-db-to-binary.bat loads committed mode environment before local.env
+PASS: local-docker-build/backup-db-to-binary.bat names default backups from effective dataset identity
+PASS: local-docker-build/backup-db-to-binary.bat writes the database-only dataset sidecar
+PASS: local-docker-build/backup-db-to-binary.bat captures Image catalogue row count
+PASS: local-docker-build/backup-db-to-binary.bat executes pg_dump in diaries-db
+PASS: local-docker-build/backup-db-to-sql.bat validates the paired selectors
+PASS: local-docker-build/backup-db-to-sql.bat resolves effective dataset identity
+PASS: local-docker-build/backup-db-to-sql.bat uses effective-dataset backup directory
+PASS: local-docker-build/backup-db-to-sql.bat reports the matching physical Files root
+PASS: local-docker-build/backup-db-to-sql.bat labels its operation as database-only
+PASS: local-docker-build/backup-db-to-sql.bat loads committed mode environment before local.env
+PASS: local-docker-build/backup-db-to-sql.bat names default backups from effective dataset identity
+PASS: local-docker-build/backup-db-to-sql.bat writes the database-only dataset sidecar
+PASS: local-docker-build/backup-db-to-sql.bat captures Image catalogue row count
+PASS: local-docker-build/backup-db-to-sql.bat executes pg_dump in diaries-db
+PASS: local-docker-build/restore-db-from-binary.bat validates the paired selectors
+PASS: local-docker-build/restore-db-from-binary.bat resolves effective dataset identity
+PASS: local-docker-build/restore-db-from-binary.bat uses effective-dataset backup directory
+PASS: local-docker-build/restore-db-from-binary.bat reports the matching physical Files root
+PASS: local-docker-build/restore-db-from-binary.bat labels its operation as database-only
+PASS: local-docker-build/restore-db-from-binary.bat loads committed mode environment before local.env
+PASS: local-docker-build/restore-db-from-binary.bat checks sidecar identity before destructive restore
+PASS: local-docker-build/restore-db-from-binary.bat does not claim to restore a complete dataset
+PASS: local-docker-build/restore-db-from-binary.bat freezes current manual writer-quiescence responsibility
+PASS: local-docker-build/restore-db-from-binary.bat requires explicit destructive confirmation
+PASS: local-docker-build/restore-db-from-sql.bat validates the paired selectors
+PASS: local-docker-build/restore-db-from-sql.bat resolves effective dataset identity
+PASS: local-docker-build/restore-db-from-sql.bat uses effective-dataset backup directory
+PASS: local-docker-build/restore-db-from-sql.bat reports the matching physical Files root
+PASS: local-docker-build/restore-db-from-sql.bat labels its operation as database-only
+PASS: local-docker-build/restore-db-from-sql.bat loads committed mode environment before local.env
+PASS: local-docker-build/restore-db-from-sql.bat checks sidecar identity before destructive restore
+PASS: local-docker-build/restore-db-from-sql.bat does not claim to restore a complete dataset
+PASS: local-docker-build/restore-db-from-sql.bat freezes current manual writer-quiescence responsibility
+PASS: local-docker-build/restore-db-from-sql.bat requires explicit destructive confirmation
+PASS: local-docker-build binary backup remains PostgreSQL custom format
+PASS: local-docker-build SQL backup remains PostgreSQL plain format
+PASS: local-docker-build binary restore validates and restores through pg_restore in diaries-db
+PASS: local-docker-build SQL restore validates plain SQL then restores through psql in diaries-db
+PASS: local-published-smoke/backup-db-to-binary.bat validates the paired selectors
+PASS: local-published-smoke/backup-db-to-binary.bat resolves effective dataset identity
+PASS: local-published-smoke/backup-db-to-binary.bat uses effective-dataset backup directory
+PASS: local-published-smoke/backup-db-to-binary.bat reports the matching physical Files root
+PASS: local-published-smoke/backup-db-to-binary.bat labels its operation as database-only
+PASS: local-published-smoke/backup-db-to-binary.bat loads committed mode environment before local.env
+PASS: local-published-smoke/backup-db-to-binary.bat names default backups from effective dataset identity
+PASS: local-published-smoke/backup-db-to-binary.bat writes the database-only dataset sidecar
+PASS: local-published-smoke/backup-db-to-binary.bat captures Image catalogue row count
+PASS: local-published-smoke/backup-db-to-binary.bat executes pg_dump in diaries-db
+PASS: local-published-smoke/backup-db-to-sql.bat validates the paired selectors
+PASS: local-published-smoke/backup-db-to-sql.bat resolves effective dataset identity
+PASS: local-published-smoke/backup-db-to-sql.bat uses effective-dataset backup directory
+PASS: local-published-smoke/backup-db-to-sql.bat reports the matching physical Files root
+PASS: local-published-smoke/backup-db-to-sql.bat labels its operation as database-only
+PASS: local-published-smoke/backup-db-to-sql.bat loads committed mode environment before local.env
+PASS: local-published-smoke/backup-db-to-sql.bat names default backups from effective dataset identity
+PASS: local-published-smoke/backup-db-to-sql.bat writes the database-only dataset sidecar
+PASS: local-published-smoke/backup-db-to-sql.bat captures Image catalogue row count
+PASS: local-published-smoke/backup-db-to-sql.bat executes pg_dump in diaries-db
+PASS: local-published-smoke/restore-db-from-binary.bat validates the paired selectors
+PASS: local-published-smoke/restore-db-from-binary.bat resolves effective dataset identity
+PASS: local-published-smoke/restore-db-from-binary.bat uses effective-dataset backup directory
+PASS: local-published-smoke/restore-db-from-binary.bat reports the matching physical Files root
+PASS: local-published-smoke/restore-db-from-binary.bat labels its operation as database-only
+PASS: local-published-smoke/restore-db-from-binary.bat loads committed mode environment before local.env
+PASS: local-published-smoke/restore-db-from-binary.bat checks sidecar identity before destructive restore
+PASS: local-published-smoke/restore-db-from-binary.bat does not claim to restore a complete dataset
+PASS: local-published-smoke/restore-db-from-binary.bat freezes current manual writer-quiescence responsibility
+PASS: local-published-smoke/restore-db-from-binary.bat requires explicit destructive confirmation
+PASS: local-published-smoke/restore-db-from-sql.bat validates the paired selectors
+PASS: local-published-smoke/restore-db-from-sql.bat resolves effective dataset identity
+PASS: local-published-smoke/restore-db-from-sql.bat uses effective-dataset backup directory
+PASS: local-published-smoke/restore-db-from-sql.bat reports the matching physical Files root
+PASS: local-published-smoke/restore-db-from-sql.bat labels its operation as database-only
+PASS: local-published-smoke/restore-db-from-sql.bat loads committed mode environment before local.env
+PASS: local-published-smoke/restore-db-from-sql.bat checks sidecar identity before destructive restore
+PASS: local-published-smoke/restore-db-from-sql.bat does not claim to restore a complete dataset
+PASS: local-published-smoke/restore-db-from-sql.bat freezes current manual writer-quiescence responsibility
+PASS: local-published-smoke/restore-db-from-sql.bat requires explicit destructive confirmation
+PASS: local-published-smoke binary backup remains PostgreSQL custom format
+PASS: local-published-smoke SQL backup remains PostgreSQL plain format
+PASS: local-published-smoke binary restore validates and restores through pg_restore in diaries-db
+PASS: local-published-smoke SQL restore validates plain SQL then restores through psql in diaries-db
+PASS: no local database script selects a backup directory solely from launch mode
+PASS: existing local sidecars cannot silently become complete-dataset manifests
+PASS: local database-only backup/restore and effective-dataset contract frozen
+
+## Playbooks production database-only semantics
+PASS: production deployment includes dataset manifest helper
+PASS: production effective database identity is frozen as production / docker-volume:diaries-db-data
+PASS: production Files identity is resolved from the deployed .env selector and NAS settings
+PASS: production sidecar schema remains explicitly database-only
+PASS: production sidecar records logicalDataset
+PASS: production sidecar records effectiveDatabaseDataDir
+PASS: production sidecar records databaseBackupFile
+PASS: production sidecar records databaseBackupFormat
+PASS: production sidecar records effectiveFilesDir
+PASS: production sidecar records resolvedPhysicalFilesRoot
+PASS: production sidecar records applicationSourceIdentity
+PASS: production sidecar records imageRowCount
+PASS: production sidecar records cataloguedFileCount
+PASS: legacy production database backups remain usable with an explicit Files warning
+PASS: backup-db-to-binary.sh keeps the production database-backup namespace
+PASS: backup-db-to-binary.sh defaults database work to diaries-db
+PASS: backup-db-to-binary.sh labels database-only semantics
+PASS: backup-db-to-binary.sh writes a sidecar manifest
+PASS: backup-db-to-binary.sh records Image row count
+PASS: backup-db-to-binary.sh does not claim a complete dataset backup
+PASS: backup-db-to-binary.sh keeps production timestamped filename semantics
+PASS: backup-db-to-binary.sh performs pg_dump inside the configured database service
+PASS: backup-db-to-sql.sh keeps the production database-backup namespace
+PASS: backup-db-to-sql.sh defaults database work to diaries-db
+PASS: backup-db-to-sql.sh labels database-only semantics
+PASS: backup-db-to-sql.sh writes a sidecar manifest
+PASS: backup-db-to-sql.sh records Image row count
+PASS: backup-db-to-sql.sh does not claim a complete dataset backup
+PASS: backup-db-to-sql.sh keeps production timestamped filename semantics
+PASS: backup-db-to-sql.sh performs pg_dump inside the configured database service
+PASS: production binary backup remains PostgreSQL custom format
+PASS: production SQL backup remains PostgreSQL plain format
+PASS: restore-db-from-binary.sh keeps the production database-backup namespace
+PASS: restore-db-from-binary.sh defaults restore database work to diaries-db
+PASS: restore-db-from-binary.sh identifies diaries-responder as the application writer
+PASS: restore-db-from-binary.sh labels database-only semantics
+PASS: restore-db-from-binary.sh verifies sidecar pairing
+PASS: restore-db-from-binary.sh does not claim a complete dataset restore
+PASS: restore-db-from-binary.sh requires explicit destructive confirmation
+PASS: restore-db-from-binary.sh stops a running responder and restores its prior running state after success
+PASS: restore-db-from-binary.sh leaves responder stopped after restore failure
+PASS: restore-db-from-sql.sh keeps the production database-backup namespace
+PASS: restore-db-from-sql.sh defaults restore database work to diaries-db
+PASS: restore-db-from-sql.sh identifies diaries-responder as the application writer
+PASS: restore-db-from-sql.sh labels database-only semantics
+PASS: restore-db-from-sql.sh verifies sidecar pairing
+PASS: restore-db-from-sql.sh does not claim a complete dataset restore
+PASS: restore-db-from-sql.sh requires explicit destructive confirmation
+PASS: restore-db-from-sql.sh stops a running responder and restores its prior running state after success
+PASS: restore-db-from-sql.sh leaves responder stopped after restore failure
+PASS: production binary restore validates and restores with pg_restore
+PASS: production SQL restore applies the dump through psql with ON_ERROR_STOP
+PASS: production helper resolves the frozen effective database + Files pair
+PASS: manifest helper writes a production database sidecar
+PASS: production sidecar explicitly freezes schema-1 database-only semantics
+PASS: production sidecar records the effective database identity
+PASS: production sidecar records the effective Files selector and physical root
+PASS: production sidecar records catalogue count
+PASS: matching production database + Files pair verifies
+PASS: production restore guard rejects a mismatched Files root
+PASS: production legacy backup compatibility warning remains non-fatal
+PASS: production database-only backup/restore and effective-dataset contract frozen

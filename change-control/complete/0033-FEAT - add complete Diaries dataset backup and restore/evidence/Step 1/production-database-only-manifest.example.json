@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "backupType": "database-only",
+  "completeDatasetBackup": false,
+  "createdAt": "2026-10-07T09:00:00+00:00",
+  "launchMode": "production",
+  "logicalDataset": "production",
+  "effectiveDatabaseDataDir": "docker-volume:diaries-db-data",
+  "databaseName": "diaries",
+  "databaseBackupFile": "diaries-production-20261007-090000.dump",
+  "databaseBackupFormat": "custom",
+  "effectiveFilesDir": "files",
+  "resolvedPhysicalFilesRoot": "//nas.localdomain/photo/example/diaries-content/files",
+  "applicationSourceIdentity": {
+    "runtimeImages": [
+      "<responder-image>",
+      "<client-image>",
+      "<web-image>"
+    ]
+  },
+  "imageRowCount": 1508,
+  "cataloguedFileCount": 1508,
+  "filesSnapshot": null,
+  "note": "Database-only backup. No mutable Files bytes are included. Restore only with the matching Files root/snapshot."
+}

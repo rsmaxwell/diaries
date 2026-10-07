@@ -1,0 +1,24 @@
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure>backup-dataset.bat preflight
+Validated Diaries dataset pair for development-infrastructure:
+  Database data: ./data/database/common
+  Files dir:     files-development-common
+  Source:        paired local.env override
+
+Diaries complete-dataset backup preflight
+  Invoking mode:      development-infrastructure
+  Logical dataset:    common
+  Database data:      C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\database\common
+  Files selector:     files-development-common
+  Files root:         \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common
+  Dataset sharing:    shared by all three local launch modes through the paired local.env override
+  Known consumers:    development-infrastructure, local-docker-build, local-published-smoke
+  Database container: 9cd3eb795d9f4debf305b36c0c0c23b64d9b2959464f7238df5c97fc74740199 (running)
+  Staging:            excluded-benign/excluded (1 entries)
+  Candidate:          C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\.20261007-104912Z.partial
+  Writer:             docker:local-docker-build/diaries-responder running=False
+  Writer:             docker:local-published-smoke/diaries-responder running=False
+  Writer:             windows:direct-diaries-responder running=False pids=
+
+PREFLIGHT OK: no writers were stopped and no backup workspace was created.
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure>

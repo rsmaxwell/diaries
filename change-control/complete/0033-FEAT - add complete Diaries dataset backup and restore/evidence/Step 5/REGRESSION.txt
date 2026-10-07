@@ -1,0 +1,6 @@
+PASS: local complete-dataset Step-5 restore preparation contract verified
+  wrappers: all three local modes delegate to one common restore engine
+  preflight: completed schema-2 backup + target identity + pg_restore/list + staging/space/writer inspection
+  safety: explicit RESTORE confirmation, writer quiescence, mandatory verified complete safety backup
+  Files: sibling stage copy is independently reverified by exact paths/sizes/SHA-256; corruption/extra/missing/staging rejected
+  boundary: Step 5 contains no live PostgreSQL restore or live Files-root replacement

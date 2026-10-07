@@ -167,11 +167,18 @@ Direct Windows responder startup follows the same rule. `scripts/windows/develop
 
 The physical directory name is deliberately not part of the application data contract. Browser URLs remain `/files/...`, and persisted `Image.relativePath` values remain relative to the selected Files root with no environment prefix.
 
-Before an upload/delete/reconciliation test, database restore, or other destructive operation, identify the **effective** database and Files root after overrides. On Windows, the launch/maintenance scripts validate and report that pair; the reusable helpers are under `scripts/windows/common/`. Backup/restore is also pair-oriented: a database dump alone is a database-only backup. A complete recoverable dataset requires the database dump, the matching Files snapshot/copy, and identity/checksum information captured while mutable writers are frozen. Restore the matched pair together and reconcile before re-enabling destructive lifecycle operations.
+Before an upload/delete/reconciliation test, database restore, or other destructive operation, identify the **effective** database and Files root after overrides. On Windows, the launch/maintenance scripts validate and report that pair; the reusable helpers are under `scripts/windows/common/`.
+
+Use the backup type deliberately:
+
+- **database-only** (`backup-db-to-binary` / `backup-db-to-sql`) for database-focused inspection, migration or rollback work where the operator is separately managing the matching Files state;
+- **complete-dataset** (`backup-dataset`) for disaster recovery, durable rollback points and any backup expected to recover the complete mutable Diaries dataset.
+
+A complete backup contains both PostgreSQL representations, the exact durable mutable Files snapshot, a schema-2 manifest and checksum/inventory evidence captured while mutable writers are quiesced. A complete restore consumes one such directory, creates a mandatory verified pre-restore safety backup, replaces rather than merges the Files tree, restores the custom PostgreSQL dump, and returns writers only after database/Files/catalogue/replay postflight succeeds. The shared read-only original diary scan tree, MQTT retained topics, application images/binaries, credentials and platform/NAS backups are deliberately outside this application-dataset backup.
 
 Never temporarily point independently changed databases back at one shared mutable Files tree merely to simplify rollback. Once roots have diverged, automatic re-sharing can make one dataset delete or overwrite bytes belonging to another. Preserve isolated copies and reconcile explicitly instead.
 
-See `scripts/windows/README.md` for local operating procedures and the Playbooks `roles/diaries/README.md` for production configuration.
+See `scripts/windows/README.md` for the complete local backup/restore procedure and the Playbooks `roles/diaries/README.md` / deployed `scripts/README.md` for the production procedure.
 
 ## Typical development workflow
 

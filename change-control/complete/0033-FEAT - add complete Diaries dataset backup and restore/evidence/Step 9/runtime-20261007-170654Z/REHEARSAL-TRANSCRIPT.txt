@@ -1,0 +1,71 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261007180654
+Username: RICHARD-PC\Richard
+RunAs User: RICHARD-PC\Richard
+Configuration Name: 
+Machine: RICHARD-PC (Microsoft Windows NT 10.0.26200.0)
+Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File .\change-control\in-progress\0033-FEAT - add complete Diaries dataset backup and restore\evidence\Step 9\tooling\run-disposable-rehearsal.ps1 -SourceBackup .\data\dataset-backups\common\20261007-105033Z -ResetDisposable
+Process ID: 79468
+PSVersion: 5.1.26100.9444
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9444
+BuildVersion: 10.0.26100.9444
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+0033 Step 9 - full disposable backup/restore rehearsal
+  Source seed backup: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\20261007-105033Z
+  Disposable dataset: 0033-step9-rehearsal
+  Disposable Files:   files-0033-step9-rehearsal
+  Evidence:           C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\change-control\in-progress\0033-FEAT - add complete Diaries dataset backup and restore\evidence\Step 9\runtime-20261007-170654Z
+
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261007-105033Z
+  Logical dataset: common
+  Workspace:       completed backup
+  Files:           89
+INFO: Windows NAS access unavailable through \\nas.localdomain\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content
+PASS: Windows NAS access available through \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content
+INFO: temporarily overriding DIARIES_NAS_HOST 'nas.localdomain' -> 'nas' for Windows SMB access during rehearsal.
+Resetting previous disposable database directory: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\database\0033-step9-rehearsal
+Starting disposable PostgreSQL + MQTT foundation...
+ Network diaries-local-docker-build_default Creating
+ Network diaries-local-docker-build_default Created
+ Container diaries-local-db Creating
+ Container diaries-local-mqtt Creating
+ Container diaries-local-mqtt Created
+ Container diaries-local-db Created
+ Container diaries-local-db Starting
+ Container diaries-local-mqtt Starting
+ Container diaries-local-db Started
+ Container diaries-local-mqtt Started
+Seeding disposable PostgreSQL from the verified source backup...
+Seeding disposable Files root from the same source backup...
+
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :        12        11         1         0         0         0
+   Files :        89        89         0         0         0         0
+   Bytes :   95.39 m   95.39 m         0         0         0         0
+   Times :   0:00:01   0:00:01                       0:00:00   0:00:00
+
+
+   Speed :           61,748,627 Bytes/sec.
+   Speed :            3,533.285 MegaBytes/min.
+   Ended : 07 October 2026 18:07:10
+Starting the complete local-docker-build stack against the disposable pair...
+
+PS>TerminatingError(Measure-Object): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: The property "sizeBytes" cannot be found in the input for any objects."
+>> TerminatingError(Measure-Object): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: The property "sizeBytes" cannot be found in the input for any objects."
+Stopping disposable local-docker-build stack before restoring local.env...
+PASS: original local.env restored byte-for-byte.
+**********************
+Windows PowerShell transcript end
+End time: 20261007180900
+**********************

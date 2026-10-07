@@ -1,0 +1,36 @@
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure>restore-dataset.bat preflight 20261007-105033Z
+Validated Diaries dataset pair for development-infrastructure:
+  Database data: ./data/database/common
+  Files dir:     files-development-common
+  Source:        paired local.env override
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261007-105033Z
+  Logical dataset: common
+  Workspace:       completed backup
+  Files:           89
+
+Diaries complete-dataset restore Step-5 preflight
+  Invoking mode:          development-infrastructure
+  Logical dataset:        common
+  Database target:        C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\database\common / diaries
+  Files target:           files-development-common -> \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-development-common
+  Dataset sharing:        shared by all three local launch modes through the paired local.env override
+  Complete backup:        C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\20261007-105033Z
+  Backup ID:              20261007-105033Z
+  Backup Files:           89 files / 100032776 bytes
+  Backup manifest:        schema-2 complete/verified
+  Custom dump:            pg_restore --list verified
+  Target staging:         excluded-benign (1 entries)
+  Replacement stage:      \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\.files-development-common.restore-20261007-105033Z.staged
+  Current durable Files:  100032776 bytes
+  Safety-backup estimate: 168461298 bytes
+  Local free space:       2725235179520 bytes (checked)
+  Target free space:      unavailable for UNC/network path; actual staging copy remains authoritative
+  Writer:                 docker:local-docker-build/diaries-responder running=False
+  Writer:                 docker:local-published-smoke/diaries-responder running=False
+  Writer:                 windows:direct-diaries-responder running=False pids=
+
+PREFLIGHT OK: backup and target identities/checksums are valid; no writers were stopped, no safety backup was created, and no Files staging directory was created.
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure>

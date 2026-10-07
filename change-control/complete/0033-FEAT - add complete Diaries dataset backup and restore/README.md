@@ -6,7 +6,7 @@ Feature
 
 ## Status
 
-To do
+Complete
 
 ## Priority
 
@@ -15,6 +15,19 @@ High
 ## Opened
 
 2026-10-05
+
+## Progress
+
+- **Step 1 complete — 2026-10-07:** the pre-0033 database-only backup/restore behaviour and the 0031 effective database/Files pairing contract are frozen under [`evidence/Step 1`](evidence/Step%201/README.md). The permanent local and production regressions now protect command naming, effective dataset resolution, database-only sidecar semantics, restore pairing guards and the existing writer-quiescence behaviour. The normal shared local override is explicitly proven to be one `common` dataset when `./data/database/common` is paired with `files-development-common`. Step 1 changes source regression/documentation only; it does not mutate database or Files content or deploy production changes.
+- **Step 2 complete — 2026-10-07:** the complete-backup media contract is frozen under [`evidence/Step 2`](evidence/Step%202/README.md). Complete backups use schema-2 `dataset-manifest.json`, UTC `YYYYMMDD-HHmmssZ` IDs, `.<backup-id>.partial` non-restorable workspaces, fixed database/Files/verification component names and relative-only component references. The permanent local and production `complete-dataset-manifest.py` helpers are byte-identical and the synthetic regressions prove generation/validation plus rejection of unsupported schemas, incomplete semantics, unsafe paths, missing/invalid hashes, missing components and changed Files bytes. Step 2 performs no live PostgreSQL/Files capture or restore and does not deploy production changes.
+- **Step 3 complete — 2026-10-07:** the common PowerShell capture engine and thin wrappers are proven by both permanent regression and a real Windows/Docker/NAS capture of the shared `common` dataset. The runtime capture kept PostgreSQL running, proved all possible responder writers stopped, accepted only the expected zero-byte `.image-staging/catalogue.lock`, created custom + SQL dumps, and copied 89 durable Files / 95.39 MB with zero failures into `.20261007-105033Z.partial`. See [`evidence/Step 3`](evidence/Step%203/README.md).
+- **Step 4 complete — 2026-10-07:** local complete-backup verification and atomic promotion are proven by permanent regression and by successful real finalisation of the Step-3 `common` candidate `20261007-105033Z`. The finaliser validated the custom dump with `pg_restore --list`, verified the SQL dump, proved all 89 durable Files / 100032776 bytes exactly matched the still-quiesced source by path/size/SHA-256, generated and validated the schema-2 manifest as a partial candidate, atomically promoted the directory to `data/dataset-backups/common/20261007-105033Z`, independently validated the completed backup and restored the prior writer state. The first runtime attempt safely remained `.partial` when Windows JSON argument quoting failed; the corrected Base64 handoff then completed without recapture. See [`evidence/Step 4`](evidence/Step%204/README.md).
+- **Step 5 complete — 2026-10-07:** real Windows/Docker/NAS preflight and preparation against `20261007-105033Z` validated the complete source media and current `common` target, kept all writers quiesced, created and independently validated mandatory safety backup `20261007-114623Z`, staged and reverified all 89 Files / 100032776 bytes, and left both live durable halves unchanged. The first prepare rehearsal exposed a PowerShell stdout/state plumbing defect in `safetyBackup.directory`; the permanent correction derives the path independently, and the already-prepared state was repaired and verified as `prepared-awaiting-step6` with the safety backup marked `verified=true`. See [`evidence/Step 5`](evidence/Step%205/README.md).
+- **Step 6 complete — 2026-10-07:** real Windows/Docker/NAS apply of `20261007-105033Z` revalidated the source and safety media, changed PostgreSQL OID `16385` -> `32842` while retaining 85 Image rows, atomically replaced the live Files tree with the exact 89-file / 100032776-byte snapshot, recreated only fresh runtime `.image-staging`, retained safety backup `20261007-114623Z` plus the original Files rollback sibling, and ended `applied-awaiting-step7` with all writers stopped. See [`evidence/Step 6`](evidence/Step%206/README.md).
+- **Step 7 complete — 2026-10-07:** permanent regression plus the real Windows/Docker/NAS postflight prove restore acceptance beyond `pg_restore`. The successful retry revalidated both complete backups, proved the live 89-file / 100032776-byte Files tree exactly matched the selected backup, reconciled 85 Image rows to 85 catalogued files with only four reviewed legacy `Thumbs.db` files untracked, built and started the temporary responder probe, confirmed `synchronise: ok`, read representative retained MARQUEE + IMAGE payloads, and verified representative `/files` Image bytes. Because no responder had been running before restore, all responders correctly remained stopped afterwards. Safety backup `20261007-114623Z` and the pre-restore Files tree remain retained as evidence; automatic rollback is closed after acceptance. See [`evidence/Step 7`](evidence/Step%207/README.md).
+- **Step 8 complete — 2026-10-07:** permanent production complete-dataset tooling is deployed through Playbooks and proven on `pluto`. The final Playbooks regressions pass after permanent Python-cache exclusion and host-snapshot ownership/staging hardening; corrected Ansible check/apply runs completed with `failed=0`; production preflight resolved `docker-volume:diaries-db-data / diaries`, Files selector `files`, Docker NAS volume `diaries_nas-photo`, the running responder and benign staging state without mutation. The first real backup failed closed and remained `.partial` when restrictive root/NAS metadata made the host Files snapshot unreadable; after the permanent ownership-normalisation correction was deployed, backup `20261007-145013Z` successfully captured both PostgreSQL dump formats plus 89 durable Files / 100032776 bytes, verified exact path/size/SHA-256 equality, validated schema-2 media before and after atomic promotion, restored the prior responder-running state, and the responder subsequently reported healthy. Existing database-only helpers remain unchanged. See [`evidence/Step 8`](evidence/Step%208/README.md).
+- **Step 9 complete — 2026-10-07:** the full destructive rehearsal passed on the dedicated `0033-step9-rehearsal` local-docker-build database/Files pair. The successful `runtime-20261007-182222Z` run created and independently validated complete backup `20261007-182222Z` (schema 2; 89 durable Files / 100032776 bytes), exercised all ten required negative/fail-safe cases, created mandatory safety backup `20261007-182712Z`, applied the complete restore through the permanent Step 5–7 commands, proved the intentionally failed postflight kept the writer stopped, then completed accepted postflight with `synchronise: ok`, retained MARQUEE + IMAGE payload verification and representative `/files` byte verification. The database+Files fingerprint returned exactly to the pre-backup baseline, the safety backup itself passed restore preflight, client + reader service returned HTTP 200, only the previously-running `local-docker-build` responder was restored, and temporary host settings plus `local.env` were restored. See [`evidence/Step 9`](evidence/Step%209/README.md).
+- **Step 10 complete — 2026-10-07:** the already-successful Step-8 rollout and production backup `20261007-145013Z` are accepted as the non-destructive production exercise required for close-out, avoiding a needless second production writer-quiescence window. Local and production operating documentation now records when to use database-only versus complete-dataset backup, media layout/boundary, effective identity, downtime/failure state, independent verification, phased restore, mandatory safety backup, exact Files replacement, rollback and staging policy. The final script inventory classifies every 0033 live script as permanent operational or permanent regression tooling and confirms the Step-9 rehearsal harness is evidence-only. All acceptance criteria are satisfied; 0033 is closed and moved to `change-control/complete`. See [`evidence/Step 10`](evidence/Step%2010/README.md).
 
 ## Summary
 
@@ -174,7 +187,7 @@ aggregate/inventory identity
 
 A complete backup has one directory-level `dataset-manifest.json`. It is separate from, and stronger than, the current database-only `.dataset.json` sidecars.
 
-The final schema should contain at least:
+Step 2 freezes schema version 2 with these required identities and completion facts:
 
 ```text
 schema/version
@@ -204,29 +217,7 @@ SHA-256/inventory reference
 verification result
 ```
 
-For example:
-
-```json
-{
-  "schemaVersion": 1,
-  "backupType": "complete-dataset",
-  "completeDatasetBackup": true,
-  "status": "complete",
-  "logicalDataset": "common",
-  "database": {
-    "name": "diaries",
-    "customDump": "database/diaries.dump",
-    "sqlDump": "database/diaries.sql"
-  },
-  "files": {
-    "selector": "files-development-common",
-    "snapshotDirectory": "files",
-    "inventory": "verification/files.sha256"
-  }
-}
-```
-
-The implementation may extend this structure, but restore must validate a supported schema before making any destructive change.
+The authoritative field structure, path rules, inventory format and compatibility policy are recorded in [`evidence/Step 2/README.md`](evidence/Step%202/README.md), with a complete generated example in [`complete-dataset-manifest.example.json`](evidence/Step%202/complete-dataset-manifest.example.json). Required schema-2 fields/components cannot be renamed or weakened without a new schema version; compatible additive fields are permitted. Restore must validate a supported schema before making any destructive change.
 
 ## Complete restore semantics
 
@@ -382,27 +373,27 @@ The implementation must prefer a failed/stopped operation over a silently incons
 
 ## Acceptance Criteria
 
-- [ ] An operator can create one complete backup directory for the current effective dataset with one command.
-- [ ] The directory contains a valid custom/binary database dump, a valid SQL database dump, an exact verified durable Files snapshot, and one complete-dataset manifest.
-- [ ] The backup identity is based on the effective database + Files pair, including `local.env` overrides.
-- [ ] A shared local `common` dataset is represented as one dataset regardless of which local mode invokes the operation.
-- [ ] A partial/interrupted backup cannot be mistaken for a completed backup.
-- [ ] Checksums/inventories detect changed, missing or extra durable Files in a backup.
-- [ ] Unexplained `.image-staging` content blocks or explicitly suspends completion for review.
-- [ ] A complete restore accepts one complete backup directory and restores the database + Files together.
-- [ ] The normal complete restore uses the custom/binary dump and verifies the SQL companion without applying both.
-- [ ] Restore verifies all backup components before destructive work begins.
-- [ ] Restore rejects a mismatched effective database/Files target by default.
-- [ ] Files restore is replace/exact semantics rather than merge semantics.
-- [ ] Restore has a documented safety-backup and rollback path for partial failure.
-- [ ] Failed restore/postflight does not automatically return the application to a writable state.
-- [ ] Postflight proves database/Image/Files reconciliation and successful retained-state replay.
-- [ ] Existing database-only backup/restore scripts remain supported and explicitly labelled database-only.
-- [ ] Equivalent permanent production backup/restore tooling is deployed through Playbooks.
-- [ ] A complete backup and destructive restore have been rehearsed successfully in a disposable environment.
-- [ ] Production complete backup has been exercised non-destructively and verified.
-- [ ] Documentation clearly explains what is and is not contained in a complete Diaries dataset backup.
-- [ ] Permanent tooling follows 0032 script-directory hygiene; feature-only rehearsal/evidence tooling is archived with the change record.
+- [x] An operator can create one complete backup directory for the current effective dataset with one command.
+- [x] The directory contains a valid custom/binary database dump, a valid SQL database dump, an exact verified durable Files snapshot, and one complete-dataset manifest.
+- [x] The backup identity is based on the effective database + Files pair, including `local.env` overrides.
+- [x] A shared local `common` dataset is represented as one dataset regardless of which local mode invokes the operation.
+- [x] A partial/interrupted backup cannot be mistaken for a completed backup.
+- [x] Checksums/inventories detect changed, missing or extra durable Files in a backup.
+- [x] Unexplained `.image-staging` content blocks or explicitly suspends completion for review.
+- [x] A complete restore accepts one complete backup directory and restores the database + Files together.
+- [x] The normal complete restore uses the custom/binary dump and verifies the SQL companion without applying both.
+- [x] Restore verifies all backup components before destructive work begins.
+- [x] Restore rejects a mismatched effective database/Files target by default.
+- [x] Files restore is replace/exact semantics rather than merge semantics.
+- [x] Restore has a documented safety-backup and rollback path for partial failure.
+- [x] Failed restore/postflight does not automatically return the application to a writable state.
+- [x] Postflight proves database/Image/Files reconciliation and successful retained-state replay.
+- [x] Existing database-only backup/restore scripts remain supported and explicitly labelled database-only.
+- [x] Equivalent permanent production backup/restore tooling is deployed through Playbooks.
+- [x] A complete backup and destructive restore have been rehearsed successfully in a disposable environment.
+- [x] Production complete backup has been exercised non-destructively and verified.
+- [x] Documentation clearly explains what is and is not contained in a complete Diaries dataset backup.
+- [x] Permanent tooling follows 0032 script-directory hygiene; feature-only rehearsal/evidence tooling is archived with the change record.
 
 ## Deployment and rollback
 

@@ -1,0 +1,81 @@
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>powershell -NoProfile -ExecutionPolicy Bypass -File ".\change-control\in-progress\0033-FEAT - add complete Diaries dataset backup and restore\evidence\Step 9\tooling\run-disposable-rehearsal.ps1" -SourceBackup ".\data\dataset-backups\common\20261007-105033Z"
+0033 Step 9 - full disposable backup/restore rehearsal
+  Source seed backup: C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\20261007-105033Z
+  Disposable dataset: 0033-step9-rehearsal
+  Disposable Files:   files-0033-step9-rehearsal
+  Evidence:           C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\change-control\in-progress\0033-FEAT - add complete Diaries dataset backup and restore\evidence\Step 9\runtime-20261007-151846Z
+
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261007-105033Z
+  Logical dataset: common
+  Workspace:       completed backup
+  Files:           89
+Starting disposable PostgreSQL + MQTT foundation...
+ Network diaries-local-docker-build_default Creating
+ Network diaries-local-docker-build_default Created
+ Container diaries-local-mqtt Creating
+ Container diaries-local-db Creating
+ Container diaries-local-db Created
+ Container diaries-local-mqtt Created
+ Container diaries-local-db Starting
+ Container diaries-local-mqtt Starting
+ Container diaries-local-mqtt Started
+ Container diaries-local-db Started
+Seeding disposable PostgreSQL from the verified source backup...
+Seeding disposable Files root from the same source backup...
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows
+-------------------------------------------------------------------------------
+
+  Started : 07 October 2026 16:19:00
+2026/10/07 16:19:00 ERROR 1326 (0x0000052E) Getting File System Type of Destination \\nas.localdomain\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-0033-step9-rehearsal\
+The user name or password is incorrect.
+
+   Source : C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\20261007-105033Z\files\
+     Dest = \\nas.localdomain\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-0033-step9-rehearsal\
+
+    Files : *.*
+
+  Options : *.* /NDL /NFL /S /E /DCOPY:DAT /COPY:DAT /PURGE /MIR /NP /R:2 /W:1
+
+------------------------------------------------------------------------------
+
+2026/10/07 16:19:00 ERROR 1326 (0x0000052E) Accessing Destination Directory \\nas.localdomain\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-0033-step9-rehearsal\
+The user name or password is incorrect.
+Waiting 1 seconds... Retrying...
+2026/10/07 16:19:01 ERROR 1326 (0x0000052E) Accessing Destination Directory \\nas.localdomain\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-0033-step9-rehearsal\
+The user name or password is incorrect.
+Waiting 1 seconds... Retrying...
+2026/10/07 16:19:02 ERROR 1326 (0x0000052E) Accessing Destination Directory \\nas.localdomain\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-0033-step9-rehearsal\
+The user name or password is incorrect.
+
+ERROR: RETRY LIMIT EXCEEDED.
+
+2026/10/07 16:19:02 ERROR 1326 (0x0000052E) Creating Destination Directory \\nas.localdomain\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-0033-step9-rehearsal\
+The user name or password is incorrect.
+Waiting 1 seconds... Retrying...
+2026/10/07 16:19:03 ERROR 1326 (0x0000052E) Creating Destination Directory \\nas.localdomain\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-0033-step9-rehearsal\
+The user name or password is incorrect.
+Waiting 1 seconds... Retrying...
+2026/10/07 16:19:04 ERROR 1326 (0x0000052E) Creating Destination Directory \\nas.localdomain\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-0033-step9-rehearsal\
+The user name or password is incorrect.
+
+ERROR: RETRY LIMIT EXCEEDED.
+
+2026/10/07 16:19:04 ERROR 1326 (0x0000052E) Creating Destination Directory \\nas.localdomain\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\files-0033-step9-rehearsal\
+The user name or password is incorrect.
+Stopping disposable local-docker-build stack before restoring local.env...
+PASS: original local.env restored byte-for-byte.
+Seed Files robocopy failed with exit code 16
+At C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\change-control\in-progress\0033-FEAT - add complete Diaries dataset backup and restore\evidence\Step
+9\tooling\run-disposable-rehearsal.ps1:264 char:24
++ ... bo -ge 8) { throw "Seed Files robocopy failed with exit code $robo" } ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Seed Files robo...th exit code 16:String) [], RuntimeException
+    + FullyQualifiedErrorId : Seed Files robocopy failed with exit code 16
+
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>

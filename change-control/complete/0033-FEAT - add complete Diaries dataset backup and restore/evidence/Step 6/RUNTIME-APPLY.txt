@@ -1,0 +1,78 @@
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure>dir
+ Volume in drive C is OS
+ Volume Serial Number is 7EF0-D23D
+
+ Directory of C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure
+
+07/10/2026  12:41    <DIR>          .
+03/10/2026  15:33    <DIR>          ..
+07/10/2026  10:59             1,323 backup-dataset.bat
+02/10/2026  08:19            13,113 backup-db-to-binary.bat
+02/10/2026  08:19            12,535 backup-db-to-sql.bat
+20/08/2026  19:47             1,741 logs.bat
+02/10/2026  07:47             5,377 prepare-responder-config.bat
+02/10/2026  08:01             1,891 prepare-responder-config.ps1
+21/08/2026  06:44             3,645 reset-db.bat
+07/10/2026  12:01             1,643 restore-dataset.bat
+02/10/2026  08:19            12,457 restore-db-from-binary.bat
+02/10/2026  08:19            12,266 restore-db-from-sql.bat
+17/08/2026  11:05             5,584 shell-prompt-database.bat
+17/08/2026  11:05             5,657 shell-prompt-mosquitto.bat
+02/10/2026  15:28             2,464 start.bat
+02/10/2026  15:28             2,460 status.bat
+21/08/2026  06:44             1,733 stop.bat
+21/08/2026  06:44             3,692 test-responder-api.bat
+              16 File(s)         87,581 bytes
+               2 Dir(s)  2,725,162,991,616 bytes free
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure>restore-dataset.bat apply 20261007-105033Z
+Validated Diaries dataset pair for development-infrastructure:
+  Database data: ./data/database/common
+  Files dir:     files-development-common
+  Source:        paired local.env override
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261007-105033Z
+  Logical dataset: common
+  Workspace:       completed backup
+  Files:           89
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261007-114623Z
+  Logical dataset: common
+  Workspace:       completed backup
+  Files:           89
+Valid staged Diaries replacement Files tree
+  Files:       89
+  Total bytes: 100032776
+  Inventory:   exact paths/sizes/SHA-256
+  Staging:     transient .image-staging absent
+
+Diaries complete-dataset restore Step-6 apply
+  Restore source:       C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\20261007-105033Z
+  Safety backup:        C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\20261007-114623Z
+  Database before:      OID=16385, Image rows=85
+  Files stage:          \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\.files-development-common.restore-20261007-105033Z.staged
+  Files rollback path:  \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\.files-development-common.pre-restore-20261007-105033Z.rollback
+  Writers:              quiesced and will remain stopped for Step 7
+
+WARNING: APPLY will now replace both PostgreSQL and the live Files root.
+The original Files root and mandatory safety backup are retained for rollback.
+Type APPLY to continue: APPLY
+Valid staged Diaries replacement Files tree
+  Files:       89
+  Total bytes: 100032776
+  Inventory:   exact paths/sizes/SHA-256
+  Staging:     benign runtime .image-staging ignored
+
+STEP 6 COMPLETE-DATASET APPLY COMPLETE.
+  Database after:       OID=32842, Image rows=85
+  Files after:          89 files / 100032776 bytes; exact inventory verified
+  Runtime staging:      empty .image-staging recreated; stale staging payloads were not restored
+  Rollback Files:       \\nas\photo\nancy-and-ronald-maxwell\documents\sea-captains-chest\diaries-content\.files-development-common.pre-restore-20261007-105033Z.rollback
+  Safety backup:        C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\20261007-114623Z
+  Rollback command:     restore-dataset.bat rollback 20261007-105033Z
+  Writers:              STOPPED - Step 7 postflight must succeed before prior writer state may be restored
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\scripts\windows\development-infrastructure>

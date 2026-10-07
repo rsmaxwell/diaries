@@ -71,6 +71,8 @@ Add/extend permanent tests so 0033 cannot accidentally change the existing datab
 
 **Complete when:** the pre-0033 database-only behaviour and 0031 pairing contract are frozen by repeatable checks.
 
+**Completed 2026-10-07.** The existing local and production database-only command contracts are recorded under [`evidence/Step 1`](evidence/Step%201/README.md), including effective database/Files identity, backup naming, PostgreSQL executor, current restore writer-quiescence behaviour and representative schema-1 `.dataset.json` sidecars. `verify-local-backup-restore-semantics.py` and the Playbooks `verify-production-backup-restore-semantics.py` were extended as permanent feature-neutral regression guards; both pass in the supplied source bundles. The shared-local `./data/database/common` + `files-development-common` override is explicitly frozen as one logical `common` dataset. No live data, services or deployment were changed.
+
 ---
 
 ## Step 2 — Define and validate the complete-backup directory and manifest contract
@@ -134,6 +136,8 @@ status != complete
 
 **Complete when:** a synthetic complete backup can round-trip through manifest generation and validation without performing a real database/Files backup.
 
+**Completed 2026-10-07.** The schema-2 complete-backup directory/manifest contract is frozen under [`evidence/Step 2`](evidence/Step%202/README.md). Complete backup IDs use UTC `YYYYMMDD-HHmmssZ`; candidates use the non-restorable `.<backup-id>.partial` convention; required component paths are fixed and backup-media references are canonical relative paths. Byte-identical `complete-dataset-manifest.py` implementations now live in the permanent local and production operator surfaces, with synthetic permanent regressions proving generation, candidate/final validation, unsupported/incomplete manifest rejection, path traversal/absolute-path rejection, required hash/component enforcement and exact Files inventory/hash validation. No real database/Files backup, restore, writer stop or production deployment was performed.
+
 ---
 
 ## Step 3 — Implement the common local complete-dataset backup engine
@@ -171,6 +175,8 @@ Where multiple local modes share `common`, invoking the backup from any of them 
 **Evidence:** static tests, focused helper tests, successful isolated/default and shared-common dry/preflight output, controlled failure cases.
 
 **Complete when:** a local complete backup captures both database formats and Files bytes under one incomplete backup workspace with writers demonstrably quiesced.
+
+**Completed 2026-10-07.** The common `scripts/windows/common/backup-dataset.ps1` engine and three thin mode wrappers are implemented. Static/focused regression under [`evidence/Step 3`](evidence/Step%203/README.md) proves environment precedence, effective-dataset namespace selection, writer/staging safeguards, dual dump + Files capture semantics, preserved prior writer state and explicit incomplete-failure behaviour. Runtime evidence now records a real Windows/Docker/NAS capture of the shared `common` dataset: PostgreSQL remained running, all three possible responder writers were demonstrably stopped, `.image-staging` contained only the accepted zero-byte `catalogue.lock`, both database dump formats were created, and 89 durable Files (95.39 MB) were copied with zero failures into `.20261007-105033Z.partial`. The candidate remains intentionally unpromoted for Step 4 finalisation.
 
 ---
 
@@ -219,6 +225,8 @@ Add regression tests proving an interrupted or corrupt candidate cannot be selec
 
 **Complete when:** one command creates a self-contained, independently verifiable local complete backup directory which cannot be confused with a partial backup.
 
+**Completed 2026-10-07.** The normal local `backup-dataset.bat` path now captures and immediately runs Step-4 verification/finalisation while writers remain quiesced, and the thin wrappers also expose `backup-dataset.bat finalise <backup-id>` for an existing Step-3 candidate. Permanent regression under [`evidence/Step 4`](evidence/Step%204/README.md) proves source drift, malformed SQL, incomplete candidates and post-promotion byte corruption are rejected. Real Windows/Docker/NAS evidence then finalised the Step-3 `common` candidate `20261007-105033Z`: `pg_restore --list` succeeded, the plain SQL dump was readable, 89 durable Files totalling 100032776 bytes matched the live quiesced Files root exactly by path/size/SHA-256, the schema-2 manifest validated first as a partial candidate and again after same-parent atomic promotion, the `.partial` workspace disappeared, and prior writer state was restored. The first runtime attempt stopped safely before manifest creation because of Windows native-command JSON quoting; the corrected Base64 application-identity handoff then completed successfully without recapture.
+
 ---
 
 ## Step 5 — Implement complete restore preflight, safety backup and Files staging
@@ -254,6 +262,8 @@ Do not yet replace the live database/Files in this step.
 
 **Complete when:** a restore can reach a fully verified, writer-quiesced, rollback-protected state with the replacement Files tree staged, without having changed the live dataset yet.
 
+**Completed 2026-10-07.** The permanent common `scripts/windows/common/restore-dataset.ps1` engine and thin wrappers expose `restore-dataset.bat preflight <backup>` and `restore-dataset.bat prepare <backup>`. Real Windows/Docker/NAS evidence against `20261007-105033Z` validated the source media, created and independently validated safety backup `20261007-114623Z`, staged and reverified all 89 replacement Files / 100032776 bytes, kept every writer quiesced and left both live durable halves unchanged. The first prepare rehearsal exposed a PowerShell output-pipeline bug which polluted `safetyBackup.directory`; the permanent implementation now derives that path independently, and the already-created state was repaired and re-read as `prepared-awaiting-step6` with `backupId=20261007-114623Z`, the correct single directory path and `verified=true`. See [`evidence/Step 5`](evidence/Step%205/README.md).
+
 ---
 
 ## Step 6 — Apply database + Files restore as one controlled operation
@@ -283,6 +293,8 @@ Do not restore stale `.image-staging` payloads. Recreate only the normal empty/r
 
 **Complete when:** a disposable target can be replaced from one complete backup and no pre-restore extra Files remain in the restored durable tree.
 
+**Completed 2026-10-07.** Permanent regression and a real Windows/Docker/NAS apply are recorded under [`evidence/Step 6`](evidence/Step%206/README.md). The real restore revalidated source backup `20261007-105033Z`, mandatory safety backup `20261007-114623Z` and the staged Files inventory before `APPLY`; replaced PostgreSQL from only `database/diaries.dump` (database OID `16385` -> `32842`) while preserving the expected 85 Image rows; atomically replaced the live Files tree with the exact 89-file / 100032776-byte backup snapshot; recreated only fresh runtime `.image-staging`; retained the original pre-restore Files tree and complete safety backup for rollback; and ended `applied-awaiting-step7` with every writer still stopped. No pre-restore durable extra survived the replacement semantics, and the documented rollback command remained available until Step 7 acceptance.
+
 ---
 
 ## Step 7 — Add post-restore reconciliation, retained replay and failure-safe restart
@@ -311,6 +323,8 @@ Add permanent regression coverage for failure-state behaviour.
 **Evidence:** postflight report, MQTT/replay evidence, reconciliation output, HTTP/static Files verification, failed-postflight test.
 
 **Complete when:** restore success is defined by database + Files + responder/replay reconciliation, not merely by `pg_restore` exit status.
+
+**Completed 2026-10-07.** Permanent regression and the real Windows/Docker/NAS postflight are recorded under [`evidence/Step 7`](evidence/Step%207/README.md). The first real attempt passed database, exact Files and Image-catalogue reconciliation but safely stopped in `step7-postflight-failed` when Windows PowerShell 5.1 promoted benign native stderr from the Java health checker to a terminating error. After the permanent native-command capture correction, the controlled retry succeeded without repeating Steps 5 or 6: both complete backups revalidated; the live 89-file / 100032776-byte Files tree matched exactly; 85 Image rows reconciled to 85 catalogued files with only the four reviewed legacy `Thumbs.db` files; the temporary responder probe completed; retained replay reported `synchronise: ok`; representative MARQUEE + IMAGE retained payloads were readable; and representative `/files` Image bytes verified. The temporary probe was stopped before prior writer state restoration; because no responder had been running before restore, all responders remained stopped. Safety backup `20261007-114623Z` and the original pre-restore Files tree remain retained as evidence, while automatic rollback is closed after successful acceptance. Restore success is therefore proven by database + Files + responder/replay reconciliation, not merely by `pg_restore` exit status.
 
 ---
 
@@ -344,6 +358,8 @@ Do not perform a destructive production restore as part of routine rollout.
 **Evidence:** Playbooks test results, Ansible check/apply output, deployed script inventory, rendered configuration proof.
 
 **Complete when:** production has the same supported complete-backup format and restore semantics as local tooling, deployed by Ansible without weakening the existing database-only commands.
+
+**Completed 2026-10-07.** The production commands are deployed through Playbooks and proven on `pluto`. Final corrected Playbooks regressions pass, the corrected Ansible check/apply runs completed without failures, and production preflight resolved the explicit `production` database/Files pair, NAS Docker volume, running responder and benign staging state without mutation. The first real backup demonstrated fail-closed behaviour: PostgreSQL capture succeeded, host Files verification failed because root/NAS metadata made the host snapshot unreadable, the candidate remained non-restorable `.partial`, and the responder remained stopped. After deploying the permanent ownership-normalisation, `.image-staging` exclusion and tar-pipeline propagation correction, the retry created completed backup `20261007-145013Z` containing both PostgreSQL dump formats and 89 durable Files / 100032776 bytes; exact path/size/SHA-256 source equality and SQL readability passed; schema-2 validation succeeded as both partial candidate and promoted completed media; the prior responder-running state was restored; and the responder subsequently reported healthy. Existing database-only helpers remain unchanged. No destructive production restore was performed or required for Step 8. See [`evidence/Step 8`](evidence/Step%208/README.md).
 
 ---
 
@@ -393,6 +409,8 @@ failed postflight
 **Evidence:** full rehearsal package under `evidence/Step 9/`, with commands, manifests, before/after fingerprints and pass/fail summary.
 
 **Complete when:** destructive recovery from one backup directory is repeatable and restores both halves exactly in a disposable environment.
+
+**Completed 2026-10-07.** The disposable Windows/Docker/NAS rehearsal `runtime-20261007-182222Z` reached the terminal `STEP 9 DISPOSABLE BACKUP/RESTORE REHEARSAL PASSED.` state. It seeded representative MARQUEE + IMAGE + reused-Image/nested-Files state, created and independently validated complete backup `20261007-182222Z` (schema 2; 89 durable Files / 100032776 bytes), deliberately mutated both durable halves, rejected all ten required negative/fail-safe cases, created mandatory safety backup `20261007-182712Z`, restored PostgreSQL + Files through the permanent Step 5–7 commands, proved a deliberately failed postflight left the writer stopped, then passed accepted postflight with exact Files/catalogue reconciliation, retained replay and `/files` byte verification. `FINGERPRINT-BEFORE.json` and `FINGERPRINT-AFTER.json` compared exactly, the safety backup itself passed restore preflight, client + reader-service checks returned HTTP 200, only the prior `local-docker-build` responder state was restored, and the temporary Windows NAS host setting plus `local.env` were restored. The prior five failed attempts remain documented because each exposed and permanently corrected a tooling issue without touching the normal/shared dataset. See [`evidence/Step 9`](evidence/Step%209/README.md).
 
 ---
 
@@ -444,6 +462,8 @@ Move 0033 to `complete` only when the acceptance criteria in `README.md` are evi
 **Evidence:** production backup verification, documentation diff, final script inventory/classification, close-out summary.
 
 **Complete when:** complete-dataset backup is a supported production operation, complete restore is proven in rehearsal, documentation is current, and 0033 can be closed without weakening 0031/0032 invariants.
+
+**Completed 2026-10-07.** Step 10 reuses the already accepted Step-8 production rollout/backup evidence rather than imposing a redundant second writer-quiescence window: Ansible had deployed the permanent production commands, backup `20261007-145013Z` had been independently verified and atomically promoted with 89 durable Files / 100032776 bytes plus both database representations, the prior responder-running state had been restored, and the responder was healthy afterwards. Normal local and production operating documentation now explicitly distinguishes database-only from complete-dataset backup, documents the backup boundary/layout, effective dataset identity, writer downtime/failure state, independent verification command, phased restore, mandatory safety backup, exact Files replacement, rollback, staging policy and exclusions. Every 0033 live script is classified as permanent operational or permanent regression tooling; the Step-9 rehearsal harness remains only under change-control evidence. All acceptance criteria are satisfied and the feature record is moved to `change-control/complete`. See [`evidence/Step 10`](evidence/Step%2010/README.md).
 
 ---
 

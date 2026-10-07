@@ -47,7 +47,13 @@ if ($ModeName -eq 'development-infrastructure') {
         if ([string]::IsNullOrWhiteSpace($value)) { throw "$name is required to resolve the physical Files root for $ModeName." }
     }
     $content = $env:DIARIES_NAS_CONTENT_PATH.Replace('/', '\').Trim('\')
-    $filesRoot = "\\$($env:DIARIES_NAS_HOST)\$($env:DIARIES_NAS_SHARE)\$content\$FilesDir"
+    # Host-side Windows tooling may need a different DNS alias from Docker's CIFS
+    # volume configuration (for example \nas instead of \nas.localdomain).
+    # Keep this override host-only so Compose continues to use DIARIES_NAS_HOST and
+    # therefore retains its normal project/volume identity.
+    $windowsNasHost = [Environment]::GetEnvironmentVariable('DIARIES_WINDOWS_NAS_HOST')
+    if ([string]::IsNullOrWhiteSpace($windowsNasHost)) { $windowsNasHost = $env:DIARIES_NAS_HOST }
+    $filesRoot = "\\$windowsNasHost\$($env:DIARIES_NAS_SHARE)\$content\$FilesDir"
 }
 
 $sharing = if ($datasetName -eq 'common' -and $FilesDir -eq 'files-development-common') {

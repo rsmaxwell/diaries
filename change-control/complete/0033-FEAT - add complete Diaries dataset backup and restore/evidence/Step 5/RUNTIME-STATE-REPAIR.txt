@@ -1,0 +1,28 @@
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> $p = 'C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-restores\common\20261007-105033Z.prepared\restore-state.json'
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> $s = Get-Content -Raw -LiteralPath $p | ConvertFrom-Json
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> $s.safetyBackup.directory = 'C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-backups\common\20261007-114623Z'
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> $s.safetyBackup.verified = $true
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> $j = $s | ConvertTo-Json -Depth 14
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> [System.IO.File]::WriteAllText(
+>>     $p,
+>>     $j + [Environment]::NewLine,
+>>     (New-Object System.Text.UTF8Encoding($false))
+>> )
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> $p = 'C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\data\dataset-restores\common\20261007-105033Z.prepared\restore-state.json'
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> $s = Get-Content -Raw -LiteralPath $p | ConvertFrom-Json
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> $s.status
+prepared-awaiting-step6
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries> $s.safetyBackup | ConvertTo-Json -Depth 4
+{
+  "required": true,
+  "backupId": "20261007-114623Z",
+  "directory": "C:\\Users\\Richard\\git\\github.com\\rsmaxwell\\diaries-application\\diaries\\data\\dataset-backups\\common\\20261007-114623Z",
+  "verified": true
+}
+PS C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>

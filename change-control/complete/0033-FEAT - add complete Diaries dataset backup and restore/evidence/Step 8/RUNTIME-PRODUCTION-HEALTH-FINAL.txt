@@ -1,0 +1,4 @@
+richard@pluto:~/projects/diaries$ docker compose --file compose.yaml --env-file .env ps diaries-responder
+NAME                IMAGE                                        COMMAND                  SERVICE             CREATED         STATUS                        PORTS
+diaries-responder   rsmaxwell/diaries-responder:0.0.9-build-84   "/opt/diaries/bin/re…"   diaries-responder   4 minutes ago   Up About a minute (healthy)
+richard@pluto:~/projects/diaries$

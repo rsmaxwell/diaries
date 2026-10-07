@@ -1,0 +1,11 @@
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>powershell -NoProfile -ExecutionPolicy Bypass -File ".\change-control\in-progress\0033-FEAT - add complete Diaries dataset backup and restore\evidence\Step 9\tooling\run-disposable-rehearsal.ps1" -SourceBackup ".\data\dataset-backups\common\20261007-105033Z" -ResetDisposable
+At C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries\change-control\in-progress\0033-FEAT - add complete Diaries dataset backup and restore\evidence\Step
+9\tooling\run-disposable-rehearsal.ps1:118 char:51
++         Write-Host "Resetting previous disposable $Label: $Path"
++                                                   ~~~~~~~
+Variable reference is not valid. ':' was not followed by a valid variable name character. Consider using ${} to delimit the name.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : InvalidVariableReferenceWithDrive
+
+
+C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries>

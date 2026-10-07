@@ -1,0 +1,64 @@
+0033 Step 2 regression evidence
+Date: 2026-10-07
+
+$ cd diaries && python scripts/windows/validation/verify-complete-dataset-manifest.py
+PASS: complete-dataset manifest generator/validator is present
+PASS: synthetic complete manifest is generated from verified candidate components
+PASS: generated manifest freezes schema-2 complete-dataset completion markers
+PASS: generated manifest records backup ID and effective logical dataset
+PASS: generated manifest uses the frozen required component paths
+PASS: generated manifest records durable Files count from the verified inventory
+PASS: generated manifest records writer quiescence and staging exclusion
+PASS: normal validation rejects .<backup-id>.partial as a restorable backup
+PASS: backup finalisation can validate a complete candidate inside the partial workspace
+PASS: synthetic candidate validates normally after same-filesystem promotion to final backup ID
+PASS: unsupported complete-manifest schema is rejected
+PASS: wrong backupType is rejected
+PASS: completeDatasetBackup=false is rejected
+PASS: non-complete status is rejected
+PASS: invalid logical dataset identity is rejected
+PASS: absolute component path is rejected
+PASS: escaping component path is rejected
+PASS: missing component hash is rejected
+PASS: invalid component hash syntax is rejected
+PASS: missing required database component is rejected
+PASS: Files byte corruption is rejected by inventory/hash validation
+PASS: synthetic backup returns to a valid complete state after negative cases
+PASS: complete-dataset directory and manifest contract verified
+
+$ cd playbooks && python roles/diaries/tests/verify-complete-dataset-manifest.py
+PASS: complete-dataset manifest generator/validator is present
+PASS: synthetic complete manifest is generated from verified candidate components
+PASS: generated manifest freezes schema-2 complete-dataset completion markers
+PASS: generated manifest records backup ID and effective logical dataset
+PASS: generated manifest uses the frozen required component paths
+PASS: generated manifest records durable Files count from the verified inventory
+PASS: generated manifest records writer quiescence and staging exclusion
+PASS: normal validation rejects .<backup-id>.partial as a restorable backup
+PASS: backup finalisation can validate a complete candidate inside the partial workspace
+PASS: synthetic candidate validates normally after same-filesystem promotion to final backup ID
+PASS: unsupported complete-manifest schema is rejected
+PASS: wrong backupType is rejected
+PASS: completeDatasetBackup=false is rejected
+PASS: non-complete status is rejected
+PASS: invalid logical dataset identity is rejected
+PASS: absolute component path is rejected
+PASS: escaping component path is rejected
+PASS: missing component hash is rejected
+PASS: invalid component hash syntax is rejected
+PASS: missing required database component is rejected
+PASS: Files byte corruption is rejected by inventory/hash validation
+PASS: synthetic backup returns to a valid complete state after negative cases
+PASS: complete-dataset directory and manifest contract verified
+
+$ sha256sum local complete-dataset-manifest.py production complete-dataset-manifest.py
+62aa91923f5e2d85cc65c9d6652bfe576b8f01c6dc2231b54c3ab4f08e47146b  diaries/scripts/windows/common/complete-dataset-manifest.py
+62aa91923f5e2d85cc65c9d6652bfe576b8f01c6dc2231b54c3ab4f08e47146b  playbooks/roles/diaries/files/sync/scripts/complete-dataset-manifest.py
+
+$ Step 1 database-only freeze regressions
+PASS: local database-only backup/restore and effective-dataset contract frozen
+PASS: production database-only backup/restore and effective-dataset contract frozen
+
+$ live/deployment policy regressions
+PASS: Windows live-script anti-accumulation policy verified
+PASS: production deployment contract verified

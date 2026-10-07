@@ -1,0 +1,5 @@
+PASS: local complete-dataset Step-6 apply/rollback contract verified
+  database: custom dump only; drop/recreate/pg_restore with exit-on-error
+  Files: same-parent staged replacement leaves no pre-restore extras and preserves original root for rollback
+  staging: only fresh empty or zero-byte-lock runtime staging is tolerated; stale payload rejected
+  failure: changed-half state + verified safety backup + executable rollback path remain while writers stay stopped

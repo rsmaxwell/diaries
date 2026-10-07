@@ -1,0 +1,71 @@
+0033 Step 9 regression after host-only NAS / Compose identity correction
+
+=== verify-step9-tooling.py ===
+PASS: Step 9 disposable rehearsal harness exists under change-control evidence/tooling
+PASS: Step 9 negative-media helper exists under change-control evidence/tooling
+PASS: Step 9 negative-media helper compiles
+PASS: uses a dedicated disposable dataset by default
+PASS: uses a dedicated disposable Files selector by default
+PASS: refuses an already-active local-docker-build stack
+PASS: probes a Windows-reachable NAS hostname for host-side backup/restore access
+PASS: uses a host-only Windows NAS alias without changing Docker CIFS identity
+PASS: keeps Docker Compose on the configured NAS hostname while Windows uses a reachable alias
+PASS: cleans up rehearsal containers without deleting normal local named volumes
+PASS: restores the caller's host-only NAS override setting
+PASS: guards retry cleanup to the dedicated disposable database
+PASS: guards retry cleanup to the dedicated disposable Files root
+PASS: restores machine-local configuration byte-for-byte
+PASS: seeds from the custom dump of a verified complete backup
+PASS: records a pre-backup durable fingerprint
+PASS: records deliberate database/Files mutation
+PASS: records the post-restore durable fingerprint
+PASS: requires exact before/after database+Files fingerprint equality
+PASS: runs destructive-media negative cases only on disposable copies
+PASS: exercises mismatched-target rejection
+PASS: exercises unexpected .image-staging rejection
+PASS: exercises failed-postflight behaviour
+PASS: proves failed postflight keeps the writer stopped
+PASS: independently re-preflights the mandatory safety backup
+PASS: checks client HTTP behaviour after accepted restore
+PASS: checks reader/web readiness after accepted restore
+PASS: emits an explicit successful rehearsal terminal state
+PASS: negative helper covers a missing database dump
+PASS: negative helper covers a modified database dump
+PASS: negative helper covers a missing Files item
+PASS: negative helper covers a modified Files item
+PASS: negative helper covers an extra Files item
+PASS: negative helper covers an invalid manifest
+PASS: negative helper proves .partial media remains non-restorable
+PASS: Step 9 feature-only rehearsal tooling is absent from permanent live script directories
+PASS: retry cleanup uses PowerShell-safe braced interpolation before a colon
+PASS: retry cleanup contains no invalid unbraced variable-colon interpolation
+PASS: fingerprint byte totals do not rely on OrderedDictionary pseudo-properties in Windows PowerShell 5.1
+PASS: fingerprint byte totals are accumulated explicitly
+PASS: fingerprint file entries expose stable PowerShell properties
+PASS: effective Files resolver supports a host-only Windows NAS hostname override
+PASS: host-only NAS override falls back to the normal Docker NAS hostname
+PASS: resolved Windows Files root uses the host-only NAS hostname when supplied
+PASS: Step 9 does not collapse distinct Compose modes into one project identity
+PASS: Step 9 cleanup does not delete normal local-docker-build named volumes
+PASS: captured docker output uses exit-code-authoritative native capture under Windows PowerShell 5.1
+PASS: captured docker output no longer redirects native stderr directly under ErrorActionPreference=Stop
+PASS: restore tooling documents why harmless responder stderr must not become a terminating PowerShell error
+PASS: 0033 Step 9 disposable rehearsal tooling contract verified
+
+=== verify-local-complete-dataset-restore-postflight.py ===
+PASS: local complete-dataset Step-7 postflight/restart/failure contract verified
+
+=== verify-local-complete-dataset-restore-apply.py ===
+PASS: local complete-dataset Step-6 apply/rollback contract verified
+  database: custom dump only; drop/recreate/pg_restore with exit-on-error
+  Files: same-parent staged replacement leaves no pre-restore extras and preserves original root for rollback
+  staging: only fresh empty or zero-byte-lock runtime staging is tolerated; stale payload rejected
+  failure: changed-half state + verified safety backup + executable rollback path remain while writers stay stopped
+
+=== verify-local-complete-dataset-restore-preparation.py ===
+PASS: local complete-dataset Step-5 restore preparation contract verified
+  wrappers: all three local modes delegate to one common restore engine
+  preflight: completed schema-2 backup + target identity + pg_restore/list + staging/space/writer inspection
+  safety: explicit RESTORE confirmation, writer quiescence, mandatory verified complete safety backup
+  Files: sibling stage copy is independently reverified by exact paths/sizes/SHA-256; corruption/extra/missing/staging rejected
+  boundary: Step 5 contains no live PostgreSQL restore or live Files-root replacement

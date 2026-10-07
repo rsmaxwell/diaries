@@ -1,0 +1,34 @@
+PASS: custom PostgreSQL dump is structurally validated with pg_restore --list
+PASS: finalisation prepares SHA-256 and exact Files/source verification through the permanent common helper
+PASS: schema-2 manifest is generated only during Step-4 finalisation
+PASS: schema-2 manifest validator verifies the candidate before promotion
+PASS: verified candidates are promoted by same-parent directory rename
+PASS: a failed post-promotion validation is demoted back to the non-restorable partial name
+PASS: writer state is restored only after candidate validation and atomic promotion
+PASS: writer quiescence is re-proved during verification and immediately before promotion
+PASS: verification failures remain incomplete while post-promotion writer-restart failures preserve a valid backup
+PASS: an existing Step-3 partial capture can be safely finalised only against the same effective dataset
+PASS: normal backup command now captures and finalises in one operation
+PASS: successful finalisation reports the required complete-backup operator summary
+PASS: PowerShell passes application identity through Windows-safe Base64 rather than quote-sensitive raw JSON
+PASS: Step-4 PowerShell no longer sends raw JSON through the Windows native-command argument boundary
+PASS: development-infrastructure wrapper can finalise an existing Step-3 candidate without recapture
+PASS: development-infrastructure wrapper remains thin after Step 4
+PASS: local-docker-build wrapper can finalise an existing Step-3 candidate without recapture
+PASS: local-docker-build wrapper remains thin after Step 4
+PASS: local-published-smoke wrapper can finalise an existing Step-3 candidate without recapture
+PASS: local-published-smoke wrapper remains thin after Step 4
+PASS: verification helper generates artifacts only when captured Files exactly match the quiesced source
+PASS: verification inventory records complete file count and byte total
+PASS: verification helper writes both required SHA-256 lists
+PASS: source/snapshot path-size-hash drift is rejected
+PASS: candidate returns to verifiable state after controlled mismatch is removed
+PASS: plain SQL dump without pg_dump readability markers is rejected
+PASS: SQL dump readability succeeds again after restoring valid fixture
+PASS: verified candidate can generate the schema-2 manifest
+PASS: partial candidate cannot be selected as a normal complete backup
+PASS: fully verified partial candidate passes only the explicit finalisation validator mode
+PASS: same-filesystem promotion produces a normally valid complete backup
+PASS: post-promotion byte corruption is rejected by independent manifest validation
+PASS: completed fixture is independently verifiable after controlled corruption is removed
+PASS: local complete-dataset Step-4 finalisation contract verified
