@@ -80,6 +80,7 @@ diaries/{diaryId}
 diaries/pages/{pageId}
 diaries/fragments/{fragmentId}
 diaries/marquees/{marqueeId}
+diaries/images/{imageId}
 ```
 
 The exact topic names may differ slightly in the current code, but architecturally the idea is:
@@ -315,6 +316,60 @@ unlock missing fragment -> 200 OK or 404-style benign response, not 500
 The key point is that “already gone” is not a server error.
 
 ---
+
+
+## ImageFragment authoring architecture
+
+MARQUEE and IMAGE Fragments share one durable `Fragment` chronology and the same locking/version/normalisation rules, but their media relationships are deliberately different:
+
+```text
+MARQUEE -> authoritative pageId + Marquee relationship; imageId absent/null
+IMAGE   -> authoritative pageId + optional Image relationship; no Marquee
+```
+
+The reusable `Image` entity is catalogue metadata stored in PostgreSQL and published as retained `diaries/images/<id>` state. Its physical bytes live under the selected mutable Files root and are presented through the stable `/files/...` HTTP namespace. An `Image.relativePath` is relative to the selected Files root; it is not an absolute URL and does not encode an execution mode.
+
+The Angular editor resolves IMAGE relationships from retained state:
+
+```text
+Fragment.imageId
+   -> retained diaries/images/<id>
+   -> CatalogueImage metadata
+   -> runtime Files URL
+   -> HTTP image bytes
+```
+
+This separates identity from presentation: the database Image ID is the relationship key; MQTT carries metadata/state; HTTP carries bytes.
+
+### ImageFragment create/update contract
+
+The responder remains authoritative for Page ownership, Fragment type, locking, optimistic version checks, Image existence and the authoring gate.
+
+Creation uses the explicit `addImageFragment` RPC. Normal creation chooses one already-catalogued Image first and sends its positive ID. The responder creates `type=IMAGE`, `marqueeId=null` and participates in the same date/sequence normalisation as MARQUEE creation.
+
+Updates use tri-state `imageId` semantics:
+
+```text
+imageId omitted   -> preserve the current Image reference
+imageId=<id>      -> deliberately attach/replace the Image reference
+imageId=null      -> deliberately clear the Image reference
+```
+
+Ordinary transcription/date/sequence edits and mixed-type reorder use the omit/preserve path. Only explicit Image-reference actions send the `imageId` key. This keeps normal editing usable when Image-reference authoring is disabled and prevents accidental relationship mutation.
+
+### Delete boundaries
+
+`deleteFragment` is type-aware. Deleting an IMAGE Fragment deletes the Fragment and its retained Fragment aliases only. It never cascades into Image deletion. The reusable Image row, retained Image metadata and physical file remain until a separate catalogue deletion is requested. That Image deletion is reference-aware and is rejected while any Fragment still refers to the Image.
+
+### Production authoring gate and rollback
+
+`imageFragmentWritesEnabled` is a responder configuration gate, not a client-only feature flag. With the gate disabled, new IMAGE Fragment creation and actual Image-reference mutation return 403; reading, replay, lock/unlock, text/date/sequence edits, normalisation and Fragment deletion continue to work.
+
+Production renders the setting from Ansible `diaries_image_fragment_writes_enabled`. After the successful 0027 rollout, the role source default is `true`, making IMAGE Fragment authoring the normal supported production mode. Setting it to `false` and restarting/redeploying the responder is the non-destructive emergency/rollback stop; existing IMAGE data stays intact and ordinary IMAGE text/date/sequence editing remains available.
+
+Local modes use the same responder JSON property with `true` as the normal post-0027 value. Direct development takes it from `%USERPROFILE%\.diaries\responder.json`; `local-docker-build` and `local-published-smoke` take it from the external JSON selected by `DIARIES_RESPONDER_DOCKER_CONFIG_FILE` (normally `%USERPROFILE%\.diaries\responder.docker.json`). Missing/null/false remains fail-closed and is appropriate only for deliberate disabled-gate/rollback testing or an emergency authoring stop.
+
+0027 production verification used client `0.0.9-build-76`, responder `0.0.9-build-84` and reader `0.0.9-build-8`. The controlled lifecycle verified create, ordinary preserve edits, replace, clear, reattach, delete guard, restart/replay, reader/editor agreement and cleanup.
 
 ## Retained topic-tree principle
 

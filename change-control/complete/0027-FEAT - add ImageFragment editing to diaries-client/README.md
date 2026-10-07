@@ -6,7 +6,7 @@ Feature
 
 ## Status
 
-In progress
+Complete — Steps 1–16 are complete. Development regression, cross-component verification and the deliberate production rollout passed; durable documentation is updated and the feature is closed.
 
 ## Priority
 
@@ -271,21 +271,21 @@ Step 13 is **COMPLETE — 2026-10-05**. Development run `20261004-002349` exerci
 
 The live execution exposed four integration defects and each was corrected, regression-covered and reverified before closure: the root Fragment→Marquee synchronizer was being torn down by route/topic cleanup; ordinary IMAGE `updateFragment` serialized `marqueeId:null`, which mqtt-rpc rejected before handler dispatch; `DeleteFragment` could leave a date chronology gap until startup repair; and `addFragment` / `addImageFragment` could persist an unclosed insertion chronology. Relationship derivation now remains authoritative in `ModelContext`, the ordinary update request omits responder-authoritative null fields, and create/delete paths normalise affected dates transactionally and republish changed survivors. The local `diaries-client` ACL also has the required narrow read access to retained `diaries/images/+` metadata.
 
-Final regression evidence is green: Angular/Karma completed **229/229** (`TOTAL: 229 SUCCESS`); the focused responder suite covering `FragmentLifecycleContractTest`, `AddImageFragmentTest` and `AddFragmentContractTest` completed `BUILD SUCCESSFUL`; and the redacted RPC diagnostic importer validated all five required 403/200 request/reply pairs without authentication/password values or raw transcription text. The authoritative close-out is `evidence/Step 13/FINAL-RUNTIME-CLOSEOUT.md`; `CHECKLIST.md` and `MANUAL-EVIDENCE.md` are complete. **No further Step 13 lifecycle mutation is required. Proceed to Step 14.**
+Final regression evidence is green: Angular/Karma completed **229/229** (`TOTAL: 229 SUCCESS`); the focused responder suite covering `FragmentLifecycleContractTest`, `AddImageFragmentTest` and `AddFragmentContractTest` completed `BUILD SUCCESSFUL`; and the redacted RPC diagnostic importer validated all five required 403/200 request/reply pairs without authentication/password values or raw transcription text. The authoritative close-out is `evidence/Step 13/FINAL-RUNTIME-CLOSEOUT.md`; `CHECKLIST.md` and `MANUAL-EVIDENCE.md` are complete. **No further Step 13 lifecycle mutation is required. Step 14 subsequently completed successfully.**
 
 ## Step 14 full regression and rollout-rehearsal status
 
-Step 14 tooling is implemented under `evidence/Step 14/` and is intentionally broader than another Angular run. The workstation runner uses the permanent disposable integrated regression gate to execute the full `diaries-client` suite/production build and the responder/`diaries-web` suites/builds with the responder's environment-gated JPA/MQTT tests enabled, asserts that the named ImageFragment chronology/gate/delete-guard and reader restart/static-URL contracts really executed without skips, and reruns the disposable 0026 browser-level reader verification against the current responder/web candidate. It also validates both local Compose modes without starting them and captures one source/config SHA inventory for the release-candidate run.
-
-The rollout rehearsal is read-only. Given the current Playbooks checkout it verifies the actual production Diaries role/template keeps `imageFragmentWritesEnabled=false`, uses the production Files route, validates/pulls/starts with health waiting in the expected order, activates the shared Nginx route only afterwards, and deactivates that route before shutdown. Step 14 never enables authoring or touches `pluto`; deliberate production enablement remains Step 15.
-
-The Step 13 prerequisite is now closed. Step 14 execution remains pending the real Windows development workstation run and the current production-role rehearsal. See `evidence/Step 14/RUNBOOK.md`.
+Step 14 is **COMPLETE — 2026-10-06**. Workstation run `20261006-093834` produced the PASSED prerequisite accepted by Step 15. The integrated gate covered the full Angular suite/build, responder and reader Java regressions/builds, named ImageFragment chronology/gate/delete-guard contracts, the disposable browser-level reader verification, local Compose rendering and the production-order rehearsal while the authoring gate remained false. Step 15's guarded runner subsequently accepted this PASSED summary, so the Step 14 rollout prerequisite is closed.
 
 ## Step 15 production rollout implementation status
 
-Step 15 rollout tooling is now implemented but **not executed**. The production Playbooks role has a fail-closed `diaries_image_fragment_writes_enabled` boolean, defaulting to `false`; the responder template renders that variable and the role validates the rendered value. This lets the 0027 client be deployed and smoke-tested with authoring still blocked, then enables authoring only by an explicit production inventory override after the pre-enable evidence is green. Reverting the same variable to `false` is the supported non-destructive stop; existing IMAGE rows and Files are left intact.
+Step 15 is **COMPLETE — 2026-10-06**. Production run `20261006-133404` first deployed/smoke-tested with authoring disabled, then deliberately enabled the inventory gate and completed the controlled ImageFragment lifecycle. The final verified images were client `0.0.9-build-76`, responder `0.0.9-build-84` and reader `0.0.9-build-8`. Evidence records successful create, preserve edit, replace/clear/reattach, referenced-Image delete guard, full restart/replay, editor/reader/MQTT/PostgreSQL/Files agreement and cleanup of disposable Fragments while retaining the reusable Image.
 
-The Step 15 evidence/runbook is under `evidence/Step 15/`. Its runner requires a real `PASSED` Step 14 final summary before any production action. Because this source bundle still marks Step 14 workstation execution as pending, Step 15 source implementation does **not** claim production deployment or authoring enablement yet.
+Two production issues discovered during rollout were corrected non-destructively: catalogue listing required a longer client RPC timeout, and the production client ACL required narrow read access to `diaries/images/+`. Disabled-gate rollback was exercised during correction work. After successful enablement and verification, IMAGE Fragment authoring is the normal supported production state; the Playbooks role default is `true`, while `false` remains the tested rollback switch.
+
+## Step 16 documentation and feature close-out status
+
+Step 16 is **COMPLETE — 2026-10-07**. The durable client, architecture, responder and operating documentation now describes the MARQUEE/IMAGE distinction, retained Image topics, catalogue chooser, tri-state `imageId` semantics, deletion boundaries, authoring gate/rollback and the client components/helpers introduced by 0027. Final release/evidence inventories and acceptance mapping are stored under `evidence/Step 16/`. Feature-specific verification tooling remains under change-control evidence; permanent ImageFragment regression tooling remains under `scripts/windows/validation/`. The feature directory is moved to `change-control/complete`.
 
 ## Detailed Implementation Steps
 
@@ -296,31 +296,31 @@ The Step 15 evidence/runbook is under `evidence/Step 15/`. Its runner requires a
 - [x] Add explicit Image reassignment/clear RPC semantics.
 - [x] Add a clearly labelled, accessible IMAGE creation control.
 - [x] Add deployment feature gating for IMAGE creation.
-- [ ] Generalize Fragment workspace initialization so IMAGE does not require a Marquee.
-- [ ] Hide all selected overlays and marquee controls for IMAGE.
+- [x] Generalize Fragment workspace initialization so IMAGE does not require a Marquee.
+- [x] Hide all selected overlays and marquee controls for IMAGE.
 - [x] Render the selected Image, caption and missing/incomplete state.
 - [x] Adapt the chooser contract to return a catalogued Image ID.
 - [x] Require the Fragment lock for Image replacement/removal.
 - [x] Ensure delete does not invoke `DeleteMarquee` for IMAGE.
-- [ ] Test reuse of one Image from multiple IMAGE Fragments.
+- [x] Test reuse of one Image from multiple IMAGE Fragments.
 - [x] Test mixed-type navigation, locking and sequence reorder.
-- [ ] Test that invalid cross-type mutations are rejected and surfaced.
-- [ ] Run Angular tests and production build.
+- [x] Test that invalid cross-type mutations are rejected and surfaced.
+- [x] Run Angular tests and production build.
 
 ## Acceptance Criteria
 
-- [ ] Existing `+` retains MARQUEE semantics.
-- [ ] IMAGE creation is unavailable until the reader deployment prerequisite is enabled.
-- [ ] A user can create an IMAGE Fragment referencing zero or one Image as allowed by 0025.
+- [x] Existing `+` retains MARQUEE semantics.
+- [x] IMAGE creation is unavailable until the reader deployment prerequisite is enabled.
+- [x] A user can create an IMAGE Fragment referencing zero or one Image as allowed by 0025.
 - [x] A user can select or replace one catalogued Image by ID.
-- [ ] A user cannot attach multiple Images to one Fragment.
-- [ ] IMAGE never creates or edits a Marquee.
-- [ ] MARQUEE cannot select an Image.
-- [ ] One Image can be reused by multiple IMAGE Fragments.
+- [x] A user cannot attach multiple Images to one Fragment.
+- [x] IMAGE never creates or edits a Marquee.
+- [x] MARQUEE cannot select an Image.
+- [x] One Image can be reused by multiple IMAGE Fragments.
 - [x] Locks, date/text editing and sequence ordering work for both types.
 - [x] Runtime configuration, not persisted absolute URLs, determines Image URLs.
-- [ ] Existing MARQUEE editing is not regressed.
-- [ ] Angular tests and production build pass.
+- [x] Existing MARQUEE editing is not regressed.
+- [x] Angular tests and production build pass.
 
 ## Dependencies
 
@@ -330,3 +330,23 @@ Requires 0022–0026. Production enablement specifically requires evidence that 
 
 Deploy with creation disabled, smoke-test retained Image selection, then enable creation. After the first production IMAGE Fragment exists, rolling back the authoring client is possible, but rolling back the web reader below 0026 is not. Disabling authoring does not remove already-created IMAGE rows.
 
+
+
+## Completion Summary
+
+0027 adds first-class IMAGE Fragment authoring to the Angular editor while preserving the existing MARQUEE workflow and responder-authoritative invariants. The editor chooses persisted catalogue Images by ID, resolves their metadata from retained `diaries/images/<id>` topics, preserves Image relationships during ordinary edits by omitting `imageId`, and uses explicit positive/null mutations only for replace/clear actions. IMAGE Fragment deletion does not cascade to reusable Images; catalogue Image deletion remains reference-aware.
+
+Development and production verification covered the browser client, MQTT RPC, retained Fragment/Image state, Java responder, PostgreSQL, static Files state and `diaries-web` reader together. Production verification used client `0.0.9-build-76`, responder `0.0.9-build-84` and reader `0.0.9-build-8`. The authoring gate remains a responder/Ansible control: normal post-0027 operation defaults to enabled, with `false` retained as the non-destructive rollback state.
+
+## Git / release references
+
+- Diaries repository checked-in source head for the final source snapshot: `c3528b0ea135ac2773855ec524605bd3910b5db8` (`Step 15 listFiles timeout correction`).
+- Final documentation source bundle: `diaries-sources-20261007-085928.zip`.
+- Step 14 accepted run: `20261006-093834`.
+- Step 15 production run: `20261006-133404`.
+- Production artifacts: `rsmaxwell/diaries-client:0.0.9-build-76`, `rsmaxwell/diaries-responder:0.0.9-build-84`, `rsmaxwell/diaries-web:0.0.9-build-8`.
+- The portable source bundle does not contain the run-local Step 15 `begin.txt`; the image tags are therefore retained as the authoritative portable production artifact identity.
+
+## Completed Date
+
+2026-10-07

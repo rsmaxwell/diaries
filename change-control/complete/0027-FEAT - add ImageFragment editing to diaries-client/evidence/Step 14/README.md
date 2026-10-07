@@ -1,6 +1,6 @@
 # Step 14 — full client/responder/reader regression and rollout rehearsal
 
-**Status: IMPLEMENTED / WORKSTATION EXECUTION PENDING — 2026-10-05.**
+**Status: COMPLETE — workstation run `20261006-093834` PASSED on 2026-10-06.**
 
 Step 14 is implemented as a repeatable verification/rehearsal harness. It does not claim acceptance merely because the scripts exist. The real run must execute on the Windows development workstation with Angular dependencies, Java 25, Docker/Testcontainers, Chrome/Edge and the disposable 0026 reader fixture prerequisites available.
 
@@ -11,6 +11,10 @@ Step 14 deliberately verifies the three live application surfaces together:
 - `diaries-web`: full Java regression/build plus the existing 0026 disposable browser/MQTT/HTTP reader verification against the current responder/web source candidate.
 
 It also performs a read-only rehearsal of the production rollout ordering while `imageFragmentWritesEnabled` remains false. No Step 14 tool enables production authoring, mutates production, runs Ansible, or copies credentials into evidence.
+
+## Closure record
+
+The final workstation run passed the complete Step 14 gate and was accepted as the prerequisite for production Step 15 run `20261006-133404`. The source package does not retain the ignored `build/0027-step14/runs/.../step14-final-summary.json`, but Step 15 could not begin without a `status: PASSED` summary and its retained manual production evidence records Step 14 run `20261006-093834`.
 
 ## Prerequisite
 

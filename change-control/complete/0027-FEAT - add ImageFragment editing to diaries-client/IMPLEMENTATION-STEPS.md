@@ -509,7 +509,7 @@ Capture:
 
 ## Step 14 - Run full client/responder/reader regression and rollout rehearsal
 
-**Status: IMPLEMENTED / WORKSTATION EXECUTION PENDING — 2026-10-05.** The repeatable Step 14 harness is implemented under `evidence/Step 14/`. It runs the full Angular client test/build gate, full responder and reader Java test/build gates, verifies named ImageFragment/delete-guard/restart/static-URL contracts from the generated reports, reruns the existing disposable 0026 browser/MQTT/HTTP reader verification against the current responder/web candidate, renders both local Compose modes, captures source/config hashes, and rehearses the production Playbooks order read-only with `imageFragmentWritesEnabled=false`. **The Step 13 prerequisite is closed.** Step 14 remains open until one real workstation run plus the current production-role rehearsal are green.
+**Status: COMPLETE — 2026-10-06.** Workstation run `20261006-093834` passed the full client/responder/reader regression and production-order rehearsal. The PASSED final summary was accepted by the guarded Step 15 production runner.
 
 0027 must not be closed by testing `diaries-client` in isolation.
 
@@ -534,7 +534,7 @@ Capture:
 
 ## Step 15 - Deploy non-destructively and enable production authoring deliberately
 
-**Status: IMPLEMENTED / PRODUCTION EXECUTION BLOCKED UNTIL STEP 14 PASSES — 2026-10-06.** Step 15 rollout tooling is implemented under `evidence/Step 15/`, and the production Playbooks role now exposes a fail-closed boolean `diaries_image_fragment_writes_enabled` instead of hard-coding the responder JSON to false. The role defaults the value to false, validates its type, renders/validates the responder JSON, and documents the same variable as the non-destructive rollback switch. The Step 15 runner refuses to begin unless a real Step 14 `step14-final-summary.json` is `PASSED`; the current source bundle still records Step 14 workstation execution as pending, so no production deployment or gate enablement is claimed yet.
+**Status: COMPLETE — 2026-10-06.** Production run `20261006-133404` completed the disabled-gate smoke, deliberate enablement, controlled ImageFragment lifecycle, restart/replay, cross-layer reconciliation and cleanup. Verified images: client `0.0.9-build-76`, responder `0.0.9-build-84`, reader `0.0.9-build-8`.
 
 Do not enable the responder gate merely because the client build contains the new buttons.
 
@@ -579,6 +579,8 @@ No database rollback should be required merely to disable authoring.
 ---
 
 ## Step 16 - Update architecture/operating documentation and close 0027
+
+**Status: COMPLETE — 2026-10-07.** Durable client/architecture/responder/Playbooks documentation is updated, final evidence and release inventories are recorded under `evidence/Step 16/`, the Playbooks role default is reconciled to the completed-feature operating state (`true`) with `false` retained as rollback, and the feature is moved to `change-control/complete`.
 
 ### Work
 

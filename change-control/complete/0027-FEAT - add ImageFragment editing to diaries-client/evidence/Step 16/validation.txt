@@ -1,0 +1,15 @@
+PASS: feature primary status is Complete
+PASS: feature README records Step 16 complete
+PASS: implementation plan records Step 16 complete
+PASS: feature README contains no open implementation/acceptance checkboxes
+PASS: client README documents retained Image lookup and tri-state imageId semantics
+PASS: architecture documents ImageFragment authoring and deletion boundaries
+PASS: durable guide records exact production image set
+PASS: Playbooks role authoring default is enabled after completed 0027 rollout
+PASS: Playbooks README documents false as the non-destructive rollback state
+PASS: no 0027/Step 13-16 feature-specific helper remains in live script directories
+PASS: permanent ImageFragment reader verification remains under behavior-oriented validation path
+PASS: 231 historical feature evidence/source files are byte-identical across the in-progress -> complete move
+PASS: local.env.example documents imageFragmentWritesEnabled=true as normal post-0027 operation
+PASS: direct-development and local Docker configuration paths are documented explicitly
+PASS: local missing/null/false guidance is limited to deliberate disabled-gate/rollback testing

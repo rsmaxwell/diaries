@@ -2,9 +2,9 @@
 
 ## Status
 
-**IMPLEMENTED / PRODUCTION EXECUTION BLOCKED UNTIL STEP 14 PASSES — 2026-10-06.**
+**COMPLETE — production run `20261006-133404` PASSED on 2026-10-06.**
 
-The Step 15 rollout tooling and Playbooks gate control are implemented. No production deployment and no authoring enablement are claimed by this source implementation. The current source bundle still records Step 14 as workstation execution pending, so `step15-begin.ps1` refuses to begin a production run unless it can find a `step14-final-summary.json` with `status: PASSED`.
+The guarded rollout was executed after Step 14 run `20261006-093834` passed. Production run `20261006-133404` completed the disabled-gate smoke, deliberate enablement, controlled IMAGE lifecycle, restart/replay, cleanup and rollback-readiness checks. The verified images were client `0.0.9-build-76`, responder `0.0.9-build-84` and reader `0.0.9-build-8`. `MANUAL-EVIDENCE.md` is the retained portable production acceptance record.
 
 ## Safety model
 
