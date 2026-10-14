@@ -1,0 +1,103 @@
+richard@mango:~/playbooks$ cd ~/playbooks
+
+ansible-playbook \
+  verification/0034-step9/verify-postdeploy.yaml \
+  -e step9_safety_dir=/home/richard/projects/diaries/data/0034-step9-safety/20261009-152441Z \
+  -e '{"step9_allow_new_backups": true}' \
+  --ask-vault-pass
+Vault password:
+
+PLAY [0034 Step 9 postdeploy preservation and preflight checks] *******************************************************************************************************
+
+TASK [Require an explicit predeploy safety directory] *****************************************************************************************************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [Require explicit boolean post-publication switch] ***************************************************************************************************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [Read preserved historical backup ID inventory] ******************************************************************************************************************
+ok: [pluto]
+
+TASK [Read current historical backup ID inventory] ********************************************************************************************************************
+ok: [pluto]
+
+TASK [Prove predeploy backup IDs preserved (exact before publication, subset afterwards)] *****************************************************************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [Verify deployed final stable publication root] ******************************************************************************************************************
+ok: [pluto]
+
+TASK [Run integrated publication/capture preflight] *******************************************************************************************************************
+ok: [pluto]
+
+TASK [Verify one preserved historical backup through restore preflight] ***********************************************************************************************
+ok: [pluto]
+
+TASK [Inspect transitional Step 6 pilot path] *************************************************************************************************************************
+ok: [pluto]
+
+TASK [Verify transitional Step 6 pilot remains explicitly restorable when present] ************************************************************************************
+ok: [pluto]
+
+TASK [Verify private predeploy .env safety copy exists] ***************************************************************************************************************
+ok: [pluto]
+
+TASK [Read recorded predeploy .env checksum] **************************************************************************************************************************
+ok: [pluto]
+
+TASK [Prove the saved predeploy .env is intact] ***********************************************************************************************************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [Demonstrate non-destructive .env rollback copy] *****************************************************************************************************************
+changed: [pluto]
+
+TASK [Check rollback-demo checksum] ***********************************************************************************************************************************
+ok: [pluto]
+
+TASK [Prove rollback copy matches predeploy .env] *********************************************************************************************************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [Remove rollback-demo copy only] *********************************************************************************************************************************
+changed: [pluto]
+
+TASK [Report postdeploy acceptance] ***********************************************************************************************************************************
+ok: [pluto] => {}
+
+MSG:
+
+['Legacy timestamp-ID inventory unchanged across deployment.', 'Final published root is configured as /home/richard/projects/diaries/data/diaries-backup.', 'publish-preflight passed without capture/publication.', 'A preserved historical backup passed restore preflight.', 'Predeploy .env safety copy is checksum-valid and rollback copy was demonstrated without replacing live .env.']
+
+PLAY RECAP ************************************************************************************************************************************************************
+pluto                      : ok=18   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+richard@mango:~/playbooks$

@@ -1,0 +1,20 @@
+richard@pluto:~/projects/diaries/scripts$ backup-dataset.sh preflight
+backup-dataset.sh: command not found
+richard@pluto:~/projects/diaries/scripts$ ./backup-dataset.sh preflight
+/var/run/postgresql:5432 - accepting connections
+Diaries production complete-dataset backup preflight
+  Logical dataset:    production
+  Database identity:  docker-volume:diaries-db-data / diaries
+  Files selector:     files
+  Files root:         //nas.tail636235.ts.net/photo/nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files
+  Backup repository:  /home/richard/projects/diaries/data/dataset-backups/production
+  Restore state root: /home/richard/projects/diaries/data/dataset-restores/production
+  Storage mode:       auto
+  Capture strategy:   full-copy (0034 Step 2 compatibility; capability selection is Step 3)
+  Docker NAS volume:  diaries_nas-photo
+  Responder running:  True
+  Staging:            excluded-benign (1 entries)
+  Candidate:          /home/richard/projects/diaries/data/dataset-backups/production/.20261008-114820Z.partial
+
+PREFLIGHT OK: no writer was stopped and no backup workspace was created.
+richard@pluto:~/projects/diaries/scripts$

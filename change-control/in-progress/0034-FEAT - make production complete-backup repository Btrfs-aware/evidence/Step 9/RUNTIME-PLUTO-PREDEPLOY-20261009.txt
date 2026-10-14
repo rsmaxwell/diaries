@@ -1,0 +1,77 @@
+richard@mango:~/playbooks$ ansible-playbook verification/0034-step9/capture-predeploy.yaml --ask-vault-pass
+Vault password:
+
+PLAY [0034 Step 9 predeploy inventory and safety capture] *************************************************************************************************************
+
+TASK [Require explicit boolean capture switch] ************************************************************************************************************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [Inspect deployed .env] ******************************************************************************************************************************************
+ok: [pluto]
+
+TASK [Require deployed .env] ******************************************************************************************************************************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [Capture non-secret complete-backup .env contract] ***************************************************************************************************************
+ok: [pluto]
+
+TASK [Capture historical backup ID inventory] *************************************************************************************************************************
+ok: [pluto]
+
+TASK [Inspect transitional and final publication paths] ***************************************************************************************************************
+ok: [pluto]
+
+TASK [Run current non-destructive complete-backup preflight] **********************************************************************************************************
+ok: [pluto]
+
+TASK [Capture current deployment state] *******************************************************************************************************************************
+ok: [pluto]
+
+TASK [Report read-only predeploy state] *******************************************************************************************************************************
+ok: [pluto] => {}
+
+MSG:
+
+['env sha256=29591edc4bde2e00dab80ad1e2e63afaa83f0f7e0e8b51ab071b109e6d23778c', "env contract=['DIARIES_COMPLETE_BACKUP_REPOSITORY_ROOT=/home/richard/projects/diaries/data/dataset-backups/production', 'DIARIES_COMPLETE_RESTORE_STATE_ROOT=/home/richard/projects/diaries/data/dataset-restores/production', 'DIARIES_COMPLETE_BACKUP_STORAGE_MODE=auto']", "legacy backup IDs=['20261007-145013Z']", "publication paths=['/home/richard/projects/diaries/data/dataset-backups/production/diaries-backup\\tsymlink\\t.diaries-backup-generations/20261007-145013Z', '/home/richard/projects/diaries/data/diaries-backup\\tabsent']", 'preflight passed; capture requested=False']
+
+TASK [Generate safety capture ID] *************************************************************************************************************************************
+skipping: [pluto]
+
+TASK [Define safety capture directory] ********************************************************************************************************************************
+skipping: [pluto]
+
+TASK [Create private Step 9 safety directory] *************************************************************************************************************************
+skipping: [pluto]
+
+TASK [Preserve predeploy .env privately on pluto] *********************************************************************************************************************
+skipping: [pluto]
+
+TASK [Persist non-secret predeploy evidence on pluto] *****************************************************************************************************************
+skipping: [pluto] => (item={'name': 'env-sha256.txt', 'content': '29591edc4bde2e00dab80ad1e2e63afaa83f0f7e0e8b51ab071b109e6d23778c'})
+skipping: [pluto] => (item={'name': 'env-contract.txt', 'content': 'DIARIES_COMPLETE_BACKUP_REPOSITORY_ROOT=/home/richard/projects/diaries/data/dataset-backups/production\nDIARIES_COMPLETE_RESTORE_STATE_ROOT=/home/richard/projects/diaries/data/dataset-restores/production\nDIARIES_COMPLETE_BACKUP_STORAGE_MODE=auto'})
+skipping: [pluto] => (item={'name': 'legacy-backup-ids.txt', 'content': '20261007-145013Z'})
+skipping: [pluto] => (item={'name': 'publication-paths.txt', 'content': '/home/richard/projects/diaries/data/dataset-backups/production/diaries-backup\tsymlink\t.diaries-backup-generations/20261007-145013Z\n/home/richard/projects/diaries/data/diaries-backup\tabsent'})
+skipping: [pluto] => (item={'name': 'backup-preflight.txt', 'content': '/var/run/postgresql:5432 - accepting connections\nDiaries production complete-dataset backup preflight\n  Logical dataset:    production\n  Database identity:  docker-volume:diaries-db-data / diaries\n  Files selector:     files\n  Files root:         //nas.tail636235.ts.net/photo/nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files\n  Backup repository:  /home/richard/projects/diaries/data/dataset-backups/production\n  Restore state root: /home/richard/projects/diaries/data/dataset-restores/production\n  Storage mode:       auto\n  Repository mount:   /\n  Filesystem:         ext4\n  Free/total bytes:   24283377664 / 71541661696\n  Reflink probe:      repository filesystem is ext4, not btrfs\n  Effective strategy: full-copy\n  Docker NAS volume:  diaries_nas-photo\n  Responder running:  True\n  Staging:            excluded-benign (1 entries)\n  Candidate:          /home/richard/projects/diaries/data/dataset-backups/production/.20261009-152147Z.partial\n\nPREFLIGHT OK: no writer was stopped and no backup workspace was created.'})
+skipping: [pluto] => (item={'name': 'deployment-state.txt', 'content': '--- systemd ---\nactive\n--- docker compose ps ---\nNAME                IMAGE
+                      COMMAND                  SERVICE             CREATED             STATUS                       PORTS\ndiaries-client      rsmaxwell/diaries-client:0.0.9-build-76      "/docker-entrypoint.…"   diaries-client      About an hour ago   Up About an hour (healthy)   80/tcp, 8080/tcp\ndiaries-mosquitto   eclipse-mosquitto:2                          "/docker-entrypoint.…"   diaries-mqtt        About an hour ago   Up About an hour (healthy)   1883/tcp\ndiaries-postgres    postgres:18-alpine                           "docker-entrypoint.s…"   diaries-db          About an hour ago   Up About an hour (healthy)   0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp\ndiaries-responder   rsmaxwell/diaries-responder:0.0.9-build-84   "/opt/diaries/bin/re…"   diaries-responder   About an hour ago   Up About an hour (healthy)   \ndiaries-web         rsmaxwell/diaries-web:0.0.9-build-8          "java -jar /opt/diar…"   diaries-web         About an hour ago   Up About an hour (healthy)   8082/tcp\n--- filesystems ---\nFilesystem                        Type 1K-blocks     Used Available Use% Mounted on\n/dev/mapper/ubuntu--vg-ubuntu--lv ext4  69864904 42926068  23714216  65% /\n/dev/mapper/ubuntu--vg-ubuntu--lv ext4  69864904 42926068  23714216  65% /'})
+skipping: [pluto]
+
+TASK [Report safety capture directory] ********************************************************************************************************************************
+skipping: [pluto]
+
+PLAY RECAP ************************************************************************************************************************************************************
+pluto                      : ok=9    changed=0    unreachable=0    failed=0    skipped=6    rescued=0    ignored=0
+
+richard@mango:~/playbooks$

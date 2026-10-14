@@ -1,0 +1,9 @@
+richard@pluto:~/projects/diaries$ cd /home/richard/projects/diaries
+
+ls -lah data/diaries-backup
+
+./scripts/backup-dataset.sh publish-preflight
+lrwxrwxrwx 1 richard richard 44 Oct  9 16:33 data/diaries-backup -> .diaries-backup-generations/20261009-153243Z
+ERROR: published path must have basename diaries-backup
+ERROR: command failed (1): /usr/bin/python3 /home/richard/projects/diaries/scripts/complete-dataset-publisher.py --published-root /home/richard/projects/diaries/data/.diaries-backup-generations/20261009-153243Z --manifest-tool /home/richard/projects/diaries/scripts/complete-dataset-manifest.py preflight
+richard@pluto:~/projects/diaries$

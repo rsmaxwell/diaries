@@ -1,0 +1,377 @@
+richard@mango:~/playbooks$ cd ~/playbooks
+python3 roles/diaries/tests/verify-complete-dataset-manifest.py
+python3 roles/diaries/tests/verify-complete-dataset-publisher.py
+python3 roles/diaries/tests/verify-complete-dataset-replication.py
+python3 roles/diaries/tests/verify-production-backup-restore-semantics.py
+python3 roles/diaries/tests/verify-production-btrfs-strategy.py
+python3 roles/diaries/tests/verify-production-complete-dataset-tooling.py
+python3 roles/diaries/tests/verify-production-publication-contract.py
+python3 roles/diaries/tests/verify-production-publication-wiring.py
+python3 roles/diaries/tests/verify-production-restore-source-compatibility.py
+python3 roles/diaries/tests/verify-production-storage-isolation.py
+python3 roles/diaries/tests/verify-production-deployment-contract.py
+python3 roles/local-backup/tests/verify-diaries-pull.py
+PASS: complete-dataset manifest generator/validator is present
+PASS: synthetic complete manifest is generated from verified candidate components
+PASS: generated manifest freezes schema-2 complete-dataset completion markers
+PASS: generated manifest records backup ID and effective logical dataset
+PASS: generated manifest uses the frozen required component paths
+PASS: generated manifest records durable Files count from the verified inventory
+PASS: generated manifest records writer quiescence and staging exclusion
+PASS: normal validation rejects .<backup-id>.partial as a restorable backup
+PASS: backup finalisation can validate a complete candidate inside the partial workspace
+PASS: synthetic candidate validates normally after same-filesystem promotion to final backup ID
+PASS: unsupported complete-manifest schema is rejected
+PASS: wrong backupType is rejected
+PASS: completeDatasetBackup=false is rejected
+PASS: non-complete status is rejected
+PASS: invalid logical dataset identity is rejected
+PASS: absolute component path is rejected
+PASS: escaping component path is rejected
+PASS: missing component hash is rejected
+PASS: invalid component hash syntax is rejected
+PASS: missing required database component is rejected
+PASS: Files byte corruption is rejected by inventory/hash validation
+PASS: synthetic backup returns to a valid complete state after negative cases
+PASS: complete-dataset directory and manifest contract verified
+PASS: synthetic schema-2 candidate constructed
+PASS: preflight non-mutating
+PASS: first generation published
+PASS: current verified and identity visible
+PASS: invalid second candidate cannot replace first
+PASS: second schema-2 candidate constructed
+PASS: reader pinned first generation under shared lock
+PASS: publication blocked by active reader
+PASS: reader exits then second generation publishes
+PASS: second generation verified at stable path
+PASS: previous generation retained for rollback
+PASS: duplicate backup ID rejected
+PASS: temporary publication artefacts cleared
+PASS: 0034 Step 5 isolated publisher suite
+PASS: schema-2 fixture built
+PASS: fixture published
+PASS: pinned rsync and receiving schema-2 verification:
+PASS: explicit verified-staged non-eligible handoff
+PASS: received tree complete
+PASS: duplicate ID refused; previous handoff unchanged
+PASS: success retains private receiver staging
+PASS: unpinned direct copy refused
+PASS: failed verification has no handoff or partial receiver data
+PASS: 0034 Step 6 isolated replication suite
+PASS: production deployment includes dataset manifest helper
+PASS: production effective database identity is frozen as production / docker-volume:diaries-db-data
+PASS: production Files identity is resolved from the deployed .env selector and NAS settings
+PASS: production sidecar schema remains explicitly database-only
+PASS: production sidecar records logicalDataset
+PASS: production sidecar records effectiveDatabaseDataDir
+PASS: production sidecar records databaseBackupFile
+PASS: production sidecar records databaseBackupFormat
+PASS: production sidecar records effectiveFilesDir
+PASS: production sidecar records resolvedPhysicalFilesRoot
+PASS: production sidecar records applicationSourceIdentity
+PASS: production sidecar records imageRowCount
+PASS: production sidecar records cataloguedFileCount
+PASS: legacy production database backups remain usable with an explicit Files warning
+PASS: backup-db-to-binary.sh keeps the production database-backup namespace
+PASS: backup-db-to-binary.sh defaults database work to diaries-db
+PASS: backup-db-to-binary.sh labels database-only semantics
+PASS: backup-db-to-binary.sh writes a sidecar manifest
+PASS: backup-db-to-binary.sh records Image row count
+PASS: backup-db-to-binary.sh does not claim a complete dataset backup
+PASS: backup-db-to-binary.sh keeps production timestamped filename semantics
+PASS: backup-db-to-binary.sh performs pg_dump inside the configured database service
+PASS: backup-db-to-sql.sh keeps the production database-backup namespace
+PASS: backup-db-to-sql.sh defaults database work to diaries-db
+PASS: backup-db-to-sql.sh labels database-only semantics
+PASS: backup-db-to-sql.sh writes a sidecar manifest
+PASS: backup-db-to-sql.sh records Image row count
+PASS: backup-db-to-sql.sh does not claim a complete dataset backup
+PASS: backup-db-to-sql.sh keeps production timestamped filename semantics
+PASS: backup-db-to-sql.sh performs pg_dump inside the configured database service
+PASS: production binary backup remains PostgreSQL custom format
+PASS: production SQL backup remains PostgreSQL plain format
+PASS: restore-db-from-binary.sh keeps the production database-backup namespace
+PASS: restore-db-from-binary.sh defaults restore database work to diaries-db
+PASS: restore-db-from-binary.sh identifies diaries-responder as the application writer
+PASS: restore-db-from-binary.sh labels database-only semantics
+PASS: restore-db-from-binary.sh verifies sidecar pairing
+PASS: restore-db-from-binary.sh does not claim a complete dataset restore
+PASS: restore-db-from-binary.sh requires explicit destructive confirmation
+PASS: restore-db-from-binary.sh stops a running responder and restores its prior running state after success
+PASS: restore-db-from-binary.sh leaves responder stopped after restore failure
+PASS: restore-db-from-sql.sh keeps the production database-backup namespace
+PASS: restore-db-from-sql.sh defaults restore database work to diaries-db
+PASS: restore-db-from-sql.sh identifies diaries-responder as the application writer
+PASS: restore-db-from-sql.sh labels database-only semantics
+PASS: restore-db-from-sql.sh verifies sidecar pairing
+PASS: restore-db-from-sql.sh does not claim a complete dataset restore
+PASS: restore-db-from-sql.sh requires explicit destructive confirmation
+PASS: restore-db-from-sql.sh stops a running responder and restores its prior running state after success
+PASS: restore-db-from-sql.sh leaves responder stopped after restore failure
+PASS: production binary restore validates and restores with pg_restore
+PASS: production SQL restore applies the dump through psql with ON_ERROR_STOP
+PASS: production helper resolves the frozen effective database + Files pair
+PASS: manifest helper writes a production database sidecar
+PASS: production sidecar explicitly freezes schema-1 database-only semantics
+PASS: production sidecar records the effective database identity
+PASS: production sidecar records the effective Files selector and physical root
+PASS: production sidecar records catalogue count
+PASS: matching production database + Files pair verifies
+PASS: production restore guard rejects a mismatched Files root
+PASS: production legacy backup compatibility warning remains non-fatal
+PASS: production database-only backup/restore and effective-dataset contract frozen
+PASS: full-copy deliberately bypasses reflink probing
+PASS: auto on ext4 selects full-copy
+PASS: required-btrfs fails closed on ext4
+PASS: successful Btrfs clone selects reflink for auto
+PASS: successful Btrfs clone selects reflink for required-btrfs
+PASS: failed clone in auto falls back to full-copy
+PASS: failed clone in required-btrfs fails closed
+PASS: probe scratch removed and completed media untouched
+PASS: historical 0034 Step 3 legacy-capture strategy regression
+PASS: production complete-dataset tooling file exists: backup-dataset.sh
+PASS: production tooling is executable in role source: backup-dataset.sh
+PASS: production complete-dataset tooling file exists: restore-dataset.sh
+PASS: production tooling is executable in role source: restore-dataset.sh
+PASS: production complete-dataset tooling file exists: production-complete-dataset.py
+PASS: production tooling is executable in role source: production-complete-dataset.py
+PASS: production complete-dataset tooling file exists: complete-dataset-manifest.py
+PASS: production tooling is executable in role source: complete-dataset-manifest.py
+PASS: production complete-dataset tooling file exists: complete-dataset-verification.py
+PASS: production tooling is executable in role source: complete-dataset-verification.py
+PASS: production complete-dataset tooling file exists: complete-dataset-restore-stage.py
+PASS: production tooling is executable in role source: complete-dataset-restore-stage.py
+PASS: production complete-dataset tooling file exists: complete-dataset-postflight.py
+PASS: production tooling is executable in role source: complete-dataset-postflight.py
+PASS: production shell/Python complete-dataset tooling parses successfully
+PASS: complete-dataset-manifest.py matches the frozen local schema/inventory helper used by 0033
+PASS: complete-dataset-verification.py matches the frozen local schema/inventory helper used by 0033
+PASS: complete-dataset-restore-stage.py matches the frozen local schema/inventory helper used by 0033
+PASS: complete-dataset-postflight.py matches the frozen local schema/inventory helper used by 0033
+PASS: production complete-dataset engine contains required contract: DIARIES_NAS_CONTENT_PATH
+PASS: production complete-dataset engine contains required contract: DIARIES_FILES_DIR
+PASS: production complete-dataset engine contains required contract: "docker", "compose"
+PASS: production complete-dataset engine contains required contract: DIARIES_COMPLETE_BACKUP_REPOSITORY_ROOT
+PASS: production complete-dataset engine contains required contract: DIARIES_COMPLETE_RESTORE_STATE_ROOT
+PASS: production complete-dataset engine contains required contract: DIARIES_COMPLETE_BACKUP_STORAGE_MODE
+PASS: production complete-dataset engine contains required contract: docker-compose-service-stop
+PASS: production complete-dataset engine contains required contract: database/diaries.dump
+PASS: production complete-dataset engine contains required contract: database/diaries.sql
+PASS: production complete-dataset engine contains required contract: complete-dataset-manifest.py
+PASS: production complete-dataset engine contains required contract: complete-dataset-verification.py
+PASS: production complete-dataset engine contains required contract: complete-dataset-restore-stage.py
+PASS: production complete-dataset engine contains required contract: complete-dataset-postflight.py
+PASS: production complete-dataset engine contains required contract: Type RESTORE
+PASS: production complete-dataset engine contains required contract: Type APPLY
+PASS: production complete-dataset engine contains required contract: automaticRollbackAvailable
+PASS: production complete-dataset engine contains required contract: dropdb
+PASS: production complete-dataset engine contains required contract: pg_restore
+PASS: production complete-dataset engine contains required contract: synchronise: ok
+PASS: production complete-dataset engine contains required contract: diaries/marquees/
+PASS: production complete-dataset engine contains required contract: diaries/images/
+PASS: production complete-dataset engine contains required contract: http://localhost:8081/files/
+PASS: production complete-dataset engine contains required contract: mv "$live" "$rollback"
+PASS: production complete-dataset engine contains required contract: mv "$stage" "$live"
+PASS: complete-dataset tooling never stops PostgreSQL as a writer-quiescence action
+PASS: complete-dataset tooling explicitly quiesces/restores the responder service
+PASS: production backup independently rereads quiesced Files before schema-2 promotion
+PASS: root maintenance copies return host backup/verification trees to the invoking operator ownership
+PASS: production backup defensively excludes transient .image-staging from host-side snapshots
+PASS: production tar data-plane pipelines propagate source/extraction failures
+PASS: production restore preflight structurally validates the custom dump before destructive work
+PASS: production apply restores only the custom dump and never reapplies the SQL companion
+PASS: production restore stages and independently verifies replacement Files before apply
+PASS: production restore retains executable database+Files rollback semantics
+PASS: routine Ansible role execution deploys complete-dataset tools but never invokes them
+PASS: Ansible creates the configured complete backup repository and restore-state roots
+PASS: production complete-dataset identity remains driven by explicit diaries_files_dir
+PASS: production .env renders the explicit 0034 complete-dataset storage contract
+PASS: production complete-dataset engine no longer infers repository/state roots from project layout
+PASS: production responder still mounts the explicit Files selector at /data/files
+PASS: existing production binary backup remains explicitly database-only
+PASS: existing production binary restore remains explicitly database-only
+PASS: production complete-dataset Step-8 tooling contract verified
+PASS: stable publication has an explicit default separate from the legacy repository
+PASS: stable publication path is rendered into production .env
+PASS: Ansible rejects overlapping publication/repository paths
+PASS: deployment verifies the rendered stable publication path in .env
+PASS: runtime consumes the explicit stable publication path
+PASS: diaries-backup restore selector resolves only through the stable publication input
+PASS: runtime accepts storage/publication roots isolated from source Files
+PASS: runtime rejects overlapping roots ('/srv/legacy', '/srv/state', '/srv/legacy')
+PASS: runtime rejects overlapping roots ('/srv/legacy', '/srv/state', '/srv/legacy/diaries-backup')
+PASS: runtime rejects overlapping roots ('/srv/legacy', '/srv/state', '/srv/state/current')
+PASS: runtime rejects overlapping roots ('/srv/legacy/current', '/srv/state', '/srv/legacy')
+PASS: runtime rejects stable publication overlapping the mutable source Files root
+PASS: 0034 Step 8 stable publication configuration contract
+PASS: permanent backup wrapper still delegates all modes through the production engine
+PASS: production engine has explicit publisher preflight and completed-backup publication helpers
+PASS: production backup CLI exposes explicit Step 9 publish modes
+PASS: publication output explicitly records preservation of the legacy timestamp-ID backup
+PASS: plain backup keeps frozen 0033 capture-only behaviour
+PASS: plain preflight keeps frozen 0033 capture-only preflight behaviour
+
+PUBLISH PREFLIGHT OK: publisher layout and live capture preflight both passed; no backup or publication was created.
+PASS: publish-preflight checks publication layout before non-mutating live capture preflight
+PASS: publish mode preflights, creates the immutable legacy backup, then publishes exactly that completed backup
+ERROR: synthetic publication failure
+PASS: publication failure is surfaced only after the completed legacy backup exists
+PASS: 0034 Step 9 production publication wiring contract
+PASS: legacy <backup-id>/ source still resolves unchanged
+Diaries production complete-dataset restore preflight
+  Logical dataset:    production
+  Restore source:     /tmp/0034-step7-hao6gqc6/repository/20261001-010203Z
+  Database target:    docker-volume:diaries-db-data / diaries
+  Files target:       files -> //nas/photo/diaries/files
+  Backup repository:  /tmp/0034-step7-hao6gqc6/repository
+  Published root:     /tmp/0034-step7-hao6gqc6/diaries-backup
+  Restore state root: /tmp/0034-step7-hao6gqc6/restore-state
+  Storage mode:       full-copy
+  Files in backup:    0 / 0 bytes
+  Target staging:     absent (0 entries)
+  Replacement stage: //nas/photo/diaries/.files.restore-20261001-010203Z.staged
+  Responder running:  False
+PASS: legacy source passes non-destructive restore preflight
+PASS: bare diaries-backup selects the stable published current dataset
+PASS: diaries-backup/ selector is accepted
+Diaries production complete-dataset restore preflight
+  Logical dataset:    production
+  Restore source:     /tmp/0034-step7-hao6gqc6/.diaries-backup-generations/20261002-020304Z
+  Database target:    docker-volume:diaries-db-data / diaries
+  Files target:       files -> //nas/photo/diaries/files
+  Backup repository:  /tmp/0034-step7-hao6gqc6/repository
+  Published root:     /tmp/0034-step7-hao6gqc6/diaries-backup
+  Restore state root: /tmp/0034-step7-hao6gqc6/restore-state
+  Storage mode:       full-copy
+  Files in backup:    0 / 0 bytes
+  Target staging:     absent (0 entries)
+  Replacement stage: //nas/photo/diaries/.files.restore-20261002-020304Z.staged
+  Responder running:  False
+PASS: fixed published source passes the same schema-2 preflight as legacy media
+PASS: explicit read-only/snapshot-style directory path is a restore entry point
+Diaries production complete-dataset restore preflight
+  Logical dataset:    production
+  Restore source:     /tmp/0034-step7-hao6gqc6/snapshots/20261009-120000Z/diaries-backup
+  Database target:    docker-volume:diaries-db-data / diaries
+  Files target:       files -> //nas/photo/diaries/files
+  Backup repository:  /tmp/0034-step7-hao6gqc6/repository
+  Published root:     /tmp/0034-step7-hao6gqc6/diaries-backup
+  Restore state root: /tmp/0034-step7-hao6gqc6/restore-state
+  Storage mode:       full-copy
+  Files in backup:    0 / 0 bytes
+  Target staging:     absent (0 entries)
+  Replacement stage: //nas/photo/diaries/.files.restore-20261003-030405Z.staged
+  Responder running:  False
+PASS: snapshot-style explicit source uses the unchanged restore preflight
+PASS: logical dataset mismatch is still rejected before destructive work
+Diaries production complete-dataset restore preflight
+  Logical dataset:    production
+  Restore source:     /tmp/0034-step7-hao6gqc6/.diaries-backup-generations/20261002-020304Z
+  Database target:    docker-volume:diaries-db-data / diaries
+  Files target:       files -> //nas/photo/diaries/files
+  Backup repository:  /tmp/0034-step7-hao6gqc6/repository
+  Published root:     /tmp/0034-step7-hao6gqc6/diaries-backup
+  Restore state root: /tmp/0034-step7-hao6gqc6/restore-state
+  Storage mode:       full-copy
+  Files in backup:    0 / 0 bytes
+  Target staging:     absent (0 entries)
+  Replacement stage: //nas/photo/diaries/.files.restore-20261002-020304Z.staged
+  Responder running:  False
+PASS: prepare still requires the exact uppercase RESTORE confirmation
+PASS: failed RESTORE confirmation performs no writer stop or restore mutation
+PASS: continuation by backup ID reuses the exact prepared source even when same-ID legacy media exists
+PASS: prepared restore remains pinned when diaries-backup advances to a newer generation
+PASS: partial workspaces remain non-restorable
+PASS: 0034 Step 7 historical/fixed/snapshot restore-source compatibility contract verified
+PASS: production .env renders the explicit diaries_files_dir selector
+PASS: production mutable /data/files mount is selected through DIARIES_FILES_DIR
+PASS: production shared diary scans remain on the common /diaries source
+PASS: production template has no hard-coded mutable /files source
+PASS: role defaults do not silently fall back to the production Files selector
+PASS: role preflight requires an explicit mutable Files selector
+PASS: deployment validates the rendered selector and mutable Files mount
+PASS: deployment validates that shared scans remain on /diaries
+PASS: 0034 Step 2 defaults preserve the frozen 0033 backup/restore locations
+PASS: 0034 Step 8 defines a stable publication path separate from the legacy repository
+PASS: 0034 Step 2 storage mode is retained for historical capture compatibility
+PASS: Ansible accepts exactly the three supported storage-mode values
+PASS: Ansible requires distinct absolute complete-backup and restore-state roots
+PASS: production .env renders the complete-dataset repository/state/publication/storage inputs
+PASS: deployment creates and verifies the configured backup/state roots rather than fixed production leaves
+PASS: production complete-dataset tooling consumes repository/state/publication/mode inputs
+PASS: production backup code no longer infers complete-dataset roots from project layout
+PASS: runtime storage-contract validation accepts mode auto
+PASS: runtime storage-contract validation accepts mode required-btrfs
+PASS: runtime storage-contract validation accepts mode full-copy
+PASS: runtime storage-contract validation rejects invalid mode ''
+PASS: runtime storage-contract validation rejects invalid mode 'btrfs'
+PASS: runtime storage-contract validation rejects invalid mode 'automatic'
+PASS: runtime storage-contract validation rejects invalid mode 'AUTO'
+PASS: runtime storage-contract validation rejects identical backup/restore roots
+PASS: runtime storage-contract validation rejects restore state nested inside backup repository
+PASS: runtime storage-contract validation rejects backup repository nested inside restore state
+PASS: runtime storage-contract validation rejects stable publication nested in legacy repository
+PASS: runtime storage-contract validation rejects publication overlapping mutable source Files
+PASS: production storage-isolation contract verified
+PASS: production broker keeps the complete retained-snapshot flow-control policy
+PASS: production broker has no historical 10,000-message truncation ceiling
+PASS: production diaries-client can read canonical retained Image metadata
+PASS: production diaries-responder can publish canonical retained Image metadata
+PASS: production diaries-web can read canonical retained Image metadata
+PASS: Ansible validates the deployed retained-snapshot broker policy
+PASS: production Compose keeps /data/files selected by the explicit Files selector
+PASS: production Compose/start templates do not load local development overrides
+PASS: production ImageFragment authoring gate defaults enabled after 0027 close-out
+PASS: responder config renders the explicit production ImageFragment authoring variable
+PASS: Ansible rejects non-boolean production authoring-gate values
+PASS: Ansible validates the rendered production authoring-gate value
+PASS: role documentation defines normal enablement and non-destructive rollback
+PASS: role documentation records the durable database/Files pairing invariant
+PASS: production operator documentation defines database-only and matched Files backup semantics
+PASS: production operator documentation defines the complete-backup manifest and partial-workspace contract
+PASS: production operator documentation exposes permanent complete backup/restore commands without automatic restore
+PASS: Ansible creates explicit complete-backup repository and restore-state roots
+PASS: production role preserves the historical Step 2 storage-mode contract
+PASS: production role defines and validates the separate Step 8 stable publication path
+PASS: production .env carries the explicit complete-dataset storage and publication contract
+PASS: production operator documentation defines temporary helper deploy/remove lifecycle
+PASS: role source contains only the approved supported production script set
+PASS: role source contains no unclassified feature/step-shaped production helpers
+PASS: production recurrence policy detects a newly accumulated stepN helper
+PASS: completed-feature production helpers are absent from role source
+PASS: one-off obsolete-script removal lists are no longer required
+PASS: Ansible has separate project-root and managed-scripts synchronization tasks
+PASS: project-root synchronization excludes the separately managed scripts directory
+PASS: project-root synchronization does not use rsync --delete
+PASS: production scripts are synchronized as their own managed directory
+PASS: managed scripts synchronization removes unmanaged and excluded destination entries
+PASS: managed scripts synchronization excludes transient Python interpreter caches
+PASS: managed scripts synchronization protects templated permanent script logs.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-client.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-database.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-mosquitto.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-nginx.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-responder.sh
+PASS: managed scripts synchronization protects templated permanent script start.sh
+PASS: managed scripts synchronization protects templated permanent script status.sh
+PASS: managed scripts synchronization protects templated permanent script stop.sh
+PASS: production deployment contract verified
+PASS: remote rsync holds shared publisher lock
+PASS: schema-2 verification precedes atomic receiving publisher
+PASS: no transfer is represented as whole-snapshot eligible
+PASS: pull --delete is scoped to a private temporary incoming tree
+PASS: pull installation is disabled by default, normal-user owned, configured and unscheduled
+PASS: legacy root-copy cleanup is explicit opt-in only
+PASS: existing local --delete jobs are destination-scoped below the mars subtree; remote job deletes only on backup host
+PASS: read-only preflight creates no destination artefacts
+PASS: 0034 Step 8 permanent mars pull source contract
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$ python3 -m py_compile \
+  roles/diaries/files/sync/scripts/production-complete-dataset.py \
+  roles/diaries/tests/verify-production-publication-wiring.py \
+  verification/0034-step9/verify-pluto-rsync-lock.py
+richard@mango:~/playbooks$

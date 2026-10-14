@@ -1,0 +1,10 @@
+roles/diaries/defaults/main.yaml
+roles/diaries/tasks/main.yaml
+roles/diaries/tasks/copy.yaml
+roles/diaries/templates/.env.j2
+roles/diaries/files/sync/scripts/production-complete-dataset.py
+roles/diaries/files/sync/scripts/README.md
+roles/diaries/README.md
+roles/diaries/tests/verify-production-complete-dataset-tooling.py
+roles/diaries/tests/verify-production-deployment-contract.py
+roles/diaries/tests/verify-production-storage-isolation.py

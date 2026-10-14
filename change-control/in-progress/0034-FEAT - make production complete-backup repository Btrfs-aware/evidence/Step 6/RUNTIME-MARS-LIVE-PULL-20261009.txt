@@ -1,0 +1,15 @@
+richard@mars:~$ python3 ~/scripts/backup/diaries-pull.py \
+  --host richard@pluto \
+  --source-parent /home/richard/projects/diaries/data/dataset-backups/production \
+  --destination-parent /media/usb/@data/backup/pluto \
+  --publisher ~/scripts/backup/complete-dataset-publisher.py \
+  --manifest-tool ~/scripts/backup/complete-dataset-manifest.py
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261007-145013Z
+  Logical dataset: production
+  Workspace:       completed backup
+  Files:           89
+PUBLISHED 20261007-145013Z
+VERIFIED 20261007-145013Z
+{"backupId": "20261007-145013Z", "destination": "/media/usb/@data/backup/pluto/diaries-backup", "snapshotEligible": false, "state": "verified-published"}

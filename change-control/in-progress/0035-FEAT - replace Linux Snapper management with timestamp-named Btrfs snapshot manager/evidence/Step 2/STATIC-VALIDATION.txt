@@ -1,0 +1,34 @@
+$ python3 -m py_compile roles/snapshots/files/btrfs-snapshot-manager.py roles/snapshots/tests/verify-btrfs-snapshot-manager.py
+PASS: Python compile
+$ python3 roles/snapshots/tests/verify-btrfs-snapshot-manager.py
+PASS: retention always keeps newest snapshot
+PASS: retention keeps configured recent hourly buckets
+PASS: retention keeps configured daily buckets
+PASS: retention keeps configured weekly buckets
+PASS: retention thins older snapshots
+PASS: numeric Snapper IDs are outside the managed timestamp namespace
+PASS: timestamp naming is unambiguous UTC
+PASS: Ansible disables future Snapper timeline creation
+PASS: Ansible disables future Snapper boot snapshot creation
+PASS: Ansible retains Snapper cleanup during migration
+PASS: Ansible enables native create and prune timers
+PASS: Ansible fails closed if @snapshots is an unexpected ordinary path
+PASS: manager creates read-only native Btrfs snapshots
+PASS: manager rejects cross-filesystem snapshot repository
+PASS: pruning is restricted to timestamp-shaped managed entries
+PASS: operator documentation freezes the Snapper/native-manager boundary
+PASS: mars/local-backup uses the shared snapshots role
+PASS: backup/remote-backup uses the shared snapshots role
+PASS: backup no longer has a duplicate Snapper provisioning path
+PASS: remote-backup launcher no longer selects obsolete Snapper-only tags
+PASS: 0035 native Btrfs snapshot-manager regression verified
+$ YAML parse checks
+PASS: YAML parses: roles/snapshots/defaults/main.yaml
+PASS: YAML parses: roles/snapshots/tasks/main.yaml
+PASS: YAML parses: roles/snapshots/handlers/main.yaml
+PASS: YAML parses: roles/remote-backup/tasks/main.yaml
+PASS: YAML parses: local-backup.yaml
+PASS: YAML parses: remote-backup.yaml
+PASS: YAML parses: snapshots.yaml
+$ bash -n scripts/remote-backup.sh scripts/snapshots.sh
+PASS: shell launcher syntax

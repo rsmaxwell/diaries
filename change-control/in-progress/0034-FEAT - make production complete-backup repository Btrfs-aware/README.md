@@ -1,29 +1,85 @@
-# 0034-FEAT - Make production complete-backup repository Btrfs-aware
+# 0034-FEAT — Publish a stable production complete-backup dataset for snapshot-backed replication
 
-## Type
+> **ACTIVE DESIGN DECISION — 2026-10-12: MARS-INITIATED NATIVE BTRFS PUSH**
+>
+> The previously documented `backup`-initiated native pull is **superseded for future replication** by `mars`-initiated Btrfs send/SSH/receive to `backup`. Historical pull experiments, signed-off steps, existing scripts and acceptance receipts remain evidence; this documentation update changes **no executable code, live SSH settings, systemd timers or transfers**. The currently running full pull of `20261012-100003Z` must complete and be verified as the common baseline before push migration. See `evidence/Step 10/PUSH-ARCHITECTURE-DECISION-20261012.md`.
+>
 
-Feature
+> **ACTIVE DESIGN — 2026-10-11: NATIVE BTRFS REPLICATION SUPERSEDES RSYNC RECEIVER**
+>
+> This revision supersedes only the unfinished `mars` → `backup` receiving/replication design of 0034 Step 10 and associated 0035 acceptance work. Steps 1–9 of 0034 are historically CLOSED and their evidence remains valid. It does not claim that native replication has been implemented, migrated or tested. The existing in-progress `whole-backup-pull` rsync run is **not** a seed for incremental Btrfs send/receive.
 
-## Status
-
-To do
-
-## Priority
-
-Medium
-
-## Opened
-
-2026-10-07
-
-## Summary
-
-Make the production complete-dataset backup repository Btrfs-aware so successive Diaries backups can share unchanged filesystem extents instead of physically copying the same photographs into every backup directory.
-
-The optimisation must be invisible to the complete-backup media contract introduced by 0033. Every completed backup must remain a normal, independently addressable schema-2 backup directory containing the same logical components and manifest semantics as before:
+## Current approved topology and scope (2026-10-11)
 
 ```text
-<backup-id>/
+pluto -- complete schema-2 production backup (fixed published directory)
+   | existing verified pull / publication contract, unchanged
+   v
+mars -- whole-backup tree in /media/usb/@data/backup (as today)
+   | native read-only snapshots of the containing Btrfs subvolume
+   | btrfs send (full once; later incremental with -p/optional -c)
+   | SSH stream from mars to backup, initiated by backup under explicit controls
+   v
+backup -- btrfs receive into dedicated, isolated receive repository
+        native received read-only snapshots, independent verification/retention
+        never replace or delete /@data/backup
+```
+
+The Btrfs transfer has **no Diaries-specific dataset selector or marker prerequisite**. It replicates the entire chosen source subvolume, which happens to contain the complete backup tree and therefore Diaries backup generations. Diaries schema-2 validation remains the responsibility of backup publication, restore and the *separate* read-only history/verification utility, not the generic replication transport.
+
+**Source unchanged:** Preserve the current `mars` whole-backup source, its `/media/usb/@data/backup` layout, 0034 fixed `pluto` publication, and the 0035 timestamp-named read-only source snapshots. Do **not** silently convert `backup/` to its own subvolume, rename datasets, or discard other contents of `@data`. Because Btrfs send operates on complete subvolumes, the first baseline may include unrelated `@data` content: inventory and capacity-estimate the full sendable source snapshot before running it. If that footprint is unacceptable, defer a topology change to an explicit separate design decision.
+
+**Migration:** The existing rsync-populated `/@data/diaries-mars-replica` directory is not a valid native incremental parent. Retain it as a separately identified, unverified-for-native-receive staging copy until the operator chooses safe removal; do not overlay it with `btrfs receive`, and do not point `--delete` at the historical `/@data/backup`. Create a **fresh, full `btrfs send`/`btrfs receive` baseline** in a dedicated destination, validate it, then send only later read-only snapshots relative to an unchanged common parent. Never alter received snapshots in place or falsify snapshot identity.
+
+**Transfer privilege and safety:** The transport may run SSH as `richard`, but local and remote Btrfs send/receive/subvolume operations normally need privileged, narrowly authorised helpers (not root SSH). Provision a protected receiver destination and stage each receive transaction; fail closed on a partial received subvolume, lost connection, unavailable matching parent, insufficient space, invalid source, or conflicting writer. Preserve immutable source snapshots and the last accepted destination snapshots. Do not reuse the rsync writer-marker contract as if it made a Btrfs stream verified. Define a new receive-completion receipt containing source subvolume/snapshot IDs, parent relation, received UUID, target path, outcome and timestamp, stored outside received read-only subvolumes.
+
+**Scheduling:** Keep both the current rsync transfer and any Btrfs send/receive jobs unscheduled until migration acceptance. On cutover explicitly stop the legacy `mars` push and the new `backup` rsync pull, audit all timers/cron, then activate *one* Btrfs receiver job with rollback. The native snapshot timers on `backup` remain disabled until their independent 0035 acceptance gate.
+
+**Operator utilities:** A read-only Diaries backup locator/history command must be installed on **both `mars` and `pluto`**; it reports each backup ID and the available containing snapshot paths where snapshots exist, and handles the live published dataset where snapshot media are absent. A timestamp snapshot prune/retention utility must also be available on **both `mars` and `pluto`**, but it may prune only validated native timestamp-named snapshots on each host and must refuse unmanaged paths or non-Btrfs filesystems. On ext4 `pluto`, it should clearly report unsupported/no native snapshots rather than attempting to prune directories. `backup` additionally needs native received-snapshot retention and inspection because it is the remote receiver. No utility performs automatic destructive restore.
+
+## Design invariants and acceptance gates (2026-10-11)
+
+- Source and parent snapshots used for incremental sends must be read-only, remain unchanged on both hosts and have a demonstrably valid received-UUID/parent relationship. Record `btrfs subvolume show`, UUIDs, received UUIDs, and source/destination filesystem identifiers.
+- Establish a full native baseline; prove subsequent incremental send (`btrfs send -p`) transmits and reconstructs a later source snapshot. Optional clone-source optimization is a separate measured choice.
+- Verify receive tree completeness, matching source snapshot data, read-only state, backup-history visibility and a disposable restore of a Diaries schema-2 dataset *as an application-level acceptance test*, without embedding Diaries semantics in the transfer code.
+- Demonstrate interrupted full/incremental receive isolation and recovery, missing/retained-parent behavior, lock exclusion, disk-pressure behavior, and retention coordination so no required incremental parent is pruned prematurely.
+- Keep `/@data/backup`, existing Snapper snapshots, and already closed feature evidence unchanged; run staged activation with a reversible rollback to the last confirmed backup mechanism.
+
+
+---
+
+## Earlier design and completed-step record (historical; superseded where inconsistent with 2026-10-11)
+
+
+## Type / status / origin
+
+Feature — **In progress**. Opened 2026-10-07. Architecture revised 2026-10-08 after confirming the actual `pluto` → `mars` → `backup` replication topology. The original title (“make production complete-backup repository Btrfs-aware”) is retained in the change-control directory for continuity; the revised responsibility is **source publication and safe replication**, not on-`pluto` reflink optimisation.
+
+## Current position (as at design revision)
+
+- **0033** delivered the frozen schema-2 complete-dataset manifest, PostgreSQL custom+SQL dumps, durable Files inventory, quiescence, validation and recoverable restore. Existing timestamp-ID backup directories on `pluto` are valid historical recovery media.
+- **0034 Step 1** is closed (baseline frozen). **Step 2** is closed (explicit Playbooks repository/restore root and mode contract, regression and `pluto` preflight). Keep its historical evidence and existing deployed configuration.
+- **0034 Step 3** code and six local regression suites passed. Production preflight on `pluto` identified `/` as **ext4**, selected `full-copy` from `auto`, with no workspace or writer interruption. The **original Step 3 acceptance criterion has been met**, but its on-`pluto` Btrfs strategy objective is now **superseded**; keep code and evidence until a deliberate compatibility retirement step, not as the basis of future implementation.
+- Original Steps 4–12 (reflink base discovery, recursive cloning, Btrfs provisioning on `pluto`, etc.) are **cancelled/superseded**, not completed. The revised `IMPLEMENTATION-STEPS.md` starts from this exact state.
+- Playbooks 0035 already has a prepared shared native timestamp-snapshot manager, **not yet proven on live `mars`/`backup`**. 0034 must not enable new snapshot timers or alter Snapper itself.
+
+## Topology and ownership
+
+```text
+pluto (ext4)                         mars (Btrfs)                     backup (Btrfs)
+current/diaries-backup/  --rsync-->  writable whole-backup mirror  --> writable whole-backup mirror
+  schema-2 dataset                   verified, then 0035 snapshot      verified, then 0035 snapshot
+```
+
+- **0034 owns** creating, validating, atomically publishing and exposing the stable `diaries-backup/` dataset on `pluto`, plus a replication-safe source contract and validation tools callable on receivers.
+- **0035 owns** Btrfs subvolume boundaries, whole-backup snapshot creation, verified-replication hooks, timed retention, legacy Snapper migration and deduplicated Diaries backup-history discovery on `mars`/`backup`.
+- **0033 remains authoritative** for logical backup content and schema-2 validation. No new manifest schema or implicit filesystem-dedup claims.
+- Synology NAS remains independent and managed by DSM; it provides the live Files source, **not** the complete-backup repository.
+
+## Fixed published dataset contract
+
+```text
+diaries-backup/
 ├── database/
 │   ├── diaries.dump
 │   └── diaries.sql
@@ -32,356 +88,92 @@ The optimisation must be invisible to the complete-backup media contract introdu
 └── dataset-manifest.json
 ```
 
-No schema-3 format is introduced by this feature. A restore must not need to know whether a backup was created using Btrfs reflinks, a normal copy, or was later copied to a non-Btrfs filesystem.
+Exactly one **published current dataset** exists at the fixed name `diaries-backup`. The schema-2 `backupId` and `logicalDataset` stay in `dataset-manifest.json` and remain unique across generations. The manifest, verification artefacts and content retain their frozen 0033 semantics. No timestamp is baked into the published directory name.
 
-## Background
+A complete dataset must be assembled in a private sibling staging directory, verified end-to-end, then published using a **real atomic generation switch** with an explicitly documented filesystem and reader model. A pair of non-atomic `mv` operations is **not** sufficient. The implementation must establish whether a stable symlink with atomic `rename(2)`, an equivalent generation-pointer strategy, or a coordinated exclusive handover is supported by the receiving rsync setup; a reader must never see half-old/half-new content. The logical stable path presented to the replicator must remain `diaries-backup/`.
 
-0033 adds complete database + Files backup and restore. The production Files tree contains large photographs, and successive backups are expected to contain a high proportion of identical file content. If every backup copies every photograph afresh, physical backup storage grows approximately with the apparent size of each Files snapshot even when little has changed.
+## Coordination and durability invariants
 
-Btrfs supports copy-on-write extent sharing. A new ordinary directory tree can be created as a reflink clone of the previous completed backup. Unchanged files then share their underlying extents; only changed/new file content and normal metadata consume additional physical storage. Deleting an older backup does not invalidate newer backups because Btrfs keeps shared extents until their final reference is removed.
+1. A source-side backup producer must not mutate or delete the published generation while `rsync` is reading it. Use a common producer/consumer lock **or** immutable generations with explicit lifetime/reader leases. Atomic pointer switching *alone* does not protect a reader that is already traversing the previous tree.
+2. Publish only after successful database+Files capture, independent source verification and schema-2 validation. On failure preserve the last known good published generation.
+3. The receiver must **not** snapshot a partially synced mirror. Sync to a safe receiving state, verify `dataset-manifest.json`, logical dataset, backup identity, database components and Files contents with schema-2 verification, then hand off a coherent mirror generation to 0035.
+4. An rsync run may fail or race with a source generation change; such a run must fail validation and leave the last good receiving snapshot untouched. Receiver-side completion must be signalled explicitly, never inferred merely from a zero rsync exit code.
+5. `rsync` should avoid `--inplace` / `--append` for snapshot-backed trees, preserve metadata consistently, and ensure removed Files do not persist. Destination update policy (`--delete` or equivalent) must be restricted to the *managed Diaries mirror subtree*, not other backed-up content.
+6. The whole-backup snapshot covers **other important data as well as Diaries**. Cross-dataset logical atomicity is not automatic: 0035 must define a snapshot/backup-job coordination barrier. A snapshot with a repeated Diaries `backupId` is normal.
+7. Existing completed timestamp-ID directories remain intact and independently restorable until an explicit migration/retention policy is proved. Do not auto-remove legacy media.
+8. Restore from fixed current data and from a historical whole-backup snapshot must continue to use the 0033 validation and explicit destructive-confirmation safeguards. Do not attempt a destructive production restore as a routine acceptance test.
 
-The important distinction is:
+## Configuration and compatibility
 
-```text
-ordinary repeated copy      -> identical files usually consume new extents
-Btrfs reflink clone + sync  -> unchanged files can continue sharing extents
-```
+Step 2 introduced `DIARIES_COMPLETE_BACKUP_REPOSITORY_ROOT`, `DIARIES_COMPLETE_RESTORE_STATE_ROOT`, and `DIARIES_COMPLETE_BACKUP_STORAGE_MODE` (`auto`, `required-btrfs`, `full-copy`). These are **existing deployed contracts**, not to be silently reinterpreted. The new publication root/path and replication handoff must be explicitly configured through Playbooks with migration checks. On ext4, current `auto` selects `full-copy`. The on-`pluto` `required-btrfs` path must not be used for the new architecture; choose an explicit retirement/deprecation plan and test backward compatibility before removing it. Avoid reusing the existing repository root for a different directory meaning without a deliberate migration.
 
-The backup format itself does not need to change to gain this benefit.
+## Implementation and acceptance
 
-## Goals
+Follow `IMPLEMENTATION-STEPS.md` (revised steps beginning with design freeze / transition). At close-out prove: stable fixed directory, unchanged schema-2 validation, stable backup IDs, safe reader coordination, failure rollback, two successive real backups, verified `pluto` → `mars` replication, unchanged Files sharing through 0035 snapshots, remote `backup` verification and restore rehearsal from a snapshot. The **0034 source-publication portion** can be separately accepted before 0035 is deployed; full end-to-end integration remains a cross-feature gate.
 
-- keep the existing 0033 schema-2 backup directory and manifest contract unchanged;
-- keep complete backups usable by the existing restore tooling without Btrfs-specific restore logic;
-- use Btrfs copy-on-write sharing for unchanged Files content in successive production backups;
-- preserve exact snapshot semantics: added, changed and deleted live Files must be reflected correctly in the new backup;
-- keep `.partial` workspaces non-restorable and completed backups atomically promoted as defined by 0033;
-- retain the existing independent SHA-256/path/size verification before promotion;
-- make the Btrfs optimisation observable in operational output and testable without embedding storage-specific fields into `dataset-manifest.json`;
-- keep the first backup and any deliberate non-Btrfs fallback behaviour well defined;
-- keep database-only backup commands unchanged.
+## Evidence handling
 
-## Non-goals
+Do not rewrite or delete Steps 1–3 evidence. Original pre-redesign README and implementation plan are archived under `evidence/2026-10-08-PRE-REDESIGN/`. Preserve runtime `pluto` Step 3 preflight evidence when formally recording the supersession. This documentation revision **does not deploy code**, close a pending step, migrate stored backup data, or start snapshot timers.
 
-This feature does not:
+## Step 4 design close-out (2026-10-08)
 
-- change schema-2 `dataset-manifest.json`;
-- introduce Btrfs-specific references, extent IDs, subvolume IDs or snapshot IDs into backup media;
-- make restore depend on Btrfs;
-- deduplicate the live mutable Files tree;
-- silently run post-processing deduplication over unrelated filesystem data;
-- change PostgreSQL dump formats;
-- change the logical production database/Files pairing;
-- define long-term off-site replication or retention policy beyond what is needed to prove safe deletion of shared backups;
-- make completed backups writable application storage.
+Step 4 is **closed as a design-contract step**. See `evidence/Step 4/PUBLICATION-AND-REPLICATION-CONTRACT.md` for the chosen immutable-generation, atomically replaced stable symlink, pinned-rsync-reader and shared `flock` model; `evidence/Step 4/STEP-3-SUPERSESSION.md` records the historical Step 3 results without implying Btrfs copying was deployed. The proposed published root is separate from the legacy repository and restore state and is not yet deployed. Actual inter-host rsync configurations remain a mandatory discovery gate. **Step 5 is next.**
 
-## Architectural Decision
+## Step 5 isolated publisher status (2026-10-08)
 
-Prefer **reflink-cloned ordinary directories**, not Btrfs subvolume snapshots, for the schema-2 backup media.
+An opt-in publisher of already-completed schema-2 generations and a disposable concurrent-reader regression are implemented in Playbooks source; production capture and rsync are **not yet integrated**. See `evidence/Step 5/README.md`.
 
-Conceptually:
+## 0034 Step 6 source integration status (2026-10-09)
 
-```text
-previous completed backup/files/
-            |
-            | cp --reflink=always (or equivalent proven reflink operation)
-            v
-new .<backup-id>.partial/files/
-            |
-            | exact reconcile from quiesced live Files source
-            | add new files
-            | replace changed files
-            | remove files deleted since previous backup
-            v
-verified candidate -> atomic promotion -> completed backup
-```
+`mars`-initiated opt-in SSH rsync pull implementation prepared in Playbooks; **disabled by default**, not production-deployed. The receiver verifies schema-2 and publishes only verified generations, reporting `snapshotEligible=false`. Live SSH, fixed-source publication and receiving directory remain verification gates. See `evidence/Step 6/MARS-PULL-INTEGRATION.md`.
 
-Reasons:
+## Step 6 close-out — 2026-10-09
 
-- the resulting backup remains an ordinary directory tree;
-- the existing manifest does not need filesystem-specific metadata;
-- moving/copying a backup to another filesystem materialises normal file contents and remains valid;
-- existing restore code can continue to read `files/` without understanding Btrfs;
-- backup deletion remains ordinary directory deletion from the operator's point of view;
-- subvolume lifecycle and nested-subvolume deletion rules do not leak into the backup contract.
+The manually invoked `mars`-initiated pull of the verified `pluto` backup `20261007-145013Z` succeeded; 89 durable Files were verified and `mars` published the fixed `diaries-backup` path. **Step 6 closed for the manual pilot, not for scheduled operation.** See `evidence/Step 6/CLOSEOUT.md`. A safety audit of existing `mars` rsync `--delete` scopes and permanent `local-backup` role ownership reconciliation are **required before automatic activation**, and 0035 snapshot eligibility remains false.
 
-A later implementation may prove another Btrfs mechanism superior, but it must preserve all of these media and restore properties before replacing this decision.
+## Step 7 — CLOSED (2026-10-09)
 
-## Repository Configuration
+Historical restore compatibility is implemented in Playbooks source. `restore-dataset.sh` can now select a legacy `<backup-id>`, the stable `diaries-backup` publication, or an explicit completed schema-2 directory such as a path later returned by 0035 snapshot history. Prepared restores pin the exact resolved source for later apply/rollback/postflight, preventing a moving fixed pointer from changing the selected media. The new disposable compatibility regression and existing recovery-contract suites pass. See `evidence/Step 7/README.md`. **CLOSED:** six `mango` suites passed; `pluto` deployment passed; all three non-destructive production source preflights passed. Negative confirmation and source-pinning guards are covered by disposable tests; no destructive production restore was performed. See `evidence/Step 7/CLOSEOUT.md`.
 
-Production must have an explicit complete-backup repository root configured through Playbooks rather than relying on an implicit assumption that `~/projects/diaries/data/dataset-backups/production` is on a particular filesystem.
 
-The exact variable name is an implementation decision, but the effective configuration must distinguish:
+## Step 8 — CLOSED (2026-10-09)
 
-```text
-live mutable Files root
-production complete-backup repository root
-production complete-restore state root
-```
+Playbooks configuration, permanent regression and operator guidance were closed after the eleven-suite `mango` regression passed. The separate stable published-root contract, normal-user opt-in `mars` pull ownership, delete-scope guard and restore compatibility are accepted in source. Production path migration was deliberately deferred to Step 9. See `evidence/Step 8/CLOSEOUT.md`.
 
-The complete-backup repository must remain outside the live mutable Files tree.
+## Step 9 — CLOSED (2026-10-09)
 
-For Btrfs-aware mode, preflight must prove that the filesystem containing the backup repository supports reflinks. At minimum record/verify:
+Controlled `pluto` deployment, non-destructive predeploy preservation, first full schema-2 stable publication, symlink-preflight regression fix/redeployment, post-publication preservation verification, and real live `rsync` shared-lock/publisher exclusive-lock acceptance all passed. The stable pointer now names `20261009-154847Z`; historical `20261007-145013Z` and first production `20261009-153243Z` remain retained. No cleanup, destructive restore, or Docker image rebuild was required. See `evidence/Step 9/CLOSEOUT.md` and runtime evidence transcripts. **0034-FEAT remains open for Steps 10–11.**
 
-```text
-resolved repository path
-filesystem type = btrfs
-reflink probe succeeds
-same-filesystem clone source/destination where required
-available space / allocation information sufficient for the operation
-```
 
-Do not infer Btrfs solely from a directory name or mount path.
+## Step 10 ownership decision — 2026-10-10 (implementation pending)
 
-## Backup Creation Strategy
+The `backup` pull/receiving repository ownership model is revised following successful `richard@backup` → `richard@mars` public-key SSH testing. **This records an agreed target design, not a deployed change or Step 10 acceptance.**
 
-### First complete backup
+- The isolated receiving root `/@data/diaries-mars-replica` and its managed writable children are provisioned by privileged Playbooks tasks but **owned by `richard`** (configurable `backup_pull_user`, default `richard`), with restrictive permissions. Only this isolated tree is in scope; existing `/@data/backup` (about 325 GB of unrelated/historical data) must remain untouched. `rsync --delete` must not escape the isolated managed subtree.
+- Run `whole-backup-pull` and its SSH/rsync, lock, schema-2 verification, and verified-marker publication as **`richard`**, not via `sudo`. The SSH connection uses `richard`'s existing `mars` client alias, SSH key and configured port. Do not install or require root's outbound SSH keys/config on `backup`.
+- Keep privileged Btrfs subvolume/snapshot creation, retention/pruning, systemd management and privileged provisioning in the 0035 manager/Playbooks (`root`). A root-operated snapshot manager may read the `richard`-owned verified marker but may not infer verification solely from ownership or an rsync exit code.
+- The pull and snapshot manager must coordinate through the **same persistent lock inode**, e.g. `/@data/diaries-mars-replica/.btrfs-snapshot-writer.lock`, using compatible `flock` discipline. Provision its ownership/mode explicitly; never truncate, replace, unlink or rsync-delete it. Ensure both identities can open/lock it, and test contention between a `richard` pull and root snapshot creation. If a destination-tree rsync can touch the lock or marker, exclude/protect those receiver-owned control files from sync.
+- Adapt non-root rsync flags to preserve required timestamps/content/permissions **without requiring privileged owner/group restoration**; independently verify complete source/destination dataset identities and Files before publishing an eligibility marker. Verify `richard` can create temp files, atomically publish the marker, and replace managed receiving content.
+- **Open source-access gate:** `richard@backup` can authenticate to `mars`, but the probe of `/media/usb/@snapshots/@data/20261009-170001Z/backup/.diaries-snapshot-verified.json` did not report readable. Establish existence/path and traversal/read permissions of the pinned immutable snapshot and verify access as `richard`; change only narrowly scoped permissions/ACLs as needed. Do not claim the first pull is ready until this passes.
+- Keep `backup` native snapshot timers disabled and historical Snapper jobs untouched until the first independently verified receive, shared-lock test and snapshot-history gate pass. No real pull, ownership migration or timer activation is evidenced by this documentation change.
 
-When no suitable previous completed backup exists for the same logical dataset, create the candidate Files snapshot using the normal verified full-copy path from 0033.
+**Next implementation gate:** update `remote-backup` directory provisioning and `whole-backup-pull` execution/rsync/locking assumptions, validate source readability, deploy safely, run unprivileged preflight then a controlled pull, and only then test 0035 snapshots on `backup`. The original schema-2 contract and `mars`/`pluto` steps remain unchanged.
 
-The first backup therefore remains valid even though it cannot benefit from an earlier reflink base.
 
-### Subsequent complete backups
+## 2026-10-12 — Agreed push revision (authoritative for future Step 10 work)
 
-Select the newest **completed, schema-2-valid backup for the same logical dataset** as the reflink base.
+The accepted future data path is `mars` (source/orchestrator, outbound SSH) → `backup` (validated receiver). `mars` connects as the normal SSH identity `richard` to `10.254.22.1` on port `39263`, using the existing tested authentication and host-key verification; the address/port are **observed connectivity**, not yet an installed replication transport configuration. No inbound UniFi firewall port is required. Btrfs streams use narrow privileged endpoints, not remote unrestricted root SSH. The previous `backup`-initiated pull is a historical implementation and rollback option, **not** the target scheduled workflow.
 
-Never use as a base:
+The in-flight full receive of `20261012-100003Z`, source UUID `7ad1f171-d1c7-0545-82a1-52e84adac979`, must run to completion untouched. After receipt, read-only status, UUID and filesystem identities, journal/receipt and protection state are verified, it becomes the first **push-compatible common parent**. Do not assume acceptance while it is still streaming. Subsequent first push is an **incremental** send with `-p` only after explicit common-parent validation; never silently full-reseed on missing parent. Preserve `20261009-170001Z` at receiver as historical data and preserve `/@data/backup` entirely.
 
-- a `.<backup-id>.partial` workspace;
-- a backup whose manifest does not validate;
-- a backup for another logical dataset;
-- a backup whose required Files component is missing or invalid;
-- a directory that merely has a timestamp-shaped name but is not valid completed media.
+The source-side push orchestration holds a single transaction lock and protects the candidate **before** starting the send; holds its accepted parent until verified child acceptance; stages receiver data safely; performs receive-side postchecks/receipt publication; confirms the receipt independently on `mars`; then atomically advances the protected common parent. Any error leaves the old parent pinned, keeps an unaccepted candidate appropriately protected for recovery, and must not record success. Receiver receipt ownership and validation remain receiver-controlled.
 
-Create the new candidate `files/` tree by reflink-cloning the previous completed `files/` tree. Then reconcile it against the quiesced live Files source using exact replacement semantics:
+Scheduling remains **opt-in/disabled** through testing and cutover. Do not enable `btrfs-snapshot-prune.timer` on `mars` until live parent-preservation and lifecycle testing passes. The legacy rsync destination and its stopped jobs must not be reactivated by this revision. Refer to the Step 10 push decision for complete migration gates.
 
-```text
-unchanged live file -> leave cloned file/extents untouched where possible
-changed live file   -> replace with current content
-new live file       -> add
-removed live file   -> delete from candidate
-.image-staging      -> excluded according to the frozen 0033 staging policy
-```
+## 2026-10-13 — Step 10.P9 acceptance (CLOSED)
 
-The reconciliation must not depend only on apparent directory equality. Final 0033 verification remains authoritative and must independently prove exact path/size/SHA-256 equality against the quiesced live source before promotion.
+The narrow `roles/remote-backup/` pull-retirement cleanup passed source regressions, Ansible deploy on `mars`/`backup`, on-host legacy-helper absence and a post-deployment incremental preflight. The pre-cleanup checkpoint `20261013-171228Z` was received on `backup` and remains held independently of replication parent `20261013-180016Z` on `mars`. Evidence: `evidence/Step 10/STEP-10.P9-FINAL-CLEANUP-ACCEPTANCE-20261013.md`. Commit `5d3b2b3` was pushed but includes other ongoing work due to `git add -A`; see the evidence for the precise scope qualification. This **does not** by itself close the whole feature.
 
-## Copy-on-write Safety Invariants
+## 2026-10-14 — Step 11.3 disposable off-site recovery rehearsal: CLOSED
 
-The implementation must prove these properties:
-
-```text
-modifying the new candidate never changes the previous completed backup
-removing the previous completed backup never damages a newer backup
-removing a newer backup never damages an older backup
-changed files stop sharing the changed extents as required by CoW
-unchanged files may remain extent-shared
-backup validity is determined by schema-2 content/hashes, not by extent-sharing state
-```
-
-A backup must remain logically complete even if Btrfs later chooses different physical allocation or the backup is copied to another filesystem.
-
-## Verification and Evidence
-
-Keep the existing 0033 media verification unchanged as the correctness gate:
-
-```text
-custom PostgreSQL dump structurally valid
-plain SQL dump readable
-schema-2 manifest valid
-Files path set exact
-Files sizes exact
-Files SHA-256 exact
-logical dataset identity exact
-partial/completed workspace semantics exact
-```
-
-Add separate Btrfs optimisation evidence outside the manifest, for example operator/test output showing:
-
-```text
-Btrfs repository detected
-reflink base backup selected
-reflink clone succeeded
-candidate reconciliation succeeded
-shared/extents or exclusive-byte evidence before/after
-completed backup still validates with the normal schema-2 validator
-```
-
-Use Btrfs-native reporting such as `btrfs filesystem du` where appropriate to show that a second mostly-identical backup consumes materially less exclusive storage than a second full physical copy. Do not make a particular compression ratio or byte saving part of the backup correctness contract.
-
-## Failure Semantics
-
-Btrfs optimisation must never weaken 0033 fail-closed behaviour.
-
-If any of the following occurs:
-
-```text
-repository is expected to be Btrfs but is not
-reflink probe fails
-base backup becomes invalid during preflight
-reflink clone fails
-candidate reconciliation fails
-source verification fails
-manifest validation fails
-atomic promotion fails
-```
-
-then:
-
-- the candidate remains non-restorable `.partial` media or is safely removed according to the existing policy;
-- no completed backup is published;
-- the previous completed backup remains untouched;
-- writer-state restoration follows the existing 0033 rules;
-- the failure is explicit in command output and logs.
-
-Do not silently claim a Btrfs-optimised backup if the operation fell back to a normal full copy. If fallback is supported, it must be an explicit documented mode and must still produce valid schema-2 media.
-
-## Restore Semantics
-
-Restore remains deliberately **Btrfs-unaware**.
-
-The existing 0033 restore path must continue to consume a backup only through its normal schema-2 content:
-
-```text
-database/diaries.dump
-files/
-dataset-manifest.json
-verification metadata
-```
-
-Restore must work when the selected backup has been:
-
-- left in the Btrfs repository with shared extents;
-- copied to another Btrfs filesystem;
-- copied to ext4/NTFS/other ordinary storage, thereby materialising independent file contents;
-- archived and later rehydrated as normal files.
-
-No restore preflight may require a particular Btrfs UUID, subvolume ID, generation number, extent ID or reflink relationship.
-
-## Production and Playbooks Scope
-
-Expected changes are primarily production operational tooling and Playbooks:
-
-- introduce/configure the explicit production complete-backup repository root;
-- validate Btrfs/reflink capability when Btrfs-aware mode is enabled;
-- teach `backup-dataset.sh` / its helper to select a valid previous backup as a reflink base;
-- perform reflink clone + exact live-source reconciliation;
-- retain the existing 0033 final verification and atomic promotion;
-- report which backup was used as the clone base and whether reflink optimisation was active;
-- keep restore logic and database-only tooling compatible and unchanged unless path configuration requires a narrowly scoped update;
-- update Ansible regression coverage and operator documentation.
-
-No Angular client, diaries-web, MQTT RPC or responder application behaviour is expected to change.
-
-## Retention and Deletion
-
-Shared extents must not make operators afraid to remove old backups. Add a controlled test proving that deleting one completed backup does not alter or invalidate another backup that shared extents with it.
-
-Deletion/retention tooling, if added, must:
-
-- delete only complete-backup directories selected by an explicit retention decision;
-- never delete `.partial` or restore-state evidence accidentally as a side effect of age sorting;
-- never assume a newer backup depends logically on an older backup merely because extents are shared;
-- revalidate at least one surviving backup after the deletion rehearsal.
-
-A full automatic retention policy is outside this feature unless separately approved.
-
-## Migration / Rollout
-
-Existing completed schema-2 backups remain valid and require no conversion.
-
-A safe rollout should be:
-
-1. complete and close 0033;
-2. provision or identify the production Btrfs backup repository;
-3. configure the repository through Playbooks;
-4. run Btrfs/reflink capability preflight without changing backups;
-5. create the first schema-2 backup in the new repository using the normal full-copy path if no base exists there;
-6. create a second backup using reflink-aware seeding;
-7. validate both backups using the unchanged schema-2 validator;
-8. prove unchanged Files share storage and changed Files remain correct;
-9. rehearse deletion of one disposable/controlled backup and revalidate the survivor;
-10. update production operating documentation and close the feature.
-
-Do not rewrite historical backup directories merely to manufacture sharing. They can age out under the normal retention process while new backups gain reflink sharing naturally.
-
-## Detailed Implementation Steps
-
-- [ ] Freeze the current 0033 production backup path, schema-2 format and verification behaviour as regression evidence.
-- [ ] Define an explicit Playbooks variable/configuration contract for the production complete-backup repository root.
-- [ ] Add preflight that resolves the repository and proves Btrfs + reflink capability when Btrfs-aware mode is enabled.
-- [ ] Add regression coverage proving `dataset-manifest.json` remains schema version 2 with unchanged required semantics.
-- [ ] Implement selection of the newest valid completed backup for the same logical dataset as the optional reflink base.
-- [ ] Implement reflink cloning of the previous `files/` snapshot into the new `.partial` candidate.
-- [ ] Implement exact reconciliation of the cloned candidate against the quiesced live Files source, including add/change/delete behaviour and frozen `.image-staging` exclusion.
-- [ ] Keep database dump creation, final Files SHA-256 verification, manifest generation/validation and atomic promotion unchanged in meaning.
-- [ ] Add explicit operational output showing repository filesystem, optimisation mode and selected base backup.
-- [ ] Test first-backup behaviour where no reflink base exists.
-- [ ] Test repeated backup with no Files changes and prove substantial extent sharing/exclusive-space reduction.
-- [ ] Test one changed large image, one new file and one deleted file between backups.
-- [ ] Prove the previous completed backup remains byte-identical after candidate reconciliation.
-- [ ] Prove deleting one extent-sharing backup does not invalidate another.
-- [ ] Copy a completed optimised backup to non-Btrfs storage and validate it there using the ordinary schema-2 validator.
-- [ ] Rehearse restore from Btrfs-backed media using the unchanged restore command/path.
-- [ ] Update Playbooks tests, production operator documentation and script classification under 0032.
-- [ ] Record storage-efficiency evidence without making physical deduplication a correctness dependency.
-
-## Acceptance Criteria
-
-- [ ] Existing schema-2 backup layout and `dataset-manifest.json` semantics are unchanged.
-- [ ] Existing schema-2 validation accepts Btrfs-aware backups without special cases.
-- [ ] Restore requires no Btrfs-specific metadata or commands.
-- [ ] Production repository identity is explicit and validated by Playbooks/tooling.
-- [ ] When Btrfs-aware mode is enabled, preflight proves the repository is actually Btrfs and reflink-capable.
-- [ ] The first backup with no suitable base succeeds using the defined full-copy path.
-- [ ] A subsequent backup can reflink-seed from the newest valid completed backup for the same logical dataset.
-- [ ] Unchanged Files can share physical extents while the new backup remains a logically complete ordinary directory tree.
-- [ ] Changed/new/deleted Files are represented exactly in the new backup.
-- [ ] Final source comparison still proves exact paths, sizes and SHA-256 hashes before promotion.
-- [ ] No `.partial`, invalid or cross-dataset backup can be used as a reflink base.
-- [ ] Modifying a candidate cannot change a previous completed backup.
-- [ ] Deleting either of two extent-sharing completed backups does not invalidate the survivor.
-- [ ] Copying an optimised backup to non-Btrfs storage preserves a valid, restorable schema-2 backup.
-- [ ] Database-only backup commands and semantics remain unchanged.
-- [ ] No client, responder, diaries-web or MQTT protocol change is required.
-- [ ] Production and regression tooling follows the 0032 managed-script hygiene rules.
-- [ ] Documentation explains apparent size versus exclusive/physical Btrfs usage so operators do not mistake shared extents for missing backup data.
-
-## Dependencies
-
-Depends on 0033-FEAT being completed and its schema-2 backup/restore contract being frozen.
-
-The production Btrfs repository must be provisioned/mounted before production rollout, but its exact host path is intentionally not assumed by this change record.
-
-## Risks and Controls
-
-### Risk: optimisation accidentally changes backup semantics
-
-Control: keep schema-2 validation and final live-source SHA-256 comparison as the authoritative correctness gates. Reflink sharing is an implementation detail only.
-
-### Risk: cloning from a damaged or wrong backup
-
-Control: base candidates must be completed, schema-2-valid and for the same logical dataset before use.
-
-### Risk: operators interpret apparent directory size as consumed disk space
-
-Control: document and report both logical/apparent backup size and Btrfs exclusive/shared usage where practical.
-
-### Risk: deleting an old backup appears to threaten newer backups
-
-Control: document Btrfs extent reference semantics and preserve a deletion rehearsal proving survivor validity.
-
-### Risk: repository silently stops being Btrfs
-
-Control: production preflight validates filesystem type/reflink capability before claiming Btrfs-aware operation.
-
-### Risk: a reflink-aware sync mutates the previous backup
-
-Control: candidate is a separate reflink clone, never the previous backup directory; regression fingerprints the previous backup before and after candidate reconciliation.
-
-## Deployment and Rollback
-
-This is an operational-storage optimisation, not an application-data migration.
-
-Rollback is to disable Btrfs-aware seeding and return backup creation to the existing 0033 full-copy path while continuing to use exactly the same schema-2 directory/manifest format. Existing Btrfs-aware backups require no conversion and remain valid restore media.
-
-If the configured Btrfs repository itself becomes unavailable, normal production operation must remain unaffected; only complete-backup/restore operations that require that repository should fail explicitly.
+Gates A–D passed against published schema-2 generation `20261009-154847Z` held in off-site Btrfs snapshot `20261013-171228Z`. Recovery on `mars` used an isolated PostgreSQL 18 container and scratch Files, verified 89 Files and Image catalogue hashes, and removed each disposable container. The `mars` history CLI remains blocked by `verification.required=false`; configuration review is deferred to 0035-FEAT and not misrepresented as a successful history lookup. See `evidence/Step 11/STEP-11.3-OFFSITE-DISPOSABLE-RESTORE-CLOSEOUT-20261014.md`. Step 11 and 0034-FEAT remain OPEN; next Step 11.4 is unattended operating arrangements.

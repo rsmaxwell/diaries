@@ -1,0 +1,13 @@
+Playbooks:
+roles/diaries/files/sync/scripts/production-complete-dataset.py
+roles/diaries/files/sync/scripts/README.md
+roles/diaries/README.md
+roles/diaries/tests/verify-production-restore-source-compatibility.py
+
+Diaries change-control:
+change-control/in-progress/0034-FEAT - make production complete-backup repository Btrfs-aware/IMPLEMENTATION-STEPS.md
+change-control/in-progress/0034-FEAT - make production complete-backup repository Btrfs-aware/README.md
+change-control/in-progress/0034-FEAT - make production complete-backup repository Btrfs-aware/evidence/Step 7/README.md
+change-control/in-progress/0034-FEAT - make production complete-backup repository Btrfs-aware/evidence/Step 7/APPLY-NOTES.md
+change-control/in-progress/0034-FEAT - make production complete-backup repository Btrfs-aware/evidence/Step 7/CHANGED-FILES.txt
+change-control/in-progress/0034-FEAT - make production complete-backup repository Btrfs-aware/evidence/Step 7/SOURCE-REGRESSIONS-20261009.txt

@@ -1,0 +1,303 @@
+richard@mango:~/playbooks$ cd scripts/
+richard@mango:~/playbooks/scripts$ ls -al
+total 56
+drwxr-xr-x 2 richard richard 4096 Aug 27 07:53  .
+drwxr-xr-x 7 richard richard 4096 Oct  9 09:58  ..
+-rw-rw-r-- 1 richard richard    0 Aug 27 07:53 '{'
+-rwxr--r-- 1 richard richard  131 Aug 27 16:46  archiva.sh
+-rwxr--r-- 1 richard richard 2467 Oct  9 13:25  bootstrap.sh
+-rwxr--r-- 1 richard richard  130 Aug 19 10:00  builder.sh
+-rwxr--r-- 1 richard richard  135 Jun 14 19:23  development.sh
+-rwxr--r-- 1 richard richard  131 Oct  6 13:29  diaries.sh
+-rwxr--r-- 1 richard richard  179 Aug 19 19:34  infrastructure.sh
+-rwxr--r-- 1 richard richard  761 Aug 29 09:40  ledger.sh
+-rwxr--r-- 1 richard richard   93 Aug 26 14:28  local-backup.sh
+-rwxr--r-- 1 richard richard  145 Mar 28  2026  mosquitto.sh
+-rwxr--r-- 1 richard richard  144 Apr  5  2026  postgres.sh
+-rwxr--r-- 1 richard richard  146 Oct  6  2023  remote-backup.sh
+-rwxr--r-- 1 richard richard   91 May 26  2024  snapshots.sh
+richard@mango:~/playbooks/scripts$ ./diaries.sh
+
+PLAY [diaries] ********************************************************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************************************
+ok: [pluto]
+
+TASK [docker : Docker | Install prerequisite packages] ****************************************************************************************************************
+ok: [pluto]
+
+TASK [docker : Docker | Ensure apt keyrings directory exists] *********************************************************************************************************
+ok: [pluto]
+
+TASK [docker : Docker | Install Docker apt signing key] ***************************************************************************************************************
+ok: [pluto]
+
+TASK [docker : Docker | Remove legacy Docker repository definition] ***************************************************************************************************
+ok: [pluto]
+
+TASK [docker : Docker | Add Docker repository] ************************************************************************************************************************
+ok: [pluto]
+
+TASK [docker : Docker | Update apt cache after repository change] *****************************************************************************************************
+skipping: [pluto]
+
+TASK [docker : Docker | Install Docker packages] **********************************************************************************************************************
+ok: [pluto]
+
+TASK [docker : Docker | Add remote user to docker group] **************************************************************************************************************
+ok: [pluto]
+
+TASK [docker : Docker | Enable and start Docker] **********************************************************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries | Validate frontend mode] *********************************************************************************************************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries | Validate mutable Files directory selector] **************************************************************************************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries | Validate complete-dataset production configuration] *****************************************************************************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries | Validate ImageFragment production authoring gate] *******************************************************************************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries:utilities | Install prerequisite packages] ****************************************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:tools | Install Mosquitto tools] **************************************************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Create project directories] ************************************************************************************************************
+ok: [pluto] => (item=/home/richard/projects)
+ok: [pluto] => (item=/home/richard/projects/diaries)
+ok: [pluto] => (item=/home/richard/projects/diaries/config)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/client)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/responder)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/config)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/config/conf.d)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/config/conf.d/locations)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/config/files)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/html)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/html/files)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/log)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/mosquitto)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/postgres)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/web)
+ok: [pluto] => (item=/home/richard/projects/diaries/data)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/postgres)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/mosquitto)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/responder)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/nginx)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/nginx/files)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/diaries)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/files)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/dataset-backups)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/dataset-backups/production)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/dataset-restores)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/dataset-restores/production)
+ok: [pluto] => (item=/home/richard/projects/diaries/scripts)
+
+TASK [diaries : diaries:copy | Synchronize project files excluding managed scripts] ***********************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Debug project sync output] *************************************************************************************************************
+ok: [pluto] => {
+    "result.stdout_lines": []
+}
+
+TASK [diaries : diaries:copy | Synchronize managed scripts] ***********************************************************************************************************
+changed: [pluto]
+
+TASK [diaries : diaries:copy | Debug managed scripts sync output] *****************************************************************************************************
+ok: [pluto] => {
+    "scripts_sync_result.stdout_lines": [
+        "<f.st...... README.md",
+        "<f.st...... production-complete-dataset.py"
+    ]
+}
+
+TASK [diaries : diaries:copy | Template files] ************************************************************************************************************************
+ok: [pluto] => (item={'path': 'compose.yaml', 'mode': '0664'})
+changed: [pluto] => (item={'path': '.env', 'mode': '0600'})
+ok: [pluto] => (item={'path': 'config/client/config.json', 'mode': '0644'})
+ok: [pluto] => (item={'path': 'config/responder/responder.json', 'mode': '0644'})
+ok: [pluto] => (item={'path': 'config/nginx/config/conf.d/site.conf', 'mode': '0644'})
+ok: [pluto] => (item={'path': 'config/nginx/html/files/index.html', 'mode': '0644'})
+ok: [pluto] => (item={'path': 'config/web/diaries-web.json', 'mode': '0644'})
+ok: [pluto] => (item={'path': 'scripts/start.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/stop.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/status.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/logs.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/shell-prompt-database.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/shell-prompt-mosquitto.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/shell-prompt-responder.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/shell-prompt-client.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/shell-prompt-nginx.sh', 'mode': '0744'})
+
+TASK [diaries : diaries:copy | Validate rendered ImageFragment authoring gate] ****************************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Validate rendered mutable Files selector in .env] **************************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Validate rendered complete-dataset storage contract in .env] ***************************************************************************
+ok: [pluto] => (item=DIARIES_COMPLETE_BACKUP_REPOSITORY_ROOT=/home/richard/projects/diaries/data/dataset-backups/production)
+ok: [pluto] => (item=DIARIES_COMPLETE_RESTORE_STATE_ROOT=/home/richard/projects/diaries/data/dataset-restores/production)
+ok: [pluto] => (item=DIARIES_COMPLETE_BACKUP_PUBLISHED_ROOT=/home/richard/projects/diaries/data/diaries-backup)
+ok: [pluto] => (item=DIARIES_COMPLETE_BACKUP_STORAGE_MODE=auto)
+
+TASK [diaries : diaries:copy | Validate rendered mutable Files mount in Compose] **************************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Validate rendered shared diary scan mount in Compose] **********************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Validate retained-snapshot broker flow-control policy] *********************************************************************************
+ok: [pluto] => (item=max_inflight_messages[[:space:]]+20[[:space:]]*)
+ok: [pluto] => (item=max_queued_messages[[:space:]]+0[[:space:]]*)
+
+TASK [diaries : diaries:copy | Install the systemd unit] **************************************************************************************************************
+ok: [pluto] => (item={'path': 'etc/systemd/system/diaries-compose.service', 'mode': '0644'})
+
+TASK [diaries : diaries:shared-frontend | Check the shared Docker network exists] *************************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:shared-frontend | Require the shared Docker network] ******************************************************************************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries:shared-frontend | Check the shared Nginx container exists] ************************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:shared-frontend | Require the shared Nginx container] *****************************************************************************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries:shared-frontend | Check the shared Nginx files directory exists] ******************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:shared-frontend | Require the shared Nginx files directory] ***********************************************************************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries:shared-frontend | Check the shared Nginx location directory exists] ***************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:shared-frontend | Require the shared Nginx location directory] ********************************************************************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries:shared-frontend | Install Diaries shared Nginx source file] ***********************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:standalone-frontend | Remove stale shared Nginx active location] ******************************************************************************
+skipping: [pluto]
+
+TASK [diaries : diaries:standalone-frontend | Remove stale shared Nginx source file] **********************************************************************************
+skipping: [pluto]
+
+TASK [diaries : diaries:standalone-frontend | Check whether shared Nginx is running] **********************************************************************************
+skipping: [pluto]
+
+TASK [diaries : diaries:standalone-frontend | Validate shared Nginx after removing stale route] ***********************************************************************
+skipping: [pluto]
+
+TASK [diaries : diaries:standalone-frontend | Reload shared Nginx after removing stale route] *************************************************************************
+skipping: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Validate MQTT credential variables] **************************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Calculate credential fingerprint] ****************************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Check installed password file] *******************************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Check installed password checksum marker] ********************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Read installed password checksum marker] *********************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Normalise installed password checksum] ***********************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Decide whether password file must be regenerated] ************************************************************************
+ok: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Create temporary password source file on target] *************************************************************************
+skipping: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Write password source on target] *****************************************************************************************
+skipping: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Hash password file in place] *********************************************************************************************
+skipping: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Install hashed Mosquitto password file] **********************************************************************************
+skipping: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Write password source checksum marker] ***********************************************************************************
+skipping: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Remove temporary password source from target] ****************************************************************************
+skipping: [pluto]
+
+TASK [diaries : diaries:compose | Increase the maximum receive and send buffer sizes] *********************************************************************************
+ok: [pluto] => (item=net.core.rmem_max)
+ok: [pluto] => (item=net.core.wmem_max)
+
+RUNNING HANDLER [diaries : diaries:handler | Enable and start diaries compose stack] **********************************************************************************
+changed: [pluto]
+
+PLAY RECAP ************************************************************************************************************************************************************
+pluto                      : ok=46   changed=3    unreachable=0    failed=0    skipped=12   rescued=0    ignored=0
+
+richard@mango:~/playbooks/scripts$

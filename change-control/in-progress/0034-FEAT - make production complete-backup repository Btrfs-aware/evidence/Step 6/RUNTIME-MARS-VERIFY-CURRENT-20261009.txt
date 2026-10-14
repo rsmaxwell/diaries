@@ -1,0 +1,9 @@
+richard@mars:~$ cd ~/scripts/backup
+python3 ./complete-dataset-publisher.py \
+  --published-root /media/usb/@data/backup/pluto/diaries-backup verify-current
+python3 ./complete-dataset-publisher.py \
+  --published-root /media/usb/@data/backup/pluto/diaries-backup show-current-id
+ls -ld /media/usb/@data/backup/pluto/diaries-backup
+VERIFIED 20261007-145013Z
+20261007-145013Z
+lrwxrwxrwx 1 richard richard 44 Oct  9 13:52 /media/usb/@data/backup/pluto/diaries-backup -> .diaries-backup-generations/20261007-145013Z

@@ -1,0 +1,120 @@
+richard@pluto:~/temp$ cat script.sh
+chmod +x /tmp/0034-step1-capture-production-baseline.sh
+
+/tmp/0034-step1-capture-production-baseline.sh \
+  /home/richard/projects/diaries \
+  | tee 0034-step1-production-storage-baseline.txt
+richard@pluto:~/temp$
+richard@pluto:~/temp$
+richard@pluto:~/temp$
+richard@pluto:~/temp$
+richard@pluto:~/temp$ ./script.sh
+chmod: cannot access '/tmp/0034-step1-capture-production-baseline.sh': No such file or directory
+./script.sh: line 4: /tmp/0034-step1-capture-production-baseline.sh: No such file or directory
+richard@pluto:~/temp$ ./script.sh
+
+===== 0034 Step 1 production baseline =====
+captured_utc=2026-10-08T07:51:31Z
+host=pluto
+user=richard
+project_dir=/home/richard/projects/diaries
+backup_root=/home/richard/projects/diaries/data/dataset-backups/production
+restore_root=/home/richard/projects/diaries/data/dataset-restores/production
+Linux pluto 6.8.0-138-generic #138-Ubuntu SMP PREEMPT_DYNAMIC Fri Jul 31 22:41:49 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+
+===== Resolved storage paths =====
+/home/richard/projects/diaries -> /home/richard/projects/diaries
+/home/richard/projects/diaries/data/dataset-backups/production -> /home/richard/projects/diaries/data/dataset-backups/production
+/home/richard/projects/diaries/data/dataset-restores/production -> /home/richard/projects/diaries/data/dataset-restores/production
+
+===== Mount and filesystem identity =====
+
+--- findmnt backup root ---
+$ findmnt -T /home/richard/projects/diaries/data/dataset-backups/production -o TARGET\,SOURCE\,FSTYPE\,OPTIONS
+TARGET SOURCE                            FSTYPE OPTIONS
+/      /dev/mapper/ubuntu--vg-ubuntu--lv ext4   rw,relatime
+[exit=0]
+
+--- statfs backup root ---
+$ stat -f -c path=%n\ fs_type=%T\ fs_id=%i\ block_size=%S\ total_blocks=%b\ free_blocks=%f\ available_blocks=%a /home/richard/projects/diaries/data/dataset-backups/production
+path=/home/richard/projects/diaries/data/dataset-backups/production fs_type=ext2/ext3 fs_id=b6812f978759f64a block_size=4096 total_blocks=17466226 free_blocks=6758869 available_blocks=5952714
+[exit=0]
+
+--- df human backup root ---
+$ df -hT /home/richard/projects/diaries/data/dataset-backups/production
+Filesystem                        Type  Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv ext4   67G   41G   23G  65% /
+[exit=0]
+
+--- df bytes backup root ---
+$ df -B1 /home/richard/projects/diaries/data/dataset-backups/production
+Filesystem                          1B-blocks        Used   Available Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv 71541661696 43857334272 24382316544  65% /
+[exit=0]
+detected_fs_type=ext2/ext3
+
+===== Btrfs baseline =====
+Current backup root is not reported as btrfs; this is a valid Step-1 baseline result.
+
+===== Current backup inventory =====
+completed_count=1
+partial_count=1
+completed=20261007-145013Z
+partial=.20261007-143438Z.partial
+latest_completed=20261007-145013Z
+
+===== Newest completed backup validation =====
+
+--- schema-2 validator ---
+$ python3 /home/richard/projects/diaries/scripts/complete-dataset-manifest.py verify --backup-dir /home/richard/projects/diaries/data/dataset-backups/production/20261007-145013Z
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261007-145013Z
+  Logical dataset: production
+  Workspace:       completed backup
+  Files:           89
+[exit=0]
+
+--- manifest completion markers ---
+$ python3 -c import\ json\,sys\;\ p=sys.argv\[1\]\;\ d=json.load\(open\(p\,encoding=\"utf-8\"\)\)\;\ print\(\"schemaVersion=\"+str\(d.get\(\"schemaVersion\"\)\)\)\;\ print\(\"backupType=\"+str\(d.get\(\"backupType\"\)\)\)\;\ print\(\"completeDatasetBackup=\"+str\(d.get\(\"completeDatasetBackup\"\)\)\)\;\ print\(\"status=\"+str\(d.get\(\"status\"\)\)\)\;\ print\(\"backupId=\"+str\(d.get\(\"backupId\"\)\)\)\;\ print\(\"logicalDataset=\"+str\(d.get\(\"logicalDataset\"\)\)\) /home/richard/projects/diaries/data/dataset-backups/production/20261007-145013Z/dataset-manifest.json
+schemaVersion=2
+backupType=complete-dataset
+completeDatasetBackup=True
+status=complete
+backupId=20261007-145013Z
+logicalDataset=production
+[exit=0]
+
+===== 0033 production preflight (read-only) =====
+
+--- backup-dataset.sh preflight ---
+$ ./scripts/backup-dataset.sh preflight
+/var/run/postgresql:5432 - accepting connections
+Diaries production complete-dataset backup preflight
+  Logical dataset:    production
+  Database identity:  docker-volume:diaries-db-data / diaries
+  Files selector:     files
+  Files root:         //nas.tail636235.ts.net/photo/nancy-and-ronald-maxwell/documents/sea-captains-chest/diaries-content/files
+  Docker NAS volume:  diaries_nas-photo
+  Responder running:  True
+  Staging:            excluded-benign (1 entries)
+  Candidate:          /home/richard/projects/diaries/data/dataset-backups/production/.20261008-075136Z.partial
+
+PREFLIGHT OK: no writer was stopped and no backup workspace was created.
+[exit=0]
+
+===== Deployed complete-dataset script SHA-256 =====
+834a63cbca470694d89bad29eaf287a8834eb020bc4bcf230377a1f64c99fff8  /home/richard/projects/diaries/scripts/backup-dataset.sh
+1ce7f815a337ef53137f7ab54069e2810e2507a7b66436b05010f42f7a4757ce  /home/richard/projects/diaries/scripts/restore-dataset.sh
+0d571c8440ec92581d4b3ca0d85aacdabf380d620f5d6a383df9e9ce95f495d0  /home/richard/projects/diaries/scripts/production-complete-dataset.py
+6878a61aeaf4abfe561d9be2c883bb12fb2d67b72b5b7ec0b9420c018fad6cc3  /home/richard/projects/diaries/scripts/complete-dataset-manifest.py
+b278b72383f3bae5c6ec95e2b17cc0ce12d2f3377b4f781626880484d426400a  /home/richard/projects/diaries/scripts/complete-dataset-verification.py
+c6e9272191363c06e988d1ea849bdb57e44ac3408e74d65895aa2f9c2828cfc7  /home/richard/projects/diaries/scripts/complete-dataset-restore-stage.py
+7e04b08b033f2f98a70832248c3e60d0ea11bc03b7121852d482b396fe8ec95b  /home/richard/projects/diaries/scripts/complete-dataset-postflight.py
+
+===== Mutation guard summary =====
+This capture did not invoke backup creation, restore, stop.sh, start.sh, docker compose stop/start, mount, remount, cp, mv, rm or filesystem mutation commands.
+
+===== Result =====
+STEP-1 BASELINE CAPTURE PASSED
+richard@pluto:~/temp$

@@ -1,0 +1,70 @@
+richard@mango:~/playbooks$ python3 roles/diaries/tests/verify-complete-dataset-replication.py
+python3 roles/diaries/tests/verify-complete-dataset-publisher.py
+python3 roles/diaries/tests/verify-production-deployment-contract.py
+PASS: schema-2 fixture built
+PASS: fixture published
+PASS: pinned rsync and receiving schema-2 verification:
+PASS: explicit verified-staged non-eligible handoff
+PASS: received tree complete
+PASS: duplicate ID refused; previous handoff unchanged
+PASS: success retains private receiver staging
+PASS: unpinned direct copy refused
+PASS: failed verification has no handoff or partial receiver data
+PASS: 0034 Step 6 isolated replication suite
+PASS: synthetic schema-2 candidate constructed
+PASS: preflight non-mutating
+PASS: first generation published
+PASS: current verified and identity visible
+PASS: invalid second candidate cannot replace first
+PASS: second schema-2 candidate constructed
+PASS: reader pinned first generation under shared lock
+PASS: publication blocked by active reader
+PASS: reader exits then second generation publishes
+PASS: second generation verified at stable path
+PASS: previous generation retained for rollback
+PASS: duplicate backup ID rejected
+PASS: temporary publication artefacts cleared
+PASS: 0034 Step 5 isolated publisher suite
+PASS: production broker keeps the complete retained-snapshot flow-control policy
+PASS: production broker has no historical 10,000-message truncation ceiling
+PASS: production diaries-client can read canonical retained Image metadata
+PASS: production diaries-responder can publish canonical retained Image metadata
+PASS: production diaries-web can read canonical retained Image metadata
+PASS: Ansible validates the deployed retained-snapshot broker policy
+PASS: production Compose keeps /data/files selected by the explicit Files selector
+PASS: production Compose/start templates do not load local development overrides
+PASS: production ImageFragment authoring gate defaults enabled after 0027 close-out
+PASS: responder config renders the explicit production ImageFragment authoring variable
+PASS: Ansible rejects non-boolean production authoring-gate values
+PASS: Ansible validates the rendered production authoring-gate value
+PASS: role documentation defines normal enablement and non-destructive rollback
+PASS: role documentation records the durable database/Files pairing invariant
+PASS: production operator documentation defines database-only and matched Files backup semantics
+PASS: production operator documentation defines the complete-backup manifest and partial-workspace contract
+PASS: production operator documentation exposes permanent complete backup/restore commands without automatic restore
+PASS: Ansible creates explicit complete-backup repository and restore-state roots
+PASS: production role defines and validates the 0034 complete-backup storage-mode contract
+PASS: production .env carries the explicit complete-dataset storage contract
+PASS: production operator documentation defines temporary helper deploy/remove lifecycle
+PASS: role source contains only the approved supported production script set
+PASS: role source contains no unclassified feature/step-shaped production helpers
+PASS: production recurrence policy detects a newly accumulated stepN helper
+PASS: completed-feature production helpers are absent from role source
+PASS: one-off obsolete-script removal lists are no longer required
+PASS: Ansible has separate project-root and managed-scripts synchronization tasks
+PASS: project-root synchronization excludes the separately managed scripts directory
+PASS: project-root synchronization does not use rsync --delete
+PASS: production scripts are synchronized as their own managed directory
+PASS: managed scripts synchronization removes unmanaged and excluded destination entries
+PASS: managed scripts synchronization excludes transient Python interpreter caches
+PASS: managed scripts synchronization protects templated permanent script logs.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-client.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-database.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-mosquitto.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-nginx.sh
+PASS: managed scripts synchronization protects templated permanent script shell-prompt-responder.sh
+PASS: managed scripts synchronization protects templated permanent script start.sh
+PASS: managed scripts synchronization protects templated permanent script status.sh
+PASS: managed scripts synchronization protects templated permanent script stop.sh
+PASS: production deployment contract verified
+richard@mango:~/playbooks$

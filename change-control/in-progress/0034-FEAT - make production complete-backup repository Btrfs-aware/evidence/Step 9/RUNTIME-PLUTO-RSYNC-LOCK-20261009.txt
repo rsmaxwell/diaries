@@ -1,0 +1,53 @@
+richard@pluto:~/projects/diaries$ cd /home/richard/projects/diaries
+
+readlink data/diaries-backup
+
+test -f data/dataset-backups/production/20261009-154847Z/dataset-manifest.json \
+  && echo "Candidate manifest exists"
+
+df -h data
+.diaries-backup-generations/20261009-153243Z
+Candidate manifest exists
+Filesystem                         Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv   67G   42G   23G  65% /
+richard@pluto:~/projects/diaries$ mkdir -p /home/richard/0034-step9-rsync-test
+richard@pluto:~/projects/diaries$ ls -al /home/richard/0034-step9-rsync-test
+total 20
+drwxrwxr-x  2 richard richard 4096 Oct  9 16:54 .
+drwxr-x--- 15 richard richard 4096 Oct  9 16:54 ..
+-rwxr-xr-x  1 richard richard 9831 Oct  9 16:54 verify-pluto-rsync-lock.py
+richard@pluto:~/projects/diaries$ python3 /home/richard/0034-step9-rsync-test/verify-pluto-rsync-lock.py \
+  --published-root /home/richard/projects/diaries/data/diaries-backup \
+  --candidate /home/richard/projects/diaries/data/dataset-backups/production/20261009-154847Z \
+  --publisher /home/richard/projects/diaries/scripts/complete-dataset-publisher.py \
+  --manifest-tool /home/richard/projects/diaries/scripts/complete-dataset-manifest.py \
+  --scratch-parent /home/richard/0034-step9-rsync-test
+VERIFIED 20261009-153243Z
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261009-154847Z
+  Logical dataset: production
+  Workspace:       completed backup
+  Files:           89
+0034 Step 9 pluto rsync/publication contention proof
+  Current backup ID:  20261009-153243Z
+  Candidate backup ID:20261009-154847Z
+  Stable path:        /home/richard/projects/diaries/data/diaries-backup
+  Current generation: /home/richard/projects/diaries/data/.diaries-backup-generations/20261009-153243Z
+  Scratch:            /home/richard/0034-step9-rsync-test/.0034-step9-rsync-idh0j4qx
+  Current bytes:      101386904
+  rsync bwlimit KiB/s:19802
+PASS: publisher remained blocked while rsync held the shared lock
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261009-153243Z
+  Logical dataset: production
+  Workspace:       completed backup
+  Files:           89
+PASS: rsync received one coherent generation: 20261009-153243Z
+VERIFIED 20261009-154847Z
+PASS: publication advanced only after rsync completion: 20261009-154847Z
+PASS: previous generation retained: 20261009-153243Z
+PASS: disposable rsync scratch removed
+PASS: 0034 Step 9 live rsync/publication contention proof
+richard@pluto:~/projects/diaries$
