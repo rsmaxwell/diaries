@@ -1,0 +1,47 @@
+richard@mango:~/playbooks$ cd ~/playbooks
+
+set -o pipefail
+
+python3 verification/0035-step8/verify-gate-b2-transport-faults.py \
+  | tee /tmp/0035-step8-gate-b2-transport.txt
+{
+  "source": "20261015-020000Z",
+  "source_uuid": "22222222-2222-2222-2222-222222222222",
+  "parent": "20261015-010000Z",
+  "action": "incremental",
+  "dry_run": false,
+  "receiver": "10.254.22.1:39263"
+}
+PASS: simulated SSH receive failure retains candidate and parent pins
+{
+  "source": "20261015-020000Z",
+  "source_uuid": "22222222-2222-2222-2222-222222222222",
+  "parent": "20261015-010000Z",
+  "action": "incremental",
+  "dry_run": false,
+  "receiver": "10.254.22.1:39263"
+}
+PASS: simulated broken-pipe sender failure retains candidate and parent pins
+{
+  "source": "20261015-020000Z",
+  "source_uuid": "22222222-2222-2222-2222-222222222222",
+  "parent": "20261015-010000Z",
+  "action": "incremental",
+  "dry_run": false,
+  "receiver": "10.254.22.1:39263"
+}
+PASS: successful stream without independently visible acknowledgement retains pins
+{
+  "source": "20261015-020000Z",
+  "source_uuid": "22222222-2222-2222-2222-222222222222",
+  "parent": "20261015-010000Z",
+  "action": "incremental",
+  "dry_run": false,
+  "receiver": "10.254.22.1:39263"
+}
+ACCEPTED: 20261015-020000Z
+PASS: independently accepted receipt permits prior-parent release
+PASS: injected receipt-publication ENOSPC preserves prior receipt and leaves no newly accepted receipt
+GATE B2 isolated transport/acknowledgement and receipt-publication fault injection PASS
+NOT TESTED: actual SSH connection drop, real receipt-file ENOSPC, or new schema-2 restore
+richard@mango:~/playbooks$

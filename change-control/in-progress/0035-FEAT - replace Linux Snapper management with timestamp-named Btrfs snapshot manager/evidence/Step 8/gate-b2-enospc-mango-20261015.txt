@@ -1,0 +1,21 @@
+richard@mango:~/playbooks$ cd ~/playbooks
+
+bash -n \
+  verification/0035-step8/verify-gate-b2-enospc-loopback.sh
+
+set -o pipefail
+
+sudo bash \
+  verification/0035-step8/verify-gate-b2-enospc-loopback.sh \
+  --run-disposable \
+  | tee /tmp/0035-step8-gate-b2-enospc.txt
+At subvol /tmp/0035-b2-enospc-szBdVikt/src/snaps/20261015-010000Z
+At subvol 20261015-010000Z
+PASS: real Btrfs ENOSPC on disposable receiver
+PASS: previously accepted baseline remains readable and read-only under ENOSPC
+At subvol /tmp/0035-b2-enospc-szBdVikt/src/snaps/20261015-020000Z
+PASS: new stream not accepted under ENOSPC; previous baseline intact
+PASS: previously accepted baseline survives ENOSPC recovery
+GATE B2 actual kernel ENOSPC test PASS
+NOT TESTED: receiver receipt publication ENOSPC; real SSH disconnect/ack loss; schema-2 restore
+richard@mango:~/playbooks$
