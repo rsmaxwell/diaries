@@ -5,7 +5,7 @@
 > The previously documented `backup`-initiated native pull is **superseded for future replication** by `mars`-initiated Btrfs send/SSH/receive to `backup`. Historical pull experiments, signed-off steps, existing scripts and acceptance receipts remain evidence; this documentation update changes **no executable code, live SSH settings, systemd timers or transfers**. The currently running full pull of `20261012-100003Z` must complete and be verified as the common baseline before push migration. See `evidence/Step 10/PUSH-ARCHITECTURE-DECISION-20261012.md`.
 >
 
-**Current status:** Steps 1–9 were completed/closed under the previous documented contract. Preserve those source and runtime evidence records exactly. Step 10 is **OPEN** and redesigned; Step 11 is **OPEN**. Source `pluto` publication, schema-2 backup and restore behavior are unchanged. The former rsync pull implementation and its tests are historical transition evidence, **not** proof of the new Btrfs transfer path.
+**Current status (reconciled 2026-10-15):** Steps 1–9 remain accepted under their recorded contracts. Step 10 native source-initiated replication has live acceptance evidence (see Step 10.P9 and Step 11.4), although historical planning headings below remain as superseded context. Step 11.3 and Step 11.4 are CLOSED. **Step 11 and 0034-FEAT remain OPEN solely pending Step 11.1 baseline capture/sign-off and final operator authorisation.** Source `pluto` publication, schema-2 backup and restore behavior are unchanged. The former rsync pull implementation and its tests are historical transition evidence, **not** proof of the new Btrfs transfer path.
 
 ## Preserved completed work (no repeat required)
 
@@ -19,7 +19,7 @@
 8. **CLOSED** — Playbooks configuration, regression and operator guidance for publisher.
 9. **CLOSED** — `pluto` controlled production deployment/publication. Do not disturb this path.
 
-## Step 10 — Replace `mars` → `backup` rsync with native send/receive — OPEN
+## Step 10 — Replace `mars` → `backup` rsync with native send/receive — IMPLEMENTED / LIVE ACCEPTED (historical plan below)
 
 ### 10.1 Freeze and inventory the source/receiver baseline
 
@@ -65,7 +65,7 @@
 - Keep prior rsync data available for a defined rollback window. Enable native receive scheduling only after independent acceptance and operator authorization; do not automatically enable 0035 native snapshot timers or retire Snapper.
 - Record idempotent Playbooks deployment, regression suite results, source commit IDs, transfer logs and rollback. Close Step 10 only when these gates have actually passed.
 
-## Step 11 — End-to-end production rehearsal and feature closure — OPEN
+## Step 11 — End-to-end production rehearsal and feature closure — FINAL RECONCILIATION; NOT YET CLOSED
 
 - Run two successive whole backups on `pluto`; demonstrate `mars` data publication/snapshot, one native full baseline and at least one correct incremental `backup` receive, history lookup and schema-2 disposable restore.
 - Demonstrate snapshot retention safety, a failed/incomplete transfer and recovery without corruption of previously accepted recovery points, and distinct host identities/permissions.
@@ -81,7 +81,7 @@ Unattended Gate 6A–6E passed: `pluto` schema-2 production publication `2026101
 
 The 02:00 collision was traced to the Ansible-managed user backup cron sharing the intended exclusive writer lock; the user cron schedule was moved to **01:45 UTC** via isolated Playbooks deployment, checked, applied and proven idempotent. The first unattended post-correction execution remains a recorded follow-up, not a claimed pass. Checkpoint `20261013-171228Z` remains held. See `evidence/Step 11/STEP-11.4-UNATTENDED-OPERATING-ARRANGEMENTS-20261014.md` and `evidence/Step 11/STEP-11.4-UNATTENDED-ACCEPTANCE-CLOSEOUT-20261015.md`.
 
-**Step 11 and 0034-FEAT remain OPEN** pending separate final feature-wide acceptance/evidence reconciliation; history-tool configuration is deferred to 0035-FEAT.
+**Step 11 and 0034-FEAT remain OPEN** pending Step 11.1 four-host capture/sign-off and final feature approval; history-tool configuration is deferred to 0035-FEAT. See `evidence/Step 11/STEP-11-FINAL-RECONCILIATION-20261015.md`.
 
 ## Never change without explicit migration gate
 
@@ -113,3 +113,17 @@ The narrow `roles/remote-backup/` pull-retirement cleanup passed source regressi
 ## 2026-10-14 — Step 11.3 disposable off-site recovery rehearsal: CLOSED
 
 Gates A–D passed against published schema-2 generation `20261009-154847Z` held in off-site Btrfs snapshot `20261013-171228Z`. Recovery on `mars` used an isolated PostgreSQL 18 container and scratch Files, verified 89 Files and Image catalogue hashes, and removed each disposable container. The `mars` history CLI remains blocked by `verification.required=false`; configuration review is deferred to 0035-FEAT and not misrepresented as a successful history lookup. See `evidence/Step 11/STEP-11.3-OFFSITE-DISPOSABLE-RESTORE-CLOSEOUT-20261014.md`. Step 11 and 0034-FEAT remain OPEN; next Step 11.4 is unattended operating arrangements.
+
+## 2026-10-15 — Step 11 final feature-wide reconciliation
+
+The completed operational evidence is assembled in `evidence/Step 11/STEP-11-FINAL-RECONCILIATION-20261015.md`. The first unattended chain and disposable off-site recovery passed. Historical rsync off-site scheduling is disabled, and source-initiated incremental push is accepted. **Do not mark Step 11 or 0034-FEAT CLOSED yet:** Step 11.1's explicit four-host baseline capture, actual Diaries revision record, cross-host mount/UUID audit and operator sign-off have not been provided as completed evidence. Complete the read-only capture, review/redact artifacts and record acceptance before closure. No new runtime deployment is required for this documentation step.
+
+## 2026-10-15 — 0034-FEAT formally CLOSED
+
+**Disposition: CLOSED (operator-authorised close-out, 15 October 2026).** Step 11.1 final four-host captures are present in `0034-step11-3-backup-2.zip` for `mango` (20261015-065850Z), `pluto` (20261015-070022Z), `mars` (20261015-070107Z) and `backup` (20261015-070156Z). Previous captures from 13 October are also retained in that archive. Capture SHA256 manifests were reviewed successfully. The evidence archive is an external operator-held artifact and is not bundled into this documentation-only change.
+
+Step 11.3 disposable off-site recovery Gates A–D and Step 11.4 unattended Gates 6A–6E are **CLOSED**, including read-only acceptance (`pluto` 3 tasks, `mars` 6, `backup` 3; zero changes/failures). Accepted schema-2 publication `20261015-003023Z` and Btrfs incremental received snapshot `20261015-030004Z` establish the production workflow. Playbooks on `mango` were clean and synchronized at commit `2fb96e60ea75f55882b91a230d271e9e7fdbc635`; Diaries prior Step 11.4 source documentation commit `89d113ea25a4fef207fa5f2ef5452b32d1838fd2` was clean and synchronized. A future commit will record this final archival move.
+
+**Accepted follow-ups, not blockers:** the rescheduled 01:45 UTC user cron is deployed and idempotent, but its *first unattended execution* was not observed at this decision point; verify it on the next cycle. The `diaries-backup-history` `verification.required=false` configuration limitation is deferred to 0035-FEAT; rolling storage/copy efficiency belongs to 0036-FEAT. Maintain protected checkpoint `20261013-171228Z`, existing replication parent protections, and historical Snapper/backup data until separately authorised. This closure does not authorise snapshot pruning changes, deletion, migrations or further deployment.
+
+Final acceptance record: `evidence/Step 11/STEP-11-FINAL-RECONCILIATION-20261015.md` and `evidence/Step 11/STEP-11-FEATURE-CLOSEOUT-20261015.md`.
