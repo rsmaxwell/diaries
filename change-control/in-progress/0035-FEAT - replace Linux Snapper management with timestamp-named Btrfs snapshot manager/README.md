@@ -29,6 +29,10 @@ Snapshot cleanup and history are *two separate operator tools*. The history util
 - Keep `backup` native creation/prune timers and Snapper handover inactive pending deliberate acceptance. Receiving snapshots and general local snapshots have separate provenance and retention rules; do not accidentally duplicate entire receive trees in unrelated local snapshots.
 
 
+## Step 1 baseline reconciliation tooling (2026-10-15)
+
+Step 1 now has a dedicated **read-only** three-host Playbooks capture under `verification/0035-step1/`. It records actual `pluto` filesystem type, `mars`/`backup` Btrfs mount and subvolume identities, timestamp and Snapper snapshot inventory, scheduler/cron state, replication holds/receipts, retained historical rsync state and any active transfer. It does not deploy, prune, create snapshots, run transfers or change schedules. **Step 1 CLOSED 2026-10-15** after a successful zero-change three-host capture and documented reconciliation. Three exceptions (Snapper timeouts, stale receiver verification path and retained historical storage) remain tracked; this closure does not authorise remediation or deletion. See `evidence/Step 1/README.md`.
+
 ---
 
 ## Earlier design and completed-step record (historical; superseded where inconsistent with 2026-10-11)
@@ -167,3 +171,8 @@ The current full receive `20261012-100003Z` remains an active **pull** transfer 
 ## 2026-10-13 — Restricted Step 10 cleanup/hold acceptance (CLOSED)
 
 The independent checkpoint hold and real scheduled prune passed on `mars`, and the narrowly scoped remote-backup pull cleanup deployed successfully without removing snapshot-manager or local-backup components. Evidence: `evidence/STEP-10-RESTRICTED-CLEANUP-ACCEPTANCE-20261013.md`. The runtime checkpoint `20261013-171228Z` remains held while the replication parent advances separately. Other 0035 migration and host acceptance gates remain distinct; this does **not** mean the entire feature is closed.
+
+
+## 2026-10-15 Step 2 closure
+
+**Step 2 — Preserve source timestamped read-only snapshot manager (`mars`): CLOSED.** Source-contract checks passed; read-only live capture finished with `changed=0`, 52 complete timestamp sets, intact read-only held and replication-pinned snapshots, and enabled creation/prune timers. See `evidence/Step 2/PRESERVATION-VERIFICATION-20261015.md` and `mars-preservation-20261015-083123.txt`. Nested `@data/.snapshots` was inventoried, not proven part of a send stream; no cleanup or deployment authorised.

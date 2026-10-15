@@ -9,9 +9,12 @@
 
 ## Step 1 — Reconcile observed host state and baseline (required)
 
+**CLOSED — 2026-10-15:** Source-contract regression PASS; `mango` read-only three-host capture finished with `pluto ok=4`, `mars ok=6`, `backup ok=6`, and `changed=0`, `failed=0` everywhere. Baseline identities, schedules, snapshot/receipt lineage and zero-change execution reconciled in `evidence/Step 1/README.md`, with raw capture `evidence/Step 1/baseline-20261015-081000.txt`. Known limitations explicitly carried forward: timed-out Snapper inventories, stale `backup` local manager verification configuration, historical snapshot/mirror retention. **No configuration or deletion changes are authorised by this closure.**
+
 - Record existing snapshot-manager installation, `root`/`@data` subvolume IDs, mount/UUID, `@snapshots` location, Snapper numeric snapshots, actual scheduler state and whole-backup-containing source on `mars`, `backup` and filesystem type on `pluto`.
 - Confirm `pluto` is or is not Btrfs at deployment time; **never** assume it has native snapshots just because the history/prune utilities are installed there.
-- Record existing 0034 Step 10 rsync mirror and active transfer as historical non-native receiver. **Gate:** no preexisting snapshot or data overwritten.
+- Record the retained `/@data/backup` rsync mirror as historical/non-native, the isolated native receive tree/receipts separately, and whether any transfer is active at capture time. **Gate:** no preexisting snapshot or data overwritten.
+- Reconcile rather than auto-correct any mismatch against the accepted 0034 close-out facts (01:45 `mars` user cron, source-initiated native push, held checkpoint `20261013-171228Z`, and preserved historical Snapper/backup data). Completed: live output reviewed and accepted baseline recorded in Step 1 evidence; exceptions are preserved for later steps.
 
 ## Step 2 — Preserve source timestamped read-only snapshot manager (`mars`)
 
@@ -19,6 +22,8 @@
 - Document whole-subvolume scope, nested subvolume handling, source UUIDs, read-only flags, timestamp naming and lock coordination with backup publication and `btrfs send`.
 - Keep creation and prune schedules as previously accepted on `mars`; confirm Snapper timeline migration only to the extent already evidenced. Do not drop numeric Snapper snapshots en masse.
 - Add safeguards preventing source parent snapshot deletion while it is used as a replication baseline or in-progress send.
+
+**2026-10-15 closure: CLOSED.** Playbooks source-contract verification passed all nine checks and the read-only `mars` capture completed (`ok=2`, `changed=0`, `failed=0`). There were 52 complete `root`/`@data` timestamp sets and zero incomplete sets. Inspected checkpoint, replication-parent and recent snapshots were read-only, and hold/pin UUIDs matched. Existing creation/prune timers remained active. Source `@data/.snapshots` is a nested legacy subvolume; its presence was inventoried, not proof that its contents participate in Btrfs send. See `evidence/Step 2/PRESERVATION-VERIFICATION-20261015.md` and retained transcript. No host changes were made or authorised.
 
 ## Step 3 — Define receiver snapshot identity/retention (`backup`)
 
