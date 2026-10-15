@@ -1,0 +1,118 @@
+richard@mango:~/playbooks$ cd ~/playbooks
+
+python3 verification/0035-step6/verify-source-contract.py
+
+python3 roles/remote-backup/tests/verify-native-btrfs-push.py
+
+python3 roles/remote-backup/tests/verify-replication-protection.py
+
+set -o pipefail
+
+ansible-playbook \
+  verification/0035-step6/capture-joint.yaml \
+  --ask-vault-pass \
+  | tee /tmp/0035-step6-joint.txt
+PASS: mars initiates using restricted SSH operator
+PASS: sender validates source UUID and read-only state
+PASS: sender acquires exclusive push lock
+PASS: candidate pinned before stream
+PASS: parent pinned before incremental stream
+PASS: previous parent released only after independent receipt check
+PASS: failed sends do not release candidate
+PASS: receiver accepts only previously receipted incremental parent
+PASS: receiver confirms received UUID and read-only state
+PASS: receiver persists independent receipt atomically
+PASS: receiver preserves failed/unaccepted destination
+PASS: receiver writer lock
+PASS: privileged endpoint constrained by sudoers
+PASS: source prune honors replication pins
+PASS: legacy rsync marker not used in native transport
+PASS: Step 6 joint source contract
+PASS: native push full/incremental, verified parent, reseed and receipt guards
+PASS: missing/invalid protection fails closed and push pin lifecycle is wired
+Vault password:
+
+PLAY [0035 Step 6 | Source side read-only replication state] *******************
+
+TASK [Capture source UUIDs, pins, lock and schedule (read only)] ***************
+ok: [mars]
+
+TASK [ansible.builtin.debug] ***************************************************
+ok: [mars] => {
+    "source_capture.stdout_lines": [
+        "=== source snapshots and protection ===",
+        "snapshot_root=/media/usb/@snapshots",
+        "filesystem=btrfs",
+        "retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30",
+        "complete_timestamp_sets=52;incomplete_timestamp_sets=0",
+        "source=root:/media/usb;managed_snapshots=52",
+        "source=@data:/media/usb/@data;managed_snapshots=52",
+        "diaries_verification=valid;logicalDataset=production;backupId=20261015-003023Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json",
+        "{",
+        "  \"protected\": {",
+        "    \"20261015-030004Z\": \"6f44e0e0-1968-6e4d-a3bd-9f77d71e9a47\"",
+        "  },",
+        "  \"schema\": 1",
+        "}",
+        "{",
+        "  \"holds\": {",
+        "    \"20261013-171228Z\": {",
+        "      \"reason\": \"0034/0035 pre-cleanup recovery checkpoint\",",
+        "      \"source_uuids\": {",
+        "        \"@data\": \"340674cc-d02c-244e-b7ec-e3ea5a6b151f\",",
+        "        \"root\": \"fb96134e-3614-fb47-baf7-c82e81f1174f\"",
+        "      }",
+        "    }",
+        "  },",
+        "  \"schema\": 1",
+        "}",
+        "=== accepted source endpoint and permissions ===",
+        "regular file 755 root:root /usr/local/libexec/btrfs-native-endpoint",
+        "regular file 755 root:root /usr/local/bin/btrfs-native-push",
+        "regular empty file 600 richard:richard /media/usb/@snapshots/.native-push.lock",
+        "=== sender schedule ===",
+        "NextElapseUSecRealtime=Fri 2026-10-16 03:30:00 UTC",
+        "LastTriggerUSec=Thu 2026-10-15 03:30:16 UTC",
+        "ActiveState=active",
+        "UnitFileState=enabled",
+        "=== source latest protected UUID ===",
+        "20261015-030004Z recorded_uuid= 6f44e0e0-1968-6e4d-a3bd-9f77d71e9a47 actual_uuid= 6f44e0e0-1968-6e4d-a3bd-9f77d71e9a47 readonly= ro=true MATCH= True"
+    ]
+}
+
+PLAY [0035 Step 6 | Destination accepted lineage state] ************************
+
+TASK [Capture independent native acceptance receipts (read only)] **************
+ok: [backup]
+
+TASK [ansible.builtin.debug] ***************************************************
+ok: [backup] => {
+    "receiver_capture.stdout_lines": [
+        "=== destination filesystem and receive repository ===",
+        "/      /dev/sda2 btrfs  b915f967-7cb4-4c14-b11b-f52209637a22",
+        "directory 755 root:root /@data/mars-received/@data",
+        "directory 700 richard:richard /@data/mars-received/.replication-state",
+        "regular empty file 600 richard:richard /@data/mars-received/.replication-state/writer.lock",
+        "=== independent receipt/UUID/read-only reconciliation ===",
+        "receipt_count= 8 snapshot_count= 8 unreceipted= [] missing= []",
+        "20261009-170001Z parent= None source_uuid= 052c9376-0616-8b4a-9d28-f757b86fdec8 received_uuid= 052c9376-0616-8b4a-9d28-f757b86fdec8 readonly= ro=true MATCH= True",
+        "20261012-100003Z parent= None source_uuid= 7ad1f171-d1c7-0545-82a1-52e84adac979 received_uuid= 7ad1f171-d1c7-0545-82a1-52e84adac979 readonly= ro=true MATCH= True",
+        "20261013-050016Z parent= 20261012-100003Z source_uuid= 8bbb4807-9cea-4e42-a932-66e0254191c8 received_uuid= 8bbb4807-9cea-4e42-a932-66e0254191c8 readonly= ro=true MATCH= True",
+        "20261013-140006Z parent= 20261013-050016Z source_uuid= c0b81383-bdfc-224e-97b1-90ceee4d54f0 received_uuid= c0b81383-bdfc-224e-97b1-90ceee4d54f0 readonly= ro=true MATCH= True",
+        "20261013-171228Z parent= 20261013-140006Z source_uuid= 340674cc-d02c-244e-b7ec-e3ea5a6b151f received_uuid= 340674cc-d02c-244e-b7ec-e3ea5a6b151f readonly= ro=true MATCH= True",
+        "20261013-180016Z parent= 20261013-171228Z source_uuid= 0048afd8-59ec-7547-9247-e36893331838 received_uuid= 0048afd8-59ec-7547-9247-e36893331838 readonly= ro=true MATCH= True",
+        "20261014-100031Z parent= 20261013-180016Z source_uuid= 5f21c6db-1e66-ad41-aec9-89f163329f8e received_uuid= 5f21c6db-1e66-ad41-aec9-89f163329f8e readonly= ro=true MATCH= True",
+        "20261015-030004Z parent= 20261014-100031Z source_uuid= 6f44e0e0-1968-6e4d-a3bd-9f77d71e9a47 received_uuid= 6f44e0e0-1968-6e4d-a3bd-9f77d71e9a47 readonly= ro=true MATCH= True",
+        "=== destination local scheduling ===",
+        "ActiveState=inactive",
+        "UnitFileState=disabled",
+        "ActiveState=inactive",
+        "UnitFileState=disabled"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+backup                     : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+mars                       : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+richard@mango:~/playbooks$

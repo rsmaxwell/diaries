@@ -49,6 +49,9 @@
 
 ## Step 6 — Integrate native send/receive safety (joint gate with 0034 Step 10)
 
+**Status (2026-10-15): CLOSED — joint source verification and read-only live reconciliation passed; detailed interruption injection and transfer-size/space measurements deferred to Step 8.** 0034's existing `mars`-initiated native push and `backup` acceptor are preserved. Step 6 adds source-level gate checks and a read-only two-host UUID/receipt reconciliation playbook (`playbooks/verification/0035-step6/`). No transfer, cleanup, scheduler, sudoers or production code changed. See `evidence/Step 6/README.md`. Source regressions pass; on-host UUID/receipt results reconciled with 0034 acceptance evidence. Independent interruption injection and quantitative transfer/space measurements remain OPEN under Step 8, not asserted as tested here.
+
+
 - Establish immutable source and accepted destination UUID pairing, last-common-parent discoverability, stream lock(s), and host-specific privilege boundaries using `richard` SSH plus narrowly permitted privileged Btrfs helper(s).
 - Demonstrate full receive, later incremental receive, parent pinning, interruption cleanup and no unintended concurrent snapshot/prune. **Do not** use old rsync `.diaries-snapshot-verified.json` as the authoritative native receive marker.
 - Measure receive extent sharing/disk allocation and transfer sizes, but do not claim cross-host physical extent identity. Validate optional application-level schema-2 content independently of the generic replication pipeline.
@@ -93,8 +96,3 @@ These steps supersede any pending implementation instructions describing `backup
 ## 2026-10-13 — Restricted Step 10 cleanup/hold acceptance (CLOSED)
 
 The independent checkpoint hold and real scheduled prune passed on `mars`, and the narrowly scoped remote-backup pull cleanup deployed successfully without removing snapshot-manager or local-backup components. Evidence: `evidence/STEP-10-RESTRICTED-CLEANUP-ACCEPTANCE-20261013.md`. The runtime checkpoint `20261013-171228Z` remains held while the replication parent advances separately. Other 0035 migration and host acceptance gates remain distinct; this does **not** mean the entire feature is closed.
-
-
-## 2026-10-15 — Step 5 timestamp cleanup closure
-
-**Step 5 — Provide timestamp snapshot cleanup on `mars` and `pluto`: CLOSED.** Source-contract verification and check-mode passed; the guarded cleanup utility was installed on both hosts, with the guarded manager update confined to `mars`. Live `mars` dry-run retained all 52 complete sets and both the checkpoint hold (`20261013-171228Z`) and replication parent (`20261015-030004Z`); zero deletion candidates. The Vault-authenticated standalone `pluto` dry-run completed `rc=0` and explicitly reported ext4 `UNSUPPORTED`/no-op. No destructive cleanup or timer change was executed. Live positive deletion-plan and actual deletion behaviour remain untested; historical Snapper snapshots, native receiver receipts/snapshots and `pluto` publication generations are out of scope. Evidence: `evidence/Step 5/README.md` and attached transcripts. Overall 0035 remains in progress.
