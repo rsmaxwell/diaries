@@ -1,0 +1,266 @@
+richard@mango:~/playbooks$ cd ~/playbooks
+
+python3 verification/0035-step5/verify-source-contract.py
+PASS: fail-closed candidate preflight and read-only Btrfs verification
+PASS: pluto never deletes; mars requires explicit --apply
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$ ansible-playbook \
+  verification/0035-step5/install-cleanup.yaml \
+  --ask-vault-pass --check --diff
+Vault password:
+
+PLAY [0035 Step 5 | Install guarded timestamp cleanup without changing schedules] ******************************************************************************************
+
+TASK [Install guarded cleanup front-end] ***********************************************************************************************************************************
+--- before
++++ after: /home/richard/playbooks/roles/snapshots/files/diaries-snapshot-cleanup.py
+@@ -0,0 +1,62 @@
++#!/usr/bin/env python3
++"""0035 Step 5: host-specific timestamp snapshot cleanup; default is dry-run."""
++from __future__ import annotations
++import argparse
++import json
++import os
++import subprocess
++import sys
++from pathlib import Path
++
++
++def command(argv: list[str]) -> subprocess.CompletedProcess[str]:
++    return subprocess.run(argv, text=True, capture_output=True, check=False)
++
++
++def main(argv: list[str] | None = None) -> int:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--host", choices=("mars", "pluto"), required=True)
++    parser.add_argument("--config", default="/etc/btrfs-snapshot-manager.json")
++    parser.add_argument("--manager", default="/usr/local/sbin/btrfs-snapshot-manager")
++    parser.add_argument("--published-root", default="/home/richard/projects/diaries/data/diaries-backup")
++    parser.add_argument("--apply", action="store_true", help="explicitly authorize deletion on mars ONLY")
++    parser.add_argument("command", choices=("status", "dry-run", "prune"))
++    args = parser.parse_args(argv)
++    if args.host == "pluto":
++        if args.apply:
++            print("REFUSED: pluto cleanup cannot modify any files", file=sys.stderr)
++            return 2
++        fs = command(["findmnt", "-T", args.published_root, "-n", "-o", "FSTYPE"])
++        if fs.returncode:
++            print("ERROR: cannot determine pluto publication filesystem", file=sys.stderr)
++            return 2
++        print(f"UNSUPPORTED: pluto filesystem={fs.stdout.strip()} — no native snapshot pruning configured; no-op")
++        return 0
++    if args.command == "prune" and not args.apply:
++        print("REFUSED: 'prune' requires --apply; use dry-run first", file=sys.stderr)
++        return 2
++    if args.apply and args.command != "prune":
++        print("REFUSED: --apply is only permitted with prune", file=sys.stderr)
++        return 2
++    if not Path(args.config).is_file():
++        print("ERROR: missing snapshot manager config", file=sys.stderr)
++        return 2
++    if not Path(args.manager).is_file():
++        print("ERROR: missing snapshot manager", file=sys.stderr)
++        return 2
++    try:
++        cfg = json.loads(Path(args.config).read_text())
++        if cfg.get("snapshot_root") != "/media/usb/@snapshots" or {x.get("name") for x in cfg.get("sources", [])} != {"root", "@data"}:
++            raise ValueError("unexpected mars managed sources")
++    except (OSError, ValueError, TypeError) as exc:
++        print(f"ERROR: unsafe mars config: {exc}", file=sys.stderr)
++        return 2
++    subcmd = ["status"] if args.command == "status" else ["prune"] + ([] if args.apply else ["--dry-run"])
++    result = command([sys.executable, args.manager, "--config", args.config, *subcmd])
++    sys.stdout.write(result.stdout)
++    sys.stderr.write(result.stderr)
++    return result.returncode
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+
+changed: [pluto]
+--- before
++++ after: /home/richard/playbooks/roles/snapshots/files/diaries-snapshot-cleanup.py
+@@ -0,0 +1,62 @@
++#!/usr/bin/env python3
++"""0035 Step 5: host-specific timestamp snapshot cleanup; default is dry-run."""
++from __future__ import annotations
++import argparse
++import json
++import os
++import subprocess
++import sys
++from pathlib import Path
++
++
++def command(argv: list[str]) -> subprocess.CompletedProcess[str]:
++    return subprocess.run(argv, text=True, capture_output=True, check=False)
++
++
++def main(argv: list[str] | None = None) -> int:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--host", choices=("mars", "pluto"), required=True)
++    parser.add_argument("--config", default="/etc/btrfs-snapshot-manager.json")
++    parser.add_argument("--manager", default="/usr/local/sbin/btrfs-snapshot-manager")
++    parser.add_argument("--published-root", default="/home/richard/projects/diaries/data/diaries-backup")
++    parser.add_argument("--apply", action="store_true", help="explicitly authorize deletion on mars ONLY")
++    parser.add_argument("command", choices=("status", "dry-run", "prune"))
++    args = parser.parse_args(argv)
++    if args.host == "pluto":
++        if args.apply:
++            print("REFUSED: pluto cleanup cannot modify any files", file=sys.stderr)
++            return 2
++        fs = command(["findmnt", "-T", args.published_root, "-n", "-o", "FSTYPE"])
++        if fs.returncode:
++            print("ERROR: cannot determine pluto publication filesystem", file=sys.stderr)
++            return 2
++        print(f"UNSUPPORTED: pluto filesystem={fs.stdout.strip()} — no native snapshot pruning configured; no-op")
++        return 0
++    if args.command == "prune" and not args.apply:
++        print("REFUSED: 'prune' requires --apply; use dry-run first", file=sys.stderr)
++        return 2
++    if args.apply and args.command != "prune":
++        print("REFUSED: --apply is only permitted with prune", file=sys.stderr)
++        return 2
++    if not Path(args.config).is_file():
++        print("ERROR: missing snapshot manager config", file=sys.stderr)
++        return 2
++    if not Path(args.manager).is_file():
++        print("ERROR: missing snapshot manager", file=sys.stderr)
++        return 2
++    try:
++        cfg = json.loads(Path(args.config).read_text())
++        if cfg.get("snapshot_root") != "/media/usb/@snapshots" or {x.get("name") for x in cfg.get("sources", [])} != {"root", "@data"}:
++            raise ValueError("unexpected mars managed sources")
++    except (OSError, ValueError, TypeError) as exc:
++        print(f"ERROR: unsafe mars config: {exc}", file=sys.stderr)
++        return 2
++    subcmd = ["status"] if args.command == "status" else ["prune"] + ([] if args.apply else ["--dry-run"])
++    result = command([sys.executable, args.manager, "--config", args.config, *subcmd])
++    sys.stdout.write(result.stdout)
++    sys.stderr.write(result.stderr)
++    return result.returncode
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+
+changed: [mars]
+
+TASK [Install guarded manager on mars only] ********************************************************************************************************************************
+skipping: [pluto]
+--- before: /usr/local/sbin/btrfs-snapshot-manager
++++ after: /home/richard/playbooks/roles/snapshots/files/btrfs-snapshot-manager.py
+@@ -613,6 +613,22 @@
+         write_checkpoint_holds(config, holds)
+         print(f"RELEASED: {timestamp}")
+
++def validate_prune_candidate(config: Config, source: SnapshotSource, timestamp: str) -> None:
++    """Refuse unmanaged paths, symlinks, writable snapshots and non-subvolumes."""
++    if not TIMESTAMP_RE.fullmatch(timestamp):
++        raise SnapshotError(f"invalid managed timestamp: {timestamp}")
++    candidate = snapshot_path(config, source, timestamp)
++    parent = source_directory(config, source)
++    if parent.is_symlink() or candidate.is_symlink() or not candidate.is_dir():
++        raise SnapshotError(f"unsafe prune candidate: {candidate}")
++    if candidate.parent.resolve(strict=True) != parent.resolve(strict=True):
++        raise SnapshotError(f"candidate outside managed source: {candidate}")
++    require_subvolume(candidate)
++    flags = run(["btrfs", "property", "get", "-ts", str(candidate), "ro"]).stdout.strip()
++    if flags != "ro=true":
++        raise SnapshotError(f"refusing writable snapshot deletion: {candidate}: {flags}")
++
++
+ def prune(config: Config, dry_run: bool = False) -> int:
+     preflight(config)
+     complete, incomplete = managed_snapshot_sets(config)
+@@ -630,6 +646,11 @@
+         print(f"CHECKPOINT-HELD: {sorted(holds)}")
+     if pins:
+         print(f"REPLICATION-PROTECTED: {sorted(pins)}")
++    # Validate the *entire* deletion plan before touching any snapshot in a set.
++    # In particular, do not delete one half of a root/@data pair if its peer is unsafe.
++    candidates = [(name, source) for name, _ in complete if name not in keep for source in config.sources]
++    for name, source in candidates:
++        validate_prune_candidate(config, source, name)
+     deleted_sets = 0
+     print(f"RETENTION sets: total={len(complete)} keep={len(keep)} sources={len(config.sources)}")
+     for name, _ in complete:
+
+changed: [mars]
+
+TASK [Inspect host cleanup status (never deletes)] *************************************************************************************************************************
+skipping: [mars]
+skipping: [pluto]
+
+TASK [Display cleanup status] **********************************************************************************************************************************************
+skipping: [mars]
+skipping: [pluto]
+
+PLAY RECAP *****************************************************************************************************************************************************************
+mars                       : ok=2    changed=2    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+pluto                      : ok=1    changed=1    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0
+
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$ ansible-playbook \
+  verification/0035-step5/install-cleanup.yaml \
+  --ask-vault-pass
+Vault password:
+
+PLAY [0035 Step 5 | Install guarded timestamp cleanup without changing schedules] ******************************************************************************************
+
+TASK [Install guarded cleanup front-end] ***********************************************************************************************************************************
+changed: [pluto]
+changed: [mars]
+
+TASK [Install guarded manager on mars only] ********************************************************************************************************************************
+skipping: [pluto]
+changed: [mars]
+
+TASK [Inspect host cleanup status (never deletes)] *************************************************************************************************************************
+ok: [pluto]
+ok: [mars]
+
+TASK [Display cleanup status] **********************************************************************************************************************************************
+ok: [mars] => {
+    "cleanup_status.stdout_lines": [
+        "snapshot_root=/media/usb/@snapshots",
+        "filesystem=btrfs",
+        "retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30",
+        "complete_timestamp_sets=52;incomplete_timestamp_sets=0",
+        "source=root:/media/usb;managed_snapshots=52",
+        "source=@data:/media/usb/@data;managed_snapshots=52",
+        "diaries_verification=valid;logicalDataset=production;backupId=20261015-003023Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json"
+    ]
+}
+ok: [pluto] => {
+    "cleanup_status.stdout_lines": [
+        "UNSUPPORTED: pluto filesystem=ext4 — no native snapshot pruning configured; no-op"
+    ]
+}
+
+PLAY RECAP *****************************************************************************************************************************************************************
+mars                       : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+pluto                      : ok=3    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$ ansible mars -b -m command \
+  -a '/usr/local/sbin/diaries-snapshot-cleanup --host mars dry-run'
+mars | CHANGED | rc=0 >>
+CHECKPOINT-HELD: ['20261013-171228Z']
+REPLICATION-PROTECTED: ['20261015-030004Z']
+RETENTION sets: total=52 keep=52 sources=2
+Would delete 0 complete timestamp sets
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$ ansible pluto -b -m command \
+  -a '/usr/local/sbin/diaries-snapshot-cleanup --host pluto dry-run'
+[ERROR]: Attempting to decrypt but no vault secrets found.
+richard@mango:~/playbooks$

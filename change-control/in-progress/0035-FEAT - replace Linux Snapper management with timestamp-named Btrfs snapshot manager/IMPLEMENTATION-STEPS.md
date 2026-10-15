@@ -39,6 +39,9 @@
 
 ## Step 5 — Provide timestamp snapshot cleanup on `mars` and `pluto`
 
+**Status (2026-10-15): IMPLEMENTED — live verification pending.** Guarded front-end for `mars` and fail-safe no-op on ext4 `pluto`; added candidate read-only/subvolume preflight before destructive pruning. See `evidence/Step 5/README.md`. Existing timers unchanged.
+
+
 - Install native prune/dry-run/status utility on **both** hosts. Restrict deletions to manager-created timestamp names and validated Btrfs read-only snapshots; preserve unrelated subvolumes and all numeric Snapper IDs.
 - On ext4/non-Btrfs `pluto`, report unsupported/no-op safely rather than deleting conventional directories. Document that no actual Btrfs pruning occurs there until explicitly configured on a Btrfs filesystem.
 - Preserve GFS policy from existing docs (hourly 48, daily 14, weekly 12, monthly 24, yearly 5, minimum age 30 minutes) unless explicitly reconfigured; always keep the newest valid set and any replication-pinned parent.
@@ -90,3 +93,8 @@ These steps supersede any pending implementation instructions describing `backup
 ## 2026-10-13 — Restricted Step 10 cleanup/hold acceptance (CLOSED)
 
 The independent checkpoint hold and real scheduled prune passed on `mars`, and the narrowly scoped remote-backup pull cleanup deployed successfully without removing snapshot-manager or local-backup components. Evidence: `evidence/STEP-10-RESTRICTED-CLEANUP-ACCEPTANCE-20261013.md`. The runtime checkpoint `20261013-171228Z` remains held while the replication parent advances separately. Other 0035 migration and host acceptance gates remain distinct; this does **not** mean the entire feature is closed.
+
+
+## 2026-10-15 — Step 5 timestamp cleanup closure
+
+**Step 5 — Provide timestamp snapshot cleanup on `mars` and `pluto`: CLOSED.** Source-contract verification and check-mode passed; the guarded cleanup utility was installed on both hosts, with the guarded manager update confined to `mars`. Live `mars` dry-run retained all 52 complete sets and both the checkpoint hold (`20261013-171228Z`) and replication parent (`20261015-030004Z`); zero deletion candidates. The Vault-authenticated standalone `pluto` dry-run completed `rc=0` and explicitly reported ext4 `UNSUPPORTED`/no-op. No destructive cleanup or timer change was executed. Live positive deletion-plan and actual deletion behaviour remain untested; historical Snapper snapshots, native receiver receipts/snapshots and `pluto` publication generations are out of scope. Evidence: `evidence/Step 5/README.md` and attached transcripts. Overall 0035 remains in progress.

@@ -185,3 +185,8 @@ The independent checkpoint hold and real scheduled prune passed on `mars`, and t
 ## 0035 Step 3 closure — 2026-10-15
 
 **CLOSED:** The read-only `backup` receiver capture reconciled eight accepted receipts with eight received read-only subvolumes; UUIDs and parent lineage matched, with no missing or unreceipted snapshots. All nine source-contract checks passed, and Ansible reported `ok=2`, `changed=0`, `failed=0`. Receiver-local snapshot timers remain disabled. Received-snapshot pruning is **not enabled or authorised**; preserve `/@data/backup`. The separate stale local manager verification path remains deferred. See `evidence/Step 3/README.md` and the captured transcript.
+
+
+## 2026-10-15 — Step 5 timestamp cleanup closure
+
+**Step 5 — Provide timestamp snapshot cleanup on `mars` and `pluto`: CLOSED.** Source-contract verification and check-mode passed; the guarded cleanup utility was installed on both hosts, with the guarded manager update confined to `mars`. Live `mars` dry-run retained all 52 complete sets and both the checkpoint hold (`20261013-171228Z`) and replication parent (`20261015-030004Z`); zero deletion candidates. The Vault-authenticated standalone `pluto` dry-run completed `rc=0` and explicitly reported ext4 `UNSUPPORTED`/no-op. No destructive cleanup or timer change was executed. Live positive deletion-plan and actual deletion behaviour remain untested; historical Snapper snapshots, native receiver receipts/snapshots and `pluto` publication generations are out of scope. Evidence: `evidence/Step 5/README.md` and attached transcripts. Overall 0035 remains in progress.

@@ -1,0 +1,8 @@
+richard@mango:~/playbooks$ ansible pluto -b \
+  --ask-vault-pass \
+  -m command \
+  -a '/usr/local/sbin/diaries-snapshot-cleanup --host pluto dry-run'
+Vault password:
+pluto | CHANGED | rc=0 >>
+UNSUPPORTED: pluto filesystem=ext4 — no native snapshot pruning configured; no-op
+richard@mango:~/playbooks$
