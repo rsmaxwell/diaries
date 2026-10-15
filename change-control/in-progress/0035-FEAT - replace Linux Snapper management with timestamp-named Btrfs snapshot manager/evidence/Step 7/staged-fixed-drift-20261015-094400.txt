@@ -1,0 +1,304 @@
+richard@mango:~/playbooks$ cd ~/playbooks
+
+python3 verification/0035-step7/verify-source-contract.py
+
+set -o pipefail
+
+ansible-playbook \
+  verification/0035-step7/verify-staged.yaml \
+  --ask-vault-pass \
+  | tee /tmp/0035-step7-staged-fixed.txt
+PASS: three-host staged parity, read-only guards, receiver passive and legacy safety
+Vault password:
+
+PLAY [0035 Step 7 | Check installed source parity on mars without modification] ***
+
+TASK [Read deployed file hashes] ***********************************************
+ok: [mars] => (item={'source': 'roles/snapshots/files/btrfs-snapshot-manager.py', 'target': '/usr/local/sbin/btrfs-snapshot-manager'})
+ok: [mars] => (item={'source': 'roles/snapshots/files/diaries-backup-history.py', 'target': '/usr/local/sbin/diaries-backup-history'})
+ok: [mars] => (item={'source': 'roles/snapshots/files/diaries-snapshot-cleanup.py', 'target': '/usr/local/sbin/diaries-snapshot-cleanup'})
+ok: [mars] => (item={'source': 'roles/remote-backup/files/btrfs-native-push.py', 'target': '/usr/local/bin/btrfs-native-push'})
+
+TASK [Compare installed scripts to source bundle] ******************************
+ok: [mars] => (item=/usr/local/sbin/btrfs-snapshot-manager) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_facts": {
+            "discovered_interpreter_python": "/usr/bin/python3.12"
+        },
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": {
+            "source": "roles/snapshots/files/btrfs-snapshot-manager.py",
+            "target": "/usr/local/sbin/btrfs-snapshot-manager"
+        },
+        "stat": {
+            "atime": 1792055745.0620675,
+            "attr_flags": "e",
+            "attributes": [
+                "extents"
+            ],
+            "block_size": 4096,
+            "blocks": 72,
+            "charset": "us-ascii",
+            "checksum": "f93b6b21fd852be1a772be6ee13fb1deb6d5bc0c074d4f08768388504fe6ad13",
+            "ctime": 1792055743.513003,
+            "dev": 64512,
+            "device_type": 0,
+            "disk_usage_bytes": 36864,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 1835138,
+            "isblk": false,
+            "ischr": false,
+            "isdir": false,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": true,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "text/x-script.python",
+            "mode": "0755",
+            "mtime": 1792055743.5133488,
+            "nlink": 1,
+            "path": "/usr/local/sbin/btrfs-snapshot-manager",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 33375,
+            "uid": 0,
+            "version": "3469141882",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": true,
+            "xoth": true,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+MATCH: /usr/local/sbin/btrfs-snapshot-manager
+[ERROR]: Task failed: Action failed: Deployment drift: /usr/local/sbin/diaries-backup-history differs or is missing; do not activate/migrate schedules
+Origin: /home/richard/playbooks/verification/0035-step7/verify-staged.yaml:19:7
+
+17       loop: "{{ expected_files }}"
+18       register: installed
+19     - name: Compare installed scripts to source bundle
+         ^ column 7
+
+failed: [mars] (item=/usr/local/sbin/diaries-backup-history) => {
+    "ansible_loop_var": "item",
+    "assertion": "item.stat.checksum == (lookup('ansible.builtin.file', '../../' ~ item.item.source, rstrip=False, lstrip=False) | hash('sha256'))",
+    "changed": false,
+    "evaluated_to": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": {
+            "source": "roles/snapshots/files/diaries-backup-history.py",
+            "target": "/usr/local/sbin/diaries-backup-history"
+        },
+        "stat": {
+            "atime": 1792050511.8401186,
+            "attr_flags": "e",
+            "attributes": [
+                "extents"
+            ],
+            "block_size": 4096,
+            "blocks": 32,
+            "charset": "us-ascii",
+            "checksum": "1b40c70be484b0268fb2ba1c9558b98ec150651e37e6535aa030158c437be206",
+            "ctime": 1791563454.8868194,
+            "dev": 64512,
+            "device_type": 0,
+            "disk_usage_bytes": 16384,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 1835070,
+            "isblk": false,
+            "ischr": false,
+            "isdir": false,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": true,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "text/x-script.python",
+            "mode": "0755",
+            "mtime": 1791563453.8407748,
+            "nlink": 1,
+            "path": "/usr/local/sbin/diaries-backup-history",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 13814,
+            "uid": 0,
+            "version": "1405598628",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": true,
+            "xoth": true,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+Deployment drift: /usr/local/sbin/diaries-backup-history differs or is missing; do not activate/migrate schedules
+ok: [mars] => (item=/usr/local/sbin/diaries-snapshot-cleanup) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": {
+            "source": "roles/snapshots/files/diaries-snapshot-cleanup.py",
+            "target": "/usr/local/sbin/diaries-snapshot-cleanup"
+        },
+        "stat": {
+            "atime": 1792055744.837058,
+            "attr_flags": "e",
+            "attributes": [
+                "extents"
+            ],
+            "block_size": 4096,
+            "blocks": 8,
+            "charset": "utf-8",
+            "checksum": "f18472142254c62655c5b4256ffe3b02ab3a51eb71baa27ceb207c5fcd373360",
+            "ctime": 1792055740.9408963,
+            "dev": 64512,
+            "device_type": 0,
+            "disk_usage_bytes": 4096,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 1835137,
+            "isblk": false,
+            "ischr": false,
+            "isdir": false,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": true,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "text/x-script.python",
+            "mode": "0755",
+            "mtime": 1792055739.806849,
+            "nlink": 1,
+            "path": "/usr/local/sbin/diaries-snapshot-cleanup",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 2871,
+            "uid": 0,
+            "version": "4191240291",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": true,
+            "xoth": true,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+MATCH: /usr/local/sbin/diaries-snapshot-cleanup
+ok: [mars] => (item=/usr/local/bin/btrfs-native-push) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": {
+            "source": "roles/remote-backup/files/btrfs-native-push.py",
+            "target": "/usr/local/bin/btrfs-native-push"
+        },
+        "stat": {
+            "atime": 1791972875.2940462,
+            "attr_flags": "e",
+            "attributes": [
+                "extents"
+            ],
+            "block_size": 4096,
+            "blocks": 16,
+            "charset": "us-ascii",
+            "checksum": "90f14a877df240f7cfccf812db09eef09aed53400ab4ba5ae88b42a349b5c9f4",
+            "ctime": 1791972795.5294318,
+            "dev": 64512,
+            "device_type": 0,
+            "disk_usage_bytes": 8192,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 1835089,
+            "isblk": false,
+            "ischr": false,
+            "isdir": false,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": true,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "text/x-script.python",
+            "mode": "0755",
+            "mtime": 1791972795.52933,
+            "nlink": 1,
+            "path": "/usr/local/bin/btrfs-native-push",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 7936,
+            "uid": 0,
+            "version": "1314971500",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": true,
+            "xoth": true,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+MATCH: /usr/local/bin/btrfs-native-push
+
+PLAY RECAP *********************************************************************
+mars                       : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+
+richard@mango:~/playbooks$

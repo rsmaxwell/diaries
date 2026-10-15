@@ -1,0 +1,1068 @@
+richard@mango:~/playbooks$ cd ~/playbooks
+
+ansible mars -b --ask-vault-pass -m copy \
+  -a "src=roles/snapshots/files/diaries-backup-history.py dest=/usr/local/sbin/diaries-backup-history owner=root group=root mode=0755" \
+  --check --diff
+Vault password:
+--- before: /usr/local/sbin/diaries-backup-history
++++ after: /home/richard/playbooks/roles/snapshots/files/diaries-backup-history.py
+@@ -200,9 +200,37 @@
+     return matches[0]
+
+
++def inspect_published(published_root: Path) -> Occurrence:
++    """Inspect a fixed published schema-2 backup; never discover fabricated ext4 snapshots."""
++    if published_root.is_symlink():
++        # The production publication is an atomic symlink to a generation.
++        dataset = published_root.resolve(strict=True)
++        if dataset.parent.name != ".diaries-backup-generations" or dataset.parent.parent != published_root.parent.resolve():
++            raise HistoryError("published symlink does not point to a local generation")
++    else:
++        dataset = published_root.resolve(strict=True)
++    if not dataset.is_dir():
++        raise HistoryError("published dataset is not a directory")
++    manifest = dataset / "dataset-manifest.json"
++    if manifest.is_symlink() or not manifest.is_file():
++        raise HistoryError("published dataset manifest missing/unsafe")
++    try:
++        data = json.loads(manifest.read_text(encoding="utf-8"))
++    except (OSError, ValueError) as exc:
++        raise HistoryError(f"cannot parse published dataset manifest: {exc}") from exc
++    if not isinstance(data, dict) or data.get("schemaVersion") != 2:
++        raise HistoryError("published dataset is not schema-2")
++    backup_id, logical_dataset = data.get("backupId"), data.get("logicalDataset")
++    if not isinstance(backup_id, str) or not backup_id or not isinstance(logical_dataset, str) or not logical_dataset:
++        raise HistoryError("published dataset has invalid identity")
++    return Occurrence("live", published_root.parent, dataset, logical_dataset, backup_id, sha256_file(manifest))
++
++
+ def main(argv: list[str] | None = None) -> int:
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--config", default="/etc/btrfs-snapshot-manager.json")
++    parser.add_argument("--published-root", type=Path, help="fixed live schema-2 publication (pluto mode); no Btrfs history implied")
++    parser.add_argument("--manifest-tool", type=Path, help="schema-2 verifier for published mode")
+     parser.add_argument("--json", action="store_true", dest="json_output")
+     sub = parser.add_subparsers(dest="command", required=True)
+     list_parser = sub.add_parser("list")
+@@ -215,8 +243,13 @@
+     args = parser.parse_args(argv)
+
+     try:
+-        config = load_config(Path(args.config))
+-        occurrences, warnings = enumerate_occurrences(config)
++        if args.published_root:
++            config = None
++            occurrences = [inspect_published(args.published_root)]
++            warnings = []
++        else:
++            config = load_config(Path(args.config))
++            occurrences, warnings = enumerate_occurrences(config)
+         grouped = group_occurrences(occurrences)
+         conflicts = conflicted_groups(grouped)
+         emit_warnings(warnings)
+@@ -293,10 +326,11 @@
+             return 0
+
+         if args.command == "verify":
+-            if not config.manifest_tool.is_file():
+-                raise HistoryError(f"schema-2 verifier missing: {config.manifest_tool}")
++            verifier = (args.manifest_tool if config is None else config.manifest_tool)
++            if verifier is None or not verifier.is_file():
++                raise HistoryError(f"schema-2 verifier missing: {verifier}")
+             result = subprocess.run(
+-                [sys.executable, str(config.manifest_tool), "verify", "--backup-dir", str(occurrence.dataset_path)],
++                [sys.executable, str(verifier), "verify", "--backup-dir", str(occurrence.dataset_path)],
+                 text=True,
+             )
+             if result.returncode != 0:
+
+mars | CHANGED => {
+    "changed": true
+}
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$ ansible mars -b --ask-vault-pass -m copy \
+  -a "src=roles/snapshots/files/diaries-backup-history.py dest=/usr/local/sbin/diaries-backup-history owner=root group=root mode=0755"
+Vault password:
+mars | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.12"
+    },
+    "changed": true,
+    "checksum": "c127778aa5b2e85dcf50443055060973967f0169",
+    "dest": "/usr/local/sbin/diaries-backup-history",
+    "gid": 0,
+    "group": "root",
+    "md5sum": "cbd9dfb6ae49b9964b4b8a0f9a784948",
+    "mode": "0755",
+    "owner": "root",
+    "size": 15881,
+    "src": "/home/richard/.ansible/tmp/ansible-tmp-1792057498.6286173-59534-235554940964768/.source",
+    "state": "file",
+    "uid": 0
+}
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$ set -o pipefail
+
+ansible-playbook \
+  verification/0035-step7/verify-staged.yaml \
+  --ask-vault-pass \
+  | tee /tmp/0035-step7-staged-final.txt
+Vault password:
+
+PLAY [0035 Step 7 | Check installed source parity on mars without modification] ***
+
+TASK [Read deployed file hashes] ***********************************************
+ok: [mars] => (item={'source': 'roles/snapshots/files/btrfs-snapshot-manager.py', 'target': '/usr/local/sbin/btrfs-snapshot-manager'})
+ok: [mars] => (item={'source': 'roles/snapshots/files/diaries-backup-history.py', 'target': '/usr/local/sbin/diaries-backup-history'})
+ok: [mars] => (item={'source': 'roles/snapshots/files/diaries-snapshot-cleanup.py', 'target': '/usr/local/sbin/diaries-snapshot-cleanup'})
+ok: [mars] => (item={'source': 'roles/remote-backup/files/btrfs-native-push.py', 'target': '/usr/local/bin/btrfs-native-push'})
+
+TASK [Compare installed scripts to source bundle] ******************************
+ok: [mars] => (item=/usr/local/sbin/btrfs-snapshot-manager) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_facts": {
+            "discovered_interpreter_python": "/usr/bin/python3.12"
+        },
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": {
+            "source": "roles/snapshots/files/btrfs-snapshot-manager.py",
+            "target": "/usr/local/sbin/btrfs-snapshot-manager"
+        },
+        "stat": {
+            "atime": 1792055745.0620675,
+            "attr_flags": "e",
+            "attributes": [
+                "extents"
+            ],
+            "block_size": 4096,
+            "blocks": 72,
+            "charset": "us-ascii",
+            "checksum": "f93b6b21fd852be1a772be6ee13fb1deb6d5bc0c074d4f08768388504fe6ad13",
+            "ctime": 1792055743.513003,
+            "dev": 64512,
+            "device_type": 0,
+            "disk_usage_bytes": 36864,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 1835138,
+            "isblk": false,
+            "ischr": false,
+            "isdir": false,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": true,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "text/x-script.python",
+            "mode": "0755",
+            "mtime": 1792055743.5133488,
+            "nlink": 1,
+            "path": "/usr/local/sbin/btrfs-snapshot-manager",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 33375,
+            "uid": 0,
+            "version": "3469141882",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": true,
+            "xoth": true,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+MATCH: /usr/local/sbin/btrfs-snapshot-manager
+ok: [mars] => (item=/usr/local/sbin/diaries-backup-history) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": {
+            "source": "roles/snapshots/files/diaries-backup-history.py",
+            "target": "/usr/local/sbin/diaries-backup-history"
+        },
+        "stat": {
+            "atime": 1792057500.9944763,
+            "attr_flags": "e",
+            "attributes": [
+                "extents"
+            ],
+            "block_size": 4096,
+            "blocks": 32,
+            "charset": "us-ascii",
+            "checksum": "1059abfb06c2b1f20b138fcffc298033e787b8f1c2ef743679ae540cbd3627a5",
+            "ctime": 1792057500.9939926,
+            "dev": 64512,
+            "device_type": 0,
+            "disk_usage_bytes": 16384,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 1835136,
+            "isblk": false,
+            "ischr": false,
+            "isdir": false,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": true,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "text/x-script.python",
+            "mode": "0755",
+            "mtime": 1792057500.994477,
+            "nlink": 1,
+            "path": "/usr/local/sbin/diaries-backup-history",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 15881,
+            "uid": 0,
+            "version": "2362717618",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": true,
+            "xoth": true,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+MATCH: /usr/local/sbin/diaries-backup-history
+ok: [mars] => (item=/usr/local/sbin/diaries-snapshot-cleanup) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": {
+            "source": "roles/snapshots/files/diaries-snapshot-cleanup.py",
+            "target": "/usr/local/sbin/diaries-snapshot-cleanup"
+        },
+        "stat": {
+            "atime": 1792055744.837058,
+            "attr_flags": "e",
+            "attributes": [
+                "extents"
+            ],
+            "block_size": 4096,
+            "blocks": 8,
+            "charset": "utf-8",
+            "checksum": "f18472142254c62655c5b4256ffe3b02ab3a51eb71baa27ceb207c5fcd373360",
+            "ctime": 1792055740.9408963,
+            "dev": 64512,
+            "device_type": 0,
+            "disk_usage_bytes": 4096,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 1835137,
+            "isblk": false,
+            "ischr": false,
+            "isdir": false,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": true,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "text/x-script.python",
+            "mode": "0755",
+            "mtime": 1792055739.806849,
+            "nlink": 1,
+            "path": "/usr/local/sbin/diaries-snapshot-cleanup",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 2871,
+            "uid": 0,
+            "version": "4191240291",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": true,
+            "xoth": true,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+MATCH: /usr/local/sbin/diaries-snapshot-cleanup
+ok: [mars] => (item=/usr/local/bin/btrfs-native-push) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": {
+            "source": "roles/remote-backup/files/btrfs-native-push.py",
+            "target": "/usr/local/bin/btrfs-native-push"
+        },
+        "stat": {
+            "atime": 1791972875.2940462,
+            "attr_flags": "e",
+            "attributes": [
+                "extents"
+            ],
+            "block_size": 4096,
+            "blocks": 16,
+            "charset": "us-ascii",
+            "checksum": "90f14a877df240f7cfccf812db09eef09aed53400ab4ba5ae88b42a349b5c9f4",
+            "ctime": 1791972795.5294318,
+            "dev": 64512,
+            "device_type": 0,
+            "disk_usage_bytes": 8192,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 1835089,
+            "isblk": false,
+            "ischr": false,
+            "isdir": false,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": true,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "text/x-script.python",
+            "mode": "0755",
+            "mtime": 1791972795.52933,
+            "nlink": 1,
+            "path": "/usr/local/bin/btrfs-native-push",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 7936,
+            "uid": 0,
+            "version": "1314971500",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": true,
+            "xoth": true,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+MATCH: /usr/local/bin/btrfs-native-push
+
+TASK [Verify protected snapshots and dry-run cleanup] **************************
+ok: [mars]
+
+TASK [Display cleanup result] **************************************************
+ok: [mars] => {
+    "cleanup.stdout_lines": [
+        "CHECKPOINT-HELD: ['20261013-171228Z']",
+        "REPLICATION-PROTECTED: ['20261015-030004Z']",
+        "RETENTION sets: total=52 keep=52 sources=2",
+        "Would delete 0 complete timestamp sets"
+    ]
+}
+
+TASK [Read configured source timers] *******************************************
+ok: [mars] => (item=btrfs-snapshot-create.timer)
+ok: [mars] => (item=btrfs-snapshot-prune.timer)
+ok: [mars] => (item=btrfs-native-push.timer)
+
+TASK [Show timers] *************************************************************
+ok: [mars] => {
+    "timers.results": [
+        {
+            "ansible_loop_var": "item",
+            "changed": false,
+            "changed_when_result": false,
+            "cmd": [
+                "systemctl",
+                "show",
+                "btrfs-snapshot-create.timer",
+                "-p",
+                "ActiveState",
+                "-p",
+                "UnitFileState"
+            ],
+            "delta": "0:00:00.024725",
+            "end": "2026-10-15 09:45:24.938462",
+            "failed": false,
+            "item": "btrfs-snapshot-create.timer",
+            "msg": "",
+            "rc": 0,
+            "start": "2026-10-15 09:45:24.913737",
+            "stderr": "",
+            "stderr_lines": [],
+            "stdout": "ActiveState=active\nUnitFileState=enabled",
+            "stdout_lines": [
+                "ActiveState=active",
+                "UnitFileState=enabled"
+            ]
+        },
+        {
+            "ansible_loop_var": "item",
+            "changed": false,
+            "changed_when_result": false,
+            "cmd": [
+                "systemctl",
+                "show",
+                "btrfs-snapshot-prune.timer",
+                "-p",
+                "ActiveState",
+                "-p",
+                "UnitFileState"
+            ],
+            "delta": "0:00:00.027544",
+            "end": "2026-10-15 09:45:26.124377",
+            "failed": false,
+            "item": "btrfs-snapshot-prune.timer",
+            "msg": "",
+            "rc": 0,
+            "start": "2026-10-15 09:45:26.096833",
+            "stderr": "",
+            "stderr_lines": [],
+            "stdout": "ActiveState=active\nUnitFileState=enabled",
+            "stdout_lines": [
+                "ActiveState=active",
+                "UnitFileState=enabled"
+            ]
+        },
+        {
+            "ansible_loop_var": "item",
+            "changed": false,
+            "changed_when_result": false,
+            "cmd": [
+                "systemctl",
+                "show",
+                "btrfs-native-push.timer",
+                "-p",
+                "ActiveState",
+                "-p",
+                "UnitFileState"
+            ],
+            "delta": "0:00:00.025135",
+            "end": "2026-10-15 09:45:27.302054",
+            "failed": false,
+            "item": "btrfs-native-push.timer",
+            "msg": "",
+            "rc": 0,
+            "start": "2026-10-15 09:45:27.276919",
+            "stderr": "",
+            "stderr_lines": [],
+            "stdout": "ActiveState=active\nUnitFileState=enabled",
+            "stdout_lines": [
+                "ActiveState=active",
+                "UnitFileState=enabled"
+            ]
+        }
+    ]
+}
+
+PLAY [0035 Step 7 | Check installed source parity and ext4 no-op on pluto] *****
+
+TASK [Read deployed file hashes] ***********************************************
+ok: [pluto] => (item={'source': 'roles/snapshots/files/diaries-backup-history.py', 'target': '/usr/local/sbin/diaries-backup-history'})
+ok: [pluto] => (item={'source': 'roles/snapshots/files/diaries-snapshot-cleanup.py', 'target': '/usr/local/sbin/diaries-snapshot-cleanup'})
+
+TASK [Compare installed scripts to source bundle] ******************************
+ok: [pluto] => (item=/usr/local/sbin/diaries-backup-history) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_facts": {
+            "discovered_interpreter_python": "/usr/bin/python3.12"
+        },
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": {
+            "source": "roles/snapshots/files/diaries-backup-history.py",
+            "target": "/usr/local/sbin/diaries-backup-history"
+        },
+        "stat": {
+            "atime": 1792054861.0510662,
+            "attr_flags": "e",
+            "attributes": [
+                "extents"
+            ],
+            "block_size": 4096,
+            "blocks": 32,
+            "charset": "us-ascii",
+            "checksum": "1059abfb06c2b1f20b138fcffc298033e787b8f1c2ef743679ae540cbd3627a5",
+            "ctime": 1792054857.9998088,
+            "dev": 64512,
+            "device_type": 0,
+            "disk_usage_bytes": 16384,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 2653001,
+            "isblk": false,
+            "ischr": false,
+            "isdir": false,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": true,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "text/x-script.python",
+            "mode": "0755",
+            "mtime": 1792054857.3237517,
+            "nlink": 1,
+            "path": "/usr/local/sbin/diaries-backup-history",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 15881,
+            "uid": 0,
+            "version": "1266498636",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": true,
+            "xoth": true,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+MATCH: /usr/local/sbin/diaries-backup-history
+ok: [pluto] => (item=/usr/local/sbin/diaries-snapshot-cleanup) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": {
+            "source": "roles/snapshots/files/diaries-snapshot-cleanup.py",
+            "target": "/usr/local/sbin/diaries-snapshot-cleanup"
+        },
+        "stat": {
+            "atime": 1792055744.2720382,
+            "attr_flags": "e",
+            "attributes": [
+                "extents"
+            ],
+            "block_size": 4096,
+            "blocks": 8,
+            "charset": "utf-8",
+            "checksum": "f18472142254c62655c5b4256ffe3b02ab3a51eb71baa27ceb207c5fcd373360",
+            "ctime": 1792055739.8756638,
+            "dev": 64512,
+            "device_type": 0,
+            "disk_usage_bytes": 4096,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 2653009,
+            "isblk": false,
+            "ischr": false,
+            "isdir": false,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": true,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "text/x-script.python",
+            "mode": "0755",
+            "mtime": 1792055739.256611,
+            "nlink": 1,
+            "path": "/usr/local/sbin/diaries-snapshot-cleanup",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 2871,
+            "uid": 0,
+            "version": "3595832102",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": true,
+            "xoth": true,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+MATCH: /usr/local/sbin/diaries-snapshot-cleanup
+
+TASK [Resolve current published backup] ****************************************
+ok: [pluto]
+
+TASK [Inspect safe ext4 cleanup mode] ******************************************
+ok: [pluto]
+
+TASK [ansible.builtin.debug] ***************************************************
+ok: [pluto] => {
+    "publication.stdout_lines": [
+        "LOGICAL DATASET  BACKUP ID          FIRST RETAINED        LAST RETAINED         SNAPSHOTS STATUS",
+        "production       20261015-003023Z   live                  live                  1         verified"
+    ]
+}
+
+TASK [ansible.builtin.debug] ***************************************************
+ok: [pluto] => {
+    "cleanup.stdout_lines": [
+        "UNSUPPORTED: pluto filesystem=ext4 — no native snapshot pruning configured; no-op"
+    ]
+}
+
+PLAY [0035 Step 7 | Validate passive native receiver on backup] ****************
+
+TASK [Read receiver installed hashes] ******************************************
+ok: [backup] => (item={'source': 'roles/remote-backup/files/btrfs-native-push-receiver.py', 'target': '/usr/local/bin/btrfs-native-push-receiver'})
+ok: [backup] => (item={'source': 'roles/remote-backup/files/btrfs-native-endpoint.py', 'target': '/usr/local/libexec/btrfs-native-endpoint'})
+
+TASK [Compare receiver implementation to Playbooks source] *********************
+ok: [backup] => (item=/usr/local/bin/btrfs-native-push-receiver) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_facts": {
+            "discovered_interpreter_python": "/usr/bin/python3.10"
+        },
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": {
+            "source": "roles/remote-backup/files/btrfs-native-push-receiver.py",
+            "target": "/usr/local/bin/btrfs-native-push-receiver"
+        },
+        "stat": {
+            "atime": 1792035023.1716537,
+            "attr_flags": "",
+            "attributes": [],
+            "block_size": 4096,
+            "blocks": 16,
+            "charset": "us-ascii",
+            "checksum": "035deb8268bd3c185d095dc72513db8a54d9ecd98fabb71232906aceac7430f7",
+            "ctime": 1791902863.782559,
+            "dev": 28,
+            "device_type": 0,
+            "disk_usage_bytes": 8192,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 3704603,
+            "isblk": false,
+            "ischr": false,
+            "isdir": false,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": true,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "text/x-script.python",
+            "mode": "0755",
+            "mtime": 1791902863.2145126,
+            "nlink": 1,
+            "path": "/usr/local/bin/btrfs-native-push-receiver",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 7142,
+            "uid": 0,
+            "version": "532906",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": true,
+            "xoth": true,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+MATCH: /usr/local/bin/btrfs-native-push-receiver
+ok: [backup] => (item=/usr/local/libexec/btrfs-native-endpoint) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": {
+            "source": "roles/remote-backup/files/btrfs-native-endpoint.py",
+            "target": "/usr/local/libexec/btrfs-native-endpoint"
+        },
+        "stat": {
+            "atime": 1791972911.3977063,
+            "attr_flags": "",
+            "attributes": [],
+            "block_size": 4096,
+            "blocks": 24,
+            "charset": "us-ascii",
+            "checksum": "b911505989407dd4905a7c029ae5450b1fe3ae474f27fca096fb16098385b14c",
+            "ctime": 1791972812.7096207,
+            "dev": 28,
+            "device_type": 0,
+            "disk_usage_bytes": 12288,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 3705190,
+            "isblk": false,
+            "ischr": false,
+            "isdir": false,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": true,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "text/x-script.python",
+            "mode": "0755",
+            "mtime": 1791972812.7125516,
+            "nlink": 1,
+            "path": "/usr/local/libexec/btrfs-native-endpoint",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 9680,
+            "uid": 0,
+            "version": "535137",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": true,
+            "xoth": true,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+MATCH: /usr/local/libexec/btrfs-native-endpoint
+
+TASK [Check local snapshot timers remain disabled] *****************************
+ok: [backup] => (item=btrfs-snapshot-create.timer)
+ok: [backup] => (item=btrfs-snapshot-prune.timer)
+
+TASK [Assert receiver stays passive] *******************************************
+ok: [backup] => (item=btrfs-snapshot-create.timer) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "changed_when_result": false,
+        "cmd": [
+            "systemctl",
+            "is-enabled",
+            "btrfs-snapshot-create.timer"
+        ],
+        "delta": "0:00:00.014807",
+        "end": "2026-10-15 10:45:34.531161",
+        "failed": false,
+        "failed_when_result": false,
+        "failed_when_suppressed_exception": "(traceback unavailable)",
+        "item": "btrfs-snapshot-create.timer",
+        "msg": "The command exited with a non-zero return code.",
+        "rc": 1,
+        "start": "2026-10-15 10:45:34.516354",
+        "stderr": "",
+        "stderr_lines": [],
+        "stdout": "disabled",
+        "stdout_lines": [
+            "disabled"
+        ]
+    }
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => (item=btrfs-snapshot-prune.timer) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "changed_when_result": false,
+        "cmd": [
+            "systemctl",
+            "is-enabled",
+            "btrfs-snapshot-prune.timer"
+        ],
+        "delta": "0:00:00.026729",
+        "end": "2026-10-15 10:45:35.220508",
+        "failed": false,
+        "failed_when_result": false,
+        "failed_when_suppressed_exception": "(traceback unavailable)",
+        "item": "btrfs-snapshot-prune.timer",
+        "msg": "The command exited with a non-zero return code.",
+        "rc": 1,
+        "start": "2026-10-15 10:45:35.193779",
+        "stderr": "",
+        "stderr_lines": [],
+        "stdout": "disabled",
+        "stdout_lines": [
+            "disabled"
+        ]
+    }
+}
+
+MSG:
+
+All assertions passed
+
+TASK [Record legacy mirror and native receive root] ****************************
+ok: [backup] => (item=/@data/backup)
+ok: [backup] => (item=/@data/mars-received/@data)
+ok: [backup] => (item=/@data/mars-received/.replication-state)
+
+TASK [Assert all existing trees preserved] *************************************
+ok: [backup] => (item=/@data/backup) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": "/@data/backup",
+        "stat": {
+            "atime": 1791979691.0936177,
+            "attr_flags": "",
+            "attributes": [],
+            "block_size": 4096,
+            "blocks": 0,
+            "charset": "binary",
+            "ctime": 1791598505.4379358,
+            "dev": 148,
+            "device_type": 0,
+            "disk_usage_bytes": 0,
+            "executable": true,
+            "exists": true,
+            "gid": 1000,
+            "gr_name": "richard",
+            "inode": 502253,
+            "isblk": false,
+            "ischr": false,
+            "isdir": true,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": false,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "inode/directory",
+            "mode": "0775",
+            "mtime": 1791598505.4379358,
+            "nlink": 1,
+            "path": "/@data/backup",
+            "pw_name": "richard",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 204,
+            "uid": 1000,
+            "version": "81009",
+            "wgrp": true,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": true,
+            "xoth": true,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => (item=/@data/mars-received/@data) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": "/@data/mars-received/@data",
+        "stat": {
+            "atime": 1792035043.461302,
+            "attr_flags": "",
+            "attributes": [],
+            "block_size": 4096,
+            "blocks": 0,
+            "charset": "binary",
+            "ctime": 1792035031.3483179,
+            "dev": 148,
+            "device_type": 0,
+            "disk_usage_bytes": 0,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 969812,
+            "isblk": false,
+            "ischr": false,
+            "isdir": true,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": false,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "inode/directory",
+            "mode": "0755",
+            "mtime": 1792035031.3483179,
+            "nlink": 1,
+            "path": "/@data/mars-received/@data",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": true,
+            "roth": true,
+            "rusr": true,
+            "size": 256,
+            "uid": 0,
+            "version": "526889",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": true,
+            "xoth": true,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => (item=/@data/mars-received/.replication-state) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": "/@data/mars-received/.replication-state",
+        "stat": {
+            "atime": 1792035100.6899514,
+            "attr_flags": "",
+            "attributes": [],
+            "block_size": 4096,
+            "blocks": 0,
+            "charset": "binary",
+            "ctime": 1792035098.3377602,
+            "dev": 148,
+            "device_type": 0,
+            "disk_usage_bytes": 0,
+            "executable": true,
+            "exists": true,
+            "gid": 1000,
+            "gr_name": "richard",
+            "inode": 969813,
+            "isblk": false,
+            "ischr": false,
+            "isdir": true,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": false,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "inode/directory",
+            "mode": "0700",
+            "mtime": 1792035098.3377602,
+            "nlink": 1,
+            "path": "/@data/mars-received/.replication-state",
+            "pw_name": "richard",
+            "readable": true,
+            "rgrp": false,
+            "roth": false,
+            "rusr": true,
+            "size": 358,
+            "uid": 1000,
+            "version": "526889",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": false,
+            "xoth": false,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+
+PLAY RECAP *********************************************************************
+backup                     : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+mars                       : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+pluto                      : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+richard@mango:~/playbooks$

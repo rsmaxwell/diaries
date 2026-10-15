@@ -9,6 +9,10 @@
 >
 > Supersedes the pending rsync-based `backup` receiver/mirror procedure; it does not erase prior snapshot-manager implementation or evidence. `mars` snapshot production continues. Native receive and retention require new implementation and live acceptance before any timer migration.
 
+## Step 7 closure — 2026-10-15
+
+**CLOSED (staged three-host acceptance):** after fixing the whitespace-trimming checksum comparison, the sole genuine source mismatch was the older `diaries-backup-history` on `mars`. A reviewed targeted copy resolved it; final read-only staging playbook returned `ok=6 changed=0 failed=0` on **each** of `mars`, `pluto` and `backup`. `mars` kept the checkpoint and replication pins (52 retained, 0 eligible to prune); `pluto` reported verified schema-2 publication on ext4 and cleanup no-op; `backup` helper parity, retained legacy/native trees and disabled local timers were verified. Joint read-only UUID/receipt reconciliation also passed. No real pruning, new replication transfer, injection or restore tested here; Step 8 remains open. See `evidence/Step 7/README.md`.
+
 ## Step 4 closure — 2026-10-15
 
 **CLOSED (scoped acceptance):** existing `mars` history regression and native snapshot occurrences verified; history locator and independent schema-2 verifier installed on ext4 `pluto`; fixed publication reported `production / 20261015-003023Z / live / verified`. This closure does not claim live `show`, `path`, `verify` or deployment idempotency (`changed=0`) were exercised, and those checks remain additional operator verification. See `evidence/Step 4/README.md`. No snapshot pruning or restore authorised.
@@ -193,3 +197,7 @@ Verification tooling implemented, **NOT CLOSED** pending on-host reconciliation 
 ## 2026-10-15 — Step 6 CLOSED (integration safety, qualified)
 
 `mars`/`backup` joint source and live read-only verification passed: 15 source checks, native push and protection regressions, 52 complete source snapshot sets, eight matching accepted receive receipts, and matching latest protected UUID `6f44e0e0-1968-6e4d-a3bd-9f77d71e9a47` (`20261015-030004Z`). No host mutations. Existing 0034 accepted full/incremental and disposable recovery evidence is cross-referenced; fault injection and measured stream-size/allocation remain explicitly **unevidenced** and are carried to Step 8. See `evidence/Step 6/README.md` and the live transcript. Step 6 closure does not close 0035 overall or authorise deletion/reseed.
+
+## 2026-10-15 — Step 7 staging verification (OPEN)
+
+Three-host, read-only installed-script parity and passive receiver checks prepared in Playbooks `verification/0035-step7/`. See `evidence/Step 7/README.md`. Do not close until live evidence has been reviewed.

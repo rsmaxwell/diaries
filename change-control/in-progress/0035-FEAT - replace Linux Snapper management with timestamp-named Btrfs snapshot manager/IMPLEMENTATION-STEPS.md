@@ -58,6 +58,8 @@
 
 ## Step 7 — Stage deployment on `mars`, `pluto`, and `backup`
 
+**Status (2026-10-15): CLOSED — three-host staged verification PASS (`mars`, `pluto`, `backup`, each `ok=6 changed=0 failed=0`).** The initial checksum comparison was fixed to preserve trailing whitespace; the only real drift, `mars` `diaries-backup-history`, was corrected by a reviewed targeted deployment. Source parity, dry-run safeguards, ext4 no-op, protected source/receiver lineage and disabled receiver-local timers verified. No destructive actions or timer changes. See `evidence/Step 7/README.md` and transcripts. Step 8 failure/restore/space acceptance remains open.
+
 - Install/rehearse `mars` snapshot/history/prune helpers and check retention of send parents. Verify it can still take and list timestamped read-only snapshots without changing the complete-backup source.
 - Install history and pruning utilities on `pluto`, prove fixed published Diaries backup discovery, and confirm safe unsupported/non-Btrfs prune behavior if relevant.
 - On `backup`, deploy receive integration **install-only** first. Verify live initial baseline and incremental from 0034, received snapshot lineage, independent retention and existing legacy `/@data/backup` safety.
