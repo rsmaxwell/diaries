@@ -21,3 +21,7 @@ Evidence files: `gate-b2-transport-mango-20261015.txt` and `GATE-B2-ENOSPC-AND-T
 4. Only after those decisions, determine whether Step 8 can be marked CLOSED. Keep all historical Snapper snapshots, replication pins, receiver receipts, and production publications untouched.
 
 No code or host deployment accompanies this documentation change; no Docker images need building.
+
+## Subsequent execution (2026-10-15)
+
+The two previously untested scenarios have since passed in **isolated** environments: a genuine loopback SSH client disconnect before acknowledgement and actual Btrfs receipt-publication ENOSPC preserving the previous receipt. See `FINAL-EVIDENCE-RECONCILIATION-20261015.md` and attached transcripts. The original outstanding-scenarios list above reflects the *earlier* decision point and is superseded for these two cases. Do not infer a combined production sender/SSH lifecycle test.

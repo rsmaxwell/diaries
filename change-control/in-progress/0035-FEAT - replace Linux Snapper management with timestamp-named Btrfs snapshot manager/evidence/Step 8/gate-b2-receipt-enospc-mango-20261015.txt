@@ -1,0 +1,8 @@
+richard@mango:~/playbooks$ sudo bash verification/0035-step8/verify-gate-b2-receipt-enospc.sh \
+  --run-disposable \
+  | tee /tmp/0035-step8-receipt-enospc.txt
+PASS: baseline receipt atomically published before pressure
+PASS: real receipt publication ENOSPC rejected
+PASS: previous receipt intact, new receipt absent, temporary file cleaned
+GATE B2 actual receipt-publication ENOSPC PASS
+richard@mango:~/playbooks$

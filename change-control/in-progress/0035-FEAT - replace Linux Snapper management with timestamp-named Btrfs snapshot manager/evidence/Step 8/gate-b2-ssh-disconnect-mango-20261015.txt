@@ -1,0 +1,13 @@
+richard@mango:~/playbooks$ cd ~/playbooks
+
+bash -n verification/0035-step8/verify-gate-b2-ssh-disconnect.sh
+
+set -o pipefail
+
+sudo bash verification/0035-step8/verify-gate-b2-ssh-disconnect.sh \
+  --run-disposable \
+  | tee /tmp/0035-step8-ssh-disconnect.txt
+PASS: actual loopback SSH client disconnected before receiver acknowledgement
+NOT TESTED: production sender pin lifecycle over this real SSH daemon; use offline transport regression for pin policy
+GATE B2 isolated real SSH disconnect PASS
+richard@mango:~/playbooks$

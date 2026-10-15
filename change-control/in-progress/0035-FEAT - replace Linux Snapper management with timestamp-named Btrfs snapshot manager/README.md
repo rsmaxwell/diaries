@@ -201,3 +201,7 @@ Verification tooling implemented, **NOT CLOSED** pending on-host reconciliation 
 ## 2026-10-15 — Step 7 staging verification (OPEN)
 
 Three-host, read-only installed-script parity and passive receiver checks prepared in Playbooks `verification/0035-step7/`. See `evidence/Step 7/README.md`. Do not close until live evidence has been reviewed.
+
+## Step 8 acceptance and closure (2026-10-15)
+
+**Step 8 CLOSED**, with user-authorised acceptance of the existing 0034 disposable restore evidence, the 0035 controlled correctness/failure-safety evidence, and complementary isolated SSH/acknowledgement/receipt/kernel tests without another combined production-equivalent run. Quantitative stream bytes, throughput, allocation and performance/capacity metrics are **excluded from Step 8 scope** by explicit decision, not represented as measured. The 0034 original Gates A–D transcripts were not independently reviewed here. See `evidence/Step 8/STEP-8-CLOSURE-20261015.md`. **0035 overall remains OPEN** for subsequent steps and their gates.

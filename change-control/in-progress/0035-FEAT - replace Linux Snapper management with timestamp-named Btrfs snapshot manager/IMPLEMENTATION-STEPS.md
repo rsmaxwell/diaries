@@ -67,6 +67,8 @@
 
 ## Step 8 — Retention, restore and failure acceptance
 
+**Status (2026-10-15): CLOSED — Gate A/B1 and controlled Gate B2 accepted; inherited 0034 disposable schema-2 restore accepted without a repeat; quantitative transfer/physical-allocation measurements excluded from Step 8 scope; complementary isolated failure tests accepted without a combined end-to-end rerun.** See `evidence/Step 8/STEP-8-CLOSURE-20261015.md` and final reconciliation. This closes Step 8 only, not Step 9 or 0035 overall; production pruning/schedule changes remain separately gated.
+
 - Exercise timestamp retention across GFS boundaries, newest-snapshot safety, pinning of active transfer parents and old Snapper namespace preservation.
 - Verify history locator maps IDs to real absolute paths and a snapshot-resident schema-2 dataset restores successfully into a **disposable** environment via the unchanged 0033 restore tool.
 - Simulate storage pressure, loss of SSH, interrupted full/incremental transfer, duplicate received snapshot and stale/unknown parent; prior accepted receive remains usable. Log source/destination UUID and exact paths.
