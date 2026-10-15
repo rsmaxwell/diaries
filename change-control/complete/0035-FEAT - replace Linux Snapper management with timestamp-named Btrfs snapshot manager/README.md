@@ -1,6 +1,4 @@
 ## Step 9 closure — 2026-10-15
-> **FEATURE CLOSED — 2026-10-15.** Steps 1–9 are CLOSED. This feature is archived under `change-control/complete/`. The approved target state is the existing `mars` timestamp-based creation/prune/native-push schedules, passive `backup` receiver, and unchanged `pluto` publisher. See `FEATURE-CLOSURE-20261015.md`, the Step 8 final reconciliation and Step 9 closure records. Historical provisional text below records prior decisions and is superseded where it conflicts with this closure.
-
 
 **CLOSED (scoped acceptance):** Gate 9A read-only preflight PASS, Gate 9B existing scheduler state ACCEPTED without modification, and Gate 9C read-only three-host verification PASS (`mars`, `backup`, `pluto`: `ok=2 changed=0 failed=0`). Existing `mars` snapshot create/prune/native push timers remain scheduled; receiver is passive; Snapper schedules inactive; protections and schema-2 publication preserved. No manual pruning, cutover, transfer or restore performed in Step 9 verification. Full Gate 9C transcript and rollback guidance: `evidence/Step 9/STEP-9-CLOSURE-20261015.md`. Overall 0035-FEAT remains open pending separate feature closure and final Git revisions.
 
@@ -54,7 +52,7 @@ Step 1 now has a dedicated **read-only** three-host Playbooks capture under `ver
 
 ## Type / status
 
-Feature — **CLOSED 2026-10-15**. Opened 2026-10-08; design revised 2026-10-08 to integrate fixed-directory Diaries backup and whole-backup snapshots. Existing change-control directory/title (“replace Linux Snapper management with timestamp-named Btrfs snapshot manager”) retained for continuity.
+Feature — **In progress**. Opened 2026-10-08; design revised 2026-10-08 to integrate fixed-directory Diaries backup and whole-backup snapshots. Existing change-control directory/title (“replace Linux Snapper management with timestamp-named Btrfs snapshot manager”) retained for continuity.
 
 ## Starting state (not a greenfield project)
 
@@ -210,13 +208,4 @@ Three-host, read-only installed-script parity and passive receiver checks prepar
 
 ### Step 9 live migration evidence (2026-10-15)
 
-Gate 9A read-only three-host preflight PASSED; Gate 9B accepts the already deployed source scheduler and passive receiver with no timer change. Step 9 **CLOSED** after Gate 9C passed across all three hosts with `changed=0` and `failed=0`; see `evidence/Step 9/STEP-9-CLOSURE-20261015.md`. See `evidence/Step 9/GATE-9A-9B-ACCEPTANCE-20261015.md`.
-
-
-## Final feature closure — 2026-10-15
-
-**CLOSED:** Steps 1–9 accepted. Gate 9A PASS, Gate 9B existing schedule adopted without change, Gate 9C PASS (`mars`, `backup`, `pluto`: `ok=2 changed=0 failed=0`). No timer changes, destructive pruning, receiver reseeding, production restore or Docker rebuild were required for final close-out.
-
-The previously accepted 0034 disposable schema-2 recovery evidence is reused, no repeat restore required. Isolated SSH, native Btrfs, receiver-receipt and ENOSPC tests passed at their documented scopes; a combined production-equivalent failure test was not required. Quantitative transfer and allocation benchmarking is **excluded** from this feature acceptance. Historical provisional design/step entries above are retained for traceability and do not reopen closed gates.
-
-Final reconciled commits: Diaries `bc441181bba128855f642773cee45a7ca795e877` and Playbooks `0bf68c5a46eed4975a002b55f29ba1bb94dfbb10` (both reported clean and synchronized to `origin/main` before this closing documentation commit). See `FEATURE-CLOSURE-20261015.md`.
+Gate 9A read-only three-host preflight PASSED; Gate 9B accepts the already deployed source scheduler and passive receiver with no timer change. Step 9 **remains OPEN** until Gate 9C final read-only verification and closure reconciliation. See `evidence/Step 9/GATE-9A-9B-ACCEPTANCE-20261015.md`.

@@ -1,13 +1,11 @@
 # 0035-FEAT — IMPLEMENTATION-STEPS (native Btrfs replication revision, 2026-10-11)
-> **FEATURE CLOSED — 2026-10-15.** Steps 1–9 are CLOSED. This feature is archived under `change-control/complete/`. The approved target state is the existing `mars` timestamp-based creation/prune/native-push schedules, passive `backup` receiver, and unchanged `pluto` publisher. See `FEATURE-CLOSURE-20261015.md`, the Step 8 final reconciliation and Step 9 closure records. Historical provisional text below records prior decisions and is superseded where it conflicts with this closure.
-
 
 > **ACTIVE DESIGN DECISION — 2026-10-12: SOURCE-INITIATED BTRFS PUSH AND REPLICATION-AWARE RETENTION**
 >
 > For the `mars` → `backup` native-replication leg, **`mars` initiates and orchestrates a push**. Previous wording assigning initiation to `backup` is superseded, but the **`pluto` → `mars` Diaries pull remains unchanged**. Retention protects the current common parent and in-flight candidate regardless of direction. No deployed behaviour changes as a result of this documentation update. See the 0034 Step 10 push architecture decision and `evidence/PUSH-REPLICATION-RETENTION-DESIGN-20261012.md`.
 >
 
-**Status:** Feature CLOSED 2026-10-15 (Steps 1–9). This plan supersedes the outstanding rsync receiver/snapshot coupling steps, **not** historical evidence or already implemented standalone timestamp snapshot-manager functions. Preserve default-off activation and Snapper handover. 0034 owns production whole-backup publication and the send/receive orchestration; 0035 owns native snapshot creation, discoverability, retention and compatibility on relevant hosts.
+**Status:** Feature OPEN. This plan supersedes the outstanding rsync receiver/snapshot coupling steps, **not** historical evidence or already implemented standalone timestamp snapshot-manager functions. Preserve default-off activation and Snapper handover. 0034 owns production whole-backup publication and the send/receive orchestration; 0035 owns native snapshot creation, discoverability, retention and compatibility on relevant hosts.
 
 ## Step 1 — Reconcile observed host state and baseline (required)
 
@@ -102,10 +100,3 @@ These steps supersede any pending implementation instructions describing `backup
 ## 2026-10-13 — Restricted Step 10 cleanup/hold acceptance (CLOSED)
 
 The independent checkpoint hold and real scheduled prune passed on `mars`, and the narrowly scoped remote-backup pull cleanup deployed successfully without removing snapshot-manager or local-backup components. Evidence: `evidence/STEP-10-RESTRICTED-CLEANUP-ACCEPTANCE-20261013.md`. The runtime checkpoint `20261013-171228Z` remains held while the replication parent advances separately. Other 0035 migration and host acceptance gates remain distinct; this does **not** mean the entire feature is closed.
-
-
-## Final closure disposition — 2026-10-15
-
-**Steps 1–9 CLOSED. 0035-FEAT CLOSED.** Step 8's acceptance and qualifications are documented in `evidence/Step 8/FINAL-EVIDENCE-RECONCILIATION-20261015.md` and `evidence/Step 8/STEP-8-CLOSURE-20261015.md`. Step 9's final gates and rollback procedure are documented in `evidence/Step 9/STEP-9-CLOSURE-20261015.md`. Historical in-progress wording above is preserved as the implementation trail, not an outstanding task.
-
-Quantitative transfer-size, allocation and performance measurements were explicitly excluded from feature scope; the accepted 0034 recovery evidence was inherited without a repeat restore, and no additional combined end-to-end failure test was required. These decisions do not authorise untested destructive operations.
