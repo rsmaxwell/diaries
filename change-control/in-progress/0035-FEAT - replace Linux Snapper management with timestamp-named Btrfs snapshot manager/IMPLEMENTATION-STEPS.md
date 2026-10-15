@@ -67,16 +67,16 @@
 
 ## Step 8 — Retention, restore and failure acceptance
 
-**Status (2026-10-15): CLOSED — Gate A/B1 and controlled Gate B2 accepted; inherited 0034 disposable schema-2 restore accepted without a repeat; quantitative transfer/physical-allocation measurements excluded from Step 8 scope; complementary isolated failure tests accepted without a combined end-to-end rerun.** See `evidence/Step 8/STEP-8-CLOSURE-20261015.md` and final reconciliation. This closes Step 8 only, not Step 9 or 0035 overall; production pruning/schedule changes remain separately gated.
-
 - Exercise timestamp retention across GFS boundaries, newest-snapshot safety, pinning of active transfer parents and old Snapper namespace preservation.
 - Verify history locator maps IDs to real absolute paths and a snapshot-resident schema-2 dataset restores successfully into a **disposable** environment via the unchanged 0033 restore tool.
 - Simulate storage pressure, loss of SSH, interrupted full/incremental transfer, duplicate received snapshot and stale/unknown parent; prior accepted receive remains usable. Log source/destination UUID and exact paths.
 
-## Step 9 — Controlled scheduler migration, rollback and close-out
+## Step 9 — Controlled scheduler migration, rollback and close-out (CLOSED — 2026-10-15; 9A PASS, 9B ACCEPTED, 9C PASS)
 
 - Obtain explicit acceptance on all relevant hosts before changing timers/cron. Enable only required native snapshot/sender/receiver schedules and disable conflicting legacy transfer jobs once the new path is proven. Retain Snapper cleanup while numeric legacy snapshots age out naturally; never mass-delete them.
 - Verify operational instructions, fault handling, observed snapshot retention and restore, revision/commit IDs, rollback and repeatable deployments. Close 0035 only after documented live verification; native `backup` snapshot timers remain off until approved.
+
+**Step 9 closure:** See `evidence/Step 9/STEP-9-CLOSURE-20261015.md`. Scheduler state adopted without changes; three-host Gate 9C passed with `changed=0 failed=0`. Overall feature closure is a separate decision.
 
 ## Safety contract
 

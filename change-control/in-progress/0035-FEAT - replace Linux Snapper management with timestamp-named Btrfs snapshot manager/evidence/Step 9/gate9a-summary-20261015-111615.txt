@@ -1,0 +1,7 @@
+richard@mango:~/playbooks$ ansible-playbook verification/0035-step9/preflight.yaml --ask-vault-pass | tee /tmp/0035-step9-preflight.txt
+
+mars: create/prune/push enabled active; Snapper timers disabled inactive; 52 paired complete sets; 0 incomplete; dry-run would delete 0; push success; no legacy rsync.
+backup: create/prune disabled inactive; push inactive; historical mirror and native receipts present.
+pluto: schema-2 generation directory present.
+RECAP: backup ok=2 changed=0 failed=0; mars ok=2 changed=0 failed=0; pluto ok=2 changed=0 failed=0.
+NOTE: This is a summary of the uploaded console transcript, not the original full log.

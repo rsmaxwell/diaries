@@ -1,3 +1,7 @@
+## Step 9 closure — 2026-10-15
+
+**CLOSED (scoped acceptance):** Gate 9A read-only preflight PASS, Gate 9B existing scheduler state ACCEPTED without modification, and Gate 9C read-only three-host verification PASS (`mars`, `backup`, `pluto`: `ok=2 changed=0 failed=0`). Existing `mars` snapshot create/prune/native push timers remain scheduled; receiver is passive; Snapper schedules inactive; protections and schema-2 publication preserved. No manual pruning, cutover, transfer or restore performed in Step 9 verification. Full Gate 9C transcript and rollback guidance: `evidence/Step 9/STEP-9-CLOSURE-20261015.md`. Overall 0035-FEAT remains open pending separate feature closure and final Git revisions.
+
 # 0035-FEAT — Timestamp-named whole-backup Btrfs snapshot management
 
 > **ACTIVE DESIGN DECISION — 2026-10-12: SOURCE-INITIATED BTRFS PUSH AND REPLICATION-AWARE RETENTION**
@@ -202,6 +206,6 @@ Verification tooling implemented, **NOT CLOSED** pending on-host reconciliation 
 
 Three-host, read-only installed-script parity and passive receiver checks prepared in Playbooks `verification/0035-step7/`. See `evidence/Step 7/README.md`. Do not close until live evidence has been reviewed.
 
-## Step 8 acceptance and closure (2026-10-15)
+### Step 9 live migration evidence (2026-10-15)
 
-**Step 8 CLOSED**, with user-authorised acceptance of the existing 0034 disposable restore evidence, the 0035 controlled correctness/failure-safety evidence, and complementary isolated SSH/acknowledgement/receipt/kernel tests without another combined production-equivalent run. Quantitative stream bytes, throughput, allocation and performance/capacity metrics are **excluded from Step 8 scope** by explicit decision, not represented as measured. The 0034 original Gates A–D transcripts were not independently reviewed here. See `evidence/Step 8/STEP-8-CLOSURE-20261015.md`. **0035 overall remains OPEN** for subsequent steps and their gates.
+Gate 9A read-only three-host preflight PASSED; Gate 9B accepts the already deployed source scheduler and passive receiver with no timer change. Step 9 **remains OPEN** until Gate 9C final read-only verification and closure reconciliation. See `evidence/Step 9/GATE-9A-9B-ACCEPTANCE-20261015.md`.

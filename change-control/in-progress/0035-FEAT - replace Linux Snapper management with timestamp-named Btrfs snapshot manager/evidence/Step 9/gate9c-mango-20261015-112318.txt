@@ -1,0 +1,75 @@
+richard@mango:~/playbooks$ cd ~/playbooks
+
+set -o pipefail
+
+ansible-playbook verification/0035-step9/verify-gate-9c.yaml \
+  --ask-vault-pass \
+  | tee /tmp/0035-step9-gate9c.txt
+Vault password:
+
+PLAY [0035 Step 9C | Source scheduler and preservation gate] *******************
+
+TASK [Assert expected active timer schedule and fail-closed source protections] ***
+ok: [mars]
+
+TASK [ansible.builtin.debug] ***************************************************
+ok: [mars] => {
+    "source_check.stdout_lines": [
+        "PASS: source btrfs-snapshot-create.timer enabled and active",
+        "PASS: source btrfs-snapshot-prune.timer enabled and active",
+        "PASS: source btrfs-native-push.timer enabled and active",
+        "PASS: legacy snapper-timeline.timer not scheduled (disabled/inactive)",
+        "PASS: legacy snapper-boot.timer not scheduled (disabled/inactive)",
+        "PASS: legacy snapper-cleanup.timer not scheduled (disabled/inactive)",
+        "snapshot_root=/media/usb/@snapshots",
+        "filesystem=btrfs",
+        "retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30",
+        "complete_timestamp_sets=52;incomplete_timestamp_sets=0",
+        "source=root:/media/usb;managed_snapshots=52",
+        "source=@data:/media/usb/@data;managed_snapshots=52",
+        "diaries_verification=valid;logicalDataset=production;backupId=20261015-003023Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json",
+        "CHECKPOINT-HELD: ['20261013-171228Z']",
+        "REPLICATION-PROTECTED: ['20261015-030004Z']",
+        "RETENTION sets: total=52 keep=52 sources=2",
+        "Would delete 0 complete timestamp sets",
+        "PASS: verified snapshot sets and both protection inventories present; no prune applied",
+        "Result=success",
+        "ExecMainStatus=0",
+        "ActiveState=inactive",
+        "PASS: latest native push service result successful"
+    ]
+}
+
+PLAY [0035 Step 9C | Receiver must remain passive] *****************************
+
+TASK [Check receiver timers disabled and historical and native repositories present] ***
+ok: [backup]
+
+TASK [ansible.builtin.debug] ***************************************************
+ok: [backup] => {
+    "receiver_check.stdout_lines": [
+        "PASS: receiver btrfs-snapshot-create.timer disabled/inactive",
+        "PASS: receiver btrfs-snapshot-prune.timer disabled/inactive",
+        "PASS: receiver btrfs-native-push.timer /inactive",
+        "PASS: historical repository and native receipt state preserved"
+    ]
+}
+
+PLAY [0035 Step 9C | Production publisher remains unchanged] *******************
+
+TASK [Verify schema-2 publication still exists] ********************************
+ok: [pluto]
+
+TASK [ansible.builtin.debug] ***************************************************
+ok: [pluto] => {
+    "publisher_check.stdout_lines": [
+        "PASS: schema-2 published generations remain present"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+backup                     : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+mars                       : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+pluto                      : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+richard@mango:~/playbooks$
