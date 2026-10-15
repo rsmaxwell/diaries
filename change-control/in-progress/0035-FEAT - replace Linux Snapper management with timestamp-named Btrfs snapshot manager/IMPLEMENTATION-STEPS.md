@@ -9,12 +9,9 @@
 
 ## Step 1 — Reconcile observed host state and baseline (required)
 
-**CLOSED — 2026-10-15:** Source-contract regression PASS; `mango` read-only three-host capture finished with `pluto ok=4`, `mars ok=6`, `backup ok=6`, and `changed=0`, `failed=0` everywhere. Baseline identities, schedules, snapshot/receipt lineage and zero-change execution reconciled in `evidence/Step 1/README.md`, with raw capture `evidence/Step 1/baseline-20261015-081000.txt`. Known limitations explicitly carried forward: timed-out Snapper inventories, stale `backup` local manager verification configuration, historical snapshot/mirror retention. **No configuration or deletion changes are authorised by this closure.**
-
 - Record existing snapshot-manager installation, `root`/`@data` subvolume IDs, mount/UUID, `@snapshots` location, Snapper numeric snapshots, actual scheduler state and whole-backup-containing source on `mars`, `backup` and filesystem type on `pluto`.
 - Confirm `pluto` is or is not Btrfs at deployment time; **never** assume it has native snapshots just because the history/prune utilities are installed there.
-- Record the retained `/@data/backup` rsync mirror as historical/non-native, the isolated native receive tree/receipts separately, and whether any transfer is active at capture time. **Gate:** no preexisting snapshot or data overwritten.
-- Reconcile rather than auto-correct any mismatch against the accepted 0034 close-out facts (01:45 `mars` user cron, source-initiated native push, held checkpoint `20261013-171228Z`, and preserved historical Snapper/backup data). Completed: live output reviewed and accepted baseline recorded in Step 1 evidence; exceptions are preserved for later steps.
+- Record existing 0034 Step 10 rsync mirror and active transfer as historical non-native receiver. **Gate:** no preexisting snapshot or data overwritten.
 
 ## Step 2 — Preserve source timestamped read-only snapshot manager (`mars`)
 
@@ -23,8 +20,6 @@
 - Keep creation and prune schedules as previously accepted on `mars`; confirm Snapper timeline migration only to the extent already evidenced. Do not drop numeric Snapper snapshots en masse.
 - Add safeguards preventing source parent snapshot deletion while it is used as a replication baseline or in-progress send.
 
-**2026-10-15 closure: CLOSED.** Playbooks source-contract verification passed all nine checks and the read-only `mars` capture completed (`ok=2`, `changed=0`, `failed=0`). There were 52 complete `root`/`@data` timestamp sets and zero incomplete sets. Inspected checkpoint, replication-parent and recent snapshots were read-only, and hold/pin UUIDs matched. Existing creation/prune timers remained active. Source `@data/.snapshots` is a nested legacy subvolume; its presence was inventoried, not proof that its contents participate in Btrfs send. See `evidence/Step 2/PRESERVATION-VERIFICATION-20261015.md` and retained transcript. No host changes were made or authorised.
-
 ## Step 3 — Define receiver snapshot identity/retention (`backup`)
 
 - Install Btrfs receive prerequisites and a dedicated receive repository separate from `/@data/backup` and rsync receiver directory. Decide whether it is a subvolume and how root-owned helpers constrain writes.
@@ -32,6 +27,9 @@
 - Retention distinguishes local `root`/`@data` timestamp sets from **received** snapshots. Pin common parents on both endpoints; never prune the last usable incremental parent until a replacement baseline exists. Shared locking must exclude send/receive and prune; independently verify no unexpected snapshots under receive roots.
 
 ## Step 4 — Extend `diaries-backup-history` for `mars` **and** `pluto`
+
+**Status (2026-10-15): CLOSED — source regression, `mars` history compatibility, and `pluto` live deployment/publication discovery accepted.** See `evidence/Step 4/README.md` and `step4-mango-verification-20261015-090136.txt`. Live `show`, `path`, `verify` and idempotency rerun remain follow-up checks, not evidenced as passed; this recorded deviation limits the closure claim. No destructive operations or receiver changes.
+
 
 - Install the read-only history/locator on **both `mars` and `pluto`** (and optionally `backup`). Derive real backup IDs from frozen schema-2 dataset metadata; summarize unique backup IDs, with an `--all`/equivalent occurrence mode listing every containing timestamped snapshot path.
 - On `mars`, find backups inside each Btrfs snapshot of the existing whole-backup-containing source; include accurate absolute restore-source paths and separately identify live/current copy.

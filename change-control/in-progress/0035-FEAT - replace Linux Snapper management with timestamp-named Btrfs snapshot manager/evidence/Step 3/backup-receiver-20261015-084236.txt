@@ -1,0 +1,78 @@
+richard@mango:~/playbooks$ cd ~/playbooks
+
+python3 verification/0035-step3/verify-source-contract.py
+
+set -o pipefail
+
+ansible-playbook verification/0035-step3/capture-backup.yaml \
+  --ask-vault-pass \
+  | tee /tmp/0035-step3-backup.txt
+PASS: separate receive root
+PASS: receipts outside received roots
+PASS: received UUID check
+PASS: readonly validation
+PASS: accepted parent requirement
+PASS: shared receiver writer lock
+PASS: unaccepted failures preserved
+PASS: no auto-delete
+PASS: read-only capture
+Vault password:
+
+PLAY [0035 Step 3 | Inspect accepted receiver identity and retention boundaries] ***
+
+TASK [Read-only native receiver inventory] *************************************
+ok: [backup]
+
+TASK [Print read-only receiver evidence] ***************************************
+ok: [backup] => {
+    "backup_step3.stdout_lines": [
+        "=== filesystem ===",
+        "/      /dev/sda2 btrfs  b915f967-7cb4-4c14-b11b-f52209637a22",
+        "=== paths and ownership ===",
+        "directory 775 richard:richard /@data/backup",
+        "directory 755 root:root /@data/mars-received",
+        "directory 755 root:root /@data/mars-received/@data",
+        "directory 700 richard:richard /@data/mars-received/.replication-state",
+        "regular empty file 600 richard:richard /@data/mars-received/.replication-state/writer.lock",
+        "=== received subvolume identities ===",
+        "ID 55593 gen 528732 top level 275 parent_uuid -                                    uuid 71f7b27b-c15f-3b49-8a2e-0b5893448747 path @data/mars-received/@data/20261009-170001Z",
+        "ID 55644 gen 532937 top level 275 parent_uuid -                                    uuid dfcb1d41-c94c-4e4d-b493-25feb41c4a45 path @data/mars-received/@data/20261012-100003Z",
+        "ID 55707 gen 533040 top level 275 parent_uuid dfcb1d41-c94c-4e4d-b493-25feb41c4a45 uuid 8b8e0a7e-36ae-b64b-b208-030210272582 path @data/mars-received/@data/20261013-050016Z",
+        "ID 55708 gen 533292 top level 275 parent_uuid 8b8e0a7e-36ae-b64b-b208-030210272582 uuid 34866d78-c093-1f46-9a16-59af147dda6c path @data/mars-received/@data/20261013-140006Z",
+        "ID 55715 gen 533353 top level 275 parent_uuid 34866d78-c093-1f46-9a16-59af147dda6c uuid 553ef7fd-c10f-3c46-ac1a-3ba074be6d3d path @data/mars-received/@data/20261013-171228Z",
+        "ID 55716 gen 535173 top level 275 parent_uuid 553ef7fd-c10f-3c46-ac1a-3ba074be6d3d uuid f0001865-7795-bb4f-a6af-12307a9ba852 path @data/mars-received/@data/20261013-180016Z",
+        "ID 55749 gen 537030 top level 275 parent_uuid f0001865-7795-bb4f-a6af-12307a9ba852 uuid 7f1209cf-9d73-5549-b0ea-5efc1850903e path @data/mars-received/@data/20261014-100031Z",
+        "ID 55762 gen 537034 top level 275 parent_uuid 7f1209cf-9d73-5549-b0ea-5efc1850903e uuid 074583d8-afd5-f247-9c6d-0589b34eaed8 path @data/mars-received/@data/20261015-030004Z",
+        "=== receipts and received-snapshot reconciliation ===",
+        "received_names= ['20261009-170001Z', '20261012-100003Z', '20261013-050016Z', '20261013-140006Z', '20261013-171228Z', '20261013-180016Z', '20261014-100031Z', '20261015-030004Z']",
+        "receipt_names= ['20261009-170001Z', '20261012-100003Z', '20261013-050016Z', '20261013-140006Z', '20261013-171228Z', '20261013-180016Z', '20261014-100031Z', '20261015-030004Z']",
+        "UNRECEIPTED= []",
+        "MISSING_RECEIVED= []",
+        "RECEIPT 20261009-170001Z matched= True readonly= ro=true received_uuid= 052c9376-0616-8b4a-9d28-f757b86fdec8 source_uuid= 052c9376-0616-8b4a-9d28-f757b86fdec8 parent= None",
+        "RECEIPT 20261012-100003Z matched= True readonly= ro=true received_uuid= 7ad1f171-d1c7-0545-82a1-52e84adac979 source_uuid= 7ad1f171-d1c7-0545-82a1-52e84adac979 parent= None",
+        "RECEIPT 20261013-050016Z matched= True readonly= ro=true received_uuid= 8bbb4807-9cea-4e42-a932-66e0254191c8 source_uuid= 8bbb4807-9cea-4e42-a932-66e0254191c8 parent= 20261012-100003Z",
+        "RECEIPT 20261013-140006Z matched= True readonly= ro=true received_uuid= c0b81383-bdfc-224e-97b1-90ceee4d54f0 source_uuid= c0b81383-bdfc-224e-97b1-90ceee4d54f0 parent= 20261013-050016Z",
+        "RECEIPT 20261013-171228Z matched= True readonly= ro=true received_uuid= 340674cc-d02c-244e-b7ec-e3ea5a6b151f source_uuid= 340674cc-d02c-244e-b7ec-e3ea5a6b151f parent= 20261013-140006Z",
+        "RECEIPT 20261013-180016Z matched= True readonly= ro=true received_uuid= 0048afd8-59ec-7547-9247-e36893331838 source_uuid= 0048afd8-59ec-7547-9247-e36893331838 parent= 20261013-171228Z",
+        "RECEIPT 20261014-100031Z matched= True readonly= ro=true received_uuid= 5f21c6db-1e66-ad41-aec9-89f163329f8e source_uuid= 5f21c6db-1e66-ad41-aec9-89f163329f8e parent= 20261013-180016Z",
+        "RECEIPT 20261015-030004Z matched= True readonly= ro=true received_uuid= 6f44e0e0-1968-6e4d-a3bd-9f77d71e9a47 source_uuid= 6f44e0e0-1968-6e4d-a3bd-9f77d71e9a47 parent= 20261014-100031Z",
+        "=== receiver helpers and local scheduling ===",
+        "035deb8268bd3c185d095dc72513db8a54d9ecd98fabb71232906aceac7430f7  /usr/local/bin/btrfs-native-push-receiver",
+        "b911505989407dd4905a7c029ae5450b1fe3ae474f27fca096fb16098385b14c  /usr/local/libexec/btrfs-native-endpoint",
+        "ActiveState=inactive",
+        "UnitFileState=disabled",
+        "ActiveState=inactive",
+        "UnitFileState=disabled",
+        "ActiveState=inactive",
+        "UnitFileState=disabled",
+        "ActiveState=inactive",
+        "UnitFileState=disabled",
+        "=== quota rescan ===",
+        "no rescan operation in progress"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+backup                     : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+richard@mango:~/playbooks$

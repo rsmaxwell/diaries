@@ -9,6 +9,10 @@
 >
 > Supersedes the pending rsync-based `backup` receiver/mirror procedure; it does not erase prior snapshot-manager implementation or evidence. `mars` snapshot production continues. Native receive and retention require new implementation and live acceptance before any timer migration.
 
+## Step 4 closure — 2026-10-15
+
+**CLOSED (scoped acceptance):** existing `mars` history regression and native snapshot occurrences verified; history locator and independent schema-2 verifier installed on ext4 `pluto`; fixed publication reported `production / 20261015-003023Z / live / verified`. This closure does not claim live `show`, `path`, `verify` or deployment idempotency (`changed=0`) were exercised, and those checks remain additional operator verification. See `evidence/Step 4/README.md`. No snapshot pruning or restore authorised.
+
 ## Updated responsibilities (2026-10-11)
 
 | Host | Snapshot manager / pruning | Diaries history locator | Replication |
@@ -176,3 +180,8 @@ The independent checkpoint hold and real scheduled prune passed on `mars`, and t
 ## 2026-10-15 Step 2 closure
 
 **Step 2 — Preserve source timestamped read-only snapshot manager (`mars`): CLOSED.** Source-contract checks passed; read-only live capture finished with `changed=0`, 52 complete timestamp sets, intact read-only held and replication-pinned snapshots, and enabled creation/prune timers. See `evidence/Step 2/PRESERVATION-VERIFICATION-20261015.md` and `mars-preservation-20261015-083123.txt`. Nested `@data/.snapshots` was inventoried, not proven part of a send stream; no cleanup or deployment authorised.
+
+
+## 0035 Step 3 closure — 2026-10-15
+
+**CLOSED:** The read-only `backup` receiver capture reconciled eight accepted receipts with eight received read-only subvolumes; UUIDs and parent lineage matched, with no missing or unreceipted snapshots. All nine source-contract checks passed, and Ansible reported `ok=2`, `changed=0`, `failed=0`. Receiver-local snapshot timers remain disabled. Received-snapshot pruning is **not enabled or authorised**; preserve `/@data/backup`. The separate stale local manager verification path remains deferred. See `evidence/Step 3/README.md` and the captured transcript.
