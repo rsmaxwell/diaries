@@ -75,6 +75,14 @@
 
 The accepted push, receipt, parent, independent pre-cleanup hold, pruning and source commit references have been assembled in `evidence/Step 11/STEP-11.1-PRODUCTION-BASELINE-20261013.md`. Run the provided read-only capture helper on `mango`, `pluto`, `mars` and `backup`; reconcile actual source revisions, current schema-2 generations, snapshot UUIDs, host mounts and schedules before marking Step 11.1 CLOSED. This substep changes no production data or services.
 
+## Step 11.4 — Verify unattended operating arrangements — CLOSED (2026-10-15)
+
+Unattended Gate 6A–6E passed: `pluto` schema-2 production publication `20261015-003023Z` (89 Files); `mars` verified scheduled pull, protected timestamp snapshot `20261015-030004Z` after fail-closed 02:00 lock collision; `mars` incremental native push to `backup`, independently accepted with matching received UUID and immutable receipt; read-only `verification/0034-step11-4/verify-unattended.yaml` on `mango` passed all three hosts (`pluto ok=3`, `mars ok=6`, `backup ok=3`, all `changed=0 failed=0`).
+
+The 02:00 collision was traced to the Ansible-managed user backup cron sharing the intended exclusive writer lock; the user cron schedule was moved to **01:45 UTC** via isolated Playbooks deployment, checked, applied and proven idempotent. The first unattended post-correction execution remains a recorded follow-up, not a claimed pass. Checkpoint `20261013-171228Z` remains held. See `evidence/Step 11/STEP-11.4-UNATTENDED-OPERATING-ARRANGEMENTS-20261014.md` and `evidence/Step 11/STEP-11.4-UNATTENDED-ACCEPTANCE-CLOSEOUT-20261015.md`.
+
+**Step 11 and 0034-FEAT remain OPEN** pending separate final feature-wide acceptance/evidence reconciliation; history-tool configuration is deferred to 0035-FEAT.
+
 ## Never change without explicit migration gate
 
 - 0033 schema-2 format and existing restore semantics.
