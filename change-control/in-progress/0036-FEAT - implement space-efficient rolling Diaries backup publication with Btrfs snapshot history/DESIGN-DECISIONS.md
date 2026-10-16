@@ -1,24 +1,46 @@
-# 0036-FEAT — DESIGN DECISIONS AND OPEN QUESTIONS
+# 0036-FEAT — Revised Step 2 design decision: fixed schema-2 working copies
 
-## Agreed principles (2026-10-14)
+**Decision date:** 2026-10-15  
+**Status:** REVISED DESIGN FROZEN — Step 2 CLOSED at design level only.  
+**Supersedes:** `evidence/Step 2/STEP-2-DESIGN-FREEZE-20261015.md` (original hard-link / rolling-generation decision). The original evidence remains preserved as historical, **not** the operative architecture.
 
-1. Prefer a **constant logical backup path** on ext4 `pluto` over indefinitely retained timestamped full-copy directories.
-2. Prefer a **single rolling current Btrfs dataset** on `mars`; timestamped read-only Btrfs snapshots supply history.
-3. Preserve existing 0033 schema-2 layout and recovery verification, 0034 verified publication/pull/native replication, 0035 timestamp manager and retention protections.
-4. Never assume equal-content independently copied files automatically share Btrfs extents; unchanged photo inodes/extents should not be rewritten on `mars`.
-5. Preserve independent remote history and tested ability to restore an earlier dataset after newer changes or deletion.
+## Intent
 
-## Choices to resolve during Steps 1–4 (not pre-decided)
+0036 is a physical storage/synchronisation optimisation, **not a change of the schema-2 logical backup format** and not a rewrite of 0034/0035. One current working backup is maintained on each of `pluto` and `mars`; read-only Btrfs snapshots, created frequently by the existing 0035 manager on `mars`, provide history and are pushed via existing Btrfs send/receive to `backup`.
 
-- **Ext4 atomicity:** generation target + atomically renamed symlink versus journalled directory operation; how many ext4 rollback targets are retained, when may they be deleted, and how to prevent consumers observing partial writes.
-- **Ext4 duplicate data during construction:** incremental `rsync --link-dest`/hard-link previous immutable file tree versus safer selective copies; hard links must never allow writes through to already published bytes. ext4 has no reflinks in this setup.
-- **`mars` COW candidate:** writable snapshot clone of the accepted `@data` tree vs file-level reflink working tree. No new nested subvolumes that unexpectedly disappear from parent snapshots or native replication.
-- **Marker placement:** where monotonic backup-ID state, verified manifest hash and stage journal live relative to mutable working dataset and immutable snapshot; distinguish acceptance receipt from mere file existence.
-- **Verification scope:** manifest file checksums, DB integrity/restore, metadata-only changes and exact inode/extent evidence. Avoid relying solely on `rsync` mtime/size to decide correctness.
-- **Return path to ext4:** if `mars` has failed after `pluto` switches, retain source rollback generation until durable accepted receiver acknowledgement.
-- **Deletion and dataset isolation:** never permit sync to delete outside the selected logical dataset; preserve non-Diaries `@data` backup content and snapshot manager internals.
-- **Historical migration:** old generated directories remain valid until separately reviewed; mappings from backup ID to physical Btrfs snapshot cannot depend on a deleted generation path.
+## Target data flow
 
-## Explicit design rejection
+```text
+pluto (ext4): consistent schema-2 capture -> fixed diaries-backup/ working dataset
+      |           (incremental refresh; rsync --delete scoped to Files)
+      |  mars initiates rsync pull (--delete)
+      v
+mars (Btrfs): fixed diaries-backup/ working dataset inside existing @data
+      |   independently verify schema-2; mark eligible only after success
+      |  0035 manager creates frequent timestamped read-only snapshots
+      v
+mars historical Btrfs snapshots -- mars-initiated btrfs send/receive --> backup
+      0035 pruning on mars                             0035 pruning on backup
+      protected parents / checkpoints / accepted receiver receipts retained
+```
 
-A bare `rsync --inplace` directly onto the sole accepted writable dataset, followed by immediate deletion of old generation directories, is **not accepted**. It lacks the fail-safe transaction and recovery properties required here.
+## Frozen decisions
+
+1. Preserve `database/`, `files/`, `verification/`, `dataset-manifest.json` exactly as schema-2; retain logical dataset identity, backup IDs, database+Files consistency, integrity verification and restore compatibility.
+2. `pluto` maintains one fixed current working dataset, updating Files incrementally rather than retaining multiple physical full-copy generations. PostgreSQL logical dumps continue to be generated consistently by the existing mechanism. Do not rsync a live PostgreSQL data directory.
+3. `mars` initiates a changed-only `rsync --delete` into one existing mutable Btrfs working dataset. No nested new Btrfs subvolume outside the existing @data snapshot/send scope, and no assumption that Btrfs deduplicates separately copied identical files.
+4. 0035 independently schedules frequent snapshots and progressively prunes on **both** `mars` and `backup` under the existing protection policy. These schedules and retention rules are inherited; 0036 does not alter them.
+5. `mars` **pushes** timestamped Btrfs snapshot updates to `backup` using the existing 0034 send/receive machinery. Off-site receiver receipts, protected parents and held checkpoints remain in force.
+6. Keep only lightweight safety interlocks: never pull a partially refreshed `pluto` dataset, never snapshot a partially updated `mars` working copy, and never mark an incomplete copy verified. Schedule separation is helpful but insufficient on its own. Implement with the smallest compatible existing lock/verified-marker mechanism, not complex generation retention/acknowledgement protocols.
+7. The previous linked-generation publisher, ext4 hard-link optimisation, Btrfs reflink candidate system, per-generation receiver acknowledgement and dedicated `diaries-backup-maintenance:0036` image are **explicitly superseded**. Retain legacy 0034 implementation/rollback and restore support until an operator-approved migration and cleanup gate.
+8. Preserve source-side read-only history and isolated recovery points throughout migration. An interrupted mutable rsync may leave partial data; the last read-only snapshot remains authoritative until successful verification and marker publication. `rsync --delete` must never target snapshots or inherited rollback media.
+9. Quantitative changed-byte/storage-allocation measurements are useful 0036-specific acceptance evidence. Do not repeat 0034/0035 baseline inventories or already accepted end-to-end tests.
+
+## Implementation questions to resolve within Steps 3–4
+
+- Exact fixed working paths, ownership and source/pull interlock (without contradicting currently deployed 0034/0035 service paths).
+- How `pluto` presents a consistent export while refreshing its Files and replacing dumps/manifest; schedule alone is inadequate for the correctness guarantee.
+- How 0035 snapshot eligibility and verified markers are invalidated before a mutable pull and restored afterward.
+- Safe incremental rsync options and metadata handling, preserving Btrfs extent sharing with older snapshots; never use `--inplace` on historical snapshots.
+
+These are implementation details; no new 0035 scheduler or retention design is authorised.
