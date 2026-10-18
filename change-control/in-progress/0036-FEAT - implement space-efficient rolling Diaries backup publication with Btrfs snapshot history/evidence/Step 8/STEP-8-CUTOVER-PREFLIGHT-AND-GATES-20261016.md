@@ -1,6 +1,6 @@
 # 0036-FEAT Step 8 — controlled cutover gates (2026-10-16)
 
-**Current disposition (2026-10-16): Step 8 IN PROGRESS; Gates A, B and C CLOSED, Gates D and E OPEN.** The text below retains the original prospective gate procedure; actual Gate C production results and formal acceptance are recorded in `STEP-8-GATE-C-PRODUCTION-CUTOVER-CLOSURE-20261016.md`. This plan is not, by itself, evidence that Gate D unattended cycles or off-site replication have completed.
+**Current disposition (updated 2026-10-18): Step 8 IN PROGRESS; Gates A, B, C and D CLOSED; Gate E OPEN.** The text below retains the original prospective gate procedure; actual Gate C production results and formal acceptance are recorded in `STEP-8-GATE-C-PRODUCTION-CUTOVER-CLOSURE-20261016.md`. Gate D completion is recorded separately in `STEP-8-GATE-D-UNATTENDED-ACCEPTANCE-CLOSURE-20261018.md`; the plan itself is not runtime evidence.
 
 ## Gate A — evidence and read-only inventory
 
@@ -29,3 +29,7 @@ On a failed capture, failed receiver validation, missing eligibility, snapshot f
 ## Known limitations
 
 Gate A host inventory and Gates B–E require operator action on live hosts. Step 7 synthetic database artifacts do not replace the accepted Step 3 real PostgreSQL restore evidence; the Step 6 regression is not a fresh physical off-site transfer. No Docker application images are required by these Playbooks-only changes.
+
+## Gate D outcome (2026-10-18)
+
+**CLOSED — PASS.** See `STEP-8-GATE-D-UNATTENDED-ACCEPTANCE-CLOSURE-20261018.md` for the two distinct unattended production cycles, manifest/marker correlations, read-only snapshots, incremental lineage and accepted off-site receipts. Gate E remains OPEN; no legacy deletion, decommissioning or Step 8 feature closure is implied.

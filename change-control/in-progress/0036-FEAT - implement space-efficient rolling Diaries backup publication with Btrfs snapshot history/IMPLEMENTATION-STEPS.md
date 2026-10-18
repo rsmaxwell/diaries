@@ -1,6 +1,6 @@
 # 0036-FEAT — IMPLEMENTATION-STEPS (revised 2026-10-15)
 
-**Status:** IN PROGRESS — Steps 1–7 CLOSED; Step 8 Gates A–C CLOSED, Gates D–E OPEN (2026-10-16).  
+**Status:** IN PROGRESS — Steps 1–7 CLOSED; Step 8 Gates A–D CLOSED, Gate E OPEN (2026-10-18).  
 **Authoritative design:** `DESIGN-DECISIONS.md` (revised fixed-working-copy decision). The original Step 2 hard-link/rolling-generation design and the experimental Step 3 increments are **SUPERSEDED**, not accepted for production.  
 **Scope:** physical storage and synchronisation efficiency. **Schema-2 remains unchanged.**
 
@@ -74,3 +74,12 @@ The new 0036 regression used offline fixtures/mocked endpoint state. The existin
 ## Step 8 Gate C — formal closure (2026-10-16)
 
 **Gate C CLOSED — PASS.** Controlled production fixed capture on `pluto`, guarded fixed receive on `mars`, independently verified read-only Btrfs snapshot `20261016-153727Z` containing production backup `20261016-152236Z`, fixed-mode scheduler deployment and controlled activation all accepted. See [`evidence/Step 8/STEP-8-GATE-C-PRODUCTION-CUTOVER-CLOSURE-20261016.md`](evidence/Step%208/STEP-8-GATE-C-PRODUCTION-CUTOVER-CLOSURE-20261016.md) for the evidence and explicit exclusions. **Gate D and Gate E remain OPEN; Step 8 and 0036-FEAT are not closed.** Retain rollback assets.
+
+## Step 8 Gate D — formal closure (2026-10-18)
+
+**Gate D CLOSED — PASS.** Two genuine unattended daily production cycles (17 and 18 October) each completed scheduled `pluto` fixed capture, `mars` guarded verified receive, read-only 0035 Btrfs snapshot and accepted off-site incremental 0034 replication. Evidence reconciles distinct backup IDs, matching source/receiver manifest hashes, snapshot verification, UUID lineage, receiver receipts and successful timers. See [`evidence/Step 8/STEP-8-GATE-D-UNATTENDED-ACCEPTANCE-CLOSURE-20261018.md`](evidence/Step%208/STEP-8-GATE-D-UNATTENDED-ACCEPTANCE-CLOSURE-20261018.md). **Gate E remains OPEN; Step 8 and 0036-FEAT remain IN PROGRESS.** Retain rollback assets; no deletion or retirement authorised.
+
+
+## Step 8 Gate E — retirement implementation (2026-10-18)
+
+**IN PROGRESS — no runtime retirement or deletion executed.** Read-only inventory tool and approval-controlled sequencing prepared; see [`evidence/Step 8/STEP-8-GATE-E-RETIREMENT-PLAN-20261018.md`](evidence/Step%208/STEP-8-GATE-E-RETIREMENT-PLAN-20261018.md). Gate D CLOSED; Gate E, Step 8 and 0036-FEAT remain OPEN until actual deployment reconciliation, approvals and validation.

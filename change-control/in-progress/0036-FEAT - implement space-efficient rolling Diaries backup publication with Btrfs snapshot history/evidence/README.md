@@ -13,3 +13,7 @@
 ## Step 8 Gate C — formal closure (2026-10-16)
 
 **Gate C CLOSED — PASS.** Controlled production fixed capture on `pluto`, guarded fixed receive on `mars`, independently verified read-only Btrfs snapshot `20261016-153727Z` containing production backup `20261016-152236Z`, fixed-mode scheduler deployment and controlled activation all accepted. See [`evidence/Step 8/STEP-8-GATE-C-PRODUCTION-CUTOVER-CLOSURE-20261016.md`](Step%208/STEP-8-GATE-C-PRODUCTION-CUTOVER-CLOSURE-20261016.md) for the evidence and explicit exclusions. **Gate D and Gate E remain OPEN; Step 8 and 0036-FEAT are not closed.** Retain rollback assets.
+
+## Step 8 Gate D — formal closure (2026-10-18)
+
+**Gate D CLOSED — PASS.** Unattended cycles on 2026-10-17 and 2026-10-18 reconciled end to end through accepted off-site receipts. See [`Step 8/STEP-8-GATE-D-UNATTENDED-ACCEPTANCE-CLOSURE-20261018.md`](Step%208/STEP-8-GATE-D-UNATTENDED-ACCEPTANCE-CLOSURE-20261018.md). Original collection archives: `0036-gate-d-evidence-cycle-1.tar.gz` and `0036-gate-d-evidence-cycle-2.tar.gz` (stored separately). **Gate E OPEN; Step 8/feature not closed.**
