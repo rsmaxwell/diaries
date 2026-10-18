@@ -1,3 +1,5 @@
+> **Final disposition (2026-10-18): Gate E, Step 8 and 0036-FEAT CLOSED — PASS.** Refer to `evidence/Step 8/STEP-8-GATE-E-FINAL-CLOSURE-20261018.md` in the feature root. Earlier pending language is historical. No permanent deletion authorised.
+
 # 0036-FEAT evidence
 
 - Steps 1–2: baseline and revised design freeze (see step-specific records).

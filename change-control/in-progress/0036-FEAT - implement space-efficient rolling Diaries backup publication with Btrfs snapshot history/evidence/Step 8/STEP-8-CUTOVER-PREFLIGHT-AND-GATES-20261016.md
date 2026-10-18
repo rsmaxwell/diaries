@@ -1,3 +1,5 @@
+> **Final disposition (2026-10-18): Gate E, Step 8 and 0036-FEAT CLOSED — PASS.** Refer to `evidence/Step 8/STEP-8-GATE-E-FINAL-CLOSURE-20261018.md` in the feature root. Earlier pending language is historical. No permanent deletion authorised.
+
 # 0036-FEAT Step 8 — controlled cutover gates (2026-10-16)
 
 **Current disposition (updated 2026-10-18): Step 8 IN PROGRESS; Gates A, B, C and D CLOSED; Gate E OPEN.** The text below retains the original prospective gate procedure; actual Gate C production results and formal acceptance are recorded in `STEP-8-GATE-C-PRODUCTION-CUTOVER-CLOSURE-20261016.md`. Gate D completion is recorded separately in `STEP-8-GATE-D-UNATTENDED-ACCEPTANCE-CLOSURE-20261018.md`; the plan itself is not runtime evidence.

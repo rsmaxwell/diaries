@@ -1,3 +1,5 @@
+> **Final disposition (2026-10-18): 0036-FEAT CLOSED — PASS; Step 8 Gate E CLOSED — PASS.** Both rollback aliases were reversibly retired, six non-alias generations were moved to hold, and no historical generations were permanently deleted. Earlier open/pending language below describes prior gates only. See [Gate E final closure](evidence/Step%208/STEP-8-GATE-E-FINAL-CLOSURE-20261018.md).
+
 # 0036-FEAT — IMPLEMENTATION-STEPS (revised 2026-10-15)
 
 **Status:** IN PROGRESS — Steps 1–7 CLOSED; Step 8 Gates A–D CLOSED, Gate E OPEN (2026-10-18).  
