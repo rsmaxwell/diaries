@@ -8,3 +8,25 @@ build/
 /config/environments/local.env
 /config/mosquitto/pwfile.source.txt
 /config/mosquitto/pwfile.txt
+
+# Change-control: keep reviewed documentation and scripts, not raw capture data.
+# Applies to todo/, in-progress/ and complete/ feature directories.
+/change-control/**/scratch/**
+!/change-control/**/scratch/README.md
+/change-control/**/evidence/**/*-capture.txt
+/change-control/**/evidence/**/*.log
+/change-control/**/evidence/**/*.jsonl
+/change-control/**/evidence/**/*.csv
+/change-control/**/evidence/**/*.tar
+/change-control/**/evidence/**/*.tar.gz
+/change-control/**/evidence/**/*.tgz
+/change-control/**/evidence/**/*.zip
+/change-control/**/evidence/**/*.7z
+/change-control/**/evidence/**/*.sql
+/change-control/**/evidence/**/*.dump
+/change-control/**/reports/**/*-capture.txt
+/change-control/**/reports/**/*.log
+/change-control/**/reports/**/*.jsonl
+/change-control/**/reports/**/*.csv
+/change-control/**/reports/**/*.tar.gz
+/change-control/**/reports/**/*.zip

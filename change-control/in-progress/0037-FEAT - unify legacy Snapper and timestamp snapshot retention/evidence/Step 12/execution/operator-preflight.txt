@@ -1,0 +1,12 @@
+richard@mars:~$ ps -eo pid,ppid,stat,etime,args |
+  grep -E '[b]trfs (send|receive)|[b]trfs-snapshot-manager|[s]napper.*(create|delete|cleanup)|[d]iaries.*(push|pull)' || true
+
+sudo btrfs quota rescan -s /media/usb
+sudo btrfs device stats /media/usb
+no rescan operation in progress
+[/dev/sdb1].write_io_errs    0
+[/dev/sdb1].read_io_errs     0
+[/dev/sdb1].flush_io_errs    0
+[/dev/sdb1].corruption_errs  0
+[/dev/sdb1].generation_errs  0
+richard@mars:~$

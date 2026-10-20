@@ -1,0 +1,25 @@
+test_native_only_retention_unchanged_by_plan (__main__.Compatibility.test_native_only_retention_unchanged_by_plan) ... ok
+test_duplicate_mappings_aborts (__main__.InventorySafety.test_duplicate_mappings_aborts) ... ok
+test_duplicate_numbers_aborts (__main__.InventorySafety.test_duplicate_numbers_aborts) ... ok
+test_empty_without_directory (__main__.InventorySafety.test_empty_without_directory) ... ok
+test_failed_snapper_command_aborts (__main__.InventorySafety.test_failed_snapper_command_aborts) ... ok
+test_missing_columns_aborts (__main__.InventorySafety.test_missing_columns_aborts) ... ok
+test_numbered_missing_directory_aborts (__main__.InventorySafety.test_numbered_missing_directory_aborts) ... ok
+test_unknown_source_aborts (__main__.InventorySafety.test_unknown_source_aborts) ... ok
+test_distinct_source_scope (__main__.PlanningSafety.test_distinct_source_scope) ... ok
+test_duplicate_times_deterministic (__main__.PlanningSafety.test_duplicate_times_deterministic) ... ok
+test_incomplete_native_aborts (__main__.PlanningSafety.test_incomplete_native_aborts) ... ok
+test_legacy_only_and_anchor (__main__.PlanningSafety.test_legacy_only_and_anchor) ... ok
+test_missing_holds_aborts (__main__.PlanningSafety.test_missing_holds_aborts) ... ok
+test_missing_pins_aborts (__main__.PlanningSafety.test_missing_pins_aborts) ... ok
+test_mixed_types_excluded (__main__.PlanningSafety.test_mixed_types_excluded) ... ok
+test_native_precedence_and_floor (__main__.PlanningSafety.test_native_precedence_and_floor) ... ok
+test_no_legacy (__main__.PlanningSafety.test_no_legacy) ... ok
+test_pin_and_hold_are_keepers (__main__.PlanningSafety.test_pin_and_hold_are_keepers) ... ok
+test_plan_has_no_delete_call (__main__.PlanningSafety.test_plan_has_no_delete_call) ... ok
+test_recent_snapshot (__main__.PlanningSafety.test_recent_snapshot) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.011s
+
+OK

@@ -1,0 +1,1 @@
+From Cygwin at Diaries root: `bash "change-control/in-progress/0037-FEAT - unify legacy Snapper and timestamp snapshot retention/tools/step09-capture-from-cygwin.sh" pre` and later `post`. The runner performs read-only remote commands, saves output under `evidence/Step 09/`, and does not copy files to remote hosts.

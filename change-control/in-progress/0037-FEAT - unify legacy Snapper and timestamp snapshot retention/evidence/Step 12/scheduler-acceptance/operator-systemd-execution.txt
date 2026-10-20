@@ -1,0 +1,71 @@
+richard@mars:~$ sudo systemctl start btrfs-legacy-prune.service
+
+echo "Service start exit: $?"
+Service start exit: 0
+richard@mars:~$
+richard@mars:~$
+richard@mars:~$
+richard@mars:~$
+richard@mars:~$
+richard@mars:~$ sudo systemctl status btrfs-legacy-prune.service --no-pager
+
+sudo journalctl -u btrfs-legacy-prune.service \
+  -n 100 --no-pager
+
+sudo btrfs-snapshot-manager status
+
+sudo btrfs-snapshot-manager hold-list
+
+sudo btrfs-snapshot-manager legacy-prune \
+  --legacy-map root=root \
+  --legacy-map @data=@data \
+  --max-delete 1
+○ btrfs-legacy-prune.service - Prune at most one legacy Snapper snapshot using combined Btrfs retention
+     Loaded: loaded (/etc/systemd/system/btrfs-legacy-prune.service; static)
+     Active: inactive (dead) since Tue 2026-10-20 15:43:13 UTC; 12s ago
+TriggeredBy: ● btrfs-legacy-prune.timer
+    Process: 256472 ExecStart=/usr/local/sbin/btrfs-snapshot-manager --config /etc/btrfs-snapshot-manager.json legacy-prune --legacy-map root=root --legacy-map @data=@data --max-delete 1 --execute (code=exited, status=0/SUCCESS)
+   Main PID: 256472 (code=exited, status=0/SUCCESS)
+        CPU: 3.275s
+
+Oct 20 15:43:08 mars systemd[1]: Starting btrfs-legacy-prune.service - Prune at most one legacy Snapper snapshot using combined Btrfs retention...
+Oct 20 15:43:10 mars btrfs-snapshot-manager[256472]: LEGACY PRUNE mode=EXECUTE candidate_count=7 max_delete=1
+Oct 20 15:43:13 mars btrfs-snapshot-manager[256472]: LEGACY PRUNE DELETE @data @data 19677 UUID:                         42698393-7fbd-b74f-ae68-f06028fcda9c Subvolume …        20237
+Oct 20 15:43:13 mars btrfs-snapshot-manager[256472]: LEGACY PRUNE completed config=@data id=19677
+Oct 20 15:43:13 mars systemd[1]: btrfs-legacy-prune.service: Deactivated successfully.
+Oct 20 15:43:13 mars systemd[1]: Finished btrfs-legacy-prune.service - Prune at most one legacy Snapper snapshot using combined Btrfs retention.
+Oct 20 15:43:13 mars systemd[1]: btrfs-legacy-prune.service: Consumed 3.275s CPU time.
+Hint: Some lines were ellipsized, use -l to show in full.
+Oct 20 15:41:49 mars systemd[1]: Starting btrfs-legacy-prune.service - Prune at most one legacy Snapper snapshot using combined Btrfs retention...
+Oct 20 15:41:51 mars btrfs-snapshot-manager[256168]: LEGACY PRUNE mode=EXECUTE candidate_count=8 max_delete=1
+Oct 20 15:41:54 mars btrfs-snapshot-manager[256168]: LEGACY PRUNE DELETE @data @data 19629 UUID:                         d8dd07a1-c5bb-fd46-8ca7-442add43653d Subvolume ID:
+      20189
+Oct 20 15:41:54 mars btrfs-snapshot-manager[256168]: LEGACY PRUNE completed config=@data id=19629
+Oct 20 15:41:54 mars systemd[1]: btrfs-legacy-prune.service: Deactivated successfully.
+Oct 20 15:41:54 mars systemd[1]: Finished btrfs-legacy-prune.service - Prune at most one legacy Snapper snapshot using combined Btrfs retention.
+Oct 20 15:41:54 mars systemd[1]: btrfs-legacy-prune.service: Consumed 3.540s CPU time.
+Oct 20 15:43:08 mars systemd[1]: Starting btrfs-legacy-prune.service - Prune at most one legacy Snapper snapshot using combined Btrfs retention...
+Oct 20 15:43:10 mars btrfs-snapshot-manager[256472]: LEGACY PRUNE mode=EXECUTE candidate_count=7 max_delete=1
+Oct 20 15:43:13 mars btrfs-snapshot-manager[256472]: LEGACY PRUNE DELETE @data @data 19677 UUID:                         42698393-7fbd-b74f-ae68-f06028fcda9c Subvolume ID:
+      20237
+Oct 20 15:43:13 mars btrfs-snapshot-manager[256472]: LEGACY PRUNE completed config=@data id=19677
+Oct 20 15:43:13 mars systemd[1]: btrfs-legacy-prune.service: Deactivated successfully.
+Oct 20 15:43:13 mars systemd[1]: Finished btrfs-legacy-prune.service - Prune at most one legacy Snapper snapshot using combined Btrfs retention.
+Oct 20 15:43:13 mars systemd[1]: btrfs-legacy-prune.service: Consumed 3.275s CPU time.
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=151
+qgroups_stale=8
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=58;incomplete_timestamp_sets=0
+source=root:/media/usb;managed_snapshots=58
+source=@data:/media/usb/@data;managed_snapshots=58
+diaries_verification=valid;logicalDataset=production;backupId=20261020-003106Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+HELD 20261013-171228Z reason=0034/0035 pre-cleanup recovery checkpoint
+HELD 20261018-165453Z reason=Permanent 0034/0036 mango closure evidence archive
+LEGACY PRUNE mode=READ_ONLY candidate_count=6 max_delete=1
+WOULD-DELETE @data @data 19701 2026-10-02T00:00:25+00:00
+NO DELETION AUTHORISED
+richard@mars:~$

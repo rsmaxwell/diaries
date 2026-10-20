@@ -1,0 +1,42 @@
+richard@mango:~/playbooks/scripts$ ssh mars '
+  echo "=== Backup script directory ==="
+  stat -c "%a %U:%G %n" /home/richard/scripts/backup
+
+  echo "=== Temporary Step 13 preservation copies ==="
+  find /home/richard -maxdepth 2 -type d \
+    -name "step13-predeployment-*" -print
+
+  echo "=== Root-owned legacy pull helpers ==="
+  sudo find /root/scripts/backup -maxdepth 1 -type f \
+    \( -name "diaries-pull.py" \
+       -o -name "complete-dataset-publisher.py" \
+       -o -name "complete-dataset-manifest.py" \) -print
+
+  echo "=== Enabled snapshot timers ==="
+  systemctl is-enabled \
+    btrfs-snapshot-create.timer \
+    btrfs-snapshot-prune.timer \
+    btrfs-legacy-prune.timer
+
+  echo "=== Legacy Snapper timers ==="
+  systemctl is-enabled \
+    snapper-timeline.timer \
+    snapper-boot.timer \
+    snapper-cleanup.timer || true
+'
+=== Backup script directory ===
+750 richard:richard /home/richard/scripts/backup
+=== Temporary Step 13 preservation copies ===
+=== Root-owned legacy pull helpers ===
+/root/scripts/backup/complete-dataset-publisher.py
+/root/scripts/backup/complete-dataset-manifest.py
+/root/scripts/backup/diaries-pull.py
+=== Enabled snapshot timers ===
+enabled
+enabled
+enabled
+=== Legacy Snapper timers ===
+disabled
+disabled
+disabled
+richard@mango:~/playbooks/scripts$

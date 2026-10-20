@@ -1,0 +1,21 @@
+host=mars
+date_utc=2026-10-20T12:37:22Z
+snapper 0.10.6
+libsnapper 7.2.0
+flags btrfs,lvm,no-ext4,xattrs,rollback,btrfs-quota,no-selinux
+
+Original inventory command, bounded to 60 seconds (read-only):
+original_exit=124 elapsed_seconds=60
+
+Workaround inventory command, bounded to 60 seconds (read-only):
+workaround_exit=0 elapsed_seconds=0
+
+Quota rescan status:
+rescan operation running (current key 323592077313)
+
+Device stats:
+[/dev/sdb1].write_io_errs    0
+[/dev/sdb1].read_io_errs     0
+[/dev/sdb1].flush_io_errs    0
+[/dev/sdb1].corruption_errs  0
+[/dev/sdb1].generation_errs  0

@@ -1,0 +1,27 @@
+NEXT                        LEFT          LAST                        PASSED            UNIT                           ACTIVATES
+Tue 2026-10-20 12:32:32 BST 4h 30min left Mon 2026-10-19 12:32:32 BST 19h ago           update-notifier-download.timer update-notifier-download.service
+Tue 2026-10-20 12:36:41 BST 4h 34min left Mon 2026-10-19 12:36:41 BST 19h ago           systemd-tmpfiles-clean.timer   systemd-tmpfiles-clean.service
+Tue 2026-10-20 13:24:07 BST 5h 22min left Tue 2026-10-20 02:10:09 BST 5h 51min ago      motd-news.timer                motd-news.service
+Tue 2026-10-20 15:59:51 BST 7h left       Tue 2026-10-20 05:54:51 BST 2h 7min ago       apt-daily.timer                apt-daily.service
+Wed 2026-10-21 00:00:00 BST 15h left      Tue 2026-10-20 00:00:04 BST 8h ago            cloudflared-update.timer       cloudflared-update.service
+Wed 2026-10-21 00:00:00 BST 15h left      Tue 2026-10-20 00:00:04 BST 8h ago            dpkg-db-backup.timer           dpkg-db-backup.service
+Wed 2026-10-21 00:00:00 BST 15h left      Tue 2026-10-20 00:00:04 BST 8h ago            logrotate.timer                logrotate.service
+Wed 2026-10-21 01:01:24 BST 16h left      Tue 2026-10-20 06:27:02 BST 1h 35min ago      fwupd-refresh.timer            fwupd-refresh.service
+Wed 2026-10-21 04:06:08 BST 20h left      Tue 2026-10-20 00:55:36 BST 7h ago            man-db.timer                   man-db.service
+Wed 2026-10-21 06:20:40 BST 22h left      Tue 2026-10-20 06:21:21 BST 1h 40min ago      apt-daily-upgrade.timer        apt-daily-upgrade.service
+Thu 2026-10-22 11:17:03 BST 2 days left   Tue 2026-10-13 05:56:31 BST 1 week 0 days ago update-notifier-motd.timer     update-notifier-motd.service
+Sun 2026-10-25 03:10:36 GMT 4 days left   Sun 2026-10-18 03:10:18 BST 2 days ago        e2scrub_all.timer              e2scrub_all.service
+Mon 2026-10-26 01:20:59 GMT 5 days left   Mon 2026-10-19 01:35:48 BST 1 day 6h ago      fstrim.timer                   fstrim.service
+n/a                         n/a           n/a                         n/a               apport-autoreport.timer        apport-autoreport.service
+n/a                         n/a           n/a                         n/a               snapd.snap-repair.timer        snapd.snap-repair.service
+n/a                         n/a           n/a                         n/a               ua-timer.timer                 ua-timer.service
+
+16 timers listed.
+UNIT           LOAD      ACTIVE SUB    DESCRIPTION
+backup.service not-found failed failed backup.service
+user@0.service loaded    failed failed User Manager for UID 0
+
+LOAD   = Reflects whether the unit definition was properly loaded.
+ACTIVE = The high-level unit activation state, i.e. generalization of SUB.
+SUB    = The low-level unit activation state, values depend on unit type.
+2 loaded units listed.

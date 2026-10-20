@@ -1,0 +1,7 @@
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=58;incomplete_timestamp_sets=0
+source=root:/media/usb;managed_snapshots=58
+source=@data:/media/usb/@data;managed_snapshots=58
+diaries_verification=valid;logicalDataset=production;backupId=20261020-003106Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json

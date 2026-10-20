@@ -1,0 +1,22 @@
+test_native_prune_unchanged (__main__.Guarded.test_native_prune_unchanged) ... ok
+test_native_run_unchanged (__main__.Guarded.test_native_run_unchanged) ... ok
+test_one_exact_snapper_delete (__main__.Guarded.test_one_exact_snapper_delete) ... ok
+test_rejects_different_id (__main__.Guarded.test_rejects_different_id) ... ok
+test_rejects_disabled (__main__.Guarded.test_rejects_disabled) ... ok
+test_rejects_keep (__main__.Guarded.test_rejects_keep) ... ok
+test_rejects_missing (__main__.Guarded.test_rejects_missing) ... ok
+test_rejects_symlink (__main__.Guarded.test_rejects_symlink) ... ok
+test_rejects_untrusted_mode (__main__.Guarded.test_rejects_untrusted_mode) ... ok
+test_rejects_wrong_host (__main__.Guarded.test_rejects_wrong_host) ... ok
+test_requires_execute (__main__.Guarded.test_requires_execute) ... ok
+test_revalidation_changed (__main__.Guarded.test_revalidation_changed) ... ok
+test_revalidation_failure (__main__.Guarded.test_revalidation_failure) ... ok
+test_snapper_delete_failure_propagates (__main__.Guarded.test_snapper_delete_failure_propagates) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.012s
+
+OK
+LEGACY DELETE approved host=mars source=@data config=@data id=19605 timestamp=2026-09-28T00:00:38+00:00
+LEGACY DELETE completed config=@data id=19605
+LEGACY DELETE approved host=mars source=@data config=@data id=19605 timestamp=2026-09-28T00:00:38+00:00

@@ -1,0 +1,22 @@
+mars
+2026-10-20T07:56:49+00:00
+× snapper-timeline.service - Timeline of Snapper Snapshots
+     Loaded: loaded (/usr/lib/systemd/system/snapper-timeline.service; static)
+     Active: failed (Result: exit-code) since Fri 2026-10-09 17:00:02 UTC; 1 week 3 days ago
+   Duration: 1.034s
+       Docs: man:snapper(8)
+             man:snapper-configs(5)
+   Main PID: 137544 (code=exited, status=1/FAILURE)
+        CPU: 65ms
+Tue 2026-10-20 08:00:00 UTC      3min 10s Tue 2026-10-20 07:00:36 UTC    56min ago btrfs-snapshot-create.timer    btrfs-snapshot-create.service
+Tue 2026-10-20 08:15:00 UTC         18min Tue 2026-10-20 07:15:02 UTC    41min ago btrfs-snapshot-prune.timer     btrfs-snapshot-prune.service
+Wed 2026-10-21 01:30:00 UTC           17h Tue 2026-10-20 01:30:19 UTC       6h ago diaries-pull.timer             diaries-pull.service
+disabled
+disabled
+inactive
+inactive
+ 248200  248199 Ss         00:00 bash -c hostname; date -Is; systemctl status snapper-timeline.service --no-pager || true; systemctl list-timers --all --no-pager | grep -E "snapper|btrfs-snapshot|diaries" || true; systemctl is-enabled snapper-timeline.timer snapper-cleanup.timer 2>&1 || true; systemctl is-active snapper-timeline.timer snapper-cleanup.timer 2>&1 || true; ps -eo pid,ppid,stat,etime,args | grep -E "[s]napper|[b]trfs (send|receive)|[b]trfs-snapshot-manager|[d]iaries.*(push|pull)" || true; journalctl -u snapper-timeline.service -n 35 --no-pager || true
+Hint: You are currently not seeing messages from other users and the system.
+      Users in groups 'adm', 'systemd-journal' can see all messages.
+      Pass -q to turn off this notice.
+-- No entries --

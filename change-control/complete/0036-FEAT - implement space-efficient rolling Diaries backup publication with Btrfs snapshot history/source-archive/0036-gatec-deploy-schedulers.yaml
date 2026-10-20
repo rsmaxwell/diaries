@@ -1,0 +1,112 @@
+---
+# 0036-FEAT Gate C: deploy only the permanent fixed-mode scheduler command paths.
+# Intentionally does not start or enable any timers, run backups or sync scripts.
+- name: Gate C - install fixed capture unit on pluto
+  hosts: pluto
+  gather_facts: false
+  vars:
+    diaries_project_dir: /home/richard/projects/diaries
+    diaries_complete_backup_timeout_start_sec: 2h
+  tasks:
+    - name: Require fixed capture and host mount explicitly enabled
+      ansible.builtin.assert:
+        that:
+          - diaries_0036_fixed_capture_enabled | bool
+          - diaries_0036_host_nas_mount_enabled | bool
+          - diaries_complete_backup_timeout_start_sec is defined
+
+    - name: Inspect existing backup timer
+      ansible.builtin.command: systemctl is-active diaries-complete-backup-publish.timer
+      register: capture_timer
+      changed_when: false
+      failed_when: false
+
+    - name: Refuse deployment while publisher timer is active
+      ansible.builtin.assert:
+        that: capture_timer.stdout | trim != 'active'
+
+    - name: Confirm fixed capture helper is installed
+      ansible.builtin.stat:
+        path: /home/richard/projects/diaries/scripts/backup-dataset.sh
+      register: fixed_capture_helper
+
+    - name: Require fixed capture helper to exist
+      ansible.builtin.assert:
+        that: fixed_capture_helper.stat.exists
+
+    - name: Install fixed capture service without enabling its timer
+      become: true
+      ansible.builtin.template:
+        src: /home/richard/playbooks/roles/diaries/templates/etc/systemd/system/diaries-complete-backup-publish.service.j2
+        dest: /etc/systemd/system/diaries-complete-backup-publish.service
+        owner: root
+        group: root
+        mode: '0644'
+      register: capture_unit
+
+    - name: Reload systemd only if capture service changed
+      become: true
+      ansible.builtin.systemd:
+        daemon_reload: true
+      when: capture_unit.changed
+
+- name: Gate C - install fixed-destination pull wrapper on mars
+  hosts: mars
+  gather_facts: false
+  tasks:
+    - name: Read local-backup defaults without executing role tasks
+      ansible.builtin.include_vars:
+        file: /home/richard/playbooks/roles/local-backup/defaults/main.yaml
+        name: backup_role_defaults
+
+    - name: Resolve receiver path settings with inventory overrides
+      ansible.builtin.set_fact:
+        diaries_pull_fixed_source_guard: "{{ diaries_pull_fixed_source_guard | default(backup_role_defaults.diaries_pull_fixed_source_guard) }}"
+        diaries_pull_host: "{{ diaries_pull_host | default(backup_role_defaults.diaries_pull_host) }}"
+        diaries_pull_source_parent: "{{ diaries_pull_source_parent | default(backup_role_defaults.diaries_pull_source_parent) }}"
+        diaries_pull_destination_parent: "{{ diaries_pull_destination_parent | default(backup_role_defaults.diaries_pull_destination_parent) }}"
+        diaries_pull_snapshot_source_root: "{{ diaries_pull_snapshot_source_root | default(backup_role_defaults.diaries_pull_snapshot_source_root) }}"
+        diaries_pull_verification_marker: "{{ diaries_pull_verification_marker | default(backup_role_defaults.diaries_pull_verification_marker) }}"
+        diaries_pull_repository_lock: "{{ diaries_pull_repository_lock | default(backup_role_defaults.diaries_pull_repository_lock) }}"
+
+    - name: Require fixed receiving and snapshot integration enabled
+      ansible.builtin.assert:
+        that:
+          - diaries_pull_install | bool
+          - diaries_snapshot_integration_enabled | bool
+          - diaries_pull_fixed_destination_enabled | bool
+          - diaries_pull_fixed_source_guard is defined
+          - diaries_pull_host is defined
+          - diaries_pull_source_parent is defined
+          - diaries_pull_destination_parent is defined
+          - diaries_pull_snapshot_source_root is defined
+          - diaries_pull_verification_marker is defined
+          - diaries_pull_repository_lock is defined
+
+    - name: Inspect existing pull timer
+      ansible.builtin.command: systemctl is-active diaries-pull.timer
+      register: pull_timer
+      changed_when: false
+      failed_when: false
+
+    - name: Refuse deployment while pull timer is active
+      ansible.builtin.assert:
+        that: pull_timer.stdout | trim != 'active'
+
+    - name: Confirm pull helper is installed
+      ansible.builtin.stat:
+        path: /home/richard/scripts/backup/diaries-pull.py
+      register: pull_helper
+
+    - name: Require pull helper to exist
+      ansible.builtin.assert:
+        that: pull_helper.stat.exists
+
+    - name: Install fixed-mode receiver wrapper without enabling timer
+      become: true
+      ansible.builtin.template:
+        src: /home/richard/playbooks/roles/local-backup/templates/diaries/diaries-pull.sh.j2
+        dest: /home/richard/scripts/backup/diaries-pull.sh
+        owner: richard
+        group: richard
+        mode: '0755'

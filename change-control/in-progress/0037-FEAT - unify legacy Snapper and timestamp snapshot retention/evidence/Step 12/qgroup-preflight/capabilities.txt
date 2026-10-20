@@ -1,0 +1,37 @@
+btrfs qgroup: unknown token 'help'
+usage: btrfs qgroup <command> [options] <path>
+
+    btrfs qgroup assign [options] <src> <dst> <path>
+        Assign SRC as the child qgroup of DST.
+    btrfs qgroup remove [options] <src> <dst> <path>
+        Remove the relation between child qgroup SRC from DST.
+    btrfs qgroup create <qgroupid> <path>
+        Create a subvolume quota group.
+    btrfs qgroup clear-stale <path>
+        Clear all stale qgroups (level 0/subvolid), without a subvolume.
+    btrfs qgroup destroy <qgroupid> <path>
+        Destroy a quota group.
+    btrfs qgroup show [options] <path>
+        List subvolume quota groups.
+    btrfs qgroup limit [options] <size>|none [<qgroupid>] <path>
+        Set the limits a subvolume quota group.
+
+manage quota groups
+usage: btrfs qgroup <command> [options] <path>
+
+    btrfs qgroup assign [options] <src> <dst> <path>
+        Assign SRC as the child qgroup of DST.
+    btrfs qgroup remove [options] <src> <dst> <path>
+        Remove the relation between child qgroup SRC from DST.
+    btrfs qgroup create <qgroupid> <path>
+        Create a subvolume quota group.
+    btrfs qgroup clear-stale <path>
+        Clear all stale qgroups (level 0/subvolid), without a subvolume.
+    btrfs qgroup destroy <qgroupid> <path>
+        Destroy a quota group.
+    btrfs qgroup show [options] <path>
+        List subvolume quota groups.
+    btrfs qgroup limit [options] <size>|none [<qgroupid>] <path>
+        Set the limits a subvolume quota group.
+
+manage quota groups

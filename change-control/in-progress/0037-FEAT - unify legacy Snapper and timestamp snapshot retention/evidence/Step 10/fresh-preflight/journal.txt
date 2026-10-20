@@ -1,0 +1,120 @@
+Oct 19 23:00:27 mars systemd[1]: Finished btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots.
+Oct 19 23:15:38 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Oct 19 23:15:38 mars btrfs-snapshot-manager[243834]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 19 23:15:38 mars btrfs-snapshot-manager[243834]: REPLICATION-PROTECTED: ['20261019-030038Z']
+Oct 19 23:15:38 mars btrfs-snapshot-manager[243834]: RETENTION sets: total=58 keep=58 sources=2
+Oct 19 23:15:38 mars btrfs-snapshot-manager[243834]: Deleted 0 complete timestamp sets
+Oct 19 23:15:38 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+Oct 19 23:15:38 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Oct 20 00:00:22 mars systemd[1]: Starting btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots...
+Oct 20 00:00:53 mars btrfs-snapshot-manager[243882]: VERIFIED-DIARIES production 20261019-003106Z manifest=c6e938459976144c232458fffc34bab47ad247365185d8c088c6bd4821581f20
+Oct 20 00:00:53 mars btrfs-snapshot-manager[243882]: CREATE root: /media/usb -> /media/usb/@snapshots/root/20261020-000022Z
+Oct 20 00:00:53 mars btrfs-snapshot-manager[243882]: CREATE @data: /media/usb/@data -> /media/usb/@snapshots/@data/20261020-000022Z
+Oct 20 00:00:53 mars btrfs-snapshot-manager[243882]: Created timestamp set 20261020-000022Z (2 snapshots)
+Oct 20 00:00:53 mars systemd[1]: btrfs-snapshot-create.service: Deactivated successfully.
+Oct 20 00:00:53 mars systemd[1]: Finished btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots.
+Oct 20 00:15:02 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Oct 20 00:15:02 mars btrfs-snapshot-manager[243919]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 20 00:15:02 mars btrfs-snapshot-manager[243919]: REPLICATION-PROTECTED: ['20261019-030038Z']
+Oct 20 00:15:02 mars btrfs-snapshot-manager[243919]: RETENTION sets: total=59 keep=58 sources=2
+Oct 20 00:15:02 mars btrfs-snapshot-manager[243919]: DELETE @data 20261018-000038Z /media/usb/@snapshots/@data/20261018-000038Z
+Oct 20 00:15:02 mars btrfs-snapshot-manager[243919]: DELETE root 20261018-000038Z /media/usb/@snapshots/root/20261018-000038Z
+Oct 20 00:15:02 mars btrfs-snapshot-manager[243919]: Deleted 1 complete timestamp sets
+Oct 20 00:15:02 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+Oct 20 00:15:02 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Oct 20 01:00:31 mars systemd[1]: Starting btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots...
+Oct 20 01:00:32 mars btrfs-snapshot-manager[244640]: VERIFIED-DIARIES production 20261019-003106Z manifest=c6e938459976144c232458fffc34bab47ad247365185d8c088c6bd4821581f20
+Oct 20 01:00:32 mars btrfs-snapshot-manager[244640]: CREATE root: /media/usb -> /media/usb/@snapshots/root/20261020-010031Z
+Oct 20 01:00:32 mars btrfs-snapshot-manager[244640]: CREATE @data: /media/usb/@data -> /media/usb/@snapshots/@data/20261020-010031Z
+Oct 20 01:00:32 mars btrfs-snapshot-manager[244640]: Created timestamp set 20261020-010031Z (2 snapshots)
+Oct 20 01:00:32 mars systemd[1]: btrfs-snapshot-create.service: Deactivated successfully.
+Oct 20 01:00:32 mars systemd[1]: Finished btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots.
+Oct 20 01:15:08 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Oct 20 01:15:09 mars btrfs-snapshot-manager[244664]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 20 01:15:09 mars btrfs-snapshot-manager[244664]: REPLICATION-PROTECTED: ['20261019-030038Z']
+Oct 20 01:15:09 mars btrfs-snapshot-manager[244664]: RETENTION sets: total=59 keep=58 sources=2
+Oct 20 01:15:09 mars btrfs-snapshot-manager[244664]: DELETE @data 20261018-010038Z /media/usb/@snapshots/@data/20261018-010038Z
+Oct 20 01:15:09 mars btrfs-snapshot-manager[244664]: DELETE root 20261018-010038Z /media/usb/@snapshots/root/20261018-010038Z
+Oct 20 01:15:09 mars btrfs-snapshot-manager[244664]: Deleted 1 complete timestamp sets
+Oct 20 01:15:09 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+Oct 20 01:15:09 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Oct 20 02:00:01 mars systemd[1]: Starting btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots...
+Oct 20 02:00:02 mars btrfs-snapshot-manager[244748]: VERIFIED-DIARIES production 20261020-003106Z manifest=98c27e522790c45cbe51955e6a976ca6021f757554d115b2be2e07925f0b625c
+Oct 20 02:00:02 mars btrfs-snapshot-manager[244748]: CREATE root: /media/usb -> /media/usb/@snapshots/root/20261020-020002Z
+Oct 20 02:00:02 mars btrfs-snapshot-manager[244748]: CREATE @data: /media/usb/@data -> /media/usb/@snapshots/@data/20261020-020002Z
+Oct 20 02:00:02 mars btrfs-snapshot-manager[244748]: Created timestamp set 20261020-020002Z (2 snapshots)
+Oct 20 02:00:02 mars systemd[1]: btrfs-snapshot-create.service: Deactivated successfully.
+Oct 20 02:00:02 mars systemd[1]: Finished btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots.
+Oct 20 02:15:01 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Oct 20 02:15:01 mars btrfs-snapshot-manager[245345]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 20 02:15:01 mars btrfs-snapshot-manager[245345]: REPLICATION-PROTECTED: ['20261019-030038Z']
+Oct 20 02:15:01 mars btrfs-snapshot-manager[245345]: RETENTION sets: total=59 keep=58 sources=2
+Oct 20 02:15:01 mars btrfs-snapshot-manager[245345]: DELETE @data 20261018-020001Z /media/usb/@snapshots/@data/20261018-020001Z
+Oct 20 02:15:01 mars btrfs-snapshot-manager[245345]: DELETE root 20261018-020001Z /media/usb/@snapshots/root/20261018-020001Z
+Oct 20 02:15:01 mars btrfs-snapshot-manager[245345]: Deleted 1 complete timestamp sets
+Oct 20 02:15:01 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+Oct 20 02:15:01 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Oct 20 03:00:26 mars systemd[1]: Starting btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots...
+Oct 20 03:00:57 mars btrfs-snapshot-manager[245409]: VERIFIED-DIARIES production 20261020-003106Z manifest=98c27e522790c45cbe51955e6a976ca6021f757554d115b2be2e07925f0b625c
+Oct 20 03:00:57 mars btrfs-snapshot-manager[245409]: CREATE root: /media/usb -> /media/usb/@snapshots/root/20261020-030026Z
+Oct 20 03:00:57 mars btrfs-snapshot-manager[245409]: CREATE @data: /media/usb/@data -> /media/usb/@snapshots/@data/20261020-030026Z
+Oct 20 03:00:57 mars btrfs-snapshot-manager[245409]: Created timestamp set 20261020-030026Z (2 snapshots)
+Oct 20 03:00:57 mars systemd[1]: btrfs-snapshot-create.service: Deactivated successfully.
+Oct 20 03:00:57 mars systemd[1]: Finished btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots.
+Oct 20 03:15:38 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Oct 20 03:15:39 mars btrfs-snapshot-manager[245438]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 20 03:15:39 mars btrfs-snapshot-manager[245438]: REPLICATION-PROTECTED: ['20261019-030038Z']
+Oct 20 03:15:39 mars btrfs-snapshot-manager[245438]: RETENTION sets: total=59 keep=58 sources=2
+Oct 20 03:15:39 mars btrfs-snapshot-manager[245438]: DELETE @data 20261018-030006Z /media/usb/@snapshots/@data/20261018-030006Z
+Oct 20 03:15:39 mars btrfs-snapshot-manager[245438]: DELETE root 20261018-030006Z /media/usb/@snapshots/root/20261018-030006Z
+Oct 20 03:15:39 mars btrfs-snapshot-manager[245438]: Deleted 1 complete timestamp sets
+Oct 20 03:15:39 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+Oct 20 03:15:39 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Oct 20 04:00:36 mars systemd[1]: Starting btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots...
+Oct 20 04:00:37 mars btrfs-snapshot-manager[245581]: VERIFIED-DIARIES production 20261020-003106Z manifest=98c27e522790c45cbe51955e6a976ca6021f757554d115b2be2e07925f0b625c
+Oct 20 04:00:37 mars btrfs-snapshot-manager[245581]: CREATE root: /media/usb -> /media/usb/@snapshots/root/20261020-040036Z
+Oct 20 04:00:37 mars btrfs-snapshot-manager[245581]: CREATE @data: /media/usb/@data -> /media/usb/@snapshots/@data/20261020-040036Z
+Oct 20 04:00:37 mars btrfs-snapshot-manager[245581]: Created timestamp set 20261020-040036Z (2 snapshots)
+Oct 20 04:00:37 mars systemd[1]: btrfs-snapshot-create.service: Deactivated successfully.
+Oct 20 04:00:37 mars systemd[1]: Finished btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots.
+Oct 20 04:15:05 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Oct 20 04:15:06 mars btrfs-snapshot-manager[245606]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 20 04:15:06 mars btrfs-snapshot-manager[245606]: REPLICATION-PROTECTED: ['20261020-030026Z']
+Oct 20 04:15:06 mars btrfs-snapshot-manager[245606]: RETENTION sets: total=59 keep=58 sources=2
+Oct 20 04:15:06 mars btrfs-snapshot-manager[245606]: DELETE @data 20261018-040016Z /media/usb/@snapshots/@data/20261018-040016Z
+Oct 20 04:15:06 mars btrfs-snapshot-manager[245606]: DELETE root 20261018-040016Z /media/usb/@snapshots/root/20261018-040016Z
+Oct 20 04:15:06 mars btrfs-snapshot-manager[245606]: Deleted 1 complete timestamp sets
+Oct 20 04:15:06 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+Oct 20 04:15:06 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Oct 20 05:00:35 mars systemd[1]: Starting btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots...
+Oct 20 05:01:07 mars btrfs-snapshot-manager[245656]: VERIFIED-DIARIES production 20261020-003106Z manifest=98c27e522790c45cbe51955e6a976ca6021f757554d115b2be2e07925f0b625c
+Oct 20 05:01:07 mars btrfs-snapshot-manager[245656]: CREATE root: /media/usb -> /media/usb/@snapshots/root/20261020-050036Z
+Oct 20 05:01:07 mars btrfs-snapshot-manager[245656]: CREATE @data: /media/usb/@data -> /media/usb/@snapshots/@data/20261020-050036Z
+Oct 20 05:01:07 mars btrfs-snapshot-manager[245656]: Created timestamp set 20261020-050036Z (2 snapshots)
+Oct 20 05:01:07 mars systemd[1]: btrfs-snapshot-create.service: Deactivated successfully.
+Oct 20 05:01:07 mars systemd[1]: Finished btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots.
+Oct 20 05:15:15 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Oct 20 05:15:15 mars btrfs-snapshot-manager[245682]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 20 05:15:15 mars btrfs-snapshot-manager[245682]: REPLICATION-PROTECTED: ['20261020-030026Z']
+Oct 20 05:15:15 mars btrfs-snapshot-manager[245682]: RETENTION sets: total=59 keep=58 sources=2
+Oct 20 05:15:15 mars btrfs-snapshot-manager[245682]: DELETE @data 20261018-050038Z /media/usb/@snapshots/@data/20261018-050038Z
+Oct 20 05:15:15 mars btrfs-snapshot-manager[245682]: DELETE root 20261018-050038Z /media/usb/@snapshots/root/20261018-050038Z
+Oct 20 05:15:15 mars btrfs-snapshot-manager[245682]: Deleted 1 complete timestamp sets
+Oct 20 05:15:16 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+Oct 20 05:15:16 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Oct 20 06:00:02 mars systemd[1]: Starting btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots...
+Oct 20 06:00:33 mars btrfs-snapshot-manager[245732]: VERIFIED-DIARIES production 20261020-003106Z manifest=98c27e522790c45cbe51955e6a976ca6021f757554d115b2be2e07925f0b625c
+Oct 20 06:00:33 mars btrfs-snapshot-manager[245732]: CREATE root: /media/usb -> /media/usb/@snapshots/root/20261020-060002Z
+Oct 20 06:00:33 mars btrfs-snapshot-manager[245732]: CREATE @data: /media/usb/@data -> /media/usb/@snapshots/@data/20261020-060002Z
+Oct 20 06:00:33 mars btrfs-snapshot-manager[245732]: Created timestamp set 20261020-060002Z (2 snapshots)
+Oct 20 06:00:33 mars systemd[1]: btrfs-snapshot-create.service: Deactivated successfully.
+Oct 20 06:00:33 mars systemd[1]: Finished btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots.
+Oct 20 06:15:24 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Oct 20 06:15:25 mars btrfs-snapshot-manager[245758]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 20 06:15:25 mars btrfs-snapshot-manager[245758]: REPLICATION-PROTECTED: ['20261020-030026Z']
+Oct 20 06:15:25 mars btrfs-snapshot-manager[245758]: RETENTION sets: total=59 keep=58 sources=2
+Oct 20 06:15:25 mars btrfs-snapshot-manager[245758]: DELETE @data 20261018-060002Z /media/usb/@snapshots/@data/20261018-060002Z
+Oct 20 06:15:25 mars btrfs-snapshot-manager[245758]: DELETE root 20261018-060002Z /media/usb/@snapshots/root/20261018-060002Z
+Oct 20 06:15:25 mars btrfs-snapshot-manager[245758]: Deleted 1 complete timestamp sets
+Oct 20 06:15:25 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+Oct 20 06:15:25 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.

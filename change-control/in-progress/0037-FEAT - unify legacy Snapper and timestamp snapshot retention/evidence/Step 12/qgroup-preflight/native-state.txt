@@ -1,0 +1,13 @@
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=58;incomplete_timestamp_sets=0
+source=root:/media/usb;managed_snapshots=58
+source=@data:/media/usb/@data;managed_snapshots=58
+diaries_verification=valid;logicalDataset=production;backupId=20261020-003106Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+REPLICATION-PROTECTED: ['20261020-030026Z']
+RETENTION sets: total=58 keep=58 sources=2
+Would delete 0 complete timestamp sets
+HELD 20261013-171228Z reason=0034/0035 pre-cleanup recovery checkpoint
+HELD 20261018-165453Z reason=Permanent 0034/0036 mango closure evidence archive

@@ -1,0 +1,85 @@
+0037-FEAT Step 7 — source regression + isolation checks (mango)
+Target: mango; production deletion: NOT ALLOWED
+== Syntax compilation and manager SHA-256 ==
+200998f4bdf129637025fd94730735d27919d48b1f47941b58846e408f2692c5  /home/richard/playbooks/roles/snapshots/files/btrfs-snapshot-manager.py
+== Existing native manager verification ==
+PASS: retention always keeps newest snapshot
+PASS: retention keeps configured recent hourly buckets
+PASS: retention keeps configured daily buckets
+PASS: retention keeps configured weekly buckets
+PASS: retention thins older snapshots
+PASS: numeric Snapper IDs are outside the managed timestamp namespace
+PASS: timestamp naming is unambiguous UTC
+PASS: native snapshot activation is default-off
+PASS: Snapper handover is independently default-off
+PASS: native timer enablement is behind explicit activation
+PASS: Snapper timeline/boot changes are behind explicit handover
+PASS: ordinary deployment installs/preflights units without scheduling
+PASS: Ansible fails closed if @snapshots is an unexpected ordinary path
+PASS: Playbooks installs the read-only Diaries snapshot-history tool
+PASS: Playbooks installs the physical-extent sharing acceptance tool
+PASS: manager creates read-only native Btrfs snapshots
+PASS: manager rejects cross-filesystem snapshot repository
+PASS: manager requires the verified Diaries marker when integration is enabled
+PASS: snapshot creation shares the receiver writer lock
+PASS: retention operates on complete multi-source timestamp sets and fails closed on partial sets
+PASS: operator documentation freezes the Snapper/native-manager boundary
+PASS: mars/local-backup uses the shared snapshots role
+PASS: backup/remote-backup uses the shared snapshots role
+PASS: backup no longer has a duplicate Snapper provisioning path
+PASS: remote-backup launcher no longer selects obsolete Snapper-only tags
+PASS: snapshot launcher explicitly supports mars-first then backup deployment
+PASS: 0035 native Btrfs snapshot-manager regression verified
+PASS: verified receiver snapshot creation requires pre-provisioned non-symlink writer lock
+== Step 5 adversarial regressions ==
+test_native_only_retention_unchanged_by_plan (__main__.Compatibility.test_native_only_retention_unchanged_by_plan) ... ok
+test_duplicate_mappings_aborts (__main__.InventorySafety.test_duplicate_mappings_aborts) ... ok
+test_duplicate_numbers_aborts (__main__.InventorySafety.test_duplicate_numbers_aborts) ... ok
+test_empty_without_directory (__main__.InventorySafety.test_empty_without_directory) ... ok
+test_failed_snapper_command_aborts (__main__.InventorySafety.test_failed_snapper_command_aborts) ... ok
+test_missing_columns_aborts (__main__.InventorySafety.test_missing_columns_aborts) ... ok
+test_numbered_missing_directory_aborts (__main__.InventorySafety.test_numbered_missing_directory_aborts) ... ok
+test_unknown_source_aborts (__main__.InventorySafety.test_unknown_source_aborts) ... ok
+test_distinct_source_scope (__main__.PlanningSafety.test_distinct_source_scope) ... ok
+test_duplicate_times_deterministic (__main__.PlanningSafety.test_duplicate_times_deterministic) ... ok
+test_incomplete_native_aborts (__main__.PlanningSafety.test_incomplete_native_aborts) ... ok
+test_legacy_only_and_anchor (__main__.PlanningSafety.test_legacy_only_and_anchor) ... ok
+test_missing_holds_aborts (__main__.PlanningSafety.test_missing_holds_aborts) ... ok
+test_missing_pins_aborts (__main__.PlanningSafety.test_missing_pins_aborts) ... ok
+test_mixed_types_excluded (__main__.PlanningSafety.test_mixed_types_excluded) ... ok
+test_native_precedence_and_floor (__main__.PlanningSafety.test_native_precedence_and_floor) ... ok
+test_no_legacy (__main__.PlanningSafety.test_no_legacy) ... ok
+test_pin_and_hold_are_keepers (__main__.PlanningSafety.test_pin_and_hold_are_keepers) ... ok
+test_plan_has_no_delete_call (__main__.PlanningSafety.test_plan_has_no_delete_call) ... ok
+test_recent_snapshot (__main__.PlanningSafety.test_recent_snapshot) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.010s
+
+OK
+== Step 6 guarded deletion regressions (mocked) ==
+test_native_prune_unchanged (__main__.Guarded.test_native_prune_unchanged) ... ok
+test_native_run_unchanged (__main__.Guarded.test_native_run_unchanged) ... ok
+test_one_exact_snapper_delete (__main__.Guarded.test_one_exact_snapper_delete) ... ok
+test_rejects_different_id (__main__.Guarded.test_rejects_different_id) ... ok
+test_rejects_disabled (__main__.Guarded.test_rejects_disabled) ... ok
+test_rejects_keep (__main__.Guarded.test_rejects_keep) ... ok
+test_rejects_missing (__main__.Guarded.test_rejects_missing) ... ok
+test_rejects_symlink (__main__.Guarded.test_rejects_symlink) ... ok
+test_rejects_untrusted_mode (__main__.Guarded.test_rejects_untrusted_mode) ... ok
+test_rejects_wrong_host (__main__.Guarded.test_rejects_wrong_host) ... ok
+test_requires_execute (__main__.Guarded.test_requires_execute) ... ok
+test_revalidation_changed (__main__.Guarded.test_revalidation_changed) ... ok
+test_revalidation_failure (__main__.Guarded.test_revalidation_failure) ... ok
+test_snapper_delete_failure_propagates (__main__.Guarded.test_snapper_delete_failure_propagates) ... ok
+
+----------------------------------------------------------------------
+LEGACY DELETE approved host=mars source=@data config=@data id=19605 timestamp=2026-09-28T00:00:38+00:00
+LEGACY DELETE completed config=@data id=19605
+LEGACY DELETE approved host=mars source=@data config=@data id=19605 timestamp=2026-09-28T00:00:38+00:00
+Ran 14 tests in 0.013s
+
+OK
+== CLI / scheduler source isolation ==
+PASS: guarded deletion command remains separately named and opt-in; no direct prune/create invocation
+PASS: Step 7 execution finished

@@ -1,0 +1,43 @@
+# /etc/systemd/system/btrfs-snapshot-create.service
+[Unit]
+Description=Create timestamp-named Btrfs snapshots
+After=local-fs.target
+ConditionPathExists=/etc/btrfs-snapshot-manager.json
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/btrfs-snapshot-manager --config /etc/btrfs-snapshot-manager.json create
+
+# /etc/systemd/system/btrfs-snapshot-prune.service
+[Unit]
+Description=Prune timestamp-named Btrfs snapshots
+After=local-fs.target
+ConditionPathExists=/etc/btrfs-snapshot-manager.json
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/btrfs-snapshot-manager --config /etc/btrfs-snapshot-manager.json prune
+
+# /etc/systemd/system/btrfs-snapshot-create.timer
+[Unit]
+Description=Schedule timestamp-named Btrfs snapshots
+
+[Timer]
+OnCalendar=*-*-* *:00:00
+Persistent=true
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target
+
+# /etc/systemd/system/btrfs-snapshot-prune.timer
+[Unit]
+Description=Schedule GFS-style Btrfs snapshot pruning
+
+[Timer]
+OnCalendar=*-*-* *:15:00
+Persistent=true
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target

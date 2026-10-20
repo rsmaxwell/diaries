@@ -1,0 +1,22 @@
+NEXT                                 LEFT LAST                              PASSED UNIT                           ACTIVATES
+Tue 2026-10-20 08:00:00 UTC         13min Tue 2026-10-20 07:00:36 UTC    46min ago btrfs-snapshot-create.timer    btrfs-snapshot-create.service
+Tue 2026-10-20 08:15:00 UTC         28min Tue 2026-10-20 07:15:02 UTC    31min ago btrfs-snapshot-prune.timer     btrfs-snapshot-prune.service
+Tue 2026-10-20 13:46:56 UTC            6h Tue 2026-10-20 07:26:09 UTC    20min ago motd-news.timer                motd-news.service
+Tue 2026-10-20 15:00:00 UTC            7h Mon 2026-10-19 15:00:00 UTC      16h ago update-notifier-download.timer update-notifier-download.service
+Tue 2026-10-20 15:07:05 UTC            7h Mon 2026-10-19 15:07:05 UTC      16h ago systemd-tmpfiles-clean.timer   systemd-tmpfiles-clean.service
+Tue 2026-10-20 16:18:03 UTC            8h Mon 2026-10-19 22:20:38 UTC       9h ago apt-daily.timer                apt-daily.service
+Wed 2026-10-21 00:00:00 UTC           16h Tue 2026-10-20 00:00:22 UTC       7h ago dpkg-db-backup.timer           dpkg-db-backup.service
+Wed 2026-10-21 00:00:00 UTC           16h Tue 2026-10-20 00:00:22 UTC       7h ago logrotate.timer                logrotate.service
+Wed 2026-10-21 01:30:00 UTC           17h Tue 2026-10-20 01:30:19 UTC       6h ago diaries-pull.timer             diaries-pull.service
+Wed 2026-10-21 03:30:00 UTC           19h Tue 2026-10-20 03:30:36 UTC 4h 16min ago btrfs-native-push.timer        btrfs-native-push.service
+Wed 2026-10-21 06:19:25 UTC           22h Tue 2026-10-20 06:32:56 UTC 1h 13min ago apt-daily-upgrade.timer        apt-daily-upgrade.service
+Wed 2026-10-21 10:40:09 UTC      1 day 2h Tue 2026-10-20 06:33:56 UTC 1h 12min ago man-db.timer                   man-db.service
+Sun 2026-10-25 03:10:28 UTC        4 days Sun 2026-10-18 03:10:36 UTC   2 days ago e2scrub_all.timer              e2scrub_all.service
+Mon 2026-10-26 01:24:33 UTC        5 days Mon 2026-10-19 01:20:56 UTC 1 day 6h ago fstrim.timer                   fstrim.service
+Tue 2026-10-27 14:34:54 UTC 1 week 0 days Tue 2026-10-20 00:58:16 UTC       6h ago update-notifier-motd.timer     update-notifier-motd.service
+-                                       - -                                      - apport-autoreport.timer        apport-autoreport.service
+-                                       - -                                      - fwupd-refresh.timer            -
+-                                       - -                                      - snapd.snap-repair.timer        snapd.snap-repair.service
+-                                       - -                                      - ua-timer.timer                 ua-timer.service
+
+19 timers listed.

@@ -1,0 +1,64 @@
+richard@mars:~$ sudo bash -euo pipefail <<'ROOT'
+set -euo pipefail
+
+snapshot=/media/usb/@data/.snapshots/19605/snapshot
+expected_uuid=489332dc-3b48-eb40-b59a-d9bd86cc9915
+expected_id=20165
+expected_sha=200998f4bdf129637025fd94730735d27919d48b1f47941b58846e408f2692c5
+
+test "$(hostname)" = mars
+test "$(sha256sum /usr/local/sbin/btrfs-snapshot-manager | awk '{print $1}')" = "$expected_sha"
+test -d "$snapshot"
+
+details=$(btrfs subvolume show "$snapshot")
+printf '%s\n' "$details"
+
+grep -Eq "^[[:space:]]*UUID:[[:space:]]+$expected_uuid$" <<< "$details"
+grep -Eq "^[[:space:]]*Subvolume ID:[[:space:]]+$expected_id$" <<< "$details"
+test "$(btrfs property get -ts "$snapshot" ro)" = "ro=true"
+
+approval=$(mktemp /root/legacy-19605-approval.XXXXXXXX.json)
+trap 'rm -f -- "$approval"' EXIT
+chmod 600 "$approval"
+
+cat > "$approval" <<'JSON'
+{
+  "enabled": true,
+  "allow_delete": true,
+  "host": "mars",
+  "source": "@data",
+  "snapper_config": "@data",
+  "snapshot_id": 19605
+}
+JSON
+
+echo "Executing guarded deletion: mars @data/19605"
+
+ROOT "Guarded deletion completed successfully"
+@data/.snapshots/19605/snapshot
+        Name:                   snapshot
+        UUID:                   489332dc-3b48-eb40-b59a-d9bd86cc9915
+        Parent UUID:            fc4585b5-1649-b94c-bcb6-a9253c9cf080
+        Received UUID:          -
+        Creation time:          2026-09-28 00:00:38 +0000
+        Subvolume ID:           20165
+        Generation:             59011
+        Gen at creation:        59011
+        Parent ID:              262
+        Top level ID:           262
+        Flags:                  readonly
+        Send transid:           0
+        Send time:              2026-09-28 00:00:38 +0000
+        Receive transid:        0
+        Receive time:           -
+        Snapshot(s):
+        Quota group:            0/20165
+          Limit referenced:     3.64TiB
+          Limit exclusive:      -
+          Usage referenced:     323.24GiB
+          Usage exclusive:      398.66MiB
+Executing guarded deletion: mars @data/19605
+LEGACY DELETE approved host=mars source=@data config=@data id=19605 timestamp=2026-09-28T00:00:38+00:00
+LEGACY DELETE completed config=@data id=19605
+Guarded deletion completed successfully
+richard@mars:~$

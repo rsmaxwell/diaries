@@ -1,0 +1,16 @@
+richard@mars:~$ sudo systemctl is-enabled btrfs-legacy-prune.timer
+sudo systemctl is-active btrfs-legacy-prune.timer
+
+sudo systemctl list-timers --all btrfs-legacy-prune.timer
+
+sudo systemctl is-enabled btrfs-snapshot-prune.timer
+sudo systemctl is-active btrfs-snapshot-prune.timer
+enabled
+active
+NEXT                        LEFT LAST PASSED UNIT                     ACTIVATES
+Wed 2026-10-21 08:20:00 UTC  16h -         - btrfs-legacy-prune.timer btrfs-legacy-prune.service
+
+1 timers listed.
+enabled
+active
+richard@mars:~$

@@ -1,0 +1,12 @@
+usage: btrfs-snapshot-manager [-h] [--config CONFIG]
+                              {create,prune,list,status,legacy-plan,legacy-delete,run,hold-add,hold-release,hold-list}
+                              ...
+
+positional arguments:
+  {create,prune,list,status,legacy-plan,legacy-delete,run,hold-add,hold-release,hold-list}
+    legacy-plan         read-only legacy Snapper retention planning
+    legacy-delete       single-ID explicitly approved Snapper deletion
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG

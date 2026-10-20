@@ -1,0 +1,9 @@
+PASS: modern empty Snapper CSV
+PASS: modern numbered Snapper CSV
+PASS: historical empty Snapper CSV
+PASS: historical numbered Snapper CSV
+PASS: ambiguous numeric headers rejected
+PASS: installed Snapper timezone-less date accepted on verified UTC host
+PASS: timezone-less date rejected on non-UTC host
+PASS: timezone-less date rejected when timezone unavailable
+PASS: explicit timezone offset normalised to UTC
