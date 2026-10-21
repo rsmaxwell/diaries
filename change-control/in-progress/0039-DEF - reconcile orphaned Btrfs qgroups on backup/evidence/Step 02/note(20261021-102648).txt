@@ -1,0 +1,35 @@
+richard@backup:~$ echo '=== Installed versions ==='
+uname -r
+btrfs version
+
+echo '=== Snapshot-manager qgroup status ==='
+sudo btrfs-snapshot-manager status |
+  grep -E '^qgroups_'
+
+echo '=== Actual qgroup output format ==='
+sudo btrfs qgroup show -pcre / |
+  sed -n '1,12p'
+
+echo '=== Quota state ==='
+sudo btrfs quota rescan -s /
+=== Installed versions ===
+5.15.0-164-generic
+btrfs-progs v5.16.2
+=== Snapshot-manager qgroup status ===
+qgroups_status=unavailable;reason=unexpected_output
+=== Actual qgroup output format ===
+qgroupid         rfer         excl     max_rfer     max_excl parent  child
+--------         ----         ----     --------     -------- ------  -----
+0/5          10.14GiB    338.86MiB         none         none ---     ---
+0/275       325.20GiB    592.00KiB      1.00TiB         none ---     ---
+0/276           0.00B        0.00B         none         none ---     ---
+0/278           0.00B        0.00B         none         none ---     ---
+0/279           0.00B        0.00B         none         none ---     ---
+0/299           0.00B        0.00B         none         none ---     ---
+0/300           0.00B        0.00B         none         none ---     ---
+0/303           0.00B        0.00B         none         none ---     ---
+0/304           0.00B        0.00B         none         none ---     ---
+0/305           0.00B        0.00B         none         none ---     ---
+=== Quota state ===
+no rescan operation in progress
+richard@backup:~$

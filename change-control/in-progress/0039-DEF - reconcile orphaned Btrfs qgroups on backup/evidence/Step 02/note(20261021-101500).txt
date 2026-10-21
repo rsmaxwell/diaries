@@ -1,0 +1,39 @@
+richard@mars:~$ echo '=== Snapshot-manager status ==='
+sudo btrfs-snapshot-manager status
+
+echo '=== Installed executable syntax ==='
+sudo python3 -m py_compile \
+  /usr/local/sbin/btrfs-snapshot-manager
+
+echo '=== Current timer states ==='
+systemctl is-enabled \
+  btrfs-snapshot-create.timer \
+  btrfs-snapshot-prune.timer \
+  btrfs-legacy-prune.timer
+
+echo '=== Current qgroup counts ==='
+sudo btrfs-snapshot-manager status |
+  grep '^qgroups_'
+=== Snapshot-manager status ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=189
+qgroups_stale=41
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=61;incomplete_timestamp_sets=0
+source=root:/media/usb;managed_snapshots=61
+source=@data:/media/usb/@data;managed_snapshots=61
+diaries_verification=valid;logicalDataset=production;backupId=20261021-003106Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== Installed executable syntax ===
+=== Current timer states ===
+enabled
+enabled
+enabled
+=== Current qgroup counts ===
+qgroups_total=189
+qgroups_stale=41
+qgroups_under_deletion=0
+qgroups_status=ok
+richard@mars:~$

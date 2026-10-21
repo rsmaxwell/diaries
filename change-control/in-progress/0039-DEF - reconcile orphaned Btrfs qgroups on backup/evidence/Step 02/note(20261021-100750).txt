@@ -1,0 +1,34 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== Shell syntax ==='
+bash -n scripts/snapshots.sh
+
+echo '=== Host-context regression ==='
+python3 roles/snapshots/tests/verify-snapshot-launcher-host-context.py
+
+echo '=== Ansible syntax ==='
+ansible-playbook snapshots.yaml \
+  --syntax-check \
+  --vault-password-file ~/.vault_pass.txt
+
+echo '=== Whitespace validation ==='
+git diff --check
+
+echo '=== Pending source changes ==='
+git status --short
+=== Shell syntax ===
+=== Host-context regression ===
+PASS: snapshots launcher is check-only by default and uses host-specific snapshot role context
+=== Ansible syntax ===
+
+playbook: snapshots.yaml
+=== Whitespace validation ===
+=== Pending source changes ===
+ M roles/snapshots/README.md
+ M roles/snapshots/files/btrfs-snapshot-manager.py
+ M scripts/snapshots.sh
+ M snapshots.yaml
+?? roles/snapshots/README-0039-DEPLOYMENT.md
+?? roles/snapshots/tests/verify-native-prune-subvolume-id.py
+?? roles/snapshots/tests/verify-snapshot-launcher-host-context.py
+richard@mango:~/playbooks$

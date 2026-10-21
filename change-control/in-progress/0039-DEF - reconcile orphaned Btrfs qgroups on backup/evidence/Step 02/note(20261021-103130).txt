@@ -1,0 +1,47 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+set -e
+
+echo '=== Qgroup parser regression ==='
+python3 roles/snapshots/tests/verify-qgroup-status.py
+
+echo '=== Native-prune diagnostic regression ==='
+python3 roles/snapshots/tests/verify-native-prune-subvolume-id.py
+
+echo '=== Python syntax ==='
+python3 -m py_compile \
+  roles/snapshots/files/btrfs-snapshot-manager.py
+
+echo '=== Whitespace validation ==='
+git diff --check
+
+echo '=== Changed files ==='
+git status --short
+=== Qgroup parser regression ===
+PASS: qgroups_status=ok
+PASS: qgroups_status=warning
+PASS: qgroups_status=warning
+PASS: qgroups_status=ok
+PASS: qgroups_status=warning
+PASS: qgroups_status=unavailable;reason=unexpected_output
+PASS: qgroups_status=unavailable;reason=unexpected_output
+PASS: qgroups_status=unavailable;reason=query_failed;exit_code=1
+PASS: qgroups_status=unavailable;reason=unexpected_output
+PASS: bounded timeout is non-fatal
+PASS: missing command is non-fatal
+=== Native-prune diagnostic regression ===
+PASS: parsed pre-delete Btrfs subvolume ID via read-only show
+PASS: missing, invalid and ambiguous IDs fail closed
+PASS: native deletion logs the verified ID before mutation; dry-run unchanged
+=== Python syntax ===
+=== Whitespace validation ===
+=== Changed files ===
+ M roles/snapshots/README.md
+ M roles/snapshots/files/btrfs-snapshot-manager.py
+ M roles/snapshots/tests/verify-qgroup-status.py
+ M scripts/snapshots.sh
+ M snapshots.yaml
+?? roles/snapshots/README-0039-DEPLOYMENT.md
+?? roles/snapshots/tests/verify-native-prune-subvolume-id.py
+?? roles/snapshots/tests/verify-snapshot-launcher-host-context.py
+richard@mango:~/playbooks$

@@ -1,0 +1,98 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+for script in scripts/local-backup.sh scripts/remote-backup scripts/remote-backup.sh scripts/snapshots.sh
+do
+    if [ -f "$script" ]; then
+        echo "========== $script =========="
+        cat "$script"
+    fi
+done
+========== scripts/local-backup.sh ==========
+#!/bin/bash
+set -euo pipefail
+
+usage() {
+    echo "Usage: $0 [--apply|--help]"
+    echo "Default: Ansible check mode (--check --diff); --apply performs a real deployment."
+}
+
+mode="check"
+case "${1:-}" in
+    "") ;;
+    --apply) mode="apply" ;;
+    --help|-h) usage; exit 0 ;;
+    *) usage >&2; exit 2 ;;
+esac
+if (( $# > 1 )); then
+    usage >&2
+    exit 2
+fi
+
+cd "$HOME/playbooks"
+
+args=(
+    local-backup.yaml
+    --limit mars
+    --vault-password-file "$HOME/.vault_pass.txt"
+)
+if [[ "$mode" == "check" ]]; then
+    args+=(--check --diff)
+else
+    args+=(--diff)
+fi
+
+ansible-playbook "${args[@]}"
+========== scripts/remote-backup.sh ==========
+#!/bin/bash
+set -euo pipefail
+
+usage() {
+    echo "Usage: $0 [--apply|--help]"
+    echo "Default: Ansible check mode (--check --diff); --apply performs a real deployment."
+}
+
+mode="check"
+case "${1:-}" in
+    "") ;;
+    --apply) mode="apply" ;;
+    --help|-h) usage; exit 0 ;;
+    *) usage >&2; exit 2 ;;
+esac
+if (( $# > 1 )); then
+    usage >&2
+    exit 2
+fi
+
+cd "$HOME/playbooks"
+
+args=(
+    remote-backup.yaml
+    --limit backup
+    --vault-password-file "$HOME/.vault_pass.txt"
+)
+if [[ "$mode" == "check" ]]; then
+    args+=(--check --diff)
+else
+    args+=(--diff)
+fi
+
+ansible-playbook "${args[@]}"
+========== scripts/snapshots.sh ==========
+#!/bin/bash
+set -euo pipefail
+
+cd ~/playbooks
+
+host="${1:-mars}"
+
+case "${host}" in
+    mars|backup)
+        ;;
+    *)
+        echo "Unsupported snapshot host: ${host}" >&2
+        exit 1
+        ;;
+esac
+
+ansible-playbook --limit "${host}" snapshots.yaml
+richard@mango:~/playbooks$

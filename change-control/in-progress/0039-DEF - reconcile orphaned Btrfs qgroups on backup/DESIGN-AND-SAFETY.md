@@ -2,7 +2,7 @@
 
 ## Separate two problems
 A. **Quota metadata hygiene:** large difference between live subvolumes and qgroup records may reflect orphaned entries; current aggregate counts alone cannot classify individual IDs.
-B. **Manager reporting:** `qgroups_status=unavailable;reason=unexpected_output` is an observed symptom; the mechanism is unknown until the installed code/command's captured output is inspected. Do not declare a parser bug or assume it is purely cosmetic.
+B. **Manager reporting:** `qgroups_status=unavailable;reason=unexpected_output` is an observed symptom; a case-sensitive `Qgroupid` header expectation was confirmed and corrected for `backup` (btrfs-progs 5.16.2). The new parser reports 29,571 total and zero explicit stale markers, but this does **not** establish that unmatched qgroups have been reconciled.
 
 ## Architecture invariants
 - Source: `mars`; receiver: `backup`; off-site native Btrfs send/receive remains initiated from `mars`.
@@ -12,7 +12,7 @@ B. **Manager reporting:** `qgroups_status=unavailable;reason=unexpected_output` 
 - 0038-FEAT stays closed, with its emergency installed-file copies retained; do not repurpose them as quota-metadata rollback.
 
 ## No-go and explicit approval
-No commands involving `btrfs quota enable|disable|rescan`, `btrfs qgroup destroy|clear-stale`, snapshot/subvolume deletion, quota limit updates, native replication schedule edits, mount changes, scrub/repair with mutation, or receiver reseed until Step 3 acceptance and user approval. Btrfs quota metadata changes may be nonreversible without broader data recovery. Preserve existing backup/replication operation unless the controlled maintenance design specifically requires a pause.
+No commands involving `btrfs quota enable|disable|rescan` (except read-only `rescan -s`), `btrfs qgroup destroy|clear-stale`, snapshot/subvolume deletion, quota limit updates, native replication schedule edits, mount changes, scrub/repair with mutation, or receiver reseed until Step 3 acceptance and user approval. Btrfs quota metadata changes may be nonreversible without broader data recovery. Preserve existing backup/replication operation unless the controlled maintenance design specifically requires a pause.
 
 ## Evidence handling
 Use short, bounded summaries and selected sample IDs. Preserve terminal logs in `evidence/Step NN/` or named references; never add bulk qgroup dumps, credentials, or private backup data to source. Record installed versions before choosing Btrfs subcommands; `btrfs quota status` is unsupported in v5.16.2 on `backup`.

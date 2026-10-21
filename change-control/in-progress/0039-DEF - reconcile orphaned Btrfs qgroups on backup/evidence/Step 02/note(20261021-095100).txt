@@ -1,0 +1,319 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== Available launchers ==='
+ls -l scripts/local-backup.sh scripts/remote-backup* scripts/snapshots.sh
+
+echo '=== Launcher contents ==='
+for script in scripts/local-backup.sh scripts/remote-backup* scripts/snapshots.sh
+do
+    if [ -f "$script" ]; then
+        echo
+        echo "=== $script ==="
+        sed -n '1,240p' "$script"
+    fi
+done
+
+echo '=== Snapshot manager deployment task ==='
+sed -n '108,132p' roles/snapshots/tasks/main.yaml
+
+echo '=== Inventory membership ==='
+ansible-inventory --graph --vault-password-file ~/.vault_pass.txt
+=== Available launchers ===
+-rwxr-xr-x 1 richard richard  600 Dec 31  1979 scripts/local-backup.sh
+-rwxr-xr-x 1 richard richard 3641 Oct 21 09:48 scripts/remote-backup.sh
+-rwxr-xr-x 1 richard richard  255 Oct 16 12:54 scripts/snapshots.sh
+=== Launcher contents ===
+
+=== scripts/local-backup.sh ===
+#!/bin/bash
+set -euo pipefail
+
+usage() {
+    echo "Usage: $0 [--apply|--help]"
+    echo "Default: Ansible check mode (--check --diff); --apply performs a real deployment."
+}
+
+mode="check"
+case "${1:-}" in
+    "") ;;
+    --apply) mode="apply" ;;
+    --help|-h) usage; exit 0 ;;
+    *) usage >&2; exit 2 ;;
+esac
+if (( $# > 1 )); then
+    usage >&2
+    exit 2
+fi
+
+cd "$HOME/playbooks"
+
+args=(
+    local-backup.yaml
+    --limit mars
+    --vault-password-file "$HOME/.vault_pass.txt"
+)
+if [[ "$mode" == "check" ]]; then
+    args+=(--check --diff)
+else
+    args+=(--diff)
+fi
+
+ansible-playbook "${args[@]}"
+
+=== scripts/remote-backup.sh ===
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== Available launchers ==='
+ls -l scripts/local-backup.sh scripts/remote-backup* scripts/snapshots.sh
+
+echo '=== Launcher contents ==='
+for script in scripts/local-backup.sh scripts/remote-backup* scripts/snapshots.sh
+do
+    if [ -f "$script" ]; then
+        echo
+        echo "=== $script ==="
+        sed -n '1,240p' "$script"
+    fi
+done
+
+echo '=== Snapshot manager deployment task and tags ==='
+sed -n '108,132p' roles/snapshots/tasks/main.yaml
+
+echo '=== Inventory membership ==='
+ansible-inventory --graph --vault-password-file ~/.vault_pass.txt
+=== Available launchers ===
+-rwxr-xr-x 1 richard richard 600 Dec 31  1979 scripts/local-backup.sh
+-rwxr-xr-x 1 richard richard 603 Dec 31  1979 scripts/remote-backup.sh
+-rwxr-xr-x 1 richard richard 255 Oct 16 12:54 scripts/snapshots.sh
+=== Launcher contents ===
+
+=== scripts/local-backup.sh ===
+#!/bin/bash
+set -euo pipefail
+
+usage() {
+    echo "Usage: $0 [--apply|--help]"
+    echo "Default: Ansible check mode (--check --diff); --apply performs a real deployment."
+}
+
+mode="check"
+case "${1:-}" in
+    "") ;;
+    --apply) mode="apply" ;;
+    --help|-h) usage; exit 0 ;;
+    *) usage >&2; exit 2 ;;
+esac
+if (( $# > 1 )); then
+    usage >&2
+    exit 2
+fi
+
+cd "$HOME/playbooks"
+
+args=(
+    local-backup.yaml
+    --limit mars
+    --vault-password-file "$HOME/.vault_pass.txt"
+)
+if [[ "$mode" == "check" ]]; then
+    args+=(--check --diff)
+else
+    args+=(--diff)
+fi
+
+ansible-playbook "${args[@]}"
+
+=== scripts/remote-backup.sh ===
+#!/bin/bash
+set -euo pipefail
+
+usage() {
+    echo "Usage: $0 [--apply|--help]"
+    echo "Default: Ansible check mode (--check --diff); --apply performs a real deployment."
+}
+
+mode="check"
+case "${1:-}" in
+    "") ;;
+    --apply) mode="apply" ;;
+    --help|-h) usage; exit 0 ;;
+    *) usage >&2; exit 2 ;;
+esac
+if (( $# > 1 )); then
+    usage >&2
+    exit 2
+fi
+
+cd "$HOME/playbooks"
+
+args=(
+    remote-backup.yaml
+    --limit backup
+    --vault-password-file "$HOME/.vault_pass.txt"
+)
+if [[ "$mode" == "check" ]]; then
+    args+=(--check --diff)
+else
+    args+=(--diff)
+fi
+
+ansible-playbook "${args[@]}"
+
+=== scripts/snapshots.sh ===
+#!/bin/bash
+set -euo pipefail
+
+cd ~/playbooks
+
+host="${1:-mars}"
+
+case "${host}" in
+    mars|backup)
+        ;;
+    *)
+        echo "Unsupported snapshot host: ${host}" >&2
+        exit 1
+        ;;
+esac
+
+ansible-playbook --limit "${host}" snapshots.yaml
+=== Snapshot manager deployment task and tags ===
+    owner: root
+    group: root
+    mode: "0700"
+  loop: "{{ btrfs_snapshot_sources }}"
+  become: true
+  tags:
+    - snapshots
+
+- name: snapshots | Install snapshot manager
+  ansible.builtin.copy:
+    src: btrfs-snapshot-manager.py
+    dest: "{{ btrfs_snapshot_manager_path }}"
+    owner: root
+    group: root
+    mode: "0755"
+  become: true
+  tags:
+    - snapshots
+
+- name: snapshots | Install Diaries backup-history tool
+  ansible.builtin.copy:
+    src: diaries-backup-history.py
+    dest: "{{ btrfs_snapshot_history_path }}"
+    owner: root
+    group: root
+=== Inventory membership ===
+@all:
+  |--@ungrouped:
+  |--@bootstrap:
+  |  |--mars-bootstrap
+  |  |--backup-bootstrap
+  |  |--grape-bootstrap
+  |  |--pluto-bootstrap
+  |  |--acorn-bootstrap
+  |  |--bob-bootstrap
+  |  |--snowy-bootstrap
+  |--@snapshots:
+  |  |--backup
+  |  |--mars
+  |--@development:
+  |  |--acorn
+  |--@builder:
+  |  |--snowy
+  |  |--pluto
+  |--@archiva:
+  |  |--pluto
+  |--@diaries:
+  |  |--acorn
+  |  |--pluto
+  |--@ledger:
+  |  |--bob
+  |  |--pluto
+  |--@infrastructure:
+  |  |--pluto
+  |--@local_backup:
+  |  |--mars
+  |--@remote_backup:
+  |  |--backup
+richard@mango:~/playbooks$
+
+=== scripts/snapshots.sh ===
+#!/bin/bash
+set -euo pipefail
+
+cd ~/playbooks
+
+host="${1:-mars}"
+
+case "${host}" in
+    mars|backup)
+        ;;
+    *)
+        echo "Unsupported snapshot host: ${host}" >&2
+        exit 1
+        ;;
+esac
+
+ansible-playbook --limit "${host}" snapshots.yaml
+=== Snapshot manager deployment task ===
+    owner: root
+    group: root
+    mode: "0700"
+  loop: "{{ btrfs_snapshot_sources }}"
+  become: true
+  tags:
+    - snapshots
+
+- name: snapshots | Install snapshot manager
+  ansible.builtin.copy:
+    src: btrfs-snapshot-manager.py
+    dest: "{{ btrfs_snapshot_manager_path }}"
+    owner: root
+    group: root
+    mode: "0755"
+  become: true
+  tags:
+    - snapshots
+
+- name: snapshots | Install Diaries backup-history tool
+  ansible.builtin.copy:
+    src: diaries-backup-history.py
+    dest: "{{ btrfs_snapshot_history_path }}"
+    owner: root
+    group: root
+=== Inventory membership ===
+@all:
+  |--@ungrouped:
+  |--@bootstrap:
+  |  |--mars-bootstrap
+  |  |--backup-bootstrap
+  |  |--grape-bootstrap
+  |  |--pluto-bootstrap
+  |  |--acorn-bootstrap
+  |  |--bob-bootstrap
+  |  |--snowy-bootstrap
+  |--@snapshots:
+  |  |--backup
+  |  |--mars
+  |--@development:
+  |  |--acorn
+  |--@builder:
+  |  |--snowy
+  |  |--pluto
+  |--@archiva:
+  |  |--pluto
+  |--@diaries:
+  |  |--acorn
+  |  |--pluto
+  |--@ledger:
+  |  |--bob
+  |  |--pluto
+  |--@infrastructure:
+  |  |--pluto
+  |--@local_backup:
+  |  |--mars
+  |--@remote_backup:
+  |  |--backup
+richard@mango:~/playbooks$ ^C
+richard@mango:~/playbooks$

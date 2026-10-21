@@ -1,0 +1,72 @@
+richard@mars:~$ echo '=== Native deletions since deployment ==='
+
+sudo journalctl \
+  -u btrfs-snapshot-prune.service \
+  --since '2026-10-21 10:13:00 UTC' \
+  --no-pager \
+  -o short-iso |
+  grep -E 'DELETE |Deleted [0-9]+ complete|Failed|Error' || true
+
+echo '=== Current stale qgroup IDs ==='
+
+sudo btrfs qgroup show -pcre /media/usb |
+  awk '$NF == "<stale>" { print $1, $4, $5 }'
+
+echo '=== Current snapshot-manager status ==='
+
+sudo btrfs-snapshot-manager status |
+  grep '^qgroups_'
+=== Native deletions since deployment ===
+2026-10-21T10:15:09+00:00 mars btrfs-snapshot-manager[302778]: DELETE @data 20261019-100002Z subvol_id=20920 /media/usb/@snapshots/@data/20261019-100002Z
+2026-10-21T10:15:09+00:00 mars btrfs-snapshot-manager[302778]: DELETE root 20261019-100002Z subvol_id=20919 /media/usb/@snapshots/root/20261019-100002Z
+2026-10-21T10:15:09+00:00 mars btrfs-snapshot-manager[302778]: Deleted 1 complete timestamp sets
+=== Current stale qgroup IDs ===
+0/20189 3.64TiB none
+0/20237 3.64TiB none
+0/20261 3.64TiB none
+0/20875 none none
+0/20876 3.64TiB none
+0/20877 none none
+0/20878 3.64TiB none
+0/20879 none none
+0/20880 3.64TiB none
+0/20885 none none
+0/20886 3.64TiB none
+0/20887 none none
+0/20888 3.64TiB none
+0/20889 none none
+0/20890 3.64TiB none
+0/20891 none none
+0/20892 3.64TiB none
+0/20893 none none
+0/20894 3.64TiB none
+0/20895 none none
+0/20896 3.64TiB none
+0/20899 none none
+0/20900 3.64TiB none
+0/20901 none none
+0/20902 3.64TiB none
+0/20903 none none
+0/20904 3.64TiB none
+0/20905 none none
+0/20906 3.64TiB none
+0/20907 none none
+0/20908 3.64TiB none
+0/20909 none none
+0/20910 3.64TiB none
+0/20911 none none
+0/20912 3.64TiB none
+0/20913 none none
+0/20914 3.64TiB none
+0/20915 none none
+0/20916 3.64TiB none
+0/20917 none none
+0/20918 3.64TiB none
+0/20919 none none
+0/20920 3.64TiB none
+=== Current snapshot-manager status ===
+qgroups_total=189
+qgroups_stale=43
+qgroups_under_deletion=0
+qgroups_status=ok
+richard@mars:~$

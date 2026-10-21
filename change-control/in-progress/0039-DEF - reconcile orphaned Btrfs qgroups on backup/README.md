@@ -4,7 +4,7 @@
 Defect
 
 ## Status
-In progress — Step 1 CLOSED on 2026-10-21; Step 2 root-cause diagnosis IN PROGRESS. **No remediation or upgrade authorised.**
+In progress — Steps 1 and 2 CLOSED on 2026-10-21; Step 3 safety/remediation design IN PROGRESS. **No qgroup remediation or OS upgrade authorised.**
 
 ## Priority
 High — operational storage-accounting risk; no demonstrated replication failure or filesystem corruption.
@@ -21,7 +21,7 @@ Following `change-control/README.md`: registered as next available ID `0039-DEF`
 ## Background and observed behaviour
 After 0038-FEAT closed, `sudo btrfs-snapshot-manager status` on `backup` reported `qgroups_status=unavailable;reason=unexpected_output`. `sudo btrfs qgroup show /@snapshots` produced very many qgroups with zero referenced and exclusive bytes. Read-only measurement on 2026-10-21 reported **29,571 total**, **29,437 zero-sized**, **134 nonzero**, versus **133 listed Btrfs subvolumes**. The host reports **btrfs-progs v5.16.2** and **Linux 5.15.0-164-generic**. The attempted `btrfs quota status` returned `unknown token 'status'`: this is not a supported subcommand in the installed utility, not evidence of failed quotas.
 
-The ratio strongly suggests stale/orphaned qgroups but **does not prove that each zero-sized qgroup is orphaned**. Existing source/receiver replication evidence remains valid. A zero qgroup can require contextual interpretation; subvolume-deletion-in-progress and level-0 versus higher-level qgroups must be distinguished. The precise parser failure remains unconfirmed without the header/diagnostic command output and source-specific review.
+The ratio strongly suggests stale/orphaned qgroups but **does not prove that each zero-sized qgroup is orphaned**. Existing source/receiver replication evidence remains valid. A zero qgroup can require contextual interpretation; subvolume-deletion-in-progress and level-0 versus higher-level qgroups must be distinguished. The parser failure was confirmed as an incompatible case-sensitive header check on older btrfs-progs output, corrected and deployed on `backup`. The underlying Btrfs qgroup persistence mechanism remains unproven.
 
 ## Expected behaviour
 Quota accounting should have an understood and supportable relationship to surviving subvolumes and intentionally maintained qgroups. A safe, repeatable maintenance policy should prevent uncontrolled stale-record accumulation. The snapshot-manager status command should report a correct, bounded, actionable qgroup diagnostic without dumping tens of thousands of lines or breaking on supported output formats. Native mars-initiated send/receive and receipt verification remain unaffected.
@@ -33,7 +33,7 @@ Quota accounting should have an understood and supportable relationship to survi
 - `note(20261021-075633).txt`: long qgroup listing, including zero entries and valid accounting for qgroup `0/55805` (received snapshot).
 - `note(20261021-080412).txt`: 133 subvolumes; 29,571 qgroups; 29,437 zero; 134 nonzero; progs/kernel versions; unsupported `btrfs quota status`.
 - 0038-FEAT accepted: native offsite incremental receive/receipt succeeded and manager reconciliation was idempotent; 0038 remains CLOSED.
-- Working hypotheses (not yet proven): orphaned level-0 qgroups; old deletion/retention workflows; parser sensitivity or output/time cap; quota-rescan or rescan-state effects; qgroup relationship records. No root cause decided.
+- Confirmed: native and legacy deletion on `mars` can leave exact-ID stale level-0 qgroups; older `backup` output triggered an overly strict header parser. Kernel-level persistence and future automatic reclamation remain open.
 
 ## Scope
 - **Primary:** `backup` Btrfs quota metadata and off-site receiver safety; compare `mars` only where useful and read-only.
@@ -73,5 +73,11 @@ Not completed.
 - Exact legacy Snapper deletion journal identities on `mars` match persistent stale qgroups: `20189` (Snapper 19629), `20237` (19677), and `20261` (19701), all retaining `3.64TiB` reference limits. Sources: `note(20261021-092113).txt` and `note(20261021-092525).txt`.
 - `mars` stale count grew from 39 to **41**; the bounded inventory adds IDs `20917` and `20918`. Manager reported `qgroups_total=187`, `qgroups_stale=41`, `qgroups_under_deletion=0`, `qgroups_status=ok` (warning threshold currently 100).
 - Since 2026-10-18 journal counts were 156 native `DELETE` lines and 3 legacy delete lines. These are journal event counts, **not** proof that native deletion caused any particular stale record.
-- **Step 02 remains IN PROGRESS:** account for native deletion correlation and the persistence mechanism before approving remediation. Preserve snapshot holds, replication pins, received UUIDs, and rollback options.
+- **Step 02 CLOSED on 2026-10-21:** native deletion correlation and parser compatibility are accepted. The deeper Btrfs lifetime mechanism is explicitly deferred to Step 3 risk analysis; no quota changes authorised. Preserve snapshot holds, replication pins, received UUIDs, and rollback options.
 - `backup` OS update path: evaluate 22.04→24.04 first; 26.04 LTS is an additional separately gated option if justified and supported. OS upgrades and qgroup cleanup must not be combined.
+
+## Step 2 formal closure — 2026-10-21
+
+**CLOSED (diagnosis and diagnostic deployment acceptance).** Evidence: `evidence/Step 02/STEP02-CLOSURE.md` and original operator logs. At 10:15:09 UTC, naturally scheduled native prune on `mars` deleted subvolumes `20919` and `20920`, both subsequently listed as `<stale>` qgroups; stale count rose **41→43**. Legacy Snapper IDs `20189`, `20237`, `20261` had already been correlated. On `backup`, the repaired parser recognises the 5.16.2 lowercase heading, reports **29,571** qgroups without false `unexpected_output`, and the three local snapshot timers remain disabled. Both controlled Playbooks deployments (one installed executable changed on each host) and subsequent `changed=0` Ansible checks passed. **No OS upgrade or quota cleanup was performed.**
+
+This closes the *diagnostic* gate, not the whole defect. The 29,437 unmatched level-0 qgroups are not an approved deletion set; `qgroups_stale=0` on old `backup` utilities reflects missing explicit markers, not health. Step 3 develops a version-independent inventory and safe remediation/recovery design before any destructive approval.

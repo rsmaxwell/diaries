@@ -1,0 +1,195 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== Qgroup parser implementation ==='
+
+grep -n -A 115 -B 10 \
+  '^def qgroup_status' \
+  roles/snapshots/files/btrfs-snapshot-manager.py
+
+echo '=== Existing qgroup regression ==='
+
+sed -n '1,260p' \
+  roles/snapshots/tests/verify-qgroup-status.py
+
+echo '=== Relevant source status ==='
+
+git status --short
+=== Qgroup parser implementation ===
+945-
+946-def show_list(config: Config) -> None:
+947-    complete, incomplete = managed_snapshot_sets(config)
+948-    print("TIMESTAMP          STATE      SOURCES")
+949-    for name, _ in complete:
+950-        print(f"{name:18} COMPLETE   {','.join(source.name for source in config.sources)}")
+951-    for name in sorted(incomplete, reverse=True):
+952-        print(f"{name:18} INCOMPLETE {','.join(sorted(incomplete[name]))}")
+953-
+954-
+955:def qgroup_status(path: Path, *, timeout_seconds: int = 8, warning_threshold: int = 100) -> list[str]:
+956-    """Best-effort, bounded, read-only qgroup summary for the status command."""
+957-    try:
+958-        result = subprocess.run(
+959-            ["btrfs", "qgroup", "show", str(path)],
+960-            capture_output=True, text=True, timeout=timeout_seconds, check=False,
+961-        )
+962-        if result.returncode != 0:
+963-            return ["qgroups_status=unavailable;reason=query_failed;exit_code=" + str(result.returncode)]
+964-        lines = result.stdout.splitlines()
+965-        if len(lines) < 2 or not lines[0].strip().startswith("Qgroupid"):
+966-            return ["qgroups_status=unavailable;reason=unexpected_output"]
+967-        total = stale = under_deletion = 0
+968-        for line in lines[2:]:
+969-            parts = line.split()
+970-            if not parts:
+971-                continue
+972-            if not re.fullmatch(r"\d+/\d+", parts[0]):
+973-                return ["qgroups_status=unavailable;reason=unexpected_output"]
+974-            total += 1
+975-            if "<stale>" in line:
+976-                stale += 1
+977-            if "<under deletion>" in line:
+978-                under_deletion += 1
+979-        state = "warning" if stale > warning_threshold or under_deletion else "ok"
+980-        return [f"qgroups_total={total}", f"qgroups_stale={stale}",
+981-                f"qgroups_under_deletion={under_deletion}", f"qgroups_status={state}"]
+982-    except subprocess.TimeoutExpired:
+983-        return ["qgroups_status=unavailable;reason=timeout"]
+984-    except (OSError, UnicodeError):
+985-        return ["qgroups_status=unavailable;reason=execution_error"]
+986-
+987-
+988-def show_status(config: Config) -> None:
+989-    preflight(config)
+990-    complete, incomplete = managed_snapshot_sets(config)
+991-    print(f"snapshot_root={config.snapshot_root}")
+992-    print(f"filesystem={filesystem_type(config.snapshot_root)}")
+993-    for line in qgroup_status(config.snapshot_root):
+994-        print(line)
+995-    print(
+996-        "retention="
+997-        f"hourly:{config.retention.hourly},daily:{config.retention.daily},"
+998-        f"weekly:{config.retention.weekly},monthly:{config.retention.monthly},"
+999-        f"yearly:{config.retention.yearly},minimum_age_minutes:{config.retention.minimum_age_minutes}"
+1000-    )
+1001-    print(f"complete_timestamp_sets={len(complete)};incomplete_timestamp_sets={len(incomplete)}")
+1002-    for source in config.sources:
+1003-        print(f"source={source.name}:{source.source};managed_snapshots={len(list_managed(config, source))}")
+1004-    if config.verification.required:
+1005-        state = read_verified_diaries(config, strict=False)
+1006-        if state and "error" not in state:
+1007-            print(
+1008-                "diaries_verification=valid;"
+1009-                f"logicalDataset={state['logicalDataset']};backupId={state['backupId']};"
+1010-                f"marker={state['marker']}"
+1011-            )
+1012-        else:
+1013-            print(f"diaries_verification=not-ready;detail={(state or {}).get('error', 'unknown')}")
+1014-    else:
+1015-        print("diaries_verification=disabled")
+1016-
+1017-
+1018-def with_lock(path: Path, *, shared: bool = False, nonblocking: bool = True,
+1019-              require_existing: bool = False):
+1020-    if not require_existing:
+1021-        path.parent.mkdir(parents=True, exist_ok=True)
+1022-    flags_open = os.O_RDWR | os.O_NOFOLLOW | os.O_CLOEXEC
+1023-    if not require_existing:
+1024-        flags_open |= os.O_CREAT
+1025-    fd = os.open(path, flags_open, 0o600)
+1026-    handle = os.fdopen(fd, "r+")
+1027-    if require_existing:
+1028-        details = os.fstat(fd)
+1029-        if not stat.S_ISREG(details.st_mode) or details.st_nlink != 1:
+1030-            handle.close()
+1031-            raise SnapshotError(f"unsafe existing writer lock: {path}")
+1032-    flags = fcntl.LOCK_SH if shared else fcntl.LOCK_EX
+1033-    if nonblocking:
+1034-        flags |= fcntl.LOCK_NB
+1035-    try:
+1036-        fcntl.flock(handle.fileno(), flags)
+1037-    except BlockingIOError as exc:
+1038-        handle.close()
+1039-        raise SnapshotError(f"another operation holds {path}") from exc
+1040-    return handle
+1041-
+1042-
+1043-def main(argv: list[str] | None = None) -> int:
+1044-    parser = argparse.ArgumentParser()
+1045-    parser.add_argument("--config", default="/etc/btrfs-snapshot-manager.json")
+1046-    sub = parser.add_subparsers(dest="command", required=True)
+1047-    create_parser = sub.add_parser("create")
+1048-    create_parser.add_argument("--timestamp")
+1049-    prune_parser = sub.add_parser("prune")
+1050-    prune_parser.add_argument("--dry-run", action="store_true")
+1051-    sub.add_parser("list")
+1052-    sub.add_parser("status")
+1053-    legacy_parser = sub.add_parser("legacy-plan", help="read-only legacy Snapper retention planning")
+1054-    legacy_parser.add_argument("--legacy-map", action="append", default=[], metavar="SOURCE=CONFIG")
+1055-    legacy_parser.add_argument("--json", action="store_true")
+1056-    delete_parser = sub.add_parser("legacy-delete", help="single-ID explicitly approved Snapper deletion")
+1057-    delete_parser.add_argument("--approval-file", required=True)
+1058-    delete_parser.add_argument("--source", required=True)
+1059-    delete_parser.add_argument("--snapper-config", required=True)
+1060-    delete_parser.add_argument("--snapshot-id", type=int, required=True)
+1061-    delete_parser.add_argument("--execute", action="store_true")
+1062-    auto_parser = sub.add_parser("legacy-prune", help="bounded opt-in unattended legacy pruning")
+1063-    auto_parser.add_argument("--legacy-map", action="append", default=[], metavar="SOURCE=CONFIG")
+1064-    auto_parser.add_argument("--max-delete", type=int, default=1)
+1065-    auto_parser.add_argument("--execute", action="store_true")
+1066-    sub.add_parser("run")
+1067-    add_parser = sub.add_parser("hold-add")
+1068-    add_parser.add_argument("timestamp")
+1069-    add_parser.add_argument("--reason", required=True)
+1070-    release_parser = sub.add_parser("hold-release")
+=== Existing qgroup regression ===
+#!/usr/bin/env python3
+"""Source-level mocks: no Btrfs device access, mutations or quota rescans."""
+import importlib.util
+import subprocess
+import sys
+from pathlib import Path
+from unittest.mock import patch
+
+manager = Path(__file__).resolve().parents[1] / 'files' / 'btrfs-snapshot-manager.py'
+spec = importlib.util.spec_from_file_location('snapshot_manager_qgroup_test', manager)
+mod = importlib.util.module_from_spec(spec)
+sys.modules[spec.name] = mod
+spec.loader.exec_module(mod)
+
+
+def case(stdout, expected, rc=0):
+    observed = []
+    def fake_run(command, **kw):
+        observed.append((command, kw))
+        return subprocess.CompletedProcess(command, rc, stdout, '')
+    with patch.object(mod.subprocess, 'run', side_effect=fake_run):
+        actual = mod.qgroup_status(Path('/media/usb'))
+    assert actual == expected, (actual, expected)
+    assert observed[0][0] == ['btrfs', 'qgroup', 'show', '/media/usb']
+    assert observed[0][1]['timeout'] == 8
+    print('PASS:', expected[-1])
+
+hdr = 'Qgroupid    Referenced    Exclusive   Path\n--------    ----------    ---------   ----\n'
+case(hdr + '0/1 1.00GiB 1.00GiB /existing\n0/2 0.00B 0.00B <stale>\n',
+     ['qgroups_total=2', 'qgroups_stale=1', 'qgroups_under_deletion=0', 'qgroups_status=ok'])
+case(hdr + ''.join(f'0/{i} 0.00B 0.00B <stale>\n' for i in range(101)),
+     ['qgroups_total=101', 'qgroups_stale=101', 'qgroups_under_deletion=0', 'qgroups_status=warning'])
+case(hdr + '0/23 0.00B 0.00B <under deletion>\n',
+     ['qgroups_total=1', 'qgroups_stale=0', 'qgroups_under_deletion=1', 'qgroups_status=warning'])
+case('', ['qgroups_status=unavailable;reason=query_failed;exit_code=1'], rc=1)
+case('unexpected', ['qgroups_status=unavailable;reason=unexpected_output'])
+with patch.object(mod.subprocess, 'run', side_effect=subprocess.TimeoutExpired(['btrfs'],8)):
+    assert mod.qgroup_status(Path('/media/usb')) == ['qgroups_status=unavailable;reason=timeout']
+print('PASS: bounded timeout is non-fatal')
+with patch.object(mod.subprocess, 'run', side_effect=FileNotFoundError()):
+    assert mod.qgroup_status(Path('/media/usb')) == ['qgroups_status=unavailable;reason=execution_error']
+print('PASS: missing command is non-fatal')
+=== Relevant source status ===
+ M roles/snapshots/README.md
+ M roles/snapshots/files/btrfs-snapshot-manager.py
+ M scripts/snapshots.sh
+ M snapshots.yaml
+?? roles/snapshots/README-0039-DEPLOYMENT.md
+?? roles/snapshots/tests/verify-native-prune-subvolume-id.py
+?? roles/snapshots/tests/verify-snapshot-launcher-host-context.py
+richard@mango:~/playbooks$

@@ -1,0 +1,58 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== Snapshot integration variable definitions ==='
+
+grep -RniE \
+  'btrfs_snapshot_writer_lock_path|btrfs_snapshot_verification_required|btrfs_snapshot_verification_dataset_relative_path|btrfs_snapshot_verification_marker_relative_path' \
+  --include='*.yaml' \
+  --include='*.yml' \
+  roles inventory group_vars host_vars \
+  2>/dev/null | head -n 100
+
+echo '=== Local backup playbook role structure ==='
+sed -n '1,180p' local-backup.yaml
+
+echo '=== Snapshot role configuration template ==='
+grep -n -A 22 -B 5 \
+  'writer_lock_path' \
+  roles/snapshots/templates/btrfs-snapshot-manager.json.j2
+=== Snapshot integration variable definitions ===
+roles/snapshots/tasks/main.yaml:17:      - not (btrfs_snapshot_require_verified_diaries | bool) or (btrfs_snapshot_writer_lock_path | length > 0)
+roles/snapshots/tasks/main.yaml:18:      - not (btrfs_snapshot_require_verified_diaries | bool) or (btrfs_snapshot_writer_lock_path is match('^/'))
+roles/snapshots/defaults/main.yaml:23:btrfs_snapshot_writer_lock_path: ""
+roles/local-backup/tasks/main.yaml:68:    btrfs_snapshot_writer_lock_path: "{{ diaries_pull_repository_lock if (diaries_snapshot_integration_enabled | bool) else '' }}"
+=== Local backup playbook role structure ===
+---
+
+- hosts: local_backup
+
+  roles:
+    - role: local-backup
+=== Snapshot role configuration template ===
+1-{
+2-  "snapshot_root": {{ btrfs_snapshot_root_effective | to_json }},
+3-  "lock_path": {{ btrfs_snapshot_manager_lock_path | to_json }},
+4:  "writer_lock_path": {{ btrfs_snapshot_writer_lock_path | to_json }},
+5-  "sources": [
+6-{% for source in btrfs_snapshot_sources %}
+7-    {
+8-      "name": {{ source.name | to_json }},
+9-      "path": {{ source.path | to_json }}
+10-    }{% if not loop.last %},{% endif %}
+11-{% endfor %}
+12-  ],
+13-  "verification": {
+14-    "required": {{ btrfs_snapshot_require_verified_diaries | bool | to_json }},
+15-    "source_name": {{ btrfs_snapshot_diaries_source_name | to_json }},
+16-    "dataset_relative_path": {{ btrfs_snapshot_diaries_relative_path | to_json }},
+17-    "marker_relative_path": {{ btrfs_snapshot_diaries_marker_relative_path | to_json }},
+18-    "manifest_tool": {{ btrfs_snapshot_manifest_tool_path | to_json }}
+19-  },
+20-  "replication_protection": {
+21-    "required": {{ (inventory_hostname == "mars") | bool | to_json }},
+22-    "path": {{ (btrfs_snapshot_root_effective ~ "/.replication-protection.json") | to_json }}
+23-  },
+24-  "checkpoint_holds": {
+25-    "required": {{ (inventory_hostname == "mars") | bool | to_json }},
+26-    "path": {{ (btrfs_snapshot_root_effective ~ "/.checkpoint-holds.json") | to_json }}
+richard@mango:~/playbooks$

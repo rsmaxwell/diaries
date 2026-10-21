@@ -1,0 +1,29 @@
+richard@backup:~$ echo '=== Installed executable syntax ==='
+sudo python3 -m py_compile \
+  /usr/local/sbin/btrfs-snapshot-manager
+
+echo '=== Qgroup reporting ==='
+sudo btrfs-snapshot-manager status |
+  grep '^qgroups_'
+
+echo '=== Quota rescan state ==='
+sudo btrfs quota rescan -s /
+
+echo '=== Snapshot timer states ==='
+systemctl is-enabled \
+  btrfs-snapshot-create.timer \
+  btrfs-snapshot-prune.timer \
+  btrfs-legacy-prune.timer
+=== Installed executable syntax ===
+=== Qgroup reporting ===
+qgroups_total=29571
+qgroups_stale=0
+qgroups_under_deletion=0
+qgroups_status=ok
+=== Quota rescan state ===
+no rescan operation in progress
+=== Snapshot timer states ===
+disabled
+disabled
+disabled
+richard@backup:~$

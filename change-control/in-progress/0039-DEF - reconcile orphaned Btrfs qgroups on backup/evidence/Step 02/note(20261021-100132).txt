@@ -1,0 +1,163 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== Local backup snapshot role inclusion ==='
+sed -n '35,85p' roles/local-backup/tasks/main.yaml
+
+echo '=== Snapshot defaults ==='
+sed -n '1,105p' roles/snapshots/defaults/main.yaml
+
+echo '=== Inventory variable files ==='
+find inventory group_vars host_vars \
+  -maxdepth 3 -type f \
+  2>/dev/null | sort
+
+echo '=== Diaries snapshot integration references ==='
+grep -RniE \
+  'diaries_snapshot_integration_enabled|diaries_pull_repository_lock|btrfs_snapshot_require_verified_diaries|btrfs_snapshot_diaries_relative_path|btrfs_snapshot_diaries_marker_relative_path' \
+  --include='*.yaml' --include='*.yml' \
+  roles inventory group_vars host_vars \
+  2>/dev/null | head -n 120
+=== Local backup snapshot role inclusion ===
+    path: /media/usb
+    src: "UUID={{ backup_disk_uuid }}"
+    fstype: btrfs
+    state: mounted
+  become: true
+  tags:
+    - usb
+
+# Install the opt-in receiver before snapshot preflight so a fresh integration
+# deployment can create its final pluto destination directory first. No transfer
+# or schedule is started by this task file.
+- name: Install optional Diaries pull helper
+  ansible.builtin.import_tasks: diaries_pull.yaml
+  tags:
+    - diaries-pull
+
+- name: Grant optional read-only access to mars backup source for future snapshots
+  ansible.builtin.import_tasks: source_snapshot_access.yaml
+  when: diaries_snapshot_source_acl_enabled | bool
+  tags:
+    - diaries-snapshot-source-acl
+
+- name: Setup Btrfs snapshot support with optional verified-Diaries barrier
+  ansible.builtin.include_role:
+    name: snapshots
+    apply:
+      become: true
+  tags:
+    - snapshots
+    - legacy-prune-units
+  vars:
+    btrfs_snapshot_retire_legacy_snapper_timers: true
+    btrfs_snapshot_require_verified_diaries: "{{ diaries_snapshot_integration_enabled }}"
+    btrfs_snapshot_writer_lock_path: "{{ diaries_pull_repository_lock if (diaries_snapshot_integration_enabled | bool) else '' }}"
+    btrfs_snapshot_diaries_source_name: "{{ diaries_snapshot_source_name }}"
+    btrfs_snapshot_diaries_relative_path: "{{ diaries_snapshot_diaries_relative_path if (diaries_snapshot_integration_enabled | bool) else '' }}"
+    btrfs_snapshot_diaries_marker_relative_path: "{{ diaries_snapshot_marker_relative_path if (diaries_snapshot_integration_enabled | bool) else '' }}"
+
+- name: Install user scripts
+  ansible.builtin.import_tasks: install_user_scripts.yaml
+  tags:
+    - user
+
+- name: Install machine scripts
+  ansible.builtin.import_tasks: install_machine_scripts.yaml
+  become: true
+  tags:
+    - machine
+=== Snapshot defaults ===
+---
+
+# Leave empty to place the managed snapshot repository at <btrfs_filesystem_path>/@snapshots.
+btrfs_snapshot_root: ""
+
+btrfs_snapshot_manager_path: /usr/local/sbin/btrfs-snapshot-manager
+btrfs_snapshot_history_path: /usr/local/sbin/diaries-backup-history
+btrfs_snapshot_extent_tool_path: /usr/local/sbin/btrfs-extent-sharing
+btrfs_snapshot_manifest_tool_path: /usr/local/lib/diaries-backup/complete-dataset-manifest.py
+btrfs_snapshot_manager_config_path: /etc/btrfs-snapshot-manager.json
+btrfs_snapshot_manager_lock_path: /run/lock/btrfs-snapshot-manager.lock
+
+# Step 10 safety interlock: ordinary Playbooks execution installs and preflights
+# source only. It does not enable native timers or alter Snapper until explicitly
+# opted in after host-specific runtime acceptance.
+btrfs_snapshot_activation_enabled: false
+btrfs_snapshot_snapper_handover_enabled: false
+# Explicit host opt-in: permanently retire legacy Snapper schedulers; no snapshots deleted.
+btrfs_snapshot_retire_legacy_snapper_timers: false
+
+# Optional whole-backup writer/snapshot coordination. For 0034/0035 integration
+# these are enabled per host by the local-backup / remote-backup roles.
+btrfs_snapshot_writer_lock_path: ""
+btrfs_snapshot_require_verified_diaries: false
+btrfs_snapshot_diaries_source_name: "@data"
+btrfs_snapshot_diaries_relative_path: ""
+btrfs_snapshot_diaries_marker_relative_path: ""
+
+# One timestamp is used for all configured source subvolumes in a create run.
+# The timestamp itself is always UTC and formatted YYYYMMDD-HHmmssZ.
+btrfs_snapshot_sources:
+  - name: root
+    path: "{{ btrfs_filesystem_path }}"
+  - name: "@data"
+    path: "{{ btrfs_subvolume_path }}"
+
+# Initial GFS-style policy. Retention is applied to complete same-timestamp sets
+# across all configured sources; incomplete sets block pruning for safety.
+btrfs_snapshot_retention_hourly: 48
+btrfs_snapshot_retention_daily: 14
+btrfs_snapshot_retention_weekly: 12
+btrfs_snapshot_retention_monthly: 24
+btrfs_snapshot_retention_yearly: 5
+btrfs_snapshot_minimum_age_minutes: 30
+
+btrfs_snapshot_create_on_calendar: "*-*-* *:00:00"
+btrfs_snapshot_prune_on_calendar: "*-*-* *:15:00"
+
+# During an explicitly authorised migration, stop Snapper creating new
+# timeline/boot snapshots but leave snapper-cleanup.timer active so legacy
+# numeric-ID snapshots can age out naturally. No Snapper snapshot/config is
+# deleted by this role.
+btrfs_snapshot_preserve_legacy_snapper_cleanup: true
+
+# 0037-FEAT Step 12. Separate, once-daily opt-in legacy timer; hourly native prune remains untouched.
+# Limit to one legacy snapshot per daily run until unattended acceptance is proven.
+btrfs_snapshot_unattended_legacy_prune_enabled: false
+btrfs_snapshot_unattended_legacy_prune_max_delete: 1
+btrfs_snapshot_unattended_legacy_mappings:
+  - "root=root"
+  - "@data=@data"
+
+# Daily UTC calendar schedule, independent of the native hourly prune timer.
+btrfs_snapshot_legacy_prune_on_calendar: "*-*-* 08:20:00 UTC"
+=== Inventory variable files ===
+=== Diaries snapshot integration references ===
+roles/snapshots/tasks/main.yaml:9:      - btrfs_snapshot_require_verified_diaries is boolean
+roles/snapshots/tasks/main.yaml:16:      - not (btrfs_snapshot_snapper_handover_enabled | bool) or (btrfs_snapshot_require_verified_diaries | bool)
+roles/snapshots/tasks/main.yaml:17:      - not (btrfs_snapshot_require_verified_diaries | bool) or (btrfs_snapshot_writer_lock_path | length > 0)
+roles/snapshots/tasks/main.yaml:18:      - not (btrfs_snapshot_require_verified_diaries | bool) or (btrfs_snapshot_writer_lock_path is match('^/'))
+roles/snapshots/tasks/main.yaml:19:      - not (btrfs_snapshot_require_verified_diaries | bool) or (btrfs_snapshot_diaries_relative_path | length > 0)
+roles/snapshots/tasks/main.yaml:20:      - not (btrfs_snapshot_require_verified_diaries | bool) or (btrfs_snapshot_diaries_marker_relative_path | length > 0)
+roles/snapshots/defaults/main.yaml:24:btrfs_snapshot_require_verified_diaries: false
+roles/snapshots/defaults/main.yaml:26:btrfs_snapshot_diaries_relative_path: ""
+roles/snapshots/defaults/main.yaml:27:btrfs_snapshot_diaries_marker_relative_path: ""
+roles/local-backup/tasks/diaries_pull.yaml:21:      - diaries_pull_repository_lock is string
+roles/local-backup/tasks/diaries_pull.yaml:22:      - diaries_pull_repository_lock is match('^/')
+roles/local-backup/tasks/diaries_pull.yaml:23:      - diaries_snapshot_integration_enabled is boolean
+roles/local-backup/tasks/diaries_pull.yaml:30:      - not (diaries_pull_schedule_enabled | bool) or (diaries_snapshot_integration_enabled | bool)
+roles/local-backup/tasks/diaries_pull.yaml:53:    path: "{{ diaries_pull_repository_lock }}"
+roles/local-backup/tasks/diaries_pull.yaml:54:  register: diaries_pull_repository_lock_stat
+roles/local-backup/tasks/diaries_pull.yaml:55:  when: diaries_pull_install | bool or diaries_snapshot_integration_enabled | bool
+roles/local-backup/tasks/diaries_pull.yaml:61:    path: "{{ diaries_pull_repository_lock }}"
+roles/local-backup/tasks/diaries_pull.yaml:70:    - diaries_pull_install | bool or diaries_snapshot_integration_enabled | bool
+roles/local-backup/tasks/diaries_pull.yaml:71:    - not diaries_pull_repository_lock_stat.stat.exists
+roles/local-backup/tasks/diaries_pull.yaml:77:    path: "{{ diaries_pull_repository_lock }}"
+roles/local-backup/tasks/diaries_pull.yaml:83:  when: diaries_pull_install | bool or diaries_snapshot_integration_enabled | bool
+roles/local-backup/tasks/main.yaml:67:    btrfs_snapshot_require_verified_diaries: "{{ diaries_snapshot_integration_enabled }}"
+roles/local-backup/tasks/main.yaml:68:    btrfs_snapshot_writer_lock_path: "{{ diaries_pull_repository_lock if (diaries_snapshot_integration_enabled | bool) else '' }}"
+roles/local-backup/tasks/main.yaml:70:    btrfs_snapshot_diaries_relative_path: "{{ diaries_snapshot_diaries_relative_path if (diaries_snapshot_integration_enabled | bool) else '' }}"
+roles/local-backup/tasks/main.yaml:71:    btrfs_snapshot_diaries_marker_relative_path: "{{ diaries_snapshot_marker_relative_path if (diaries_snapshot_integration_enabled | bool) else '' }}"
+roles/local-backup/defaults/main.yaml:15:diaries_pull_repository_lock: /media/usb/@data/backup/.btrfs-snapshot-writer.lock
+roles/local-backup/defaults/main.yaml:20:diaries_snapshot_integration_enabled: false
+richard@mango:~/playbooks$

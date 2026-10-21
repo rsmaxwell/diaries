@@ -1,0 +1,147 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+./scripts/snapshots.sh backup
+
+PLAY [local_backup] ********************************************************************************************************************************************************
+skipping: no hosts matched
+
+PLAY [remote_backup] *******************************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************
+ok: [backup]
+
+TASK [remote-backup | Configure timestamp-named Btrfs snapshot manager] ****************************************************************************************************
+included: snapshots for backup
+
+TASK [snapshots : snapshots | Validate activation and Diaries integration gates] *******************************************************************************************
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Install native Btrfs snapshot prerequisites] *************************************************************************************************
+ok: [backup]
+
+TASK [snapshots | Ensure managed data subvolume exists] ********************************************************************************************************************
+included: btrfs for backup
+
+TASK [snapshots : snapshots | Resolve managed snapshot root] ***************************************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Inspect managed snapshot root] ***************************************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Verify existing snapshot root is a Btrfs subvolume] ******************************************************************************************
+skipping: [backup]
+
+TASK [snapshots : snapshots | Refuse a non-subvolume snapshot root] ********************************************************************************************************
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Create managed snapshot-root subvolume] ******************************************************************************************************
+skipping: [backup]
+
+TASK [snapshots : snapshots | Create per-source timestamp directories] *****************************************************************************************************
+ok: [backup] => (item={'name': 'root', 'path': '/'})
+ok: [backup] => (item={'name': '@data', 'path': '/@data'})
+
+TASK [snapshots : snapshots | Install snapshot manager] ********************************************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Install Diaries backup-history tool] *********************************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Install Btrfs extent-sharing acceptance tool] ************************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Create shared schema-2 verifier directory] ***************************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Install independent schema-2 verifier for history checks] ************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Initialise checkpoint hold state without overwriting existing holds] *************************************************************************
+skipping: [backup]
+
+TASK [snapshots : snapshots | Install snapshot manager configuration] ******************************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Install systemd units without activating them] ***********************************************************************************************
+ok: [backup] => (item=btrfs-snapshot-create.service)
+ok: [backup] => (item=btrfs-snapshot-create.timer)
+ok: [backup] => (item=btrfs-snapshot-prune.service)
+ok: [backup] => (item=btrfs-snapshot-prune.timer)
+ok: [backup] => (item=btrfs-legacy-prune.service)
+ok: [backup] => (item=btrfs-legacy-prune.timer)
+
+TASK [snapshots : snapshots | Flush systemd unit changes before preflight] *************************************************************************************************
+
+TASK [snapshots : snapshots | Preflight native snapshot manager before changing schedulers] ********************************************************************************
+skipping: [backup]
+
+TASK [snapshots : snapshots | Show native snapshot-manager preflight] ******************************************************************************************************
+ok: [backup] => {
+    "btrfs_snapshot_manager_status.stdout_lines": []
+}
+
+TASK [snapshots : snapshots | Detect legacy Snapper installation] **********************************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Discover legacy Snapper timer units] *********************************************************************************************************
+skipping: [backup] => (item=snapper-timeline.timer)
+skipping: [backup] => (item=snapper-boot.timer)
+skipping: [backup] => (item=snapper-cleanup.timer)
+skipping: [backup]
+
+TASK [snapshots : snapshots | Stop creation of new legacy Snapper timeline/boot snapshots] *********************************************************************************
+skipping: [backup] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'btrfs_snapshot_snapper_handover_enabled | bool', 'ansible_loop_var': 'item', 'item': 'snapper-timeline.timer'})
+skipping: [backup] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'btrfs_snapshot_snapper_handover_enabled | bool', 'ansible_loop_var': 'item', 'item': 'snapper-boot.timer'})
+skipping: [backup] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'btrfs_snapshot_snapper_handover_enabled | bool', 'ansible_loop_var': 'item', 'item': 'snapper-cleanup.timer'})
+skipping: [backup]
+
+TASK [snapshots : snapshots | Keep legacy Snapper cleanup active while numeric snapshots age out] **************************************************************************
+skipping: [backup] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'btrfs_snapshot_snapper_handover_enabled | bool', 'ansible_loop_var': 'item', 'item': 'snapper-timeline.timer'})
+skipping: [backup] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'btrfs_snapshot_snapper_handover_enabled | bool', 'ansible_loop_var': 'item', 'item': 'snapper-boot.timer'})
+skipping: [backup] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'btrfs_snapshot_snapper_handover_enabled | bool', 'ansible_loop_var': 'item', 'item': 'snapper-cleanup.timer'})
+skipping: [backup]
+
+TASK [snapshots : Snapper retirement | Discover installed legacy timer units] **********************************************************************************************
+ok: [backup] => (item=snapper-timeline.timer)
+ok: [backup] => (item=snapper-boot.timer)
+ok: [backup] => (item=snapper-cleanup.timer)
+
+TASK [snapshots : Snapper retirement | Disable and stop installed legacy timer units] **************************************************************************************
+ok: [backup] => (item={'changed': False, 'failed': False, 'msg': '', 'rc': 0, 'changed_when_result': False, 'failed_when_result': False, 'ansible_loop_var': 'item', 'item': 'snapper-timeline.timer', 'stdout': 'snapper-timeline.timer disabled enabled', 'stderr': '', 'cmd': ['systemctl', 'list-unit-files', '--no-legend', 'snapper-timeline.timer'], 'start': '2026-10-21 11:38:02.804623', 'end': '2026-10-21 11:38:02.842605', 'delta': '0:00:00.037982', 'stdout_lines': ['snapper-timeline.timer disabled enabled'], 'stderr_lines': []})
+ok: [backup] => (item={'changed': False, 'failed': False, 'msg': '', 'rc': 0, 'changed_when_result': False, 'failed_when_result': False, 'ansible_loop_var': 'item', 'item': 'snapper-boot.timer', 'stdout': 'snapper-boot.timer disabled enabled', 'stderr': '', 'cmd': ['systemctl', 'list-unit-files', '--no-legend', 'snapper-boot.timer'], 'start': '2026-10-21 11:38:03.575918', 'end': '2026-10-21 11:38:03.600674', 'delta': '0:00:00.024756', 'stdout_lines': ['snapper-boot.timer disabled enabled'], 'stderr_lines': []})
+ok: [backup] => (item={'changed': False, 'failed': False, 'msg': '', 'rc': 0, 'changed_when_result': False, 'failed_when_result': False, 'ansible_loop_var': 'item', 'item': 'snapper-cleanup.timer', 'stdout': 'snapper-cleanup.timer disabled enabled', 'stderr': '', 'cmd': ['systemctl', 'list-unit-files', '--no-legend', 'snapper-cleanup.timer'], 'start': '2026-10-21 11:38:04.193376', 'end': '2026-10-21 11:38:04.204468', 'delta': '0:00:00.011092', 'stdout_lines': ['snapper-cleanup.timer disabled enabled'], 'stderr_lines': []})
+
+TASK [snapshots : Snapper retirement | Show absent timers (no action required)] ********************************************************************************************
+skipping: [backup] => (item={'changed': False, 'failed': False, 'msg': '', 'rc': 0, 'changed_when_result': False, 'failed_when_result': False, 'ansible_loop_var': 'item', 'item': 'snapper-timeline.timer', 'stdout': 'snapper-timeline.timer disabled enabled', 'stderr': '', 'cmd': ['systemctl', 'list-unit-files', '--no-legend', 'snapper-timeline.timer'], 'start': '2026-10-21 11:38:02.804623', 'end': '2026-10-21 11:38:02.842605', 'delta': '0:00:00.037982', 'stdout_lines': ['snapper-timeline.timer disabled enabled'], 'stderr_lines': []})
+skipping: [backup] => (item={'changed': False, 'failed': False, 'msg': '', 'rc': 0, 'changed_when_result': False, 'failed_when_result': False, 'ansible_loop_var': 'item', 'item': 'snapper-boot.timer', 'stdout': 'snapper-boot.timer disabled enabled', 'stderr': '', 'cmd': ['systemctl', 'list-unit-files', '--no-legend', 'snapper-boot.timer'], 'start': '2026-10-21 11:38:03.575918', 'end': '2026-10-21 11:38:03.600674', 'delta': '0:00:00.024756', 'stdout_lines': ['snapper-boot.timer disabled enabled'], 'stderr_lines': []})
+skipping: [backup] => (item={'changed': False, 'failed': False, 'msg': '', 'rc': 0, 'changed_when_result': False, 'failed_when_result': False, 'ansible_loop_var': 'item', 'item': 'snapper-cleanup.timer', 'stdout': 'snapper-cleanup.timer disabled enabled', 'stderr': '', 'cmd': ['systemctl', 'list-unit-files', '--no-legend', 'snapper-cleanup.timer'], 'start': '2026-10-21 11:38:04.193376', 'end': '2026-10-21 11:38:04.204468', 'delta': '0:00:00.011092', 'stdout_lines': ['snapper-cleanup.timer disabled enabled'], 'stderr_lines': []})
+skipping: [backup]
+
+TASK [snapshots : snapshots | Enable native snapshot creation timer after explicit acceptance] *****************************************************************************
+skipping: [backup]
+
+TASK [snapshots : snapshots | Enable native snapshot pruning timer after explicit acceptance] ******************************************************************************
+skipping: [backup]
+
+TASK [snapshots : snapshots | Check whether legacy prune timer exists on disk] *********************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Set unattended legacy pruning timer activation] **********************************************************************************************
+ok: [backup]
+
+PLAY RECAP *****************************************************************************************************************************************************************
+backup                     : ok=22   changed=0    unreachable=0    failed=0    skipped=10   rescued=0    ignored=0
+
+richard@mango:~/playbooks$

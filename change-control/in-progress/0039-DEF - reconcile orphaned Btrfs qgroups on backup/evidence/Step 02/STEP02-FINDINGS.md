@@ -67,3 +67,7 @@ In the native prune journal, hourly operations typically delete two snapshots (`
 The same capture counts **156** journal lines starting `DELETE ` from native prune since 2026-10-18, and **3** `LEGACY PRUNE DELETE` journal lines in that interval. **156 counts deletion lines, not complete snapshot sets or independently verified successful deletions**; the two sources are generally deleted per complete set. The `grep -c` values do not establish a one-to-one qgroup-generation rate or distinguish received/other operations.
 
 **Step 02 interpretation:** Exact legacy deletion-to-stale-ID correlation accepted. Native deletion causality and the persistent- qgroup mechanism remain open. Do not initiate experimental deletions, mass qgroup destroys, quota changes, OS upgrades or service restarts under this gate.
+
+## Formal completion, 2026-10-21
+
+The sections above preserve earlier in-progress observations; they are superseded in gate status by `STEP02-CLOSURE.md`. Direct native deletion ID-to-`<stale>` evidence is now accepted for `20919` and `20920` (41→43). The older `backup` qgroup header-parser issue was repaired and deployed. Deployment, runtime and check-mode idempotency succeeded on both hosts. **Step 2 CLOSED; Step 3 IN PROGRESS.** The precise Btrfs metadata persistence mechanism is not proven, and no cleanup/upgrade is authorised.

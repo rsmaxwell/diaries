@@ -1,0 +1,94 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+cat > scripts/snapshots.sh <<'EOF'
+#!/bin/bash
+set -euo pipefail
+
+usage() {
+    echo "Usage: $0 [mars|backup] [--apply|--help]"
+    echo "Default: mars, Ansible check mode (--check --diff)."
+    echo "Use --apply for a real deployment."
+}
+
+host="mars"
+mode="check"
+
+for arg in "$@"; do
+    case "$arg" in
+        mars|backup)
+            host="$arg"
+            ;;
+        --apply)
+            mode="apply"
+            ;;
+        --help|-h)
+            usage
+            exit 0
+            ;;
+        *)
+            usage >&2
+            exit 2
+git diff -- scripts/snapshots.shn.vault_pass.txt"
+diff --git a/scripts/snapshots.sh b/scripts/snapshots.sh
+index 46aac02..d485324 100755
+--- a/scripts/snapshots.sh
++++ b/scripts/snapshots.sh
+@@ -1,17 +1,46 @@
+ #!/bin/bash
+ set -euo pipefail
+
+-cd ~/playbooks
++usage() {
++    echo "Usage: $0 [mars|backup] [--apply|--help]"
++    echo "Default: mars, Ansible check mode (--check --diff)."
++    echo "Use --apply for a real deployment."
++}
+
+-host="${1:-mars}"
++host="mars"
++mode="check"
+
+-case "${host}" in
+-    mars|backup)
+-        ;;
+-    *)
+-        echo "Unsupported snapshot host: ${host}" >&2
+-        exit 1
+-        ;;
+-esac
++for arg in "$@"; do
++    case "$arg" in
++        mars|backup)
++            host="$arg"
++            ;;
++        --apply)
++            mode="apply"
++            ;;
++        --help|-h)
++            usage
++            exit 0
++            ;;
++        *)
++            usage >&2
++            exit 2
++            ;;
++    esac
++done
+
+-ansible-playbook --limit "${host}" snapshots.yaml
++cd "$HOME/playbooks"
++
++args=(
++    snapshots.yaml
++    --limit "$host"
++    --vault-password-file "$HOME/.vault_pass.txt"
++)
++
++if [[ "$mode" == "check" ]]; then
++    args+=(--check --diff)
++else
++    args+=(--diff)
++fi
++
++ansible-playbook "${args[@]}"
+richard@mango:~/playbooks$

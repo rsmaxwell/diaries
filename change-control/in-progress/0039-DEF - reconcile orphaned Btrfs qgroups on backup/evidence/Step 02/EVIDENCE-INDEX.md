@@ -26,3 +26,7 @@ Keep original operator terminal logs in historical evidence storage. This index 
 No source revision or production deployment result has been added by this documentation-only update. The authoritative source baseline is the uploaded Diaries and Playbooks bundles dated 2026-10-21, plus subsequent operator outputs.
 
 The two 09:21/09:25 original operator logs are copied in this evidence directory within the present ZIP; earlier logs remain referenced by filename and are not bundled. Confirm repository review before committing.
+
+## Step 2 final accepted captures
+
+Original terminal outputs from `note(20261021-095715).txt`, `note(20261021-100132).txt`, `note(20261021-100750).txt`, `note(20261021-101108).txt`, `note(20261021-101417).txt`, `note(20261021-101500).txt`, `note(20261021-101725).txt`, `note(20261021-101854).txt`, `note(20261021-102648).txt`, `note(20261021-102841).txt`, `note(20261021-103130).txt`, `note(20261021-103354).txt`, `note(20261021-103619).txt`, `note(20261021-103721).txt`, and `note(20261021-103828).txt` are included with this update. See `STEP02-CLOSURE.md` for per-log purposes, successful outcomes, and limits. Step 2 formally CLOSED 2026-10-21.

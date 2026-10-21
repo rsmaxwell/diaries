@@ -1,0 +1,210 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+./scripts/snapshots.sh backup
+
+PLAY [local_backup] ********************************************************************************************************************************************************
+skipping: no hosts matched
+
+PLAY [remote_backup] *******************************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************
+ok: [backup]
+
+TASK [remote-backup | Configure timestamp-named Btrfs snapshot manager] ****************************************************************************************************
+included: snapshots for backup
+
+TASK [snapshots : snapshots | Validate activation and Diaries integration gates] *******************************************************************************************
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Install native Btrfs snapshot prerequisites] *************************************************************************************************
+ok: [backup]
+
+TASK [snapshots | Ensure managed data subvolume exists] ********************************************************************************************************************
+included: btrfs for backup
+
+TASK [snapshots : snapshots | Resolve managed snapshot root] ***************************************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Inspect managed snapshot root] ***************************************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Verify existing snapshot root is a Btrfs subvolume] ******************************************************************************************
+skipping: [backup]
+
+TASK [snapshots : snapshots | Refuse a non-subvolume snapshot root] ********************************************************************************************************
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Create managed snapshot-root subvolume] ******************************************************************************************************
+skipping: [backup]
+
+TASK [snapshots : snapshots | Create per-source timestamp directories] *****************************************************************************************************
+ok: [backup] => (item={'name': 'root', 'path': '/'})
+ok: [backup] => (item={'name': '@data', 'path': '/@data'})
+
+TASK [snapshots : snapshots | Install snapshot manager] ********************************************************************************************************************
+--- before: /usr/local/sbin/btrfs-snapshot-manager
++++ after: /home/richard/playbooks/roles/snapshots/files/btrfs-snapshot-manager.py
+@@ -634,6 +634,20 @@
+         raise SnapshotError(f"refusing writable snapshot deletion: {candidate}: {flags}")
+
+
++
++def native_prune_subvolume_id(path: Path) -> int:
++    """Read the exact subvolume ID before native deletion for qgroup correlation.
++
++    An unreadable or ambiguous ID fails closed: it must not be replaced with a
++    guessed ID or silently recorded as an authoritative deletion identity.
++    """
++    output = run(["btrfs", "subvolume", "show", str(path)]).stdout
++    matches = re.findall(r"^\s*Subvolume ID:\s*(\d+)\s*$", output, re.M)
++    if len(matches) != 1 or int(matches[0]) <= 0:
++        raise SnapshotError(f"cannot establish subvolume ID before native prune: {path}")
++    return int(matches[0])
++
++
+ def prune(config: Config, dry_run: bool = False) -> int:
+     preflight(config)
+     complete, incomplete = managed_snapshot_sets(config)
+@@ -668,7 +682,8 @@
+             continue
+         for source in reversed(config.sources):
+             path = snapshot_path(config, source, name)
+-            print(f"DELETE {source.name} {name} {path}")
++            subvolume_id = native_prune_subvolume_id(path)
++            print(f"DELETE {source.name} {name} subvol_id={subvolume_id} {path}", flush=True)
+             run(["btrfs", "subvolume", "delete", str(path)])
+     print(("Would delete" if dry_run else "Deleted") + f" {deleted_sets} complete timestamp sets")
+     return deleted_sets
+@@ -947,14 +962,26 @@
+         if result.returncode != 0:
+             return ["qgroups_status=unavailable;reason=query_failed;exit_code=" + str(result.returncode)]
+         lines = result.stdout.splitlines()
+-        if len(lines) < 2 or not lines[0].strip().startswith("Qgroupid"):
++        # btrfs-progs 5.16 uses "qgroupid rfer excl ...", while newer
++        # versions use "Qgroupid Referenced Exclusive ...". Accept both,
++        # but never accept arbitrary text as a successful empty inventory.
++        if len(lines) < 2:
++            return ["qgroups_status=unavailable;reason=unexpected_output"]
++        header = lines[0].split()
++        if (len(header) < 3 or header[0].lower() != "qgroupid"
++                or [column.lower() for column in header[1:3]]
++                not in (["rfer", "excl"], ["referenced", "exclusive"])
++                or not re.fullmatch(r"[-\s]+", lines[1])
++                or len(lines[1].split()) < 3):
+             return ["qgroups_status=unavailable;reason=unexpected_output"]
+         total = stale = under_deletion = 0
+         for line in lines[2:]:
+             parts = line.split()
+             if not parts:
+                 continue
+-            if not re.fullmatch(r"\d+/\d+", parts[0]):
++            if (len(parts) < 3 or not re.fullmatch(r"\d+/\d+", parts[0])
++                    or not all(re.fullmatch(r"\d+(?:\.\d+)?(?:[KMGTPE]i?B|B)", value)
++                               for value in parts[1:3])):
+                 return ["qgroups_status=unavailable;reason=unexpected_output"]
+             total += 1
+             if "<stale>" in line:
+
+changed: [backup]
+
+TASK [snapshots : snapshots | Install Diaries backup-history tool] *********************************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Install Btrfs extent-sharing acceptance tool] ************************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Create shared schema-2 verifier directory] ***************************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Install independent schema-2 verifier for history checks] ************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Initialise checkpoint hold state without overwriting existing holds] *************************************************************************
+skipping: [backup]
+
+TASK [snapshots : snapshots | Install snapshot manager configuration] ******************************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Install systemd units without activating them] ***********************************************************************************************
+ok: [backup] => (item=btrfs-snapshot-create.service)
+ok: [backup] => (item=btrfs-snapshot-create.timer)
+ok: [backup] => (item=btrfs-snapshot-prune.service)
+ok: [backup] => (item=btrfs-snapshot-prune.timer)
+ok: [backup] => (item=btrfs-legacy-prune.service)
+ok: [backup] => (item=btrfs-legacy-prune.timer)
+
+TASK [snapshots : snapshots | Flush systemd unit changes before preflight] *************************************************************************************************
+
+TASK [snapshots : snapshots | Preflight native snapshot manager before changing schedulers] ********************************************************************************
+skipping: [backup]
+
+TASK [snapshots : snapshots | Show native snapshot-manager preflight] ******************************************************************************************************
+ok: [backup] => {
+    "btrfs_snapshot_manager_status.stdout_lines": []
+}
+
+TASK [snapshots : snapshots | Detect legacy Snapper installation] **********************************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Discover legacy Snapper timer units] *********************************************************************************************************
+skipping: [backup] => (item=snapper-timeline.timer)
+skipping: [backup] => (item=snapper-boot.timer)
+skipping: [backup] => (item=snapper-cleanup.timer)
+skipping: [backup]
+
+TASK [snapshots : snapshots | Stop creation of new legacy Snapper timeline/boot snapshots] *********************************************************************************
+skipping: [backup] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'btrfs_snapshot_snapper_handover_enabled | bool', 'ansible_loop_var': 'item', 'item': 'snapper-timeline.timer'})
+skipping: [backup] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'btrfs_snapshot_snapper_handover_enabled | bool', 'ansible_loop_var': 'item', 'item': 'snapper-boot.timer'})
+skipping: [backup] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'btrfs_snapshot_snapper_handover_enabled | bool', 'ansible_loop_var': 'item', 'item': 'snapper-cleanup.timer'})
+skipping: [backup]
+
+TASK [snapshots : snapshots | Keep legacy Snapper cleanup active while numeric snapshots age out] **************************************************************************
+skipping: [backup] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'btrfs_snapshot_snapper_handover_enabled | bool', 'ansible_loop_var': 'item', 'item': 'snapper-timeline.timer'})
+skipping: [backup] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'btrfs_snapshot_snapper_handover_enabled | bool', 'ansible_loop_var': 'item', 'item': 'snapper-boot.timer'})
+skipping: [backup] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'btrfs_snapshot_snapper_handover_enabled | bool', 'ansible_loop_var': 'item', 'item': 'snapper-cleanup.timer'})
+skipping: [backup]
+
+TASK [snapshots : Snapper retirement | Discover installed legacy timer units] **********************************************************************************************
+ok: [backup] => (item=snapper-timeline.timer)
+ok: [backup] => (item=snapper-boot.timer)
+ok: [backup] => (item=snapper-cleanup.timer)
+
+TASK [snapshots : Snapper retirement | Disable and stop installed legacy timer units] **************************************************************************************
+ok: [backup] => (item={'changed': False, 'failed': False, 'msg': '', 'rc': 0, 'changed_when_result': False, 'failed_when_result': False, 'ansible_loop_var': 'item', 'item': 'snapper-timeline.timer', 'stdout': 'snapper-timeline.timer disabled enabled', 'stderr': '', 'cmd': ['systemctl', 'list-unit-files', '--no-legend', 'snapper-timeline.timer'], 'start': '2026-10-21 11:33:29.560106', 'end': '2026-10-21 11:33:29.915154', 'delta': '0:00:00.355048', 'stdout_lines': ['snapper-timeline.timer disabled enabled'], 'stderr_lines': []})
+ok: [backup] => (item={'changed': False, 'failed': False, 'msg': '', 'rc': 0, 'changed_when_result': False, 'failed_when_result': False, 'ansible_loop_var': 'item', 'item': 'snapper-boot.timer', 'stdout': 'snapper-boot.timer disabled enabled', 'stderr': '', 'cmd': ['systemctl', 'list-unit-files', '--no-legend', 'snapper-boot.timer'], 'start': '2026-10-21 11:33:30.484605', 'end': '2026-10-21 11:33:30.496297', 'delta': '0:00:00.011692', 'stdout_lines': ['snapper-boot.timer disabled enabled'], 'stderr_lines': []})
+ok: [backup] => (item={'changed': False, 'failed': False, 'msg': '', 'rc': 0, 'changed_when_result': False, 'failed_when_result': False, 'ansible_loop_var': 'item', 'item': 'snapper-cleanup.timer', 'stdout': 'snapper-cleanup.timer disabled enabled', 'stderr': '', 'cmd': ['systemctl', 'list-unit-files', '--no-legend', 'snapper-cleanup.timer'], 'start': '2026-10-21 11:33:31.065743', 'end': '2026-10-21 11:33:31.076831', 'delta': '0:00:00.011088', 'stdout_lines': ['snapper-cleanup.timer disabled enabled'], 'stderr_lines': []})
+
+TASK [snapshots : Snapper retirement | Show absent timers (no action required)] ********************************************************************************************
+skipping: [backup] => (item={'changed': False, 'failed': False, 'msg': '', 'rc': 0, 'changed_when_result': False, 'failed_when_result': False, 'ansible_loop_var': 'item', 'item': 'snapper-timeline.timer', 'stdout': 'snapper-timeline.timer disabled enabled', 'stderr': '', 'cmd': ['systemctl', 'list-unit-files', '--no-legend', 'snapper-timeline.timer'], 'start': '2026-10-21 11:33:29.560106', 'end': '2026-10-21 11:33:29.915154', 'delta': '0:00:00.355048', 'stdout_lines': ['snapper-timeline.timer disabled enabled'], 'stderr_lines': []})
+skipping: [backup] => (item={'changed': False, 'failed': False, 'msg': '', 'rc': 0, 'changed_when_result': False, 'failed_when_result': False, 'ansible_loop_var': 'item', 'item': 'snapper-boot.timer', 'stdout': 'snapper-boot.timer disabled enabled', 'stderr': '', 'cmd': ['systemctl', 'list-unit-files', '--no-legend', 'snapper-boot.timer'], 'start': '2026-10-21 11:33:30.484605', 'end': '2026-10-21 11:33:30.496297', 'delta': '0:00:00.011692', 'stdout_lines': ['snapper-boot.timer disabled enabled'], 'stderr_lines': []})
+skipping: [backup] => (item={'changed': False, 'failed': False, 'msg': '', 'rc': 0, 'changed_when_result': False, 'failed_when_result': False, 'ansible_loop_var': 'item', 'item': 'snapper-cleanup.timer', 'stdout': 'snapper-cleanup.timer disabled enabled', 'stderr': '', 'cmd': ['systemctl', 'list-unit-files', '--no-legend', 'snapper-cleanup.timer'], 'start': '2026-10-21 11:33:31.065743', 'end': '2026-10-21 11:33:31.076831', 'delta': '0:00:00.011088', 'stdout_lines': ['snapper-cleanup.timer disabled enabled'], 'stderr_lines': []})
+skipping: [backup]
+
+TASK [snapshots : snapshots | Enable native snapshot creation timer after explicit acceptance] *****************************************************************************
+skipping: [backup]
+
+TASK [snapshots : snapshots | Enable native snapshot pruning timer after explicit acceptance] ******************************************************************************
+skipping: [backup]
+
+TASK [snapshots : snapshots | Check whether legacy prune timer exists on disk] *********************************************************************************************
+ok: [backup]
+
+TASK [snapshots : snapshots | Set unattended legacy pruning timer activation] **********************************************************************************************
+ok: [backup]
+
+PLAY RECAP *****************************************************************************************************************************************************************
+backup                     : ok=22   changed=1    unreachable=0    failed=0    skipped=10   rescued=0    ignored=0
+
+richard@mango:~/playbooks$
