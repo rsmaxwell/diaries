@@ -22,6 +22,6 @@ Operator requested unattended aging-out of both native timestamp sets and legacy
 
 **CLOSED — PASSED WITH RECORDED DEFERRED HOUSEKEEPING.** Full production Playbooks reconciliation and repeat-run idempotency accepted. Residual root-owned legacy helpers retained and explicitly deferred; feature remains OPEN until Step 14. See `evidence/Step 13/STEP13-FORMAL-CLOSURE.md`. The earlier IN PROGRESS status above is superseded.
 
-## Step 14 — final reconciliation (IN PROGRESS, 2026-10-20)
+## Step 14 — formal closure (20 October 2026)
 
-The post-cleanup production deployment is idempotent and Step 13 remains CLOSED. Final Git revisions, source/evidence inventory and controlled relocation to `change-control/complete/` are pending. See `evidence/Step 14/`.
+**CLOSED — PASS. 0037-FEAT COMPLETE.** Final host timers and backup verification accepted; three legacy root-owned helper files absent; Git sources previously clean/synchronized. See `evidence/Step 14/STEP14-FORMAL-CLOSURE.md`. Administrative relocation to `change-control/complete/` and subsequent closure commit are the remaining repository actions. Earlier Step 13 deferred housekeeping is resolved without amending historical Step 13 evidence.

@@ -10,6 +10,6 @@ See `Step 13/STEP13-PRODUCTION-DOCS-AND-HOUSEKEEPING.md`. Documentation staged; 
 
 **CLOSED — PASSED WITH DEFERRED HOUSEKEEPING, 2026-10-20.** See `Step 13/STEP13-FORMAL-CLOSURE.md`, `Step 13/full-playbook-idempotent.txt`, and `Step 13/host-housekeeping-inventory.txt`.
 
-## Step 14 — final feature reconciliation
+## Step 14 — formal closure (20 October 2026)
 
-See `Step 14/STEP14-FINAL-RECONCILIATION.md`, `Step 14/OPERATOR-READONLY-CHECKLIST.md`, and `Step 14/SOURCE-SHA256.md`. Step 14 IN PROGRESS; feature not yet marked COMPLETE.
+**CLOSED — PASS. 0037-FEAT COMPLETE.** Final host timers and backup verification accepted; three legacy root-owned helper files absent; Git sources previously clean/synchronized. See `evidence/Step 14/STEP14-FORMAL-CLOSURE.md`. Administrative relocation to `change-control/complete/` and subsequent closure commit are the remaining repository actions. Earlier Step 13 deferred housekeeping is resolved without amending historical Step 13 evidence.

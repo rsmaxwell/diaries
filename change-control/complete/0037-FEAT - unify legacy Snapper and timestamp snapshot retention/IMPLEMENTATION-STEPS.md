@@ -99,6 +99,6 @@ Permanent-source promotion inventory and operational housekeeping checklist prep
 
 **CLOSED — PASSED WITH DEFERRED HOUSEKEEPING.** Production source regression and reconciliation accepted; full untagged real `./local-backup.sh` idempotent (`ok=64 changed=0 failed=0`); timers and snapshot verification healthy; `mars` backup directory mode `0750`. Three root-owned legacy pull helpers remain intentionally retained pending reference checks; exhaustive host cleanup and final Git revision reconciliation are deferred to Step 14. See `evidence/Step 13/STEP13-FORMAL-CLOSURE.md`, deployment/host transcripts and revised `PROMOTION-MANIFEST.md`. Earlier Step 13 OPEN wording is chronological history. Overall feature remains OPEN for Step 14.
 
-## Step 14 — final reconciliation (IN PROGRESS, 2026-10-20)
+## Step 14 — formal closure (20 October 2026)
 
-Step 13 remains formally CLOSED. Final post-cleanup untagged `./scripts/local-backup.sh` on mars passed `ok=64 changed=0 failed=0`, and the latest uploaded Playbooks source no longer contains the one-time root-helper cleanup task/flag. Source revisions and outstanding file/evidence disposition remain to be reconciled before Step 14 and overall feature closure. See `evidence/Step 14/STEP14-FINAL-RECONCILIATION.md`. Do not move this feature to `complete/` until acceptance.
+**CLOSED — PASS. 0037-FEAT COMPLETE.** Final host timers and backup verification accepted; three legacy root-owned helper files absent; Git sources previously clean/synchronized. See `evidence/Step 14/STEP14-FORMAL-CLOSURE.md`. Administrative relocation to `change-control/complete/` and subsequent closure commit are the remaining repository actions. Earlier Step 13 deferred housekeeping is resolved without amending historical Step 13 evidence.
