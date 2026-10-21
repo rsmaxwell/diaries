@@ -70,3 +70,23 @@ The new received subvolume `20261021-030006Z` has ID `55805`, `Flags: readonly` 
 **Non-blocking diagnostic:** local manager status prints `qgroups_status=unavailable;reason=unexpected_output`. This optional summary limitation does not undermine accepted receiver identity, receipts or manager preflight; defer parser investigation unless future health checks require it. Do not enable local timers or change receiver state in Step 7.
 
 **Step 7 IN PROGRESS.** Reuse the accepted post-deployment Ansible check-mode `changed=0` result but independently perform bounded negative/configuration-regression checks; the implementation plan asks for a repeated real Ansible idempotency run, so check-mode evidence alone does not prove that separate criterion. A real repeat must be explicitly approved and reviewed before Step 7 closure. See `evidence/Step 07/STEP07-REGRESSION-PLAN.md`. Step 8 NOT STARTED.
+
+## Step 7 formal acceptance — 21 October 2026
+
+**CLOSED — real-run idempotency and receiver-only negative configuration regression accepted.** Three new operator transcripts complete the gate:
+
+- `note(20261021-072024).txt` (`mango`): `git diff --check`, `remote-backup.yaml` syntax and `--list-hosts` pass, only `backup` targeted; default snapshot activation, verified-Diaries integration and unattended legacy pruning all `false`, writer lock empty; checked deployment inputs contain no `diaries-mars-replica`.
+- `note(20261021-072206).txt` (`backup`): six installed JSON safety assertions PASS, and creation, pruning and legacy-prune timers all explicitly `disabled` and `inactive`.
+- `note(20261021-072739).txt` (`mango`): **real** `./scripts/remote-backup.sh --apply` ended `backup: ok=26 changed=0 unreachable=0 failed=0 skipped=8`; no manager/config/unit changes and activation gates remained unselected. This supplements accepted `note(20261020-205235).txt` **check-mode** `changed=0`.
+
+The overnight incremental receipt and received Btrfs snapshot from Step 6 substantiate that normal replication was not blocked. Tests were deliberately bounded: no adversarial destructive test, manual snapshot operation, forced transfer, full restore or retention mutation. The optional `qgroups_status=unavailable;reason=unexpected_output` remains an explicitly deferred non-blocking diagnostic.
+
+**Step 8 IN PROGRESS.** Reconcile all acceptance records, actual source revisions/status and promotion manifest, outstanding exclusions and rollback-copy disposition; only then formally close Step 8 and move the feature directory from `in-progress` to `complete`. Do not infer committed Git revisions or cleaned host files without evidence.
+
+## Step 8 formal acceptance — 21 October 2026
+
+**CLOSED.** Operator-provided evidence confirms that all previous Step 1–7 acceptance gates are closed; Step 7's repeated actual deployment converged with `backup ok=26 changed=0 failed=0`. Final Git provenance was verified: Diaries `main` clean and synchronized at `e69e08b2ff100b7d2afcf8458e9cb9204bc6be5a`; Playbooks `main` clean and synchronized at amended/pushed `fc8233da3464aa114d69a2e34bd8990f96daf281`. The prior Playbooks SHA `908509ec57e06f972b4412fae8f98b7a4f4edc1f` was superseded by commit-message amendment; do not use it as current revision.
+
+The four root-owned pre-reconciliation rollback copies under `/root/remote-backup-pre-reconcile/` on `backup` are **intentionally retained** as a manual emergency baseline; no deletion or restore was performed. The optional `qgroups_status=unavailable;reason=unexpected_output` status summary is a **deferred, non-blocking diagnostic**, not evidence of failed receive or a blocker for this feature. No full restore, forced transfer, snapshot prune/delete, changes to retention/receipts/schedules, or local timer activation are required.
+
+**Overall feature decision: CLOSED (21 October 2026).** Source delivery includes moving this entire feature tree to `change-control/complete/`; final Git commit/push of that directory move is an operator follow-up and should be captured as the archival revision when done. See `evidence/Step 08/STEP08-ACCEPTANCE.md`.

@@ -1,6 +1,6 @@
 # 0038-FEAT — Reconcile off-site Btrfs snapshot manager and receiver configuration
 
-**Status: IN PROGRESS — Steps 1–6 CLOSED; Step 7 IN PROGRESS; Step 8 NOT STARTED.** Created 20 October 2026; baseline accepted 20 October 2026.
+**Status: CLOSED — all Steps 1–8 accepted 21 October 2026.**
 
 ## Problem
 
@@ -41,3 +41,7 @@ Steps 1–4 CLOSED. Step 4 final check/diff accepted (`note(20261020-203011).txt
 **20 October 2026:** Step 5 formally CLOSED with successful real deployment (`changed=5`), post-install manager/receiver/timer checks and subsequent Ansible check-mode convergence (`changed=0`). Step 6 IN PROGRESS pending read-only receipt-content and installed-tool verification; Step 7 NOT STARTED. See evidence/Step 05 and Step 06.
 
 **21 October 2026 update:** Step 6 formally **CLOSED**. Installed tools, receiver receipts and the 15-subvolume inventory were verified; the new overnight incremental `20261021-030006Z` has a receipt UUID matching Btrfs Received UUID and both transfer exit statuses `0`. See `evidence/Step 06/STEP06-ACCEPTANCE.md`. Step 7 **IN PROGRESS**; Step 8 NOT STARTED. The optional qgroup summary remains an explicitly deferred non-blocking diagnostic.
+
+**21 October 2026 — Step 7 CLOSED:** source and installed negative regressions passed; repeated real remote-backup Ansible run `backup ok=26 changed=0 failed=0` proved actual convergence. Step 8 is **IN PROGRESS** for feature evidence reconciliation, Git/source provenance, rollback disposition and final close-out. Feature not yet CLOSED. See `evidence/Step 07/STEP07-ACCEPTANCE.md` and `evidence/Step 08/STEP08-CLOSEOUT-PLAN.md`.
+
+**Final closure — 21 October 2026:** Step 8 and overall 0038-FEAT formally **CLOSED**. Git provenance is Diaries `e69e08b2ff100b7d2afcf8458e9cb9204bc6be5a` and Playbooks `fc8233da3464aa114d69a2e34bd8990f96daf281` (amended and pushed). Four rollback copies on `backup` are retained by explicit decision. Optional qgroup summary parsing remains a deferred, non-blocking diagnostic. The completed change-control tree is archived under `change-control/complete/`. See `evidence/Step 08/STEP08-ACCEPTANCE.md`.
