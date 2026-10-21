@@ -1,0 +1,74 @@
+richard@mars:~$ echo '=== Current stale qgroup IDs and limits ==='
+
+sudo btrfs qgroup show -pcre /media/usb |
+  awk '$NF == "<stale>" { print $1, $4, $5 }'
+
+echo '=== Native and legacy deletion counts since 18 October ==='
+
+sudo journalctl \
+  -u btrfs-snapshot-prune.service \
+  --since '2026-10-18 00:00:00' \
+  --no-pager -o cat |
+  grep -c '^DELETE '
+
+sudo journalctl \
+  -u btrfs-legacy-prune.service \
+  --since '2026-10-18 00:00:00' \
+  --no-pager -o cat |
+  grep -c 'LEGACY PRUNE DELETE'
+
+echo '=== Current snapshot-manager qgroup summary ==='
+
+sudo btrfs-snapshot-manager status |
+  grep '^qgroups_'
+=== Current stale qgroup IDs and limits ===
+0/20189 3.64TiB none
+0/20237 3.64TiB none
+0/20261 3.64TiB none
+0/20875 none none
+0/20876 3.64TiB none
+0/20877 none none
+0/20878 3.64TiB none
+0/20879 none none
+0/20880 3.64TiB none
+0/20885 none none
+0/20886 3.64TiB none
+0/20887 none none
+0/20888 3.64TiB none
+0/20889 none none
+0/20890 3.64TiB none
+0/20891 none none
+0/20892 3.64TiB none
+0/20893 none none
+0/20894 3.64TiB none
+0/20895 none none
+0/20896 3.64TiB none
+0/20899 none none
+0/20900 3.64TiB none
+0/20901 none none
+0/20902 3.64TiB none
+0/20903 none none
+0/20904 3.64TiB none
+0/20905 none none
+0/20906 3.64TiB none
+0/20907 none none
+0/20908 3.64TiB none
+0/20909 none none
+0/20910 3.64TiB none
+0/20911 none none
+0/20912 3.64TiB none
+0/20913 none none
+0/20914 3.64TiB none
+0/20915 none none
+0/20916 3.64TiB none
+0/20917 none none
+0/20918 3.64TiB none
+=== Native and legacy deletion counts since 18 October ===
+156
+3
+=== Current snapshot-manager qgroup summary ===
+qgroups_total=187
+qgroups_stale=41
+qgroups_under_deletion=0
+qgroups_status=ok
+richard@mars:~$

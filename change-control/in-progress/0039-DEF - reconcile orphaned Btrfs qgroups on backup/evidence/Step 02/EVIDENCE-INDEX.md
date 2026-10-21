@@ -20,5 +20,9 @@ Keep original operator terminal logs in historical evidence storage. This index 
 | `note(20261021-084146).txt` | backup, release/packages/candidates |
 | `note(20261021-090459).txt` | mars, installed kernel images, reboot, holds, root mount |
 | `note(20261021-090531).txt` | backup, kernel-image partial listing, reboot, holds, root mount |
+| `note(20261021-092113).txt` | mars, exact legacy-deletion IDs and timestamps; native prune journal; status 41 stale |
+| `note(20261021-092525).txt` | mars, bounded complete 41-ID stale qgroup list, limits and journal deletion counts |
 
 No source revision or production deployment result has been added by this documentation-only update. The authoritative source baseline is the uploaded Diaries and Playbooks bundles dated 2026-10-21, plus subsequent operator outputs.
+
+The two 09:21/09:25 original operator logs are copied in this evidence directory within the present ZIP; earlier logs remain referenced by filename and are not bundled. Confirm repository review before committing.

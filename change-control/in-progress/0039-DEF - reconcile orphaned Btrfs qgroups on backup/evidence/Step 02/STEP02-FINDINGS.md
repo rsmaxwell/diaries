@@ -47,3 +47,23 @@ Evidence: `note(20261021-084109).txt` (`mars`), `note(20261021-084146).txt` (`ba
 - Decide if counting/clearing stale qgroups should be separate from performance/memory evaluation, and define no-go criteria for high filesystem utilisation.
 
 **Gate:** Step 02 stays IN PROGRESS. Root cause and prevention are unproven. **No remediation authorised.**
+
+## Exact deletion-to-stale-qgroup correlation (2026-10-21; newly accepted evidence)
+
+**Primary source:** `note(20261021-092113).txt` (mars systemd journals and manager status). These observations are from existing activity, without manual invocation of deletion.
+
+| Journal event (UTC) | Deletion mechanism | Snapper ID | Deleted Btrfs subvolume ID | Subsequent qgroup inventory |
+|---|---|---:|---:|---|
+| 2026-10-20 15:41:54 | `snapper -c @data delete` via legacy-prune | 19629 | 20189 | `0/20189`, `3.64TiB` limit, `<stale>` |
+| 2026-10-20 15:43:13 | `snapper -c @data delete` via legacy-prune | 19677 | 20237 | `0/20237`, `3.64TiB` limit, `<stale>` |
+| 2026-10-21 08:20:42 | `snapper -c @data delete` via legacy-prune | 19701 | 20261 | `0/20261`, `3.64TiB` limit, `<stale>` |
+
+The three subvolume IDs appear **exactly** in the raw `btrfs qgroup show -pcre /media/usb` `<stale>` output (`note(20261021-083733).txt`, reconfirmed in `note(20261021-092525).txt`). Thus completed legacy deletion can leave a visible stale level-0 qgroup with a quota limit. This does **not** yet prove why the qgroup persists, whether its persistence is expected, or whether the application must remove it.
+
+In the native prune journal, hourly operations typically delete two snapshots (`@data` and `root`) per complete set, with accepted holds and replication pins. The journal shows no reported execution failures or incomplete sets. `mars` status reported `complete_timestamp_sets=60`, `incomplete_timestamp_sets=0` and valid Diaries verification at capture. No deleted subvolumes were pending in the read-only query.
+
+**Follow-on read-only inventory:** `note(20261021-092525).txt` enumerates **41** `<stale>` qgroups, up from the previous **39**; the new IDs are `0/20917` (no quota limit) and `0/20918` (`3.64TiB` max-referenced limit). All listed rows have max-exclusive `none`. `btrfs-snapshot-manager status` agrees: `qgroups_total=187`, `qgroups_stale=41`, `qgroups_under_deletion=0`, yet returns `qgroups_status=ok` because of the present warning threshold (100). The count increase is directly observed; assigning the two new IDs to a specific native-prune operation requires additional event/ID correlation.
+
+The same capture counts **156** journal lines starting `DELETE ` from native prune since 2026-10-18, and **3** `LEGACY PRUNE DELETE` journal lines in that interval. **156 counts deletion lines, not complete snapshot sets or independently verified successful deletions**; the two sources are generally deleted per complete set. The `grep -c` values do not establish a one-to-one qgroup-generation rate or distinguish received/other operations.
+
+**Step 02 interpretation:** Exact legacy deletion-to-stale-ID correlation accepted. Native deletion causality and the persistent- qgroup mechanism remain open. Do not initiate experimental deletions, mass qgroup destroys, quota changes, OS upgrades or service restarts under this gate.

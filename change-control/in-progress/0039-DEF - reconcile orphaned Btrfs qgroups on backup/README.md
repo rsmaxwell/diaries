@@ -68,3 +68,10 @@ Not completed.
 - Source review: Btrfs role applies qgroup limits; older unreferenced deletion helper disables filesystem-wide quota before deletion; native prune uses `btrfs subvolume delete`, and legacy prune invokes Snapper; no causal attribution established. Sources `note(20261021-082208).txt`, `note(20261021-082626).txt`, `note(20261021-082841).txt`.
 - Platform baseline: `mars` Ubuntu 24.04.4 LTS / btrfs-progs 6.6.3 / running 6.8.0-138; `backup` Ubuntu 22.04.5 LTS / btrfs-progs 5.16.2 / running 5.15.0-164. Both report reboot required, no held packages. Detailed boot preflight in `evidence/Step 02/STEP02-FINDINGS.md`.
 - Upgrading both hosts to current **supported** distribution-provided Btrfs utilities/kernel is an explicit **planning goal**, not a proven solution for recurring stale records. Distinct change/maintenance gates and rollback/access requirements apply, particularly to upgrading `backup` from 22.04 to 24.04.
+
+## Step 02 — accepted deletion-correlation evidence (2026-10-21)
+- Exact legacy Snapper deletion journal identities on `mars` match persistent stale qgroups: `20189` (Snapper 19629), `20237` (19677), and `20261` (19701), all retaining `3.64TiB` reference limits. Sources: `note(20261021-092113).txt` and `note(20261021-092525).txt`.
+- `mars` stale count grew from 39 to **41**; the bounded inventory adds IDs `20917` and `20918`. Manager reported `qgroups_total=187`, `qgroups_stale=41`, `qgroups_under_deletion=0`, `qgroups_status=ok` (warning threshold currently 100).
+- Since 2026-10-18 journal counts were 156 native `DELETE` lines and 3 legacy delete lines. These are journal event counts, **not** proof that native deletion caused any particular stale record.
+- **Step 02 remains IN PROGRESS:** account for native deletion correlation and the persistence mechanism before approving remediation. Preserve snapshot holds, replication pins, received UUIDs, and rollback options.
+- `backup` OS update path: evaluate 22.04→24.04 first; 26.04 LTS is an additional separately gated option if justified and supported. OS upgrades and qgroup cleanup must not be combined.

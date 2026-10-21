@@ -1,0 +1,166 @@
+richard@mars:~$ echo '=== Current snapshot-manager diagnostic ==='
+sudo btrfs-snapshot-manager status
+
+echo '=== Native snapshot prune activity ==='
+sudo journalctl \
+  -u btrfs-snapshot-prune.service \
+  --since '2026-10-18 00:00:00' \
+  --no-pager \
+  -o short-iso | tail -n 100
+
+echo '=== Legacy Snapper prune activity ==='
+sudo journalctl \
+  -u btrfs-legacy-prune.service \
+  --since '2026-10-18 00:00:00' \
+  --no-pager \
+  -o short-iso | tail -n 100
+
+echo '=== Snapshot timer states ==='
+systemctl is-enabled \
+  btrfs-snapshot-create.timer \
+  btrfs-snapshot-prune.timer \
+  btrfs-legacy-prune.timer
+
+echo '=== Current pending deletions ==='
+sudo btrfs subvolume list -d /media/usb
+=== Current snapshot-manager diagnostic ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=187
+qgroups_stale=41
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=60;incomplete_timestamp_sets=0
+source=root:/media/usb;managed_snapshots=60
+source=@data:/media/usb/@data;managed_snapshots=60
+diaries_verification=valid;logicalDataset=production;backupId=20261021-003106Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== Native snapshot prune activity ===
+2026-10-20T22:15:16+00:00 mars btrfs-snapshot-manager[290079]: Deleted 1 complete timestamp sets
+2026-10-20T22:15:16+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+2026-10-20T22:15:16+00:00 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+2026-10-20T23:15:26+00:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+2026-10-20T23:15:26+00:00 mars btrfs-snapshot-manager[290155]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+2026-10-20T23:15:26+00:00 mars btrfs-snapshot-manager[290155]: REPLICATION-PROTECTED: ['20261020-030026Z']
+2026-10-20T23:15:26+00:00 mars btrfs-snapshot-manager[290155]: RETENTION sets: total=60 keep=60 sources=2
+2026-10-20T23:15:26+00:00 mars btrfs-snapshot-manager[290155]: Deleted 0 complete timestamp sets
+2026-10-20T23:15:26+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+2026-10-20T23:15:26+00:00 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+2026-10-21T00:15:16+00:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+2026-10-21T00:15:16+00:00 mars btrfs-snapshot-manager[290240]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+2026-10-21T00:15:16+00:00 mars btrfs-snapshot-manager[290240]: REPLICATION-PROTECTED: ['20261020-030026Z']
+2026-10-21T00:15:16+00:00 mars btrfs-snapshot-manager[290240]: RETENTION sets: total=61 keep=60 sources=2
+2026-10-21T00:15:16+00:00 mars btrfs-snapshot-manager[290240]: DELETE @data 20261019-000012Z /media/usb/@snapshots/@data/20261019-000012Z
+2026-10-21T00:15:16+00:00 mars btrfs-snapshot-manager[290240]: DELETE root 20261019-000012Z /media/usb/@snapshots/root/20261019-000012Z
+2026-10-21T00:15:16+00:00 mars btrfs-snapshot-manager[290240]: Deleted 1 complete timestamp sets
+2026-10-21T00:15:16+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+2026-10-21T00:15:16+00:00 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+2026-10-21T01:15:16+00:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+2026-10-21T01:15:16+00:00 mars btrfs-snapshot-manager[290996]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+2026-10-21T01:15:16+00:00 mars btrfs-snapshot-manager[290996]: REPLICATION-PROTECTED: ['20261020-030026Z']
+2026-10-21T01:15:16+00:00 mars btrfs-snapshot-manager[290996]: RETENTION sets: total=61 keep=60 sources=2
+2026-10-21T01:15:16+00:00 mars btrfs-snapshot-manager[290996]: DELETE @data 20261019-010026Z /media/usb/@snapshots/@data/20261019-010026Z
+2026-10-21T01:15:16+00:00 mars btrfs-snapshot-manager[290996]: DELETE root 20261019-010026Z /media/usb/@snapshots/root/20261019-010026Z
+2026-10-21T01:15:16+00:00 mars btrfs-snapshot-manager[290996]: Deleted 1 complete timestamp sets
+2026-10-21T01:15:16+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+2026-10-21T01:15:16+00:00 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+2026-10-21T02:15:01+00:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+2026-10-21T02:15:01+00:00 mars btrfs-snapshot-manager[291109]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+2026-10-21T02:15:01+00:00 mars btrfs-snapshot-manager[291109]: REPLICATION-PROTECTED: ['20261020-030026Z']
+2026-10-21T02:15:01+00:00 mars btrfs-snapshot-manager[291109]: RETENTION sets: total=61 keep=60 sources=2
+2026-10-21T02:15:01+00:00 mars btrfs-snapshot-manager[291109]: DELETE @data 20261019-020035Z /media/usb/@snapshots/@data/20261019-020035Z
+2026-10-21T02:15:01+00:00 mars btrfs-snapshot-manager[291109]: DELETE root 20261019-020035Z /media/usb/@snapshots/root/20261019-020035Z
+2026-10-21T02:15:01+00:00 mars btrfs-snapshot-manager[291109]: Deleted 1 complete timestamp sets
+2026-10-21T02:15:01+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+2026-10-21T02:15:01+00:00 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+2026-10-21T03:15:34+00:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+2026-10-21T03:15:34+00:00 mars btrfs-snapshot-manager[291222]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+2026-10-21T03:15:34+00:00 mars btrfs-snapshot-manager[291222]: REPLICATION-PROTECTED: ['20261020-030026Z']
+2026-10-21T03:15:34+00:00 mars btrfs-snapshot-manager[291222]: RETENTION sets: total=61 keep=60 sources=2
+2026-10-21T03:15:34+00:00 mars btrfs-snapshot-manager[291222]: DELETE @data 20261019-030038Z /media/usb/@snapshots/@data/20261019-030038Z
+2026-10-21T03:15:34+00:00 mars btrfs-snapshot-manager[291222]: DELETE root 20261019-030038Z /media/usb/@snapshots/root/20261019-030038Z
+2026-10-21T03:15:34+00:00 mars btrfs-snapshot-manager[291222]: Deleted 1 complete timestamp sets
+2026-10-21T03:15:34+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+2026-10-21T03:15:34+00:00 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+2026-10-21T04:15:36+00:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+2026-10-21T04:15:36+00:00 mars btrfs-snapshot-manager[291392]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+2026-10-21T04:15:36+00:00 mars btrfs-snapshot-manager[291392]: REPLICATION-PROTECTED: ['20261021-030006Z']
+2026-10-21T04:15:36+00:00 mars btrfs-snapshot-manager[291392]: RETENTION sets: total=61 keep=60 sources=2
+2026-10-21T04:15:36+00:00 mars btrfs-snapshot-manager[291392]: DELETE @data 20261019-040038Z /media/usb/@snapshots/@data/20261019-040038Z
+2026-10-21T04:15:36+00:00 mars btrfs-snapshot-manager[291392]: DELETE root 20261019-040038Z /media/usb/@snapshots/root/20261019-040038Z
+2026-10-21T04:15:36+00:00 mars btrfs-snapshot-manager[291392]: Deleted 1 complete timestamp sets
+2026-10-21T04:15:36+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+2026-10-21T04:15:36+00:00 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+2026-10-21T05:15:26+00:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+2026-10-21T05:15:26+00:00 mars btrfs-snapshot-manager[291466]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+2026-10-21T05:15:26+00:00 mars btrfs-snapshot-manager[291466]: REPLICATION-PROTECTED: ['20261021-030006Z']
+2026-10-21T05:15:26+00:00 mars btrfs-snapshot-manager[291466]: RETENTION sets: total=61 keep=60 sources=2
+2026-10-21T05:15:26+00:00 mars btrfs-snapshot-manager[291466]: DELETE @data 20261019-050002Z /media/usb/@snapshots/@data/20261019-050002Z
+2026-10-21T05:15:26+00:00 mars btrfs-snapshot-manager[291466]: DELETE root 20261019-050002Z /media/usb/@snapshots/root/20261019-050002Z
+2026-10-21T05:15:26+00:00 mars btrfs-snapshot-manager[291466]: Deleted 1 complete timestamp sets
+2026-10-21T05:15:26+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+2026-10-21T05:15:26+00:00 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+2026-10-21T06:15:01+00:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+2026-10-21T06:15:02+00:00 mars btrfs-snapshot-manager[291536]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+2026-10-21T06:15:02+00:00 mars btrfs-snapshot-manager[291536]: REPLICATION-PROTECTED: ['20261021-030006Z']
+2026-10-21T06:15:02+00:00 mars btrfs-snapshot-manager[291536]: RETENTION sets: total=61 keep=60 sources=2
+2026-10-21T06:15:02+00:00 mars btrfs-snapshot-manager[291536]: DELETE @data 20261019-060021Z /media/usb/@snapshots/@data/20261019-060021Z
+2026-10-21T06:15:02+00:00 mars btrfs-snapshot-manager[291536]: DELETE root 20261019-060021Z /media/usb/@snapshots/root/20261019-060021Z
+2026-10-21T06:15:02+00:00 mars btrfs-snapshot-manager[291536]: Deleted 1 complete timestamp sets
+2026-10-21T06:15:02+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+2026-10-21T06:15:02+00:00 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+2026-10-21T07:15:38+00:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+2026-10-21T07:15:38+00:00 mars btrfs-snapshot-manager[298951]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+2026-10-21T07:15:38+00:00 mars btrfs-snapshot-manager[298951]: REPLICATION-PROTECTED: ['20261021-030006Z']
+2026-10-21T07:15:38+00:00 mars btrfs-snapshot-manager[298951]: RETENTION sets: total=61 keep=60 sources=2
+2026-10-21T07:15:38+00:00 mars btrfs-snapshot-manager[298951]: DELETE @data 20261019-070038Z /media/usb/@snapshots/@data/20261019-070038Z
+2026-10-21T07:15:38+00:00 mars btrfs-snapshot-manager[298951]: DELETE root 20261019-070038Z /media/usb/@snapshots/root/20261019-070038Z
+2026-10-21T07:15:38+00:00 mars btrfs-snapshot-manager[298951]: Deleted 1 complete timestamp sets
+2026-10-21T07:15:39+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+2026-10-21T07:15:39+00:00 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+2026-10-21T08:15:06+00:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+2026-10-21T08:15:06+00:00 mars btrfs-snapshot-manager[299027]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+2026-10-21T08:15:06+00:00 mars btrfs-snapshot-manager[299027]: REPLICATION-PROTECTED: ['20261021-030006Z']
+2026-10-21T08:15:06+00:00 mars btrfs-snapshot-manager[299027]: RETENTION sets: total=61 keep=60 sources=2
+2026-10-21T08:15:06+00:00 mars btrfs-snapshot-manager[299027]: DELETE @data 20261019-080038Z /media/usb/@snapshots/@data/20261019-080038Z
+2026-10-21T08:15:06+00:00 mars btrfs-snapshot-manager[299027]: DELETE root 20261019-080038Z /media/usb/@snapshots/root/20261019-080038Z
+2026-10-21T08:15:06+00:00 mars btrfs-snapshot-manager[299027]: Deleted 1 complete timestamp sets
+2026-10-21T08:15:06+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+2026-10-21T08:15:06+00:00 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+2026-10-21T09:15:29+00:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+2026-10-21T09:15:29+00:00 mars btrfs-snapshot-manager[299414]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+2026-10-21T09:15:29+00:00 mars btrfs-snapshot-manager[299414]: REPLICATION-PROTECTED: ['20261021-030006Z']
+2026-10-21T09:15:29+00:00 mars btrfs-snapshot-manager[299414]: RETENTION sets: total=61 keep=60 sources=2
+2026-10-21T09:15:29+00:00 mars btrfs-snapshot-manager[299414]: DELETE @data 20261019-090008Z /media/usb/@snapshots/@data/20261019-090008Z
+2026-10-21T09:15:29+00:00 mars btrfs-snapshot-manager[299414]: DELETE root 20261019-090008Z /media/usb/@snapshots/root/20261019-090008Z
+2026-10-21T09:15:29+00:00 mars btrfs-snapshot-manager[299414]: Deleted 1 complete timestamp sets
+2026-10-21T09:15:29+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+2026-10-21T09:15:29+00:00 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+=== Legacy Snapper prune activity ===
+2026-10-20T15:41:49+00:00 mars systemd[1]: Starting btrfs-legacy-prune.service - Prune at most one legacy Snapper snapshot using combined Btrfs retention...
+2026-10-20T15:41:51+00:00 mars btrfs-snapshot-manager[256168]: LEGACY PRUNE mode=EXECUTE candidate_count=8 max_delete=1
+2026-10-20T15:41:54+00:00 mars btrfs-snapshot-manager[256168]: LEGACY PRUNE DELETE @data @data 19629 UUID:                         d8dd07a1-c5bb-fd46-8ca7-442add43653d Subvolume ID:                 20189
+2026-10-20T15:41:54+00:00 mars btrfs-snapshot-manager[256168]: LEGACY PRUNE completed config=@data id=19629
+2026-10-20T15:41:54+00:00 mars systemd[1]: btrfs-legacy-prune.service: Deactivated successfully.
+2026-10-20T15:41:54+00:00 mars systemd[1]: Finished btrfs-legacy-prune.service - Prune at most one legacy Snapper snapshot using combined Btrfs retention.
+2026-10-20T15:41:54+00:00 mars systemd[1]: btrfs-legacy-prune.service: Consumed 3.540s CPU time.
+2026-10-20T15:43:08+00:00 mars systemd[1]: Starting btrfs-legacy-prune.service - Prune at most one legacy Snapper snapshot using combined Btrfs retention...
+2026-10-20T15:43:10+00:00 mars btrfs-snapshot-manager[256472]: LEGACY PRUNE mode=EXECUTE candidate_count=7 max_delete=1
+2026-10-20T15:43:13+00:00 mars btrfs-snapshot-manager[256472]: LEGACY PRUNE DELETE @data @data 19677 UUID:                         42698393-7fbd-b74f-ae68-f06028fcda9c Subvolume ID:                 20237
+2026-10-20T15:43:13+00:00 mars btrfs-snapshot-manager[256472]: LEGACY PRUNE completed config=@data id=19677
+2026-10-20T15:43:13+00:00 mars systemd[1]: btrfs-legacy-prune.service: Deactivated successfully.
+2026-10-20T15:43:13+00:00 mars systemd[1]: Finished btrfs-legacy-prune.service - Prune at most one legacy Snapper snapshot using combined Btrfs retention.
+2026-10-20T15:43:13+00:00 mars systemd[1]: btrfs-legacy-prune.service: Consumed 3.275s CPU time.
+2026-10-21T08:20:38+00:00 mars systemd[1]: Starting btrfs-legacy-prune.service - Prune at most one legacy Snapper snapshot using combined Btrfs retention...
+2026-10-21T08:20:40+00:00 mars btrfs-snapshot-manager[299051]: LEGACY PRUNE mode=EXECUTE candidate_count=7 max_delete=1
+2026-10-21T08:20:42+00:00 mars btrfs-snapshot-manager[299051]: LEGACY PRUNE DELETE @data @data 19701 UUID:                         47533762-24ad-a745-840b-8edfb3d2e213 Subvolume ID:                 20261
+2026-10-21T08:20:42+00:00 mars btrfs-snapshot-manager[299051]: LEGACY PRUNE completed config=@data id=19701
+2026-10-21T08:20:43+00:00 mars systemd[1]: btrfs-legacy-prune.service: Deactivated successfully.
+2026-10-21T08:20:43+00:00 mars systemd[1]: Finished btrfs-legacy-prune.service - Prune at most one legacy Snapper snapshot using combined Btrfs retention.
+2026-10-21T08:20:43+00:00 mars systemd[1]: btrfs-legacy-prune.service: Consumed 3.395s CPU time.
+=== Snapshot timer states ===
+enabled
+enabled
+enabled
+=== Current pending deletions ===
+richard@mars:~$
