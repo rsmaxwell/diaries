@@ -130,3 +130,15 @@ The offline planner passed complete saved `backup` (29,571 qgroups) and `mars` (
 **Step 03 CLOSED by documented operator risk acceptance.** The source-backed production remediation and manual post-remediation incremental send/receive passed, removing 29,437 orphaned `backup` qgroups and leaving zero unmatched after the new receive. See `evidence/Step 03/STEP03-PRODUCTION-REMEDIATION-ACCEPTANCE.md` and the closure disposition in `IMPLEMENTATION-STEPS.md`.
 
 Recurrence prevention remains **unproven**. The operator intends to upgrade `backup` to Ubuntu 24.04 immediately after completion of 0039-DEF; that will be a separately gated change, with post-upgrade recurrence monitoring. No permanent automatic qgroup deletion is approved. Steps 4–8 and overall defect closure remain **OPEN** pending evidence/NA reconciliation and final change-control review.
+
+
+## 2026-10-22 accelerated closeout review
+
+The cross-step evidence matrix is at `evidence/STEPS04-07-EVIDENCE-RECONCILIATION.md`. Existing Step 2 Ansible checks/deployments/idempotency and Step 3 safety, remediation and incremental receive verification may satisfy Steps 4–7 without a second production operation. Operator acceptance and Step 8 are still required; the feature stays **IN PROGRESS**. Subsequent Ubuntu 24.04 upgrade of `backup` is a separate controlled change; its effect on new orphan accumulation remains to be measured.
+
+
+## 0039-DEF final closeout decision — 2026-10-22
+
+Steps 1–3 passed on accepted original evidence. Steps 4–7 have been accepted by cross-step evidence reuse; `evidence/STEPS04-07-EVIDENCE-RECONCILIATION.md` records exact sources, restrictions and no-new-test caveats. Final administrative closure requires applying this documentation package and moving **the complete defect directory** to `change-control/complete/` with all evidence intact. Do not relocate a copy or leave the original evidence directory behind.
+
+The production defect population (29,437 unmatched qgroups) was removed and incremental replication afterward passed with zero unmatched qgroups. Future recurrence remains possible and is accepted temporarily until a separately governed upgrade of `backup` to Ubuntu 24.04 followed by observation on both `backup` and `mars`. This closure does **not** claim kernel-level prevention, automatic cleanup, an additional restore, or a production action after the accepted Step 3 work.
