@@ -1,0 +1,12 @@
+=== Host and capture time ===
+backup
+2026-10-21T15:33:57+00:00
+=== Mount identity ===
+/ /dev/sda2 btrfs rw,relatime,space_cache=v2,subvolid=5,subvol=/
+=== Filesystem identity ===
+Label: none  uuid: b915f967-7cb4-4c14-b11b-f52209637a22
+	Total devices 1 FS bytes used 1.51TiB
+	devid    1 size 1.81TiB used 1.52TiB path /dev/sda2
+
+=== Quota rescan status ===
+no rescan operation in progress

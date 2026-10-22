@@ -1,0 +1,47 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ bash
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ set -euo pipefail
+
+cd /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+
+STEP="change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/evidence/Step 03"
+
+echo '=== Python syntax checks ==='
+python3 -m py_compile \
+  "$STEP/plan-qgroup-investigation.py" \
+  "$STEP/test-plan-qgroup-investigation.py"
+
+echo '=== Full adversarial regression ==='
+python3 "$STEP/test-plan-qgroup-investigation.py"
+
+echo '=== Git whitespace check ==='
+git diff --check
+
+echo '=== REGRESSION COMPLETE ==='
+=== Python syntax checks ===
+=== Full adversarial regression ===
+PASS: backup valid full-size baseline / no deletion authorization
+PASS: mars valid full-size baseline / no deletion authorization
+PASS: manifest-fingerprint / altered category => PLAN UNAVAILABLE: inventory validation failed: wrong category for 0/5
+PASS: assessment classification counts => PLAN UNAVAILABLE: assessment category counts mismatch
+PASS: removed protected snapshot IDs => PLAN UNAVAILABLE: invalid protected-ID attestation
+PASS: removed one protected snapshot ID => PLAN UNAVAILABLE: assessment category counts mismatch
+PASS: deletion authorized flag => PLAN UNAVAILABLE: unsafe or invalid assessment
+PASS: injected deletion command => PLAN UNAVAILABLE: unsafe or invalid assessment
+PASS: assessment fingerprint mismatch => PLAN UNAVAILABLE: assessment/manifest identity mismatch
+PASS: assessment sample tampering => PLAN UNAVAILABLE: assessment sample mismatch
+PASS: missing assessment counts => PLAN UNAVAILABLE: assessment category counts mismatch
+PASS: missing manifest => PLAN UNAVAILABLE: inventory validation failed: incomplete manifest sections
+PASS: invalid JSON => PLAN UNAVAILABLE: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+PASS: identity tampering => PLAN UNAVAILABLE: inventory validation failed: identity evidence lacks filesystem UUID
+PASS: 12 adversarial cases rejected
+PASS: original input evidence SHA256 unchanged
+=== ALL OFFLINE ADVERSARIAL REGRESSIONS PASSED ===
+=== Git whitespace check ===
+=== REGRESSION COMPLETE ===
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

@@ -1,0 +1,51 @@
+{
+  "assessment": "offline-observational-only",
+  "counts": {
+    "active-excluded": 131,
+    "active-protected-snapshot": 3,
+    "limited-excluded": 13962,
+    "unmatched-investigation-only": 15475
+  },
+  "deletion_authorized": false,
+  "deletion_commands": [],
+  "filesystem": "/",
+  "host": "backup",
+  "investigation_sample": [
+    "0/276",
+    "0/278",
+    "0/279",
+    "0/299",
+    "0/300",
+    "0/303",
+    "0/304",
+    "0/305",
+    "0/306",
+    "0/308",
+    "0/12265",
+    "0/13744",
+    "0/15265",
+    "0/16804",
+    "0/18319",
+    "0/19840",
+    "0/21334",
+    "0/24400",
+    "0/25620",
+    "0/25621"
+  ],
+  "limits": [
+    "Protected IDs supplied by operator; completeness unproven",
+    "Non-atomic historical inventory; not a live deletion preflight",
+    "Receiver receipts and holds not independently attested by this tool",
+    "No qgroup qualifies for deletion from this assessment"
+  ],
+  "protected_active_subvolume_ids": [
+    55715,
+    55790,
+    55805
+  ],
+  "qgroups": 29571,
+  "result": "PASS",
+  "schema": 1,
+  "source_fingerprint_sha256": "2e948ffb8d94cb72bd61e2f3549cb1f0ddf7686f5147cd352c13819fc2cd073c",
+  "uuid": "b915f967-7cb4-4c14-b11b-f52209637a22"
+}

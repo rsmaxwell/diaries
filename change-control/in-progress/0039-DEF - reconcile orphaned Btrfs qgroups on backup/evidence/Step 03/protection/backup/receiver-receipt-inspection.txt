@@ -1,0 +1,74 @@
+=== Host and capture time ===
+backup
+2026-10-21T13:15:05+00:00
+=== Receipt directory metadata ===
+/@data/mars-received/.replication-state owner=richard mode=700 size=652
+=== Receipt directory entries ===
+20261009-170001Z.json
+20261012-100003Z.json
+20261013-050016Z.json
+20261013-140006Z.json
+20261013-171228Z.json
+20261013-180016Z.json
+20261014-100031Z.json
+20261015-030004Z.json
+20261016-030037Z.json
+20261017-030007Z.json
+20261018-030006Z.json
+20261018-165453Z.json
+20261019-030038Z.json
+20261020-030026Z.json
+20261021-030006Z.json
+writer.lock
+=== Protected checkpoint receipts ===
+=== 20261013-171228Z ===
+{
+  "schema": 1,
+  "transport": "btrfs-incremental",
+  "snapshot": "20261013-171228Z",
+  "source_uuid": "340674cc-d02c-244e-b7ec-e3ea5a6b151f",
+  "received_uuid": "340674cc-d02c-244e-b7ec-e3ea5a6b151f",
+  "parent_snapshot": "20261013-140006Z",
+  "parent_source_uuid": "c0b81383-bdfc-224e-97b1-90ceee4d54f0",
+  "destination": "/@data/mars-received/@data/20261013-171228Z",
+  "source_filesystem_uuid": "72d1d8ea-900e-4fca-837f-1b1febec036c",
+  "receiver_filesystem_uuid": "b915f967-7cb4-4c14-b11b-f52209637a22",
+  "completed_at_utc": "2026-10-13T18:07:00.971347+00:00",
+  "read_only_verified": true,
+  "source_send_exit": 0,
+  "receiver_receive_exit": 0
+}
+=== 20261018-165453Z ===
+{
+  "schema": 1,
+  "transport": "btrfs-incremental",
+  "snapshot": "20261018-165453Z",
+  "source_uuid": "087c906a-0518-e34a-88f7-40a5b693c41a",
+  "received_uuid": "087c906a-0518-e34a-88f7-40a5b693c41a",
+  "parent_snapshot": "20261018-030006Z",
+  "parent_source_uuid": "f91b322a-4aa7-ad45-a766-d7a1e2eb15b9",
+  "destination": "/@data/mars-received/@data/20261018-165453Z",
+  "source_filesystem_uuid": "72d1d8ea-900e-4fca-837f-1b1febec036c",
+  "receiver_filesystem_uuid": "b915f967-7cb4-4c14-b11b-f52209637a22",
+  "completed_at_utc": "2026-10-18T16:55:36.185144+00:00",
+  "read_only_verified": true,
+  "source_send_exit": 0,
+  "receiver_receive_exit": 0
+}
+=== 20261021-030006Z ===
+{
+  "schema": 1,
+  "transport": "btrfs-incremental",
+  "snapshot": "20261021-030006Z",
+  "source_uuid": "c0ad8538-dc61-bc48-8922-6c37eaf1a902",
+  "received_uuid": "c0ad8538-dc61-bc48-8922-6c37eaf1a902",
+  "parent_snapshot": "20261020-030026Z",
+  "parent_source_uuid": "2239b0bd-b483-884e-8a14-30dcbb8d8392",
+  "destination": "/@data/mars-received/@data/20261021-030006Z",
+  "source_filesystem_uuid": "72d1d8ea-900e-4fca-837f-1b1febec036c",
+  "receiver_filesystem_uuid": "b915f967-7cb4-4c14-b11b-f52209637a22",
+  "completed_at_utc": "2026-10-21T03:32:02.616684+00:00",
+  "read_only_verified": true,
+  "source_send_exit": 0,
+  "receiver_receive_exit": 0
+}

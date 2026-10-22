@@ -1,0 +1,53 @@
+{
+  "assessment_sha256": "eea4871654d91eedc3ea44669ec5db5f33ce67ea3fd094d24a3f3e321c43c4cd",
+  "counts": {
+    "active-excluded": 142,
+    "active-protected-snapshot": 6,
+    "limited-excluded": 29,
+    "unmatched-investigation-only": 26
+  },
+  "deletion_authorized": false,
+  "deletion_commands": [],
+  "executable_actions": [],
+  "filesystem": "/media/usb",
+  "filesystem_uuid": "72d1d8ea-900e-4fca-837f-1b1febec036c",
+  "host": "mars",
+  "next_gate": "Independent live identity, receipts, holds and fingerprint revalidation; separate explicit approval required",
+  "protected_active_subvolume_ids": [
+    20638,
+    20639,
+    20883,
+    20884,
+    21001,
+    21002
+  ],
+  "purpose": "offline-investigation-plan",
+  "qgroup_count": 203,
+  "review_sample": [
+    "0/20875",
+    "0/20877",
+    "0/20879",
+    "0/20885",
+    "0/20887",
+    "0/20889",
+    "0/20891",
+    "0/20893",
+    "0/20895",
+    "0/20899",
+    "0/20901",
+    "0/20903",
+    "0/20905",
+    "0/20907",
+    "0/20909",
+    "0/20911",
+    "0/20913",
+    "0/20915",
+    "0/20917",
+    "0/20919"
+  ],
+  "review_sample_truncated": true,
+  "schema": 1,
+  "source_fingerprint_sha256": "2a1f626a81815b2a5707c60d7108bfa966c3061251d5068c7464cccfd96b7790",
+  "unmatched_unlimited_investigation_count": 26,
+  "warning": "Historical non-atomic evidence; NOT safe to execute on a filesystem"
+}

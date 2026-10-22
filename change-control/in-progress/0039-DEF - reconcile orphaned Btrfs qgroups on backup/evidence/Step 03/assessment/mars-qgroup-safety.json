@@ -1,0 +1,54 @@
+{
+  "assessment": "offline-observational-only",
+  "counts": {
+    "active-excluded": 140,
+    "active-protected-snapshot": 6,
+    "limited-excluded": 24,
+    "unmatched-investigation-only": 21
+  },
+  "deletion_authorized": false,
+  "deletion_commands": [],
+  "filesystem": "/media/usb",
+  "host": "mars",
+  "investigation_sample": [
+    "0/20875",
+    "0/20877",
+    "0/20879",
+    "0/20885",
+    "0/20887",
+    "0/20889",
+    "0/20891",
+    "0/20893",
+    "0/20895",
+    "0/20899",
+    "0/20901",
+    "0/20903",
+    "0/20905",
+    "0/20907",
+    "0/20909",
+    "0/20911",
+    "0/20913",
+    "0/20915",
+    "0/20917",
+    "0/20919"
+  ],
+  "limits": [
+    "Protected IDs supplied by operator; completeness unproven",
+    "Non-atomic historical inventory; not a live deletion preflight",
+    "Receiver receipts and holds not independently attested by this tool",
+    "No qgroup qualifies for deletion from this assessment"
+  ],
+  "protected_active_subvolume_ids": [
+    20638,
+    20639,
+    20883,
+    20884,
+    21001,
+    21002
+  ],
+  "qgroups": 191,
+  "result": "PASS",
+  "schema": 1,
+  "source_fingerprint_sha256": "84655523aaaf069a7f9501fe9c8e6bbc07997a8932dc4259757df153c9f1f9e3",
+  "uuid": "72d1d8ea-900e-4fca-837f-1b1febec036c"
+}

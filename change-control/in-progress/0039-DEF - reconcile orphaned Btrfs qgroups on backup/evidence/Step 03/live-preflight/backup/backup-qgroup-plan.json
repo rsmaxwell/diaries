@@ -1,0 +1,50 @@
+{
+  "assessment_sha256": "851f13d45bcdf94bdd2197fab37c0a8f1c9dcfb518fa69db565cf169e9b13340",
+  "counts": {
+    "active-excluded": 131,
+    "active-protected-snapshot": 3,
+    "limited-excluded": 13962,
+    "unmatched-investigation-only": 15475
+  },
+  "deletion_authorized": false,
+  "deletion_commands": [],
+  "executable_actions": [],
+  "filesystem": "/",
+  "filesystem_uuid": "b915f967-7cb4-4c14-b11b-f52209637a22",
+  "host": "backup",
+  "next_gate": "Independent live identity, receipts, holds and fingerprint revalidation; separate explicit approval required",
+  "protected_active_subvolume_ids": [
+    55715,
+    55790,
+    55805
+  ],
+  "purpose": "offline-investigation-plan",
+  "qgroup_count": 29571,
+  "review_sample": [
+    "0/276",
+    "0/278",
+    "0/279",
+    "0/299",
+    "0/300",
+    "0/303",
+    "0/304",
+    "0/305",
+    "0/306",
+    "0/308",
+    "0/12265",
+    "0/13744",
+    "0/15265",
+    "0/16804",
+    "0/18319",
+    "0/19840",
+    "0/21334",
+    "0/24400",
+    "0/25620",
+    "0/25621"
+  ],
+  "review_sample_truncated": true,
+  "schema": 1,
+  "source_fingerprint_sha256": "2e948ffb8d94cb72bd61e2f3549cb1f0ddf7686f5147cd352c13819fc2cd073c",
+  "unmatched_unlimited_investigation_count": 15475,
+  "warning": "Historical non-atomic evidence; NOT safe to execute on a filesystem"
+}

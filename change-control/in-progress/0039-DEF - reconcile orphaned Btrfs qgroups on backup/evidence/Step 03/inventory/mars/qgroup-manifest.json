@@ -1,0 +1,2949 @@
+{
+  "counts": {
+    "active": 146,
+    "limited-protected": 24,
+    "unmatched-candidate": 21
+  },
+  "deletion_authorized": false,
+  "filesystem": "/media/usb",
+  "fingerprint_sha256": "84655523aaaf069a7f9501fe9c8e6bbc07997a8932dc4259757df153c9f1f9e3",
+  "inspected_qgroups": {
+    "0/20919": {
+      "annotation": "<stale>",
+      "category": "unmatched-candidate",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20919",
+      "max_excl": "none",
+      "max_rfer": "none",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    "0/20920": {
+      "annotation": "<stale>",
+      "category": "limited-protected",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20920",
+      "max_excl": "none",
+      "max_rfer": "3.64TiB",
+      "parent": "-",
+      "rfer": "0.00B"
+    }
+  },
+  "manifest": {
+    "active_subvolumes": [
+      {
+        "id": 260,
+        "path": "@data"
+      },
+      {
+        "id": 262,
+        "path": "<FS_TREE>/@data/.snapshots"
+      },
+      {
+        "id": 263,
+        "path": "<FS_TREE>/@data/.snapshots/1/snapshot"
+      },
+      {
+        "id": 402,
+        "path": "<FS_TREE>/@data/.snapshots/test-1/snapshot"
+      },
+      {
+        "id": 5705,
+        "path": "<FS_TREE>/@data/.snapshots/5145/snapshot"
+      },
+      {
+        "id": 13705,
+        "path": "<FS_TREE>/@data/.snapshots/13145/snapshot"
+      },
+      {
+        "id": 14449,
+        "path": "<FS_TREE>/@data/.snapshots/13889/snapshot"
+      },
+      {
+        "id": 15121,
+        "path": "<FS_TREE>/@data/.snapshots/14561/snapshot"
+      },
+      {
+        "id": 15865,
+        "path": "<FS_TREE>/@data/.snapshots/15305/snapshot"
+      },
+      {
+        "id": 16585,
+        "path": "<FS_TREE>/@data/.snapshots/16025/snapshot"
+      },
+      {
+        "id": 17329,
+        "path": "<FS_TREE>/@data/.snapshots/16769/snapshot"
+      },
+      {
+        "id": 18049,
+        "path": "<FS_TREE>/@data/.snapshots/17489/snapshot"
+      },
+      {
+        "id": 18793,
+        "path": "<FS_TREE>/@data/.snapshots/18233/snapshot"
+      },
+      {
+        "id": 19517,
+        "path": "<FS_TREE>/@data/.snapshots/18957/snapshot"
+      },
+      {
+        "id": 20213,
+        "path": "<FS_TREE>/@data/.snapshots/19653/snapshot"
+      },
+      {
+        "id": 20285,
+        "path": "<FS_TREE>/@data/.snapshots/19725/snapshot"
+      },
+      {
+        "id": 20309,
+        "path": "<FS_TREE>/@data/.snapshots/19749/snapshot"
+      },
+      {
+        "id": 20333,
+        "path": "<FS_TREE>/@data/.snapshots/19773/snapshot"
+      },
+      {
+        "id": 20357,
+        "path": "<FS_TREE>/@data/.snapshots/19797/snapshot"
+      },
+      {
+        "id": 20381,
+        "path": "<FS_TREE>/@data/.snapshots/19821/snapshot"
+      },
+      {
+        "id": 20405,
+        "path": "<FS_TREE>/@data/.snapshots/19845/snapshot"
+      },
+      {
+        "id": 20429,
+        "path": "<FS_TREE>/@data/.snapshots/19869/snapshot"
+      },
+      {
+        "id": 20445,
+        "path": "<FS_TREE>/@data/.snapshots/19885/snapshot"
+      },
+      {
+        "id": 20446,
+        "path": "@snapshots"
+      },
+      {
+        "id": 20451,
+        "path": "<FS_TREE>/@data/.snapshots/19886/snapshot"
+      },
+      {
+        "id": 20464,
+        "path": "<FS_TREE>/@snapshots/root/20261009-230016Z"
+      },
+      {
+        "id": 20465,
+        "path": "<FS_TREE>/@snapshots/@data/20261009-230016Z"
+      },
+      {
+        "id": 20510,
+        "path": "<FS_TREE>/@snapshots/root/20261010-230004Z"
+      },
+      {
+        "id": 20511,
+        "path": "<FS_TREE>/@snapshots/@data/20261010-230004Z"
+      },
+      {
+        "id": 20556,
+        "path": "<FS_TREE>/@snapshots/root/20261011-230026Z"
+      },
+      {
+        "id": 20557,
+        "path": "<FS_TREE>/@snapshots/@data/20261011-230026Z"
+      },
+      {
+        "id": 20602,
+        "path": "<FS_TREE>/@snapshots/root/20261012-230026Z"
+      },
+      {
+        "id": 20603,
+        "path": "<FS_TREE>/@snapshots/@data/20261012-230026Z"
+      },
+      {
+        "id": 20638,
+        "path": "<FS_TREE>/@snapshots/root/20261013-171228Z"
+      },
+      {
+        "id": 20639,
+        "path": "<FS_TREE>/@snapshots/@data/20261013-171228Z"
+      },
+      {
+        "id": 20650,
+        "path": "<FS_TREE>/@snapshots/root/20261013-230026Z"
+      },
+      {
+        "id": 20651,
+        "path": "<FS_TREE>/@snapshots/@data/20261013-230026Z"
+      },
+      {
+        "id": 20698,
+        "path": "<FS_TREE>/@snapshots/root/20261014-230008Z"
+      },
+      {
+        "id": 20699,
+        "path": "<FS_TREE>/@snapshots/@data/20261014-230008Z"
+      },
+      {
+        "id": 20744,
+        "path": "<FS_TREE>/@snapshots/root/20261015-230003Z"
+      },
+      {
+        "id": 20745,
+        "path": "<FS_TREE>/@snapshots/@data/20261015-230003Z"
+      },
+      {
+        "id": 20799,
+        "path": "<FS_TREE>/@snapshots/root/20261016-230026Z"
+      },
+      {
+        "id": 20800,
+        "path": "<FS_TREE>/@snapshots/@data/20261016-230026Z"
+      },
+      {
+        "id": 20847,
+        "path": "<FS_TREE>/@snapshots/root/20261017-230035Z"
+      },
+      {
+        "id": 20848,
+        "path": "<FS_TREE>/@snapshots/@data/20261017-230035Z"
+      },
+      {
+        "id": 20883,
+        "path": "<FS_TREE>/@snapshots/root/20261018-165453Z"
+      },
+      {
+        "id": 20884,
+        "path": "<FS_TREE>/@snapshots/@data/20261018-165453Z"
+      },
+      {
+        "id": 20897,
+        "path": "<FS_TREE>/@snapshots/root/20261018-230008Z"
+      },
+      {
+        "id": 20898,
+        "path": "<FS_TREE>/@snapshots/@data/20261018-230008Z"
+      },
+      {
+        "id": 20923,
+        "path": "<FS_TREE>/@snapshots/root/20261019-120006Z"
+      },
+      {
+        "id": 20924,
+        "path": "<FS_TREE>/@snapshots/@data/20261019-120006Z"
+      },
+      {
+        "id": 20925,
+        "path": "<FS_TREE>/@snapshots/root/20261019-130006Z"
+      },
+      {
+        "id": 20926,
+        "path": "<FS_TREE>/@snapshots/@data/20261019-130006Z"
+      },
+      {
+        "id": 20927,
+        "path": "<FS_TREE>/@snapshots/root/20261019-140038Z"
+      },
+      {
+        "id": 20928,
+        "path": "<FS_TREE>/@snapshots/@data/20261019-140038Z"
+      },
+      {
+        "id": 20929,
+        "path": "<FS_TREE>/@snapshots/root/20261019-150001Z"
+      },
+      {
+        "id": 20930,
+        "path": "<FS_TREE>/@snapshots/@data/20261019-150001Z"
+      },
+      {
+        "id": 20931,
+        "path": "<FS_TREE>/@snapshots/root/20261019-160010Z"
+      },
+      {
+        "id": 20932,
+        "path": "<FS_TREE>/@snapshots/@data/20261019-160010Z"
+      },
+      {
+        "id": 20933,
+        "path": "<FS_TREE>/@snapshots/root/20261019-170016Z"
+      },
+      {
+        "id": 20934,
+        "path": "<FS_TREE>/@snapshots/@data/20261019-170016Z"
+      },
+      {
+        "id": 20935,
+        "path": "<FS_TREE>/@snapshots/root/20261019-180006Z"
+      },
+      {
+        "id": 20936,
+        "path": "<FS_TREE>/@snapshots/@data/20261019-180006Z"
+      },
+      {
+        "id": 20937,
+        "path": "<FS_TREE>/@snapshots/root/20261019-190007Z"
+      },
+      {
+        "id": 20938,
+        "path": "<FS_TREE>/@snapshots/@data/20261019-190007Z"
+      },
+      {
+        "id": 20939,
+        "path": "<FS_TREE>/@snapshots/root/20261019-200016Z"
+      },
+      {
+        "id": 20940,
+        "path": "<FS_TREE>/@snapshots/@data/20261019-200016Z"
+      },
+      {
+        "id": 20941,
+        "path": "<FS_TREE>/@snapshots/root/20261019-210024Z"
+      },
+      {
+        "id": 20942,
+        "path": "<FS_TREE>/@snapshots/@data/20261019-210024Z"
+      },
+      {
+        "id": 20943,
+        "path": "<FS_TREE>/@snapshots/root/20261019-220016Z"
+      },
+      {
+        "id": 20944,
+        "path": "<FS_TREE>/@snapshots/@data/20261019-220016Z"
+      },
+      {
+        "id": 20945,
+        "path": "<FS_TREE>/@snapshots/root/20261019-230026Z"
+      },
+      {
+        "id": 20946,
+        "path": "<FS_TREE>/@snapshots/@data/20261019-230026Z"
+      },
+      {
+        "id": 20947,
+        "path": "<FS_TREE>/@snapshots/root/20261020-000022Z"
+      },
+      {
+        "id": 20948,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-000022Z"
+      },
+      {
+        "id": 20949,
+        "path": "<FS_TREE>/@snapshots/root/20261020-010031Z"
+      },
+      {
+        "id": 20950,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-010031Z"
+      },
+      {
+        "id": 20951,
+        "path": "<FS_TREE>/@snapshots/root/20261020-020002Z"
+      },
+      {
+        "id": 20952,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-020002Z"
+      },
+      {
+        "id": 20953,
+        "path": "<FS_TREE>/@snapshots/root/20261020-030026Z"
+      },
+      {
+        "id": 20954,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-030026Z"
+      },
+      {
+        "id": 20955,
+        "path": "<FS_TREE>/@snapshots/root/20261020-040036Z"
+      },
+      {
+        "id": 20956,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-040036Z"
+      },
+      {
+        "id": 20957,
+        "path": "<FS_TREE>/@snapshots/root/20261020-050036Z"
+      },
+      {
+        "id": 20958,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-050036Z"
+      },
+      {
+        "id": 20959,
+        "path": "<FS_TREE>/@snapshots/root/20261020-060002Z"
+      },
+      {
+        "id": 20960,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-060002Z"
+      },
+      {
+        "id": 20961,
+        "path": "<FS_TREE>/@snapshots/root/20261020-070036Z"
+      },
+      {
+        "id": 20962,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-070036Z"
+      },
+      {
+        "id": 20963,
+        "path": "<FS_TREE>/@snapshots/root/20261020-080002Z"
+      },
+      {
+        "id": 20964,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-080002Z"
+      },
+      {
+        "id": 20965,
+        "path": "<FS_TREE>/@snapshots/root/20261020-090038Z"
+      },
+      {
+        "id": 20966,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-090038Z"
+      },
+      {
+        "id": 20967,
+        "path": "<FS_TREE>/@snapshots/root/20261020-100003Z"
+      },
+      {
+        "id": 20968,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-100003Z"
+      },
+      {
+        "id": 20969,
+        "path": "<FS_TREE>/@snapshots/root/20261020-110030Z"
+      },
+      {
+        "id": 20970,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-110030Z"
+      },
+      {
+        "id": 20971,
+        "path": "<FS_TREE>/@snapshots/root/20261020-120038Z"
+      },
+      {
+        "id": 20972,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-120038Z"
+      },
+      {
+        "id": 20973,
+        "path": "<FS_TREE>/@snapshots/root/20261020-130013Z"
+      },
+      {
+        "id": 20974,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-130013Z"
+      },
+      {
+        "id": 20975,
+        "path": "<FS_TREE>/@snapshots/root/20261020-140014Z"
+      },
+      {
+        "id": 20976,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-140014Z"
+      },
+      {
+        "id": 20977,
+        "path": "<FS_TREE>/@snapshots/root/20261020-150027Z"
+      },
+      {
+        "id": 20978,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-150027Z"
+      },
+      {
+        "id": 20979,
+        "path": "<FS_TREE>/@snapshots/root/20261020-160002Z"
+      },
+      {
+        "id": 20980,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-160002Z"
+      },
+      {
+        "id": 20981,
+        "path": "<FS_TREE>/@snapshots/root/20261020-170002Z"
+      },
+      {
+        "id": 20982,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-170002Z"
+      },
+      {
+        "id": 20983,
+        "path": "<FS_TREE>/@snapshots/root/20261020-180023Z"
+      },
+      {
+        "id": 20984,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-180023Z"
+      },
+      {
+        "id": 20985,
+        "path": "<FS_TREE>/@snapshots/root/20261020-190038Z"
+      },
+      {
+        "id": 20986,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-190038Z"
+      },
+      {
+        "id": 20987,
+        "path": "<FS_TREE>/@snapshots/root/20261020-200038Z"
+      },
+      {
+        "id": 20988,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-200038Z"
+      },
+      {
+        "id": 20989,
+        "path": "<FS_TREE>/@snapshots/root/20261020-210001Z"
+      },
+      {
+        "id": 20990,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-210001Z"
+      },
+      {
+        "id": 20991,
+        "path": "<FS_TREE>/@snapshots/root/20261020-220006Z"
+      },
+      {
+        "id": 20992,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-220006Z"
+      },
+      {
+        "id": 20993,
+        "path": "<FS_TREE>/@snapshots/root/20261020-230018Z"
+      },
+      {
+        "id": 20994,
+        "path": "<FS_TREE>/@snapshots/@data/20261020-230018Z"
+      },
+      {
+        "id": 20995,
+        "path": "<FS_TREE>/@snapshots/root/20261021-000006Z"
+      },
+      {
+        "id": 20996,
+        "path": "<FS_TREE>/@snapshots/@data/20261021-000006Z"
+      },
+      {
+        "id": 20997,
+        "path": "<FS_TREE>/@snapshots/root/20261021-010006Z"
+      },
+      {
+        "id": 20998,
+        "path": "<FS_TREE>/@snapshots/@data/20261021-010006Z"
+      },
+      {
+        "id": 20999,
+        "path": "<FS_TREE>/@snapshots/root/20261021-020015Z"
+      },
+      {
+        "id": 21000,
+        "path": "<FS_TREE>/@snapshots/@data/20261021-020015Z"
+      },
+      {
+        "id": 21001,
+        "path": "<FS_TREE>/@snapshots/root/20261021-030006Z"
+      },
+      {
+        "id": 21002,
+        "path": "<FS_TREE>/@snapshots/@data/20261021-030006Z"
+      },
+      {
+        "id": 21003,
+        "path": "<FS_TREE>/@snapshots/root/20261021-040016Z"
+      },
+      {
+        "id": 21004,
+        "path": "<FS_TREE>/@snapshots/@data/20261021-040016Z"
+      },
+      {
+        "id": 21005,
+        "path": "<FS_TREE>/@snapshots/root/20261021-050012Z"
+      },
+      {
+        "id": 21006,
+        "path": "<FS_TREE>/@snapshots/@data/20261021-050012Z"
+      },
+      {
+        "id": 21007,
+        "path": "<FS_TREE>/@snapshots/root/20261021-060025Z"
+      },
+      {
+        "id": 21008,
+        "path": "<FS_TREE>/@snapshots/@data/20261021-060025Z"
+      },
+      {
+        "id": 21009,
+        "path": "<FS_TREE>/@snapshots/root/20261021-070031Z"
+      },
+      {
+        "id": 21010,
+        "path": "<FS_TREE>/@snapshots/@data/20261021-070031Z"
+      },
+      {
+        "id": 21011,
+        "path": "<FS_TREE>/@snapshots/root/20261021-080009Z"
+      },
+      {
+        "id": 21012,
+        "path": "<FS_TREE>/@snapshots/@data/20261021-080009Z"
+      },
+      {
+        "id": 21013,
+        "path": "<FS_TREE>/@snapshots/root/20261021-090019Z"
+      },
+      {
+        "id": 21014,
+        "path": "<FS_TREE>/@snapshots/@data/20261021-090019Z"
+      },
+      {
+        "id": 21015,
+        "path": "<FS_TREE>/@snapshots/root/20261021-100038Z"
+      },
+      {
+        "id": 21016,
+        "path": "<FS_TREE>/@snapshots/@data/20261021-100038Z"
+      },
+      {
+        "id": 21017,
+        "path": "<FS_TREE>/@snapshots/root/20261021-110038Z"
+      },
+      {
+        "id": 21018,
+        "path": "<FS_TREE>/@snapshots/@data/20261021-110038Z"
+      }
+    ],
+    "pending_subvolumes": [],
+    "qgroups": [
+      {
+        "annotation": "<toplevel>",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/5",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@data",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/260",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@data/.snapshots",
+        "category": "active",
+        "child": "-",
+        "excl": "64.00KiB",
+        "id": "0/262",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "64.00KiB"
+      },
+      {
+        "annotation": "@data/.snapshots/1/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/263",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@data/.snapshots/test-1/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "69.71GiB",
+        "id": "0/402",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "266.69GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/5145/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "30.36GiB",
+        "id": "0/5705",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "276.50GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/13145/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "44.15MiB",
+        "id": "0/13705",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "310.21GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/13889/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "44.58MiB",
+        "id": "0/14449",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "310.22GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/14561/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "216.54MiB",
+        "id": "0/15121",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "310.25GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/15305/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "53.88MiB",
+        "id": "0/15865",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "310.38GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/16025/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "54.81MiB",
+        "id": "0/16585",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "310.68GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/16769/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "270.91MiB",
+        "id": "0/17329",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "310.70GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/17489/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "276.04MiB",
+        "id": "0/18049",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "310.71GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/18233/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "115.61MiB",
+        "id": "0/18793",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "310.93GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/18957/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "139.69MiB",
+        "id": "0/19517",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "321.36GiB"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20189",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "@data/.snapshots/19653/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "399.88MiB",
+        "id": "0/20213",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "323.51GiB"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20237",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20261",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "@data/.snapshots/19725/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "75.75MiB",
+        "id": "0/20285",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "323.38GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/19749/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "136.97MiB",
+        "id": "0/20309",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "323.64GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/19773/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "23.97MiB",
+        "id": "0/20333",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "323.79GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/19797/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "33.88MiB",
+        "id": "0/20357",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "323.79GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/19821/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "66.10MiB",
+        "id": "0/20381",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "324.06GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/19845/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "27.14MiB",
+        "id": "0/20405",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "324.25GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/19869/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "16.34MiB",
+        "id": "0/20429",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "324.71GiB"
+      },
+      {
+        "annotation": "@data/.snapshots/19885/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "144.00KiB",
+        "id": "0/20445",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.10GiB"
+      },
+      {
+        "annotation": "@snapshots",
+        "category": "active",
+        "child": "-",
+        "excl": "48.00KiB",
+        "id": "0/20446",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "48.00KiB"
+      },
+      {
+        "annotation": "@data/.snapshots/19886/snapshot",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20451",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.20GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261009-230016Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20464",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261009-230016Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20465",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.20GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261010-230004Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20510",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261010-230004Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.41MiB",
+        "id": "0/20511",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.20GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261011-230026Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20556",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261011-230026Z",
+        "category": "active",
+        "child": "-",
+        "excl": "9.16MiB",
+        "id": "0/20557",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.34GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261012-230026Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20602",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261012-230026Z",
+        "category": "active",
+        "child": "-",
+        "excl": "22.82MiB",
+        "id": "0/20603",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.34GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261013-171228Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20638",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261013-171228Z",
+        "category": "active",
+        "child": "-",
+        "excl": "272.00KiB",
+        "id": "0/20639",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.34GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261013-230026Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20650",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261013-230026Z",
+        "category": "active",
+        "child": "-",
+        "excl": "288.00KiB",
+        "id": "0/20651",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.34GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261014-230008Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20698",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261014-230008Z",
+        "category": "active",
+        "child": "-",
+        "excl": "24.20MiB",
+        "id": "0/20699",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.34GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261015-230003Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20744",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261015-230003Z",
+        "category": "active",
+        "child": "-",
+        "excl": "5.11MiB",
+        "id": "0/20745",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.44GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261016-230026Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20799",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261016-230026Z",
+        "category": "active",
+        "child": "-",
+        "excl": "12.30MiB",
+        "id": "0/20800",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261017-230035Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20847",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261017-230035Z",
+        "category": "active",
+        "child": "-",
+        "excl": "25.99MiB",
+        "id": "0/20848",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20875",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20876",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20877",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20878",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20879",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20880",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "@snapshots/root/20261018-165453Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20883",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261018-165453Z",
+        "category": "active",
+        "child": "-",
+        "excl": "2.56MiB",
+        "id": "0/20884",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20885",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20886",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20887",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20888",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20889",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20890",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20891",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20892",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20893",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20894",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20895",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20896",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "@snapshots/root/20261018-230008Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20897",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261018-230008Z",
+        "category": "active",
+        "child": "-",
+        "excl": "864.00KiB",
+        "id": "0/20898",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20899",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20900",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20901",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20902",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20903",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20904",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20905",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20906",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20907",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20908",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20909",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20910",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20911",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20912",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20913",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20914",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20915",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20916",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20917",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20918",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20919",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20920",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "unmatched-candidate",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20921",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "<stale>",
+        "category": "limited-protected",
+        "child": "-",
+        "excl": "0.00B",
+        "id": "0/20922",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "0.00B"
+      },
+      {
+        "annotation": "@snapshots/root/20261019-120006Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20923",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261019-120006Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20924",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261019-130006Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20925",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261019-130006Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20926",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261019-140038Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20927",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261019-140038Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20928",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261019-150001Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20929",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261019-150001Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20930",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261019-160010Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20931",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261019-160010Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20932",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261019-170016Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20933",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261019-170016Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20934",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261019-180006Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20935",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261019-180006Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20936",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261019-190007Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20937",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261019-190007Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20938",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261019-200016Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20939",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261019-200016Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20940",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261019-210024Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20941",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261019-210024Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20942",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261019-220016Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20943",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261019-220016Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20944",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261019-230026Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20945",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261019-230026Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20946",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-000022Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20947",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-000022Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20948",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-010031Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20949",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-010031Z",
+        "category": "active",
+        "child": "-",
+        "excl": "96.00KiB",
+        "id": "0/20950",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-020002Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20951",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-020002Z",
+        "category": "active",
+        "child": "-",
+        "excl": "96.00KiB",
+        "id": "0/20952",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-030026Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20953",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-030026Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20954",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-040036Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20955",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-040036Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20956",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-050036Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20957",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-050036Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20958",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-060002Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20959",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-060002Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20960",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-070036Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20961",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-070036Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20962",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-080002Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20963",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-080002Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20964",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-090038Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20965",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-090038Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20966",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-100003Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20967",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-100003Z",
+        "category": "active",
+        "child": "-",
+        "excl": "176.00KiB",
+        "id": "0/20968",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-110030Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20969",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-110030Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20970",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-120038Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20971",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-120038Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20972",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-130013Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20973",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-130013Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20974",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-140014Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20975",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-140014Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20976",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-150027Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20977",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-150027Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20978",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-160002Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20979",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-160002Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20980",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-170002Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20981",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-170002Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20982",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-180023Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20983",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-180023Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20984",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-190038Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20985",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-190038Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20986",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-200038Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20987",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-200038Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20988",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-210001Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20989",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-210001Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20990",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-220006Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20991",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-220006Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20992",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261020-230018Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20993",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261020-230018Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20994",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261021-000006Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20995",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261021-000006Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20996",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261021-010006Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20997",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261021-010006Z",
+        "category": "active",
+        "child": "-",
+        "excl": "112.00KiB",
+        "id": "0/20998",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261021-020015Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/20999",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261021-020015Z",
+        "category": "active",
+        "child": "-",
+        "excl": "80.00KiB",
+        "id": "0/21000",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261021-030006Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21001",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261021-030006Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21002",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261021-040016Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21003",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261021-040016Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21004",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261021-050012Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21005",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261021-050012Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21006",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261021-060025Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21007",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261021-060025Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21008",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261021-070031Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21009",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261021-070031Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21010",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261021-080009Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21011",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261021-080009Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21012",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261021-090019Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21013",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261021-090019Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21014",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261021-100038Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21015",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261021-100038Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21016",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      },
+      {
+        "annotation": "@snapshots/root/20261021-110038Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21017",
+        "max_excl": "none",
+        "max_rfer": "none",
+        "parent": "-",
+        "rfer": "16.00KiB"
+      },
+      {
+        "annotation": "@snapshots/@data/20261021-110038Z",
+        "category": "active",
+        "child": "-",
+        "excl": "16.00KiB",
+        "id": "0/21018",
+        "max_excl": "none",
+        "max_rfer": "3.64TiB",
+        "parent": "-",
+        "rfer": "325.63GiB"
+      }
+    ]
+  },
+  "pending_deletion_count": 0,
+  "qgroup_count": 191,
+  "read_only": true,
+  "review_sample": [
+    {
+      "annotation": "<stale>",
+      "category": "limited-protected",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20189",
+      "max_excl": "none",
+      "max_rfer": "3.64TiB",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "limited-protected",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20237",
+      "max_excl": "none",
+      "max_rfer": "3.64TiB",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "limited-protected",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20261",
+      "max_excl": "none",
+      "max_rfer": "3.64TiB",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "unmatched-candidate",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20875",
+      "max_excl": "none",
+      "max_rfer": "none",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "limited-protected",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20876",
+      "max_excl": "none",
+      "max_rfer": "3.64TiB",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "unmatched-candidate",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20877",
+      "max_excl": "none",
+      "max_rfer": "none",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "limited-protected",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20878",
+      "max_excl": "none",
+      "max_rfer": "3.64TiB",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "unmatched-candidate",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20879",
+      "max_excl": "none",
+      "max_rfer": "none",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "limited-protected",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20880",
+      "max_excl": "none",
+      "max_rfer": "3.64TiB",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "unmatched-candidate",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20885",
+      "max_excl": "none",
+      "max_rfer": "none",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "limited-protected",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20886",
+      "max_excl": "none",
+      "max_rfer": "3.64TiB",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "unmatched-candidate",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20887",
+      "max_excl": "none",
+      "max_rfer": "none",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "limited-protected",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20888",
+      "max_excl": "none",
+      "max_rfer": "3.64TiB",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "unmatched-candidate",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20889",
+      "max_excl": "none",
+      "max_rfer": "none",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "limited-protected",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20890",
+      "max_excl": "none",
+      "max_rfer": "3.64TiB",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "unmatched-candidate",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20891",
+      "max_excl": "none",
+      "max_rfer": "none",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "limited-protected",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20892",
+      "max_excl": "none",
+      "max_rfer": "3.64TiB",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "unmatched-candidate",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20893",
+      "max_excl": "none",
+      "max_rfer": "none",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "limited-protected",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20894",
+      "max_excl": "none",
+      "max_rfer": "3.64TiB",
+      "parent": "-",
+      "rfer": "0.00B"
+    },
+    {
+      "annotation": "<stale>",
+      "category": "unmatched-candidate",
+      "child": "-",
+      "excl": "0.00B",
+      "id": "0/20895",
+      "max_excl": "none",
+      "max_rfer": "none",
+      "parent": "-",
+      "rfer": "0.00B"
+    }
+  ],
+  "schema": 1,
+  "subvolume_count": 145
+}

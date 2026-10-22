@@ -1,0 +1,55 @@
+richard@mango:~/playbooks$ echo '=== Btrfs utilities ==='
+command -v btrfs
+btrfs --version
+command -v mkfs.btrfs
+command -v losetup
+
+echo '=== Available filesystem space ==='
+df -h /var/tmp
+
+echo '=== Loop-device support ==='
+ls -l /dev/loop-control /dev/loop* 2>/dev/null | head -n 20
+
+echo '=== Existing loop devices ==='
+sudo losetup --list
+
+echo '=== Kernel and operating system ==='
+uname -r
+lsb_release -ds
+=== Btrfs utilities ===
+/usr/bin/btrfs
+btrfs-progs v6.6.3
+/usr/sbin/mkfs.btrfs
+/usr/sbin/losetup
+=== Available filesystem space ===
+Filesystem                         Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv   61G   11G   48G  18% /
+=== Loop-device support ===
+brw-rw---- 1 root disk  7,   0 Oct 15 10:41 /dev/loop0
+brw-rw---- 1 root disk  7,   1 Oct  2 20:50 /dev/loop1
+brw-rw---- 1 root disk  7,  10 Oct 15 10:16 /dev/loop10
+brw-rw---- 1 root disk  7,   2 Oct  2 20:50 /dev/loop2
+brw-rw---- 1 root disk  7,   3 Oct  2 20:50 /dev/loop3
+brw-rw---- 1 root disk  7,   4 Oct  2 20:50 /dev/loop4
+brw-rw---- 1 root disk  7,   5 Oct  2 20:50 /dev/loop5
+brw-rw---- 1 root disk  7,   6 Oct  2 20:50 /dev/loop6
+brw-rw---- 1 root disk  7,   7 Oct  2 20:50 /dev/loop7
+brw-rw---- 1 root disk  7,   8 Oct  4 15:47 /dev/loop8
+brw-rw---- 1 root disk  7,   9 Oct 15 10:22 /dev/loop9
+crw-rw---- 1 root disk 10, 237 Oct  2 20:50 /dev/loop-control
+crw-rw---- 1 root disk 10, 237 Oct  2 20:50 /dev/loop-control
+=== Existing loop devices ===
+NAME       SIZELIMIT OFFSET AUTOCLEAR RO BACK-FILE                             DIO LOG-SEC
+/dev/loop1         0      0         1  1 /var/lib/snapd/snaps/core20_2866.snap   0     512
+/dev/loop8         0      0         1  1 /var/lib/snapd/snaps/core20_2922.snap   0     512
+/dev/loop6         0      0         1  1 /var/lib/snapd/snaps/snapd_27738.snap   0     512
+/dev/loop4         0      0         1  1 /var/lib/snapd/snaps/lxd_40575.snap     0     512
+/dev/loop2         0      0         1  1 /var/lib/snapd/snaps/core22_2437.snap   0     512
+/dev/loop7         0      0         1  1 /var/lib/snapd/snaps/snapd_28254.snap   0     512
+/dev/loop5         0      0         1  1 /var/lib/snapd/snaps/lxd_40911.snap     0     512
+/dev/loop3         0      0         1  1 /var/lib/snapd/snaps/core22_2955.snap   0     512
+=== Kernel and operating system ===
+6.8.0-142-generic
+No LSB modules are available.
+Ubuntu 24.04.4 LTS
+richard@mango:~/playbooks$

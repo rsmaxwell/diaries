@@ -1,0 +1,105 @@
+richard@mango:~$ set -euo pipefail
+
+MOUNT=/mnt/diaries-qgroup-reproduction
+IMAGE=/var/tmp/diaries-qgroup-reproduction/filesystem.img
+EXPECTED_UUID=8346c9fd-6dbb-45b6-94dc-e8b4728e2757
+
+echo '=== Gate B: Verify disposable filesystem identity ==='
+
+test -f "$IMAGE"
+
+LOOP=$(sudo losetup -j "$IMAGE" | cut -d: -f1)
+test -n "$LOOP"
+test "$(findmnt -rn -o SOURCE --target "$MOUNT")" = "$LOOP"
+test "$(findmnt -rn -o FSTYPE --target "$MOUNT")" = btrfs
+
+UUID=$(sudo btrfs filesystem show "$MOUNT" |
+  sed -n 's/.*uuid: \([^ ]*\).*/\1/p' | head -n 1)
+
+test "$UUID" = "$EXPECTED_UUID"
+
+echo '=== Verify exact active subvolume IDs ==='
+
+SUBVOLUMES=$(sudo btrfs subvolume list -a "$MOUNT")
+
+printf '%s\n' "$SUBVOLUMES"
+
+echo "$SUBVOLUMES" | grep -Eq '^ID 256 .* path source-a$'
+echo "$SUBVOLUMES" | grep -Eq '^ID 258 .* path source-b$'
+
+if echo "$SUBVOLUMES" | grep -Eq '^ID (257|259) '; then
+    echo 'ABORT: A candidate ID belongs to a subvolume'
+    exit 1
+fi
+
+echo '=== Verify qgroups and limits ==='
+
+QGROUPS=$(sudo btrfs qgroup show -pcre "$MOUNT")
+
+printf '%s\n' "$QGROUPS"
+
+echo "$QGROUPS" |
+  grep -Eq '^0/257[[:space:]]+0\.00B[[:space:]]+0\.00B[[:space:]]+none[[:space:]]+none[[:space:]]+-[[:space:]]+-[[:space:]]+<stale>$'
+
+echo "$QGROUPS" |
+  grep -Eq '^0/259[[:space:]]+0\.00B[[:space:]]+0\.00B[[:space:]]+1\.00TiB[[:space:]]+none[[:space:]]+-[[:space:]]+-[[:space:]]+<stale>$'
+
+echo '=== Verify snapshots absent and no pending deletions ==='
+
+test ! -e "$MOUNT/snapshot-a"
+test ! -e "$MOUNT/snapshot-b"
+test -z "$(sudo btrfs subvolume list -d "$MOUNT")"
+
+echo '=== Destroy ONLY stale qgroup 0/257 ==='
+
+sudo btrfs qgroup destroy 0/257 "$MOUNT"
+
+echo '=== Verify post-destruction state ==='
+
+AFTER=$(sudo btrfs qgroup show -pcre "$MOUNT")
+
+printf '%s\n' "$AFTER"
+
+if echo "$AFTER" | grep -Eq '^0/257[[:space:]]'; then
+    echo 'FAIL: qgroup 0/257 still exists'
+    exit 1
+fi
+
+echo "$AFTER" |
+  grep -Eq '^0/259[[:space:]]+0\.00B[[:space:]]+0\.00B[[:space:]]+1\.00TiB[[:space:]]+none[[:space:]]+-[[:space:]]+-[[:space:]]+<stale>$'
+
+echo "$AFTER" | grep -Eq '^0/256[[:space:]]'
+echo "$AFTER" | grep -Eq '^0/258[[:space:]]'
+echo "$AFTER" | grep -Eq '^0/5[[:space:]]'
+
+echo '=== Check pending deletions and quota rescan ==='
+
+test -z "$(sudo btrfs subvolume list -d "$MOUNT")"
+sudo btrfs quota rescan -s "$MOUNT"
+
+echo '=== GATE B COMPLETE ==='
+=== Gate B: Verify disposable filesystem identity ===
+=== Verify exact active subvolume IDs ===
+ID 256 gen 11 top level 5 path source-a
+ID 258 gen 13 top level 5 path source-b
+=== Verify qgroups and limits ===
+Qgroupid    Referenced    Exclusive  Max referenced  Max exclusive Parent   Child   Path
+--------    ----------    ---------  --------------  ------------- ------   -----   ----
+0/5           16.00KiB     16.00KiB            none           none -        -       <toplevel>
+0/256         16.00KiB     16.00KiB            none           none -        -       source-a
+0/257            0.00B        0.00B            none           none -        -       <stale>
+0/258         16.00KiB     16.00KiB            none           none -        -       source-b
+0/259            0.00B        0.00B         1.00TiB           none -        -       <stale>
+=== Verify snapshots absent and no pending deletions ===
+=== Destroy ONLY stale qgroup 0/257 ===
+=== Verify post-destruction state ===
+Qgroupid    Referenced    Exclusive  Max referenced  Max exclusive Parent   Child   Path
+--------    ----------    ---------  --------------  ------------- ------   -----   ----
+0/5           16.00KiB     16.00KiB            none           none -        -       <toplevel>
+0/256         16.00KiB     16.00KiB            none           none -        -       source-a
+0/258         16.00KiB     16.00KiB            none           none -        -       source-b
+0/259            0.00B        0.00B         1.00TiB           none -        -       <stale>
+=== Check pending deletions and quota rescan ===
+no rescan operation in progress
+=== GATE B COMPLETE ===
+richard@mango:~$

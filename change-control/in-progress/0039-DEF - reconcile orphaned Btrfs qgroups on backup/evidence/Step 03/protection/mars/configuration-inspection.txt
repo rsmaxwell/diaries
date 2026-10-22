@@ -1,0 +1,10 @@
+=== Host ===
+mars
+2026-10-21T12:56:56+00:00
+=== Installed snapshot-manager configuration ===
+/etc/btrfs-snapshot-manager.json
+=== Protection file locations and metadata ===
+ROOT=/media/usb/@snapshots
+drwxr-xr-x 1 root root 152 Oct 21 03:32 /media/usb/@snapshots
+/media/usb/@snapshots/.replication-protection.json owner=root mode=600 size=103
+/media/usb/@snapshots/.checkpoint-holds.json owner=root mode=600 size=520

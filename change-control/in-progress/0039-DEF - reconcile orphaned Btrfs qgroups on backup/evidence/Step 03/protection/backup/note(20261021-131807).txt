@@ -1,0 +1,10 @@
+richard@backup:~$ echo '=== Historical incremental parents on backup ==='
+
+sudo btrfs subvolume list -u -q -R / |
+  grep -E 'mars-received/@data/202610(13-140006|18-030006|20-030026)Z' ||
+  echo 'No matching historical parent snapshots found'
+=== Historical incremental parents on backup ===
+ID 55708 gen 533292 top level 275 parent_uuid 8b8e0a7e-36ae-b64b-b208-030210272582 received_uuid c0b81383-bdfc-224e-97b1-90ceee4d54f0 uuid 34866d78-c093-1f46-9a16-59af147dda6c path @data/mars-received/@data/20261013-140006Z
+ID 55789 gen 546478 top level 275 parent_uuid c5ea992f-fccf-5947-a1be-d9fb9223f85a received_uuid f91b322a-4aa7-ad45-a766-d7a1e2eb15b9 uuid 36dc19d2-985a-5048-b871-d09877563c07 path @data/mars-received/@data/20261018-030006Z
+ID 55792 gen 552922 top level 275 parent_uuid 2f6609b3-240c-8e41-a5b0-cebadefa36ed received_uuid 2239b0bd-b483-884e-8a14-30dcbb8d8392 uuid 09b30932-a08a-894b-8728-6ba6ec72a7f1 path @data/mars-received/@data/20261020-030026Z
+richard@backup:~$

@@ -1,0 +1,10 @@
+=== Host ===
+backup
+2026-10-21T12:57:05+00:00
+=== Installed snapshot-manager configuration ===
+/etc/btrfs-snapshot-manager.json
+=== Protection file locations and metadata ===
+ROOT=/@data/mars-received
+drwxr-xr-x 1 root root 46 Oct 11 11:32 /@data/mars-received
+ROOT=/@snapshots
+drwxr-xr-x 1 root root 18 Oct  9 21:51 /@snapshots

@@ -1,0 +1,24 @@
+=== Host and capture time ===
+backup
+2026-10-21T12:10:32+00:00
+=== Btrfs version ===
+btrfs-progs v5.16.2
+=== Filesystem identity ===
+Label: none  uuid: b915f967-7cb4-4c14-b11b-f52209637a22
+	Total devices 1 FS bytes used 1.51TiB
+	devid    1 size 1.81TiB used 1.52TiB path /dev/sda2
+
+=== Mount identity ===
+TARGET SOURCE    FSTYPE OPTIONS
+/      /dev/sda2 btrfs  rw,relatime,space_cache=v2,subvolid=5,subvol=/
+=== Quota rescan status ===
+no rescan operation in progress
+=== Qgroup sample ===
+qgroupid         rfer         excl     max_rfer     max_excl parent  child 
+--------         ----         ----     --------     -------- ------  ----- 
+0/5          10.14GiB    364.92MiB         none         none ---     ---  
+0/275       325.20GiB    592.00KiB      1.00TiB         none ---     ---  
+0/276           0.00B        0.00B         none         none ---     ---  
+0/278           0.00B        0.00B         none         none ---     ---  
+0/279           0.00B        0.00B         none         none ---     ---  
+0/299           0.00B        0.00B         none         none ---     ---  

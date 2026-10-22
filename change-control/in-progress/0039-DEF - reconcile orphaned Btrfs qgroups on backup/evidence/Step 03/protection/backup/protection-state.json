@@ -1,0 +1,23 @@
+{
+  "checkpoint_holds": {
+    "path": "/@snapshots/.checkpoint-holds.json",
+    "required": false
+  },
+  "checkpoint_state": null,
+  "replication_protection": {
+    "path": "/@snapshots/.replication-protection.json",
+    "required": false
+  },
+  "replication_state": null,
+  "snapshot_root": "/@snapshots",
+  "sources": [
+    {
+      "name": "root",
+      "path": "/"
+    },
+    {
+      "name": "@data",
+      "path": "/@data"
+    }
+  ]
+}

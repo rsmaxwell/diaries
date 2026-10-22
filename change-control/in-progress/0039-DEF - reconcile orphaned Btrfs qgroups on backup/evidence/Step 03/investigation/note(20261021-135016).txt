@@ -1,0 +1,92 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ python3 - "$STEP/inventory/backup/qgroup-manifest.json" \
+  "$STEP/investigation/recent-qgroup-details.txt" <<'PY'
+import json
+import pathlib
+import sys
+
+manifest = pathlib.Path(sys.argv[1])
+output = pathlib.Path(sys.argv[2])
+
+data = json.loads(manifest.read_text())
+
+rows = sorted(
+    (
+        row for row in data["manifest"]["qgroups"]
+        if row["category"] in ("unmatched-candidate", "limited-protected")
+    ),
+    key=lambda row: int(row["id"].split("/")[1])
+)
+
+lines = [
+    f'{"Qgroup":<10} {"Category":<22} '
+    f'{"Referenced":>12} {"Exclusive":>12} '
+    f'{"Max referenced":>16} {"Max exclusive":>16}'
+]
+
+for row in rows[-40:]:
+    lines.append(
+        f'{row["id"]:<10} '
+        f'{row["category"]:<22} '
+        f'{row["rfer"]:>12} '
+        f'{row["excl"]:>12} '
+        f'{row["max_rfer"]:>16} '
+        f'{row["max_excl"]:>16}'
+    )
+
+report = "\n".join(lines) + "\n"
+output.write_text(report)
+print(report)
+print(f"Evidence saved: {output}")
+PY
+
+sha256sum "$STEP/investigation/recent-qgroup-details.txt"
+git diff --check
+Qgroup     Category                 Referenced    Exclusive   Max referenced    Max exclusive
+0/55701    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55702    unmatched-candidate           0.00B        0.00B             none             none
+0/55703    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55704    unmatched-candidate           0.00B        0.00B             none             none
+0/55705    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55706    unmatched-candidate           0.00B        0.00B             none             none
+0/55709    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55710    unmatched-candidate           0.00B        0.00B             none             none
+0/55711    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55712    unmatched-candidate           0.00B        0.00B             none             none
+0/55713    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55714    unmatched-candidate           0.00B        0.00B             none             none
+0/55717    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55718    unmatched-candidate           0.00B        0.00B             none             none
+0/55719    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55720    unmatched-candidate           0.00B        0.00B             none             none
+0/55721    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55722    unmatched-candidate           0.00B        0.00B             none             none
+0/55723    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55724    unmatched-candidate           0.00B        0.00B             none             none
+0/55727    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55728    unmatched-candidate           0.00B        0.00B             none             none
+0/55729    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55730    unmatched-candidate           0.00B        0.00B             none             none
+0/55731    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55732    unmatched-candidate           0.00B        0.00B             none             none
+0/55733    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55734    unmatched-candidate           0.00B        0.00B             none             none
+0/55735    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55736    unmatched-candidate           0.00B        0.00B             none             none
+0/55737    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55738    unmatched-candidate           0.00B        0.00B             none             none
+0/55739    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55740    unmatched-candidate           0.00B        0.00B             none             none
+0/55741    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55742    unmatched-candidate           0.00B        0.00B             none             none
+0/55743    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55744    unmatched-candidate           0.00B        0.00B             none             none
+0/55745    limited-protected             0.00B        0.00B          1.00TiB             none
+0/55746    unmatched-candidate           0.00B        0.00B             none             none
+
+Evidence saved: change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/evidence/Step 03/investigation/recent-qgroup-details.txt
+e01cfdbbdee935fb358ef91508c86d90bdde5d8e2f0cc31857266538179ffc38 *change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/evidence/Step 03/investigation/recent-qgroup-details.txt
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

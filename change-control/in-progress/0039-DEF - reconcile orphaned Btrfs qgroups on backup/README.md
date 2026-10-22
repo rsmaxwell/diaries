@@ -4,7 +4,11 @@
 Defect
 
 ## Status
-In progress — Steps 1 and 2 CLOSED on 2026-10-21; Step 3 safety/remediation design IN PROGRESS. **No qgroup remediation or OS upgrade authorised.**
+In progress — Steps 1–2 CLOSED; Step 3 production remediation and post-repair replication acceptance PASSED 2026-10-22. Steps 4–8 require remaining gate reconciliation; defect NOT CLOSED. No OS upgrade authorised.
+
+## 2026-10-22 current operational disposition (supersedes earlier no-mutation planning statements)
+
+The operator subsequently explicitly authorised controlled qgroup destruction; the production operations have now been completed and independently reconciled. Historical sections below describing "no deletion authorised" were accurate when written but are **not the current status**. See `evidence/Step 03/STEP03-PRODUCTION-REMEDIATION-ACCEPTANCE.md` for observed counts, interrupted-batch reconciliation, journals and successful post-cleanup mars→backup receipt/lineage verification. This does not authorise new destructive work, filesystem upgrades or changes to retention and schedules. Root-cause recurrence/prevention and broader Steps 4–8 acceptance remain open.
 
 ## Priority
 High — operational storage-accounting risk; no demonstrated replication failure or filesystem corruption.
@@ -81,3 +85,48 @@ Not completed.
 **CLOSED (diagnosis and diagnostic deployment acceptance).** Evidence: `evidence/Step 02/STEP02-CLOSURE.md` and original operator logs. At 10:15:09 UTC, naturally scheduled native prune on `mars` deleted subvolumes `20919` and `20920`, both subsequently listed as `<stale>` qgroups; stale count rose **41→43**. Legacy Snapper IDs `20189`, `20237`, `20261` had already been correlated. On `backup`, the repaired parser recognises the 5.16.2 lowercase heading, reports **29,571** qgroups without false `unexpected_output`, and the three local snapshot timers remain disabled. Both controlled Playbooks deployments (one installed executable changed on each host) and subsequent `changed=0` Ansible checks passed. **No OS upgrade or quota cleanup was performed.**
 
 This closes the *diagnostic* gate, not the whole defect. The 29,437 unmatched level-0 qgroups are not an approved deletion set; `qgroups_stale=0` on old `backup` utilities reflects missing explicit markers, not health. Step 3 develops a version-independent inventory and safe remediation/recovery design before any destructive approval.
+
+## Step 03 interim acceptance update — 2026-10-21
+
+Read-only inventories and full operator-captured JSON manifests for `mars` and `backup` have passed isolated source tests, live output compatibility, count/ID uniqueness, classification and filesystem-identity verification. The evidence, exact summary figures, capture fingerprints and SHA256 values are indexed at `evidence/Step 03/STEP03-EVIDENCE-INDEX.md`. All evidence is held beneath the defect directory, not in a separate `mango` evidence tree.
+
+**Step 03 remains IN PROGRESS:** no remediation has been authorised; permanent validator/fingerprint verification, replication/hold reconciliation, recurrence assessment and independent operator mutation gate remain open. The documentation ZIP does not contain the four large/small local inventory/identity captures already present in the operator's Windows checkout.
+
+## Step 03 protection verification — 2026-10-21
+
+Permanent offline validation passed for both full manifests; installed protection state was inspected, source/received `@data` UUIDs for three protected checkpoints matched, and all six protected `mars` snapshots plus three received `backup` snapshots were verified `ro=true`. The two original read-only property logs are archived at `evidence/Step 03/protection/{mars,backup}/`, with findings and checksums in `STEP03-EVIDENCE-INDEX.md`. Off-site replication intentionally sends only `@data`. **Step 03 remains IN PROGRESS** pending receipt/parent-chain review, recurrence analysis, and separately approved qgroup-specific remediation design. No mutation authorised.
+
+## Step 03 receiver receipt and parent reconciliation (2026-10-21)
+
+**Accepted observationally:** three protected `@data` checkpoints have receiver receipts with matching source and received UUIDs, filesystem identities and successful transfers; all three historic incremental parents are still present on `backup` with matching `received_uuid`. Two older parents have been pruned on `mars`, consistent with historical receipt lineage. The active `20261021-030006Z` parent remains pinned and accepted. Details and original logs: `evidence/Step 03/STEP03-RECEIVER-PARENT-RECONCILIATION.md`. **Step 03 remains IN PROGRESS; no qgroup removal authorised.**
+
+## 2026-10-21 — offline assessment and historical patterns (Step 03 open)
+
+Both actual saved manifests passed the fail-closed offline safety assessor: `mars` 191 total (140 active-excluded, 6 protected, 24 limited, 21 unmatched investigation-only) and `backup` 29,571 total (131 active-excluded, 3 protected, 13,962 limited, 15,475 unmatched investigation-only). Source-fingerprint and SHA256 verification passed. No deletion commands were generated or authorised.
+
+Read-only historical analysis found `backup` has 29,437 unmatched qgroups over IDs 276–55746, concentrated nearly continuously from ~27000 onward, with limited and unlimited records interleaved; near the end, odd limited/even unlimited IDs alternate. This *suggests* a repeated historical pair workflow but proves neither source nor eligibility. Current snapshot-manager pruning logs exact subvolume IDs before deletion and does not explicitly reconcile qgroups; its second deletion call is creation rollback. Native receiver failed-transfer destinations are left for inspection. Causality is unresolved.
+
+See `evidence/Step 03/STEP03-OFFLINE-ASSESSMENT-AND-HISTORICAL-PATTERN.md` for exact sources, original logs and checksums. Both locally saved assessment JSON files remain in `evidence/Step 03/assessment/` and are not overwritten. **Step 03 IN PROGRESS; 0039-DEF OPEN; no production mutation authorised.**
+
+## 2026-10-21 — Snapper-pair linkage and disposable stale-qgroup reproduction (Step 03 OPEN)
+
+Seven surviving `backup` Snapper `@data`/`root` snapshot pairs have adjacent subvolume IDs, and the validated manifest shows `@data` at 1.00TiB max referenced versus unlimited `root` for all seven. Historical cleanup ran for both configurations. The 2026-10-21 `backup` baseline confirms no pending deletions and idle quota rescan. This strongly supports, but does not exhaustively prove, historical Snapper association of the 29,437 unmatched qgroups.
+
+On an isolated 512 MiB loopback Btrfs filesystem on `mango` (UUID `8346c9fd-6dbb-45b6-94dc-e8b4728e2757`), successful synchronised deletion left **both** unlimited qgroup `0/257` and 1 TiB-limited qgroup `0/259` `<stale>`. A later read-only check showed 0 B usage for both while the 1 TiB limit remained. These results do not establish backup's exact Btrfs mechanism or safety of destroying any qgroup. Original logs and hashes, limitations and next acceptance gates are in `evidence/Step 03/STEP03-STALE-QGROUP-REPRODUCTION.md`. The disposable filesystem remains intact. **Step 03 / 0039-DEF IN PROGRESS; no production mutation authorised.**
+
+## 2026-10-21 — disposable qgroup reconciliation Gates A–D (Step 03 OPEN)
+
+On the identity-verified 512 MiB `mango` loopback Btrfs filesystem (UUID `8346c9fd-6dbb-45b6-94dc-e8b4728e2757`), the four guarded rehearsal gates **passed**. Gate A recorded live IDs and limits; Gate B destroyed only stale unlimited `0/257`; Gate C destroyed only stale 1 TiB-limited `0/259`; Gate D verified the exact three original active qgroup rows and the two active subvolumes remained, no deleted snapshot reappeared, no pending deletions/rescan, and read-only stale selection returned zero. See `evidence/Step 03/STEP03-RECONCILIATION-GATES-A-D.md` and original logs in `evidence/Step 03/reconciliation/mango/`. The separate SHA256 manifest uses defect-root-relative paths. This supports **disposable removal feasibility only**, not any production candidate eligibility or production remediation authorisation. Gates A–D accepted on observed outputs; preservation checksum verification in local checkout remains pending. **Step 03 and 0039-DEF stay IN PROGRESS**; do not dismantle test image yet.
+
+## 2026-10-21 — offline investigation planner adversarial regression accepted (Step 03 OPEN)
+
+The offline planner passed complete saved `backup` (29,571 qgroups) and `mars` (191 qgroups) baselines, five command-line negative tests, and **12 adversarial evidence-tampering regressions**. The first regression attempt exposed an unhandled manifest-validator exception; the subsequent targeted fix was verified by controlled `PLAN UNAVAILABLE:` errors for all 12 cases. Python compilation, source-evidence SHA256 unchanged, and `git diff --check` passed. Original successful terminal log, defect-root-relative SHA256 manifest, individual rejection cases and acceptance limits: `evidence/Step 03/STEP03-PLANNER-REGRESSION-ACCEPTANCE.md` and `evidence/Step 03/planner-regression/note(20261021-151658).txt`.
+
+**Offline planner adversarial gate ACCEPTED; Step 03 remains IN PROGRESS.** Live protection, receipt/hold and fingerprint revalidation and any production deletion authorisation remain outstanding. This assessment does not approve production mutation. Evidence installation and checksum verification in the user's local repository are pending.
+
+
+## Accelerated Step 03 acceptance — 2026-10-22
+
+**Step 03 CLOSED by documented operator risk acceptance.** The source-backed production remediation and manual post-remediation incremental send/receive passed, removing 29,437 orphaned `backup` qgroups and leaving zero unmatched after the new receive. See `evidence/Step 03/STEP03-PRODUCTION-REMEDIATION-ACCEPTANCE.md` and the closure disposition in `IMPLEMENTATION-STEPS.md`.
+
+Recurrence prevention remains **unproven**. The operator intends to upgrade `backup` to Ubuntu 24.04 immediately after completion of 0039-DEF; that will be a separately gated change, with post-upgrade recurrence monitoring. No permanent automatic qgroup deletion is approved. Steps 4–8 and overall defect closure remain **OPEN** pending evidence/NA reconciliation and final change-control review.

@@ -1,0 +1,12 @@
+=== Host and capture time ===
+mars
+2026-10-21T17:05:23+00:00
+=== Mount identity ===
+/media/usb /dev/sdb1 btrfs rw,relatime,space_cache=v2,subvolid=5,subvol=/
+=== Filesystem identity ===
+Label: none  uuid: 72d1d8ea-900e-4fca-837f-1b1febec036c
+	Total devices 1 FS bytes used 479.54GiB
+	devid    1 size 3.64TiB used 486.02GiB path /dev/sdb1
+
+=== Quota rescan status ===
+no rescan operation in progress

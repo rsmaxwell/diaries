@@ -1,0 +1,76 @@
+richard@mango:~/playbooks$ set -euo pipefail
+
+WORK=/var/tmp/diaries-qgroup-reproduction
+MOUNT=/mnt/diaries-qgroup-reproduction
+IMAGE="$WORK/filesystem.img"
+
+echo '=== Recheck disposable paths ==='
+
+test ! -e "$WORK"
+test ! -e "$MOUNT"
+
+echo '=== Create disposable backing file ==='
+
+sudo mkdir -- "$WORK"
+sudo truncate -s 512M "$IMAGE"
+
+echo '=== Allocate loop device ==='
+
+LOOP=$(sudo losetup --find --show "$IMAGE")
+echo "Loop device: $LOOP"
+
+echo '=== Format disposable Btrfs filesystem ==='
+
+sudo mkfs.btrfs -f -L diaries-qgroup-test "$LOOP"
+
+echo '=== Create mountpoint and mount ==='
+
+sudo mkdir -- "$MOUNT"
+echo '=== Disposable filesystem ready ==='E,OPTIONS
+=== Recheck disposable paths ===
+=== Create disposable backing file ===
+=== Allocate loop device ===
+Loop device: /dev/loop0
+=== Format disposable Btrfs filesystem ===
+btrfs-progs v6.6.3
+See https://btrfs.readthedocs.io for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+NOTE: several default settings have changed in version 5.15, please make sure
+      this does not affect your deployments:
+      - DUP for metadata (-m dup)
+      - enabled no-holes (-O no-holes)
+      - enabled free-space-tree (-R free-space-tree)
+
+Label:              diaries-qgroup-test
+UUID:               8346c9fd-6dbb-45b6-94dc-e8b4728e2757
+Node size:          16384
+Sector size:        4096
+Filesystem size:    512.00MiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         DUP              32.00MiB
+  System:           DUP               8.00MiB
+SSD detected:       no
+Zoned device:       no
+Incompat features:  extref, skinny-metadata, no-holes, free-space-tree
+Runtime features:   free-space-tree
+Checksum:           crc32c
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+
+=== Create mountpoint and mount ===
+=== Verify mount identity ===
+TARGET                           SOURCE     FSTYPE OPTIONS
+/mnt/diaries-qgroup-reproduction /dev/loop0 btrfs  rw,relatime,discard=async,space_cache=v2,subvolid=5,subvol=/
+=== Verify filesystem identity ===
+Label: 'diaries-qgroup-test'  uuid: 8346c9fd-6dbb-45b6-94dc-e8b4728e2757
+        Total devices 1 FS bytes used 144.00KiB
+        devid    1 size 512.00MiB used 88.00MiB path /dev/loop0
+
+=== Verify quota status ===
+ERROR: can't list qgroups: quotas not enabled
+=== Disposable filesystem ready ===
+richard@mango:~/playbooks$
