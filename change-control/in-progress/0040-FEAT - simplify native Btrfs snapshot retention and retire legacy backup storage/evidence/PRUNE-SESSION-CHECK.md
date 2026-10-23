@@ -1,0 +1,5 @@
+# 0040-FEAT — sender-held pruning session check
+
+Implements a **non-destructive** interactive SSH challenge-response on the existing source push and receiver writer locks. The sender reasserts the existing durable pruning pin using the root endpoint before responding; the receiver checks the matching timestamp, source UUID and random challenge while retaining its writer lock. A broken connection or mismatched identity fails closed. Receiver deletion remains unexposed and no sudoers change is needed.
+
+This protocol is a coordination foundation, **not a cryptographic attestation** against a compromised sender account and **not a complete deletion lease**. The resulting response never authorizes pruning. Before opening deletion, the future executor must retain the session for every candidate, independently recalculate eligibility, preserve specified historical checkpoints, and prove durable post-crash reconciliation against disposable Btrfs subvolumes. No production prune activation is authorized.

@@ -1,6 +1,6 @@
 # 0040-FEAT — Simplify native Btrfs snapshot retention and retire legacy backup storage
 
-**Status: OPEN — planning only.** Created 23 October 2026. No production changes, deletion approvals or step closures are implied.
+**Status: IN PROGRESS — Steps 1 and 2 CLOSED; Step 3 OPEN.** Created 23 October 2026. Step 1 was read-only and no production change or irreversible deletion is authorised.
 
 ## Classification
 
@@ -16,8 +16,14 @@ Use **the same source-controlled `btrfs-snapshot-manager` implementation on `mar
 - Retain `/@data/mars-received/.replication-state/` including receipts and `writer.lock` (and other required receiver state).
 - Never treat a received snapshot as a mutable local snapshot or casually alter its Received UUID/read-only state.
 - Retire, after verification and explicit destructive gate: `/@data/backup`, `/@data/.snapshots`, `/@snapshots/@data`, `/@snapshots/root`.
-- Investigate and explicitly decide the disposition of `/.snapshots`, APT-generated root Snapper pre/post snapshots, Snapper configs/packages/hooks, and unused `/@snapshots` parents. Do **not** silently equate OS snapshots with replicated data.
+- Retire `/.snapshots`, APT-generated root Snapper pre/post snapshots, Snapper configs/packages/hooks and obsolete `/@snapshots` trees on `backup` after controlled safety and deletion gates. Root OS snapshots are not equivalent to received backup datasets; the operator explicitly accepted the loss of legacy-only rollback points.
 - Preserve verified datasets, including `backup/pluto/diaries-backup`, within retained received snapshots. `datasetRelativePath` and `sourceIdentity` metadata describe the embedded Diaries dataset, not the overall multi-host snapshot.
+
+## Confirmed scope extension — mars root snapshots (23 October 2026)
+
+Read-only inspection established that `/media/usb/@snapshots/root/20261023-070038Z` contains only two empty nested-subvolume placeholders (`@data` and `@snapshots`), is read-only, and references/exclusively occupies 16 KiB. The live Btrfs root contains only these two nested subvolumes. The operator approved retiring the **mars root snapshot population**, while preserving all necessary `@data` snapshots and replication protection. This is an explicit extension of 0040-FEAT, not permission to delete anything during Step 1.
+
+The desired steady state is **one `@data` snapshot population per host**: source snapshots under `/media/usb/@snapshots/@data/<timestamp>` on `mars`; accepted received snapshots under `/@data/mars-received/@data/<timestamp>` on `backup`. The same source-controlled manager and retention selector must handle both through configuration. Remove the paired-root/`@data` complete-set assumption, stop root snapshot creation **only after migration acceptance**, safely retire existing `mars` root snapshots under a separately approved destructive gate, and reconcile holds/replication safety. Root OS Snapper history on `backup` was also explicitly approved for retirement in Step 2.
 
 ## Scope
 
@@ -29,7 +35,6 @@ Out of scope unless separately approved: rebuilding/resending the full backup ba
 
 - `DESIGN.md` — architecture, invariants, decision points.
 - `IMPLEMENTATION-STEPS.md` — sequential acceptance gates.
-- `WORKSPACE-POLICY.md` — hygiene and evidence placement.
 - `PROMOTION-MANIFEST.md` — permanent changes and rollback evidence.
 - `tools/` — temporary capture wrappers or experimental utilities.
 - `tests/` — feature-local regressions and fixtures.
@@ -43,4 +48,4 @@ Permanent reusable code belongs in the Playbooks repository **only after review/
 
 One manageable stage at a time. Use **Cygwin** for ZIP application and local orchestration, SSH terminals on **mars** and **backup** for inspection, and **mango** for Ansible with `--vault-password-file ~/.vault_pass.txt`. Review `--check --diff`, then explicitly approve changes, deploy, verify and prove idempotency. Record results and exact source revisions. Close the feature only after all acceptance gates, then move its whole directory to `change-control/complete/`.
 
-**Next action: Step 1 — read-only baseline and deletion-dependency inventory.**
+**Next action: Step 3 — design the shared `@data`-only snapshot manager and configuration contract; see `reports/STEP03-DESIGN-START.md`.**
