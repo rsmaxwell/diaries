@@ -1,0 +1,104 @@
+richard@mango:~/playbooks$     cd /home/richard/playbooks
+    python3 roles/btrfs-replication/tests/verify-0040-step12-parent-boundary.py
+    python3 -m py_compile roles/btrfs-replication/files/btrfs-native-push-receiver.py
+    git diff --check
+    git diff -- roles/btrfs-replication/files/btrfs-native-push-receiver.py
+    git status --short
+PASS: parent not newest; parent and all newer snapshots retained
+PASS: unretained older snapshots remain eligible as advisory candidates
+PASS: oldest and newest parent boundaries
+PASS: missing parent, unknown keep, duplicate/unsorted/invalid identities fail closed
+LIMIT: pure selection tests; no live source pin, locks, receipt verification or deletion
+diff --git a/roles/btrfs-replication/files/btrfs-native-push-receiver.py b/roles/btrfs-replication/files/btrfs-native-push-receiver.py
+index 2733511..790caac 100644
+--- a/roles/btrfs-replication/files/btrfs-native-push-receiver.py
++++ b/roles/btrfs-replication/files/btrfs-native-push-receiver.py
+@@ -110,6 +110,31 @@ def check_protected_parent(stamp, source_uuid):
+
+
+
++# FUNCTION protected_retention_candidates: Enforce the replication-parent boundary on
++# advisory candidate selection, after validating the received inventory.
++def protected_retention_candidates(entries, base_keep, protected_stamp):
++    """Retain the parent and all newer snapshots, independent of bucket policy.
++
++    The caller must already have verified all snapshot receipts and the parent UUID.
++    This helper has no Btrfs or filesystem side effects and authorises no pruning.
++    """
++    require(isinstance(protected_stamp, str) and STAMP.fullmatch(protected_stamp),
++            'Invalid protected-parent timestamp')
++    names = [name for name, _, _ in entries]
++    require(all(isinstance(name, str) and STAMP.fullmatch(name) for name in names),
++            'Invalid receiver snapshot timestamp')
++    require(len(names) == len(set(names)) and names == sorted(names, reverse=True),
++            'Unsorted or duplicate received snapshot inventory')
++    require(protected_stamp in names, 'Protected parent missing from received inventory')
++    require(set(base_keep).issubset(set(names)), 'Retention keep set references unknown snapshots')
++    keep = set(base_keep)
++    keep.update(name for name in names if name >= protected_stamp)
++    candidates = [name for name in names if name not in keep]
++    require(all(name < protected_stamp for name in candidates),
++            'Receiver candidate is not older than protected common parent')
++    return keep, candidates
++
++
+ # FUNCTION protected_retention_plan: Obtain retention classifications while ensuring the
+ # designated parent cannot be selected for pruning. Inputs: stamp, source_uuid.
+ def protected_retention_plan(stamp, source_uuid):
+@@ -161,11 +186,8 @@ def protected_retention_plan(stamp, source_uuid):
+     # checks.
+     for name, _, _ in entries:
+         require(receipt(name) is not None, 'Unverified received snapshot: ' + name)
+-    keep = manager.retention_keep_set(entries, policy, datetime.now(timezone.utc))
+-    if entries:
+-        keep.add(entries[0][0])
+-    keep.add(stamp)
+-    candidates = [name for name, _, _ in entries if name not in keep]
++    base_keep = manager.retention_keep_set(entries, policy, datetime.now(timezone.utc))
++    keep, candidates = protected_retention_candidates(entries, base_keep, stamp)
+     return {'snapshot': stamp, 'source_uuid': source_uuid,
+             'receiver_verified_under_lock': checked['receiver_verified_under_lock'],
+             'retained': len(keep), 'total': len(entries), 'candidates': candidates,
+ M ROLE-RENAME-APPLY.md
+RM native-btrfs.yaml -> btrfs-replication.yaml
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/defaults/main.yaml
+ M roles/btrfs-replication/files/btrfs-native-push-receiver.py
+D  roles/btrfs-replication/files/create_snapper_config.py
+D  roles/btrfs-replication/files/create_snapper_template.py
+ M roles/btrfs-replication/tasks/main.yaml
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/local-backup/README.md
+ M roles/local-backup/tasks/main.yaml
+ M roles/remote-backup/README.md
+ M roles/remote-backup/defaults/main.yaml
+D  roles/remote-backup/files/create_snapper_config.py
+D  roles/remote-backup/files/create_snapper_template.py
+ M roles/remote-backup/tasks/main.yaml
+ M roles/snapshots/README.md
+ M roles/snapshots/defaults/main.yaml
+ M roles/snapshots/files/btrfs-snapshot-manager.py
+D  roles/snapshots/files/create_snapper_config.py
+D  roles/snapshots/files/create_snapper_template.py
+ M roles/snapshots/tasks/main.yaml
+D  roles/snapshots/tasks/retire-legacy-snapper-timers.yaml
+D  roles/snapshots/templates/btrfs-legacy-prune.service.j2
+D  roles/snapshots/templates/btrfs-legacy-prune.timer.j2
+ M roles/snapshots/templates/btrfs-snapshot-manager.json.j2
+ M roles/snapshots/tests/verify-0040-step04-migration.py
+ M roles/snapshots/tests/verify-0040-step05-adversarial.py
+ M roles/snapshots/tests/verify-btrfs-snapshot-manager.py
+D  roles/snapshots/tests/verify-legacy-prune-preview.py
+D  roles/snapshots/tests/verify-local-backup-legacy-unit-deploy.py
+D  roles/snapshots/tests/verify-snapper-retirement-entrypoint.py
+D  roles/snapshots/tests/verify-snapper-retirement.py
+ M roles/snapshots/tests/verify-snapshot-launcher-host-context.py
+D  roles/snapshots/tests/verify-unattended-legacy-prune.py
+D  snapper-retirement.yaml
+?? roles/btrfs-replication/tests/verify-0040-step12-parent-boundary.py
+?? roles/btrfs-replication/tests/verify-replication-protection-idempotency.py
+?? roles/snapshots/tests/0040-step11/
+?? roles/snapshots/tests/verify-0040-per-source-flags.py
+?? roles/snapshots/tests/verify-0040-prune-source-selection.py
+?? roles/snapshots/tests/verify-0040-source-flags-template.py
+richard@mango:~/playbooks$

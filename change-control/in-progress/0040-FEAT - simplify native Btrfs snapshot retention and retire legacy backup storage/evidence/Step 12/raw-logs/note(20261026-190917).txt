@@ -1,0 +1,98 @@
+richard@mango:~$ set -euo pipefail
+
+cd /home/richard/playbooks
+
+echo '=== Git revision and working tree ==='
+git branch --show-current
+git rev-parse HEAD
+git status --short
+
+echo
+echo '=== Receiver regression baseline ==='
+
+tests=roles/btrfs-replication/tests
+
+for test in \
+  verify-prune-approval-contract.py \
+  verify-receiver-approval-consumption.py \
+  verify-receiver-approved-lock-binding.py \
+  verify-receiver-recovery-states.py \
+  verify-installed-receiver-transaction-boundary.py
+do
+  echo
+  echo "=== $test ==="
+  python3 "$tests/$test"
+done
+
+echo
+echo 'PASS: Step 12 receiver regression baseline'
+=== Git revision and working tree ===
+main
+a8f857c3b4f2ff57dd83d58bbbe0a99150797625
+ M ROLE-RENAME-APPLY.md
+RM native-btrfs.yaml -> btrfs-replication.yaml
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/defaults/main.yaml
+D  roles/btrfs-replication/files/create_snapper_config.py
+D  roles/btrfs-replication/files/create_snapper_template.py
+ M roles/btrfs-replication/tasks/main.yaml
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/local-backup/README.md
+ M roles/local-backup/tasks/main.yaml
+ M roles/remote-backup/README.md
+ M roles/remote-backup/defaults/main.yaml
+D  roles/remote-backup/files/create_snapper_config.py
+D  roles/remote-backup/files/create_snapper_template.py
+ M roles/remote-backup/tasks/main.yaml
+ M roles/snapshots/README.md
+ M roles/snapshots/defaults/main.yaml
+ M roles/snapshots/files/btrfs-snapshot-manager.py
+D  roles/snapshots/files/create_snapper_config.py
+D  roles/snapshots/files/create_snapper_template.py
+ M roles/snapshots/tasks/main.yaml
+D  roles/snapshots/tasks/retire-legacy-snapper-timers.yaml
+D  roles/snapshots/templates/btrfs-legacy-prune.service.j2
+D  roles/snapshots/templates/btrfs-legacy-prune.timer.j2
+ M roles/snapshots/templates/btrfs-snapshot-manager.json.j2
+ M roles/snapshots/tests/verify-0040-step04-migration.py
+ M roles/snapshots/tests/verify-0040-step05-adversarial.py
+ M roles/snapshots/tests/verify-btrfs-snapshot-manager.py
+D  roles/snapshots/tests/verify-legacy-prune-preview.py
+D  roles/snapshots/tests/verify-local-backup-legacy-unit-deploy.py
+D  roles/snapshots/tests/verify-snapper-retirement-entrypoint.py
+D  roles/snapshots/tests/verify-snapper-retirement.py
+ M roles/snapshots/tests/verify-snapshot-launcher-host-context.py
+D  roles/snapshots/tests/verify-unattended-legacy-prune.py
+D  snapper-retirement.yaml
+?? roles/btrfs-replication/tests/verify-replication-protection-idempotency.py
+?? roles/snapshots/tests/0040-step11/
+?? roles/snapshots/tests/verify-0040-per-source-flags.py
+?? roles/snapshots/tests/verify-0040-prune-source-selection.py
+?? roles/snapshots/tests/verify-0040-source-flags-template.py
+
+=== Receiver regression baseline ===
+
+=== verify-prune-approval-contract.py ===
+PASS: approval identity, bounded expiry, ownership, permissions, symlink rejection
+
+=== verify-receiver-approval-consumption.py ===
+PASS: one-time durable marker, 8 competing attempts, replay and interruption fail closed; no deletion
+
+=== verify-receiver-approved-lock-binding.py ===
+PASS: unprivileged approval rejected; no reservation or deletion
+
+=== verify-receiver-recovery-states.py ===
+PASS: before_delete no repair/deletion; fixture unchanged
+PASS: after_delete_receipt no repair/deletion; fixture unchanged
+PASS: after_receipt_removal no repair/deletion; fixture unchanged
+PASS: inconsistent no repair/deletion; fixture unchanged
+PASS: clean no repair/deletion; fixture unchanged
+PASS: corrupt_journal no repair/deletion; fixture unchanged
+PASS: receipt_uuid_mismatch no repair/deletion; fixture unchanged
+PASS: journal_path_mismatch no repair/deletion; fixture unchanged
+PASS: journal_symlink no repair/deletion; fixture unchanged
+PASS: receiver recovery classifications and fail-closed checks; no Btrfs changes
+
+=== verify-installed-receiver-transaction-boundary.py ===
+FAIL: AssertionError: installed manager unavailable or unsafe
+richard@mango:~$

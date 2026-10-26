@@ -1,0 +1,18 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== Installed receiver transaction boundary ==='
+
+if ssh backup 'sudo python3 -' \
+  < roles/btrfs-replication/tests/verify-installed-receiver-transaction-boundary.py
+then
+    echo 'PASS: installed receiver transaction boundary'
+else
+    rc=$?
+    echo "FAIL: installed receiver transaction boundary (exit $rc)"
+fi
+=== Installed receiver transaction boundary ===
+PASS: installed receiver-manager rejects invalid transaction before callbacks
+PASS: manager/writer locks distinct; pruning disabled; holds required; pending journal absent
+LIMIT: no live source lock, received fixture, approval consumption, or deletion tested
+PASS: installed receiver transaction boundary
+richard@mango:~/playbooks$
