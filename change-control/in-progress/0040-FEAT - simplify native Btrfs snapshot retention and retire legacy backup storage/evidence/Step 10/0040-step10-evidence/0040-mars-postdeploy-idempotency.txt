@@ -1,0 +1,136 @@
+
+PLAY [local_backup] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [mars]
+
+TASK [local-backup : Get normal user account information] **********************
+ok: [mars]
+
+TASK [local-backup : Set normal user home directory] ***************************
+ok: [mars]
+
+TASK [local-backup : Validate 0034 unattended backup scheduling controls] ******
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [Setup Btrfs snapshot support with optional verified-Diaries barrier] *****
+included: snapshots for mars
+
+TASK [snapshots : snapshots | Refuse generic management of native receiver hosts] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Validate activation and Diaries integration gates] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Install native Btrfs snapshot prerequisites] *****
+ok: [mars]
+
+TASK [snapshots | Ensure managed data subvolume exists] ************************
+included: btrfs for mars
+
+TASK [snapshots : snapshots | Resolve managed snapshot root] *******************
+ok: [mars]
+
+TASK [snapshots : snapshots | Inspect managed snapshot root] *******************
+ok: [mars]
+
+TASK [snapshots : snapshots | Verify existing snapshot root is a Btrfs subvolume] ***
+skipping: [mars]
+
+TASK [snapshots : snapshots | Refuse a non-subvolume snapshot root] ************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Create managed snapshot-root subvolume] **********
+skipping: [mars]
+
+TASK [snapshots : snapshots | Create per-source timestamp directories] *********
+ok: [mars] => (item={'name': 'root', 'path': '/media/usb'})
+ok: [mars] => (item={'name': '@data', 'path': '/media/usb/@data'})
+
+TASK [snapshots : snapshots | Install snapshot manager] ************************
+ok: [mars]
+
+TASK [snapshots : snapshots | Install receiver stale-qgroup maintenance executable] ***
+skipping: [mars]
+
+TASK [snapshots : snapshots | Install receiver stale-qgroup maintenance units] ***
+skipping: [mars] => (item=btrfs-clear-stale-qgroups.service) 
+skipping: [mars] => (item=btrfs-clear-stale-qgroups.timer) 
+skipping: [mars]
+
+TASK [snapshots : snapshots | Install Diaries backup-history tool] *************
+ok: [mars]
+
+TASK [snapshots : snapshots | Install Btrfs extent-sharing acceptance tool] ****
+ok: [mars]
+
+TASK [snapshots : snapshots | Create shared schema-2 verifier directory] *******
+ok: [mars]
+
+TASK [snapshots : snapshots | Install independent schema-2 verifier for history checks] ***
+ok: [mars]
+
+TASK [snapshots : snapshots | Initialise checkpoint hold state without overwriting existing holds] ***
+ok: [mars]
+
+TASK [snapshots : snapshots | Install snapshot manager configuration] **********
+ok: [mars]
+
+TASK [snapshots : snapshots | Install systemd units without activating them] ***
+ok: [mars] => (item=btrfs-snapshot-create.service)
+ok: [mars] => (item=btrfs-snapshot-create.timer)
+ok: [mars] => (item=btrfs-snapshot-prune.service)
+ok: [mars] => (item=btrfs-snapshot-prune.timer)
+
+TASK [snapshots : snapshots | Flush systemd unit changes before preflight] *****
+
+TASK [snapshots : snapshots | Preflight native snapshot manager before changing schedulers] ***
+skipping: [mars]
+
+TASK [snapshots : snapshots | Show native snapshot-manager preflight] **********
+ok: [mars] => {
+    "btrfs_snapshot_manager_status.stdout_lines": []
+}
+
+TASK [snapshots : snapshots | Enable native snapshot creation timer after explicit acceptance] ***
+ok: [mars]
+
+TASK [snapshots : snapshots | Enable native snapshot pruning timer after explicit acceptance] ***
+ok: [mars]
+
+TASK [snapshots : snapshots | Inspect receiver stale-qgroup timer installation] ***
+skipping: [mars]
+
+TASK [snapshots : snapshots | Explicitly activate or deactivate receiver qgroup maintenance] ***
+skipping: [mars]
+
+PLAY [remote_backup] ***********************************************************
+skipping: no hosts matched
+
+PLAY RECAP *********************************************************************
+mars                       : ok=24   changed=0    unreachable=0    failed=0    skipped=7    rescued=0    ignored=0   
+

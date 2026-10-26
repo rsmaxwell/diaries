@@ -1,0 +1,56 @@
+        f"yearly:{config.retention.yearly},minimum_age_minutes:{config.retention.minimum_age_minutes}"
+    )
+    print(f"complete_timestamp_sets={len(complete)};incomplete_timestamp_sets={len(incomplete)}")
+    for source in config.sources:
+        print(f"source={source.name}:{source.source};managed_snapshots={len(list_managed(config, source))}")
+    if config.verification.required:
+        state = read_verified_diaries(config, strict=False)
+        if state and "error" not in state:
+            print(
+                "diaries_verification=valid;"
+                f"logicalDataset={state['logicalDataset']};backupId={state['backupId']};"
+                f"marker={state['marker']}"
+            )
+        else:
+            print(f"diaries_verification=not-ready;detail={(state or {}).get('error', 'unknown')}")
+    else:
+        print("diaries_verification=disabled")
+
+
+def with_lock(path: Path, *, shared: bool = False, nonblocking: bool = True,
+              require_existing: bool = False):
+    if not require_existing:
+        path.parent.mkdir(parents=True, exist_ok=True)
+    flags_open = os.O_RDWR | os.O_NOFOLLOW | os.O_CLOEXEC
+    if not require_existing:
+        flags_open |= os.O_CREAT
+    fd = os.open(path, flags_open, 0o600)
+    handle = os.fdopen(fd, "r+")
+    if require_existing:
+        details = os.fstat(fd)
+        if not stat.S_ISREG(details.st_mode) or details.st_nlink != 1:
+            handle.close()
+            raise SnapshotError(f"unsafe existing writer lock: {path}")
+    flags = fcntl.LOCK_SH if shared else fcntl.LOCK_EX
+    if nonblocking:
+        flags |= fcntl.LOCK_NB
+    try:
+        fcntl.flock(handle.fileno(), flags)
+    except BlockingIOError as exc:
+        handle.close()
+        raise SnapshotError(f"another operation holds {path}") from exc
+    return handle
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", default="/etc/btrfs-snapshot-manager.json")
+    sub = parser.add_subparsers(dest="command", required=True)
+    create_parser = sub.add_parser("create")
+    create_parser.add_argument("--timestamp")
+    prune_parser = sub.add_parser("prune")
+    prune_parser.add_argument("--dry-run", action="store_true")
+    sub.add_parser("list")
+    sub.add_parser("status")
+    sub.add_parser("receiver-inventory")
+    sub.add_parser("receiver-plan", help="read-only retention selection for verified received snapshots")

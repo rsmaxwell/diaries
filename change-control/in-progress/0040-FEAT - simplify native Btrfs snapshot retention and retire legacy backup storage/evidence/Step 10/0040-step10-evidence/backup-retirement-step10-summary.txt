@@ -1,0 +1,43 @@
+0040-FEAT Step 10 — backup Snapper retirement
+Date: 2026-10-25
+
+=== Seven guarded retirement batches ===
+Batch 01:
+BATCH-COMPLETE deleted=5 remaining=108
+Batch 02:
+BATCH-COMPLETE deleted=20 remaining=88
+Batch 03:
+BATCH-COMPLETE deleted=20 remaining=68
+Batch 04:
+BATCH-COMPLETE deleted=20 remaining=48
+Batch 05:
+BATCH-COMPLETE deleted=20 remaining=28
+Batch 06:
+BATCH-COMPLETE deleted=20 remaining=8
+Batch 07:
+BATCH-COMPLETE deleted=8 remaining=0
+
+=== Final manifest reconciliation ===
+PLAN approved=113 remaining=0 completed=113 mode=READ_ONLY max_delete=5
+NO DELETION AUTHORISED
+
+=== Final Btrfs container cleanup ===
+PASS identity: /.snapshots/1/snapshot
+PASS identity: /.snapshots
+PASS identity: /@data/.snapshots
+PASS: all deletion guards
+DELETED: /.snapshots/1/snapshot
+REMOVED: /.snapshots/1 metadata directory
+DELETED: /.snapshots
+DELETED: /@data/.snapshots
+LEGACY-BTRFS-CLEANUP-COMPLETE deleted_subvolumes=3
+
+=== Final native receiver inventory ===
+RECEIVER-INVENTORY snapshots=21 directory=/@data/mars-received/@data
+RECEIVER-INVENTORY problems=0
+
+=== Final receiver recovery ===
+RECEIVER-RECOVERY {"authorizes_repair": false, "state": "CLEAN"}
+
+=== Final Snapper absence checks ===
+PASS: Snapper configuration, APT hook and executable absent

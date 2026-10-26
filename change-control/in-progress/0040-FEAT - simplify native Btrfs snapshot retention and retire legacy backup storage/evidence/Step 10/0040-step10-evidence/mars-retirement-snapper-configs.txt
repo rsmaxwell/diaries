@@ -1,0 +1,7 @@
+total 16
+drwxr-xr-x 2 root root 4096 May 26  2024 .
+drwxr-xr-x 5 root root 4096 May 26  2024 ..
+-rw-r----- 1 root root 1203 May 26  2024 @data
+-rw-r----- 1 root root 1197 May 29  2024 root
+/etc/snapper/configs/@data:SUBVOLUME="/media/usb/@data"
+/etc/snapper/configs/root:SUBVOLUME="/media/usb"

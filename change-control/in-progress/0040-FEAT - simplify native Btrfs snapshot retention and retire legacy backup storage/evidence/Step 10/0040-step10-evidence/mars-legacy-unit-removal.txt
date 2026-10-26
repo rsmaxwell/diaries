@@ -1,0 +1,12 @@
+=== Validate installed units ===
+=== Stop and disable timer defensively ===
+=== Remove obsolete unit files ===
+=== Reload systemd ===
+Failed to reset failed state of unit btrfs-legacy-prune.timer: Unit btrfs-legacy-prune.timer not loaded.
+Failed to reset failed state of unit btrfs-legacy-prune.service: Unit btrfs-legacy-prune.service not loaded.
+=== Verify unit files absent ===
+=== Verify native timers remain active ===
+active
+active
+active
+PASS: legacy-prune systemd units retired

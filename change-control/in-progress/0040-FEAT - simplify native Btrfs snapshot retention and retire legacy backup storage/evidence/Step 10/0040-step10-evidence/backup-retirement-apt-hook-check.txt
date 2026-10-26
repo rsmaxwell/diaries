@@ -1,0 +1,29 @@
+=== Remaining Snapper APT hooks ===
+/etc/apt/apt.conf.d/80snapper:2:  DPkg::Pre-Invoke  { "if [ -e /etc/default/snapper ]; then . /etc/default/snapper; fi; if [ -x /usr/bin/snapper ] && [ ! x$DISABLE_APT_SNAPSHOT = 'xyes' ] && [ -e /etc/snapper/configs/root ]; then rm -f /var/tmp/snapper-apt || true ; snapper create -d apt -c number -t pre -p > /var/tmp/snapper-apt || true ; snapper cleanup number || true ; fi"; };
+/etc/apt/apt.conf.d/80snapper:3:  DPkg::Post-Invoke { "if [ -e /etc/default/snapper ]; then . /etc/default/snapper; fi; if [ -x /usr/bin/snapper ] && [ ! x$DISABLE_APT_SNAPSHOT = 'xyes' ] && [ -e /var/tmp/snapper-apt ]; then snapper create -d apt -c number -t post --pre-number=`cat /var/tmp/snapper-apt` || true ; snapper cleanup number || true ; fi"; };
+
+=== Ownership of Snapper hooks ===
+ii  libsnapper7t64:amd64                   0.10.6-1.1build1                                 amd64        Library for Linux filesystem snapshot management tool
+rc  snapper                                0.10.6-1.1build1                                 amd64        Linux filesystem snapshot management tool
+
+=== Remaining Snapper executables ===
+
+=== Snapshot metadata ===
+<?xml version="1.0"?>
+<snapshot>
+  <type>pre</type>
+  <num>1</num>
+  <date>2026-10-25 11:57:13</date>
+  <description>apt</description>
+  <cleanup>number</cleanup>
+</snapshot>
+
+=== Snapshot identity ===
+	UUID: 			c8599199-bb4f-ed4d-8cc6-168d168f52f2
+	Parent UUID: 		346d1bf2-b4a0-4b6f-9cff-2846b152cce4
+	Received UUID: 		-
+	Creation time: 		2026-10-25 11:57:13 +0000
+	Subvolume ID: 		55873
+
+=== Receiver recovery ===
+RECEIVER-RECOVERY {"authorizes_repair": false, "state": "CLEAN"}

@@ -1,0 +1,52 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== Btrfs quota configuration in active inventory ==='
+
+python3 - <<'PY'
+from pathlib import Path
+import re
+
+files = [
+    Path("/etc/ansible/host_vars/backup/btrfs.yaml"),
+    Path("/etc/ansible/host_vars/mars/mars.yaml"),
+]
+
+allowed = {
+    "btrfs_filesystem_path",
+    "btrfs_subvolume_path",
+    "btrfs_subvolume_limit",
+}
+
+for path in files:
+    print(f"\n=== {path} ===")
+
+    if not path.is_file():
+        print("NOT FOUND")
+        continue
+
+    for line in path.read_text().splitlines():
+  remote-backup.yaml snapshots.yamlckup' \references ==='*:\s*(.*?)\s*$", line)
+=== Btrfs quota configuration in active inventory ===
+
+=== /etc/ansible/host_vars/backup/btrfs.yaml ===
+btrfs_filesystem_path: /
+btrfs_subvolume_path: /@data
+btrfs_subvolume_limit: 1099511627776
+
+=== /etc/ansible/host_vars/mars/mars.yaml ===
+btrfs_filesystem_path: /media/usb
+btrfs_subvolume_path: /media/usb/@data
+btrfs_subvolume_limit: 4000000000000
+=== Historical Btrfs playbook ===
+---
+- hosts: btrfs
+
+  roles:
+    - name: btrfs
+
+=== Historical backup playbook role references ===
+remote-backup.yaml:8:    - role: remote-backup
+snapshots.yaml:3:# shared snapshots role directly. This preserves the verified-Diaries writer
+snapshots.yaml:5:# The snapshots.sh launcher selects only the snapshots tag.
+snapshots.yaml:12:    - role: remote-backup
+richard@mango:~/playbooks$

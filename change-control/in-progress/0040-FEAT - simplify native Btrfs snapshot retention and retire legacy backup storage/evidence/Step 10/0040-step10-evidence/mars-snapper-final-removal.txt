@@ -1,0 +1,36 @@
+=== Verify exact legacy container identity ===
+@data/.snapshots
+	Name: 			.snapshots
+	UUID: 			3afc3ca3-d01c-e041-9be6-4a4288702ee3
+	Parent UUID: 		-
+	Received UUID: 		-
+	Creation time: 		2024-05-26 12:44:08 +0000
+	Subvolume ID: 		262
+	Generation: 		61891
+	Gen at creation: 	29
+	Parent ID: 		260
+	Top level ID: 		260
+	Flags: 			-
+	Send transid: 		0
+	Send time: 		2024-05-26 12:44:08 +0000
+	Receive transid: 	0
+	Receive time: 		-
+	Snapshot(s):
+	Quota group:		0/262
+	  Limit referenced:	-
+	  Limit exclusive:	-
+	  Usage referenced:	16.00KiB
+	  Usage exclusive:	16.00KiB
+PASS: exact empty legacy container verified
+
+=== Verify Snapper configurations ===
+Config | Subvolume       
+-------+-----------------
+@data  | /media/usb/@data
+root   | /media/usb      
+
+=== Stop and disable Snapper ===
+Removed "/etc/systemd/system/sysinit.target.wants/snapperd.service".
+
+=== Delete obsolete Snapper configurations ===
+Deleting config failed (deleting snapshot failed).

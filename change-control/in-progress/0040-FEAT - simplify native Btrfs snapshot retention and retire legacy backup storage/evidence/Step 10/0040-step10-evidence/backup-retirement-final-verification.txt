@@ -1,0 +1,21 @@
+=== Remaining legacy Snapper subvolumes ===
+PASS: no legacy Snapper subvolumes remain
+
+=== Native receiver inventory ===
+RECEIVER-INVENTORY snapshots=21 directory=/@data/mars-received/@data
+RECEIVER-INVENTORY problems=0
+
+=== Native receiver recovery ===
+RECEIVER-RECOVERY {"authorizes_repair": false, "state": "CLEAN"}
+
+=== Snapper APT hook ===
+PASS: hook absent
+
+=== Snapper executable ===
+PASS: snapper executable absent
+
+=== Residual Snapper configuration ===
+/etc/snapper/config-templates/root
+/etc/snapper/config-templates/@data
+/etc/snapper/configs/root
+/etc/snapper/configs/@data

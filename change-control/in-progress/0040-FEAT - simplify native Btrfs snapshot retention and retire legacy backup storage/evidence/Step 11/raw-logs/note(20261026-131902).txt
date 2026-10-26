@@ -1,0 +1,26 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== Verify preserved APT hook ==='
+ssh mars '
+  sudo stat -c "%U:%G %a %s %n" \
+    /home/richard/80snapper.0040-step11-before
+
+  sudo sha256sum \
+    /home/richard/80snapper.0040-step11-before
+
+  sudo test ! -e /etc/apt/apt.conf.d/80snapper &&
+    echo "PASS: live APT hook absent"
+'
+
+echo
+echo '=== Verify temporary playbook ==='
+ls -l \
+  /home/richard/change-control-temp/step11-retire-orphaned-snapper-hook.yaml
+=== Verify preserved APT hook ===
+root:root 600 734 /home/richard/80snapper.0040-step11-before
+a528b866c08ab0d52fef043129267c996a78ead2ee97bae0ee86e4aace79a967  /home/richard/80snapper.0040-step11-before
+PASS: live APT hook absent
+
+=== Verify temporary playbook ===
+-rw-rw-r-- 1 richard richard 2010 Oct 26 12:48 /home/richard/change-control-temp/step11-retire-orphaned-snapper-hook.yaml
+richard@mango:~/playbooks$

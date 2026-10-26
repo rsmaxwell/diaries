@@ -1,0 +1,54 @@
+richard@mango:~/playbooks$ set -euo pipefail
+
+MOUNT=/mnt/diaries-qgroup-reproduction
+IMAGE=/var/tmp/diaries-qgroup-reproduction/filesystem.img
+EXPECTED_UUID=8346c9fd-6dbb-45b6-94dc-e8b4728e2757
+
+SOURCE="$MOUNT/source-b"
+SNAPSHOT="$MOUNT/snapshot-b"
+
+echo '=== Verify disposable filesystem ==='
+
+LOOP=$(sudo losetup -j "$IMAGE" | cut -d: -f1)
+test -n "$LOOP"
+test "$(findmnt -rn -o SOURCE --target "$MOUNT")" = "$LOOP"
+test "$(findmnt -rn -o FSTYPE --target "$MOUNT")" = btrfs
+
+UUID=$(sudo btrfs filesystem show "$MOUNT" |
+  sed -n 's/.*uuid: \([^ ]*\).*/\1/p' | head -n 1)
+
+test "$UUID" = "$EXPECTED_UUID"
+test ! -e "$SOURCE"
+test ! -e "$SNAPSHOT"
+
+echo '=== Create test source and read-only snapshot ==='
+
+sudo btrfs subvolume create "$SOURCE"
+sudo btrfs subvolume snapshot -r "$SOURCE" "$SNAPSHOT"
+
+echo '=== Experiment B complete ==='s ==='T_ID[[:space:]]" || true
+=== Verify disposable filesystem ===
+=== Create test source and read-only snapshot ===
+Create subvolume '/mnt/diaries-qgroup-reproduction/source-b'
+Create a readonly snapshot of '/mnt/diaries-qgroup-reproduction/source-b' in '/mnt/diaries-qgroup-reproduction/snapshot-b'
+=== Capture snapshot ID ===
+Snapshot ID: 259
+=== Apply 1 TiB referenced-space limit ===
+=== Qgroup before deletion ===
+Qgroupid    Referenced    Exclusive  Max referenced  Max exclusive Parent   Child   Path
+--------    ----------    ---------  --------------  ------------- ------   -----   ----
+0/259         16.00KiB     16.00KiB         1.00TiB           none -        -       snapshot-b
+=== Delete disposable snapshot ===
+Delete subvolume 259 (no-commit): '/mnt/diaries-qgroup-reproduction/snapshot-b'
+=== Wait for deletion completion ===
+Waiting for 1 subvolume
+Subvolume id 259 is gone (1/1)
+=== Verify no pending deletions ===
+=== Qgroup after deletion ===
+Qgroupid    Referenced    Exclusive  Max referenced  Max exclusive Parent   Child   Path
+--------    ----------    ---------  --------------  ------------- ------   -----   ----
+0/259         16.00KiB     16.00KiB         1.00TiB           none -        -       <stale>
+=== Confirm quota rescan status ===
+no rescan operation in progress
+=== Experiment B complete ===
+richard@mango:~/playbooks$

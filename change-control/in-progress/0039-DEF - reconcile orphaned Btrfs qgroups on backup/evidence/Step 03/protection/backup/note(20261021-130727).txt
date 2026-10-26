@@ -1,0 +1,16 @@
+richard@backup:~$ for STAMP in \
+  20261013-171228Z \
+  20261018-165453Z \
+  20261021-030006Z
+do
+    PATHNAME="/@data/mars-received/@data/$STAMP"
+    echo "=== $PATHNAME ==="
+    sudo btrfs property get -ts "$PATHNAME" ro
+done
+=== /@data/mars-received/@data/20261013-171228Z ===
+ro=true
+=== /@data/mars-received/@data/20261018-165453Z ===
+ro=true
+=== /@data/mars-received/@data/20261021-030006Z ===
+ro=true
+richard@backup:~$

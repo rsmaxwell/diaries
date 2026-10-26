@@ -1,0 +1,22 @@
+usage: btrfs-snapshot-manager [-h] [--config CONFIG]
+                              {create,prune,list,status,receiver-inventory,receiver-plan,receiver-coordination-check,receiver-recovery-plan,receiver-prune,legacy-plan,legacy-delete,legacy-prune,run,hold-add,hold-release,hold-list}
+                              ...
+
+positional arguments:
+  {create,prune,list,status,receiver-inventory,receiver-plan,receiver-coordination-check,receiver-recovery-plan,receiver-prune,legacy-plan,legacy-delete,legacy-prune,run,hold-add,hold-release,hold-list}
+    receiver-plan       read-only retention selection for verified received
+                        snapshots
+    receiver-coordination-check
+                        lock-held read-only receiver parent validation; no
+                        deletion authority
+    receiver-recovery-plan
+                        lock-held non-mutating interrupted receiver prune
+                        classification
+    receiver-prune      explicitly approved, locked receiver deletion
+    legacy-plan         read-only legacy Snapper retention planning
+    legacy-delete       single-ID explicitly approved Snapper deletion
+    legacy-prune        bounded opt-in unattended legacy pruning
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG

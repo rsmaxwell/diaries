@@ -1,0 +1,59 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== 1. Reconcile retirement receipt ==='
+ssh mars 'sudo python3 -' <<'PY'
+import json
+from pathlib import Path
+
+path = Path(
+    "/media/usb/@snapshots/"
+    ".0040-step11-root-retirement-receipt.jsonl"
+)
+
+records = [
+    json.loads(line)
+    for line in path.read_text().splitlines()
+    if line.strip()
+]
+
+begins = [r for r in records if r.get("event") == "BEGIN"]
+intents = [r for r in records if r.get("event") == "DELETE_INTENT"]
+deleted = [r for r in records if r.get("event") == "DELETED"]
+complete = [r for r in records if r.get("event") == "COMPLETE"]
+
+assert len(begins) == 1
+assert len(intents) == 63
+assert len(deleted) == 63
+assert len(complete) == 1
+assert begins[0]["count"] == 63
+'   -p ActiveState -p UnitFileStatetimer \eState ===' ==='ons")
+=== 1. Reconcile retirement receipt ===
+PASS: 63 deletion intents reconciled with 63 deletions
+PASS: one BEGIN and one COMPLETE receipt
+
+=== 2. Verify historical root snapshots removed ===
+--- Btrfs root subvolumes ---
+
+=== 3. Verify checkpoint holds ===
+HELD 20261013-171228Z reason=0034/0035 pre-cleanup recovery checkpoint
+HELD 20261018-165453Z reason=Permanent 0034/0036 mango closure evidence archive
+
+=== 4. Verify managed snapshot state ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=431
+qgroups_stale=357
+qgroups_under_deletion=0
+qgroups_status=warning
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=63;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=63
+diaries_verification=valid;logicalDataset=production;backupId=20261026-003102Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+
+=== 5. Verify replication remains isolated ===
+LoadState=masked
+ActiveState=inactive
+UnitFileState=masked
+ActiveState=inactive
+UnitFileState=enabled
+richard@mango:~/playbooks$

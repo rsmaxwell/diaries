@@ -1,0 +1,110 @@
+{
+  "feature": "0040-FEAT",
+  "host": "mars",
+  "purpose": "One-time retirement of numerical legacy Snapper snapshots",
+  "expected_count": 17,
+  "targets": [
+    {
+      "path": "/media/usb/@data/.snapshots/1/snapshot",
+      "uuid": "1f0fa73e-12df-b144-8254-72c4b4bafea9",
+      "subvolume_id": 263,
+      "snapper_number": 1
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/5145/snapshot",
+      "uuid": "770551a6-6a44-0f47-bf2b-ef2d8b1a8262",
+      "subvolume_id": 5705,
+      "snapper_number": 5145
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/13145/snapshot",
+      "uuid": "80f4077b-9ea4-2541-b161-ac30323fe694",
+      "subvolume_id": 13705,
+      "snapper_number": 13145
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/13889/snapshot",
+      "uuid": "838ca854-9bd0-b74d-bbcb-fe7afffd2b77",
+      "subvolume_id": 14449,
+      "snapper_number": 13889
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/14561/snapshot",
+      "uuid": "bfc401ed-29a0-9443-bf2d-01f2f6298af0",
+      "subvolume_id": 15121,
+      "snapper_number": 14561
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/15305/snapshot",
+      "uuid": "8c4155f1-2cce-5940-8ac9-5f9a6a6c5f00",
+      "subvolume_id": 15865,
+      "snapper_number": 15305
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/16025/snapshot",
+      "uuid": "63a4a16a-47a9-9a4d-a716-12e24611c6ad",
+      "subvolume_id": 16585,
+      "snapper_number": 16025
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/16769/snapshot",
+      "uuid": "6e46517c-b29b-7e4f-a33e-e319f1f69bc5",
+      "subvolume_id": 17329,
+      "snapper_number": 16769
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/17489/snapshot",
+      "uuid": "6ebe3033-9678-264d-b333-ac15bae9786c",
+      "subvolume_id": 18049,
+      "snapper_number": 17489
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/18233/snapshot",
+      "uuid": "99f6090e-9328-ba45-bac6-2188482d231d",
+      "subvolume_id": 18793,
+      "snapper_number": 18233
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/18957/snapshot",
+      "uuid": "5eb63612-456e-9843-9631-08134eb212c0",
+      "subvolume_id": 19517,
+      "snapper_number": 18957
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/19653/snapshot",
+      "uuid": "d9769f23-6a50-b445-888a-b7e8335bc310",
+      "subvolume_id": 20213,
+      "snapper_number": 19653
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/19749/snapshot",
+      "uuid": "b2467d82-b87c-1744-b853-fdaf0b8d21bd",
+      "subvolume_id": 20309,
+      "snapper_number": 19749
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/19845/snapshot",
+      "uuid": "3f606548-56e9-6946-8f9e-459b22db69f2",
+      "subvolume_id": 20405,
+      "snapper_number": 19845
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/19869/snapshot",
+      "uuid": "82177d1d-7808-1747-83da-64f5725d578b",
+      "subvolume_id": 20429,
+      "snapper_number": 19869
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/19885/snapshot",
+      "uuid": "60e82ed7-c2ad-884e-a7a5-94a6bd214a54",
+      "subvolume_id": 20445,
+      "snapper_number": 19885
+    },
+    {
+      "path": "/media/usb/@data/.snapshots/19886/snapshot",
+      "uuid": "da98e1de-562a-6e4e-a4ad-ff6b802589b4",
+      "subvolume_id": 20451,
+      "snapper_number": 19886
+    }
+  ]
+}

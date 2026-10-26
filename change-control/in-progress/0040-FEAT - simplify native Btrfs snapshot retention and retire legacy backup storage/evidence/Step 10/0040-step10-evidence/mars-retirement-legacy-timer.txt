@@ -1,0 +1,12 @@
+# /etc/systemd/system/btrfs-legacy-prune.timer
+[Unit]
+Description=Daily guarded pruning of legacy Snapper snapshots
+
+[Timer]
+OnCalendar=*-*-* 08:20:00 UTC
+Persistent=true
+AccuracySec=1min
+Unit=btrfs-legacy-prune.service
+
+[Install]
+WantedBy=timers.target

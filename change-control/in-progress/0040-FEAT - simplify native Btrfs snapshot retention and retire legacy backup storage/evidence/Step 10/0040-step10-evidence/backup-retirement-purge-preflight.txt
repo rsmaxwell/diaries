@@ -1,0 +1,22 @@
+=== Simulate Snapper purge ===
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  libboost-thread1.83.0 libbtrfs0t64 libsnapper7t64
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  snapper*
+0 upgraded, 0 newly installed, 1 to remove and 1 not upgraded.
+Purg snapper
+
+=== APT hook ownership ===
+snapper: /etc/apt/apt.conf.d/80snapper
+
+=== Residual package configuration ===
+Package: snapper
+Status: deinstall ok config-files
+Version: 0.10.6-1.1build1
+
+=== Receiver recovery ===
+RECEIVER-RECOVERY {"authorizes_repair": false, "state": "CLEAN"}

@@ -1,0 +1,36 @@
+=== Snapper services and timers ===
+snapper-boot.service                         static          -
+snapper-cleanup.service                      static          -
+snapper-timeline.service                     static          -
+snapperd.service                             enabled         enabled
+snapper-boot.timer                           disabled        enabled
+snapper-cleanup.timer                        disabled        enabled
+snapper-timeline.timer                       disabled        enabled
+
+=== Snapper current timer states ===
+
+=== Snapper configuration files ===
+total 8
+drwxr-xr-x 1 root root   18 Oct  6  2023 .
+drwxr-xr-x 1 root root   60 Sep 22  2023 ..
+-rw-r----- 1 root root 1193 Oct  6  2023 @data
+-rw-r----- 1 root root 1188 Oct  6  2023 root
+
+=== Snapper snapshot creation settings ===
+/etc/snapper/configs/@data:5:SUBVOLUME="/@data"
+/etc/snapper/configs/@data:37:NUMBER_CLEANUP="yes"
+/etc/snapper/configs/@data:46:TIMELINE_CREATE="yes"
+/etc/snapper/configs/@data:49:TIMELINE_CLEANUP="yes"
+/etc/snapper/configs/@data:61:EMPTY_PRE_POST_CLEANUP="yes"
+/etc/snapper/configs/root:5:SUBVOLUME="/"
+/etc/snapper/configs/root:37:NUMBER_CLEANUP="yes"
+/etc/snapper/configs/root:46:TIMELINE_CREATE="yes"
+/etc/snapper/configs/root:49:TIMELINE_CLEANUP="yes"
+/etc/snapper/configs/root:61:EMPTY_PRE_POST_CLEANUP="yes"
+
+=== Root and @data identities ===
+	Name: 			@data
+	UUID: 			8bbb95bf-664b-e344-82e6-09aa40dfec14
+	Parent UUID: 		-
+	Received UUID: 		-
+	Subvolume ID: 		275

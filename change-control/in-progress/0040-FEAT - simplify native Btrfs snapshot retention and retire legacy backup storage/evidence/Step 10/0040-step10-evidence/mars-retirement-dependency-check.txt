@@ -1,0 +1,3 @@
+/etc/systemd/system/sysinit.target.wants/snapperd.service:2:Description=DBus interface for snapper
+/etc/systemd/system/sysinit.target.wants/snapperd.service:3:Documentation=man:snapperd(8)
+/etc/systemd/system/sysinit.target.wants/snapperd.service:8:ExecStart=/usr/sbin/snapperd

@@ -1,0 +1,9 @@
+usage: btrfs-snapshot-manager legacy-prune [-h] [--legacy-map SOURCE=CONFIG]
+                                           [--max-delete MAX_DELETE]
+                                           [--execute]
+
+options:
+  -h, --help            show this help message and exit
+  --legacy-map SOURCE=CONFIG
+  --max-delete MAX_DELETE
+  --execute

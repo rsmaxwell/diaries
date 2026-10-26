@@ -1,0 +1,52 @@
+=== Snapper package removal simulation ===
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  libboost-thread1.83.0 libbtrfs0t64 libsnapper7t64
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  snapper
+0 upgraded, 0 newly installed, 1 to remove and 42 not upgraded.
+Remv snapper [0.10.6-1.1build1]
+
+=== Confirm legacy container identity ===
+@data/.snapshots
+	Name: 			.snapshots
+	UUID: 			3afc3ca3-d01c-e041-9be6-4a4288702ee3
+	Parent UUID: 		-
+	Received UUID: 		-
+	Creation time: 		2024-05-26 12:44:08 +0000
+	Subvolume ID: 		262
+	Generation: 		61891
+	Gen at creation: 	29
+	Parent ID: 		260
+	Top level ID: 		260
+	Flags: 			-
+	Send transid: 		0
+	Send time: 		2024-05-26 12:44:08 +0000
+	Receive transid: 	0
+	Receive time: 		-
+	Snapshot(s):
+	Quota group:		0/262
+	  Limit referenced:	-
+	  Limit exclusive:	-
+	  Usage referenced:	16.00KiB
+	  Usage exclusive:	16.00KiB
+
+=== Confirm container empty ===
+PASS: legacy container empty
+
+=== Confirm root legacy container absent ===
+PASS: root legacy container absent
+
+=== Snapper configuration ===
+Config | Subvolume       
+-------+-----------------
+@data  | /media/usb/@data
+root   | /media/usb      
+
+=== Native timer states ===
+active
+active
+active

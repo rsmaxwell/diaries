@@ -1,0 +1,20 @@
+---
+ansible_connection: ssh
+ansible_user: richard
+ansible_host: mars
+ansible_port: 31673
+
+
+btrfs_filesystem_path: /media/usb
+btrfs_subvolume_path: /media/usb/@data
+btrfs_subvolume_limit: 4000000000000
+
+snapper_templates:
+  default:
+    TIMELINE_LIMIT_HOURLY: 2
+    TIMELINE_LIMIT_DAILY: 12
+
+backup_disk_uuid: 72d1d8ea-900e-4fca-837f-1b1febec036c
+
+
+

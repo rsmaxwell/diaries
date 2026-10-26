@@ -1,0 +1,47 @@
+=== Validate Snapper retirement prerequisites ===
+=== Validate exact empty legacy container ===
+@data/.snapshots
+	Name: 			.snapshots
+	UUID: 			3afc3ca3-d01c-e041-9be6-4a4288702ee3
+	Parent UUID: 		-
+	Received UUID: 		-
+	Creation time: 		2024-05-26 12:44:08 +0000
+	Subvolume ID: 		262
+	Generation: 		61891
+	Gen at creation: 	29
+	Parent ID: 		260
+	Top level ID: 		260
+	Flags: 			-
+	Send transid: 		0
+	Send time: 		2024-05-26 12:44:08 +0000
+	Receive transid: 	0
+	Receive time: 		-
+	Snapshot(s):
+	Quota group:		0/262
+	  Limit referenced:	-
+	  Limit exclusive:	-
+	  Usage referenced:	16.00KiB
+	  Usage exclusive:	16.00KiB
+=== Delete empty legacy container ===
+Delete subvolume 262 (no-commit): '/media/usb/@data/.snapshots'
+=== Remove retired Snapper configuration ===
+=== Remove Snapper package (not dependencies) ===
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  libboost-thread1.83.0 libbtrfs0t64 libsnapper7t64
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  snapper
+0 upgraded, 0 newly installed, 1 to remove and 42 not upgraded.
+After this operation, 1,973 kB disk space will be freed.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 130365 files and directories currently installed.)
+Removing snapper (0.10.6-1.1build1) ...
+Processing triggers for dbus (1.14.10-4ubuntu4.1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+=== Verify native services ===
+active
+active
+active
+PASS: Snapper infrastructure cleanup completed

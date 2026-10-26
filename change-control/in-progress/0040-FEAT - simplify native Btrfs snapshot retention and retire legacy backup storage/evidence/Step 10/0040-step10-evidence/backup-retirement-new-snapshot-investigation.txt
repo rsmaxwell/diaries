@@ -1,0 +1,64 @@
+=== New snapshot metadata ===
+<?xml version="1.0"?>
+<snapshot>
+  <type>pre</type>
+  <num>1</num>
+  <date>2026-10-25 11:57:13</date>
+  <description>apt</description>
+  <cleanup>number</cleanup>
+</snapshot>
+
+=== New snapshot identity ===
+	Name: 			snapshot
+	UUID: 			c8599199-bb4f-ed4d-8cc6-168d168f52f2
+	Parent UUID: 		346d1bf2-b4a0-4b6f-9cff-2846b152cce4
+	Received UUID: 		-
+	Creation time: 		2026-10-25 11:57:13 +0000
+	Subvolume ID: 		55873
+	Parent ID: 		307
+
+=== Snapper service and package state ===
+inactive
+not-found
+ 
+
+=== Snapper activity around creation ===
+Oct 25 11:55:53 backup sudo[472206]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/bin/apt-get -s remove snapper
+Oct 25 11:55:54 backup sudo[472211]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/bin/snapper list-configs
+Oct 25 11:55:55 backup dbus-daemon[803]: [system] Activating via systemd: service name='org.opensuse.Snapper' unit='snapperd.service' requested by ':1.746' (uid=0 pid=472212 comm="snapper list-configs" label="unconfined")
+Oct 25 11:55:55 backup systemd[1]: Starting snapperd.service - DBus interface for snapper...
+Oct 25 11:55:55 backup dbus-daemon[803]: [system] Successfully activated service 'org.opensuse.Snapper'
+Oct 25 11:55:55 backup systemd[1]: Started snapperd.service - DBus interface for snapper.
+Oct 25 11:55:55 backup sudo[472217]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/bin/btrfs subvolume show /.snapshots
+Oct 25 11:55:55 backup sudo[472220]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/bin/btrfs subvolume show /@data/.snapshots
+Oct 25 11:55:55 backup sudo[472204]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/local/sbin/btrfs-snapshot-manager receiver-recovery-plan
+Oct 25 11:56:55 backup systemd[1]: snapperd.service: Deactivated successfully.
+Oct 25 11:57:09 backup sudo[472414]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/bin/systemctl disable --now snapperd.service
+Oct 25 11:57:12 backup sudo[472413]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/bin/apt-get remove -y snapper
+Oct 25 11:57:13 backup dbus-daemon[803]: [system] Activating via systemd: service name='org.opensuse.Snapper' unit='snapperd.service' requested by ':1.753' (uid=0 pid=472480 comm="snapper create -d apt -c number -t pre -p" label="unconfined")
+Oct 25 11:57:13 backup systemd[1]: Starting snapperd.service - DBus interface for snapper...
+Oct 25 11:57:13 backup dbus-daemon[803]: [system] Successfully activated service 'org.opensuse.Snapper'
+Oct 25 11:57:13 backup systemd[1]: Started snapperd.service - DBus interface for snapper.
+Oct 25 11:57:35 backup systemd[1]: Stopping snapperd.service - DBus interface for snapper...
+Oct 25 11:57:35 backup systemd[1]: snapperd.service: Deactivated successfully.
+Oct 25 11:57:35 backup systemd[1]: Stopped snapperd.service - DBus interface for snapper.
+Oct 25 11:58:27 backup sudo[472796]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/bin/btrfs subvolume show /.snapshots
+Oct 25 11:58:27 backup sudo[472799]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/bin/btrfs subvolume show /@data/.snapshots
+Oct 25 11:58:27 backup sudo[472802]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/bin/find /.snapshots -mindepth 1 -maxdepth 1 -print
+Oct 25 11:58:27 backup sudo[472804]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/bin/find /@data/.snapshots -mindepth 1 -maxdepth 1 -print
+Oct 25 11:58:27 backup sudo[472806]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/local/sbin/btrfs-snapshot-manager receiver-inventory
+Oct 25 11:58:28 backup sudo[472794]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/local/sbin/btrfs-snapshot-manager receiver-recovery-plan
+Oct 25 11:59:51 backup sudo[473060]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/bin/ls -lad /.snapshots/1
+Oct 25 11:59:52 backup sudo[473062]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/bin/stat /.snapshots/1
+Oct 25 11:59:52 backup sudo[473064]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/bin/find /.snapshots/1 -maxdepth 3 -printf '%y %p\\n'
+Oct 25 11:59:52 backup sudo[473066]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/bin/btrfs subvolume show /.snapshots/1
+Oct 25 11:59:52 backup sudo[473071]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/bin/find /etc/snapper -maxdepth 3 -type f -print
+Oct 25 11:59:52 backup sudo[473059]:  richard : PWD=/home/richard ; USER=root ; COMMAND=/usr/local/sbin/btrfs-snapshot-manager receiver-recovery-plan
+
+=== Current Snapper-style subvolumes ===
+ID 307 gen 564823 top level 5 uuid 621c8df8-992f-8143-b427-6624d273e720 path .snapshots
+ID 309 gen 564792 top level 275 uuid e8690a2f-a2e9-2d4f-930b-314a9d8b2b90 path @data/.snapshots
+ID 55873 gen 564819 top level 307 uuid c8599199-bb4f-ed4d-8cc6-168d168f52f2 path .snapshots/1/snapshot
+
+=== Native receiver recovery ===
+RECEIVER-RECOVERY {"authorizes_repair": false, "state": "CLEAN"}

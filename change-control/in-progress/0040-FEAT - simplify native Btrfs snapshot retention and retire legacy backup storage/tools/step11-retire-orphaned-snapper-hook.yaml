@@ -1,0 +1,62 @@
+---
+# 0040-FEAT Step 11: one-off legacy Snapper APT-hook retirement.
+# Historical change-control artifact; never include from production roles.
+- name: Retire orphaned Snapper APT hook on mars
+  hosts: mars
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Check whether Snapper remains installed
+      ansible.builtin.command:
+        argv:
+          - dpkg-query
+          - -W
+          - "-f=${Status}"
+          - snapper
+      register: snapper_package
+      changed_when: false
+      failed_when: false
+
+    - name: Inspect executable and active configuration
+      ansible.builtin.stat:
+        path: "{{ item }}"
+      loop:
+        - /usr/bin/snapper
+        - /etc/snapper/configs/root
+        - /etc/snapper/configs/@data
+      register: snapper_files
+
+    - name: Refuse cleanup when Snapper could still be active
+      ansible.builtin.assert:
+        that:
+          - "'install ok installed' not in snapper_package.stdout"
+          - "snapper_files.results | selectattr('stat.exists') | list | length == 0"
+        fail_msg: "Snapper is still installed or has an executable/active config; refuse isolated APT-hook deletion."
+
+    - name: Inspect legacy APT hook
+      ansible.builtin.stat:
+        path: /etc/apt/apt.conf.d/80snapper
+        follow: false
+      register: apt_hook
+
+    - name: Refuse unexpected symlink or nonregular hook
+      ansible.builtin.assert:
+        that:
+          - "not apt_hook.stat.exists or apt_hook.stat.isreg | default(false)"
+        fail_msg: "80snapper has unexpected file type; do not modify."
+
+    - name: Preserve one-time rollback copy on mars
+      ansible.builtin.copy:
+        src: /etc/apt/apt.conf.d/80snapper
+        dest: /home/richard/80snapper.0040-step11-before
+        remote_src: true
+        force: false
+        owner: root
+        group: root
+        mode: '0600'
+      when: apt_hook.stat.exists
+
+    - name: Retire obsolete APT hook
+      ansible.builtin.file:
+        path: /etc/apt/apt.conf.d/80snapper
+        state: absent

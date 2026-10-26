@@ -1,0 +1,53 @@
+richard@mars:~$ set -euo pipefail
+
+unit=btrfs-native-push.service
+original=/etc/systemd/system/$unit
+saved=/etc/systemd/system/$unit.0040-step11-before
+backup=/home/richard/$unit.0040-step11-before
+expected=2fb648b14860a107bea883c3becbd7594de9cf4ab4196b2f39eebe9befbcfff3
+
+echo '=== Verify recovery prerequisites ==='
+test "$(systemctl is-active btrfs-native-push.timer)" = inactive
+test "$(systemctl is-active "$unit")" = inactive
+test "$(systemctl show -P LoadState "$unit")" = masked
+test "$(readlink "$original")" = /dev/null
+test -f "$saved"
+test -f "$backup"
+
+echo "$expected  $saved" | sudo sha256sum -c -
+echo "$expected  $backup" | sudo sha256sum -c -
+
+echo
+echo '=== Restore original service definition ==='
+sudo rm -- "$original"
+sudo mv -- "$saved" "$original"
+sudo systemctl unmask --runtime "$unit"
+sudo systemctl daemon-reload
+
+echo
+echo '=== Verify restored service ==='
+echo 'PASS: native replication service and timer restored'nabled
+=== Verify recovery prerequisites ===
+/etc/systemd/system/btrfs-native-push.service.0040-step11-before: OK
+/home/richard/btrfs-native-push.service.0040-step11-before: OK
+
+=== Restore original service definition ===
+Removed "/run/systemd/system/btrfs-native-push.service".
+
+=== Verify restored service ===
+/etc/systemd/system/btrfs-native-push.service: OK
+
+=== Restart native replication timer ===
+
+=== Verify replication scheduling ===
+NEXT                        LEFT LAST                        PASSED UNIT                    ACTIVATES
+Tue 2026-10-27 03:30:00 UTC  15h Mon 2026-10-26 03:30:08 UTC 8h ago btrfs-native-push.timer btrfs-native-push.service
+
+1 timers listed.
+
+=== Verify source snapshot schedules ===
+active
+active
+
+PASS: native replication service and timer restored
+richard@mars:~$

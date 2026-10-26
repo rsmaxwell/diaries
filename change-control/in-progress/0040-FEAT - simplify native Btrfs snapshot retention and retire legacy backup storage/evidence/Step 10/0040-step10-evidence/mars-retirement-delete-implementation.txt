@@ -1,0 +1,126 @@
+                decision = "KEEP" if reason else "WOULD-DELETE"
+            decisions.append({"source": source_name, "config": rec["config"],
+                              "number": number, "timestamp_utc": rec["timestamp"].isoformat(),
+                              "decision": decision, "reasons": reason})
+    document = {"mode": "READ_ONLY", "authorizes_deletion": False,
+                "generated_at_utc": now.isoformat(), "native_complete": len(complete),
+                "native_keepers": sorted(native_keep), "decisions": decisions}
+    if emit and output_json:
+        print(json.dumps(document, indent=2, sort_keys=True))
+    elif emit:
+        print(f"LEGACY PLAN READ-ONLY native={len(complete)} native_keep={len(native_keep)}")
+        for entry in decisions:
+            print(f"{entry['decision']:12} {entry['source']:8} {entry['config']:12} "
+                  f"{entry['number']:>8} {entry['timestamp_utc']} "
+                  f"{','.join(entry['reasons'])}")
+        print("NO DELETION AUTHORISED")
+    return document
+
+
+
+def legacy_delete(config: Config, approval_path: Path, source: str, snapper_config: str,
+                  number: int, execute: bool) -> None:
+    """One exact, gated legacy deletion; never used by native prune/run."""
+    if not execute:
+        raise SnapshotError("legacy deletion requires explicit --execute")
+    if number <= 0 or not re.fullmatch(r"[A-Za-z0-9_@.-]+", snapper_config):
+        raise SnapshotError("invalid legacy snapshot ID/config")
+    # A root-owned, non-symlink, non-group/world-writable policy is mandatory.
+    if approval_path.is_symlink():
+        raise SnapshotError("legacy approval file must not be a symlink")
+    st = approval_path.stat()
+    if not stat.S_ISREG(st.st_mode) or st.st_uid != 0 or st.st_mode & 0o022:
+        raise SnapshotError("legacy approval file must be root-owned and not group/world-writable")
+    policy = json.loads(approval_path.read_text(encoding="utf-8"))
+    if (not isinstance(policy, dict) or policy.get("enabled") is not True or
+            policy.get("allow_delete") is not True or
+            policy.get("host") != socket.gethostname() or
+            policy.get("source") != source or policy.get("snapper_config") != snapper_config or
+            policy.get("snapshot_id") != number or type(policy.get("snapshot_id")) is not int):
+        raise SnapshotError("legacy deletion not authorised for exact host/source/config/ID")
+    mappings = [f"{source}={snapper_config}"]
+    # Establish the precise candidate and its identity before any mutation.
+    initial = legacy_plan(config, mappings, False, emit=False)
+    matches = [r for r in initial["decisions"] if r["source"] == source and
+               r["config"] == snapper_config and r["number"] == number]
+    if len(matches) != 1 or matches[0]["decision"] != "WOULD-DELETE":
+        raise SnapshotError("snapshot is not a unique WOULD-DELETE candidate")
+    original = matches[0]
+    # Check again immediately before deletion, with a fresh inventory and
+    # native protections (including pins and holds). Fail closed on any change.
+    current = legacy_plan(config, mappings, False, emit=False)
+    refreshed = [r for r in current["decisions"] if r["source"] == source and
+                 r["config"] == snapper_config and r["number"] == number]
+    if len(refreshed) != 1 or refreshed[0] != original or refreshed[0]["decision"] != "WOULD-DELETE":
+        raise SnapshotError("legacy candidate identity or retention decision changed")
+    print(f"LEGACY DELETE approved host={socket.gethostname()} source={source} "
+          f"config={snapper_config} id={number} timestamp={original['timestamp_utc']}")
+    run(["snapper", "-c", snapper_config, "delete", str(number)])
+    print(f"LEGACY DELETE completed config={snapper_config} id={number}")
+
+
+
+def legacy_prune(config: Config, mappings: list[str], max_delete: int, execute: bool) -> None:
+    """Opt-in bounded legacy retention; native prune remains independent."""
+    if not 1 <= max_delete <= 2:
+        raise SnapshotError("unattended legacy pruning max-delete must be 1 or 2")
+    if not mappings:
+        raise SnapshotError("legacy-prune requires explicit source-to-Snapper mappings")
+    # A complete initial inventory and all native safety protections must pass.
+    initial = legacy_plan(config, mappings, False, emit=False)
+    candidates = sorted((r for r in initial["decisions"] if r["decision"] == "WOULD-DELETE"),
+                        key=lambda r: (r["timestamp_utc"], r["source"], r["number"]))
+    print(f"LEGACY PRUNE mode={'EXECUTE' if execute else 'READ_ONLY'} "
+          f"candidate_count={len(candidates)} max_delete={max_delete}", flush=True)
+    if not execute:
+        for candidate in candidates[:max_delete]:
+            print(f"WOULD-DELETE {candidate['source']} {candidate['config']} "
+                  f"{candidate['number']} {candidate['timestamp_utc']}", flush=True)
+        print("NO DELETION AUTHORISED", flush=True)
+        return
+    for candidate in candidates[:max_delete]:
+        # Re-evaluate both the full source mapping and this specific candidate.
+        current = legacy_plan(config, mappings, False, emit=False)
+        matches = [r for r in current["decisions"] if r["source"] == candidate["source"]
+                   and r["config"] == candidate["config"] and r["number"] == candidate["number"]]
+        if matches != [candidate] or candidate["decision"] != "WOULD-DELETE":
+            raise SnapshotError("legacy candidate changed during unattended pruning")
+        source = source_by_name(config, candidate["source"])
+        path = source.source / ".snapshots" / str(candidate["number"]) / "snapshot"
+        if path.is_symlink() or not path.is_dir():
+            raise SnapshotError(f"unsafe legacy candidate {path}")
+        require_subvolume(path)
+        before = run(["btrfs", "subvolume", "show", str(path)]).stdout
+        identity = [line.strip() for line in before.splitlines()
+                    if line.strip().startswith(("UUID:", "Subvolume ID:"))]
+        if len(identity) != 2:
+            raise SnapshotError(f"missing Btrfs identity for {path}")
+        # Prevent a concurrent external replacement at the final mutation point.
+        after = run(["btrfs", "subvolume", "show", str(path)]).stdout
+        current_identity = [line.strip() for line in after.splitlines()
+                            if line.strip().startswith(("UUID:", "Subvolume ID:"))]
+        if current_identity != identity:
+            raise SnapshotError("legacy Btrfs subvolume identity changed")
+        # Delegate the actual delete to the same tested Snapper command as the
+        # one-ID pilot. Re-running plan before each mutation fails closed.
+        final = legacy_plan(config, mappings, False, emit=False)
+        final_match = [r for r in final["decisions"] if r["source"] == candidate["source"]
+                       and r["config"] == candidate["config"] and r["number"] == candidate["number"]]
+        if final_match != [candidate]:
+            raise SnapshotError("legacy candidate changed before delete")
+        print(f"LEGACY PRUNE DELETE {candidate['source']} {candidate['config']} "
+              f"{candidate['number']} {' '.join(identity)}", flush=True)
+        run(["snapper", "-c", candidate["config"], "delete", str(candidate["number"])])
+        print(f"LEGACY PRUNE completed config={candidate['config']} id={candidate['number']}", flush=True)
+
+def receiver_inventory(config: Config) -> None:
+    """Read-only receipt/UUID inventory. Never accepts, prunes or repairs state."""
+    if config.mode != "receiver" or config.receiver_state_dir is None:
+        raise SnapshotError("receiver-inventory requires receiver mode")
+    preflight(config)
+    state = config.receiver_state_dir
+    if not state.is_dir() or state.is_symlink():
+        raise SnapshotError("unsafe receiver state directory")
+    source = config.sources[0]
+    entries = list_managed(config, source)
+    print(f"RECEIVER-INVENTORY snapshots={len(entries)} directory={source_directory(config, source)}")

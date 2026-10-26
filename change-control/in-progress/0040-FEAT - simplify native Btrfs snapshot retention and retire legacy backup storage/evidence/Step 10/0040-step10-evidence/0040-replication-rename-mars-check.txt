@@ -1,0 +1,208 @@
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for mars
+
+TASK [btrfs-replication : Native Btrfs | Reject unsupported deployment host] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Ensure privileged helper directory exists] ***
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Initialize root-owned source protection state if missing] ***
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Read existing 0035 manager configuration] ***
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install replication-aware 0035 pruning manager] ***
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Activate fail-closed protection in existing 0035 config] ***
+--- before: /etc/btrfs-snapshot-manager.json
++++ after: /etc/btrfs-snapshot-manager.json
+@@ -1,38 +1,46 @@
+ {
+-  "snapshot_root": "/media/usb/@snapshots",
+-  "lock_path": "/run/lock/btrfs-snapshot-manager.lock",
+-  "writer_lock_path": "/media/usb/@data/backup/.btrfs-snapshot-writer.lock",
+-  "required_snapshot_sources": ["root", "@data"],
+-  "creation_source_names": ["root", "@data"],
+-  "sources": [
+-    {
+-      "name": "root",
+-      "path": "/media/usb"
+-    },    {
+-      "name": "@data",
+-      "path": "/media/usb/@data"
+-    }  ],
+-  "verification": {
+-    "required": true,
+-    "source_name": "@data",
+-    "dataset_relative_path": "backup/pluto/diaries-backup",
+-    "marker_relative_path": "backup/.diaries-snapshot-verified.json",
+-    "manifest_tool": "/usr/local/lib/diaries-backup/complete-dataset-manifest.py"
+-  },
+-  "replication_protection": {
+-    "required": true,
+-    "path": "/media/usb/@snapshots/.replication-protection.json"
+-  },
+-  "checkpoint_holds": {
+-    "required": true,
+-    "path": "/media/usb/@snapshots/.checkpoint-holds.json"
+-  },
+-  "retention": {
+-    "hourly": 48,
+-    "daily": 14,
+-    "weekly": 12,
+-    "monthly": 24,
+-    "yearly": 5,
+-    "minimum_age_minutes": 30
+-  }
+-}
++    "checkpoint_holds": {
++        "path": "/media/usb/@snapshots/.checkpoint-holds.json",
++        "required": true
++    },
++    "creation_source_names": [
++        "root",
++        "@data"
++    ],
++    "lock_path": "/run/lock/btrfs-snapshot-manager.lock",
++    "replication_protection": {
++        "path": "/media/usb/@snapshots/.replication-protection.json",
++        "required": true
++    },
++    "required_snapshot_sources": [
++        "root",
++        "@data"
++    ],
++    "retention": {
++        "daily": 14,
++        "hourly": 48,
++        "minimum_age_minutes": 30,
++        "monthly": 24,
++        "weekly": 12,
++        "yearly": 5
++    },
++    "snapshot_root": "/media/usb/@snapshots",
++    "sources": [
++        {
++            "name": "root",
++            "path": "/media/usb"
++        },
++        {
++            "name": "@data",
++            "path": "/media/usb/@data"
++        }
++    ],
++    "verification": {
++        "dataset_relative_path": "backup/pluto/diaries-backup",
++        "manifest_tool": "/usr/local/lib/diaries-backup/complete-dataset-manifest.py",
++        "marker_relative_path": "backup/.diaries-snapshot-verified.json",
++        "required": true,
++        "source_name": "@data"
++    },
++    "writer_lock_path": "/media/usb/@data/backup/.btrfs-snapshot-writer.lock"
++}
+\ No newline at end of file
+
+changed: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install fixed-path privileged endpoint] ***
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install constrained endpoint sudoers rule] ***
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Provision isolated receiver parent] ***
+skipping: [mars] => (item=/@data/mars-received) 
+skipping: [mars] => (item=/@data/mars-received/@data) 
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Provision operator-owned transaction state] ***
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver-mode manager (opt in)] ***
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Inspect independent receiver checkpoint holds] ***
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Validate existing hold-file permissions] ***
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Read existing hold state without altering it] ***
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Validate mandatory checkpoints in existing hold state] ***
+skipping: [mars] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}) 
+skipping: [mars] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}) 
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Initialise receiver checkpoint holds only when absent] ***
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Read mandatory receiver checkpoint receipts] ***
+skipping: [mars] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}) 
+skipping: [mars] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}) 
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Validate mandatory receiver checkpoint receipt identities] ***
+skipping: [mars] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': "btrfs_native_endpoint_role == 'receiver'", 'ansible_loop_var': 'item', 'item': {'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}}) 
+skipping: [mars] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': "btrfs_native_endpoint_role == 'receiver'", 'ansible_loop_var': 'item', 'item': {'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}}) 
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver-mode read-only config (opt in)] ***
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Provision stable transaction lock] ****
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Provision source-side push operator lock] ***
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install manual push operator entrypoint] ***
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver-side push acceptance helper] ***
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Retire obsolete backup-initiated pull executable] ***
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Retire obsolete rsync-based pull helper] ***
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install source-initiated push service and timer] ***
+ok: [mars] => (item=btrfs-native-push.service)
+ok: [mars] => (item=btrfs-native-push.timer)
+
+TASK [btrfs-replication : Native Btrfs | Check for active legacy rsync off-site phase before scheduling native push] ***
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Refuse dual off-site transports] ******
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Apply explicit push schedule state] ***
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install public receiver retention policy (opt in)] ***
+skipping: [mars]
+
+PLAY RECAP *********************************************************************
+mars                       : ok=15   changed=1    unreachable=0    failed=0    skipped=16   rescued=0    ignored=0   
+

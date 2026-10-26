@@ -1,0 +1,31 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ set -euo pipefail
+
+echo '=== Compare file-content SHA-256 values ==='
+
+awk '{print $1}' /tmp/0040-mango-checksums.txt | sort \
+  > /tmp/0040-mango-hashes.txt
+
+awk '{print $1}' /tmp/0040-windows-checksums.txt | sort \
+  > /tmp/0040-windows-hashes.txt
+
+echo '=== File counts ==='
+wc -l /tmp/0040-mango-hashes.txt /tmp/0040-windows-hashes.txt
+
+echo '=== SHA-256 comparison ==='
+if diff -u /tmp/0040-mango-hashes.txt /tmp/0040-windows-hashes.txt; then
+  echo 'PASS: all 135 evidence file-content hashes match'
+else
+  echo 'FAIL: evidence file-content hashes differ'
+fi
+=== Compare file-content SHA-256 values ===
+=== File counts ===
+  135 /tmp/0040-mango-hashes.txt
+  135 /tmp/0040-windows-hashes.txt
+  270 total
+=== SHA-256 comparison ===
+PASS: all 135 evidence file-content hashes match
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

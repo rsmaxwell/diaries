@@ -1,0 +1,22 @@
+=== Snapper package status ===
+ 
+
+=== Remaining legacy containers ===
+	UUID: 			621c8df8-992f-8143-b427-6624d273e720
+	Parent UUID: 		-
+	Received UUID: 		-
+	Subvolume ID: 		307
+	UUID: 			e8690a2f-a2e9-2d4f-930b-314a9d8b2b90
+	Parent UUID: 		-
+	Received UUID: 		-
+	Subvolume ID: 		309
+
+=== Container contents ===
+/.snapshots/1
+
+=== Native receiver inventory ===
+RECEIVER-INVENTORY snapshots=21 directory=/@data/mars-received/@data
+RECEIVER-INVENTORY problems=0
+
+=== Receiver recovery ===
+RECEIVER-RECOVERY {"authorizes_repair": false, "state": "CLEAN"}

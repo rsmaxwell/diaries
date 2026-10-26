@@ -1,0 +1,67 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+ansible-playbook \
+  /home/richard/temp/step11-retire-orphaned-snapper-hook.yaml \
+  --limit mars \
+  --check --diff \
+  --vault-password-file ~/.vault_pass.txt
+[ERROR]: the playbook: /home/richard/temp/step11-retire-orphaned-snapper-hook.yaml could not be found
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+ansible-playbook \
+  /home/richard/change-control-temp/step11-retire-orphaned-snapper-hook.yaml \
+  --limit mars \
+  --check --diff \
+  --vault-password-file ~/.vault_pass.txt
+
+PLAY [Retire orphaned Snapper APT hook on mars] ************************************************************************
+
+TASK [Check whether Snapper remains installed] *************************************************************************
+skipping: [mars]
+
+TASK [Inspect executable and active configuration] *********************************************************************
+ok: [mars] => (item=/usr/bin/snapper)
+ok: [mars] => (item=/etc/snapper/configs/root)
+ok: [mars] => (item=/etc/snapper/configs/@data)
+
+TASK [Refuse cleanup when Snapper could still be active] ***************************************************************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [Inspect legacy APT hook] *****************************************************************************************
+ok: [mars]
+
+TASK [Refuse unexpected symlink or nonregular hook] ********************************************************************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [Preserve one-time rollback copy on mars] *************************************************************************
+changed: [mars]
+
+TASK [Retire obsolete APT hook] ****************************************************************************************
+--- before
++++ after
+@@ -1,4 +1,4 @@
+ {
+     "path": "/etc/apt/apt.conf.d/80snapper",
+-    "state": "file"
++    "state": "absent"
+ }
+
+changed: [mars]
+
+PLAY RECAP *************************************************************************************************************
+mars                       : ok=6    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+richard@mango:~/playbooks$

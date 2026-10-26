@@ -1,0 +1,86 @@
+    sub.add_parser("receiver-plan", help="read-only retention selection for verified received snapshots")
+    coordination = sub.add_parser("receiver-coordination-check", help="lock-held read-only receiver parent validation; no deletion authority")
+    coordination.add_argument("--snapshot", required=True)
+    coordination.add_argument("--source-uuid", required=True)
+    sub.add_parser("receiver-recovery-plan", help="lock-held non-mutating interrupted receiver prune classification")
+    guarded = sub.add_parser("receiver-prune", help="explicitly approved, locked receiver deletion")
+    guarded.add_argument("--approval-file", required=True)
+    legacy_parser = sub.add_parser("legacy-plan", help="read-only legacy Snapper retention planning")
+    legacy_parser.add_argument("--legacy-map", action="append", default=[], metavar="SOURCE=CONFIG")
+    legacy_parser.add_argument("--json", action="store_true")
+    delete_parser = sub.add_parser("legacy-delete", help="single-ID explicitly approved Snapper deletion")
+    delete_parser.add_argument("--approval-file", required=True)
+    delete_parser.add_argument("--source", required=True)
+    delete_parser.add_argument("--snapper-config", required=True)
+    delete_parser.add_argument("--snapshot-id", type=int, required=True)
+    delete_parser.add_argument("--execute", action="store_true")
+    auto_parser = sub.add_parser("legacy-prune", help="bounded opt-in unattended legacy pruning")
+    auto_parser.add_argument("--legacy-map", action="append", default=[], metavar="SOURCE=CONFIG")
+    auto_parser.add_argument("--max-delete", type=int, default=1)
+    auto_parser.add_argument("--execute", action="store_true")
+    sub.add_parser("run")
+    add_parser = sub.add_parser("hold-add")
+    add_parser.add_argument("timestamp")
+    add_parser.add_argument("--reason", required=True)
+    release_parser = sub.add_parser("hold-release")
+    release_parser.add_argument("timestamp")
+    sub.add_parser("hold-list")
+    args = parser.parse_args(argv)
+
+    try:
+        require_root()
+        config = load_config(Path(args.config))
+        if config.mode == "receiver" and args.command not in {"list", "status", "receiver-inventory", "receiver-plan", "receiver-prune", "receiver-coordination-check", "receiver-recovery-plan"}:
+            raise SnapshotError("receiver mode is read-only until safe pruning is implemented")
+        manager_lock = with_lock(config.lock_path) if args.command in {"create", "prune", "run", "legacy-delete", "legacy-prune", "hold-add", "hold-release", "hold-list", "receiver-prune", "receiver-coordination-check", "receiver-recovery-plan", "receiver-inventory", "receiver-plan"} else None
+        writer_lock = None
+        try:
+            if args.command in {"receiver-prune", "receiver-coordination-check", "receiver-recovery-plan", "receiver-inventory", "receiver-plan"}:
+                if config.receiver_state_dir is None or config.writer_lock_path != config.receiver_state_dir / "writer.lock":
+                    raise SnapshotError("receiver writer lock configuration missing or inconsistent")
+                writer_lock = with_lock(config.writer_lock_path, require_existing=True)
+            if args.command in {"create", "run"} and config.writer_lock_path is not None:
+                writer_lock = with_lock(config.writer_lock_path, shared=True, require_existing=True)
+            if args.command == "create":
+                create_all(config, args.timestamp)
+            elif args.command == "prune":
+                prune(config, args.dry_run)
+            elif args.command == "list":
+                show_list(config)
+            elif args.command == "status":
+                show_status(config)
+            elif args.command == "receiver-inventory":
+                receiver_inventory(config)
+            elif args.command == "receiver-plan":
+                receiver_plan(config)
+            elif args.command == "receiver-coordination-check":
+                receiver_coordination_check(config, args.snapshot, args.source_uuid)
+            elif args.command == "receiver-recovery-plan":
+                receiver_recovery_plan(config)
+            elif args.command == "receiver-prune":
+                receiver_guarded_prune(config, Path(args.approval_file))
+            elif args.command == "legacy-plan":
+                legacy_plan(config, args.legacy_map, args.json)
+            elif args.command == "legacy-delete":
+                legacy_delete(config, Path(args.approval_file), args.source, args.snapper_config,
+                              args.snapshot_id, args.execute)
+            elif args.command in {"hold-add", "hold-release", "hold-list"}:
+                checkpoint_command(config, args.command, getattr(args, "timestamp", None), getattr(args, "reason", None))
+            elif args.command == "legacy-prune":
+                legacy_prune(config, args.legacy_map, args.max_delete, args.execute)
+            elif args.command == "run":
+                create_all(config)
+                prune(config, False)
+        finally:
+            if writer_lock is not None:
+                writer_lock.close()
+            if manager_lock is not None:
+                manager_lock.close()
+        return 0
+    except SnapshotError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,46 @@
+{
+    "checkpoint_holds": {
+        "path": "/media/usb/@snapshots/.checkpoint-holds.json",
+        "required": true
+    },
+    "creation_source_names": [
+        "root",
+        "@data"
+    ],
+    "lock_path": "/run/lock/btrfs-snapshot-manager.lock",
+    "replication_protection": {
+        "path": "/media/usb/@snapshots/.replication-protection.json",
+        "required": true
+    },
+    "required_snapshot_sources": [
+        "root",
+        "@data"
+    ],
+    "retention": {
+        "daily": 14,
+        "hourly": 48,
+        "minimum_age_minutes": 30,
+        "monthly": 24,
+        "weekly": 12,
+        "yearly": 5
+    },
+    "snapshot_root": "/media/usb/@snapshots",
+    "sources": [
+        {
+            "name": "root",
+            "path": "/media/usb"
+        },
+        {
+            "name": "@data",
+            "path": "/media/usb/@data"
+        }
+    ],
+    "verification": {
+        "dataset_relative_path": "backup/pluto/diaries-backup",
+        "manifest_tool": "/usr/local/lib/diaries-backup/complete-dataset-manifest.py",
+        "marker_relative_path": "backup/.diaries-snapshot-verified.json",
+        "required": true,
+        "source_name": "@data"
+    },
+    "writer_lock_path": "/media/usb/@data/backup/.btrfs-snapshot-writer.lock"
+}

@@ -1,0 +1,39 @@
+richard@backup:~$ echo '=== Pending Btrfs subvolume deletions ==='
+sudo btrfs subvolume list -d /
+
+echo '=== Qgroup quota status ==='
+sudo btrfs quota rescan -s /
+
+echo '=== Filesystem usage ==='
+sudo btrfs filesystem usage -T /
+
+echo '=== Filesystem and mount identity ==='
+findmnt -T / -o TARGET,SOURCE,FSTYPE,OPTIONS
+=== Pending Btrfs subvolume deletions ===
+=== Qgroup quota status ===
+no rescan operation in progress
+=== Filesystem usage ===
+Overall:
+    Device size:                   1.81TiB
+    Device allocated:              1.52TiB
+    Device unallocated:          295.97GiB
+    Device missing:                  0.00B
+    Used:                          1.52TiB
+    Free (estimated):            296.87GiB      (min: 148.88GiB)
+    Free (statfs, df):           296.86GiB
+    Data ratio:                       1.00
+    Metadata ratio:                   2.00
+    Global reserve:              512.00MiB      (used: 0.00B)
+    Multiple profiles:                  no
+
+             Data    Metadata System
+Id Path      single  DUP      DUP       Unallocated
+-- --------- ------- -------- --------- -----------
+ 1 /dev/sda2 1.51TiB 12.00GiB  16.00MiB   295.97GiB
+-- --------- ------- -------- --------- -----------
+   Total     1.51TiB  6.00GiB   8.00MiB   295.97GiB
+   Used      1.51TiB  4.88GiB 192.00KiB
+=== Filesystem and mount identity ===
+TARGET SOURCE    FSTYPE OPTIONS
+/      /dev/sda2 btrfs  rw,relatime,space_cache=v2,subvolid=5,subvol=/
+richard@backup:~$

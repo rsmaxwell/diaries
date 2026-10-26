@@ -1,0 +1,103 @@
+richard@mango:~$ set -euo pipefail
+
+MOUNT=/mnt/diaries-qgroup-reproduction
+IMAGE=/var/tmp/diaries-qgroup-reproduction/filesystem.img
+EXPECTED_UUID=8346c9fd-6dbb-45b6-94dc-e8b4728e2757
+
+echo '=== Gate D: Verify disposable filesystem ==='
+
+test -f "$IMAGE"
+
+LOOP=$(sudo losetup -j "$IMAGE" | cut -d: -f1)
+test -n "$LOOP"
+test "$(sudo losetup -n -O BACK-FILE "$LOOP")" = "$IMAGE"
+test "$(findmnt -rn -o SOURCE --target "$MOUNT")" = "$LOOP"
+test "$(findmnt -rn -o FSTYPE --target "$MOUNT")" = btrfs
+
+UUID=$(sudo btrfs filesystem show "$MOUNT" |
+  sed -n 's/.*uuid: \([^ ]*\).*/\1/p' | head -n 1)
+
+test "$UUID" = "$EXPECTED_UUID"
+
+echo '=== Verify exact active subvolumes ==='
+
+SUBVOLUMES=$(sudo btrfs subvolume list -a "$MOUNT")
+printf '%s\n' "$SUBVOLUMES"
+
+printf '%s\n' "$SUBVOLUMES" |
+  grep -Eq '^ID 256 .* path source-a$'
+
+printf '%s\n' "$SUBVOLUMES" |
+  grep -Eq '^ID 258 .* path source-b$'
+
+test "$(printf '%s\n' "$SUBVOLUMES" | grep -c '^ID ')" -eq 2
+
+echo '=== Verify exact final qgroup inventory ==='
+
+QGROUPS=$(sudo btrfs qgroup show -pcre "$MOUNT")
+printf '%s\n' "$QGROUPS"
+
+for ID in 5 256 258; do
+    printf '%s\n' "$QGROUPS" |
+      grep -Eq "^0/$ID[[:space:]]+16\.00KiB[[:space:]]+16\.00KiB[[:space:]]+none[[:space:]]+none[[:space:]]+-[[:space:]]+-[[:space:]]+"
+done
+
+test "$(printf '%s\n' "$QGROUPS" | grep -c '^0/')" -eq 3
+
+echo '=== Verify deleted qgroups remain absent ==='
+
+for ID in 257 259; do
+    if printf '%s\n' "$QGROUPS" |
+        grep -Eq "^0/$ID[[:space:]]"; then
+        echo "FAIL: qgroup 0/$ID still exists"
+        exit 1
+    fi
+    echo "ABSENT: 0/$ID"
+done
+
+echo '=== Verify snapshots remain absent ==='
+
+test ! -e "$MOUNT/snapshot-a"
+test ! -e "$MOUNT/snapshot-b"
+
+echo '=== Verify no pending deletions ==='
+
+test -z "$(sudo btrfs subvolume list -d "$MOUNT")"
+
+echo '=== Verify quota rescan idle ==='
+
+RESCAN=$(sudo btrfs quota rescan -s "$MOUNT")
+test "$RESCAN" = 'no rescan operation in progress'
+
+echo '=== Reconciliation no-op check ==='
+
+CANDIDATES=$(
+  printf '%s\n' "$QGROUPS" |
+    awk '$1 ~ /^0\/[0-9]+$/ && $NF == "<stale>" {print $1}'
+)
+
+test -z "$CANDIDATES"
+
+echo 'No stale qgroups remain; repeated reconciliation selects zero candidates.'
+
+echo '=== GATE D COMPLETE ==='
+=== Gate D: Verify disposable filesystem ===
+=== Verify exact active subvolumes ===
+ID 256 gen 11 top level 5 path source-a
+ID 258 gen 13 top level 5 path source-b
+=== Verify exact final qgroup inventory ===
+Qgroupid    Referenced    Exclusive  Max referenced  Max exclusive Parent   Child   Path
+--------    ----------    ---------  --------------  ------------- ------   -----   ----
+0/5           16.00KiB     16.00KiB            none           none -        -       <toplevel>
+0/256         16.00KiB     16.00KiB            none           none -        -       source-a
+0/258         16.00KiB     16.00KiB            none           none -        -       source-b
+=== Verify deleted qgroups remain absent ===
+ABSENT: 0/257
+ABSENT: 0/259
+=== Verify snapshots remain absent ===
+=== Verify no pending deletions ===
+=== Verify quota rescan idle ===
+=== Reconciliation no-op check ===
+No stale qgroups remain; repeated reconciliation selects zero candidates.
+=== GATE D COMPLETE ===
+richard@mango:~$

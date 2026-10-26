@@ -1,0 +1,181 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== Existing retirement evidence ==='
+find /home/richard/0040-step10-evidence \
+  -maxdepth 3 -type f -printf '%p\n' | sort
+
+echo
+echo '=== Historical retirement receipts ==='
+find /home/richard \
+  -type f \( -iname '*retire*receipt*' -o -iname '*retirement*receipt*' \) \
+  -print 2>/dev/null | head -n 40
+
+echo
+echo '=== Snapper package and APT hook ==='
+ssh mars '
+  dpkg-query -W -f="${Package} ${Status} ${Version}\n" snapper 2>/dev/null || true
+  sudo ls -l /etc/apt/apt.conf.d/80snapper 2>/dev/null || true
+  sudo cat /etc/apt/apt.conf.d/80snapper 2>/dev/null || true
+'
+
+echo
+echo '=== Remaining Snapper configuration ==='
+ssh mars '
+  sudo find /etc/snapper -maxdepth 3 -type f -print 2>/dev/null || true
+  systemctl list-unit-files --no-pager | grep -Ei "snapper|legacy.*prune" || true
+'
+=== Existing retirement evidence ===
+/home/richard/0040-step10-evidence/0040-backup-native-check.txt
+/home/richard/0040-step10-evidence/0040-backup-native-deploy.txt
+/home/richard/0040-step10-evidence/0040-backup-native-idempotency.txt
+/home/richard/0040-step10-evidence/0040-mars-postdeploy-idempotency.txt
+/home/richard/0040-step10-evidence/0040-mars-snapshots-check.txt
+/home/richard/0040-step10-evidence/0040-mars-snapshots-deploy.txt
+/home/richard/0040-step10-evidence/0040-replication-fixed-backup-check.txt
+/home/richard/0040-step10-evidence/0040-replication-fixed-mars-check.txt
+/home/richard/0040-step10-evidence/0040-replication-rename-backup-check.txt
+/home/richard/0040-step10-evidence/0040-replication-rename-mars-check.txt
+/home/richard/0040-step10-evidence/backup-before-retirement.txt
+/home/richard/0040-step10-evidence/backup-legacy-plan.json
+/home/richard/0040-step10-evidence/backup-retirement-approved-manifest.json
+/home/richard/0040-step10-evidence/backup-retirement-apt-hook-check.txt
+/home/richard/0040-step10-evidence/backup-retirement-batch01.txt
+/home/richard/0040-step10-evidence/backup-retirement-batch02.txt
+/home/richard/0040-step10-evidence/backup-retirement-batch03.txt
+/home/richard/0040-step10-evidence/backup-retirement-batch04.txt
+/home/richard/0040-step10-evidence/backup-retirement-batch05.txt
+/home/richard/0040-step10-evidence/backup-retirement-batch06.txt
+/home/richard/0040-step10-evidence/backup-retirement-batch07.txt
+/home/richard/0040-step10-evidence/backup-retirement-command-help.txt
+/home/richard/0040-step10-evidence/backup-retirement-config-cleanup.txt
+/home/richard/0040-step10-evidence/backup-retirement-config-residue.txt
+/home/richard/0040-step10-evidence/backup-retirement-containers.txt
+/home/richard/0040-step10-evidence/backup-retirement-dry-run.txt
+/home/richard/0040-step10-evidence/backup-retirement-final-cleanup.txt
+/home/richard/0040-step10-evidence/backup-retirement-final-plan.txt
+/home/richard/0040-step10-evidence/backup-retirement-final-receiver.txt
+/home/richard/0040-step10-evidence/backup-retirement-final-subvolumes.txt
+/home/richard/0040-step10-evidence/backup-retirement-final-verification.txt
+/home/richard/0040-step10-evidence/backup-retirement-mount-investigation.txt
+/home/richard/0040-step10-evidence/backup-retirement-new-snapshot-investigation.txt
+/home/richard/0040-step10-evidence/backup-retirement-post-purge.txt
+/home/richard/0040-step10-evidence/backup-retirement-post-uninstall.txt
+/home/richard/0040-step10-evidence/backup-retirement-preflight.txt
+/home/richard/0040-step10-evidence/backup-retirement-purge-preflight.txt
+/home/richard/0040-step10-evidence/backup-retirement-purge.txt
+/home/richard/0040-step10-evidence/backup-retirement-receiver-after03.txt
+/home/richard/0040-step10-evidence/backup-retirement-receiver-after05.txt
+/home/richard/0040-step10-evidence/backup-retirement-receiver-inventory.txt
+/home/richard/0040-step10-evidence/backup-retirement-resume-after03.txt
+/home/richard/0040-step10-evidence/backup-retirement-resume-after05.txt
+/home/richard/0040-step10-evidence/backup-retirement-resume-plan.txt
+/home/richard/0040-step10-evidence/backup-retirement-snapper-configuration.txt
+/home/richard/0040-step10-evidence/backup-retirement-step10-summary.txt
+/home/richard/0040-step10-evidence/backup-retirement-unexpected-directory.txt
+/home/richard/0040-step10-evidence/backup-retirement-uninstall-preflight.txt
+/home/richard/0040-step10-evidence/backup-retirement-uninstall.txt
+/home/richard/0040-step10-evidence/backup-retirement-validation.txt
+/home/richard/0040-step10-evidence/backup-subvolumes.txt
+/home/richard/0040-step10-evidence/inventory-before-cleanup/backup/snapper.yaml
+/home/richard/0040-step10-evidence/inventory-before-cleanup/mars/backup.yaml
+/home/richard/0040-step10-evidence/inventory-before-cleanup/mars/mars.yaml
+/home/richard/0040-step10-evidence/mars-before-retirement.txt
+/home/richard/0040-step10-evidence/mars-legacy-plan.json
+/home/richard/0040-step10-evidence/mars-legacy-prune-units.tar.gz
+/home/richard/0040-step10-evidence/mars-legacy-unit-removal.txt
+/home/richard/0040-step10-evidence/mars-legacy-unit-retirement-preflight.txt
+/home/richard/0040-step10-evidence/mars-retirement-after-batch01-holds.json
+/home/richard/0040-step10-evidence/mars-retirement-after-batch01-plan.txt
+/home/richard/0040-step10-evidence/mars-retirement-after-batch01-receiver.txt
+/home/richard/0040-step10-evidence/mars-retirement-after-batch01-replication.json
+/home/richard/0040-step10-evidence/mars-retirement-after-batch01-status.txt
+/home/richard/0040-step10-evidence/mars-retirement-after-batch02-holds.json
+/home/richard/0040-step10-evidence/mars-retirement-after-batch02-plan.txt
+/home/richard/0040-step10-evidence/mars-retirement-after-batch02-receiver.txt
+/home/richard/0040-step10-evidence/mars-retirement-after-batch02-replication.json
+/home/richard/0040-step10-evidence/mars-retirement-after-batch02-status.txt
+/home/richard/0040-step10-evidence/mars-retirement-approved-manifest.json
+/home/richard/0040-step10-evidence/mars-retirement-backup-legacy-check.txt
+/home/richard/0040-step10-evidence/mars-retirement-backup-receiver-inventory.txt
+/home/richard/0040-step10-evidence/mars-retirement-batch01.txt
+/home/richard/0040-step10-evidence/mars-retirement-batch02.txt
+/home/richard/0040-step10-evidence/mars-retirement-batch04.txt
+/home/richard/0040-step10-evidence/mars-retirement-batch05.txt
+/home/richard/0040-step10-evidence/mars-retirement-batch06.txt
+/home/richard/0040-step10-evidence/mars-retirement-batch07.txt
+/home/richard/0040-step10-evidence/mars-retirement-checkpoint-holds.json
+/home/richard/0040-step10-evidence/mars-retirement-command-dispatch.txt
+/home/richard/0040-step10-evidence/mars-retirement-command-help.txt
+/home/richard/0040-step10-evidence/mars-retirement-container-preflight.txt
+/home/richard/0040-step10-evidence/mars-retirement-delete-implementation.txt
+/home/richard/0040-step10-evidence/mars-retirement-dependency-check.txt
+/home/richard/0040-step10-evidence/mars-retirement-directory-structure.txt
+/home/richard/0040-step10-evidence/mars-retirement-final-preflight-status.txt
+/home/richard/0040-step10-evidence/mars-retirement-implementation-references.txt
+/home/richard/0040-step10-evidence/mars-retirement-legacy-delete-help.txt
+/home/richard/0040-step10-evidence/mars-retirement-legacy-help.txt
+/home/richard/0040-step10-evidence/mars-retirement-legacy-identities.txt
+/home/richard/0040-step10-evidence/mars-retirement-legacy-plan-errors.txt
+/home/richard/0040-step10-evidence/mars-retirement-legacy-plan.json
+/home/richard/0040-step10-evidence/mars-retirement-legacy-prune-help.txt
+/home/richard/0040-step10-evidence/mars-retirement-legacy-service.txt
+/home/richard/0040-step10-evidence/mars-retirement-legacy-timer.txt
+/home/richard/0040-step10-evidence/mars-retirement-live-subvolumes.txt
+/home/richard/0040-step10-evidence/mars-retirement-lock-check.txt
+/home/richard/0040-step10-evidence/mars-retirement-lock-implementation.txt
+/home/richard/0040-step10-evidence/mars-retirement-manager-config.json
+/home/richard/0040-step10-evidence/mars-retirement-metadata-validation.txt
+/home/richard/0040-step10-evidence/mars-retirement-native-source-status.txt
+/home/richard/0040-step10-evidence/mars-retirement-pilot-execution.txt
+/home/richard/0040-step10-evidence/mars-retirement-postpilot-holds.json
+/home/richard/0040-step10-evidence/mars-retirement-postpilot-plan.txt
+/home/richard/0040-step10-evidence/mars-retirement-postpilot-receiver.txt
+/home/richard/0040-step10-evidence/mars-retirement-postpilot-replication.json
+/home/richard/0040-step10-evidence/mars-retirement-postpilot-status.txt
+/home/richard/0040-step10-evidence/mars-retirement-prepilot-holds.json
+/home/richard/0040-step10-evidence/mars-retirement-prepilot-plan.txt
+/home/richard/0040-step10-evidence/mars-retirement-prepilot-receiver.txt
+/home/richard/0040-step10-evidence/mars-retirement-prepilot-replication.json
+/home/richard/0040-step10-evidence/mars-retirement-prepilot-status.txt
+/home/richard/0040-step10-evidence/mars-retirement-prepilot-timers.txt
+/home/richard/0040-step10-evidence/mars-retirement-production-preflight.json
+/home/richard/0040-step10-evidence/mars-retirement-production-rehearsal.txt
+/home/richard/0040-step10-evidence/mars-retirement-protection-references.txt
+/home/richard/0040-step10-evidence/mars-retirement-replication-protection.json
+/home/richard/0040-step10-evidence/mars-retirement-replication-timer.txt
+/home/richard/0040-step10-evidence/mars-retirement-service-states.txt
+/home/richard/0040-step10-evidence/mars-retirement-snapper-configs.txt
+/home/richard/0040-step10-evidence/mars-retirement-snapper-infrastructure.txt
+/home/richard/0040-step10-evidence/mars-retirement-status.txt
+/home/richard/0040-step10-evidence/mars-retirement-subvolumes.txt
+/home/richard/0040-step10-evidence/mars-retirement-timers.txt
+/home/richard/0040-step10-evidence/mars-snapper-final-absence.txt
+/home/richard/0040-step10-evidence/mars-snapper-final-cleanup.txt
+/home/richard/0040-step10-evidence/mars-snapper-final-config-backup.tar.gz
+/home/richard/0040-step10-evidence/mars-snapper-final-native-status.txt
+/home/richard/0040-step10-evidence/mars-snapper-final-receiver.txt
+/home/richard/0040-step10-evidence/mars-snapper-final-removal.txt
+/home/richard/0040-step10-evidence/mars-snapper-removal-failure-investigation.txt
+/home/richard/0040-step10-evidence/mars-snapper-removal-preflight.txt
+/home/richard/0040-step10-evidence/mars-subvolumes.txt
+/home/richard/0040-step10-evidence/__pycache__/retire-backup-legacy.cpython-312.pyc
+/home/richard/0040-step10-evidence/retire-backup-legacy.py
+/home/richard/0040-step10-evidence/retire-mars-legacy.py
+
+=== Historical retirement receipts ===
+
+=== Snapper package and APT hook ===
+
+-rw-r--r-- 1 root root 734 Aug 15  2021 /etc/apt/apt.conf.d/80snapper
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=770938
+  DPkg::Pre-Invoke  { "if [ -e /etc/default/snapper ]; then . /etc/default/snapper; fi; if [ -x /usr/bin/snapper ] && [ ! x$DISABLE_APT_SNAPSHOT = 'xyes' ] && [ -e /etc/snapper/configs/root ]; then rm -f /var/tmp/snapper-apt || true ; snapper create -d apt -c number -t pre -p > /var/tmp/snapper-apt || true ; snapper cleanup number || true ; fi"; };
+  DPkg::Post-Invoke { "if [ -e /etc/default/snapper ]; then . /etc/default/snapper; fi; if [ -x /usr/bin/snapper ] && [ ! x$DISABLE_APT_SNAPSHOT = 'xyes' ] && [ -e /var/tmp/snapper-apt ]; then snapper create -d apt -c number -t post --pre-number=`cat /var/tmp/snapper-apt` || true ; snapper cleanup number || true ; fi"; };
+
+=== Remaining Snapper configuration ===
+/etc/snapper/filters/base.txt
+/etc/snapper/filters/x11.txt
+/etc/snapper/filters/lvm.txt
+/etc/snapper/config-templates/root
+/etc/snapper/config-templates/@data
+/etc/snapper/config-templates/default
+richard@mango:~/playbooks$

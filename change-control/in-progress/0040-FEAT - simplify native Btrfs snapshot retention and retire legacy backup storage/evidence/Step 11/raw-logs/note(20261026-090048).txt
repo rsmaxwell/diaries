@@ -1,0 +1,128 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== Confirm commit isolation guard ==='
+grep -n -A 25 -B 8 \
+  'mask' \
+  roles/snapshots/tests/0040-step11/retire-historical-root.py
+
+echo
+echo '=== Check protected snapshots on mars ==='
+ssh mars '
+  sudo btrfs-snapshot-manager \
+    --config /etc/btrfs-snapshot-manager.json hold-list
+
+  sudo btrfs-snapshot-manager \
+    --config /etc/btrfs-snapshot-manager.json status
+'
+
+echo
+echo '=== Check effective replication isolation ==='
+ssh mars '
+  systemctl show btrfs-native-push.service \
+    -p LoadState -p ActiveState -p UnitFileState
+
+  systemctl show btrfs-native-push.timer \
+    -p ActiveState -p UnitFileState
+'
+
+echo
+' fiecho "PASS: no retirement receipt"exists"-step11-root-retirement-receipt.jsonl; then
+=== Confirm commit isolation guard ===
+1-#!/usr/bin/env python3
+2-"""0040 Step 11: fixed-inventory, fail-closed one-time root-snapshot retirement.
+3-
+4:Preview never deletes. Commit requires explicit authorisation, runtime-masked
+5-replication service, and durable intent/completion receipts for each deletion. This is
+6-historical change-control tooling, not a component of the snapshot manager.
+7-"""
+8-import argparse
+9-import fcntl
+10-import hashlib
+11-import json
+12-import os
+13-from pathlib import Path
+14-import re
+15-import subprocess
+16-import sys
+17-
+18-ROOT = Path('/media/usb/@snapshots/root')
+19-DATA = Path('/media/usb/@snapshots/@data')
+20-CONFIG = Path('/etc/btrfs-snapshot-manager.json')
+21-HOLDS = Path('/media/usb/@snapshots/.checkpoint-holds.json')
+22-PROTECTION = Path('/media/usb/@snapshots/.replication-protection.json')
+23-LOCK = Path('/run/lock/btrfs-snapshot-manager.lock')
+24-MANIFEST = Path(__file__).with_name('root-retirement-manifest.json')
+25-RECEIPT = Path('/media/usb/@snapshots/.0040-step11-root-retirement-receipt.jsonl')
+26-AUTH = '0040-STEP11-DELETE-63-HISTORICAL-ROOT-SNAPSHOTS'
+27-STAMP = re.compile(r'\d{8}-\d{6}Z\Z')
+28-UUID = re.compile(r'[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\Z')
+29-
+--
+99-    return result.stdout.strip(), result.returncode
+100-
+101-def replication_inactive():
+102-    state, code = systemd_state('is-active', 'btrfs-native-push.service')
+103-    if state != 'inactive':
+104-        raise Refusal(f'Replication service not inactive: {state} (code {code})')
+105-
+106-def commit_replication_exclusion():
+107:    # A runtime mask prohibits new service starts, including timer/manual activation.
+108-    # It is applied outside this utility during the separately authorised cutover.
+109-    # Never change systemd state here: a failed preflight must leave production alone.
+110-    state, code = systemd_state('is-enabled', 'btrfs-native-push.service')
+111:    if state not in ('masked', 'masked-runtime'):
+112:        raise Refusal(f'Commit requires runtime-masked native push service; observed {state} ({code})')
+113-    replication_inactive()
+114-
+115-def durable_event(out, event, **fields):
+116-    out.write(json.dumps({'event': event, **fields}, sort_keys=True) + '\n')
+117-    out.flush()
+118-    os.fsync(out.fileno())
+119-
+120-def durable_receipt_dir():
+121-    fd = os.open(str(RECEIPT.parent), os.O_RDONLY | os.O_DIRECTORY)
+122-    try:
+123-        os.fsync(fd)
+124-    finally:
+125-        os.close(fd)
+126-
+127-def delete_with_receipt(entries, out):
+128-    durable_event(out, 'BEGIN', count=len(entries),
+129-                  manifest_sha256=hashlib.sha256(MANIFEST.read_bytes()).hexdigest())
+130-    for e in entries:
+131-        # Protection can change without the snapshot-manager lock (manual edits);
+132-        # recheck the protected data and live source configuration each iteration.
+133-        # Do NOT repeat full inventory preflight, as prior candidates were deleted.
+134-        protection_preflight()
+135-        commit_replication_exclusion()
+136-        path = ROOT / e['timestamp']
+137-        if path.is_symlink() or not path.is_dir():
+
+=== Check protected snapshots on mars ===
+HELD 20261013-171228Z reason=0034/0035 pre-cleanup recovery checkpoint
+HELD 20261018-165453Z reason=Permanent 0034/0036 mango closure evidence archive
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=429
+qgroups_stale=291
+qgroups_under_deletion=0
+qgroups_status=warning
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=64;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=64
+diaries_verification=valid;logicalDataset=production;backupId=20261026-003102Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+
+=== Check effective replication isolation ===
+LoadState=masked
+ActiveState=inactive
+UnitFileState=masked
+ActiveState=inactive
+UnitFileState=enabled
+
+=== Check rollback service checksum ===
+2fb648b14860a107bea883c3becbd7594de9cf4ab4196b2f39eebe9befbcfff3  /home/richard/btrfs-native-push.service.0040-step11-before
+2fb648b14860a107bea883c3becbd7594de9cf4ab4196b2f39eebe9befbcfff3  /etc/systemd/system/btrfs-native-push.service.0040-step11-before
+
+=== Check retirement receipt ===
+PASS: no retirement receipt
+richard@mango:~/playbooks$

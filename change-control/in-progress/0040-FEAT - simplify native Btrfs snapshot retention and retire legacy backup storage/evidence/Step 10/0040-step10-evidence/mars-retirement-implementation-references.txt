@@ -1,0 +1,11 @@
+761:def legacy_snapper_inventory(config: Config, mappings: list[str]) -> dict[str, list[dict[str, object]]]:
+850:def legacy_plan(config: Config, mappings: list[str], output_json: bool, emit: bool = True) -> dict[str, object]:
+920:def legacy_delete(config: Config, approval_path: Path, source: str, snapper_config: str,
+955:    print(f"LEGACY DELETE approved host={socket.gethostname()} source={source} "
+962:def legacy_prune(config: Config, mappings: list[str], max_delete: int, execute: bool) -> None:
+1235:    operation can be attempted by a future approved executor.
+1343:def receiver_delete_one_locked(
+1529:def with_lock(path: Path, *, shared: bool = False, nonblocking: bool = True,
+1547:        fcntl.flock(handle.fileno(), flags)
+1570:    guarded = sub.add_parser("receiver-prune", help="explicitly approved, locked receiver deletion")
+1575:    delete_parser = sub.add_parser("legacy-delete", help="single-ID explicitly approved Snapper deletion")

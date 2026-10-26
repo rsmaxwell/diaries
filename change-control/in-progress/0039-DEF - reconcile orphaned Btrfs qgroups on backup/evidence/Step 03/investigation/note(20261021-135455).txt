@@ -1,0 +1,137 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== Historical changes involving quota configuration ==='
+
+git diff-tree --no-commit-id --name-status -r \
+  9be281a
+
+echo '=== Initial commit configuration paths ==='
+
+git ls-tree -r --name-only b24d390 |
+  grep -Ei \
+    'btrfs|backup|inventory|host_vars|group_vars|snapshot' |
+  head -n 100
+
+echo '=== August role changes ==='
+
+git diff --stat b24d390 604774d -- roles/btrfs
+
+echo '=== Current references outside tracked source ==='
+
+grep -RIl \
+  --exclude-dir=.git \
+  --exclude='*.zip' \
+  'btrfs_subvolume_limit' \
+  /etc/ansible/host_vars \
+  /etc/ansible/group_vars \
+  2>/dev/null |
+  sort
+=== Historical changes involving quota configuration ===
+A       AGENTS.md
+M       roles/diaries/defaults/main.yaml
+M       roles/diaries/tasks/pwfile.yaml
+D       roles/diaries/templates/config/mosquitto/pwfile.source.txt.j2
+M       roles/ledger/defaults/main.yaml
+D       roles/webserver/files/nginx/files/ansible.cfg
+D       roles/webserver/files/nginx/files/group_vars/all
+D       roles/webserver/files/nginx/files/group_vars/archiva
+D       roles/webserver/files/nginx/files/group_vars/bootstrap
+D       roles/webserver/files/nginx/files/group_vars/builder
+D       roles/webserver/files/nginx/files/group_vars/diaries
+D       roles/webserver/files/nginx/files/group_vars/infrastructure
+D       roles/webserver/files/nginx/files/group_vars/ledger
+D       roles/webserver/files/nginx/files/host_vars/acorn-bootstrap.yaml
+D       roles/webserver/files/nginx/files/host_vars/acorn.yaml
+D       roles/webserver/files/nginx/files/host_vars/backup-bootstrap.yaml
+D       roles/webserver/files/nginx/files/host_vars/backup.yaml
+D       roles/webserver/files/nginx/files/host_vars/bob-bootstrap.yaml
+D       roles/webserver/files/nginx/files/host_vars/bob.yaml
+D       roles/webserver/files/nginx/files/host_vars/boris.yaml
+D       roles/webserver/files/nginx/files/host_vars/grape-bootstrap.yaml
+D       roles/webserver/files/nginx/files/host_vars/grape.yaml
+D       roles/webserver/files/nginx/files/host_vars/major.yaml
+D       roles/webserver/files/nginx/files/host_vars/mars-bootstrap.yaml
+D       roles/webserver/files/nginx/files/host_vars/mars.yaml
+D       roles/webserver/files/nginx/files/host_vars/pluto-bootstrap.yaml
+D       roles/webserver/files/nginx/files/host_vars/pluto.yaml
+D       roles/webserver/files/nginx/files/host_vars/snowy-bootstrap.yaml
+D       roles/webserver/files/nginx/files/host_vars/snowy.yaml
+D       roles/webserver/files/nginx/files/host_vars/tintin.yaml
+D       roles/webserver/files/nginx/files/hosts
+=== Initial commit configuration paths ===
+btrfs.yaml
+local-backup.yaml
+remote-backup.yaml
+roles/btrfs/files/initialise_btrfs_subvolume.py
+roles/btrfs/files/remove_btrfs_subvolume.py
+roles/btrfs/tasks/main.yaml
+roles/ledger/files/sync/scripts/backup-db-to-sql.sh
+roles/ledger/files/sync/scripts/backup-db.sh
+roles/local-backup/files/backup-machine/backup.sh
+roles/local-backup/files/backup-machine/cron/backup.sh
+roles/local-backup/files/backup-machine/home/backup.sh
+roles/local-backup/files/backup-machine/home/excludes-1
+roles/local-backup/files/backup-machine/home/excludes-2
+roles/local-backup/files/backup-machine/home/includes
+roles/local-backup/files/backup-machine/remote/backup.sh
+roles/local-backup/files/backup-machine/remote/excludes-1
+roles/local-backup/files/backup-machine/remote/excludes-2
+roles/local-backup/files/backup-machine/remote/includes
+roles/local-backup/files/backup/backup.sh
+roles/local-backup/files/backup/cron/backup.sh
+roles/local-backup/files/backup/home/backup.sh
+roles/local-backup/files/backup/home/excludes-1
+roles/local-backup/files/backup/home/excludes-2
+roles/local-backup/files/backup/home/includes
+roles/local-backup/handlers/main.yaml
+roles/local-backup/tasks/docker.yaml
+roles/local-backup/tasks/install_machine_scripts.yaml
+roles/local-backup/tasks/install_user_scripts.yaml
+roles/local-backup/tasks/main.yaml
+roles/local-backup/templates/backup-machine/config.py.j2
+roles/local-backup/templates/backup/config.py.j2
+roles/remote-backup/docker-compose.yaml
+roles/remote-backup/files/create_snapper_config.py
+roles/remote-backup/files/create_snapper_template.py
+roles/remote-backup/files/mytools.py
+roles/remote-backup/tasks/main.yaml
+roles/snapshots/docker-compose.yaml
+roles/snapshots/files/create_snapper_config.py
+roles/snapshots/files/create_snapper_template.py
+roles/snapshots/tasks/main.yaml
+roles/webserver/files/nginx/files/group_vars/all
+roles/webserver/files/nginx/files/group_vars/archiva
+roles/webserver/files/nginx/files/group_vars/bootstrap
+roles/webserver/files/nginx/files/group_vars/builder
+roles/webserver/files/nginx/files/group_vars/diaries
+roles/webserver/files/nginx/files/group_vars/infrastructure
+roles/webserver/files/nginx/files/group_vars/ledger
+roles/webserver/files/nginx/files/host_vars/acorn-bootstrap.yaml
+roles/webserver/files/nginx/files/host_vars/acorn.yaml
+roles/webserver/files/nginx/files/host_vars/backup-bootstrap.yaml
+roles/webserver/files/nginx/files/host_vars/backup.yaml
+roles/webserver/files/nginx/files/host_vars/bob-bootstrap.yaml
+roles/webserver/files/nginx/files/host_vars/bob.yaml
+roles/webserver/files/nginx/files/host_vars/boris.yaml
+roles/webserver/files/nginx/files/host_vars/grape-bootstrap.yaml
+roles/webserver/files/nginx/files/host_vars/grape.yaml
+roles/webserver/files/nginx/files/host_vars/major.yaml
+roles/webserver/files/nginx/files/host_vars/mars-bootstrap.yaml
+roles/webserver/files/nginx/files/host_vars/mars.yaml
+roles/webserver/files/nginx/files/host_vars/pluto-bootstrap.yaml
+roles/webserver/files/nginx/files/host_vars/pluto.yaml
+roles/webserver/files/nginx/files/host_vars/snowy-bootstrap.yaml
+roles/webserver/files/nginx/files/host_vars/snowy.yaml
+roles/webserver/files/nginx/files/host_vars/tintin.yaml
+scripts/local-backup.sh
+scripts/remote-backup.sh
+scripts/snapshots.sh
+snapshots.yaml
+=== August role changes ===
+ roles/btrfs/files/initialise_btrfs_subvolume.py | 25 +++++++++++++++++--------
+ roles/btrfs/tasks/main.yaml                     |  7 +++++--
+ 2 files changed, 22 insertions(+), 10 deletions(-)
+=== Current references outside tracked source ===
+/etc/ansible/host_vars/backup/btrfs.yaml
+/etc/ansible/host_vars/mars/mars.yaml
+richard@mango:~/playbooks$

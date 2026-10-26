@@ -1,0 +1,22 @@
+=== Snapper package status ===
+
+=== Snapper APT hook ===
+PASS: Snapper APT hook absent
+
+=== Remaining Snapper configuration ===
+/etc/snapper/config-templates/root
+/etc/snapper/config-templates/@data
+/etc/snapper/configs/root
+/etc/snapper/configs/@data
+
+=== Legacy Btrfs subvolume inventory ===
+ID 307 gen 564827 top level 5 uuid 621c8df8-992f-8143-b427-6624d273e720 path .snapshots
+ID 309 gen 564792 top level 275 uuid e8690a2f-a2e9-2d4f-930b-314a9d8b2b90 path @data/.snapshots
+ID 55873 gen 564819 top level 307 uuid c8599199-bb4f-ed4d-8cc6-168d168f52f2 path .snapshots/1/snapshot
+
+=== Native receiver inventory ===
+RECEIVER-INVENTORY snapshots=21 directory=/@data/mars-received/@data
+RECEIVER-INVENTORY problems=0
+
+=== Receiver recovery ===
+RECEIVER-RECOVERY {"authorizes_repair": false, "state": "CLEAN"}

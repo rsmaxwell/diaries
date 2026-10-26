@@ -1,0 +1,460 @@
+{
+  "feature": "0040-FEAT",
+  "host": "backup",
+  "purpose": "Approved numerical legacy Snapper retirement",
+  "expected_count": 113,
+  "targets": [
+    {
+      "path": "/.snapshots/11687/snapshot",
+      "uuid": "2e1df726-6fb3-cf4d-83d6-97a81c88a3d1"
+    },
+    {
+      "path": "/.snapshots/21144/snapshot",
+      "uuid": "9b119ae8-4b83-274d-8337-7687c05d4180"
+    },
+    {
+      "path": "/.snapshots/21946/snapshot",
+      "uuid": "661b5637-0576-6b48-8b70-c1d0c4869c40"
+    },
+    {
+      "path": "/.snapshots/2217/snapshot",
+      "uuid": "0ce1b44c-52ed-be47-b564-a84fa1486111"
+    },
+    {
+      "path": "/.snapshots/22708/snapshot",
+      "uuid": "9585364c-8150-9a4f-8184-2973ffd28cf3"
+    },
+    {
+      "path": "/.snapshots/23549/snapshot",
+      "uuid": "26a9ff9a-ad5e-2a40-84e7-f9701e8e17ca"
+    },
+    {
+      "path": "/.snapshots/24343/snapshot",
+      "uuid": "34e173f3-9415-6749-bee3-1f66b290761a"
+    },
+    {
+      "path": "/.snapshots/25155/snapshot",
+      "uuid": "19838fa5-1042-6649-931b-dadd286b1c25"
+    },
+    {
+      "path": "/.snapshots/25956/snapshot",
+      "uuid": "03538cf6-e93e-6948-9006-0d23826ed595"
+    },
+    {
+      "path": "/.snapshots/26839/snapshot",
+      "uuid": "5529195a-9f8b-8846-a836-515552205cb2"
+    },
+    {
+      "path": "/.snapshots/27673/snapshot",
+      "uuid": "9f410bbd-54ed-a544-be3b-d604d0b20e05"
+    },
+    {
+      "path": "/.snapshots/28549/snapshot",
+      "uuid": "1003b652-dd6c-9e43-84ea-f5eac6b2343e"
+    },
+    {
+      "path": "/.snapshots/28621/snapshot",
+      "uuid": "77eafc1a-77a1-094d-a6f4-cdf3f816deaf"
+    },
+    {
+      "path": "/.snapshots/28645/snapshot",
+      "uuid": "8a9277d3-6d50-574a-9c93-b5e00763cbd0"
+    },
+    {
+      "path": "/.snapshots/28669/snapshot",
+      "uuid": "7724456d-3ca9-3941-b9ca-f16e0ec4fc1f"
+    },
+    {
+      "path": "/.snapshots/28693/snapshot",
+      "uuid": "5137db58-b468-dd46-8725-0e88b7d2baf9"
+    },
+    {
+      "path": "/.snapshots/28717/snapshot",
+      "uuid": "bc25914d-a1c9-9e4a-9da8-a4a0c8aa1f76"
+    },
+    {
+      "path": "/.snapshots/28765/snapshot",
+      "uuid": "f139ad33-5690-254b-a472-1059bd195dbd"
+    },
+    {
+      "path": "/.snapshots/28789/snapshot",
+      "uuid": "7d48e115-1526-d741-b3cb-79ef31ea85d5"
+    },
+    {
+      "path": "/.snapshots/28825/snapshot",
+      "uuid": "a0d87a5e-6c54-6f4b-bd06-a6e2f4e4f66e"
+    },
+    {
+      "path": "/.snapshots/28854/snapshot",
+      "uuid": "2bed0a3a-4f4a-b644-8c0c-6ca5b9accdb0"
+    },
+    {
+      "path": "/.snapshots/28878/snapshot",
+      "uuid": "17735f72-3d6b-1745-8a07-9d8181cc52be"
+    },
+    {
+      "path": "/.snapshots/28902/snapshot",
+      "uuid": "d6f0b2d0-51d0-2047-a222-83d9abdc47ba"
+    },
+    {
+      "path": "/.snapshots/28932/snapshot",
+      "uuid": "4ad63c4f-1a6c-ad42-8dea-a00c47037830"
+    },
+    {
+      "path": "/.snapshots/28943/snapshot",
+      "uuid": "8db4db0a-c8bf-cb4b-8a53-73f5c4d14eb9"
+    },
+    {
+      "path": "/.snapshots/28944/snapshot",
+      "uuid": "e5b7e651-d640-cd4e-9098-d9a8206bc41b"
+    },
+    {
+      "path": "/.snapshots/28945/snapshot",
+      "uuid": "90055298-7787-d849-979d-c3b6adfadb78"
+    },
+    {
+      "path": "/.snapshots/28946/snapshot",
+      "uuid": "15d312d5-2012-6243-b9ce-6c9c55499913"
+    },
+    {
+      "path": "/.snapshots/28947/snapshot",
+      "uuid": "5531aa08-9119-814e-af1f-707d952a557f"
+    },
+    {
+      "path": "/.snapshots/28948/snapshot",
+      "uuid": "541f0d13-3233-ef41-94c3-52498bb91b23"
+    },
+    {
+      "path": "/.snapshots/28949/snapshot",
+      "uuid": "a3d7b317-e0f8-e741-8f00-59b466c8f1dc"
+    },
+    {
+      "path": "/.snapshots/28963/snapshot",
+      "uuid": "ff60ca0b-2621-2a47-9253-b22e7ce912d2"
+    },
+    {
+      "path": "/.snapshots/28964/snapshot",
+      "uuid": "090037e4-f7bf-2d4c-b179-6007c78e7b75"
+    },
+    {
+      "path": "/.snapshots/28965/snapshot",
+      "uuid": "f495ba5c-1bb0-fa44-a778-d3b1a9d323b3"
+    },
+    {
+      "path": "/.snapshots/28966/snapshot",
+      "uuid": "9775a837-6e9d-824d-8f8b-44d86ef72c18"
+    },
+    {
+      "path": "/.snapshots/28967/snapshot",
+      "uuid": "ade19744-6e34-b949-8a35-b9ca8e7fc097"
+    },
+    {
+      "path": "/.snapshots/28968/snapshot",
+      "uuid": "2d0d0e38-de56-0042-bce2-004a5380240e"
+    },
+    {
+      "path": "/.snapshots/28969/snapshot",
+      "uuid": "0cbcc7a9-2873-394b-8521-4f2e0ba55c98"
+    },
+    {
+      "path": "/.snapshots/28970/snapshot",
+      "uuid": "13fef3e9-a0da-9543-ba69-b737ae4471da"
+    },
+    {
+      "path": "/.snapshots/28971/snapshot",
+      "uuid": "2428a0ea-94fe-024c-90bf-1837e5c70c21"
+    },
+    {
+      "path": "/.snapshots/28972/snapshot",
+      "uuid": "c85d743b-cb32-3840-9b90-00c6d9b2b9c9"
+    },
+    {
+      "path": "/.snapshots/28973/snapshot",
+      "uuid": "ad3dff7e-28fe-5346-8ef8-ad78913e4465"
+    },
+    {
+      "path": "/.snapshots/28974/snapshot",
+      "uuid": "2254d4d1-32eb-4e4a-b3aa-896ecc0aeee1"
+    },
+    {
+      "path": "/.snapshots/28975/snapshot",
+      "uuid": "7ede91be-75ac-da41-b005-c367eb5d4a95"
+    },
+    {
+      "path": "/.snapshots/28976/snapshot",
+      "uuid": "f1ac8f26-1680-de47-80b3-0023b27ee157"
+    },
+    {
+      "path": "/.snapshots/28977/snapshot",
+      "uuid": "b2fa3361-21b2-1c46-abf1-39517c483c22"
+    },
+    {
+      "path": "/.snapshots/28978/snapshot",
+      "uuid": "68b2dee1-97ab-224c-ae72-6832ca451f3c"
+    },
+    {
+      "path": "/.snapshots/28979/snapshot",
+      "uuid": "228765c8-cd10-3744-b945-d616d17a392c"
+    },
+    {
+      "path": "/.snapshots/28980/snapshot",
+      "uuid": "90b208ae-ae3f-4143-a140-6e045b761a9a"
+    },
+    {
+      "path": "/.snapshots/28981/snapshot",
+      "uuid": "45693e19-9202-0849-be41-f79c734b0ece"
+    },
+    {
+      "path": "/.snapshots/28982/snapshot",
+      "uuid": "9b1c12b3-854f-654e-ac37-2200f9594716"
+    },
+    {
+      "path": "/.snapshots/28983/snapshot",
+      "uuid": "af4cb38f-1216-f444-9d2b-7c64256c8b49"
+    },
+    {
+      "path": "/.snapshots/28984/snapshot",
+      "uuid": "a0ca42d4-9e6c-0749-8c81-225a2ee494db"
+    },
+    {
+      "path": "/.snapshots/28985/snapshot",
+      "uuid": "484930aa-484a-8540-8972-a171b36ab014"
+    },
+    {
+      "path": "/.snapshots/28986/snapshot",
+      "uuid": "2fc42770-a570-5346-8572-cba0590b18ea"
+    },
+    {
+      "path": "/.snapshots/28987/snapshot",
+      "uuid": "c76bd3c9-2669-7142-84a7-67bb32739ab5"
+    },
+    {
+      "path": "/.snapshots/28988/snapshot",
+      "uuid": "baff9e98-674f-604c-aedd-758a8f9e2412"
+    },
+    {
+      "path": "/.snapshots/28989/snapshot",
+      "uuid": "79f922d4-c9e2-a443-9eed-c67b53c50cb2"
+    },
+    {
+      "path": "/.snapshots/28990/snapshot",
+      "uuid": "2a0307ac-9cb9-ba49-8d63-836ce5d3835e"
+    },
+    {
+      "path": "/.snapshots/28991/snapshot",
+      "uuid": "c008d051-2441-c74b-8d62-e73721b40620"
+    },
+    {
+      "path": "/.snapshots/28992/snapshot",
+      "uuid": "5d9a47c7-1d7e-5443-baad-25ffe10e36a6"
+    },
+    {
+      "path": "/.snapshots/28993/snapshot",
+      "uuid": "a0128199-3abe-9e48-8718-06964b187180"
+    },
+    {
+      "path": "/.snapshots/28994/snapshot",
+      "uuid": "9e12b200-ba90-0f4d-8e37-569acaf6c898"
+    },
+    {
+      "path": "/.snapshots/28995/snapshot",
+      "uuid": "6b38322d-db8c-ca4f-9007-422295cf8019"
+    },
+    {
+      "path": "/.snapshots/28996/snapshot",
+      "uuid": "7dcdf397-e2dc-c344-9f95-6571a65881a2"
+    },
+    {
+      "path": "/.snapshots/28997/snapshot",
+      "uuid": "65f01e80-2199-7c43-8e56-ce36f8962c44"
+    },
+    {
+      "path": "/.snapshots/28998/snapshot",
+      "uuid": "39bc1e80-e20f-434d-97d9-501922b64451"
+    },
+    {
+      "path": "/.snapshots/28999/snapshot",
+      "uuid": "21d5ebdf-70fb-a549-9754-88fce33405be"
+    },
+    {
+      "path": "/.snapshots/29000/snapshot",
+      "uuid": "355d2e62-96ca-7c49-a1ed-51be2ace9773"
+    },
+    {
+      "path": "/.snapshots/29001/snapshot",
+      "uuid": "3546de0c-507f-694c-b180-2524ce4bbd72"
+    },
+    {
+      "path": "/.snapshots/29002/snapshot",
+      "uuid": "d0c4e49a-afee-8046-aafd-c71aa666b4d0"
+    },
+    {
+      "path": "/.snapshots/29003/snapshot",
+      "uuid": "367f63d8-e458-8b4f-abb8-02359ff31fb1"
+    },
+    {
+      "path": "/.snapshots/29004/snapshot",
+      "uuid": "0df28528-1156-2941-a4f5-473a13c167b2"
+    },
+    {
+      "path": "/.snapshots/29005/snapshot",
+      "uuid": "d6d96a38-3eb9-5d49-ac2e-825fc37c60f0"
+    },
+    {
+      "path": "/.snapshots/29006/snapshot",
+      "uuid": "ba62fe12-0bbe-5147-a3c6-590168900312"
+    },
+    {
+      "path": "/.snapshots/29007/snapshot",
+      "uuid": "194a2afd-c11d-da4d-ae5d-536c15b5c556"
+    },
+    {
+      "path": "/.snapshots/29008/snapshot",
+      "uuid": "3ffe4ad8-9d1a-d74d-8344-453a0f83fb2c"
+    },
+    {
+      "path": "/.snapshots/29009/snapshot",
+      "uuid": "143776fc-e68c-4e4a-99df-6ebaa5357f5e"
+    },
+    {
+      "path": "/.snapshots/29010/snapshot",
+      "uuid": "17319b6d-2637-8f42-a421-c39ebea0f5cb"
+    },
+    {
+      "path": "/.snapshots/29011/snapshot",
+      "uuid": "82c5c84c-f0ec-6049-8571-d30f29a65c88"
+    },
+    {
+      "path": "/.snapshots/29012/snapshot",
+      "uuid": "86dd0661-cec5-0b4a-9d8a-c5bb21b39440"
+    },
+    {
+      "path": "/.snapshots/29013/snapshot",
+      "uuid": "4fcd6ecb-e6ef-af4a-aa6f-b3e9c84637d7"
+    },
+    {
+      "path": "/@data/.snapshots/10856/snapshot",
+      "uuid": "90f7ea52-d9aa-f54b-8bfc-55e1d5f1df0c"
+    },
+    {
+      "path": "/@data/.snapshots/19615/snapshot",
+      "uuid": "c47af3af-ce86-014a-bee6-0956f51ad56f"
+    },
+    {
+      "path": "/@data/.snapshots/20359/snapshot",
+      "uuid": "99f7daee-c9c2-9646-9f24-4e6a7480bcc7"
+    },
+    {
+      "path": "/@data/.snapshots/2073/snapshot",
+      "uuid": "0851ada8-e276-6e43-ace6-4ead21383c53"
+    },
+    {
+      "path": "/@data/.snapshots/21031/snapshot",
+      "uuid": "7d2e0e03-53c6-8b4b-8762-d164925256e8"
+    },
+    {
+      "path": "/@data/.snapshots/21774/snapshot",
+      "uuid": "9477bb37-bb38-5d41-8f98-2ef3dc8c2f08"
+    },
+    {
+      "path": "/@data/.snapshots/22494/snapshot",
+      "uuid": "947dcbba-9d12-9a48-90cd-8db19a2e5c8a"
+    },
+    {
+      "path": "/@data/.snapshots/23238/snapshot",
+      "uuid": "f680d49b-6611-1149-82fe-761b5e82f6e1"
+    },
+    {
+      "path": "/@data/.snapshots/23958/snapshot",
+      "uuid": "c6352c6d-129e-0347-803d-9fda9a67c5dd"
+    },
+    {
+      "path": "/@data/.snapshots/24702/snapshot",
+      "uuid": "63f7b72f-6c62-224f-9d84-e539665297a8"
+    },
+    {
+      "path": "/@data/.snapshots/25446/snapshot",
+      "uuid": "b97d25ce-bcdd-0540-9a83-918f976560fc"
+    },
+    {
+      "path": "/@data/.snapshots/26166/snapshot",
+      "uuid": "1c79a510-704b-6a46-beb0-fda819dcfe89"
+    },
+    {
+      "path": "/@data/.snapshots/26214/snapshot",
+      "uuid": "6b05cc8e-92eb-6e47-8de3-7f06357426e9"
+    },
+    {
+      "path": "/@data/.snapshots/26238/snapshot",
+      "uuid": "440b18ce-30ab-624e-9c4b-4d96fed92eda"
+    },
+    {
+      "path": "/@data/.snapshots/26262/snapshot",
+      "uuid": "a9c0de6c-441f-b44d-b26a-59f94ab146e3"
+    },
+    {
+      "path": "/@data/.snapshots/26286/snapshot",
+      "uuid": "00b51a85-2780-2b40-95f3-a8977c4289a5"
+    },
+    {
+      "path": "/@data/.snapshots/26310/snapshot",
+      "uuid": "ff0c3551-46b7-3e4c-bbf2-74b78d2a7b4f"
+    },
+    {
+      "path": "/@data/.snapshots/26334/snapshot",
+      "uuid": "365972cc-2bdd-fb4f-b8be-0edaf34000a7"
+    },
+    {
+      "path": "/@data/.snapshots/26358/snapshot",
+      "uuid": "e659cc35-cd6a-4c44-a3cb-f3491fce18e6"
+    },
+    {
+      "path": "/@data/.snapshots/26382/snapshot",
+      "uuid": "cdb960b0-db6d-4e44-80e7-9bc9ef173400"
+    },
+    {
+      "path": "/@data/.snapshots/26406/snapshot",
+      "uuid": "b17c584a-51f3-7649-b3b2-6d1bbebaee12"
+    },
+    {
+      "path": "/@data/.snapshots/26430/snapshot",
+      "uuid": "3520e9ed-6adf-ca4d-84a8-e168c4f42565"
+    },
+    {
+      "path": "/@data/.snapshots/26454/snapshot",
+      "uuid": "efa61cc0-1955-a842-9b72-3e7eac5118d8"
+    },
+    {
+      "path": "/@data/.snapshots/26478/snapshot",
+      "uuid": "7bef84b6-d051-c544-bcea-4c4113519cee"
+    },
+    {
+      "path": "/@data/.snapshots/26489/snapshot",
+      "uuid": "2aa7281a-81a7-9344-abca-6a81216766d1"
+    },
+    {
+      "path": "/@data/.snapshots/26490/snapshot",
+      "uuid": "c62400e0-f401-6741-bd43-6944245446ff"
+    },
+    {
+      "path": "/@data/.snapshots/26491/snapshot",
+      "uuid": "67c6f871-d508-4b44-a38f-635c8b847005"
+    },
+    {
+      "path": "/@data/.snapshots/26492/snapshot",
+      "uuid": "5b8e4c01-670f-3645-b1a3-76beb15025c7"
+    },
+    {
+      "path": "/@data/.snapshots/26493/snapshot",
+      "uuid": "75227a82-0249-2d46-a631-5e9a70482099"
+    },
+    {
+      "path": "/@data/.snapshots/26494/snapshot",
+      "uuid": "229ce5cd-ff93-424a-856d-c9f8495b9ba7"
+    },
+    {
+      "path": "/@data/.snapshots/26495/snapshot",
+      "uuid": "cc845fd4-2204-4144-a61f-a2a0aa7426e8"
+    }
+  ]
+}

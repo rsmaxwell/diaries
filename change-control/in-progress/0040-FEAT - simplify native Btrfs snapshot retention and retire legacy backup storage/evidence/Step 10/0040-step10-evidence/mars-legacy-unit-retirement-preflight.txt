@@ -1,0 +1,44 @@
+=== btrfs-legacy-prune.timer ===
+LoadState=loaded
+ActiveState=inactive
+FragmentPath=/etc/systemd/system/btrfs-legacy-prune.timer
+UnitFileState=disabled
+# /etc/systemd/system/btrfs-legacy-prune.timer
+[Unit]
+Description=Daily guarded pruning of legacy Snapper snapshots
+
+[Timer]
+OnCalendar=*-*-* 08:20:00 UTC
+Persistent=true
+AccuracySec=1min
+Unit=btrfs-legacy-prune.service
+
+[Install]
+WantedBy=timers.target
+=== btrfs-legacy-prune.service ===
+LoadState=loaded
+ActiveState=inactive
+FragmentPath=/etc/systemd/system/btrfs-legacy-prune.service
+UnitFileState=static
+# /etc/systemd/system/btrfs-legacy-prune.service
+[Unit]
+Description=Prune at most one legacy Snapper snapshot using combined Btrfs retention
+After=local-fs.target
+ConditionPathExists=/etc/btrfs-snapshot-manager.json
+
+[Service]
+Type=oneshot
+# All candidate checks and filesystem locks remain inside the manager.
+ExecStart=/usr/local/sbin/btrfs-snapshot-manager --config /etc/btrfs-snapshot-manager.json legacy-prune --legacy-map root=root --legacy-map @data=@data --max-delete 1 --execute
+
+=== Installed unit files ===
+-rw-r--r-- 1 root root 439 Oct 20 15:21 /etc/systemd/system/btrfs-legacy-prune.service
+-rw-r--r-- 1 root root 207 Oct 20 15:21 /etc/systemd/system/btrfs-legacy-prune.timer
+
+=== Legacy-prune processes ===
+352607 bash -c    for unit in \     btrfs-legacy-prune.timer \     btrfs-legacy-prune.service   do     echo "=== $unit ==="     systemctl show "$unit" \       -p LoadState \       -p ActiveState \       -p UnitFileState \       -p FragmentPath \       --no-pager      systemctl cat "$unit" --no-pager || true   done    echo   echo "=== Installed unit files ==="   sudo ls -l \     /etc/systemd/system/btrfs-legacy-prune.timer \     /etc/systemd/system/btrfs-legacy-prune.service    echo   echo "=== Legacy-prune processes ==="   pgrep -af "btrfs-snapshot-manager.*legacy-prune" || true    echo   echo "=== Native timers ==="   systemctl is-active btrfs-snapshot-create.timer   systemctl is-active btrfs-snapshot-prune.timer   systemctl is-active btrfs-native-push.timer 
+
+=== Native timers ===
+active
+active
+active

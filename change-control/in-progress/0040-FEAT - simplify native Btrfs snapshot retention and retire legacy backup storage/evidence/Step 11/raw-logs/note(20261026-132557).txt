@@ -1,0 +1,13 @@
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ cd /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+
+feature='change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage'
+
+receipt="$feature/evidence/Step 11/.0040-step11-root-retirement-receipt.jsonl"
+
+echo 'e75e5c57f5a99524d37dccca2c8c9982a1e22b32e011b9bd95f132901cc8c955  '"$receipt" |
+  sha256sum -c -
+change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 11/.0040-step11-root-retirement-receipt.jsonl: OK
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

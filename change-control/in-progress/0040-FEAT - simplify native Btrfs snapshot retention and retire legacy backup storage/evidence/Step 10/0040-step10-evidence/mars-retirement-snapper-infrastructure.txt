@@ -1,0 +1,33 @@
+=== Remaining legacy snapshot directories ===
+
+=== Legacy Btrfs subvolumes ===
+ID 262 gen 61889 top level 260 path @data/.snapshots
+
+=== Snapper packages ===
+dpkg-query: no packages found matching snapper-gui
+snapper	0.10.6-1.1build1
+
+=== Snapper configurations ===
+Config | Subvolume       
+-------+-----------------
+@data  | /media/usb/@data
+root   | /media/usb      
+
+=== Snapper systemd units ===
+UNIT FILE                STATE    PRESET
+snapper-boot.service     static   -
+snapper-cleanup.service  static   -
+snapper-timeline.service static   -
+snapperd.service         enabled  enabled
+snapper-boot.timer       disabled enabled
+snapper-cleanup.timer    disabled enabled
+snapper-timeline.timer   disabled enabled
+
+7 unit files listed.
+
+=== Snapper timers ===
+
+=== Native snapshot timers ===
+active
+active
+active

@@ -1,0 +1,12 @@
+PASS identity: /.snapshots/1/snapshot
+PASS identity: /.snapshots
+PASS identity: /@data/.snapshots
+PASS: all deletion guards
+Delete subvolume 55873 (no-commit): '/.snapshots/1/snapshot'
+DELETED: /.snapshots/1/snapshot
+REMOVED: /.snapshots/1 metadata directory
+Delete subvolume 307 (no-commit): '//.snapshots'
+DELETED: /.snapshots
+Delete subvolume 309 (no-commit): '/@data/.snapshots'
+DELETED: /@data/.snapshots
+LEGACY-BTRFS-CLEANUP-COMPLETE deleted_subvolumes=3

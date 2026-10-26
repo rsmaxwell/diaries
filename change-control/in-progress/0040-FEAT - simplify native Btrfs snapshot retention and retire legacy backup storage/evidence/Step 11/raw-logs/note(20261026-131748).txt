@@ -1,0 +1,79 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== APT hook absence ==='
+ssh mars '
+  if sudo test ! -e /etc/apt/apt.conf.d/80snapper; then
+    echo "PASS: orphaned Snapper APT hook absent"
+  else
+    echo "FAIL: Snapper APT hook still present"
+    exit 1
+  fi
+'
+
+echo
+echo '=== APT health ==='
+ssh mars 'sudo apt-get check'
+
+echo
+echo '=== Snapshot manager health ==='
+ssh mars '
+  sudo btrfs-snapshot-manager \
+    --config /etc/btrfs-snapshot-manager.json status
+'
+
+echo
+echo '=== Production timers ==='
+ssh mars '
+  systemctl is-active \
+    btrfs-snapshot-create.timer \
+  /home/richard/change-control-temp/step11-retire-orphaned-snapper-hook.yaml
+=== APT hook absence ===
+PASS: orphaned Snapper APT hook absent
+
+=== APT health ===
+Reading package lists...
+Building dependency tree...
+Reading state information...
+
+=== Snapshot manager health ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=433
+qgroups_stale=359
+qgroups_under_deletion=0
+qgroups_status=warning
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=63;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=63
+diaries_verification=valid;logicalDataset=production;backupId=20261026-003102Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+
+=== Production timers ===
+active
+active
+active
+
+=== Rollback-copy location in temporary playbook ===
+40-      register: apt_hook
+41-
+42-    - name: Refuse unexpected symlink or nonregular hook
+43-      ansible.builtin.assert:
+44-        that:
+45-          - "not apt_hook.stat.exists or apt_hook.stat.isreg | default(false)"
+46-        fail_msg: "80snapper has unexpected file type; do not modify."
+47-
+48:    - name: Preserve one-time rollback copy on mars
+49-      ansible.builtin.copy:
+50-        src: /etc/apt/apt.conf.d/80snapper
+51-        dest: /home/richard/80snapper.0040-step11-before
+52-        remote_src: true
+53-        force: false
+54-        owner: root
+55-        group: root
+56-        mode: '0600'
+57-      when: apt_hook.stat.exists
+58-
+59-    - name: Retire obsolete APT hook
+60-      ansible.builtin.file:
+61-        path: /etc/apt/apt.conf.d/80snapper
+62-        state: absent
+richard@mango:~/playbooks$

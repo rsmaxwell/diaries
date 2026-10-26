@@ -1,0 +1,18 @@
+=== Exact Snapper mount points ===
+
+=== All Btrfs mounts ===
+TARGET SOURCE    FSTYPE OPTIONS
+/      /dev/sda2 btrfs  rw,relatime,discard=async,space_cache=v2,subvolid=5,subvol=/
+
+=== Mount definitions ===
+
+=== Systemd mount units ===
+  UNIT                                                                       LOAD      ACTIVE   SUB     DESCRIPTION
+
+=== Active Snapper configurations ===
+Config | Subvolume
+-------+----------
+@data  | /@data   
+root   | /        
+
+=== Snapper-related mount activity ===

@@ -1,0 +1,50 @@
+---
+
+# ------------------------------------------------------------
+# 0034-FEAT — Unattended Diaries backup operation
+# ------------------------------------------------------------
+
+# Collect the published production backup from pluto.
+diaries_pull_install: true
+diaries_snapshot_integration_enabled: true
+
+# Enable verified daily collection.
+diaries_pull_schedule_enabled: true
+
+# Disable the historical rsync transport
+legacy_remote_rsync_push_enabled: false
+
+# Enable native Btrfs off-site replication.
+btrfs_native_push_schedule_enabled: true
+
+
+# 0036 override
+diaries_pull_fixed_destination_enabled: true
+
+
+# ------------------------------------------------------------
+# Btrfs snapshot management
+# ------------------------------------------------------------
+
+# Native Btrfs snapshot management is active on mars.
+btrfs_snapshot_activation_enabled: true
+
+# Prevent Snapper from independently managing legacy snapshots.
+btrfs_snapshot_retire_legacy_snapper_timers: true
+
+# Retain the existing Snapper handover policy.
+btrfs_snapshot_snapper_handover_enabled: false
+
+# ------------------------------------------------------------
+# 0037-FEAT — Unattended legacy snapshot pruning
+# ------------------------------------------------------------
+
+btrfs_snapshot_unattended_legacy_prune_enabled: false
+btrfs_snapshot_unattended_legacy_prune_max_delete: 1
+
+# ------------------------------------------------------------
+# 0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage
+# ------------------------------------------------------------
+
+btrfs_native_endpoint_role: source
+btrfs_native_operator: richard

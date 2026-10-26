@@ -1,0 +1,34 @@
+richard@mango:~/playbooks$ echo '=== Disposable reproduction paths ==='
+
+WORK=/var/tmp/diaries-qgroup-reproduction
+MOUNT=/mnt/diaries-qgroup-reproduction
+
+for PATHNAME in "$WORK" "$MOUNT"; do
+    if [ -e "$PATHNAME" ]; then
+        echo "EXISTS: $PATHNAME"
+        ls -ld "$PATHNAME"
+    else
+        echo "AVAILABLE: $PATHNAME"
+    fi
+done
+
+echo '=== Existing mounts matching reproduction name ==='
+findmnt -rn -o TARGET,SOURCE |
+  grep -F 'diaries-qgroup-reproduction' ||
+  echo 'No matching mounts'
+
+echo '=== Available loop device ==='
+sudo losetup --find
+
+echo '=== Btrfs kernel support ==='
+grep -w btrfs /proc/filesystems
+=== Disposable reproduction paths ===
+AVAILABLE: /var/tmp/diaries-qgroup-reproduction
+AVAILABLE: /mnt/diaries-qgroup-reproduction
+=== Existing mounts matching reproduction name ===
+No matching mounts
+=== Available loop device ===
+/dev/loop0
+=== Btrfs kernel support ===
+        btrfs
+richard@mango:~/playbooks$

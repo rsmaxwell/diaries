@@ -1,0 +1,10 @@
+PASS: exact residual configuration verified
+REMOVED: /etc/snapper/config-templates/@data
+REMOVED: /etc/snapper/config-templates/root
+REMOVED: /etc/snapper/configs/@data
+REMOVED: /etc/snapper/configs/root
+Traceback (most recent call last):
+  File "<stdin>", line 51, in <module>
+  File "/usr/lib/python3.12/pathlib.py", line 1353, in rmdir
+    os.rmdir(self)
+OSError: [Errno 39] Directory not empty: '/etc/snapper'

@@ -1,0 +1,7 @@
+● btrfs-native-push.timer - Schedule source-initiated native Btrfs off-site replication
+     Loaded: loaded (/etc/systemd/system/btrfs-native-push.timer; enabled; preset: enabled)
+     Active: active (waiting) since Fri 2026-10-16 17:31:57 UTC; 1 week 1 day ago
+    Trigger: Mon 2026-10-26 03:30:00 UTC; 15h left
+   Triggers: ● btrfs-native-push.service
+
+Oct 16 17:31:57 mars systemd[1]: Started btrfs-native-push.timer - Schedule source-initiated native Btrfs off-site replication.

@@ -1,0 +1,19 @@
+{
+  "holds": {
+    "20261013-171228Z": {
+      "reason": "0034/0035 pre-cleanup recovery checkpoint",
+      "source_uuids": {
+        "@data": "340674cc-d02c-244e-b7ec-e3ea5a6b151f",
+        "root": "fb96134e-3614-fb47-baf7-c82e81f1174f"
+      }
+    },
+    "20261018-165453Z": {
+      "reason": "Permanent 0034/0036 mango closure evidence archive",
+      "source_uuids": {
+        "@data": "087c906a-0518-e34a-88f7-40a5b693c41a",
+        "root": "fb457e69-760f-344c-82a9-e44ceec30ee5"
+      }
+    }
+  },
+  "schema": 1
+}

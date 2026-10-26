@@ -1,0 +1,55 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== Historical Btrfs role tasks ==='
+cat roles/btrfs/tasks/main.yaml
+
+echo '=== Current Btrfs role references ==='
+git grep -n -E \
+  'btrfs_subvolume_limit|btrfs_subvolume_path|role: btrfs|role:.*btrfs|roles/btrfs' \
+  || true
+
+echo '=== Historical quota-limit references ==='
+git log --all -S 'btrfs_subvolume_limit' \
+  --format='%h %ad %s' --date=short -- \
+  ':!change-control'
+
+echo '=== Historical role changes ==='
+git log -8 --format='%h %ad %s' --date=short -- \
+  roles/btrfs
+=== Historical Btrfs role tasks ===
+---
+
+- name: Create btrfs subvolume
+  ansible.builtin.script:
+    cmd: initialise_btrfs_subvolume.py {{ btrfs_filesystem_path }} {{ btrfs_subvolume_path }}  {{ btrfs_subvolume_limit }}
+    executable: /usr/bin/python3
+  register: result
+  changed_when: result.rc >= 1
+  failed_when: result.rc >= 2
+
+- name: Show Btrfs creation output
+  ansible.builtin.debug:
+    var: result.stdout_lines
+  when:
+    - result is defined
+    - result.stdout_lines is defined
+
+
+
+
+
+- name: Set file permissions for the btrfs subvolume
+  ansible.builtin.file:
+    path: "{{ btrfs_subvolume_path }}"
+    mode: '0777'
+=== Current Btrfs role references ===
+roles/btrfs/tasks/main.yaml:5:    cmd: initialise_btrfs_subvolume.py {{ btrfs_filesystem_path }} {{ btrfs_subvolume_path }}  {{ btrfs_subvolume_limit }}
+roles/btrfs/tasks/main.yaml:24:    path: "{{ btrfs_subvolume_path }}"
+roles/snapshots/defaults/main.yaml:35:    path: "{{ btrfs_subvolume_path }}"
+=== Historical quota-limit references ===
+9be281a 2026-08-31 dont store mqtt creds in git
+b24d390 2026-08-11 Initial commit
+=== Historical role changes ===
+604774d 2026-08-26 before 26.04
+b24d390 2026-08-11 Initial commit
+richard@mango:~/playbooks$

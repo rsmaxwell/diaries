@@ -1,6 +1,6 @@
 # 0040-FEAT — Simplify native Btrfs snapshot retention and retire legacy backup storage
 
-**Status: IN PROGRESS — Steps 1 and 2 CLOSED; Step 3 OPEN.** Created 23 October 2026. Step 1 was read-only and no production change or irreversible deletion is authorised.
+**Status: IN PROGRESS — Steps 1–8 CLOSED under their recorded acceptance decisions; Step 9 and overall Steps 10–14 remain OPEN.** Created 23 October 2026. Step 3 design acceptance includes the documented cross-host rehearsal waiver. The backup-only portions of Steps 10–11 are accepted; native `mars` root-snapshot retirement and receiver pruning remain unauthorised.
 
 ## Classification
 
@@ -48,4 +48,4 @@ Permanent reusable code belongs in the Playbooks repository **only after review/
 
 One manageable stage at a time. Use **Cygwin** for ZIP application and local orchestration, SSH terminals on **mars** and **backup** for inspection, and **mango** for Ansible with `--vault-password-file ~/.vault_pass.txt`. Review `--check --diff`, then explicitly approve changes, deploy, verify and prove idempotency. Record results and exact source revisions. Close the feature only after all acceptance gates, then move its whole directory to `change-control/complete/`.
 
-**Next action: Step 3 — design the shared `@data`-only snapshot manager and configuration contract; see `reports/STEP03-DESIGN-START.md`.**
+**Next action: Step 9 — reconcile native incremental and guarded-pruning safety evidence against the accepted accelerated-path waiver; do not activate receiver pruning or perform native `mars` root-snapshot deletion without their separate gates.** See `IMPLEMENTATION-STEPS.md`, `CONSOLIDATED-PRUNE-GATE.md` and `reports/STEP09-SOURCE-CLEANUP-RECONCILIATION-20261025.md`.

@@ -1,0 +1,47 @@
+=== Legacy container identities ===
+@data/.snapshots
+	Name: 			.snapshots
+	UUID: 			3afc3ca3-d01c-e041-9be6-4a4288702ee3
+	Parent UUID: 		-
+	Received UUID: 		-
+	Creation time: 		2024-05-26 12:44:08 +0000
+	Subvolume ID: 		262
+	Generation: 		61891
+	Gen at creation: 	29
+	Parent ID: 		260
+	Top level ID: 		260
+	Flags: 			-
+	Send transid: 		0
+	Send time: 		2024-05-26 12:44:08 +0000
+	Receive transid: 	0
+	Receive time: 		-
+	Snapshot(s):
+	Quota group:		0/262
+	  Limit referenced:	-
+	  Limit exclusive:	-
+	  Usage referenced:	16.00KiB
+	  Usage exclusive:	16.00KiB
+
+=== Direct contents ===
+
+=== Snapper configuration files ===
+total 16
+drwxr-xr-x 2 root root 4096 May 26  2024 .
+drwxr-xr-x 5 root root 4096 May 26  2024 ..
+-rw-r----- 1 root root 1203 May 26  2024 @data
+-rw-r----- 1 root root 1197 May 29  2024 root
+/etc/snapper/configs/@data:SUBVOLUME="/media/usb/@data"
+/etc/snapper/configs/@data:FSTYPE="btrfs"
+/etc/snapper/configs/@data:NUMBER_CLEANUP="yes"
+/etc/snapper/configs/@data:TIMELINE_CREATE="yes"
+/etc/snapper/configs/root:SUBVOLUME="/media/usb"
+/etc/snapper/configs/root:FSTYPE="btrfs"
+/etc/snapper/configs/root:NUMBER_CLEANUP="yes"
+/etc/snapper/configs/root:TIMELINE_CREATE="yes"
+
+=== Active Snapper processes ===
+351459 bash -c    echo "=== Legacy container identities ==="   sudo btrfs subvolume show /media/usb/@data/.snapshots   sudo btrfs subvolume show /media/usb/.snapshots    echo   echo "=== Direct contents ==="   sudo find /media/usb/@data/.snapshots -mindepth 1 -maxdepth 1 -print   sudo find /media/usb/.snapshots -mindepth 1 -maxdepth 1 -print    echo   echo "=== Snapper configuration files ==="   sudo ls -la /etc/snapper/configs/   sudo grep -E "^(SUBVOLUME|FSTYPE|TIMELINE_CREATE|NUMBER_CLEANUP)=" \     /etc/snapper/configs/* || true    echo   echo "=== Active Snapper processes ==="   pgrep -af "snapper|snapperd" || true    echo   echo "=== Filesystem mount points ==="   findmnt -T /media/usb/@data/.snapshots   findmnt -T /media/usb/.snapshots 
+
+=== Filesystem mount points ===
+TARGET     SOURCE    FSTYPE OPTIONS
+/media/usb /dev/sdb1 btrfs  rw,relatime,space_cache=v2,subvolid=5,subvol=/

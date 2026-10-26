@@ -1,0 +1,40 @@
+=== Snapper installation ===
+  
+  
+  
+  
+
+=== Simulated Snapper removal ===
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  libboost-thread1.83.0 libbtrfs0t64 libsnapper7t64
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  snapper
+0 upgraded, 0 newly installed, 1 to remove and 1 not upgraded.
+Remv snapper [0.10.6-1.1build1]
+
+=== Existing Snapper configurations ===
+Config | Subvolume
+-------+----------
+@data  | /@data   
+root   | /        
+
+=== Snapper service state ===
+active
+enabled
+
+=== Legacy container identities ===
+	UUID: 			621c8df8-992f-8143-b427-6624d273e720
+	Parent UUID: 		-
+	Received UUID: 		-
+	Subvolume ID: 		307
+	UUID: 			e8690a2f-a2e9-2d4f-930b-314a9d8b2b90
+	Parent UUID: 		-
+	Received UUID: 		-
+	Subvolume ID: 		309
+
+=== Native receiver recovery ===
+RECEIVER-RECOVERY {"authorizes_repair": false, "state": "CLEAN"}

@@ -1,0 +1,97 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== 1. Historical retirement manifest ==='
+manifest=/home/richard/0040-step10-evidence/mars-retirement-approved-manifest.json
+
+if test -f "$manifest"; then
+  sha256sum "$manifest"
+  python3 -m json.tool "$manifest" | head -n 45
+else
+  echo 'MISSING: historical retirement manifest'
+fi
+
+echo
+echo '=== 2. Legacy Snapper subvolumes on mars ==='
+ssh mars '
+  sudo btrfs subvolume list /media/usb |
+    grep -E " path @data/\.snapshots(/|$)" || true
+'
+
+echo
+echo '=== 3. Legacy Snapper directory ==='
+ssh mars '
+  if sudo test -d /media/usb/@data/.snapshots; then
+    sudo ls -la /media/usb/@data/.snapshots | head -n 35
+  else
+    echo "ABSENT: legacy Snapper directory"
+  fi
+'   --config /etc/btrfs-snapshot-manager.json status='
+=== 1. Historical retirement manifest ===
+643c3dff637be45da4188f9991a2bddb27a8bb894d474aebd2318c5ebfa412b4  /home/richard/0040-step10-evidence/mars-retirement-approved-manifest.json
+{
+    "feature": "0040-FEAT",
+    "host": "mars",
+    "purpose": "One-time retirement of numerical legacy Snapper snapshots",
+    "expected_count": 17,
+    "targets": [
+        {
+            "path": "/media/usb/@data/.snapshots/1/snapshot",
+            "uuid": "1f0fa73e-12df-b144-8254-72c4b4bafea9",
+            "subvolume_id": 263,
+            "snapper_number": 1
+        },
+        {
+            "path": "/media/usb/@data/.snapshots/5145/snapshot",
+            "uuid": "770551a6-6a44-0f47-bf2b-ef2d8b1a8262",
+            "subvolume_id": 5705,
+            "snapper_number": 5145
+        },
+        {
+            "path": "/media/usb/@data/.snapshots/13145/snapshot",
+            "uuid": "80f4077b-9ea4-2541-b161-ac30323fe694",
+            "subvolume_id": 13705,
+            "snapper_number": 13145
+        },
+        {
+            "path": "/media/usb/@data/.snapshots/13889/snapshot",
+            "uuid": "838ca854-9bd0-b74d-bbcb-fe7afffd2b77",
+            "subvolume_id": 14449,
+            "snapper_number": 13889
+        },
+        {
+            "path": "/media/usb/@data/.snapshots/14561/snapshot",
+            "uuid": "bfc401ed-29a0-9443-bf2d-01f2f6298af0",
+            "subvolume_id": 15121,
+            "snapper_number": 14561
+        },
+        {
+            "path": "/media/usb/@data/.snapshots/15305/snapshot",
+            "uuid": "8c4155f1-2cce-5940-8ac9-5f9a6a6c5f00",
+            "subvolume_id": 15865,
+            "snapper_number": 15305
+        },
+        {
+            "path": "/media/usb/@data/.snapshots/16025/snapshot",
+            "uuid": "63a4a16a-47a9-9a4d-a716-12e24611c6ad",
+
+=== 2. Legacy Snapper subvolumes on mars ===
+
+=== 3. Legacy Snapper directory ===
+ABSENT: legacy Snapper directory
+
+=== 4. Legacy Snapper services and packages ===
+snapper 0.10.6-1.1build1
+PRESENT: Snapper APT hook
+
+=== 5. Native snapshot-manager status ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=432
+qgroups_stale=357
+qgroups_under_deletion=0
+qgroups_status=warning
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=64;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=64
+diaries_verification=valid;logicalDataset=production;backupId=20261026-003102Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+richard@mango:~/playbooks$

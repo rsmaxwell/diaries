@@ -1,0 +1,41 @@
+richard@backup:~$ echo '=== Installed Snapper configurations ==='
+sudo snapper list-configs
+
+echo '=== Historical Snapper configuration files ==='
+sudo find /etc/snapper/configs -maxdepth 1 -type f -printf '%f\n' 2>/dev/null | sort
+
+echo '=== Relevant Snapper quota and snapshot settings ==='
+sudo grep -hE \
+  '^(SUBVOLUME|QGROUP|SPACE_LIMIT|FREE_LIMIT|TIMELINE_CREATE|TIMELINE_CLEANUP|NUMBER_CLEANUP|NUMBER_LIMIT)=' \
+  /etc/snapper/configs/* 2>/dev/null || true
+
+echo '=== Current Btrfs quota status ==='
+sudo btrfs quota rescan -s /
+=== Installed Snapper configurations ===
+Config | Subvolume
+-------+----------
+@data  | /@data
+root   | /
+=== Historical Snapper configuration files ===
+@data
+root
+=== Relevant Snapper quota and snapshot settings ===
+SUBVOLUME="/@data"
+QGROUP=""
+SPACE_LIMIT="0.5"
+FREE_LIMIT="0.2"
+NUMBER_CLEANUP="yes"
+NUMBER_LIMIT="50"
+TIMELINE_CREATE="yes"
+TIMELINE_CLEANUP="yes"
+SUBVOLUME="/"
+QGROUP=""
+SPACE_LIMIT="0.5"
+FREE_LIMIT="0.2"
+NUMBER_CLEANUP="yes"
+NUMBER_LIMIT="50"
+TIMELINE_CREATE="yes"
+TIMELINE_CLEANUP="yes"
+=== Current Btrfs quota status ===
+no rescan operation in progress
+richard@backup:~$

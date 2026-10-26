@@ -1,0 +1,174 @@
+=== Remaining Snapper configurations ===
+total 16
+drwxr-xr-x 2 root root 4096 May 26  2024 .
+drwxr-xr-x 5 root root 4096 May 26  2024 ..
+-rw-r----- 1 root root 1203 May 26  2024 @data
+-rw-r----- 1 root root 1197 May 29  2024 root
+#
+# Ansible managed
+#
+# subvolume to snapshot
+SUBVOLUME="/media/usb"
+
+# filesystem type
+FSTYPE="btrfs"
+
+
+# btrfs qgroup for space aware cleanup algorithms
+QGROUP=""
+
+
+# fraction of the filesystems space the snapshots may use
+SPACE_LIMIT="0.5"
+
+# fraction of the filesystems space that should be free
+FREE_LIMIT="0.2"
+
+
+# users and groups allowed to work with config
+ALLOW_USERS=""
+ALLOW_GROUPS=""
+
+# sync users and groups from ALLOW_USERS and ALLOW_GROUPS to .snapshots
+# directory
+SYNC_ACL="no"
+
+
+# start comparing pre- and post-snapshot in background after creating
+# post-snapshot
+BACKGROUND_COMPARISON="yes"
+
+
+# run daily number cleanup
+NUMBER_CLEANUP="yes"
+
+# limit for number cleanup
+NUMBER_MIN_AGE="1800"
+NUMBER_LIMIT="50"
+NUMBER_LIMIT_IMPORTANT="10"
+
+
+# create hourly snapshots
+TIMELINE_CREATE="yes"
+
+# cleanup hourly snapshots after some time
+TIMELINE_CLEANUP="yes"
+
+# limits for timeline cleanup
+TIMELINE_MIN_AGE="1800"
+TIMELINE_LIMIT_HOURLY="2"
+TIMELINE_LIMIT_DAILY="12"
+TIMELINE_LIMIT_WEEKLY="0"
+TIMELINE_LIMIT_MONTHLY="10"
+TIMELINE_LIMIT_YEARLY="10"
+
+
+# cleanup empty pre-post-pairs
+EMPTY_PRE_POST_CLEANUP="yes"
+
+# limits for empty pre-post-pair cleanup
+EMPTY_PRE_POST_MIN_AGE="1800"
+#
+# Ansible managed
+#
+# subvolume to snapshot
+SUBVOLUME="/media/usb/@data"
+
+# filesystem type
+FSTYPE="btrfs"
+
+
+# btrfs qgroup for space aware cleanup algorithms
+QGROUP=""
+
+
+# fraction of the filesystems space the snapshots may use
+SPACE_LIMIT="0.5"
+
+# fraction of the filesystems space that should be free
+FREE_LIMIT="0.2"
+
+
+# users and groups allowed to work with config
+ALLOW_USERS=""
+ALLOW_GROUPS=""
+
+# sync users and groups from ALLOW_USERS and ALLOW_GROUPS to .snapshots
+# directory
+SYNC_ACL="no"
+
+
+# start comparing pre- and post-snapshot in background after creating
+# post-snapshot
+BACKGROUND_COMPARISON="yes"
+
+
+# run daily number cleanup
+NUMBER_CLEANUP="yes"
+
+# limit for number cleanup
+NUMBER_MIN_AGE="1800"
+NUMBER_LIMIT="50"
+NUMBER_LIMIT_IMPORTANT="10"
+
+
+# create hourly snapshots
+TIMELINE_CREATE="yes"
+
+# cleanup hourly snapshots after some time
+TIMELINE_CLEANUP="yes"
+
+# limits for timeline cleanup
+TIMELINE_MIN_AGE="1800"
+TIMELINE_LIMIT_HOURLY="2"
+TIMELINE_LIMIT_DAILY="12"
+TIMELINE_LIMIT_WEEKLY="0"
+TIMELINE_LIMIT_MONTHLY="10"
+TIMELINE_LIMIT_YEARLY="10"
+
+
+# cleanup empty pre-post-pairs
+EMPTY_PRE_POST_CLEANUP="yes"
+
+# limits for empty pre-post-pair cleanup
+EMPTY_PRE_POST_MIN_AGE="1800"
+
+=== Snapper configuration registry ===
+6:SNAPPER_CONFIGS="root @data"
+
+=== Remaining legacy containers ===
+ABSENT: /media/usb/.snapshots
+@data/.snapshots
+	Name: 			.snapshots
+	UUID: 			3afc3ca3-d01c-e041-9be6-4a4288702ee3
+	Parent UUID: 		-
+	Received UUID: 		-
+	Creation time: 		2024-05-26 12:44:08 +0000
+	Subvolume ID: 		262
+	Generation: 		61891
+	Gen at creation: 	29
+	Parent ID: 		260
+	Top level ID: 		260
+	Flags: 			-
+	Send transid: 		0
+	Send time: 		2024-05-26 12:44:08 +0000
+	Receive transid: 	0
+	Receive time: 		-
+	Snapshot(s):
+	Quota group:		0/262
+	  Limit referenced:	-
+	  Limit exclusive:	-
+	  Usage referenced:	16.00KiB
+	  Usage exclusive:	16.00KiB
+
+=== Snapper service state ===
+disabled
+inactive
+
+=== Snapper package state ===
+snapper	0.10.6-1.1build1
+
+=== Native snapshot timer states ===
+active
+active
+active

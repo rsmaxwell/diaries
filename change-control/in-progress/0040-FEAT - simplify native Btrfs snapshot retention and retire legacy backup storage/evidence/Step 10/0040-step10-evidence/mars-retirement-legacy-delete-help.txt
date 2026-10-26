@@ -1,0 +1,12 @@
+usage: btrfs-snapshot-manager legacy-delete [-h] --approval-file APPROVAL_FILE
+                                            --source SOURCE --snapper-config
+                                            SNAPPER_CONFIG --snapshot-id
+                                            SNAPSHOT_ID [--execute]
+
+options:
+  -h, --help            show this help message and exit
+  --approval-file APPROVAL_FILE
+  --source SOURCE
+  --snapper-config SNAPPER_CONFIG
+  --snapshot-id SNAPSHOT_ID
+  --execute

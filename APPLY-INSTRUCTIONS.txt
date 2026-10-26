@@ -1,0 +1,3 @@
+Extract repository-relative change-control evidence/ files into the Diaries repository with Beyond Compare.
+The PATCH is intentionally separate to avoid replacing newer IMPLEMENTATION-STEPS.md. From Cygwin, at the Diaries repository root: git apply --check /path/to/STEP11-IMPLEMENTATION-STEPS.patch && git apply /path/to/STEP11-IMPLEMENTATION-STEPS.patch
+If the patch refuses, stop and share output; do not force overwrite. Review git diff and git diff --check.

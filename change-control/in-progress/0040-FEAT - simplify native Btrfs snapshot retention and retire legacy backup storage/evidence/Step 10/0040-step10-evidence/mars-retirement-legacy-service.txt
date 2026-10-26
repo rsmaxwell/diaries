@@ -1,0 +1,10 @@
+# /etc/systemd/system/btrfs-legacy-prune.service
+[Unit]
+Description=Prune at most one legacy Snapper snapshot using combined Btrfs retention
+After=local-fs.target
+ConditionPathExists=/etc/btrfs-snapshot-manager.json
+
+[Service]
+Type=oneshot
+# All candidate checks and filesystem locks remain inside the manager.
+ExecStart=/usr/local/sbin/btrfs-snapshot-manager --config /etc/btrfs-snapshot-manager.json legacy-prune --legacy-map root=root --legacy-map @data=@data --max-delete 1 --execute
