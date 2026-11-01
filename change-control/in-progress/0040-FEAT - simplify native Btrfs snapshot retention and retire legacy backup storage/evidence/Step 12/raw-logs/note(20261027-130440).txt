@@ -1,0 +1,74 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+if timeout --signal=TERM --kill-after=10s 180s \
+    ansible-playbook btrfs-replication.yaml \
+      --limit backup \
+      --tags native-btrfs-prune-authority \
+      --diff \
+      --vault-password-file ~/.vault_pass.txt
+then
+    echo 'PASS: receiver authority-storage deployment'
+else
+    rc=$?
+    echo "FAIL: receiver authority-storage deployment (exit $rc)"
+fi
+
+PLAY [Configure native Btrfs replication endpoints] ********************************************************************
+
+TASK [Configure native Btrfs endpoint] *********************************************************************************
+included: btrfs-replication for backup
+
+TASK [btrfs-replication : Native Btrfs | Inspect receiver prune authority directories] *********************************
+ok: [backup] => (item=/etc/btrfs-receiver-prune)
+ok: [backup] => (item=/var/lib/btrfs-receiver-prune)
+ok: [backup] => (item=/var/lib/btrfs-receiver-prune/consumed)
+
+TASK [btrfs-replication : Native Btrfs | Refuse unsafe existing prune authority directories] ***************************
+skipping: [backup] => (item=/etc/btrfs-receiver-prune)
+skipping: [backup] => (item=/var/lib/btrfs-receiver-prune)
+skipping: [backup] => (item=/var/lib/btrfs-receiver-prune/consumed)
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Provision root-only receiver prune authority directories] *********************
+--- before
++++ after
+@@ -1,5 +1,5 @@
+ {
+-    "mode": "0755",
++    "mode": "0700",
+     "path": "/etc/btrfs-receiver-prune",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [backup] => (item=/etc/btrfs-receiver-prune)
+--- before
++++ after
+@@ -1,5 +1,5 @@
+ {
+-    "mode": "0755",
++    "mode": "0700",
+     "path": "/var/lib/btrfs-receiver-prune",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [backup] => (item=/var/lib/btrfs-receiver-prune)
+--- before
++++ after
+@@ -1,5 +1,5 @@
+ {
+-    "mode": "0755",
++    "mode": "0700",
+     "path": "/var/lib/btrfs-receiver-prune/consumed",
+-    "state": "absent"
++    "state": "directory"
+ }
+
+changed: [backup] => (item=/var/lib/btrfs-receiver-prune/consumed)
+
+PLAY RECAP *************************************************************************************************************
+backup                     : ok=3    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+PASS: receiver authority-storage deployment
+richard@mango:~/playbooks$

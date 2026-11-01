@@ -1,0 +1,8 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+git status -sb
+git log -1 --oneline
+## main...origin/main
+?? 0040-step12-3-authority-storage.patch
+b53ebf5 (HEAD -> main, origin/main) 0040-FEAT Step 12.3b root-owned prune authority storage
+richard@mango:~/playbooks$

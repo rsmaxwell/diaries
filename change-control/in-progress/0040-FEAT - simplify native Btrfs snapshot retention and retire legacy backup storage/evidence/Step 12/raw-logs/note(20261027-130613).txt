@@ -1,0 +1,249 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo '=== Authority directory ownership and permissions ==='
+
+ssh -o BatchMode=yes backup \
+  "sudo -n stat -c '%U:%G %a %n' \
+    /etc/btrfs-receiver-prune \
+    /var/lib/btrfs-receiver-prune \
+    /var/lib/btrfs-receiver-prune/consumed"
+
+echo
+echo '=== Authority storage contents ==='
+
+ssh -o BatchMode=yes backup \
+  "sudo -n find \
+    /etc/btrfs-receiver-prune \
+    /var/lib/btrfs-receiver-prune \
+    -mindepth 1 -type f -print"
+
+echo
+echo '=== Existing replication state ==='
+
+ssh -o BatchMode=yes backup \
+  "sudo -n stat -c '%U:%G %a %n' \
+    /@data/mars-received/.replication-state"
+
+echo
+fi  echo "FAIL: authority-storage idempotency check (exit $rc)"_enabled\"))'"nager.json\")); print(\"mode:\",d.get(\"mod
+=== Authority directory ownership and permissions ===
+root:root 700 /etc/btrfs-receiver-prune
+root:root 700 /var/lib/btrfs-receiver-prune
+root:root 700 /var/lib/btrfs-receiver-prune/consumed
+
+=== Authority storage contents ===
+
+=== Existing replication state ===
+richard:richard 700 /@data/mars-received/.replication-state
+
+=== Receiver pruning configuration ===
+mode: receiver
+receiver_prune_enabled: False
+
+=== Targeted Ansible idempotency ===
+
+PLAY [Configure native Btrfs replication endpoints] ********************************************************************
+
+TASK [Configure native Btrfs endpoint] *********************************************************************************
+included: btrfs-replication for backup
+
+TASK [btrfs-replication : Native Btrfs | Inspect receiver prune authority directories] *********************************
+ok: [backup] => (item=/etc/btrfs-receiver-prune)
+ok: [backup] => (item=/var/lib/btrfs-receiver-prune)
+ok: [backup] => (item=/var/lib/btrfs-receiver-prune/consumed)
+
+TASK [btrfs-replication : Native Btrfs | Refuse unsafe existing prune authority directories] ***************************
+ok: [backup] => (item=/etc/btrfs-receiver-prune) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_facts": {
+            "discovered_interpreter_python": "/usr/bin/python3.12"
+        },
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": "/etc/btrfs-receiver-prune",
+        "stat": {
+            "atime": 1793106346.310911,
+            "attr_flags": "",
+            "attributes": [],
+            "block_size": 4096,
+            "blocks": 0,
+            "charset": "binary",
+            "ctime": 1793106264.2412422,
+            "dev": 28,
+            "device_type": 0,
+            "disk_usage_bytes": 0,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 3876176,
+            "isblk": false,
+            "ischr": false,
+            "isdir": true,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": false,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "inode/directory",
+            "mode": "0700",
+            "mtime": 1793106264.240242,
+            "nlink": 1,
+            "path": "/etc/btrfs-receiver-prune",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": false,
+            "roth": false,
+            "rusr": true,
+            "size": 0,
+            "uid": 0,
+            "version": "570457",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": false,
+            "xoth": false,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => (item=/var/lib/btrfs-receiver-prune) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": "/var/lib/btrfs-receiver-prune",
+        "stat": {
+            "atime": 1793106346.311911,
+            "attr_flags": "",
+            "attributes": [],
+            "block_size": 4096,
+            "blocks": 0,
+            "charset": "binary",
+            "ctime": 1793106265.5023446,
+            "dev": 28,
+            "device_type": 0,
+            "disk_usage_bytes": 0,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 3876182,
+            "isblk": false,
+            "ischr": false,
+            "isdir": true,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": false,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "inode/directory",
+            "mode": "0700",
+            "mtime": 1793106265.5023446,
+            "nlink": 1,
+            "path": "/var/lib/btrfs-receiver-prune",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": false,
+            "roth": false,
+            "rusr": true,
+            "size": 16,
+            "uid": 0,
+            "version": "570457",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": false,
+            "xoth": false,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => (item=/var/lib/btrfs-receiver-prune/consumed) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": "/var/lib/btrfs-receiver-prune/consumed",
+        "stat": {
+            "atime": 1793106346.311911,
+            "attr_flags": "",
+            "attributes": [],
+            "block_size": 4096,
+            "blocks": 0,
+            "charset": "binary",
+            "ctime": 1793106265.5023446,
+            "dev": 28,
+            "device_type": 0,
+            "disk_usage_bytes": 0,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 3876188,
+            "isblk": false,
+            "ischr": false,
+            "isdir": true,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": false,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "inode/directory",
+            "mode": "0700",
+            "mtime": 1793106265.5023446,
+            "nlink": 1,
+            "path": "/var/lib/btrfs-receiver-prune/consumed",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": false,
+            "roth": false,
+            "rusr": true,
+            "size": 0,
+            "uid": 0,
+            "version": "570457",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": false,
+            "xoth": false,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Provision root-only receiver prune authority directories] *********************
+ok: [backup] => (item=/etc/btrfs-receiver-prune)
+ok: [backup] => (item=/var/lib/btrfs-receiver-prune)
+ok: [backup] => (item=/var/lib/btrfs-receiver-prune/consumed)
+
+PLAY RECAP *************************************************************************************************************
+backup                     : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+PASS: authority-storage idempotency check completed
+richard@mango:~/playbooks$

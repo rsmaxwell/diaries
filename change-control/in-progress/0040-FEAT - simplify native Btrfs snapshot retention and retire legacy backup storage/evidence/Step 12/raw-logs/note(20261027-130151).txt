@@ -1,0 +1,12 @@
+richard@mango:~/playbooks$ git apply 0040-step12-3-authority-storage.patch
+richard@mango:~/playbooks$ python3 roles/btrfs-replication/tests/verify-0040-step12-3-authority-storage.py
+PASS: root-only paths, fail-closed existing-directory checks, receiver-only tag
+PASS: no approval file, sudoers grant or deletion operation introduced
+richard@mango:~/playbooks$ git diff --check
+git diff --stat
+git status --short
+ roles/btrfs-replication/tasks/native.yaml | 48 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ M roles/btrfs-replication/tasks/native.yaml
+?? 0040-step12-3-authority-storage.patch
+richard@mango:~/playbooks$

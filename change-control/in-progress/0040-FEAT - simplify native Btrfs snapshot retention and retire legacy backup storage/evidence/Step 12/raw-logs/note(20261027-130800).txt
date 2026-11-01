@@ -1,0 +1,14 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+git add roles/btrfs-replication/tasks/native.yaml \
+        roles/btrfs-replication/tests/verify-0040-step12-3-authority-storage.py
+
+git diff --cached --check
+git diff --cached --stat
+
+git commit -m "0040-FEAT Step 12.3b root-owned prune authority storage"
+ roles/btrfs-replication/tasks/native.yaml | 48 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+[main b53ebf5] 0040-FEAT Step 12.3b root-owned prune authority storage
+ 1 file changed, 48 insertions(+)
+richard@mango:~/playbooks$
