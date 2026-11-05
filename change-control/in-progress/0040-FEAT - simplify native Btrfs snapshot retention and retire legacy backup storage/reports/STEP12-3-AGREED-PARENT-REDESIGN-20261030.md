@@ -1,5 +1,7 @@
 # 0040-FEAT Step 12.3 — Durable agreed-parent redesign (design proposal)
 
+> **Historical proposal, superseded on 5 November 2026.** Use [`STEP12-3-SIMPLIFIED-DESIGN-DECISION-20261105.md`](STEP12-3-SIMPLIFIED-DESIGN-DECISION-20261105.md) and the current `IMPLEMENTATION-STEPS.md`. This report is preserved for the A→B evidence and design rationale, not as an active transaction-journal requirement.
+
 Date: 2026-10-30. Status: DESIGN / NOT DEPLOYED. This report is additive; the live Playbooks source has evolved since the 2026-10-26 source archive.
 
 ## Decision

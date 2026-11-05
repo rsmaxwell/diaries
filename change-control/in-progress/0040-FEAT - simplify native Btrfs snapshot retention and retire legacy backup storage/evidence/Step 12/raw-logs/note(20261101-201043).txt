@@ -1,0 +1,24 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo "=== Sender ==="
+ssh mars '
+  sudo -n /usr/local/bin/btrfs-agreed-parent-sender --inspect
+'
+
+echo "=== Receiver ==="
+ssh backup '
+  sudo -n cat \
+    /@data/mars-received/.replication-state/.agreed-parent.json
+'
+
+echo "=== Native backup timer ==="
+ssh mars '
+  systemctl is-active btrfs-native-push.timer
+'
+=== Sender ===
+{"authorizes_prune": false, "authorizes_transfer": false, "state": {"established": {"timestamp": "20261030-170009Z", "uuid": "a9b78fb9-4da6-cf4f-b242-13909f574193"}, "pending": null, "previous": {"timestamp": "20261030-030033Z", "uuid": "d901ddd2-66c7-0b42-b26c-ab6886273b7a"}, "schema": 1}, "status": "local-source-state-only"}
+=== Receiver ===
+{"established":{"timestamp":"20261030-170009Z","uuid":"a9b78fb9-4da6-cf4f-b242-13909f574193"},"pending":null,"previous":{"timestamp":"20261030-030033Z","uuid":"d901ddd2-66c7-0b42-b26c-ab6886273b7a"},"schema":1}
+=== Native backup timer ===
+active
+richard@mango:~/playbooks$

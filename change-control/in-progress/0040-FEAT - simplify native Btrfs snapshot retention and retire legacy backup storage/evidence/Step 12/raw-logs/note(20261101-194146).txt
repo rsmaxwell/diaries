@@ -1,0 +1,58 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo "=== Sender state ==="
+ssh mars '
+  sudo -n /usr/local/bin/btrfs-agreed-parent-sender --inspect
+'
+
+echo "=== Receiver durable state ==="
+ssh backup '
+  sudo -n cat \
+    /@data/mars-received/.replication-state/.agreed-parent.json
+'
+
+echo "=== Candidate B on receiver ==="
+ssh backup '
+  sudo -n btrfs subvolume show \
+    /@data/mars-received/@data/20261030-170009Z
+'
+
+echo "=== Receiver promotion readback ==="
+ssh backup '
+  sudo -n /usr/local/bin/btrfs-agreed-parent-receiver \
+    --promoted-readback \
+    --parent 20261030-030033Z \
+    --parent-uuid d901ddd2-66c7-0b42-b26c-ab6886273b7a \
+    --candidate 20261030-170009Z \
+    --candidate-uuid a9b78fb9-4da6-cf4f-b242-13909f574193
+'
+=== Sender state ===
+{"authorizes_prune": false, "authorizes_transfer": false, "state": {"established": {"timestamp": "20261030-030033Z", "uuid": "d901ddd2-66c7-0b42-b26c-ab6886273b7a"}, "pending": {"timestamp": "20261030-170009Z", "uuid": "a9b78fb9-4da6-cf4f-b242-13909f574193"}, "previous": null, "schema": 1}, "status": "local-source-state-only"}
+=== Receiver durable state ===
+{"established":{"timestamp":"20261030-170009Z","uuid":"a9b78fb9-4da6-cf4f-b242-13909f574193"},"pending":null,"previous":{"timestamp":"20261030-030033Z","uuid":"d901ddd2-66c7-0b42-b26c-ab6886273b7a"},"schema":1}
+=== Candidate B on receiver ===
+@data/mars-received/@data/20261030-170009Z
+        Name:                   20261030-170009Z
+        UUID:                   49cbcd83-683f-9e42-b526-dab448ec273f
+        Parent UUID:            21468afc-567a-8944-a854-083838aceae3
+        Received UUID:          a9b78fb9-4da6-cf4f-b242-13909f574193
+        Creation time:          2026-11-01 19:39:39 +0000
+        Subvolume ID:           55896
+        Generation:             584947
+        Gen at creation:        584944
+        Parent ID:              275
+        Top level ID:           275
+        Flags:                  readonly
+        Send transid:           62271
+        Send time:              2026-11-01 19:39:39 +0000
+        Receive transid:        584945
+        Receive time:           2026-11-01 19:39:41 +0000
+        Snapshot(s):
+        Quota group:            0/55896
+          Limit referenced:     -
+          Limit exclusive:      -
+          Usage referenced:     325.94GiB
+          Usage exclusive:      11.96MiB
+=== Receiver promotion readback ===
+{"established": {"timestamp": "20261030-170009Z", "uuid": "a9b78fb9-4da6-cf4f-b242-13909f574193"}, "pending": null, "previous": {"timestamp": "20261030-030033Z", "uuid": "d901ddd2-66c7-0b42-b26c-ab6886273b7a"}, "schema": 1}
+richard@mango:~/playbooks$

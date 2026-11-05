@@ -1,10 +1,14 @@
 # 0040-FEAT — Production promotion manifest
 
-**Status: IN PROGRESS — source cleanup and controlled non-destructive deployment accepted; final promotion revision and Steps 9–14 acceptance pending.** The previous planning statement below is historical, not the current operational state.
+**Status: IN PROGRESS — earlier shared-manager deployment accepted; simplified Step 12 design accepted 5 November 2026; replacement runtime deployment, receiver-pruning activation and overall feature closure remain pending.** The previous planning statement below is historical, not the current operational state.
 
 ## Original design extension (historical planning record)
 
 23 October 2026: include retiring the unnecessary `mars` `/media/usb/@snapshots/root/<timestamp>` history and changing the shared manager to accept `@data`-only timestamp sets. Permanent Playbooks changes are anticipated for snapshot creation configuration, paired-set validation, retention tests and retirement controls. **No source promotion, timer change, deletion or deployment has occurred as a result of this documentation update.** The existing active `mars` legacy prune service requires separate compatibility and migration assessment.
+
+## Step 12 simplified design revision — 5 November 2026
+
+The operator approved a lower-complexity agreed-parent native replication model with next-scheduled-run interrupted-receive retry. See `reports/STEP12-3-SIMPLIFIED-DESIGN-DECISION-20261105.md` and `IMPLEMENTATION-STEPS.md`. The transactional journal, staged stream transform, ownership witness and multi-stage promotion proposals are **not** target production components. **No simplification deployment or test cleanup is claimed by this design-only revision**. Keep the installed native sender, receiver, and rollback evidence until the reviewed replacement and consolidated regression acceptance. Record actual Git revisions, hashes, enabled timers and Playbooks file removals at cutover.
 
 ## Track future promotions
 

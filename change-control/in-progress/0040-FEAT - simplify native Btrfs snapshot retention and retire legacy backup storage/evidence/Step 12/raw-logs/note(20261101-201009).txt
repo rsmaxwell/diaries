@@ -1,0 +1,8 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+ssh mars '
+  sudo -n /usr/local/bin/btrfs-agreed-parent-sender \
+    --resume-committed
+'
+{"authorizes_prune": false, "authorizes_release": false, "receiver_state": {"established": {"timestamp": "20261030-170009Z", "uuid": "a9b78fb9-4da6-cf4f-b242-13909f574193"}, "pending": null, "previous": {"timestamp": "20261030-030033Z", "uuid": "d901ddd2-66c7-0b42-b26c-ab6886273b7a"}, "schema": 1}, "source_state": {"established": {"timestamp": "20261030-170009Z", "uuid": "a9b78fb9-4da6-cf4f-b242-13909f574193"}, "pending": null, "previous": {"timestamp": "20261030-030033Z", "uuid": "d901ddd2-66c7-0b42-b26c-ab6886273b7a"}, "schema": 1}, "status": "both-promoted-previous-pinned"}
+richard@mango:~/playbooks$

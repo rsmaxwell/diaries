@@ -1,0 +1,88 @@
+---
+# 0040-FEAT Step 12.3 Gate A ONLY. No role import, services, keys or retention changes.
+- name: Install only dormant Step 12.3 receiver Python modules
+  hosts: remote_backup
+  gather_facts: false
+  vars:
+    gate_a_source_root: /home/richard/playbooks/roles/btrfs-replication/files
+    gate_a_target_root: /usr/local/libexec
+    gate_a_modules:
+      - receiver-entry
+      - receive-core
+      - provisional-journal
+      - finalisation-core
+      - finalisation-storage
+      - finalisation-transaction
+      - session-proof
+      - receiver-promotion-adapter
+      - receiver-promoted-readback
+      - receiver-promotion-binding
+      - receiver-operation-contract
+
+  tasks:
+    - name: Refuse any host other than backup
+      ansible.builtin.assert:
+        that:
+          - inventory_hostname == 'backup'
+        fail_msg: This feature-specific installation is restricted to backup
+
+    - name: Inspect the exact source files on mango
+      ansible.builtin.stat:
+        path: "{{ gate_a_source_root }}/btrfs-agreed-parent-{{ item }}.py"
+        checksum_algorithm: sha256
+        follow: false
+      loop: "{{ gate_a_modules }}"
+      delegate_to: localhost
+      become: false
+      register: gate_a_sources
+
+    - name: Require regular readable source files
+      ansible.builtin.assert:
+        that:
+          - item.stat.exists | default(false)
+          - item.stat.isreg | default(false)
+          - not (item.stat.islnk | default(false))
+          - item.stat.checksum is defined
+        fail_msg: Missing or unsafe Gate A source file
+      loop: "{{ gate_a_sources.results }}"
+      loop_control:
+        label: "{{ item.item }}"
+
+    - name: Inspect potential receiver destinations
+      ansible.builtin.stat:
+        path: "{{ gate_a_target_root }}/btrfs-agreed-parent-{{ item }}.py"
+        checksum_algorithm: sha256
+        follow: false
+      loop: "{{ gate_a_modules }}"
+      become: true
+      register: gate_a_destinations
+
+    - name: Refuse overwriting any non-identical or unsafe installed file
+      ansible.builtin.assert:
+        that:
+          - >-
+            not (item.stat.exists | default(false)) or
+            (item.stat.isreg | default(false) and
+             not (item.stat.islnk | default(false)) and
+             item.stat.checksum == gate_a_sources.results[index].stat.checksum and
+             item.stat.pw_name == 'root' and
+             item.stat.gr_name == 'root' and
+             item.stat.mode == '0644')
+        fail_msg: Existing receiver file differs or has unsafe ownership/mode; stop for review
+      loop: "{{ gate_a_destinations.results }}"
+      loop_control:
+        index_var: index
+        label: "{{ item.item }}"
+
+    - name: Install only missing dormant receiver modules
+      ansible.builtin.copy:
+        src: "{{ gate_a_source_root }}/btrfs-agreed-parent-{{ item }}.py"
+        dest: "{{ gate_a_target_root }}/btrfs-agreed-parent-{{ item }}.py"
+        owner: root
+        group: root
+        mode: '0644'
+      loop: "{{ gate_a_modules }}"
+      when: not gate_a_destinations.results[index].stat.exists | default(false)
+      loop_control:
+        index_var: index
+      become: true

@@ -4,6 +4,17 @@
 
 One production `btrfs-snapshot-manager` codebase and one deterministic retention selection implementation installed on **both** `mars` and `backup`. Host differences are declarative configuration plus narrowly scoped source/receiver safety checks. Avoid a second, independently maintained receiver-pruning program.
 
+## Active agreed-parent replication design (revised 5 November 2026)
+
+**This section supersedes earlier Step 12.3 transaction/journal/staging designs.** See [`reports/STEP12-3-SIMPLIFIED-DESIGN-DECISION-20261105.md`](reports/STEP12-3-SIMPLIFIED-DESIGN-DECISION-20261105.md) for the full retry and recovery rules. Original legacy-retirement and retention approvals elsewhere in this document remain in force.
+
+- Use native sender-initiated `btrfs send -p` → SSH → `btrfs receive`. No private staging, stream rewrite or multi-phase journal/proof protocol.
+- Each host records a small, atomically replaced **established-parent** state file with immutable snapshot identity. Ordinary process/systemd logs record attempts, failures and retries; no durable per-stage transaction journal.
+- Source and receiver each use **one local non-blocking lock** for conflicting replication/pruning operations. Lock collision logs `DEFERRED` and exits; staggered schedules reduce collisions. The receive child must hold the receiver lock through completion.
+- A run that finds a fully verified candidate already received reconciles state without retransmission. If the previous receive left an **unambiguously incomplete and unprotected** subvolume, the next scheduled run can delete that *exact* subvolume under the receiver lock and retry **once**. If ownership, protection or filesystem metadata is uncertain, leave it untouched and log for manual intervention after persistent failures.
+- Pruning on each host must retain the locally established common parent and all independent native/historical holds. If state differs, no unsafe old-parent release is permitted. The published received-snapshot tree remains `/@data/mars-received/@data/<timestamp>`; do not treat an unfinished receive as published or retention-eligible.
+- Earlier transactional receivers, receipt files and locks may remain **installed for rollback** during migration; do not delete them merely because the target design is simpler. The current 03:30 native timer remains until reviewed cutover.
+
 ### Source: `mars`
 
 - Collects backups from configured machines into the existing fixed working dataset.
@@ -29,8 +40,8 @@ The `mars` Btrfs root at `/media/usb` contains only nested subvolumes `@data` an
 
 - Receives snapshots at `/@data/mars-received/@data/<timestamp>`; does not locally create snapshots of those data.
 - Shares the same retention selection algorithm on this received inventory, but **receiver mode** is incapable of `create` and rejects invalid or non-received candidates.
-- Coordinates pruning with the replication state and writer lock and checks retained sender/receiver parent compatibility before deletion.
-- Preserves `/@data/mars-received/.replication-state/` including receipts, locks and currently required baselines. Receiver prune must not destroy information required for future incrementals or rollback.
+- Coordinates pruning with the **local non-blocking operation lock** and validates the locally established parent and independent holds before deletion. Legacy writer-lock/receipt checks remain applicable to the installed runtime until its replacement is accepted.
+- Preserves `/@data/mars-received/.replication-state/` during migration, including historical receipts/locks, rollback state and the simplified agreed-parent file when deployed. Receiver prune must not destroy parent protection or rollback evidence.
 - Existing native receiver implementation may already perform retention: identify ownership and disable any duplicate pruner before activation. Exactly one authority prunes each receiver snapshot population.
 
 ## Desired data layout on `backup`
@@ -43,9 +54,9 @@ The `mars` Btrfs root at `/media/usb` contains only nested subvolumes `@data` an
         │   ├── <timestamped received read-only snapshot>/
         │   └── ...
         └── .replication-state/
-            ├── writer.lock
-            ├── <receipt>.json
-            └── <other required receiver metadata>
+            ├── <agreed-parent state file, after cutover>
+            ├── <local operation lock file>
+            └── <legacy receipts/metadata retained for rollback>
 ```
 
 This describes the **backup-data** layout, not the entire Linux root filesystem. Additional normal OS directories, top-level Btrfs subvolumes and system metadata may remain.
@@ -60,16 +71,16 @@ This describes the **backup-data** layout, not the entire Linux root filesystem.
 | `/@snapshots/root` | Retire obsolete local snapshot tree | Confirm emptiness/contents and no installed references |
 | `/.snapshots` | **Retire — approved in Step 2** | Disable APT Snapper pre/post hooks through Playbooks; verify no recreation after deletion |
 | `/@data/mars-received/@data` | **Keep**; retained snapshots managed by shared tool | Read-only identity, receipts, parent dependency and protected anchors |
-| `/@data/mars-received/.replication-state` | **Keep** | Receipt and writer-lock invariants |
+| `/@data/mars-received/.replication-state` | **Keep** | Agreed-parent, hold and operational-lock invariants; preserve legacy receipt/rollback information during migration |
 
 Btrfs nested subvolumes must be inventoried and deleted via supported subvolume operations in correct order; `rm -rf` is not an acceptable substitute for approved Btrfs snapshot deletion. Pruning may free less than apparent `du` because of shared extents and outstanding subvolumes; measure real filesystem usage after Btrfs deletion completion and qgroup reconciliation.
 
 ## Snapshot protection invariants
 
-1. Fail closed when inventory, timestamp, UUID, read-only flag, receipt, lock or parent identity cannot be validated.
+1. Fail closed on ambiguous candidate, UUID, read-only flag, operation-lock or parent identity. Legacy receipts remain required only while the currently installed runtime relies on them.
 2. Recheck all invariants immediately before each permitted deletion.
 3. Keep source and receiver replication parent compatibility; a snapshot's GFS age alone is insufficient justification to delete it.
-4. Avoid overlapping source send/receiver receive with receiver prune; use the established replication writer lock. Respect any other installed lock domains.
+4. Avoid overlap of receive and pruning using the same local non-blocking lock on the receiver. Preserve compatibility with currently installed lock domains during migration; do not assume an SSH disconnect immediately terminates the receive child.
 5. No pruning via duplicate timers/tools. Opt-in to activation only after positive check/diff, deployment and runtime acceptance.
 6. No mutation of received subvolume UUID, Received UUID or ro flag to implement deduplication. Deduplication is not a prerequisite of this feature.
 7. Preserve supported historical restore contract: verify representative manifests/paths and previously accepted recovery evidence; no repeated full restore absent new risk.

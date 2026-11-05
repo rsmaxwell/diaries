@@ -1,6 +1,6 @@
 # 0040-FEAT — Simplify native Btrfs snapshot retention and retire legacy backup storage
 
-**Status: IN PROGRESS — Steps 1–8 CLOSED under their recorded acceptance decisions; Step 9 and overall Steps 10–14 remain OPEN.** Created 23 October 2026. Step 3 design acceptance includes the documented cross-host rehearsal waiver. The backup-only portions of Steps 10–11 are accepted; native `mars` root-snapshot retirement and receiver pruning remain unauthorised.
+**Status: IN PROGRESS — historical Steps 1–8 and Step 11 have recorded closure; Step 12 simplified agreed-parent replication/retry and overall feature closure remain OPEN.** Created 23 October 2026. Step 3 design acceptance includes the documented cross-host rehearsal waiver. The backup-only portions of Steps 10–11 are accepted; native `mars` root-snapshot retirement and receiver pruning remain unauthorised.
 
 ## Classification
 
@@ -27,9 +27,15 @@ The desired steady state is **one `@data` snapshot population per host**: source
 
 ## Scope
 
-Playbooks source and Ansible configuration for `mars` and `backup`; snapshot-manager implementation/tests; native sender/receiver integration and locks; retention selection and GFS buckets; read-only inventories; planned guarded retirement; operator documentation and closure.
+Playbooks source and Ansible configuration for `mars` and `backup`; snapshot-manager implementation/tests; native sender/receiver integration and simple local non-blocking locks; retention selection and GFS buckets; read-only inventories; planned guarded retirement; operator documentation and closure.
 
 Out of scope unless separately approved: rebuilding/resending the full backup baseline, modifying `pluto` authoring backups, changing other host backup schedules, altering production NAS data, updating Diaries client/responder images, deleting received snapshots outside approved retention, or relaxing replication safeguards.
+
+## Step 12 design revision — 5 November 2026
+
+The operator selected a simpler **native send/receive + small agreed-parent state file on both hosts + ordinary logs + non-blocking per-host lock** design. An interrupted receive should normally be **cleaned up and retried at the next scheduled run** when the incomplete destination is unambiguously identified and unprotected; recurring failures are resolved manually. Avoid per-transfer durable journals, stream rewriting, staged publication, systemd receive scopes and elaborate proof/ownership protocols. Preserve existing accepted production snapshots and independent holds.
+
+The authoritative decision is [`reports/STEP12-3-SIMPLIFIED-DESIGN-DECISION-20261105.md`](reports/STEP12-3-SIMPLIFIED-DESIGN-DECISION-20261105.md). The revised [`IMPLEMENTATION-STEPS.md`](IMPLEMENTATION-STEPS.md) supersedes old Step 12.3 gate lists; earlier reports/tests are historical. See [`reports/STEP12-3-TEST-CLEANUP-20261105.md`](reports/STEP12-3-TEST-CLEANUP-20261105.md) for guarded retirement of obsolete Playbooks verification scripts.
 
 ## Feature workspace (same model as 0037/0038)
 
@@ -46,6 +52,6 @@ Permanent reusable code belongs in the Playbooks repository **only after review/
 
 ## Workflow
 
-One manageable stage at a time. Use **Cygwin** for ZIP application and local orchestration, SSH terminals on **mars** and **backup** for inspection, and **mango** for Ansible with `--vault-password-file ~/.vault_pass.txt`. Review `--check --diff`, then explicitly approve changes, deploy, verify and prove idempotency. Record results and exact source revisions. Close the feature only after all acceptance gates, then move its whole directory to `change-control/complete/`.
+Implement the simplified Step 12 workflow as one coherent change, followed by consolidated tests and controlled cutover. Use **Cygwin** for ZIP application and local orchestration, SSH terminals on **mars** and **backup** for inspection, and **mango** for Ansible with `--vault-password-file ~/.vault_pass.txt`. Review `--check --diff`, then explicitly approve changes, deploy, verify and prove idempotency. Record results and exact source revisions. Close the feature only after all acceptance gates, then move its whole directory to `change-control/complete/`.
 
-**Next action: Step 9 — reconcile native incremental and guarded-pruning safety evidence against the accepted accelerated-path waiver; do not activate receiver pruning or perform native `mars` root-snapshot deletion without their separate gates.** See `IMPLEMENTATION-STEPS.md`, `CONSOLIDATED-PRUNE-GATE.md` and `reports/STEP09-SOURCE-CLEANUP-RECONCILIATION-20261025.md`.
+**Next action: implement the revised Step 12.3 native retry workflow and compact tests, then controlled deploy/acceptance; do not change the 03:30 service or activate receiver pruning before their existing controlled gates.**

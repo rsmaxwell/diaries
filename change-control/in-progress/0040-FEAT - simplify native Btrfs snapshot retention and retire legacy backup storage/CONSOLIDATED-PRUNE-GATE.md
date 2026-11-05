@@ -16,20 +16,22 @@ Status: **OPEN**. Production receiver pruning remains **disabled**.
 
 `btrfs-snapshot-manager.py receiver_guarded_prune` has an unconditional fail-closed exception: `receiver pruning blocked: live common-parent coordination not implemented`. The older destructive code below that exception is unreachable and MUST NOT be activated by deleting the exception. It does not use the newer fsync-safe journal helpers, and it does not establish a cross-host pin-lifetime contract.
 
-## Single consolidated implementation contract
+## Current receiver-prune activation contract (revised 5 November 2026)
 
-1. One sender-driven, root-constrained orchestration command on `mars`, with a serialization lock preventing competing source replication/pruning coordination. It obtains a verified common parent, persists its source protection, and invokes the receiver transaction without releasing the pin.
-2. The receiver command acquires manager lock then the **existing** exclusive `/.replication-state/writer.lock` for the entire transaction. It checks a live source pin identity or a non-releasable protected parent token, and independently verifies received UUID, read-only property, receipt identity, and filesystem membership under lock.
-3. Retention is recalculated *under lock*; protect current verified parent, latest receiver snapshot, accepted checkpoint holds `20261013-171228Z` and `20261018-165453Z`, and any source/receiver replication pins. Never delete with zero candidates; never override retention merely to create candidates.
-4. Before EACH deletion: validate a candidate, create the fsync-safe pending journal, delete exactly that Btrfs subvolume, durably remove its matching receipt, clear the journal only when both are absent. A pending/ambiguous state fails closed and is classified by `receiver-recovery-plan` for explicit reconciliation.
-5. Source pin remains present on any error or uncertain SSH result. Releasing it requires a separate, explicitly gated operation that establishes at least one **other** current shared parent; no automatic release on failure.
-6. Install via existing `btrfs-replication`/`snapshots` Ansible roles. Default `receiver_prune_enabled=false`, no new timer until accepted. Deploy with `--check --diff`, verify, deploy, then idempotency.
+The old manager/writer-lock ordering, source-held challenge and fsync deletion-journal design described in October reports is historical. **Do not remove an installed fail-closed guard merely to enable pruning.** Replace old code coherently with the simplified contract in `reports/STEP12-3-SIMPLIFIED-DESIGN-DECISION-20261105.md`, then pass the independent receiver-pruning gate:
 
-## Focused acceptance (no full restore)
+1. One shared retention-selector codebase, receiver configured for **receive-only**, with no competing pruner. Existing retention 48/14/12/24/5 and historical holds remain intact.
+2. On the receiver, pruning and Btrfs receiving use the **same local non-blocking host lock**, held through each mutation. A collision logs and defers until the next timer; schedule the prune away from 03:30 UTC replication.
+3. Under lock, re-read the receiver agreed-parent file and actual Btrfs identities, protect that common parent and every independent historical hold, and reject incomplete/invalid received subvolumes. If agreement with `mars` is in doubt, retain the possibly needed former parent rather than deleting it.
+4. Recheck candidate identity and protection immediately before each locally selected `btrfs subvolume delete`; never delete by filename pattern alone. Ordinary logs record selections and results. No new multi-phase journal is required by this **replacement** design. Existing installed receipt/journal handling must remain operational until cutover and rollback acceptance.
+5. Validate source and receiver protect the intended parent, compare non-mutating retention plans, run disposable Btrfs and collision regressions, review Ansible `--check --diff`, and obtain the separate operational go/no-go before enabling receiver deletion. Receiver prune remains disabled until explicitly accepted.
 
-- Test valid zero-candidate plan (no deletions); invalid receipt and UUID (hard refusal); locked receiver and concurrent send (hard refusal/serialization); missing/stale source protection and attempted release (hard refusal).
-- Disposable received Btrfs subvolumes with real receipt files: one eligible child deleted; protected parent and checkpoints survive; receipts/journal reconcile; interrupted stages remain diagnosable and restart-safe.
-- Confirm receiver and sender installed manager source hashes and config, then one live source/receiver common-parent proof. Verify next normal incremental replication and receiver inventory. No forced deletion when retention gives zero candidates.
+## Focused acceptance (no full restore) — current replacement design
+
+- Source regressions: zero-candidate dry-run (no deletion), malformed or mismatched UUID/read-only metadata, parent absent/ambiguous, protected historical hold, and receiver lock contention all refuse mutation or defer.
+- Disposable real-Btrfs snapshots: a clearly eligible child can be pruned; the locally pinned parent and independent historical checkpoint holds survive; an incomplete receive is never accepted as an eligible retained snapshot; receive/prune overlap backs off.
+- Confirm installed sender/receiver shared-manager source revisions/config and review both current agreed-parent records. Observe one successful normal incremental after controlled rollout; check selected parent remains on both hosts. Do not force a deletion merely to create test candidates.
+- Previously accepted restore and A→B transfer evidence is sufficient; no new complete restore is required solely for this gate.
 
 ## Operational constraints
 

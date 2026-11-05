@@ -1,5 +1,7 @@
 # 0040-FEAT Step 12.3 — Unattended receiver-pruning redesign
 
+> **SUPERSEDED for Step 12.3 replication/recovery design (5 November 2026).** The current approved direction is [`reports/STEP12-3-SIMPLIFIED-DESIGN-DECISION-20261105.md`](reports/STEP12-3-SIMPLIFIED-DESIGN-DECISION-20261105.md). The material below is preserved as the 29 October historical decision; do not implement its journal/scope/approval machinery as new Step 12.3 requirements. Earlier accepted safety evidence remains valid.
+
 Decision: APPROVED IN PRINCIPLE (2026-10-29). Implementation and production acceptance: OPEN.
 
 ## Operating contract

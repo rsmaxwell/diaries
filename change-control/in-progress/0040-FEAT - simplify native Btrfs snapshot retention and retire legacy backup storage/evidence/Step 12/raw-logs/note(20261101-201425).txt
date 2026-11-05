@@ -1,0 +1,92 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+echo "=== Sender durable agreement and native pins ==="
+ssh mars '
+  sudo -n /usr/local/bin/btrfs-agreed-parent-sender --inspect
+  sudo -n cat /media/usb/@snapshots/.replication-protection.json
+'
+
+echo "=== Receiver durable agreement ==="
+ssh backup '
+  sudo -n cat /@data/mars-received/.replication-state/.agreed-parent.json
+'
+
+echo "=== Sender A, B and native checkpoint ==="
+ssh mars '
+  for stamp in \
+    20261030-030033Z \
+    20261030-170009Z \
+    20261101-140039Z
+  do
+    echo "--- $stamp ---"
+    sudo -n btrfs subvolume show \
+      "/media/usb/@snapshots/@data/$stamp" |
+      grep -E "Name:|UUID:|Flags:"
+  done
+'
+
+echo "=== Receiver A, B and native checkpoint ==="
+' systemctl list-timers --all btrfs-native-push.timer
+=== Sender durable agreement and native pins ===
+{"authorizes_prune": false, "authorizes_transfer": false, "state": {"established": {"timestamp": "20261030-170009Z", "uuid": "a9b78fb9-4da6-cf4f-b242-13909f574193"}, "pending": null, "previous": {"timestamp": "20261030-030033Z", "uuid": "d901ddd2-66c7-0b42-b26c-ab6886273b7a"}, "schema": 1}, "status": "local-source-state-only"}
+{
+  "protected": {
+    "20261023-030037Z": "fdcabd00-aa98-7647-bd3a-de5e23186d38",
+    "20261029-030003Z": "3a2cc82d-a9ab-964f-af85-f073dd45f0a4",
+    "20261030-030033Z": "d901ddd2-66c7-0b42-b26c-ab6886273b7a",
+    "20261101-140039Z": "69ef9a57-50ff-9a4e-92ed-8f10560ab1f2"
+  },
+  "prune_protected": {
+    "20261023-030037Z": "fdcabd00-aa98-7647-bd3a-de5e23186d38",
+    "20261029-030003Z": "3a2cc82d-a9ab-964f-af85-f073dd45f0a4",
+    "20261030-030033Z": "d901ddd2-66c7-0b42-b26c-ab6886273b7a"
+  },
+  "schema": 1
+}
+=== Receiver durable agreement ===
+{"established":{"timestamp":"20261030-170009Z","uuid":"a9b78fb9-4da6-cf4f-b242-13909f574193"},"pending":null,"previous":{"timestamp":"20261030-030033Z","uuid":"d901ddd2-66c7-0b42-b26c-ab6886273b7a"},"schema":1}
+=== Sender A, B and native checkpoint ===
+--- 20261030-030033Z ---
+        Name:                   20261030-030033Z
+        UUID:                   d901ddd2-66c7-0b42-b26c-ab6886273b7a
+        Parent UUID:            fc4585b5-1649-b94c-bcb6-a9253c9cf080
+        Received UUID:          -
+        Flags:                  readonly
+--- 20261030-170009Z ---
+        Name:                   20261030-170009Z
+        UUID:                   a9b78fb9-4da6-cf4f-b242-13909f574193
+        Parent UUID:            fc4585b5-1649-b94c-bcb6-a9253c9cf080
+        Received UUID:          -
+        Flags:                  readonly
+--- 20261101-140039Z ---
+        Name:                   20261101-140039Z
+        UUID:                   69ef9a57-50ff-9a4e-92ed-8f10560ab1f2
+        Parent UUID:            fc4585b5-1649-b94c-bcb6-a9253c9cf080
+        Received UUID:          -
+        Flags:                  readonly
+=== Receiver A, B and native checkpoint ===
+--- 20261030-030033Z ---
+        Name:                   20261030-030033Z
+        UUID:                   21468afc-567a-8944-a854-083838aceae3
+        Parent UUID:            454fac09-42b8-0540-8332-0e584afcdf91
+        Received UUID:          d901ddd2-66c7-0b42-b26c-ab6886273b7a
+        Flags:                  readonly
+--- 20261030-170009Z ---
+        Name:                   20261030-170009Z
+        UUID:                   49cbcd83-683f-9e42-b526-dab448ec273f
+        Parent UUID:            21468afc-567a-8944-a854-083838aceae3
+        Received UUID:          a9b78fb9-4da6-cf4f-b242-13909f574193
+        Flags:                  readonly
+--- 20261101-140039Z ---
+        Name:                   20261101-140039Z
+        UUID:                   37dcf2fc-8af2-444c-97b4-b0598b1766dc
+        Parent UUID:            21468afc-567a-8944-a854-083838aceae3
+        Received UUID:          69ef9a57-50ff-9a4e-92ed-8f10560ab1f2
+        Flags:                  readonly
+=== Existing scheduled replication ===
+active
+NEXT                        LEFT LAST                              PASSED UNIT                    ACTIVATES
+Mon 2026-11-02 03:30:00 UTC   7h Sun 2026-11-01 14:54:35 UTC 5h 19min ago btrfs-native-push.timer btrfs-native-push.service
+
+1 timers listed.
+richard@mango:~/playbooks$

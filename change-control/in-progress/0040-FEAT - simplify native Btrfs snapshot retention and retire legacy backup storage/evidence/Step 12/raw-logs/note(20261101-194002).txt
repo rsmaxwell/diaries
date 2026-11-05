@@ -1,0 +1,8 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+ssh mars '
+  sudo -n /usr/local/bin/btrfs-agreed-parent-sender \
+    --execute-prepared
+'
+agreed-parent sender refused: receiver promotion acknowledgement refused
+richard@mango:~/playbooks$

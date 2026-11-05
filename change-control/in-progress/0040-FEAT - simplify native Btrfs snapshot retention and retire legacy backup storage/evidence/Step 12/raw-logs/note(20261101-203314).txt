@@ -1,0 +1,44 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+ssh mars '
+  sudo -n /usr/local/bin/btrfs-agreed-parent-sender --help
+'
+
+ssh backup '
+  sudo -n /usr/local/bin/btrfs-agreed-parent-receiver --help
+'
+usage: btrfs-agreed-parent-sender [-h]
+                                  (--inspect | --execute-prepared | --resume-committed | --acknowledge-previous)
+
+0040 agreed-parent manual source transaction
+
+options:
+  -h, --help            show this help message and exit
+  --inspect
+  --execute-prepared
+  --resume-committed
+  --acknowledge-previous
+usage: btrfs-agreed-parent-receiver-entry.py [-h] --parent PARENT
+                                             --parent-uuid PARENT_UUID
+                                             --candidate CANDIDATE
+                                             --candidate-uuid CANDIDATE_UUID
+                                             (--review-only | --receive | --finalise | --session | --receipt | --promote | --promoted-readback | --acknowledge-previous | --previous-readback)
+
+Agreed-parent receiver: review or provisional receive
+
+options:
+  -h, --help            show this help message and exit
+  --parent PARENT
+  --parent-uuid PARENT_UUID
+  --candidate CANDIDATE
+  --candidate-uuid CANDIDATE_UUID
+  --review-only
+  --receive
+  --finalise
+  --session
+  --receipt
+  --promote
+  --promoted-readback
+  --acknowledge-previous
+  --previous-readback
+richard@mango:~/playbooks$

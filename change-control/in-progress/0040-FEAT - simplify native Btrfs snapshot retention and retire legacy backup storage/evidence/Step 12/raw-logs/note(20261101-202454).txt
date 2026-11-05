@@ -1,0 +1,141 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+git status --short
+git branch --show-current
+git rev-parse HEAD
+
+python3 roles/btrfs-replication/tests/verify-0040-step12-3-previous-ack.py
+python3 roles/btrfs-replication/tests/verify-0040-step12-3-previous-receiver.py
+python3 roles/btrfs-replication/tests/verify-0040-step12-3-sender-workflow.py
+python3 roles/btrfs-replication/tests/verify-0040-step12-3-sender-promotion-runtime.py
+python3 roles/btrfs-replication/tests/verify-0040-step12-3-runtime-manifest.py
+
+git diff --check
+ M roles/btrfs-replication/defaults/main.yaml
+ M roles/btrfs-replication/files/btrfs-agreed-parent-provisional-journal.py
+ M roles/btrfs-replication/files/btrfs-agreed-parent-receive-core.py
+ M roles/btrfs-replication/files/btrfs-agreed-parent-receiver-entry.py
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/btrfs-replication/tests/verify-0040-step12-3-provisional-journal.py
+?? install-step12-3-dormant-receiver.yaml
+?? roles/btrfs-replication/files/btrfs-agreed-parent-finalisation-core.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-finalisation-storage.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-finalisation-transaction.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-fixed-commands.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-previous-ack.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receipt-readback.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receiver-command
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receiver-operation-contract.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receiver-promoted-readback.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receiver-promotion-adapter.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receiver-promotion-binding.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-command.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-execution.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-previous-ack.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-promotion-coordinator.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-promotion-runtime.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-proof-handoff.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-transaction.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-workflow.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-session-proof.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-stream-adapter.py
+?? roles/btrfs-replication/tasks/agreed-parent-runtime.yaml
+?? roles/btrfs-replication/tests/verify-0040-step12-3-authenticated-finalisation-link.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-binary-sender-adapter.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-command-identity-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-dormant-install-gate.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-final-receipt-readback.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-finalisation-core.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-finalisation-storage.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-finalisation-transaction.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-finalise-cli-gate.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-finalise-operational-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-fixed-command-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-fixed-receiver-cli.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-fixed-sender-runtime.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-lock-inheritance.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-manual-sender-entry.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-previous-ack.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-previous-receiver.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-promote-command-integration.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-proof-key-install.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-core-install.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-launcher.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-operation-contract.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promoted-readback.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promotion-adapter.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promotion-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promotion.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-runtime-manifest.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-execution.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-fixed-integration.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-key-descriptor.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-locked-runtime.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-promotion-coordinator.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-promotion-runtime.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-proof-handoff.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-transaction.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-workflow.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-session-proof.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-session-query.py
+?? roles/snapshots/files/btrfs-agreed-parent-durable-promotion.py
+?? roles/snapshots/tests/verify-0040-step12-3-crash-recovery-gate.py
+?? roles/snapshots/tests/verify-0040-step12-3-durable-receiver-promotion.py
+main
+bdba058b0f3b634f94e7da4b7ab62eeadfa625b6
+test_bad_receiver_response_refuses_without_source_write (__main__.Tests.test_bad_receiver_response_refuses_without_source_write) ... ok
+test_missing_receipt_refuses (__main__.Tests.test_missing_receipt_refuses) ... ok
+test_receiver_first_then_sender (__main__.Tests.test_receiver_first_then_sender) ... ok
+test_recover_receiver_already_clear (__main__.Tests.test_recover_receiver_already_clear) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.002s
+
+OK
+test_missing_receipt_refuses (__main__.Tests.test_missing_receipt_refuses) ... ok
+test_receiver_first_acknowledges (__main__.Tests.test_receiver_first_acknowledges) ... ok
+test_retry_does_not_rewrite (__main__.Tests.test_retry_does_not_rewrite) ... ok
+test_state_mismatch_refuses (__main__.Tests.test_state_mismatch_refuses) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+OK
+test_ambiguous_source_state_rejected (__main__.Cases.test_ambiguous_source_state_rejected) ... ok
+test_execute_order_and_pins (__main__.Cases.test_execute_order_and_pins) ... ok
+test_lost_receipt_refuses_mutations (__main__.Cases.test_lost_receipt_refuses_mutations) ... ok
+test_no_automatic_retry_after_transfer_uncertain (__main__.Cases.test_no_automatic_retry_after_transfer_uncertain) ... ok
+test_noncanonical_path_rejected (__main__.Cases.test_noncanonical_path_rejected) ... ok
+test_peer_uncertain_does_not_promote_source (__main__.Cases.test_peer_uncertain_does_not_promote_source) ... ok
+test_resume_does_not_send (__main__.Cases.test_resume_does_not_send) ... ok
+test_resume_requires_prepared_or_promoted (__main__.Cases.test_resume_requires_prepared_or_promoted) ... ok
+test_source_already_promoted_only_reads (__main__.Cases.test_source_already_promoted_only_reads) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.002s
+
+OK
+test_nonzero_exit_fails (__main__.Tests.test_nonzero_exit_fails) ... ok
+test_promotion_and_readback (__main__.Tests.test_promotion_and_readback) ... ok
+test_receiver_ack_no_prune_allowed (__main__.Tests.test_receiver_ack_no_prune_allowed) ... ok
+test_reject_legacy_envelope_instead_of_wire_state (__main__.Tests.test_reject_legacy_envelope_instead_of_wire_state) ... ok
+test_reject_peer_still_pending (__main__.Tests.test_reject_peer_still_pending) ... ok
+test_reject_unpromoted_receiver_ack (__main__.Tests.test_reject_unpromoted_receiver_ack) ... ok
+test_source_not_written_on_identity_failure (__main__.Tests.test_source_not_written_on_identity_failure) ... ok
+test_source_not_written_when_peer_uncertain (__main__.Tests.test_source_not_written_when_peer_uncertain) ... ok
+test_source_promotion_after_readback (__main__.Tests.test_source_promotion_after_readback) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.001s
+
+OK
+test_manifest_is_well_formed (__main__.RuntimeTest.test_manifest_is_well_formed) ... ok
+test_no_operational_overwrite (__main__.RuntimeTest.test_no_operational_overwrite) ... ok
+test_opt_in_off (__main__.RuntimeTest.test_opt_in_off) ... ok
+test_source_files_exist (__main__.RuntimeTest.test_source_files_exist) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.007s
+
+OK
+richard@mango:~/playbooks$
