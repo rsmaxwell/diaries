@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Safely archive and retire obsolete 0040 Step 12 prototype verification scripts.
+"""Conservatively archive only UNTRACKED obsolete Step 12.3 prototypes.
 
 Run from the Diaries parent repository checkout on mango, *not* from the
 Playbooks repo; all evidence and archives remain in the Diaries feature tree.
@@ -21,19 +21,25 @@ ROLE_TESTS = Path('roles/btrfs-replication/tests')
 
 
 def retired_name(name: str) -> bool:
-    # New simplified replacement tests must use verify-0040-simplified-*
-    # and must never be included in the historical prototype retirement.
+    """Only untracked historical 12.3 prototypes may be auto-retired.
+
+    Crucially, never sweep all agreed-parent, retention, prune, endpoint or
+    preexisting tracked regressions. New simplified replacement tests remain.
+    """
     if name.startswith('verify-0040-simplified-'):
         return False
+    if name in {
+        'verify-0040-step12-3-shared-retention.py',
+        'verify-0040-step12-3-privileged-delete-transfer-guard.py',
+        'verify-0040-step12-3-receiver-consolidation.py',
+        'verify-0040-step12-3-receiver-process-lifetime.py',
+        'verify-0040-step12-parent-boundary.py',
+    }:
+        return False
     return (
-        (name.startswith('verify-0040-step12-3') and name.endswith('.py'))
-        or (name.startswith('verify-0040-agreed-parent-') and name.endswith('.py'))
-        or name in {
-            'verify-0040-step12-parent-boundary.py',
-            'verify-0040-step12-unattended-gateway.py',
-        }
-        or (name.startswith('README-0040-STEP12-3') and name.endswith('.md'))
-        or (name.startswith('0040-STEP12-3') and name.endswith('.md'))
+        (name.startswith('verify-0040-step12-3-') and name.endswith('.py'))
+        or (name.startswith('README-0040-STEP12-3-') and name.endswith('.md'))
+        or (name.startswith('0040-STEP12-3-') and name.endswith('.md'))
     )
 
 
@@ -78,13 +84,26 @@ def main() -> int:
         raise RuntimeError(f'Playbooks mismatch: expected {playbooks}; Git reports {top}')
     branch = git(playbooks, 'branch', '--show-current') or '(detached)'
     revision = git(playbooks, 'rev-parse', 'HEAD')
-    candidates = sorted(p for p in test_dir.iterdir() if retired_name(p.name))
+    # Explicitly preserve tracked, staged and modified work. Archiving untracked
+    # prototypes prevents accidental loss of source not recorded in Git.
+    candidates = []
+    preserved = 0
+    for p in sorted(test_dir.iterdir()):
+        if not retired_name(p.name):
+            continue
+        rel = p.relative_to(playbooks).as_posix()
+        status = git(playbooks, 'status', '--short', '--', rel)
+        if status.startswith('?? '):
+            candidates.append(p)
+        else:
+            preserved += 1
+    print('TRACKED/MODIFIED TESTS RETAINED:', preserved)
     for p in candidates:
         ensure_regular(p)
     print('PLAYBOOKS:', playbooks)
     print('BRANCH:', branch)
     print('REVISION:', revision)
-    print('MATCHING TEST/DOC FILES:', len(candidates))
+    print('UNTRACKED OBSOLETE FILES:', len(candidates))
     print('ARCHIVE:', archive_dir)
     if not candidates:
         print('No matching prototype verification scripts to retire. PASS (no changes).')
@@ -120,6 +139,13 @@ def main() -> int:
         item = {'source': rel, 'archive': p.name, 'sha256': digest(p), 'git_status': status}
         items.append(item)
         print(f"  {rel}  sha256={item['sha256'][:12]}  status={status or 'clean'}")
+    if args.apply:
+        # Never retire tests unless the replacement suite is present. An actual
+        # accepted test log/operational gate is still an operator responsibility.
+        for required in ('verify-0040-simplified-replication.py',
+                         'verify-0040-simplified-protection.py'):
+            if not (test_dir / required).is_file():
+                raise RuntimeError(f'Replacement regression absent: {required}')
     if not args.apply:
         print('PLAN ONLY: no files archived or removed. Use --apply after reviewing paths.')
         return 0

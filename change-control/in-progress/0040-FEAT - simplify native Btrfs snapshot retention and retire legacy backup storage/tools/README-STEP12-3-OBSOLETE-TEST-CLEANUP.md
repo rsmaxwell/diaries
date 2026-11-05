@@ -1,32 +1,22 @@
-# Retire obsolete Playbooks Step 12 tests
+# Step 12.3 historical test cleanup — conservative revision
 
-The following commands run on **mango**, after the new Diaries feature files have been synchronised to `/home/richard/diaries`. The tool does **not** touch operational Playbooks role files or Btrfs snapshots. It archives the actual current bytes of each selected test to the Diaries feature `tests/retired-step12-3/` directory before removing tests from `/home/richard/playbooks`.
+Run this tool from the **Diaries parent repository** on mango; it works on
+`/home/richard/playbooks` but stores all archive evidence within this feature.
 
-**Terminal: SSH to mango — inspect repository status and plan first**
+The previous 148-file dry run was too broad. This version considers **only
+untracked**, explicitly named obsolete Step 12.3 prototype tests and matching
+guides. All tracked/modified tests, native replication, retention and agreed
+parent test families remain. New simplified tests must already exist before
+`--apply` can be requested; operational acceptance is still required.
+
+## Read-only plan — terminal SSH `mango`
 
 ```bash
-cd /home/richard/playbooks
-git branch --show-current
-git rev-parse HEAD
-git status --short
 cd /home/richard/diaries
 python3 'change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tools/retire-obsolete-playbooks-step12-tests.py' --playbooks /home/richard/playbooks --plan
 ```
 
-Review every selected filename. In particular, ensure the new simplified regression suite has replaced the rejected staged architecture tests, or accept reduced test coverage temporarily.
-
-**Terminal: SSH to mango — archive and remove selected test scripts only**
-
-```bash
-cd /home/richard/diaries
-python3 'change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tools/retire-obsolete-playbooks-step12-tests.py' --playbooks /home/richard/playbooks --apply
-if [ "$?" -eq 0 ]; then
-  echo 'PASS: obsolete test sources archived before removal'
-else
-  echo 'FAIL: test cleanup; inspect output before retry'
-fi
-cd /home/richard/playbooks
-git status --short
-```
-
-Review the Playbooks deletions in Beyond Compare 4 and bring the new Diaries archive/manifest back into the primary Windows checkout. Do not delete earlier Step 12 feature evidence or the native/pruning test suites. Do not run this as part of Ansible production tasks.
+Do **not** use `--apply` until the replacement regressions are accepted and
+all paths in the plan have been reviewed. The tool performs no removal by
+itself; a subsequent explicit `--apply` archives and checksum-verifies before
+removing eligible untracked files. Repository status and SHA-256 are recorded.
