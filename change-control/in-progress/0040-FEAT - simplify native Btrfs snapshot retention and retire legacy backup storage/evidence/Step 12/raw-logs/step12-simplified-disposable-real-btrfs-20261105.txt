@@ -1,0 +1,155 @@
+Diaries revision: 1092149359c57a630fa1a264c6a470ac698184fe
+Playbooks revision: bdba058b0f3b634f94e7da4b7ab62eeadfa625b6
+Playbooks local changes:
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/defaults/main.yaml
+ M roles/btrfs-replication/files/btrfs-agreed-parent-preparation-checkpoint.py
+ M roles/btrfs-replication/files/btrfs-agreed-parent-provisional-journal.py
+ M roles/btrfs-replication/files/btrfs-agreed-parent-receive-core.py
+ M roles/btrfs-replication/files/btrfs-agreed-parent-receiver-entry.py
+ M roles/btrfs-replication/files/btrfs-native-endpoint.py
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/btrfs-replication/templates/btrfs-native-push.service.j2
+ M roles/btrfs-replication/tests/verify-0040-step12-3-provisional-journal.py
+ M roles/snapshots/files/btrfs-snapshot-manager.py
+?? install-step12-3-dormant-receiver.yaml
+?? roles/btrfs-replication/files/btrfs-agreed-parent-candidate-selection.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-cycle-entry.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-finalisation-core.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-finalisation-storage.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-finalisation-transaction.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-fixed-commands.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-incomplete-inspection.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-incomplete-reconciler.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-incomplete-recovery-gate.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-locked-candidate.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-previous-ack.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receipt-readback.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receiver-command
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receiver-operation-contract.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receiver-promoted-readback.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receiver-promotion-adapter.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receiver-promotion-binding.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-scope-observer.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-command.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-execution.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-previous-ack.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-promotion-coordinator.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-promotion-runtime.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-proof-handoff.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-transaction.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-workflow.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-session-proof.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-stage-ownership.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-staged-recovery.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-staging-contract.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-staging-storage.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-stream-adapter.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-stream-name.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-unattended-coordinator.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-unattended-driver.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-unattended-policy.py
+?? roles/btrfs-replication/files/btrfs-simplified-replication.py
+?? roles/btrfs-replication/tasks/agreed-parent-runtime.yaml
+?? roles/btrfs-replication/tests/0040-real-btrfs-staging-README.txt
+?? roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md
+?? roles/btrfs-replication/tests/README-0040-STEP12-3-PRIVATE-NAME-RUNTIME.md
+?? roles/btrfs-replication/tests/README-0040-STEP12-3-PRIVATE-STREAM-NAME.md
+?? roles/btrfs-replication/tests/README-0040-STEP12-3-RENAME-BOUNDARY.md
+?? roles/btrfs-replication/tests/README-0040-STEP12-3-STAGE-OWNERSHIP-WITNESS.md
+?? roles/btrfs-replication/tests/README-0040-STEP12-3-STAGED-RECOVERY-ASSESSMENT.md
+?? roles/btrfs-replication/tests/verify-0040-simplified-protection.py
+?? roles/btrfs-replication/tests/verify-0040-simplified-replication.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-atomic-auto-preparation.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-authenticated-finalisation-link.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-auto-candidate.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-auto-prepared-cycle.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-binary-sender-adapter.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-boot-bound-journal.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-btrfs-rename-boundary.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-command-identity-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-complete-committed.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-complete-prepared.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-cycle-entry.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-dormant-install-gate.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-final-receipt-readback.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-finalisation-core.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-finalisation-storage.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-finalisation-transaction.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-finalise-cli-gate.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-finalise-operational-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-fixed-command-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-fixed-receiver-cli.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-fixed-sender-runtime.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-incomplete-inspection.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-incomplete-reconciler.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-incomplete-recovery-gate.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-journal-scope-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-live-scope-lifecycle.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-live-scoped-receive.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-lock-inheritance.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-locked-candidate.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-manual-sender-entry.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-previous-ack.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-previous-receiver.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-private-name-real-btrfs.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-private-stream-name.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-private-stream-runtime.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-privileged-reboot-assessment.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-privileged-scoped-entry.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-promote-command-integration.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-proof-key-install.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-publication-witness.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-real-btrfs-staging.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-btrfs-cli.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-btrfs-diagnostics.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-core-install.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-incomplete-cli.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-launcher.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-operation-contract.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promoted-readback.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promotion-adapter.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promotion-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promotion.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-scoped-lifetime.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-recovery-cycle.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-runtime-manifest.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-same-parent-storage.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-scope-observer.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-scoped-finalisation.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-scoped-integrated-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-scoped-reconciliation-contract.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-scoped-session-readback.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-execution.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-fixed-integration.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-key-descriptor.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-locked-runtime.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-promotion-coordinator.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-promotion-runtime.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-proof-handoff.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-transaction.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-workflow.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-session-proof.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-session-query.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-stage-observer-integration.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-stage-ownership-capture.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-coordinator.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-endpoint-journal.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-finalisation.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-fixed-receiver.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-no-legacy-cleanup.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-postreceive.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-received-inspection.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-recovery-assessment.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-transaction-dispatch.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staging-contract.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staging-publication.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staging-storage.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-unattended-coordinator.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-unattended-driver.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-unattended-policy.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-witnessed-published-absence.py
+?? roles/snapshots/files/btrfs-agreed-parent-durable-promotion.py
+?? roles/snapshots/tests/verify-0040-step12-3-crash-recovery-gate.py
+?? roles/snapshots/tests/verify-0040-step12-3-durable-receiver-promotion.py
+python3: can't open file '/home/richard/diaries/change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tests/verify-0040-step12-simplified-real-btrfs.py': [Errno 2] No such file or directory
