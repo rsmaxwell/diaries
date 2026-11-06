@@ -1,0 +1,44 @@
+richard@mars:~$ sudo -n ls -l \
+  /usr/local/bin/btrfs-simplified-replication \
+  /usr/local/sbin/btrfs-snapshot-manager
+
+sudo -n sha256sum \
+  /usr/local/bin/btrfs-simplified-replication \
+  /usr/local/sbin/btrfs-snapshot-manager
+
+systemctl cat btrfs-native-push.service
+systemctl cat btrfs-native-push.timer
+systemctl list-timers --all btrfs-native-push.timer
+-rwxr-xr-x 1 root root 21320 Nov  6 10:48 /usr/local/bin/btrfs-simplified-replication
+-rwxr-xr-x 1 root root 74872 Nov  6 10:47 /usr/local/sbin/btrfs-snapshot-manager
+9be64295a6b6807df0fcd33d924b7a6549959f2a03dcab2953dcf0ac77fa6297  /usr/local/bin/btrfs-simplified-replication
+07ca520d38c071b204adfe024151cb6f7a3861c27c64f643a82825bb8fb0691d  /usr/local/sbin/btrfs-snapshot-manager
+# /etc/systemd/system/btrfs-native-push.service
+[Unit]
+Description=Push newest accepted-lineage Btrfs snapshot to off-site backup
+Wants=network-online.target
+After=network-online.target
+ConditionFileIsExecutable=/usr/local/bin/btrfs-native-push
+
+[Service]
+Type=oneshot
+User=richard
+Group=richard
+ExecStart=/usr/local/bin/btrfs-native-push --latest
+TimeoutStartSec=6h
+# /etc/systemd/system/btrfs-native-push.timer
+[Unit]
+Description=Schedule source-initiated native Btrfs off-site replication
+
+[Timer]
+OnCalendar=*-*-* 03:30:00 UTC
+Persistent=false
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target
+NEXT                        LEFT LAST                        PASSED UNIT                    ACTIVATES
+Sat 2026-11-07 03:30:00 UTC  16h Fri 2026-11-06 03:30:11 UTC 7h ago btrfs-native-push.timer btrfs-native-push.service
+
+1 timers listed.
+richard@mars:~$

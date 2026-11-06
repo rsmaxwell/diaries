@@ -1,0 +1,109 @@
+richard@mango:~/playbooks$ git status && git log -1
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+commit 813b7210d08865337770ae821bb9d88529115188 (HEAD -> main, origin/main)
+Author: Richard Maxwell <richard@rsmaxwell.co.uk>
+Date:   Fri Nov 6 10:51:49 2026 +0000
+
+    Continue simplified deployment
+richard@mango:~/playbooks$
+
+
+
+
+richard@mango:~/diaries$ git status && git log -1
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+commit 662179aa24f5ded77d54ead283589ed0ad860f16 (HEAD -> main, origin/main, origin/HEAD)
+Author: Richard Maxwell <richard@rsmaxwell.co.uk>
+Date:   Fri Nov 6 10:52:59 2026 +0000
+
+    Continue simplified deployment
+richard@mango:~/diaries$
+
+
+
+
+
+
+
+
+
+
+$ git status && git log -1
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/IMPLEMENTATION-STEPS.md
+        modified:   change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/PROMOTION-MANIFEST.md
+        modified:   change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/README.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/note(20261105-133205).txt
+        change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/note(20261105-175338).txt
+        change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/note(20261105-175454).txt
+        change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/note(20261105-180932).txt
+        change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/reports/STEP12-SIMPLIFIED-ENDPOINT-RECONCILIATION-20261105.md
+        change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/reports/STEP12-SIMPLIFIED-SOURCE-AND-REAL-BTRFS-ACCEPTANCE-20261105.md
+        change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tools/README-STEP12-SIMPLIFIED-OPERATIONAL-PREFLIGHT.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+commit 662179aa24f5ded77d54ead283589ed0ad860f16 (HEAD -> main, origin/main, origin/HEAD)
+Author: Richard Maxwell <richard@rsmaxwell.co.uk>
+Date:   Fri Nov 6 10:52:59 2026 +0000
+
+    Continue simplified deployment
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$
+
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ git add -A && git commit -m "Continue simplified deployment" && git push
+[main 471829f] Continue simplified deployment
+ 10 files changed, 345 insertions(+), 2 deletions(-)
+ create mode 100644 change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/note(20261105-133205).txt
+ create mode 100644 change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/note(20261105-175338).txt
+ create mode 100644 change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/note(20261105-175454).txt
+ create mode 100644 change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/note(20261105-180932).txt
+ create mode 100644 change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/reports/STEP12-SIMPLIFIED-ENDPOINT-RECONCILIATION-20261105.md
+ create mode 100644 change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/reports/STEP12-SIMPLIFIED-SOURCE-AND-REAL-BTRFS-ACCEPTANCE-20261105.md
+ create mode 100644 change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tools/README-STEP12-SIMPLIFIED-OPERATIONAL-PREFLIGHT.md
+Enumerating objects: 32, done.
+Counting objects: 100% (32/32), done.
+Delta compression using up to 32 threads
+Compressing objects: 100% (20/20), done.
+Writing objects: 100% (20/20), 12.18 KiB | 1.35 MiB/s, done.
+Total 20 (delta 13), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (13/13), completed with 12 local objects.
+To github.com:rsmaxwell/diaries.git
+   662179a..471829f  main -> main
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ git status && git log -1
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+commit 471829f1a71eab16dcbe4601eae6d49282234c99 (HEAD -> main, origin/main, origin/HEAD)
+Author: Richard Maxwell <richard@rsmaxwell.co.uk>
+Date:   Fri Nov 6 10:54:21 2026 +0000
+
+    Continue simplified deployment
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$
+
+
+
+
+
+

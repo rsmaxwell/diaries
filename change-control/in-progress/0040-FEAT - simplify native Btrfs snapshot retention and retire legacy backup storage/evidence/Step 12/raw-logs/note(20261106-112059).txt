@@ -1,0 +1,188 @@
+richard@mars:~$ cd /home/richard
+
+echo '=== Pruning configuration ==='
+sudo -n grep -E \
+  'snapshot_root|replication_protection|checkpoint_holds|prune_source_names|lock_path' \
+  /etc/btrfs-snapshot-manager.json
+
+echo '=== Source pruning history ==='
+sudo -n journalctl \
+  -u btrfs-snapshot-prune.service \
+  --since '2026-10-30 00:00:00' \
+  --no-pager |
+  grep -E '20261030-170009Z|DELETE|PROTECTED|HELD|ERROR|FAILED' |
+  tail -120
+
+echo '=== Recent replication history ==='
+sudo -n journalctl \
+  -u btrfs-native-push.service \
+  --since '2026-11-01 00:00:00' \
+  --no-pager -n 120
+=== Pruning configuration ===
+  "snapshot_root": "/media/usb/@snapshots",
+  "lock_path": "/run/lock/btrfs-snapshot-manager.lock",
+  "writer_lock_path": "/media/usb/@data/backup/.btrfs-snapshot-writer.lock",
+  "replication_protection": {
+  "checkpoint_holds": {
+=== Source pruning history ===
+Oct 30 00:15:06 mars btrfs-snapshot-manager[396295]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 30 00:15:06 mars btrfs-snapshot-manager[396295]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z']
+Oct 30 00:15:06 mars btrfs-snapshot-manager[396295]: DELETE @data 20261028-000000Z subvol_id=21295 /media/usb/@snapshots/@data/20261028-000000Z
+Oct 30 00:15:06 mars btrfs-snapshot-manager[396295]: DELETE @data 20261016-230026Z subvol_id=20800 /media/usb/@snapshots/@data/20261016-230026Z
+Oct 30 01:15:06 mars btrfs-snapshot-manager[396366]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 30 01:15:06 mars btrfs-snapshot-manager[396366]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z']
+Oct 30 01:15:06 mars btrfs-snapshot-manager[396366]: DELETE @data 20261028-010006Z subvol_id=21296 /media/usb/@snapshots/@data/20261028-010006Z
+Oct 30 02:15:01 mars btrfs-snapshot-manager[397177]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 30 02:15:01 mars btrfs-snapshot-manager[397177]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z']
+Oct 30 02:15:01 mars btrfs-snapshot-manager[397177]: DELETE @data 20261028-020019Z subvol_id=21297 /media/usb/@snapshots/@data/20261028-020019Z
+Oct 30 03:15:26 mars btrfs-snapshot-manager[397324]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 30 03:15:26 mars btrfs-snapshot-manager[397324]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z']
+Oct 30 03:15:26 mars btrfs-snapshot-manager[397324]: DELETE @data 20261028-030036Z subvol_id=21298 /media/usb/@snapshots/@data/20261028-030036Z
+Oct 30 04:15:06 mars btrfs-snapshot-manager[397492]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 30 04:15:06 mars btrfs-snapshot-manager[397492]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z']
+Oct 30 04:15:06 mars btrfs-snapshot-manager[397492]: DELETE @data 20261028-040038Z subvol_id=21299 /media/usb/@snapshots/@data/20261028-040038Z
+Oct 30 05:15:16 mars btrfs-snapshot-manager[397560]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 30 05:15:16 mars btrfs-snapshot-manager[397560]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z']
+Oct 30 05:15:16 mars btrfs-snapshot-manager[397560]: DELETE @data 20261028-050003Z subvol_id=21300 /media/usb/@snapshots/@data/20261028-050003Z
+Oct 30 06:15:09 mars btrfs-snapshot-manager[397636]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 30 06:15:09 mars btrfs-snapshot-manager[397636]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z']
+Oct 30 06:15:09 mars btrfs-snapshot-manager[397636]: DELETE @data 20261028-060032Z subvol_id=21301 /media/usb/@snapshots/@data/20261028-060032Z
+Oct 30 07:15:26 mars btrfs-snapshot-manager[397830]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 30 07:15:26 mars btrfs-snapshot-manager[397830]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z']
+Oct 30 07:15:26 mars btrfs-snapshot-manager[397830]: DELETE @data 20261028-070013Z subvol_id=21302 /media/usb/@snapshots/@data/20261028-070013Z
+Oct 30 08:15:16 mars btrfs-snapshot-manager[397902]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 30 08:15:16 mars btrfs-snapshot-manager[397902]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z']
+Oct 30 08:15:16 mars btrfs-snapshot-manager[397902]: DELETE @data 20261028-080028Z subvol_id=21303 /media/usb/@snapshots/@data/20261028-080028Z
+Oct 30 09:15:41 mars btrfs-snapshot-manager[1636]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 30 09:15:41 mars btrfs-snapshot-manager[1636]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z']
+Oct 30 09:15:41 mars btrfs-snapshot-manager[1636]: DELETE @data 20261028-090038Z subvol_id=21304 /media/usb/@snapshots/@data/20261028-090038Z
+Oct 30 10:15:19 mars btrfs-snapshot-manager[1747]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 30 10:15:19 mars btrfs-snapshot-manager[1747]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z']
+Oct 30 10:15:19 mars btrfs-snapshot-manager[1747]: DELETE @data 20261028-100007Z subvol_id=21305 /media/usb/@snapshots/@data/20261028-100007Z
+Oct 30 11:15:27 mars btrfs-snapshot-manager[2404]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 30 11:15:27 mars btrfs-snapshot-manager[2404]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z']
+Oct 30 11:15:27 mars btrfs-snapshot-manager[2404]: DELETE @data 20261028-110010Z subvol_id=21306 /media/usb/@snapshots/@data/20261028-110010Z
+Oct 30 12:15:11 mars btrfs-snapshot-manager[3239]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 30 12:15:11 mars btrfs-snapshot-manager[3239]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z']
+Oct 30 12:15:11 mars btrfs-snapshot-manager[3239]: DELETE @data 20261028-120018Z subvol_id=21307 /media/usb/@snapshots/@data/20261028-120018Z
+Oct 30 13:15:11 mars btrfs-snapshot-manager[3388]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 30 13:15:11 mars btrfs-snapshot-manager[3388]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z']
+Oct 30 13:15:11 mars btrfs-snapshot-manager[3388]: DELETE @data 20261028-130028Z subvol_id=21308 /media/usb/@snapshots/@data/20261028-130028Z
+Oct 30 14:15:21 mars btrfs-snapshot-manager[3458]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Oct 30 14:15:21 mars btrfs-snapshot-manager[3458]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z']
+Oct 30 14:15:21 mars btrfs-snapshot-manager[3458]: DELETE @data 20261028-140005Z subvol_id=21309 /media/usb/@snapshots/@data/20261028-140005Z
+=== Recent replication history ===
+Nov 01 14:54:35 mars systemd[1]: Starting btrfs-native-push.service - Push newest accepted-lineage Btrfs snapshot to off-site backup...
+Nov 01 14:54:36 mars sudo[28070]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role list-source
+Nov 01 14:54:36 mars sudo[28070]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 01 14:54:38 mars sudo[28070]: pam_unix(sudo:session): session closed for user root
+Nov 01 14:54:38 mars sudo[28184]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role inspect-source --snapshot 20261101-140039Z
+Nov 01 14:54:38 mars sudo[28184]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 01 14:54:38 mars sudo[28184]: pam_unix(sudo:session): session closed for user root
+Nov 01 14:54:41 mars sudo[28189]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role inspect-source --snapshot 20261030-030033Z
+Nov 01 14:54:41 mars sudo[28189]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 01 14:54:41 mars sudo[28189]: pam_unix(sudo:session): session closed for user root
+Nov 01 14:54:42 mars btrfs-native-push[28069]: {
+Nov 01 14:54:42 mars btrfs-native-push[28069]:   "source": "20261101-140039Z",
+Nov 01 14:54:42 mars btrfs-native-push[28069]:   "source_uuid": "69ef9a57-50ff-9a4e-92ed-8f10560ab1f2",
+Nov 01 14:54:42 mars btrfs-native-push[28069]:   "parent": "20261030-030033Z",
+Nov 01 14:54:42 mars btrfs-native-push[28069]:   "action": "incremental",
+Nov 01 14:54:42 mars btrfs-native-push[28069]:   "dry_run": false,
+Nov 01 14:54:42 mars btrfs-native-push[28069]:   "receiver": "10.254.22.1:39263"
+Nov 01 14:54:42 mars btrfs-native-push[28069]: }
+Nov 01 14:54:42 mars sudo[28194]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role protect-source --snapshot 20261101-140039Z
+Nov 01 14:54:42 mars sudo[28194]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 01 14:54:43 mars sudo[28194]: pam_unix(sudo:session): session closed for user root
+Nov 01 14:54:43 mars sudo[28198]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role protect-source --snapshot 20261030-030033Z
+Nov 01 14:54:43 mars sudo[28198]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 01 14:54:43 mars sudo[28198]: pam_unix(sudo:session): session closed for user root
+Nov 01 14:54:43 mars sudo[28202]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role incremental-source --snapshot 20261101-140039Z --parent 20261030-030033Z
+Nov 01 14:54:43 mars sudo[28202]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 01 14:54:43 mars btrfs-native-push[28204]: At subvol /media/usb/@snapshots/@data/20261101-140039Z
+Nov 01 14:55:43 mars sudo[28202]: pam_unix(sudo:session): session closed for user root
+Nov 01 14:55:43 mars btrfs-native-push[28203]: At snapshot 20261101-140039Z
+Nov 01 14:55:43 mars btrfs-native-push[28203]: ACCEPTED: /@data/mars-received/.replication-state/20261101-140039Z.json
+Nov 01 14:55:47 mars btrfs-native-push[28069]: ACCEPTED: 20261101-140039Z
+Nov 01 14:55:47 mars sudo[28485]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role release-source --snapshot 20261030-030033Z --expected-uuid d901ddd2-66c7-0b42-b26c-ab6886273b7a
+Nov 01 14:55:47 mars sudo[28485]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 01 14:55:47 mars sudo[28485]: pam_unix(sudo:session): session closed for user root
+Nov 01 14:55:47 mars btrfs-native-push[28069]: WARNING: previous parent remains protected: Command '['sudo', '-n', '/usr/local/libexec/btrfs-native-endpoint', '--role', 'release-source', '--snapshot', '20261030-030033Z', '--expected-uuid', 'd901ddd2-66c7-0b42-b26c-ab6886273b7a']' returned non-zero exit status 1.
+Nov 01 14:55:47 mars systemd[1]: btrfs-native-push.service: Deactivated successfully.
+Nov 01 14:55:47 mars systemd[1]: Finished btrfs-native-push.service - Push newest accepted-lineage Btrfs snapshot to off-site backup.
+Nov 01 14:55:47 mars systemd[1]: btrfs-native-push.service: Consumed 42.768s CPU time.
+Nov 02 03:30:39 mars systemd[1]: Starting btrfs-native-push.service - Push newest accepted-lineage Btrfs snapshot to off-site backup...
+Nov 02 03:30:39 mars sudo[38724]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role list-source
+Nov 02 03:30:39 mars sudo[38724]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 02 03:30:42 mars sudo[38724]: pam_unix(sudo:session): session closed for user root
+Nov 02 03:30:42 mars sudo[38851]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role inspect-source --snapshot 20261102-030011Z
+Nov 02 03:30:42 mars sudo[38851]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 02 03:30:42 mars sudo[38851]: pam_unix(sudo:session): session closed for user root
+Nov 02 03:30:45 mars sudo[38856]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role inspect-source --snapshot 20261101-140039Z
+Nov 02 03:30:45 mars sudo[38856]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 02 03:30:45 mars sudo[38856]: pam_unix(sudo:session): session closed for user root
+Nov 02 03:30:46 mars btrfs-native-push[38723]: btrfs-native-push: Command '['ssh', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15', '-p', '39263', 'richard@10.254.22.1', '/usr/local/bin/btrfs-native-push-receiver', '--snapshot', '20261102-030011Z', '--source-uuid', 'd3e78baf-8b76-1f47-b345-c3b9636df972', '--parent', '20261101-140039Z', '--parent-uuid', '69ef9a57-50ff-9a4e-92ed-8f10560ab1f2']' returned non-zero exit status 1.
+Nov 02 03:30:46 mars systemd[1]: btrfs-native-push.service: Main process exited, code=exited, status=1/FAILURE
+Nov 02 03:30:46 mars systemd[1]: btrfs-native-push.service: Failed with result 'exit-code'.
+Nov 02 03:30:46 mars systemd[1]: Failed to start btrfs-native-push.service - Push newest accepted-lineage Btrfs snapshot to off-site backup.
+Nov 02 03:30:46 mars systemd[1]: btrfs-native-push.service: Consumed 4.067s CPU time.
+Nov 03 03:30:16 mars systemd[1]: Starting btrfs-native-push.service - Push newest accepted-lineage Btrfs snapshot to off-site backup...
+Nov 03 03:30:16 mars sudo[42186]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role list-source
+Nov 03 03:30:16 mars sudo[42186]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 03 03:30:19 mars sudo[42186]: pam_unix(sudo:session): session closed for user root
+Nov 03 03:30:19 mars sudo[42337]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role inspect-source --snapshot 20261103-030021Z
+Nov 03 03:30:19 mars sudo[42337]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 03 03:30:19 mars sudo[42337]: pam_unix(sudo:session): session closed for user root
+Nov 03 03:30:23 mars sudo[42342]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role inspect-source --snapshot 20261101-140039Z
+Nov 03 03:30:23 mars sudo[42342]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 03 03:30:23 mars sudo[42342]: pam_unix(sudo:session): session closed for user root
+Nov 03 03:30:24 mars btrfs-native-push[42185]: btrfs-native-push: Command '['ssh', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15', '-p', '39263', 'richard@10.254.22.1', '/usr/local/bin/btrfs-native-push-receiver', '--snapshot', '20261103-030021Z', '--source-uuid', 'ac35a060-d7cc-6149-b088-63bfa6f9c69b', '--parent', '20261101-140039Z', '--parent-uuid', '69ef9a57-50ff-9a4e-92ed-8f10560ab1f2']' returned non-zero exit status 1.
+Nov 03 03:30:24 mars systemd[1]: btrfs-native-push.service: Main process exited, code=exited, status=1/FAILURE
+Nov 03 03:30:24 mars systemd[1]: btrfs-native-push.service: Failed with result 'exit-code'.
+Nov 03 03:30:24 mars systemd[1]: Failed to start btrfs-native-push.service - Push newest accepted-lineage Btrfs snapshot to off-site backup.
+Nov 03 03:30:24 mars systemd[1]: btrfs-native-push.service: Consumed 4.660s CPU time.
+Nov 04 03:30:31 mars systemd[1]: Starting btrfs-native-push.service - Push newest accepted-lineage Btrfs snapshot to off-site backup...
+Nov 04 03:30:31 mars sudo[46839]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role list-source
+Nov 04 03:30:31 mars sudo[46839]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 04 03:30:35 mars sudo[46839]: pam_unix(sudo:session): session closed for user root
+Nov 04 03:30:35 mars sudo[47014]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role inspect-source --snapshot 20261104-030011Z
+Nov 04 03:30:35 mars sudo[47014]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 04 03:30:35 mars sudo[47014]: pam_unix(sudo:session): session closed for user root
+Nov 04 03:30:41 mars sudo[47019]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role inspect-source --snapshot 20261101-140039Z
+Nov 04 03:30:41 mars sudo[47019]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 04 03:30:41 mars sudo[47019]: pam_unix(sudo:session): session closed for user root
+Nov 04 03:30:42 mars btrfs-native-push[46838]: btrfs-native-push: Command '['ssh', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15', '-p', '39263', 'richard@10.254.22.1', '/usr/local/bin/btrfs-native-push-receiver', '--snapshot', '20261104-030011Z', '--source-uuid', '60dfddec-66d2-a142-8720-2c5ae7b4af3d', '--parent', '20261101-140039Z', '--parent-uuid', '69ef9a57-50ff-9a4e-92ed-8f10560ab1f2']' returned non-zero exit status 1.
+Nov 04 03:30:42 mars systemd[1]: btrfs-native-push.service: Main process exited, code=exited, status=1/FAILURE
+Nov 04 03:30:42 mars systemd[1]: btrfs-native-push.service: Failed with result 'exit-code'.
+Nov 04 03:30:42 mars systemd[1]: Failed to start btrfs-native-push.service - Push newest accepted-lineage Btrfs snapshot to off-site backup.
+Nov 04 03:30:42 mars systemd[1]: btrfs-native-push.service: Consumed 5.267s CPU time.
+Nov 05 03:30:29 mars systemd[1]: Starting btrfs-native-push.service - Push newest accepted-lineage Btrfs snapshot to off-site backup...
+Nov 05 03:30:29 mars sudo[50660]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role list-source
+Nov 05 03:30:29 mars sudo[50660]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 05 03:30:33 mars sudo[50660]: pam_unix(sudo:session): session closed for user root
+Nov 05 03:30:33 mars sudo[50859]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role inspect-source --snapshot 20261105-030039Z
+Nov 05 03:30:33 mars sudo[50859]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 05 03:30:33 mars sudo[50859]: pam_unix(sudo:session): session closed for user root
+Nov 05 03:30:39 mars sudo[50864]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role inspect-source --snapshot 20261101-140039Z
+Nov 05 03:30:39 mars sudo[50864]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 05 03:30:39 mars sudo[50864]: pam_unix(sudo:session): session closed for user root
+Nov 05 03:30:40 mars btrfs-native-push[50659]: btrfs-native-push: Command '['ssh', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15', '-p', '39263', 'richard@10.254.22.1', '/usr/local/bin/btrfs-native-push-receiver', '--snapshot', '20261105-030039Z', '--source-uuid', '6f12ca33-5452-3e4b-aad4-f267e9929e07', '--parent', '20261101-140039Z', '--parent-uuid', '69ef9a57-50ff-9a4e-92ed-8f10560ab1f2']' returned non-zero exit status 1.
+Nov 05 03:30:40 mars systemd[1]: btrfs-native-push.service: Main process exited, code=exited, status=1/FAILURE
+Nov 05 03:30:40 mars systemd[1]: btrfs-native-push.service: Failed with result 'exit-code'.
+Nov 05 03:30:40 mars systemd[1]: Failed to start btrfs-native-push.service - Push newest accepted-lineage Btrfs snapshot to off-site backup.
+Nov 05 03:30:40 mars systemd[1]: btrfs-native-push.service: Consumed 5.966s CPU time.
+Nov 06 03:30:11 mars systemd[1]: Starting btrfs-native-push.service - Push newest accepted-lineage Btrfs snapshot to off-site backup...
+Nov 06 03:30:11 mars sudo[55273]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role list-source
+Nov 06 03:30:11 mars sudo[55273]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 06 03:30:16 mars sudo[55273]: pam_unix(sudo:session): session closed for user root
+Nov 06 03:30:16 mars sudo[55496]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role inspect-source --snapshot 20261106-030016Z
+Nov 06 03:30:16 mars sudo[55496]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 06 03:30:16 mars sudo[55496]: pam_unix(sudo:session): session closed for user root
+Nov 06 03:30:21 mars sudo[55501]:  richard : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-native-endpoint --role inspect-source --snapshot 20261101-140039Z
+Nov 06 03:30:21 mars sudo[55501]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1001)
+Nov 06 03:30:21 mars sudo[55501]: pam_unix(sudo:session): session closed for user root
+Nov 06 03:30:22 mars btrfs-native-push[55272]: btrfs-native-push: Command '['ssh', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15', '-p', '39263', 'richard@10.254.22.1', '/usr/local/bin/btrfs-native-push-receiver', '--snapshot', '20261106-030016Z', '--source-uuid', '18ad6ce8-d422-5142-9074-4583dd20bded', '--parent', '20261101-140039Z', '--parent-uuid', '69ef9a57-50ff-9a4e-92ed-8f10560ab1f2']' returned non-zero exit status 1.
+Nov 06 03:30:22 mars systemd[1]: btrfs-native-push.service: Main process exited, code=exited, status=1/FAILURE
+Nov 06 03:30:22 mars systemd[1]: btrfs-native-push.service: Failed with result 'exit-code'.
+Nov 06 03:30:22 mars systemd[1]: Failed to start btrfs-native-push.service - Push newest accepted-lineage Btrfs snapshot to off-site backup.
+Nov 06 03:30:22 mars systemd[1]: btrfs-native-push.service: Consumed 6.640s CPU time.
+richard@mars:~$

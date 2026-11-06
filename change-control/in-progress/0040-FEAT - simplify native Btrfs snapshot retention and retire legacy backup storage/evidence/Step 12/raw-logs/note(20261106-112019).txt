@@ -1,0 +1,85 @@
+richard@mango:~/diaries$ cd /home/richard/diaries
+
+FEATURE='change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage'
+EVIDENCE="$FEATURE/evidence/Step 12/raw-logs"
+STAMP="$(date -u +%Y%m%d-%H%M%S)"
+
+mkdir -p "$EVIDENCE"
+
+MARS="$EVIDENCE/mars-snapshot-inventory-$STAMP.txt"
+BACKUP="$EVIDENCE/backup-snapshot-inventory-$STAMP.txt"
+COMMON="$EVIDENCE/common-snapshot-inventory-$STAMP.txt"
+
+if ssh -o BatchMode=yes mars \
+     "sudo -n find /media/usb/@snapshots/@data -mindepth 1 -maxdepth 1 -type d -name '20*-*Z' -printf '%f\n'" > "$MARS" &&
+   ssh -o BatchMode=yes backup \
+     "sudo -n find /@data/mars-received/@data -mindepth 1 -maxdepth 1 -type d -name '20*-*Z' -printf '%f\n'" > "$BACKUP"; then
+
+  LC_ALL=C sort -u -o "$MARS" "$MARS"
+  LC_ALL=C sort -u -o "$BACKUP" "$BACKUP"
+  comm -12 "$MARS" "$BACKUP" > "$COMMON"
+
+  echo '=== Newest shared snapshot names ==='
+  tail -20 "$COMMON"
+
+  if [ -s "$COMMON" ]; then
+    CANDIDATE="$(tail -1 "$COMMON")"
+
+    echo "=== Verify $CANDIDATE on mars ==="
+echo "Evidence directory: $EVIDENCE"apshot inventories's-received/@data/$CANDIDATE"
+=== Newest shared snapshot names ===
+20261013-171228Z
+20261018-165453Z
+20261023-030037Z
+20261029-030003Z
+20261030-030033Z
+20261030-170009Z
+20261101-140039Z
+=== Verify 20261101-140039Z on mars ===
+@snapshots/@data/20261101-140039Z
+        Name:                   20261101-140039Z
+        UUID:                   69ef9a57-50ff-9a4e-92ed-8f10560ab1f2
+        Parent UUID:            fc4585b5-1649-b94c-bcb6-a9253c9cf080
+        Received UUID:          -
+        Creation time:          2026-11-01 14:00:40 +0000
+        Subvolume ID:           21405
+        Generation:             62339
+        Gen at creation:        62339
+        Parent ID:              20446
+        Top level ID:           20446
+        Flags:                  readonly
+        Send transid:           0
+        Send time:              2026-11-01 14:00:40 +0000
+        Receive transid:        0
+        Receive time:           -
+        Snapshot(s):
+        Quota group:            0/21405
+          Limit referenced:     3.64TiB
+          Limit exclusive:      -
+          Usage referenced:     326.51GiB
+          Usage exclusive:      16.00KiB
+=== Verify 20261101-140039Z on backup ===
+@data/mars-received/@data/20261101-140039Z
+        Name:                   20261101-140039Z
+        UUID:                   37dcf2fc-8af2-444c-97b4-b0598b1766dc
+        Parent UUID:            21468afc-567a-8944-a854-083838aceae3
+        Received UUID:          69ef9a57-50ff-9a4e-92ed-8f10560ab1f2
+        Creation time:          2026-11-01 14:54:44 +0000
+        Subvolume ID:           55895
+        Generation:             584405
+        Gen at creation:        584400
+        Parent ID:              275
+        Top level ID:           275
+        Flags:                  readonly
+        Send transid:           62336
+        Send time:              2026-11-01 14:54:44 +0000
+        Receive transid:        584402
+        Receive time:           2026-11-01 14:55:43 +0000
+        Snapshot(s):
+        Quota group:            0/55895
+          Limit referenced:     -
+          Limit exclusive:      -
+          Usage referenced:     326.50GiB
+          Usage exclusive:      633.83MiB
+Evidence directory: change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs
+richard@mango:~/diaries$

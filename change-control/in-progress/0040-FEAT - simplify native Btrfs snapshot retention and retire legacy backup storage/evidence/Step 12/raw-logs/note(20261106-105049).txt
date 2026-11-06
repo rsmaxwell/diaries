@@ -1,0 +1,21 @@
+richard@backup:~$ sudo -n ls -l \
+  /usr/local/bin/btrfs-simplified-replication \
+  /usr/local/sbin/btrfs-snapshot-manager
+
+sudo -n sha256sum \
+  /usr/local/bin/btrfs-simplified-replication \
+  /usr/local/sbin/btrfs-snapshot-manager
+
+sudo -n python3 - <<'PY'
+import json
+
+config = json.load(open('/etc/btrfs-snapshot-manager.json'))
+assert config['receiver_prune_enabled'] is False
+print('PASS: receiver pruning remains disabled')
+PY
+-rwxr-xr-x 1 root root 21320 Nov  6 10:48 /usr/local/bin/btrfs-simplified-replication
+-rwxr-xr-x 1 root root 74872 Nov  6 10:48 /usr/local/sbin/btrfs-snapshot-manager
+9be64295a6b6807df0fcd33d924b7a6549959f2a03dcab2953dcf0ac77fa6297  /usr/local/bin/btrfs-simplified-replication
+07ca520d38c071b204adfe024151cb6f7a3861c27c64f643a82825bb8fb0691d  /usr/local/sbin/btrfs-snapshot-manager
+PASS: receiver pruning remains disabled
+richard@backup:~$
