@@ -1,0 +1,28 @@
+richard@mango:~/playbooks$ cd /home/richard/diaries
+
+FEATURE='change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage'
+SCRIPT="$FEATURE/tests/verify-0040-step12-simplified-real-btrfs.py"
+LOG="$FEATURE/evidence/Step 12/raw-logs/step12-simplified-lockfix-20261105.txt"
+
+(
+  sudo -n env PYTHONDONTWRITEBYTECODE=1 python3 "$SCRIPT" \
+    --run --playbooks /home/richard/playbooks
+) > "$LOG" 2>&1
+
+result=$?
+cat "$LOG"
+
+if [ "$result" -eq 0 ]; then
+  echo "PASS: simplified real-Btrfs integration"
+else
+  echo "FAIL: simplified real-Btrfs integration"
+fi
+OBSERVE: truncated receive left real incomplete Btrfs subvolume
+PASS: non-blocking receiver lock backs off without changing snapshots
+PASS: real incomplete-subvolume cleanup and native incremental retry
+SUCCESS: reconciled receiver-ahead transfer without retransmission
+PASS: receiver-ahead acknowledgement recovery without retransmission
+PASS: source and receiver parent/prior state agree; both retained generations protected
+PASS: disposable simplified real-Btrfs interrupted-receive integration
+PASS: simplified real-Btrfs integration
+richard@mango:~/diaries$

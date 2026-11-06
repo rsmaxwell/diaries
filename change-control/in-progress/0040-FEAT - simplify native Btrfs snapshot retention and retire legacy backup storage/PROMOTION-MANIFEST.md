@@ -10,6 +10,12 @@
 
 The operator approved a lower-complexity agreed-parent native replication model with next-scheduled-run interrupted-receive retry. See `reports/STEP12-3-SIMPLIFIED-DESIGN-DECISION-20261105.md` and `IMPLEMENTATION-STEPS.md`. The transactional journal, staged stream transform, ownership witness and multi-stage promotion proposals are **not** target production components. **No simplification deployment or test cleanup is claimed by this design-only revision**. Keep the installed native sender, receiver, and rollback evidence until the reviewed replacement and consolidated regression acceptance. Record actual Git revisions, hashes, enabled timers and Playbooks file removals at cutover.
 
+## Simplified Step 12 development acceptance — 5 November 2026
+
+**ACCEPTED:** 18 core source regression tests; three simplified and eleven existing agreed-parent protection tests; independent exit-75 local lock collision; and successful disposable real-Btrfs interrupted receive → exact cleanup → retry, plus lost-acknowledgement reconciliation without retransmission. Raw evidence and tested-file hashes are in `reports/STEP12-SIMPLIFIED-SOURCE-AND-REAL-BTRFS-ACCEPTANCE-20261105.md` and `evidence/Step 12/raw-logs/`. The source implementation is **not yet an immutable Playbooks commit**: observed Playbooks `HEAD=bdba058b...` had significant local changes; source script SHA-256 `9be64295a6b6807df0fcd33d924b7a6549959f2a03dcab2953dcf0ac77fa6297` is the tested identity.
+
+**Still pending:** read-only installed-state/SSH/sudo inspection, reviewed Ansible `--check --diff`, state bootstrap/reconciliation decision, operational installation and cutover, real-host runtime/parent/lock verification, and separately approved receiver pruning. Existing 03:30 timer, native executable and established checkpoints remain unchanged by this record. See `tools/README-STEP12-SIMPLIFIED-OPERATIONAL-PREFLIGHT.md`.
+
 ## Track future promotions
 
 | Revision | File path (Playbooks repository relative) | Reason | Target host(s) | Test evidence | Check/diff evidence | Deployment evidence | Rollback |

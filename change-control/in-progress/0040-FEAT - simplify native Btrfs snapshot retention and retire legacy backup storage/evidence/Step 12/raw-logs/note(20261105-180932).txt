@@ -1,0 +1,38 @@
+richard@mango:~/diaries$ cd /home/richard/diaries
+
+sudo -n env PYTHONDONTWRITEBYTECODE=1 python3 - <<'PY'
+import hashlib
+import importlib.machinery
+import os
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
+import types
+
+feature = Path(
+    "change-control/in-progress/"
+    "0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage"
+)
+
+test_file = feature / "tests/verify-0040-step12-simplified-real-btrfs.py"
+source = Path(
+    "/home/richard/playbooks/roles/btrfs-replication/files/"
+    "btrfs-simplified-replication.py"
+)
+
+for path in (source, test_file):
+    print("SOURCE:", path)
+    print("SHA256:", hashlib.sha256(path.read_bytes()).hexdigest())
+
+test = types.ModuleType("test_fixture")
+PY      os.close(fd)(1): subprocess lock collision")k collision")
+SOURCE: /home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py
+SHA256: 9be64295a6b6807df0fcd33d924b7a6549959f2a03dcab2953dcf0ac77fa6297
+SOURCE: change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tests/verify-0040-step12-simplified-real-btrfs.py
+SHA256: b3b86f50733eb18e48622dd4ae80cf37bfa75d2dd4a12d59eff5496c015b9bbf
+EXIT CODE: 75
+STDOUT: ''
+STDERR: 'DEFERRED: local snapshot-manager lock busy\n'
+PASS: subprocess backs off on lock collision
+richard@mango:~/diaries$
