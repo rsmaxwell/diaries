@@ -1,0 +1,7 @@
+OBSERVE: truncated receive left real incomplete Btrfs subvolume
+PASS: non-blocking receiver lock backs off without changing snapshots
+PASS: real incomplete-subvolume cleanup and native incremental retry
+SUCCESS: reconciled receiver-ahead transfer without retransmission
+PASS: receiver-ahead acknowledgement recovery without retransmission
+PASS: source and receiver parent/prior state agree; both retained generations protected
+PASS: disposable simplified real-Btrfs interrupted-receive integration

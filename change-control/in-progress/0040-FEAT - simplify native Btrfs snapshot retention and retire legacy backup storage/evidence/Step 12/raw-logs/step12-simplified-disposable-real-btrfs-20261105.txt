@@ -1,4 +1,4 @@
-Diaries revision: 1092149359c57a630fa1a264c6a470ac698184fe
+Diaries revision: e5aea34179f3c4c74649c472e5226ee4b43246c2
 Playbooks revision: bdba058b0f3b634f94e7da4b7ab62eeadfa625b6
 Playbooks local changes:
  M roles/btrfs-replication/README.md
@@ -152,4 +152,6 @@ Playbooks local changes:
 ?? roles/snapshots/files/btrfs-agreed-parent-durable-promotion.py
 ?? roles/snapshots/tests/verify-0040-step12-3-crash-recovery-gate.py
 ?? roles/snapshots/tests/verify-0040-step12-3-durable-receiver-promotion.py
-python3: can't open file '/home/richard/diaries/change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tests/verify-0040-step12-simplified-real-btrfs.py': [Errno 2] No such file or directory
+FAIL: disposable simplified real-Btrfs: Receiver did not back off on lock collision
+NOTE: preserved disposable fixture for diagnosis at /var/tmp/0040-simplified-real-btrfs-bpp_701y
+OBSERVE: truncated receive left real incomplete Btrfs subvolume

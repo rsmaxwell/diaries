@@ -1,0 +1,993 @@
+=== Playbooks branch/revision ===
+main
+bdba058b0f3b634f94e7da4b7ab62eeadfa625b6
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/defaults/main.yaml
+ M roles/btrfs-replication/files/btrfs-agreed-parent-preparation-checkpoint.py
+ M roles/btrfs-replication/files/btrfs-agreed-parent-provisional-journal.py
+ M roles/btrfs-replication/files/btrfs-agreed-parent-receive-core.py
+ M roles/btrfs-replication/files/btrfs-agreed-parent-receiver-entry.py
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/btrfs-replication/templates/btrfs-native-push.service.j2
+ M roles/btrfs-replication/tests/verify-0040-step12-3-provisional-journal.py
+ M roles/snapshots/files/btrfs-snapshot-manager.py
+?? install-step12-3-dormant-receiver.yaml
+?? roles/btrfs-replication/files/btrfs-agreed-parent-candidate-selection.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-cycle-entry.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-finalisation-core.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-finalisation-storage.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-finalisation-transaction.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-fixed-commands.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-incomplete-inspection.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-incomplete-reconciler.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-incomplete-recovery-gate.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-locked-candidate.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-previous-ack.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receipt-readback.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receiver-command
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receiver-operation-contract.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receiver-promoted-readback.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receiver-promotion-adapter.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-receiver-promotion-binding.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-scope-observer.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-command.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-execution.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-previous-ack.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-promotion-coordinator.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-promotion-runtime.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-proof-handoff.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-transaction.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-sender-workflow.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-session-proof.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-stage-ownership.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-staged-recovery.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-staging-contract.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-staging-storage.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-stream-adapter.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-stream-name.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-unattended-coordinator.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-unattended-driver.py
+?? roles/btrfs-replication/files/btrfs-agreed-parent-unattended-policy.py
+?? roles/btrfs-replication/files/btrfs-simplified-replication.py
+?? roles/btrfs-replication/tasks/agreed-parent-runtime.yaml
+?? roles/btrfs-replication/tests/0040-real-btrfs-staging-README.txt
+?? roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md
+?? roles/btrfs-replication/tests/README-0040-STEP12-3-PRIVATE-NAME-RUNTIME.md
+?? roles/btrfs-replication/tests/README-0040-STEP12-3-PRIVATE-STREAM-NAME.md
+?? roles/btrfs-replication/tests/README-0040-STEP12-3-RENAME-BOUNDARY.md
+?? roles/btrfs-replication/tests/README-0040-STEP12-3-STAGE-OWNERSHIP-WITNESS.md
+?? roles/btrfs-replication/tests/README-0040-STEP12-3-STAGED-RECOVERY-ASSESSMENT.md
+?? roles/btrfs-replication/tests/verify-0040-simplified-cutover-readiness.py
+?? roles/btrfs-replication/tests/verify-0040-simplified-protection.py
+?? roles/btrfs-replication/tests/verify-0040-simplified-replication.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-atomic-auto-preparation.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-authenticated-finalisation-link.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-auto-candidate.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-auto-prepared-cycle.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-binary-sender-adapter.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-boot-bound-journal.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-btrfs-rename-boundary.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-command-identity-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-complete-committed.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-complete-prepared.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-cycle-entry.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-dormant-install-gate.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-final-receipt-readback.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-finalisation-core.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-finalisation-storage.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-finalisation-transaction.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-finalise-cli-gate.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-finalise-operational-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-fixed-command-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-fixed-receiver-cli.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-fixed-sender-runtime.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-incomplete-inspection.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-incomplete-reconciler.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-incomplete-recovery-gate.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-journal-scope-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-live-scope-lifecycle.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-live-scoped-receive.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-lock-inheritance.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-locked-candidate.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-manual-sender-entry.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-previous-ack.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-previous-receiver.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-private-name-real-btrfs.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-private-stream-name.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-private-stream-runtime.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-privileged-reboot-assessment.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-privileged-scoped-entry.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-promote-command-integration.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-proof-key-install.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-publication-witness.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-real-btrfs-staging.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-btrfs-cli.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-btrfs-diagnostics.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-core-install.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-incomplete-cli.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-launcher.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-operation-contract.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promoted-readback.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promotion-adapter.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promotion-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promotion.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-receiver-scoped-lifetime.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-recovery-cycle.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-runtime-manifest.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-same-parent-storage.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-scope-observer.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-scoped-finalisation.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-scoped-integrated-binding.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-scoped-reconciliation-contract.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-scoped-session-readback.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-execution.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-fixed-integration.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-key-descriptor.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-locked-runtime.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-promotion-coordinator.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-promotion-runtime.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-proof-handoff.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-transaction.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-sender-workflow.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-session-proof.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-session-query.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-stage-observer-integration.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-stage-ownership-capture.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-coordinator.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-endpoint-journal.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-finalisation.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-fixed-receiver.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-no-legacy-cleanup.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-postreceive.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-received-inspection.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-recovery-assessment.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staged-transaction-dispatch.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staging-contract.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staging-publication.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-staging-storage.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-unattended-coordinator.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-unattended-driver.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-unattended-policy.py
+?? roles/btrfs-replication/tests/verify-0040-step12-3-witnessed-published-absence.py
+?? roles/snapshots/files/btrfs-agreed-parent-durable-promotion.py
+?? roles/snapshots/tests/verify-0040-step12-3-crash-recovery-gate.py
+?? roles/snapshots/tests/verify-0040-step12-3-durable-receiver-promotion.py
+=== Installation-only deployment ===
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for mars, backup
+
+TASK [btrfs-replication : Native Btrfs | Reject unsupported deployment host] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Ensure privileged helper directory exists] ***
+ok: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Initialize root-owned source protection state if missing] ***
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Read existing 0035 manager configuration] ***
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install replication-aware 0035 pruning manager] ***
+skipping: [backup]
+changed: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Activate fail-closed protection in existing 0035 config] ***
+skipping: [backup]
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install fixed-path privileged endpoint] ***
+ok: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install source endpoint sudoers rule] ***
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Retire redundant receiver sudoers rule] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Inspect receiver prune authority directories] ***
+skipping: [mars] => (item=/etc/btrfs-receiver-prune) 
+skipping: [mars] => (item=/var/lib/btrfs-receiver-prune) 
+skipping: [mars] => (item=/var/lib/btrfs-receiver-prune/consumed) 
+skipping: [mars]
+ok: [backup] => (item=/etc/btrfs-receiver-prune)
+ok: [backup] => (item=/var/lib/btrfs-receiver-prune)
+ok: [backup] => (item=/var/lib/btrfs-receiver-prune/consumed)
+
+TASK [btrfs-replication : Native Btrfs | Refuse unsafe existing prune authority directories] ***
+skipping: [mars] => (item=/etc/btrfs-receiver-prune) 
+skipping: [mars] => (item=/var/lib/btrfs-receiver-prune) 
+skipping: [mars] => (item=/var/lib/btrfs-receiver-prune/consumed) 
+skipping: [mars]
+ok: [backup] => (item=/etc/btrfs-receiver-prune) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": "/etc/btrfs-receiver-prune",
+        "stat": {
+            "atime": 1793106346.310911,
+            "attr_flags": "",
+            "attributes": [],
+            "block_size": 4096,
+            "blocks": 0,
+            "charset": "binary",
+            "ctime": 1793106264.2412422,
+            "dev": 28,
+            "device_type": 0,
+            "disk_usage_bytes": 0,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 3876176,
+            "isblk": false,
+            "ischr": false,
+            "isdir": true,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": false,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "inode/directory",
+            "mode": "0700",
+            "mtime": 1793106264.240242,
+            "nlink": 1,
+            "path": "/etc/btrfs-receiver-prune",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": false,
+            "roth": false,
+            "rusr": true,
+            "size": 0,
+            "uid": 0,
+            "version": "570457",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": false,
+            "xoth": false,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => (item=/var/lib/btrfs-receiver-prune) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": "/var/lib/btrfs-receiver-prune",
+        "stat": {
+            "atime": 1793106346.311911,
+            "attr_flags": "",
+            "attributes": [],
+            "block_size": 4096,
+            "blocks": 0,
+            "charset": "binary",
+            "ctime": 1793106265.5023446,
+            "dev": 28,
+            "device_type": 0,
+            "disk_usage_bytes": 0,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 3876182,
+            "isblk": false,
+            "ischr": false,
+            "isdir": true,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": false,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "inode/directory",
+            "mode": "0700",
+            "mtime": 1793106265.5023446,
+            "nlink": 1,
+            "path": "/var/lib/btrfs-receiver-prune",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": false,
+            "roth": false,
+            "rusr": true,
+            "size": 16,
+            "uid": 0,
+            "version": "570457",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": false,
+            "xoth": false,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => (item=/var/lib/btrfs-receiver-prune/consumed) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "failed": false,
+        "item": "/var/lib/btrfs-receiver-prune/consumed",
+        "stat": {
+            "atime": 1793106346.311911,
+            "attr_flags": "",
+            "attributes": [],
+            "block_size": 4096,
+            "blocks": 0,
+            "charset": "binary",
+            "ctime": 1793106265.5023446,
+            "dev": 28,
+            "device_type": 0,
+            "disk_usage_bytes": 0,
+            "executable": true,
+            "exists": true,
+            "gid": 0,
+            "gr_name": "root",
+            "inode": 3876188,
+            "isblk": false,
+            "ischr": false,
+            "isdir": true,
+            "isfifo": false,
+            "isgid": false,
+            "islnk": false,
+            "isreg": false,
+            "issock": false,
+            "isuid": false,
+            "mimetype": "inode/directory",
+            "mode": "0700",
+            "mtime": 1793106265.5023446,
+            "nlink": 1,
+            "path": "/var/lib/btrfs-receiver-prune/consumed",
+            "pw_name": "root",
+            "readable": true,
+            "rgrp": false,
+            "roth": false,
+            "rusr": true,
+            "size": 0,
+            "uid": 0,
+            "version": "570457",
+            "wgrp": false,
+            "woth": false,
+            "writeable": true,
+            "wusr": true,
+            "xgrp": false,
+            "xoth": false,
+            "xusr": true
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Provision root-only receiver prune authority directories] ***
+skipping: [mars] => (item=/etc/btrfs-receiver-prune) 
+skipping: [mars] => (item=/var/lib/btrfs-receiver-prune) 
+skipping: [mars] => (item=/var/lib/btrfs-receiver-prune/consumed) 
+skipping: [mars]
+ok: [backup] => (item=/etc/btrfs-receiver-prune)
+ok: [backup] => (item=/var/lib/btrfs-receiver-prune)
+ok: [backup] => (item=/var/lib/btrfs-receiver-prune/consumed)
+
+TASK [btrfs-replication : Native Btrfs | Provision isolated receiver parent] ***
+skipping: [mars] => (item=/@data/mars-received) 
+skipping: [mars] => (item=/@data/mars-received/@data) 
+skipping: [mars]
+ok: [backup] => (item=/@data/mars-received)
+ok: [backup] => (item=/@data/mars-received/@data)
+
+TASK [btrfs-replication : Native Btrfs | Provision operator-owned transaction state] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver-mode manager (opt in)] ***
+skipping: [mars]
+changed: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Inspect independent receiver checkpoint holds] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Validate existing hold-file permissions] ***
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Read existing hold state without altering it] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Validate mandatory checkpoints in existing hold state] ***
+skipping: [mars] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}) 
+skipping: [mars] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}) 
+skipping: [mars]
+ok: [backup] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "key": "20261013-171228Z",
+        "value": {
+            "reason": "Historical recovery baseline",
+            "source_uuids": {
+                "@data": "340674cc-d02c-244e-b7ec-e3ea5a6b151f"
+            }
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "key": "20261018-165453Z",
+        "value": {
+            "reason": "Preserved evidence checkpoint",
+            "source_uuids": {
+                "@data": "087c906a-0518-e34a-88f7-40a5b693c41a"
+            }
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Initialise receiver checkpoint holds only when absent] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Read mandatory receiver checkpoint receipts] ***
+skipping: [mars] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}) 
+skipping: [mars] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}) 
+skipping: [mars]
+ok: [backup] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}})
+ok: [backup] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}})
+
+TASK [btrfs-replication : Native Btrfs | Validate mandatory receiver checkpoint receipt identities] ***
+skipping: [mars] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': "btrfs_native_endpoint_role == 'receiver'", 'ansible_loop_var': 'item', 'item': {'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}}) 
+skipping: [mars] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': "btrfs_native_endpoint_role == 'receiver'", 'ansible_loop_var': 'item', 'item': {'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}}) 
+skipping: [mars]
+ok: [backup] => (item={'changed': False, 'failed': False, 'ansible_loop_var': 'item', 'item': {'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}, 'content': 'ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX3V1aWQiOiAiMzQwNjc0Y2MtZDAyYy0yNDRlLWI3ZWMtZTNlYTVhNmIxNTFmIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIzNDA2NzRjYy1kMDJjLTI0NGUtYjdlYy1lM2VhNWE2YjE1MWYiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTMtMTQwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJjMGI4MTM4My1iZGZjLTIyNGUtOTdiMS05MGNlZWU0ZDU0ZjAiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTEzVDE4OjA3OjAwLjk3MTM0NyswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K', 'source': '/@data/mars-received/.replication-state/20261013-171228Z.json', 'encoding': 'base64'}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "content": "ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX3V1aWQiOiAiMzQwNjc0Y2MtZDAyYy0yNDRlLWI3ZWMtZTNlYTVhNmIxNTFmIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIzNDA2NzRjYy1kMDJjLTI0NGUtYjdlYy1lM2VhNWE2YjE1MWYiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTMtMTQwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJjMGI4MTM4My1iZGZjLTIyNGUtOTdiMS05MGNlZWU0ZDU0ZjAiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTEzVDE4OjA3OjAwLjk3MTM0NyswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K",
+        "encoding": "base64",
+        "failed": false,
+        "item": {
+            "key": "20261013-171228Z",
+            "value": {
+                "reason": "Historical recovery baseline",
+                "source_uuids": {
+                    "@data": "340674cc-d02c-244e-b7ec-e3ea5a6b151f"
+                }
+            }
+        },
+        "source": "/@data/mars-received/.replication-state/20261013-171228Z.json"
+    }
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => (item={'changed': False, 'failed': False, 'ansible_loop_var': 'item', 'item': {'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}, 'content': 'ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX3V1aWQiOiAiMDg3YzkwNmEtMDUxOC1lMzRhLTg4ZjctNDBhNWI2OTNjNDFhIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIwODdjOTA2YS0wNTE4LWUzNGEtODhmNy00MGE1YjY5M2M0MWEiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTgtMDMwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJmOTFiMzIyYS00YWE3LWFkNDUtYTc2Ni1kN2ExZTJlYjE1YjkiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTE4VDE2OjU1OjM2LjE4NTE0NCswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K', 'source': '/@data/mars-received/.replication-state/20261018-165453Z.json', 'encoding': 'base64'}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "content": "ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX3V1aWQiOiAiMDg3YzkwNmEtMDUxOC1lMzRhLTg4ZjctNDBhNWI2OTNjNDFhIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIwODdjOTA2YS0wNTE4LWUzNGEtODhmNy00MGE1YjY5M2M0MWEiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTgtMDMwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJmOTFiMzIyYS00YWE3LWFkNDUtYTc2Ni1kN2ExZTJlYjE1YjkiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTE4VDE2OjU1OjM2LjE4NTE0NCswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K",
+        "encoding": "base64",
+        "failed": false,
+        "item": {
+            "key": "20261018-165453Z",
+            "value": {
+                "reason": "Preserved evidence checkpoint",
+                "source_uuids": {
+                    "@data": "087c906a-0518-e34a-88f7-40a5b693c41a"
+                }
+            }
+        },
+        "source": "/@data/mars-received/.replication-state/20261018-165453Z.json"
+    }
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install receiver-mode read-only config (opt in)] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Provision stable transaction lock] ****
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Provision source-side push operator lock] ***
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install manual push operator entrypoint] ***
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install constrained receiver pruning gateway] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver-side push acceptance helper] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Retire obsolete backup-initiated pull executable] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Retire obsolete rsync-based pull helper] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Require simplified runtime installation before service cutover] ***
+skipping: [backup]
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install source-initiated push service and timer] ***
+skipping: [backup] => (item=btrfs-native-push.service) 
+skipping: [backup] => (item=btrfs-native-push.timer) 
+skipping: [backup]
+ok: [mars] => (item=btrfs-native-push.service)
+ok: [mars] => (item=btrfs-native-push.timer)
+
+TASK [btrfs-replication : Native Btrfs | Check for active legacy rsync off-site phase before scheduling native push] ***
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Refuse dual off-site transports] ******
+skipping: [backup]
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Apply explicit push schedule state] ***
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install public receiver retention policy (opt in)] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Agreed parent | Validate receiver observer gates] ****
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Agreed parent | Install dormant observer and required read-only modules] ***
+skipping: [mars] => (item=endpoint) 
+skipping: [mars] => (item=receiver) 
+skipping: [mars] => (item=state) 
+skipping: [mars]
+ok: [backup] => (item=endpoint)
+ok: [backup] => (item=receiver)
+ok: [backup] => (item=state)
+
+TASK [btrfs-replication : Agreed parent | Install exact-command observer sudoers rule (explicit opt in)] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Remove observer sudoers rule unless explicitly enabled] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Agreed parent | Validate initialiser installation gate] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Agreed parent | Install dormant initialiser and state helper (explicit opt in)] ***
+skipping: [mars] => (item=initialise) 
+skipping: [mars] => (item=state) 
+skipping: [mars]
+skipping: [backup] => (item=initialise) 
+skipping: [backup] => (item=state) 
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Validate source observer installation gate] ***
+skipping: [backup]
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Agreed parent | Install dormant source observation modules (explicit opt in)] ***
+skipping: [backup] => (item=source-observer) 
+skipping: [backup] => (item=state) 
+skipping: [mars] => (item=source-observer) 
+skipping: [backup] => (item=source-evidence) 
+skipping: [mars] => (item=state) 
+skipping: [backup] => (item=observation-bridge) 
+skipping: [backup]
+skipping: [mars] => (item=source-evidence) 
+skipping: [mars] => (item=observation-bridge) 
+skipping: [mars]
+
+TASK [btrfs-replication : Agreed parent | Validate read-only transfer planner installation gate] ***
+skipping: [backup]
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Agreed parent | Install read-only replication transfer planner and selector (explicit opt in)] ***
+skipping: [backup] => (item=selection) 
+skipping: [backup] => (item=transfer-plan) 
+skipping: [backup]
+skipping: [mars] => (item=selection) 
+skipping: [mars] => (item=transfer-plan) 
+skipping: [mars]
+
+TASK [btrfs-replication : Agreed parent | Validate receiver get-state installation gate] ***
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Agreed parent | Install fixed read-only receiver get-state endpoint (explicit opt in)] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Validate source locked get-state installation gate] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Install source-only locked get-state reader (explicit opt in)] ***
+skipping: [mars] => (item=get-state-transport) 
+skipping: [mars] => (item=locked-get-state) 
+skipping: [mars]
+skipping: [backup] => (item=get-state-transport) 
+skipping: [backup] => (item=locked-get-state) 
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Validate receiver prepare-only installation gate] ***
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Agreed parent | Install receiver prepare-only endpoint and import-only dependencies (explicit opt in)] ***
+skipping: [mars] => (item={'name': 'transition', 'mode': '0644'}) 
+skipping: [mars] => (item={'name': 'prepare-verifier', 'mode': '0644'}) 
+skipping: [mars] => (item={'name': 'prepare-endpoint', 'mode': '0755'}) 
+skipping: [mars]
+skipping: [backup] => (item={'name': 'transition', 'mode': '0644'}) 
+skipping: [backup] => (item={'name': 'prepare-verifier', 'mode': '0644'}) 
+skipping: [backup] => (item={'name': 'prepare-endpoint', 'mode': '0755'}) 
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Validate read-only prepare planner installation gate] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Install read-only prepare planner modules (explicit opt in)] ***
+skipping: [mars] => (item=prepare-preflight) 
+skipping: [mars] => (item=prepare-transport-contract) 
+skipping: [mars] => (item=locked-prepare-plan) 
+skipping: [mars]
+skipping: [backup] => (item=prepare-preflight) 
+skipping: [backup] => (item=prepare-transport-contract) 
+skipping: [backup] => (item=locked-prepare-plan) 
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Validate preparation-checkpoint installation gate] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Install preparation checkpoint dependencies (explicit opt in)] ***
+skipping: [backup] => (item={'role': 'btrfs-replication', 'name': 'prepare-transport', 'mode': '0644'}) 
+skipping: [backup] => (item={'role': 'btrfs-replication', 'name': 'recovery-decision', 'mode': '0644'}) 
+skipping: [mars] => (item={'role': 'btrfs-replication', 'name': 'prepare-transport', 'mode': '0644'}) 
+skipping: [backup] => (item={'role': 'btrfs-replication', 'name': 'source-recovery-integration', 'mode': '0644'}) 
+skipping: [mars] => (item={'role': 'btrfs-replication', 'name': 'recovery-decision', 'mode': '0644'}) 
+skipping: [backup] => (item={'role': 'snapshots', 'name': 'source-transition', 'mode': '0644'}) 
+skipping: [backup] => (item={'role': 'btrfs-replication', 'name': 'preparation-checkpoint', 'mode': '0755'}) 
+skipping: [backup]
+skipping: [mars] => (item={'role': 'btrfs-replication', 'name': 'source-recovery-integration', 'mode': '0644'}) 
+skipping: [mars] => (item={'role': 'snapshots', 'name': 'source-transition', 'mode': '0644'}) 
+skipping: [mars] => (item={'role': 'btrfs-replication', 'name': 'preparation-checkpoint', 'mode': '0755'}) 
+skipping: [mars]
+
+TASK [btrfs-replication : Agreed parent | Validate source-only recovery installation gate] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Install source-only recovery coordinator (explicit opt in)] ***
+skipping: [backup]
+skipping: [mars]
+
+TASK [btrfs-replication : Agreed parent | Validate prepared-transfer review install gate] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Install read-only prepared-transfer review executable (explicit opt in)] ***
+skipping: [backup]
+skipping: [mars]
+
+TASK [btrfs-replication : Agreed parent | Validate receiver transfer attestation install gate] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Install receiver read-only transfer attestation (explicit opt in)] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Validate attestation transport install gate] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Install dormant source attestation transport (explicit opt in)] ***
+skipping: [backup]
+skipping: [mars]
+
+TASK [btrfs-replication : Agreed parent | Validate integrated transfer review gate] ***
+skipping: [backup]
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Agreed parent | Install dormant transfer contracts and integrated review (explicit opt in)] ***
+skipping: [backup] => (item={'name': 'transfer-transport-contract', 'mode': '0644'}) 
+skipping: [backup] => (item={'name': 'transfer-execution-adapter', 'mode': '0644'}) 
+skipping: [mars] => (item={'name': 'transfer-transport-contract', 'mode': '0644'}) 
+skipping: [backup] => (item={'name': 'transfer-integration-review', 'mode': '0755'}) 
+skipping: [backup]
+skipping: [mars] => (item={'name': 'transfer-execution-adapter', 'mode': '0644'}) 
+skipping: [mars] => (item={'name': 'transfer-integration-review', 'mode': '0755'}) 
+skipping: [mars]
+
+TASK [btrfs-replication : Agreed parent | Validate receiver destination absence install gate] ***
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Agreed parent | Install read-only receiver destination absence endpoint] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Validate source absence transport install gate] ***
+skipping: [backup]
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Agreed parent | Install dormant source absence transport] ***
+skipping: [backup]
+skipping: [mars]
+
+TASK [btrfs-replication : Agreed parent | Validate receiver transaction review installation gate] ***
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Agreed parent | Install read-only receiver transaction review and dormant boundary] ***
+skipping: [mars] => (item={'role': 'btrfs-replication', 'name': 'receive-boundary', 'mode': '0644'}) 
+skipping: [mars] => (item={'role': 'snapshots', 'name': 'receive-transaction', 'mode': '0755'}) 
+skipping: [mars]
+skipping: [backup] => (item={'role': 'btrfs-replication', 'name': 'receive-boundary', 'mode': '0644'}) 
+skipping: [backup] => (item={'role': 'snapshots', 'name': 'receive-transaction', 'mode': '0755'}) 
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Validate locked session review installation gate] ***
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Agreed parent | Install dormant session binding and locked session review] ***
+skipping: [mars] => (item={'role': 'btrfs-replication', 'name': 'receiver-session-binding', 'mode': '0644'}) 
+skipping: [mars] => (item={'role': 'snapshots', 'name': 'locked-session-review', 'mode': '0755'}) 
+skipping: [mars]
+skipping: [backup] => (item={'role': 'btrfs-replication', 'name': 'receiver-session-binding', 'mode': '0644'}) 
+skipping: [backup] => (item={'role': 'snapshots', 'name': 'locked-session-review', 'mode': '0755'}) 
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Check receiver core installation gate] ***
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Agreed parent | Install dormant agreed-parent receiver core and dependencies] ***
+skipping: [mars] => (item={'role': 'btrfs-replication', 'name': 'receiver-entry'}) 
+skipping: [mars] => (item={'role': 'btrfs-replication', 'name': 'receive-core'}) 
+skipping: [mars] => (item={'role': 'btrfs-replication', 'name': 'provisional-journal'}) 
+skipping: [mars] => (item={'role': 'btrfs-replication', 'name': 'receive-boundary'}) 
+skipping: [mars] => (item={'role': 'snapshots', 'name': 'receiver'}) 
+skipping: [mars] => (item={'role': 'snapshots', 'name': 'endpoint'}) 
+skipping: [mars] => (item={'role': 'snapshots', 'name': 'state'}) 
+skipping: [mars] => (item={'role': 'snapshots', 'name': 'transfer-absence'}) 
+skipping: [backup] => (item={'role': 'btrfs-replication', 'name': 'receiver-entry'}) 
+skipping: [mars] => (item={'role': 'snapshots', 'name': 'transfer-attestation'}) 
+skipping: [mars]
+skipping: [backup] => (item={'role': 'btrfs-replication', 'name': 'receive-core'}) 
+skipping: [backup] => (item={'role': 'btrfs-replication', 'name': 'provisional-journal'}) 
+skipping: [backup] => (item={'role': 'btrfs-replication', 'name': 'receive-boundary'}) 
+skipping: [backup] => (item={'role': 'snapshots', 'name': 'receiver'}) 
+skipping: [backup] => (item={'role': 'snapshots', 'name': 'endpoint'}) 
+skipping: [backup] => (item={'role': 'snapshots', 'name': 'state'}) 
+skipping: [backup] => (item={'role': 'snapshots', 'name': 'transfer-absence'}) 
+skipping: [backup] => (item={'role': 'snapshots', 'name': 'transfer-attestation'}) 
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Validate dormant promotion install opt-in] ***
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Agreed parent | Install dormant receiver promotion modules only] ***
+skipping: [mars] => (item=receiver-entry) 
+skipping: [mars] => (item=receive-core) 
+skipping: [mars] => (item=provisional-journal) 
+skipping: [mars] => (item=finalisation-core) 
+skipping: [mars] => (item=finalisation-storage) 
+skipping: [mars] => (item=finalisation-transaction) 
+skipping: [mars] => (item=session-proof) 
+skipping: [mars] => (item=receiver-promotion-adapter) 
+skipping: [mars] => (item=receiver-promoted-readback) 
+skipping: [backup] => (item=receiver-entry) 
+skipping: [mars] => (item=receiver-promotion-binding) 
+skipping: [backup] => (item=receive-core) 
+skipping: [mars] => (item=receiver-operation-contract) 
+skipping: [mars]
+skipping: [backup] => (item=provisional-journal) 
+skipping: [backup] => (item=finalisation-core) 
+skipping: [backup] => (item=finalisation-storage) 
+skipping: [backup] => (item=finalisation-transaction) 
+skipping: [backup] => (item=session-proof) 
+skipping: [backup] => (item=receiver-promotion-adapter) 
+skipping: [backup] => (item=receiver-promoted-readback) 
+skipping: [backup] => (item=receiver-promotion-binding) 
+skipping: [backup] => (item=receiver-operation-contract) 
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Validate sender-proof key opt-in and vault material] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Ensure protected proof-key directory exists] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Install shared sender-proof key without logging contents] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Agreed parent | Install the consolidated runtime when requested] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install simplified agreed-parent command (opt in)] ***
+changed: [backup]
+changed: [mars]
+
+PLAY RECAP *********************************************************************
+backup                     : ok=36   changed=2    unreachable=0    failed=0    skipped=48   rescued=0    ignored=0   
+mars                       : ok=20   changed=2    unreachable=0    failed=0    skipped=64   rescued=0    ignored=0   
+
