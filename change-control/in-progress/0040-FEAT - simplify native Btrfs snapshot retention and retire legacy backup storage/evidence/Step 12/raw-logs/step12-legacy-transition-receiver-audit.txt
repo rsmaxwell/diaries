@@ -1,0 +1,19 @@
+Filesystem identity: VERIFIED b915f967-7cb4-4c14-b11b-f52209637a22
+Proposed common parent 20261101-140039Z: UUID=37dcf2fc-8af2-444c-97b4-b0598b1766dc Received UUID=69ef9a57-50ff-9a4e-92ed-8f10560ab1f2 Flags=readonly
+Simplified parent /@data/mars-received/.replication-state/.simple-agreed-parent.json: ABSENT (expected before bootstrap)
+Legacy marker .agreed-parent-transfer-pending.json: PRESENT
+Legacy marker .receiver-prune-pending.json: ABSENT
+Legacy marker .agreed-parent-provisional.json: ABSENT
+Journal: root 0600, bytes=303, sha256=e11483fe05c482894c2db6fc15ffa63164f6b9c3da831508e0a2990123b9f3f2
+Journal mtime UTC: 2026-11-01T19:39:39.159265+00:00
+Journal: parent={'timestamp': '20261030-030033Z', 'uuid': 'd901ddd2-66c7-0b42-b26c-ab6886273b7a'} candidate={'timestamp': '20261030-170009Z', 'uuid': 'a9b78fb9-4da6-cf4f-b242-13909f574193'}
+Journal fields: candidate, nonce, parent, schema, status
+Receiver journal parent: UUID=21468afc-567a-8944-a854-083838aceae3 Received UUID=d901ddd2-66c7-0b42-b26c-ab6886273b7a Flags=readonly
+Receiver journal candidate: UUID=49cbcd83-683f-9e42-b526-dab448ec273f Received UUID=a9b78fb9-4da6-cf4f-b242-13909f574193 Flags=readonly
+Journal candidate receipt: PRESENT
+Nonce-bound private staged object: ABSENT
+Nonce-bound ownership sidecar: ABSENT
+Staging bound: False
+Publication witnessed: False
+Archive candidate sha256: e11483fe05c482894c2db6fc15ffa63164f6b9c3da831508e0a2990123b9f3f2
+PASS: read-only receiver audit; no state changed
