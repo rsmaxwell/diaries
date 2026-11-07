@@ -1,0 +1,121 @@
+=== Repository ===
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/defaults/main.yaml
+ M roles/btrfs-replication/files/btrfs-simplified-replication.py
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/btrfs-replication/templates/btrfs-receiver-manager.json.j2
+ M roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md
+ M roles/btrfs-replication/tests/verify-0040-simplified-replication.py
+ M roles/snapshots/files/btrfs-snapshot-manager.py
+?? roles/btrfs-replication/README-0040-SIMPLE-RECEIVER-RETENTION.md
+?? roles/btrfs-replication/templates/btrfs-receiver-simple-prune.service.j2
+?? roles/btrfs-replication/templates/btrfs-receiver-simple-prune.timer.j2
+?? roles/snapshots/tests/README-0040-SIMPLIFIED-RECEIVER-RETENTION.md
+?? roles/snapshots/tests/verify-0040-simplified-receiver-retention.py
+=== Accepted runtime source checksums ===
+roles/btrfs-replication/files/btrfs-simplified-replication.py: OK
+roles/snapshots/files/btrfs-snapshot-manager.py: OK
+=== Documentation package checksums ===
+roles/btrfs-replication/README.md: OK
+roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md: OK
+roles/btrfs-replication/README-0040-SIMPLE-RECEIVER-RETENTION.md: OK
+roles/btrfs-replication/defaults/main.yaml: OK
+=== Active regression tests ===
+test_absent_or_complete_candidate_never_deleted (__main__.Cases.test_absent_or_complete_candidate_never_deleted) ... ok
+test_ambiguous_parent_divergence_refuses (__main__.Cases.test_ambiguous_parent_divergence_refuses) ... ok
+test_choose_newest_eligible_newer (__main__.Cases.test_choose_newest_eligible_newer) ... ok
+test_completed_candidate_uses_advance_without_retransmit (__main__.Cases.test_completed_candidate_uses_advance_without_retransmit) ... ok
+test_filesystem_identity_refusal (__main__.Cases.test_filesystem_identity_refusal) ... ok
+test_held_or_legacy_receipt_refuses (__main__.Cases.test_held_or_legacy_receipt_refuses) ... ok
+test_incomplete_cleanup_exact_subvolume_once (__main__.Cases.test_incomplete_cleanup_exact_subvolume_once) ... ok
+test_invalid_candidate_prevents_cleanup (__main__.Cases.test_invalid_candidate_prevents_cleanup) ... ok
+test_invalid_state_or_rollback_refuses (__main__.Cases.test_invalid_state_or_rollback_refuses) ... ok
+test_latest_invalid_candidate_refuses_rather_than_falling_back (__main__.Cases.test_latest_invalid_candidate_refuses_rather_than_falling_back) ... ok
+test_latest_selection_ignores_symlinks_and_non_snapshots (__main__.Cases.test_latest_selection_ignores_symlinks_and_non_snapshots) ... ok
+test_readonly_or_received_unknown_candidate_refused (__main__.Cases.test_readonly_or_received_unknown_candidate_refused) ... ok
+test_receiver_ahead_lost_ack (__main__.Cases.test_receiver_ahead_lost_ack) ... ok
+test_receiver_backoff_uses_configured_lock (__main__.Cases.test_receiver_backoff_uses_configured_lock) ... ok
+test_receiver_failure_does_not_advance (__main__.Cases.test_receiver_failure_does_not_advance) ... ok
+test_receiver_incomplete_next_run_deletes_then_receives (__main__.Cases.test_receiver_incomplete_next_run_deletes_then_receives) ... INFO: cleaned one incomplete candidate; retrying receive
+ok
+test_sender_lost_ack_advances_local_without_retransmission (__main__.Cases.test_sender_lost_ack_advances_local_without_retransmission) ... ok
+test_single_nonblocking_manager_lock (__main__.Cases.test_single_nonblocking_manager_lock) ... ok
+test_state_atomic_readback (__main__.Cases.test_state_atomic_readback) ... ok
+test_state_record_and_prior (__main__.Cases.test_state_record_and_prior) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.061s
+
+OK
+SUCCESS: common parent advanced to 20261101-140039Z
+SUCCESS: reconciled receiver-ahead transfer without retransmission
+test_corrupt_and_unsafe_file_blocks_pruning (__main__.Cases.test_corrupt_and_unsafe_file_blocks_pruning) ... ok
+test_missing_file_allows_pre_cutover (__main__.Cases.test_missing_file_allows_pre_cutover) ... ok
+test_parent_and_previous_protected (__main__.Cases.test_parent_and_previous_protected) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+PASS: receiver policies share one variable; defaults, 24-hour test and guards verified
+RECEIVER-SIMPLE-DELETED 20261003-000000Z subvolume_id=252
+RECEIVER-SIMPLE-DELETED 20261002-000000Z subvolume_id=251
+.............RECEIVER-SIMPLE-DELETED count=2
+RECEIVER-SIMPLE-DELETED 20261003-000000Z subvolume_id=252
+RECEIVER-SIMPLE-DELETED 20261002-000000Z subvolume_id=251
+RECEIVER-SIMPLE-DELETED 20261001-000000Z subvolume_id=250
+....
+----------------------------------------------------------------------
+Ran 17 tests in 0.060s
+
+OK
+RECEIVER-SIMPLE-DELETED count=3
+RECEIVER-SIMPLE-DELETED count=0
+=== Ansible syntax ===
+
+playbook: btrfs-replication.yaml
+=== Deployment drift preview ===
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for mars, backup
+
+TASK [btrfs-replication : Native Btrfs | Install simplified agreed-parent command (opt in)] ***
+ok: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Validate simplified receiver retention settings] ***
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install shared manager with simplified receiver retention] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver config with independent deletion gate] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install dormant simplified receiver retention units] ***
+skipping: [mars] => (item=btrfs-receiver-simple-prune.service) 
+skipping: [mars] => (item=btrfs-receiver-simple-prune.timer) 
+skipping: [mars]
+ok: [backup] => (item=btrfs-receiver-simple-prune.service)
+ok: [backup] => (item=btrfs-receiver-simple-prune.timer)
+
+TASK [btrfs-replication : Native Btrfs | Enforce explicit receiver retention timer state] ***
+skipping: [mars]
+skipping: [backup]
+
+PLAY RECAP *********************************************************************
+backup                     : ok=6    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+mars                       : ok=2    changed=0    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
+
+PASS: Playbooks implementation verification
