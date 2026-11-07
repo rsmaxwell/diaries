@@ -1,0 +1,146 @@
+=== Repository and accepted executable ===
+main
+813b7210d08865337770ae821bb9d88529115188
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/defaults/main.yaml
+ M roles/btrfs-replication/files/btrfs-simplified-replication.py
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/btrfs-replication/templates/btrfs-receiver-manager.json.j2
+ M roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md
+ M roles/btrfs-replication/tests/verify-0040-simplified-replication.py
+ M roles/snapshots/files/btrfs-snapshot-manager.py
+?? roles/btrfs-replication/README-0040-SIMPLE-RECEIVER-RETENTION.md
+?? roles/btrfs-replication/templates/btrfs-receiver-simple-prune.service.j2
+?? roles/btrfs-replication/templates/btrfs-receiver-simple-prune.timer.j2
+?? roles/snapshots/tests/README-0040-SIMPLIFIED-RECEIVER-RETENTION.md
+?? roles/snapshots/tests/verify-0040-simplified-receiver-retention.py
+roles/snapshots/files/btrfs-snapshot-manager.py: OK
+=== Verify authorised inventory ===
+PASS: btrfs_native_push_schedule_enabled = False
+PASS: btrfs_simplified_replication_install_enabled = True
+PASS: btrfs_simplified_replication_active_enabled = False
+PASS: btrfs_simplified_receiver_retention_install_enabled = True
+PASS: btrfs_simplified_receiver_prune_enabled = True
+PASS: btrfs_simplified_receiver_prune_on_calendar = '*-*-* 04:15:00 UTC'
+PASS: btrfs_simplified_receiver_prune_max_delete = 10
+=== Verify no unfinished prune transaction ===
+=== Preview authorised changes ===
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for backup
+
+TASK [btrfs-replication : Native Btrfs | Validate simplified receiver retention settings] ***
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install shared manager with simplified receiver retention] ***
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver config with independent deletion gate] ***
+--- before: /etc/btrfs-snapshot-manager.json
++++ after: /home/richard/.ansible/tmp/ansible-local-262723b9dbw_42/tmpk_a7qyw_/btrfs-receiver-manager.json.j2
+@@ -4,7 +4,7 @@
+   "lock_path": "/run/lock/btrfs-snapshot-manager.lock",
+   "writer_lock_path": "/@data/mars-received/.replication-state/writer.lock",
+   "receiver_state_dir": "/@data/mars-received/.replication-state",
+-  "receiver_prune_enabled": false,
++  "receiver_prune_enabled": true,
+   "checkpoint_holds": {
+     "required": true,
+     "path": "/etc/btrfs-receiver-checkpoint-holds.json"
+
+changed: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install dormant simplified receiver retention units] ***
+ok: [backup] => (item=btrfs-receiver-simple-prune.service)
+ok: [backup] => (item=btrfs-receiver-simple-prune.timer)
+
+TASK [btrfs-replication : Native Btrfs | Enforce explicit receiver retention timer state] ***
+skipping: [backup]
+
+PLAY RECAP *********************************************************************
+backup                     : ok=5    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+
+=== Activate receiver pruning ===
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for backup
+
+TASK [btrfs-replication : Native Btrfs | Validate simplified receiver retention settings] ***
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install shared manager with simplified receiver retention] ***
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver config with independent deletion gate] ***
+changed: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install dormant simplified receiver retention units] ***
+ok: [backup] => (item=btrfs-receiver-simple-prune.service)
+ok: [backup] => (item=btrfs-receiver-simple-prune.timer)
+
+TASK [btrfs-replication : Native Btrfs | Enforce explicit receiver retention timer state] ***
+changed: [backup]
+
+PLAY RECAP *********************************************************************
+backup                     : ok=6    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+=== Verify installed manager and deletion gate ===
+PASS: Receiver pruning gate enabled
+=== Verify timer enabled and active ===
+enabled
+active
+OnCalendar=*-*-* 04:15:00 UTC
+ExecStart=/usr/local/sbin/btrfs-snapshot-manager --config /etc/btrfs-snapshot-manager.json receiver-simple-prune --max-delete 10
+NEXT                        LEFT LAST PASSED UNIT                              ACTIVATES
+Sun 2026-11-08 04:15:00 GMT  16h -         - btrfs-receiver-simple-prune.timer btrfs-receiver-simple-prune.service
+
+1 timers listed.
+=== Read-only retention plan with gate enabled ===
+RECEIVER-SIMPLE-PLAN {"candidates": 0, "enabled": true, "historical_receipts_on_candidates": 0, "historical_receipts_orphaned": 0, "historical_receipts_preserved": 27, "holds": ["20261013-171228Z", "20261018-165453Z"], "keep": 30, "parent": {"timestamp": "20261107-030031Z", "uuid": "7778dda5-2b91-8c4e-8b1a-1dd038a3675b"}, "prior": {"timestamp": "20261106-160001Z", "uuid": "e28d1139-a311-944c-a048-b60874a4dd02"}}
+RETAIN 20261107-030031Z received_uuid=7778dda5-2b91-8c4e-8b1a-1dd038a3675b subvolume_id=55899
+RETAIN 20261106-160001Z received_uuid=e28d1139-a311-944c-a048-b60874a4dd02 subvolume_id=55898
+RETAIN 20261101-150004Z received_uuid=71a6941e-f2d3-4047-8900-106fe30cbb19 subvolume_id=55897
+RETAIN 20261101-140039Z received_uuid=69ef9a57-50ff-9a4e-92ed-8f10560ab1f2 subvolume_id=55895 historical_receipt=preserved
+RETAIN 20261030-170009Z received_uuid=a9b78fb9-4da6-cf4f-b242-13909f574193 subvolume_id=55896 historical_receipt=preserved
+RETAIN 20261030-030033Z received_uuid=d901ddd2-66c7-0b42-b26c-ab6886273b7a subvolume_id=55894 historical_receipt=preserved
+RETAIN 20261029-030003Z received_uuid=3a2cc82d-a9ab-964f-af85-f073dd45f0a4 subvolume_id=55893 historical_receipt=preserved
+RETAIN 20261028-030036Z received_uuid=34d3225c-1a88-ba46-9960-a829371b0514 subvolume_id=55892 historical_receipt=preserved
+RETAIN 20261027-030038Z received_uuid=2177b72b-152a-c64e-8a1e-9e7ecb508ff5 subvolume_id=55875 historical_receipt=preserved
+RETAIN 20261026-030019Z received_uuid=0c30e4ba-d36f-9344-9926-02f975eb4743 subvolume_id=55874 historical_receipt=preserved
+RETAIN 20261025-030026Z received_uuid=3f668b78-4a26-ac41-a152-5c59e15e4732 subvolume_id=55872 historical_receipt=preserved
+RETAIN 20261024-030038Z received_uuid=22e0ca45-0f49-c745-85b0-af6b6cfb915c subvolume_id=55835 historical_receipt=preserved
+RETAIN 20261023-030037Z received_uuid=fdcabd00-aa98-7647-bd3a-de5e23186d38 subvolume_id=55834 historical_receipt=preserved
+RETAIN 20261022-120034Z received_uuid=068d0325-75f5-6c46-bb19-f4aec4bcf8f0 subvolume_id=55833 historical_receipt=preserved
+RETAIN 20261022-082824Z received_uuid=0bf0a247-263f-ff4c-8368-48a91221cc9b subvolume_id=55816 historical_receipt=preserved
+RETAIN 20261022-030026Z received_uuid=571d59ec-5110-4944-b4e1-78b3372675d2 subvolume_id=55815 historical_receipt=preserved
+RETAIN 20261021-030006Z received_uuid=c0ad8538-dc61-bc48-8922-6c37eaf1a902 subvolume_id=55805 historical_receipt=preserved
+RETAIN 20261020-030026Z received_uuid=2239b0bd-b483-884e-8a14-30dcbb8d8392 subvolume_id=55792 historical_receipt=preserved
+RETAIN 20261019-030038Z received_uuid=adb91334-fb87-0d44-90d8-907c67b245d2 subvolume_id=55791 historical_receipt=preserved
+RETAIN 20261018-165453Z received_uuid=087c906a-0518-e34a-88f7-40a5b693c41a subvolume_id=55790 historical_receipt=preserved
+RETAIN 20261018-030006Z received_uuid=f91b322a-4aa7-ad45-a766-d7a1e2eb15b9 subvolume_id=55789 historical_receipt=preserved
+RETAIN 20261017-030007Z received_uuid=e09023c3-c656-d340-84d6-c8374260eeef subvolume_id=55788 historical_receipt=preserved
+RETAIN 20261016-030037Z received_uuid=e1735c53-0831-764d-ac07-672de8dbe81e subvolume_id=55787 historical_receipt=preserved
+RETAIN 20261015-030004Z received_uuid=6f44e0e0-1968-6e4d-a3bd-9f77d71e9a47 subvolume_id=55762 historical_receipt=preserved
+RETAIN 20261014-100031Z received_uuid=5f21c6db-1e66-ad41-aec9-89f163329f8e subvolume_id=55749 historical_receipt=preserved
+RETAIN 20261013-180016Z received_uuid=0048afd8-59ec-7547-9247-e36893331838 subvolume_id=55716 historical_receipt=preserved
+RETAIN 20261013-171228Z received_uuid=340674cc-d02c-244e-b7ec-e3ea5a6b151f subvolume_id=55715 historical_receipt=preserved
+RETAIN 20261013-140006Z received_uuid=c0b81383-bdfc-224e-97b1-90ceee4d54f0 subvolume_id=55708 historical_receipt=preserved
+RETAIN 20261013-050016Z received_uuid=8bbb4807-9cea-4e42-a932-66e0254191c8 subvolume_id=55707 historical_receipt=preserved
+RETAIN 20261009-170001Z received_uuid=052c9376-0616-8b4a-9d28-f757b86fdec8 subvolume_id=55593 historical_receipt=preserved
+PASS: Authorised receiver pruning activated

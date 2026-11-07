@@ -1,0 +1,179 @@
+main
+813b7210d08865337770ae821bb9d88529115188
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/defaults/main.yaml
+ M roles/btrfs-replication/files/btrfs-simplified-replication.py
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/btrfs-replication/templates/btrfs-receiver-manager.json.j2
+ M roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md
+ M roles/btrfs-replication/tests/verify-0040-simplified-replication.py
+ M roles/snapshots/files/btrfs-snapshot-manager.py
+?? roles/btrfs-replication/README-0040-SIMPLE-RECEIVER-RETENTION.md
+?? roles/btrfs-replication/templates/btrfs-receiver-simple-prune.service.j2
+?? roles/btrfs-replication/templates/btrfs-receiver-simple-prune.timer.j2
+?? roles/snapshots/tests/README-0040-SIMPLIFIED-RECEIVER-RETENTION.md
+?? roles/snapshots/tests/verify-0040-simplified-receiver-retention.py
+roles/snapshots/files/btrfs-snapshot-manager.py: OK
+RECEIVER-SIMPLE-DELETED 20261003-000000Z subvolume_id=252
+RECEIVER-SIMPLE-DELETED 20261002-000000Z subvolume_id=251
+.............RECEIVER-SIMPLE-DELETED count=2
+RECEIVER-SIMPLE-DELETED 20261003-000000Z subvolume_id=252
+RECEIVER-SIMPLE-DELETED 20261002-000000Z subvolume_id=251
+RECEIVER-SIMPLE-DELETED 20261001-000000Z subvolume_id=250
+....
+----------------------------------------------------------------------
+Ran 17 tests in 0.056s
+
+OK
+RECEIVER-SIMPLE-DELETED count=3
+RECEIVER-SIMPLE-DELETED count=0
+test_absent_legacy (__main__.Tests.test_absent_legacy) ... ok
+test_all_generations (__main__.Tests.test_all_generations) ... ok
+test_corruption (__main__.Tests.test_corruption) ... ok
+test_duplicate (__main__.Tests.test_duplicate) ... ok
+test_established (__main__.Tests.test_established) ... ok
+test_invalid_transition (__main__.Tests.test_invalid_transition) ... ok
+test_nonroot_owner_rejected (__main__.Tests.test_nonroot_owner_rejected) ... ok
+test_previous (__main__.Tests.test_previous) ... ok
+test_receiver_same (__main__.Tests.test_receiver_same) ... ok
+test_symlink (__main__.Tests.test_symlink) ... ok
+test_unsafe_mode (__main__.Tests.test_unsafe_mode) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.002s
+
+OK
+test_absent_or_complete_candidate_never_deleted (__main__.Cases.test_absent_or_complete_candidate_never_deleted) ... ok
+test_ambiguous_parent_divergence_refuses (__main__.Cases.test_ambiguous_parent_divergence_refuses) ... ok
+test_choose_newest_eligible_newer (__main__.Cases.test_choose_newest_eligible_newer) ... ok
+test_completed_candidate_uses_advance_without_retransmit (__main__.Cases.test_completed_candidate_uses_advance_without_retransmit) ... ok
+test_filesystem_identity_refusal (__main__.Cases.test_filesystem_identity_refusal) ... ok
+test_held_or_legacy_receipt_refuses (__main__.Cases.test_held_or_legacy_receipt_refuses) ... ok
+test_incomplete_cleanup_exact_subvolume_once (__main__.Cases.test_incomplete_cleanup_exact_subvolume_once) ... ok
+test_invalid_candidate_prevents_cleanup (__main__.Cases.test_invalid_candidate_prevents_cleanup) ... ok
+test_invalid_state_or_rollback_refuses (__main__.Cases.test_invalid_state_or_rollback_refuses) ... ok
+test_latest_invalid_candidate_refuses_rather_than_falling_back (__main__.Cases.test_latest_invalid_candidate_refuses_rather_than_falling_back) ... ok
+test_latest_selection_ignores_symlinks_and_non_snapshots (__main__.Cases.test_latest_selection_ignores_symlinks_and_non_snapshots) ... ok
+test_readonly_or_received_unknown_candidate_refused (__main__.Cases.test_readonly_or_received_unknown_candidate_refused) ... ok
+test_receiver_ahead_lost_ack (__main__.Cases.test_receiver_ahead_lost_ack) ... ok
+test_receiver_backoff_uses_configured_lock (__main__.Cases.test_receiver_backoff_uses_configured_lock) ... ok
+test_receiver_failure_does_not_advance (__main__.Cases.test_receiver_failure_does_not_advance) ... ok
+test_receiver_incomplete_next_run_deletes_then_receives (__main__.Cases.test_receiver_incomplete_next_run_deletes_then_receives) ... INFO: cleaned one incomplete candidate; retrying receive
+ok
+test_sender_lost_ack_advances_local_without_retransmission (__main__.Cases.test_sender_lost_ack_advances_local_without_retransmission) ... ok
+test_single_nonblocking_manager_lock (__main__.Cases.test_single_nonblocking_manager_lock) ... ok
+test_state_atomic_readback (__main__.Cases.test_state_atomic_readback) ... ok
+test_state_record_and_prior (__main__.Cases.test_state_record_and_prior) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.059s
+
+OK
+SUCCESS: common parent advanced to 20261101-140039Z
+SUCCESS: reconciled receiver-ahead transfer without retransmission
+PASS: Installation enabled, pruning disabled
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for backup
+
+TASK [btrfs-replication : Native Btrfs | Validate simplified receiver retention settings] ***
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install shared manager with simplified receiver retention] ***
+--- before: /usr/local/sbin/btrfs-snapshot-manager
++++ after: /home/richard/playbooks/roles/snapshots/files/btrfs-snapshot-manager.py
+@@ -1395,9 +1395,11 @@
+ def receiver_simple_plan(config: Config, *, now: datetime | None = None) -> dict[str, object]:
+     """Non-mutating cross-generation retention using existing bucket policy.
+ 
+-    Legacy receipt-backed snapshots remain protected until separately reviewed;
+-    receipt metadata is not accepted as identity proof.  Current/prior parents
+-    are checked against the actual received UUIDs, including after cutover.
++    A legacy receipt remains immutable forensic evidence, not a permanent
++    exemption from the configured retention buckets.  Receipt data is never
++    accepted as Btrfs identity proof, and an orphan receipt after a normal
++    prune is permitted. Current/prior parents are checked against actual
++    received UUIDs, including after cutover.
+     The caller must hold the same manager lock as simplified receive.
+     """
+     receiver_simple_validate(config)
+@@ -1440,23 +1442,27 @@
+             raise SnapshotError(f"checkpoint hold identity mismatch: {stamp}")
+     keep.update(holds)
+ 
+-    # Legacy receipts are forensic evidence. Never delete a receipted snapshot
+-    # during the simplified migration, regardless of that receipt's contents.
++    # The new sender produces no legacy receipts. Retain all historical
++    # receipts as forensic evidence without using their contents as proof of
++    # received identity or as an indefinite retention pin. After an approved
++    # prune, a receipt for a deleted snapshot is *expected* to remain on disk.
++    # Timestamp-named symlink/non-file entries are still rejected outright.
+     historical_receipts = set()
+     for path in _SIMPLE_STATE.iterdir():
+         if not path.name.endswith(".json") or not TIMESTAMP_RE.fullmatch(path.stem):
+             continue
+         if path.is_symlink() or not path.is_file():
+             raise SnapshotError(f"unsafe historical receipt: {path}")
+-        if path.stem not in identity:
+-            raise SnapshotError(f"orphaned historical receipt requires review: {path}")
+         historical_receipts.add(path.stem)
+-    keep.update(historical_receipts)
+     candidates = [stamp for stamp, _, _ in entries if stamp not in keep]
++    receipt_candidates = sorted(set(candidates).intersection(historical_receipts))
++    orphan_receipts = sorted(historical_receipts.difference(identity))
+     return {
+         "parent": state["parent"], "prior": state["prior"],
+         "keep": sorted(keep), "candidates": candidates,
+         "identity": identity, "historical_receipts": sorted(historical_receipts),
++        "historical_receipts_on_candidates": receipt_candidates,
++        "historical_receipts_orphaned": orphan_receipts,
+         "holds": sorted(holds), "executable": config.receiver_prune_enabled,
+     }
+ 
+@@ -1465,7 +1471,9 @@
+     print("RECEIVER-SIMPLE-PLAN " + json.dumps({
+         "parent": plan["parent"], "prior": plan["prior"],
+         "keep": len(plan["keep"]), "candidates": len(plan["candidates"]),
+-        "historical_receipts_protected": len(plan["historical_receipts"]),
++        "historical_receipts_preserved": len(plan["historical_receipts"]),
++        "historical_receipts_on_candidates": len(plan["historical_receipts_on_candidates"]),
++        "historical_receipts_orphaned": len(plan["historical_receipts_orphaned"]),
+         "holds": plan["holds"], "enabled": plan["executable"],
+     }, sort_keys=True))
+     keep = set(plan["keep"])
+@@ -1473,8 +1481,9 @@
+         label = ("RETAIN" if stamp in keep else
+                  "ELIGIBLE-WHEN-APPROVED" if plan["executable"] else
+                  "CANDIDATE-NOT-AUTHORIZED")
++        receipt_note = " historical_receipt=preserved" if stamp in plan["historical_receipts"] else ""
+         print(f"{label} {stamp} received_uuid={plan['identity'][stamp]['Received UUID']} "
+-              f"subvolume_id={plan['identity'][stamp]['Subvolume ID']}")
++              f"subvolume_id={plan['identity'][stamp]['Subvolume ID']}{receipt_note}")
+ 
+ 
+ def receiver_simple_prune(config: Config, *, max_delete: int) -> int:
+
+changed: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver config with independent deletion gate] ***
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install dormant simplified receiver retention units] ***
+ok: [backup] => (item=btrfs-receiver-simple-prune.service)
+ok: [backup] => (item=btrfs-receiver-simple-prune.timer)
+
+TASK [btrfs-replication : Native Btrfs | Enforce explicit receiver retention timer state] ***
+skipping: [backup]
+
+PLAY RECAP *********************************************************************
+backup                     : ok=5    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+
+PASS: Source regression and installation preview

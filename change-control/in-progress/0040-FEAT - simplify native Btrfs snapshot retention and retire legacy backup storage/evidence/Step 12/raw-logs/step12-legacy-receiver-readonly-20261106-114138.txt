@@ -1,0 +1,92 @@
+=== Host / repository provenance ===
+mango
+2026-11-06T11:41:38+00:00
+main
+c8f4df04164df7254439d27e20bd87ecf1989c27
+?? "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/backup-snapshot-inventory-20261106-111959.txt"
+?? "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/common-snapshot-inventory-20261106-111959.txt"
+?? "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/mars-snapshot-inventory-20261106-111959.txt"
+?? "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/step12-legacy-receiver-readonly-20261106-114138.txt"
+-e45ae170017fdf4974f642f654d7f709269af711 diaries-client
+-bd65d08435c0f5d240337cd6479cb41befe4d8c1 diaries-responder
+-cc147426e93ee6952558b65147e444d38316b3ce diaries-web
+=== Receiver legacy transaction marker metadata: no contents or deletion ===
+PRESENT: /@data/mars-received/.replication-state/.agreed-parent-transfer-pending.json uid= 0 mode= 0o600 size= 303 bytes
+ABSENT: /@data/mars-received/.replication-state/.receiver-prune-pending.json
+ABSENT: /@data/mars-received/.replication-state/.agreed-parent-provisional.json
+ABSENT: /@data/mars-received/.replication-state/.simple-agreed-parent.json
+PRESENT: /@data/mars-received/.replication-state/.agreed-parent.json uid= 0 mode= 0o600 size= 137 bytes
+=== Legacy candidate: source Btrfs identity ===
+@snapshots/@data/20261106-030016Z
+	Name: 			20261106-030016Z
+	UUID: 			18ad6ce8-d422-5142-9074-4583dd20bded
+	Parent UUID: 		fc4585b5-1649-b94c-bcb6-a9253c9cf080
+	Received UUID: 		-
+	Creation time: 		2026-11-06 03:00:16 +0000
+	Subvolume ID: 		21514
+	Generation: 		62492
+	Gen at creation: 	62492
+	Parent ID: 		20446
+	Top level ID: 		20446
+	Flags: 			readonly
+	Send transid: 		0
+	Send time: 		2026-11-06 03:00:16 +0000
+	Receive transid: 	0
+	Receive time: 		-
+	Snapshot(s):
+	Quota group:		0/21514
+	  Limit referenced:	3.64TiB
+	  Limit exclusive:	-
+	  Usage referenced:	326.52GiB
+	  Usage exclusive:	16.00KiB
+=== Verified common parent: source ===
+@snapshots/@data/20261101-140039Z
+	Name: 			20261101-140039Z
+	UUID: 			69ef9a57-50ff-9a4e-92ed-8f10560ab1f2
+	Parent UUID: 		fc4585b5-1649-b94c-bcb6-a9253c9cf080
+	Received UUID: 		-
+	Creation time: 		2026-11-01 14:00:40 +0000
+	Subvolume ID: 		21405
+	Generation: 		62339
+	Gen at creation: 	62339
+	Parent ID: 		20446
+	Top level ID: 		20446
+	Flags: 			readonly
+	Send transid: 		0
+	Send time: 		2026-11-01 14:00:40 +0000
+	Receive transid: 	0
+	Receive time: 		-
+	Snapshot(s):
+	Quota group:		0/21405
+	  Limit referenced:	3.64TiB
+	  Limit exclusive:	-
+	  Usage referenced:	326.51GiB
+	  Usage exclusive:	16.00KiB
+=== Verified common parent: receiver ===
+@data/mars-received/@data/20261101-140039Z
+	Name: 			20261101-140039Z
+	UUID: 			37dcf2fc-8af2-444c-97b4-b0598b1766dc
+	Parent UUID: 		21468afc-567a-8944-a854-083838aceae3
+	Received UUID: 		69ef9a57-50ff-9a4e-92ed-8f10560ab1f2
+	Creation time: 		2026-11-01 14:54:44 +0000
+	Subvolume ID: 		55895
+	Generation: 		584405
+	Gen at creation: 	584400
+	Parent ID: 		275
+	Top level ID: 		275
+	Flags: 			readonly
+	Send transid: 		62336
+	Send time: 		2026-11-01 14:54:44 +0000
+	Receive transid: 	584402
+	Receive time: 		2026-11-01 14:55:43 +0000
+	Snapshot(s):
+	Quota group:		0/55895
+	  Limit referenced:	-
+	  Limit exclusive:	-
+	  Usage referenced:	326.50GiB
+	  Usage exclusive:	633.83MiB
+=== Actual mars-to-backup legacy receiver preflight: NO --accept ===
+btrfs-native-push-receiver: Unfinished agreed-parent transfer requires manual reconciliation
+OBSERVED: legacy receiver validation rejected this request (exit=1)
+Interpret the preceding error, not just the exit code; preserve any pending journal.
+DONE: read-only legacy receiver diagnostic (NOT approval to bootstrap/cut over)

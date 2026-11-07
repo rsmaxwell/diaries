@@ -1,0 +1,67 @@
+=== Playbooks working tree ===
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/files/btrfs-simplified-replication.py
+ M roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md
+ M roles/btrfs-replication/tests/verify-0040-simplified-replication.py
+813b721 Continue simplified deployment
+=== Verify scheduling definitions unchanged ===
+=== Verify installed executable hashes ===
+PASS: mars has accepted executable
+PASS: backup has accepted executable
+=== Schedule-only Ansible preview ===
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for mars
+
+TASK [btrfs-replication : Native Btrfs | Require simplified runtime installation before service cutover] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install source-initiated push service and timer] ***
+--- before: /etc/systemd/system/btrfs-native-push.service
++++ after: /home/richard/.ansible/tmp/ansible-local-255458zfyr_lr3/tmpjtflq2wm/btrfs-native-push.service.j2
+@@ -2,11 +2,11 @@
+ Description=Push newest accepted-lineage Btrfs snapshot to off-site backup
+ Wants=network-online.target
+ After=network-online.target
+-ConditionFileIsExecutable=/usr/local/bin/btrfs-native-push
++ConditionFileIsExecutable=/usr/local/bin/btrfs-simplified-replication
+ 
+ [Service]
+ Type=oneshot
+-User=richard
+-Group=richard
+-ExecStart=/usr/local/bin/btrfs-native-push --latest
++User=root
++Group=root
++ExecStart=/usr/local/bin/btrfs-simplified-replication sender cycle
+ TimeoutStartSec=6h
+
+changed: [mars] => (item=btrfs-native-push.service)
+ok: [mars] => (item=btrfs-native-push.timer)
+
+TASK [btrfs-replication : Native Btrfs | Check for active legacy rsync off-site phase before scheduling native push] ***
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Refuse dual off-site transports] ******
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Apply explicit push schedule state] ***
+changed: [mars]
+
+PLAY RECAP *********************************************************************
+mars                       : ok=6    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

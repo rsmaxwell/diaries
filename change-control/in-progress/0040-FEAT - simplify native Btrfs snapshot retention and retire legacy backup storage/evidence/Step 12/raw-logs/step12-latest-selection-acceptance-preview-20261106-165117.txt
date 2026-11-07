@@ -1,0 +1,175 @@
+=== Repository and source identity ===
+main
+813b7210d08865337770ae821bb9d88529115188
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/files/btrfs-simplified-replication.py
+ M roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md
+ M roles/btrfs-replication/tests/verify-0040-simplified-replication.py
+=== Confirm source checksum ===
+roles/btrfs-replication/files/btrfs-simplified-replication.py: OK
+=== Consolidated regressions ===
+test_absent_or_complete_candidate_never_deleted (__main__.Cases.test_absent_or_complete_candidate_never_deleted) ... ok
+test_ambiguous_parent_divergence_refuses (__main__.Cases.test_ambiguous_parent_divergence_refuses) ... ok
+test_choose_newest_eligible_newer (__main__.Cases.test_choose_newest_eligible_newer) ... ok
+test_completed_candidate_uses_advance_without_retransmit (__main__.Cases.test_completed_candidate_uses_advance_without_retransmit) ... ok
+test_filesystem_identity_refusal (__main__.Cases.test_filesystem_identity_refusal) ... ok
+test_held_or_legacy_receipt_refuses (__main__.Cases.test_held_or_legacy_receipt_refuses) ... ok
+test_incomplete_cleanup_exact_subvolume_once (__main__.Cases.test_incomplete_cleanup_exact_subvolume_once) ... ok
+test_invalid_candidate_prevents_cleanup (__main__.Cases.test_invalid_candidate_prevents_cleanup) ... ok
+test_invalid_state_or_rollback_refuses (__main__.Cases.test_invalid_state_or_rollback_refuses) ... ok
+test_latest_invalid_candidate_refuses_rather_than_falling_back (__main__.Cases.test_latest_invalid_candidate_refuses_rather_than_falling_back) ... ok
+test_latest_selection_ignores_symlinks_and_non_snapshots (__main__.Cases.test_latest_selection_ignores_symlinks_and_non_snapshots) ... ok
+test_readonly_or_received_unknown_candidate_refused (__main__.Cases.test_readonly_or_received_unknown_candidate_refused) ... ok
+test_receiver_ahead_lost_ack (__main__.Cases.test_receiver_ahead_lost_ack) ... ok
+test_receiver_backoff_uses_configured_lock (__main__.Cases.test_receiver_backoff_uses_configured_lock) ... ok
+test_receiver_failure_does_not_advance (__main__.Cases.test_receiver_failure_does_not_advance) ... ok
+test_receiver_incomplete_next_run_deletes_then_receives (__main__.Cases.test_receiver_incomplete_next_run_deletes_then_receives) ... INFO: cleaned one incomplete candidate; retrying receive
+ok
+test_sender_lost_ack_advances_local_without_retransmission (__main__.Cases.test_sender_lost_ack_advances_local_without_retransmission) ... ok
+test_single_nonblocking_manager_lock (__main__.Cases.test_single_nonblocking_manager_lock) ... ok
+test_state_atomic_readback (__main__.Cases.test_state_atomic_readback) ... ok
+test_state_record_and_prior (__main__.Cases.test_state_record_and_prior) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.059s
+
+OK
+SUCCESS: common parent advanced to 20261101-140039Z
+SUCCESS: reconciled receiver-ahead transfer without retransmission
+test_corrupt_and_unsafe_file_blocks_pruning (__main__.Cases.test_corrupt_and_unsafe_file_blocks_pruning) ... ok
+test_missing_file_allows_pre_cutover (__main__.Cases.test_missing_file_allows_pre_cutover) ... ok
+test_parent_and_previous_protected (__main__.Cases.test_parent_and_previous_protected) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+test_absent_legacy (__main__.Tests.test_absent_legacy) ... ok
+test_all_generations (__main__.Tests.test_all_generations) ... ok
+test_corruption (__main__.Tests.test_corruption) ... ok
+test_duplicate (__main__.Tests.test_duplicate) ... ok
+test_established (__main__.Tests.test_established) ... ok
+test_invalid_transition (__main__.Tests.test_invalid_transition) ... ok
+test_nonroot_owner_rejected (__main__.Tests.test_nonroot_owner_rejected) ... ok
+test_previous (__main__.Tests.test_previous) ... ok
+test_receiver_same (__main__.Tests.test_receiver_same) ... ok
+test_symlink (__main__.Tests.test_symlink) ... ok
+test_unsafe_mode (__main__.Tests.test_unsafe_mode) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.003s
+
+OK
+PASS: only @data chosen by dry-run and deletion; held/pinned timestamps retained
+PASS: omitted prune setting retains all-source behaviour
+PASS: malformed pruning selection fails closed
+PASS: 0040 prune source selection regression (no Btrfs operations)
+PASS: receiver policies share one variable; defaults, 24-hour test and guards verified
+=== Binary-only installation preview ===
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for mars, backup
+
+TASK [btrfs-replication : Native Btrfs | Install simplified agreed-parent command (opt in)] ***
+--- before: /usr/local/bin/btrfs-simplified-replication
++++ after: /home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py
+@@ -230,9 +230,11 @@
+ def choose_next(current, *, source_root=SOURCE, inspect=None):
+     inspect = inspect or (lambda name: subvolume_info(source_root, name))
+     safe_directory(source_root)
+-    items = sorted(entry.name for entry in source_root.iterdir()
+-                   if not entry.is_symlink() and entry.is_dir() and STAMP.fullmatch(entry.name)
+-                   and entry.name > current)
++    # Match the established daily --latest policy: one incremental transfer to
++    # the newest eligible snapshot, rather than falling behind hourly creation.
++    items = sorted((entry.name for entry in source_root.iterdir()
++                    if not entry.is_symlink() and entry.is_dir() and STAMP.fullmatch(entry.name)
++                    and entry.name > current), reverse=True)
+     for stamp in items:
+         info = inspect(stamp)
+         require(info is not None and info['Flags'] == 'readonly' and
+
+changed: [backup]
+--- before: /usr/local/bin/btrfs-simplified-replication
++++ after: /home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py
+@@ -230,9 +230,11 @@
+ def choose_next(current, *, source_root=SOURCE, inspect=None):
+     inspect = inspect or (lambda name: subvolume_info(source_root, name))
+     safe_directory(source_root)
+-    items = sorted(entry.name for entry in source_root.iterdir()
+-                   if not entry.is_symlink() and entry.is_dir() and STAMP.fullmatch(entry.name)
+-                   and entry.name > current)
++    # Match the established daily --latest policy: one incremental transfer to
++    # the newest eligible snapshot, rather than falling behind hourly creation.
++    items = sorted((entry.name for entry in source_root.iterdir()
++                    if not entry.is_symlink() and entry.is_dir() and STAMP.fullmatch(entry.name)
++                    and entry.name > current), reverse=True)
+     for stamp in items:
+         info = inspect(stamp)
+         require(info is not None and info['Flags'] == 'readonly' and
+
+changed: [mars]
+
+PLAY RECAP *********************************************************************
+backup                     : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+mars                       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+=== Scheduling activation preview ===
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for mars
+
+TASK [btrfs-replication : Native Btrfs | Require simplified runtime installation before service cutover] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install source-initiated push service and timer] ***
+--- before: /etc/systemd/system/btrfs-native-push.service
++++ after: /home/richard/.ansible/tmp/ansible-local-256219u23zcgh_/tmpc3nk4al_/btrfs-native-push.service.j2
+@@ -2,11 +2,11 @@
+ Description=Push newest accepted-lineage Btrfs snapshot to off-site backup
+ Wants=network-online.target
+ After=network-online.target
+-ConditionFileIsExecutable=/usr/local/bin/btrfs-native-push
++ConditionFileIsExecutable=/usr/local/bin/btrfs-simplified-replication
+ 
+ [Service]
+ Type=oneshot
+-User=richard
+-Group=richard
+-ExecStart=/usr/local/bin/btrfs-native-push --latest
++User=root
++Group=root
++ExecStart=/usr/local/bin/btrfs-simplified-replication sender cycle
+ TimeoutStartSec=6h
+
+changed: [mars] => (item=btrfs-native-push.service)
+ok: [mars] => (item=btrfs-native-push.timer)
+
+TASK [btrfs-replication : Native Btrfs | Check for active legacy rsync off-site phase before scheduling native push] ***
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Refuse dual off-site transports] ******
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Apply explicit push schedule state] ***
+changed: [mars]
+
+PLAY RECAP *********************************************************************
+mars                       : ok=6    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

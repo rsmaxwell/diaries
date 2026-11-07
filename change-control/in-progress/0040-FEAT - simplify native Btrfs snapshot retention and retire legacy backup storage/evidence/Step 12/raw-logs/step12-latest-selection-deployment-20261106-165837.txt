@@ -1,0 +1,6 @@
+ExecStart={ path=/usr/local/bin/btrfs-simplified-replication ; argv[]=/usr/local/bin/btrfs-simplified-replication sender cycle ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+NEXT                        LEFT LAST                         PASSED UNIT                    ACTIVATES
+Sat 2026-11-07 03:30:00 UTC  10h Fri 2026-11-06 03:30:11 UTC 13h ago btrfs-native-push.timer btrfs-native-push.service
+
+1 timers listed.
+PASS: Simplified replication deployment and activation

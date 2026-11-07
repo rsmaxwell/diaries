@@ -1,0 +1,138 @@
+=== Repository revision ===
+main
+813b7210d08865337770ae821bb9d88529115188
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/files/btrfs-simplified-replication.py
+ M roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md
+ M roles/btrfs-replication/tests/verify-0040-simplified-replication.py
+=== Current source checksum ===
+cfa8a696b36eb49935d518cfd2c99d38e28fe3fbbfaa7a0faa6618a485e2fd36  roles/btrfs-replication/files/btrfs-simplified-replication.py
+=== Working-tree differences ===
+diff --git a/roles/btrfs-replication/README.md b/roles/btrfs-replication/README.md
+index 02f7ea1..0406f25 100644
+--- a/roles/btrfs-replication/README.md
++++ b/roles/btrfs-replication/README.md
+@@ -44,3 +44,16 @@ A one-command simpler alternative to Step 12.3 is described in
+ keeps its command unless `btrfs_simplified_replication_active_enabled` is
+ explicitly enabled after consolidated acceptance. Receiver pruning has a
+ separate gate; native receipts are not created by the new prototype.
++
++### 0040 catch-up and one-candidate operator smoke
++
++The simplified sender retains oldest-first selection for deterministic next-run
++recovery, but a single daily 03:30 run can advance up to 96 successfully received
++hourly snapshots. Every transfer receives an independent Btrfs identity and
++state readback; the first failed candidate ends the invocation without an
++immediate retry. On the next run that same candidate is selected again.
++A manually controlled one-candidate smoke uses
++`sudo -n /usr/local/bin/btrfs-simplified-replication sender cycle --max-transfers 1`
++**only after** a reviewed common-parent bootstrap, receiver legacy-marker
++reconciliation and live SSH/sudo preflight. A successful source-level test or
++installed binary does not authorise production cutover.
+diff --git a/roles/btrfs-replication/files/btrfs-simplified-replication.py b/roles/btrfs-replication/files/btrfs-simplified-replication.py
+index 2be6e65..8473627 100644
+--- a/roles/btrfs-replication/files/btrfs-simplified-replication.py
++++ b/roles/btrfs-replication/files/btrfs-simplified-replication.py
+@@ -230,9 +230,11 @@ def peer(*args):
+ def choose_next(current, *, source_root=SOURCE, inspect=None):
+     inspect = inspect or (lambda name: subvolume_info(source_root, name))
+     safe_directory(source_root)
+-    items = sorted(entry.name for entry in source_root.iterdir()
+-                   if not entry.is_symlink() and entry.is_dir() and STAMP.fullmatch(entry.name)
+-                   and entry.name > current)
++    # Match the established daily --latest policy: one incremental transfer to
++    # the newest eligible snapshot, rather than falling behind hourly creation.
++    items = sorted((entry.name for entry in source_root.iterdir()
++                    if not entry.is_symlink() and entry.is_dir() and STAMP.fullmatch(entry.name)
++                    and entry.name > current), reverse=True)
+     for stamp in items:
+         info = inspect(stamp)
+         require(info is not None and info['Flags'] == 'readonly' and
+diff --git a/roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md b/roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md
+index 8f3d574..6d37241 100644
+--- a/roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md
++++ b/roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md
+@@ -4,14 +4,20 @@ Source basis: the user-supplied `playbook-sources-20261102-150520.zip`. The
+ actual `/home/richard/playbooks` checkout has later uncommitted changes; inspect
+ this ZIP with Beyond Compare before applying. This update does not remove or
+ replace existing `btrfs-native-push.py`, staged modules, receipts, checkpoint
+-holds, or current timers. **Not tested on a live receiver.**
++holds, or current timers. **Disposable real-Btrfs interruption/recovery integration accepted 5 November 2026; not yet activated on the production receiver.**
+ 
+ ## Behaviour
+ 
+ - One root-owned `0600` JSON state file on each host: `{schema,parent,prior}`.
+   The `parent` and `prior` records carry timestamp and source snapshot UUID.
+-- Sender chooses the *oldest* eligible newer snapshot so the next scheduled run
+-  retries the same failed candidate even if newer snapshots were created.
++- Sender chooses the *oldest* eligible newer snapshot, but can advance through up to
++  96 distinct, successfully received candidates in a single daily scheduled run.
++  A failed candidate is **not retried within the same invocation**; on the next
++  scheduled run it remains the oldest outstanding snapshot, so exact incomplete
++  cleanup/retry remains deterministic. Each success is committed and read back
++  independently. `sender cycle --max-transfers 1` limits a controlled live smoke
++  to exactly one candidate. The default cap can be reached without failure: the
++  next scheduled run resumes from the last confirmed parent.
+ - Receiver holds `/run/lock/btrfs-snapshot-manager.lock` for the *entire*
+   receive child lifetime. Busy locks defer, and no dedicated retry scheduler is
+   installed. Sender uses the corresponding local manager lock.
+@@ -89,7 +95,9 @@ service executable, bootstrap state or initiate the replacement transfer.
+   New simple receives are verified by Btrfs identity, not accompanied by those
+   legacy receipts. Receiver pruning must be adapted and independently approved
+   before activation. It remains disabled in this package.
+-- No disposable *real* Btrfs interruption/retry test has yet been executed for
+-  this replacement. Past experiments validated a different design.
++- The disposable *real* Btrfs interruption/retry and lost-acknowledgement test
++  passed on `mango` on 5 November 2026. The bounded catch-up change is a
++  subsequent modification requiring its own focused source regression and
++  a one-candidate real-host smoke before unattended activation.
+ - Existing more elaborate runtime files and tests are not removed by this
+   package. Obsolete test cleanup is separately gated and archival.
+diff --git a/roles/btrfs-replication/tests/verify-0040-simplified-replication.py b/roles/btrfs-replication/tests/verify-0040-simplified-replication.py
+index 5eaf621..9e7d1f5 100644
+--- a/roles/btrfs-replication/tests/verify-0040-simplified-replication.py
++++ b/roles/btrfs-replication/tests/verify-0040-simplified-replication.py
+@@ -138,12 +138,38 @@ class Cases(unittest.TestCase):
+                 with self.assertRaises(m.Refuse):
+                     m.classify_candidate(A,U1,self.state,inspect=lambda s:info(),receipts_dir=root)
+ 
+-    def test_choose_first_eligible_newer(self):
++    def test_choose_newest_eligible_newer(self):
++        # Daily replication must catch up with hourly source creation in one cycle,
++        # matching the retired --latest service rather than replaying each hour.
+         with tempfile.TemporaryDirectory() as temp:
+             root=Path(temp)
+             for name in (A,B,C): (root/name).mkdir()
+-            result=m.choose_next(A, source_root=root, inspect=lambda s:info(uuid=U2, flags='readonly'))
+-            self.assertEqual(result,(B,U2))
++            inspected=[]
++            def inspect(stamp):
++                inspected.append(stamp)
++                return info(uuid=U3 if stamp == C else U2, flags='readonly')
++            result=m.choose_next(A, source_root=root, inspect=inspect)
++            self.assertEqual(result,(C,U3))
++            self.assertEqual(inspected,[C])
++
++    def test_latest_invalid_candidate_refuses_rather_than_falling_back(self):
++        with tempfile.TemporaryDirectory() as temp:
++            root=Path(temp)
++            for name in (A,B,C): (root/name).mkdir()
++            with self.assertRaisesRegex(m.Refuse,'Unsafe source candidate: '+C):
++                m.choose_next(A, source_root=root,
++                    inspect=lambda s: info(uuid=U2, flags='-' if s == C else 'readonly'))
++
++    def test_latest_selection_ignores_symlinks_and_non_snapshots(self):
++        with tempfile.TemporaryDirectory() as temp:
++            root=Path(temp)
++            (root/A).mkdir(); (root/B).mkdir()
++            (root/C).symlink_to(root/B, target_is_directory=True)
++            (root/'20261103-140039Z').write_text('not a subvolume')
++            self.assertEqual(m.choose_next(A, source_root=root,
++                inspect=lambda s: info(uuid=U2, flags='readonly')), (B,U2))
++            self.assertIsNone(m.choose_next(B, source_root=root,
++                inspect=lambda s: info(uuid=U2, flags='readonly')))
+ 
+     def test_invalid_candidate_prevents_cleanup(self):
+         with tempfile.TemporaryDirectory() as temp:
+=== Whitespace/error check ===
+Diff check exit status: 0
