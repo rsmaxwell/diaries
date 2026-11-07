@@ -6,7 +6,7 @@
 
 Both receiver/source audits passed. The agreed parent `20261101-140039Z` was confirmed read-only on mars and backup, with matching source UUID / received UUID, and both new simplified records absent. Legacy journal `.agreed-parent-transfer-pending.json` is root-owned `0600`, sha256 `e11483fe05c482894c2db6fc15ffa63164f6b9c3da831508e0a2990123b9f3f2`, last modified `2026-11-01T19:39:39.159265+00:00`. It describes parent `20261030-030033Z` and candidate `20261030-170009Z`. The candidate is already a read-only received Btrfs subvolume; a legacy receipt exists, and no nonce-bound stage or sidecar exists. No other legacy marker was found. The first audit did **not** validate the receipt content.
 
-The first-version archive would correctly refuse this case; it was deliberately designed only for an absent candidate/receipt. The revised feature-local utility instead permits this *historically completed* candidate case with explicit `--allow-completed-candidate` and a pinned receipt SHA, after read-only receipt validation against legacy accepted-receipt fields and exact journal parent lineage. It still refuses an incomplete or mismatched candidate, active staging, other legacy marker, changed journal or receipt, or concurrent receiver lock.
+The first-version archive would correctly refuse this case; it was deliberately designed only for an absent candidate/receipt. The revised feature-local utility instead permits this *historically completed* candidate case with explicit `--allow-completed-candidate` and a pinned receipt SHA, after read-only receipt validation against legacy accepted-receipt fields and its independently recorded historical parent. It still refuses an incomplete or mismatched candidate, active staging, other legacy marker, changed journal or receipt, or concurrent receiver lock.
 
 ## Review and local verification
 
@@ -24,3 +24,7 @@ The revised tool matches the legacy receiver's accepted receipt contract in the 
 6. Preview and activate Playbooks opt-in without changing 03:30 UTC scheduling; receiver pruning remains disabled pending independent acceptance.
 
 Never mark Step 12 CLOSED until full operational acceptance evidence is recorded. See `tools/README-STEP12-LEGACY-JOURNAL-TRANSITION.md` for exact host/terminal commands and rollback.
+
+## 6 November — accepted-receipt contract correction
+
+The first controlled preflight failed read-only at the completed-candidate receipt test. The earlier requirement that receipt parent identity must equal a pending journal's parent was not a requirement in the legacy receiver `receipt()` function. A receipt may document a complete historical transfer that predates an abandoned journal. The feature-local auditor now validates candidate Btrfs identity and the historical receipt's own transport and parent shape, without equating it to the journal's abandoned attempt. The exact receipt SHA, candidate identity, original journal SHA, absence of staged objects and both receiver locks still gate archive. Live acceptance remains outstanding.

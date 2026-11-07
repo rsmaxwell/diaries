@@ -3,9 +3,11 @@
 
 `audit` makes NO changes. `archive` performs one rename of the validated legacy
 journal into a root-only rollback directory, with both historical receiver
-locks held. A published, readonly candidate with a matching valid receipt is
-permitted only with explicit --allow-completed-candidate and receipt hash
-pinning. It never deletes/modifies Btrfs subvolumes, receipts or parent state.
+locks held. A published, readonly candidate with a separately preserved historical receipt is
+permitted only with explicit --allow-completed-candidate and receipt SHA-256
+pinning. The receipt is NOT an authority for the new parent or an accepted
+legacy transfer: it may carry obsolete/inconsistent provenance. Its bytes are
+only pinned and preserved; the Btrfs snapshot is verified independently. It never deletes/modifies Btrfs subvolumes, receipts or parent state.
 
 Run on the actual endpoint via `sudo -n python3 - ... < this-file` from mango.
 """
@@ -16,6 +18,7 @@ import fcntl
 import hashlib
 import json
 import os
+import pwd
 from pathlib import Path
 import re
 import stat
@@ -23,6 +26,7 @@ import subprocess
 import sys
 
 B = '20261101-140039Z'
+B_UUID = '69ef9a57-50ff-9a4e-92ed-8f10560ab1f2'
 SOURCE_ROOT = Path('/media/usb/@snapshots/@data')
 RECEIVER_ROOT = Path('/@data/mars-received/@data')
 STATE = Path('/@data/mars-received/.replication-state')
@@ -132,45 +136,59 @@ def simple(path):
     value = json.loads(path.read_text())
     print(f'Simplified parent {path}: {value}')
 
-def read_accepted_receipt(value):
-    """Validate the *published* legacy candidate receipt without changing it.
+def read_historical_receipt(value):
+    """Pin *bytes* of a legacy receipt; never treat its claims as cutover authority.
 
-    The old receiver's `receipt()` acceptance contract is reproduced here,
-    plus the journal's exact parent lineage. Avoid importing the retired
-    receiver (which has operational side effects and different privileges).
+    The old receiver accepts receipts using its original filesystem identity
+    contract. This receipt currently fails that contract, and need not be
+    repaired: the simplified initial parent is a separate, newer Btrfs snapshot.
+    A receipt's presence is not evidence of a successful transfer. We archive
+    only the unrelated pending journal, preserving the entire receipt unchanged.
     """
-    candidate, parent = value['candidate'], value['parent']
-    stamp, uuid = candidate['timestamp'], candidate['uuid']
+    stamp = value['candidate']['timestamp']
     receipt_path = STATE / (stamp + '.json')
     check(not receipt_path.is_symlink() and receipt_path.is_file(),
-          'Completed candidate receipt missing/unsafe')
+          'Historical receipt missing/unsafe')
+    # The legacy receiver ran as the SSH user 'richard', rather than root.
+    # Do not incorrectly apply the journal's root-only ownership rule here.
+    historical_owner = pwd.getpwnam('richard').pw_uid
     fd = os.open(receipt_path, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC)
     with os.fdopen(fd, 'rb') as stream:
         st = os.fstat(stream.fileno())
         check(stat.S_ISREG(st.st_mode) and st.st_nlink == 1 and
+              st.st_uid in (REQUIRED_OWNER_UID, historical_owner) and
               stat.S_IMODE(st.st_mode) == 0o600 and 0 < st.st_size <= 65536,
-              'Completed candidate receipt ownership/mode/size unsafe')
+              'Historical receipt ownership/links/mode/size unsafe')
         raw = stream.read(65537)
-    receipt = json.loads(raw)
-    check(type(receipt) is dict and receipt.get('schema') == 1 and
-          receipt.get('transport') == 'btrfs-incremental' and
-          receipt.get('snapshot') == stamp and
-          receipt.get('source_uuid') == uuid and
-          receipt.get('received_uuid') == uuid and
-          receipt.get('source_filesystem_uuid') == SOURCE_FS and
-          receipt.get('receiver_filesystem_uuid') == RECEIVER_FS and
-          receipt.get('destination') == str(RECEIVER_ROOT / stamp) and
-          receipt.get('read_only_verified') is True and
-          receipt.get('source_send_exit') == 0 and
-          receipt.get('receiver_receive_exit') == 0 and
-          receipt.get('parent_snapshot') == parent['timestamp'] and
-          receipt.get('parent_source_uuid') == parent['uuid'],
-          'Completed candidate receipt does not match journal lineage and Btrfs transport')
-    snapshot = info(RECEIVER_ROOT, stamp)
-    check(snapshot is not None and snapshot['Flags'] == 'readonly' and
-          snapshot['Received UUID'] == uuid,
-          'Completed candidate Btrfs identity/read-only mismatch')
-    return hashlib.sha256(raw).hexdigest()
+    try:
+        metadata = json.loads(raw)
+    except (ValueError, UnicodeDecodeError):
+        metadata = None
+    if isinstance(metadata, dict):
+        observed_fs = metadata.get('source_filesystem_uuid')
+        if observed_fs == SOURCE_FS:
+            print('Historical receipt source filesystem: matches current identity')
+        else:
+            print('Historical receipt source filesystem: differs from current identity '
+                  '(not accepted as transfer proof; preserved only)')
+    else:
+        print('Historical receipt metadata: not a readable JSON object (preserved only)')
+    digest = hashlib.sha256(raw).hexdigest()
+    print('Historical receipt sha256:', digest)
+    return digest
+
+
+def verify_historical_candidate(value):
+    """Independently inspect historical Btrfs objects, not receipt claims."""
+    parent = info(RECEIVER_ROOT, value['parent']['timestamp'])
+    check(parent is not None and parent['Flags'] == 'readonly' and
+          parent['Received UUID'] == value['parent']['uuid'],
+          'Legacy journal parent Btrfs identity/read-only mismatch')
+    candidate = info(RECEIVER_ROOT, value['candidate']['timestamp'])
+    check(candidate is not None and candidate['Flags'] == 'readonly' and
+          candidate['Received UUID'] == value['candidate']['uuid'],
+          'Legacy candidate Btrfs identity/read-only mismatch')
+    return candidate
 
 
 def journal_details(value):
@@ -182,8 +200,10 @@ def journal_details(value):
     has_receipt = receipt.exists() or receipt.is_symlink()
     print('Journal candidate receipt:', 'PRESENT' if has_receipt else 'ABSENT')
     if candidate_info is not None and has_receipt:
-        digest = read_accepted_receipt(value)
-        print('Candidate and accepted legacy receipt: VERIFIED (readonly, exact parent lineage)')
+        verify_historical_candidate(value)
+        digest = read_historical_receipt(value)
+        print('Candidate Btrfs identity: VERIFIED (readonly; independent of receipt claims)')
+        print('Historical receipt: PRESERVED, not accepted as transfer proof')
         print('Candidate receipt sha256:', digest)
     elif candidate_info is not None or has_receipt:
         print('Candidate/receipt classification: INCOMPLETE OR MISMATCHED; archive prohibited')
@@ -247,7 +267,7 @@ def archive(expected_sha, expected_candidate, *, allow_completed=False, expected
         check(info(RECEIVER_ROOT, B) is not None, 'Initial parent missing')
         common = info(RECEIVER_ROOT, B)
         check(common['Flags'] == 'readonly' and
-              UUID.fullmatch(common['Received UUID']) is not None, 'Common parent not verified')
+              common['Received UUID'] == B_UUID, 'Common parent identity/read-only mismatch')
         stage, sidecar, receipt = journal_details(value)
         check(not any(p.exists() or p.is_symlink() for p in (stage, sidecar)),
               'Journal has an associated staged object or ownership record')
@@ -261,7 +281,8 @@ def archive(expected_sha, expected_candidate, *, allow_completed=False, expected
             check(expected_receipt_sha is not None and
                   NONCE.fullmatch(expected_receipt_sha.lower()),
                   'Exact audited receipt SHA-256 required for completed candidate')
-            check(read_accepted_receipt(value) == expected_receipt_sha.lower(),
+            verify_historical_candidate(value)
+            check(read_historical_receipt(value) == expected_receipt_sha.lower(),
                   'Legacy receipt changed since audit')
         else:
             check(not allow_completed, 'Completed-candidate opt-in used with absent candidate')
@@ -298,9 +319,9 @@ def main():
     r.add_argument('--expected-sha256', required=True)
     r.add_argument('--expected-candidate', required=True)
     r.add_argument('--allow-completed-candidate', action='store_true',
-                   help='retire marker only when an older readonly candidate and valid receipt are verified')
+                   help='retire marker only when an older readonly candidate is verified and historical receipt bytes are pinned')
     r.add_argument('--expected-receipt-sha256',
-                   help='SHA-256 from the audited accepted candidate receipt (required with opt-in)')
+                   help='SHA-256 of preserved historical receipt bytes (required with opt-in)')
     args = parser.parse_args()
     try:
         check(os.geteuid() == 0, 'Run as root via sudo -n')

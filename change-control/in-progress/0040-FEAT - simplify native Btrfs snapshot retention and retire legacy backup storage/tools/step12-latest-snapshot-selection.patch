@@ -1,0 +1,65 @@
+diff --git a/roles/btrfs-replication/files/btrfs-simplified-replication.py b/roles/btrfs-replication/files/btrfs-simplified-replication.py
+index 2be6e65..8473627 100644
+--- a/roles/btrfs-replication/files/btrfs-simplified-replication.py
++++ b/roles/btrfs-replication/files/btrfs-simplified-replication.py
+@@ -230,9 +230,11 @@ def peer(*args):
+ def choose_next(current, *, source_root=SOURCE, inspect=None):
+     inspect = inspect or (lambda name: subvolume_info(source_root, name))
+     safe_directory(source_root)
+-    items = sorted(entry.name for entry in source_root.iterdir()
+-                   if not entry.is_symlink() and entry.is_dir() and STAMP.fullmatch(entry.name)
+-                   and entry.name > current)
++    # Match the established daily --latest policy: one incremental transfer to
++    # the newest eligible snapshot, rather than falling behind hourly creation.
++    items = sorted((entry.name for entry in source_root.iterdir()
++                    if not entry.is_symlink() and entry.is_dir() and STAMP.fullmatch(entry.name)
++                    and entry.name > current), reverse=True)
+     for stamp in items:
+         info = inspect(stamp)
+         require(info is not None and info['Flags'] == 'readonly' and
+diff --git a/roles/btrfs-replication/tests/verify-0040-simplified-replication.py b/roles/btrfs-replication/tests/verify-0040-simplified-replication.py
+index 5eaf621..9e7d1f5 100644
+--- a/roles/btrfs-replication/tests/verify-0040-simplified-replication.py
++++ b/roles/btrfs-replication/tests/verify-0040-simplified-replication.py
+@@ -138,12 +138,38 @@ class Cases(unittest.TestCase):
+                 with self.assertRaises(m.Refuse):
+                     m.classify_candidate(A,U1,self.state,inspect=lambda s:info(),receipts_dir=root)
+ 
+-    def test_choose_first_eligible_newer(self):
++    def test_choose_newest_eligible_newer(self):
++        # Daily replication must catch up with hourly source creation in one cycle,
++        # matching the retired --latest service rather than replaying each hour.
+         with tempfile.TemporaryDirectory() as temp:
+             root=Path(temp)
+             for name in (A,B,C): (root/name).mkdir()
+-            result=m.choose_next(A, source_root=root, inspect=lambda s:info(uuid=U2, flags='readonly'))
+-            self.assertEqual(result,(B,U2))
++            inspected=[]
++            def inspect(stamp):
++                inspected.append(stamp)
++                return info(uuid=U3 if stamp == C else U2, flags='readonly')
++            result=m.choose_next(A, source_root=root, inspect=inspect)
++            self.assertEqual(result,(C,U3))
++            self.assertEqual(inspected,[C])
++
++    def test_latest_invalid_candidate_refuses_rather_than_falling_back(self):
++        with tempfile.TemporaryDirectory() as temp:
++            root=Path(temp)
++            for name in (A,B,C): (root/name).mkdir()
++            with self.assertRaisesRegex(m.Refuse,'Unsafe source candidate: '+C):
++                m.choose_next(A, source_root=root,
++                    inspect=lambda s: info(uuid=U2, flags='-' if s == C else 'readonly'))
++
++    def test_latest_selection_ignores_symlinks_and_non_snapshots(self):
++        with tempfile.TemporaryDirectory() as temp:
++            root=Path(temp)
++            (root/A).mkdir(); (root/B).mkdir()
++            (root/C).symlink_to(root/B, target_is_directory=True)
++            (root/'20261103-140039Z').write_text('not a subvolume')
++            self.assertEqual(m.choose_next(A, source_root=root,
++                inspect=lambda s: info(uuid=U2, flags='readonly')), (B,U2))
++            self.assertIsNone(m.choose_next(B, source_root=root,
++                inspect=lambda s: info(uuid=U2, flags='readonly')))
+ 
+     def test_invalid_candidate_prevents_cleanup(self):
+         with tempfile.TemporaryDirectory() as temp:

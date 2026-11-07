@@ -2,6 +2,25 @@
 
 **6 November 2026 consolidated operator path.** This package includes the previous revised receiver journal auditor plus a new guarded operator script, `tools/step12-controlled-cutover.sh`. It supersedes the piecemeal command sequence below as the preferred operating path, without changing Playbooks or permanent runtime code. Neither the receiver journal retirement nor the new replication cutover has been performed by preparation of this ZIP.
 
+
+## 6 November 2026 — cutover policy after second preflight
+
+Second production preflight (15:34 UTC) stopped safely on `Completed candidate receipt source_filesystem_uuid mismatch`. **This is not a verified legacy receipt.** The legacy receiver's original acceptance checks correctly reject a receipt with that field, and those operational checks remain unchanged.
+
+For 0040 migration, the historical receipt and its claims are **not inputs** to the new bootstrap. We only preserve that receipt's file bytes unchanged, pin its SHA-256 in the audit and locked archive path, and independently verify the actual journal parent/candidate Btrfs read-only received UUIDs. The independent new common snapshot `20261101-140039Z` is verified on both hosts, including its exact source UUID. The obsolete journal alone is moved to a root-only rollback directory. Historical receipts and Btrfs subvolumes are not altered or promoted as trusted new state.
+
+A malformed legacy receipt can therefore remain historical evidence, not a cutover blocker. This does **not** mean it has been repaired or accepted. The journal, candidate, snapshot identities, file types, permissions, no-stage rules, digest pins, timer/transport checks, and initial-parent checks must still pass. No production state change was observed in either failed preflight.
+
+This section supersedes receipt-acceptance language in the earlier historical notes below. Use the **guarded** `bash "$RUNBOOK" preflight` then `bash "$RUNBOOK" execute` steps, not the older manual command sequence.
+
+## 6 November 2026 — first preflight mismatch and corrected validation
+
+Windows/main `220672e` and mango/main `220672e` were confirmed. Mango retains five **untracked** Step 12 raw logs; do not overwrite or discard them. The first preflight exited before mutations with `Completed candidate receipt does not match journal lineage and Btrfs transport`. The source-parent read-only audit passed. No journal retirement, bootstrap, transfer or timer changes occurred.
+
+The prior migration-only auditor imposed conditions **stricter than the actual legacy receiver**: it allowed only incremental receipts and required a previously published receipt's parent to equal the **abandoned journal's** parent. In the legacy receiver's `receipt()` acceptance contract, receipts are validated for Btrfs transport (full or incremental), source/receiver filesystem and candidate identity, successful transfer status, destination, and read-only received UUID. The parent recorded for an earlier successful transfer need not equal the parent of a later interrupted journal. The first correction attempted to validate this legacy acceptance contract, but the second preflight identified a source filesystem metadata mismatch. The final cutover utility no longer treats historical receipt fields as authoritative. It pins the entire receipt file unchanged and verifies Btrfs subvolume identities independently. See the newer section above.
+
+This historical correction did **not** establish receipt validity. The current migration explicitly preserves the receipt as untrusted history; only a successful full preflight authorises `execute`.
+
 ## Operational prerequisites
 
 Apply this ZIP to the **Windows Diaries parent checkout** with Beyond Compare 4. The script is invoked from that checkout and streams the included audit utility over SSH. The Windows copy need not be synchronised to `mango` for this feature-specific operation. It verifies local Git branch/commit/status and submodule pointers, but does not modify Git. Check any local changes before executing.
@@ -16,7 +35,7 @@ bash -n "$RUNBOOK"
 bash "$RUNBOOK" preflight
 ```
 
-The preflight rechecks the exact B source/receiver identity, the legacy journal SHA, completed-candidate receipt content and SHA, absent staging markers, installed simplified executable hashes, expected legacy unit/timer status, noninteractive SSH and receiver pruning disabled. It also identifies the first newer source snapshot and refuses if a legacy receipt **or receiver object** already exists for it, so the controlled cycle must exercise an actual new send/receive rather than merely advancing a pre-existing received object. It writes a timestamped raw log inside the feature evidence directory, and **makes no state changes**.
+The preflight rechecks the exact B source/receiver identity, the legacy journal SHA, historical candidate receipt file identity and SHA (not its provenance claims), absent staging markers, installed simplified executable hashes, expected legacy unit/timer status, noninteractive SSH and receiver pruning disabled. It also identifies the first newer source snapshot and refuses if a legacy receipt **or receiver object** already exists for it, so the controlled cycle must exercise an actual new send/receive rather than merely advancing a pre-existing received object. It writes a timestamped raw log inside the feature evidence directory, and **makes no state changes**.
 
 If the preflight exits 0 with `PASS: guarded cutover preflight completed`, the same Cygwin terminal can perform the guarded transition:
 
@@ -54,11 +73,11 @@ Review the resulting service `ExecStart`, changes and failures before executing 
 - Backup journal SHA-256 `e11483fe05c482894c2db6fc15ffa63164f6b9c3da831508e0a2990123b9f3f2`, mtime `2026-11-01T19:39:39.159265+00:00`, old parent `20261030-030033Z`, candidate `20261030-170009Z`.
 - Old candidate `20261030-170009Z` is a **published, read-only received Btrfs snapshot** (received UUID `a9b78fb9-4da6-cf4f-b242-13909f574193`) and its legacy receipt is present.
 - No nonce-bound private stage/sidecar; other transaction markers absent. Neither simplified state exists.
-- **Unverified:** receipt *contents*, integrity, and its exact parent lineage. The initial audit only reported its presence. That is the next necessary read-only check.
+- **Unverified:** receipt *contents*, integrity, and historical transport/parent fields. The initial audit only reported its presence. Its contents subsequently failed the legacy acceptance contract; the transition therefore does not rely on those contents.
 
 ## 1 — Windows Cygwin: revised receiver audit (read-only)
 
-The updated audit verifies the historic candidate's Btrfs `Received UUID`, read-only flag and exact accepted receipt fields, checks receipt parent lineage against the journal, and prints `Candidate receipt sha256`. It fails on a malformed or mismatched receipt. It never modifies either host.
+The current audit verifies the historic candidate and journal parent from the actual Btrfs read-only `Received UUID` values, independently of the historical receipt. It verifies the receipt file is an ordinary private regular file, pins its bytes by SHA-256 and preserves it without treating its metadata as proof. It never modifies either host.
 
 ```bash
 cd /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
@@ -73,7 +92,7 @@ cat "$LOGDIR/step12-completed-candidate-audit.txt"
 printf 'Completed candidate audit exit: %s\n' "$rc"
 ```
 
-**Gate:** require `rc=0`, `Candidate and accepted legacy receipt: VERIFIED (readonly, exact parent lineage)`, a new `Candidate receipt sha256`, the original unchanged journal SHA above, candidate stamp `20261030-170009Z`, and all staged objects/other markers absent. If any check fails, do not archive or bootstrap. Keep the original source audit as accepted evidence; rerun it only if B's source identity has changed.
+**Gate:** require `rc=0`, `Candidate Btrfs identity: VERIFIED (readonly; independent of receipt claims)`, a new `Candidate receipt sha256`, the original unchanged journal SHA above, candidate stamp `20261030-170009Z`, and all staged objects/other markers absent. If any check fails, do not archive or bootstrap. Keep the original source audit as accepted evidence; rerun it only if B's source identity has changed.
 
 ## 2 — Windows Cygwin: transport, install and pruning configuration (read-only)
 

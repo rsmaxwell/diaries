@@ -1,0 +1,162 @@
+=== roles/snapshots/tests/verify-0040-simplified-receiver-retention.py ===
+Exit status: 0
+RECEIVER-SIMPLE-DELETED 20261003-000000Z subvolume_id=252
+RECEIVER-SIMPLE-DELETED 20261002-000000Z subvolume_id=251
+RECEIVER-SIMPLE-DELETED count=2
+RECEIVER-SIMPLE-DELETED 20261003-000000Z subvolume_id=252
+RECEIVER-SIMPLE-DELETED 20261002-000000Z subvolume_id=251
+RECEIVER-SIMPLE-DELETED 20261001-000000Z subvolume_id=250
+RECEIVER-SIMPLE-DELETED count=3
+RECEIVER-SIMPLE-DELETED count=0
+.................
+----------------------------------------------------------------------
+Ran 17 tests in 0.032s
+
+OK
+
+=== roles/snapshots/tests/verify-0040-agreed-parent-prune-guard.py ===
+Exit status: 0
+test_absent_legacy (__main__.Tests.test_absent_legacy) ... ok
+test_all_generations (__main__.Tests.test_all_generations) ... ok
+test_corruption (__main__.Tests.test_corruption) ... ok
+test_duplicate (__main__.Tests.test_duplicate) ... ok
+test_established (__main__.Tests.test_established) ... ok
+test_invalid_transition (__main__.Tests.test_invalid_transition) ... ok
+test_nonroot_owner_rejected (__main__.Tests.test_nonroot_owner_rejected) ... ok
+test_previous (__main__.Tests.test_previous) ... ok
+test_receiver_same (__main__.Tests.test_receiver_same) ... ok
+test_symlink (__main__.Tests.test_symlink) ... ok
+test_unsafe_mode (__main__.Tests.test_unsafe_mode) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.004s
+
+OK
+
+=== roles/snapshots/tests/verify-0040-prune-source-selection.py ===
+Exit status: 0
+PASS: only @data chosen by dry-run and deletion; held/pinned timestamps retained
+PASS: omitted prune setting retains all-source behaviour
+PASS: malformed pruning selection fails closed
+PASS: 0040 prune source selection regression (no Btrfs operations)
+
+=== roles/snapshots/tests/verify-0040-step05-adversarial.py ===
+Exit status: 0
+PASS: mixed paired and @data-only histories are complete
+PASS: source pin protects paired snapshot; dry-run only plans existing @data candidate and never mutates
+PASS: hold survives removal of mandatory root requirement
+PASS: root-only incomplete set prevents all pruning
+PASS: disappearing candidate fails before deletion
+PASS: invalid source contract rejected: ['@data', '@data']
+PASS: invalid source contract rejected: ['unrecognised']
+PASS: invalid source contract rejected: []
+PASS: creation excludes required source
+PASS: receiver ordinary prune remains unavailable
+PASS: Step 5 focused source migration adversarial tests (non-destructive)
+
+=== roles/snapshots/tests/verify-0040-receiver-inventory-agreed-parent.py ===
+Exit status: 0
+test_agreed_parent_metadata_is_not_a_receipt (__main__.ReceiverInventoryMetadataTests.test_agreed_parent_metadata_is_not_a_receipt) ... ok
+test_symlinked_unknown_json_still_fails_closed (__main__.ReceiverInventoryMetadataTests.test_symlinked_unknown_json_still_fails_closed) ... ok
+test_unknown_json_still_fails_closed (__main__.ReceiverInventoryMetadataTests.test_unknown_json_still_fails_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.003s
+
+OK
+
+=== roles/snapshots/tests/verify-0040-step12-3-deletion-boundary-guard.py ===
+Exit status: 0
+test_absent_marker (__main__.Tests.test_absent_marker) ... ok
+test_dangling_symlink_blocks (__main__.Tests.test_dangling_symlink_blocks) ... ok
+test_deletion_checks_before_inventory_and_before_journal (__main__.Tests.test_deletion_checks_before_inventory_and_before_journal) ... ok
+test_existing_marker_blocks (__main__.Tests.test_existing_marker_blocks) ... ok
+test_live_receiver_prune_remains_disabled (__main__.Tests.test_live_receiver_prune_remains_disabled) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.015s
+
+OK
+
+=== roles/snapshots/tests/verify-btrfs-snapshot-manager.py ===
+Exit status: 0
+PASS: retention always keeps newest snapshot
+PASS: retention keeps configured recent hourly buckets
+PASS: retention keeps configured daily buckets
+PASS: retention keeps configured weekly buckets
+PASS: retention thins older snapshots
+PASS: numeric Snapper IDs are outside the managed timestamp namespace
+PASS: timestamp naming is unambiguous UTC
+PASS: native snapshot activation is default-off
+PASS: native timer enablement is behind explicit activation
+PASS: ordinary deployment installs/preflights units without scheduling
+PASS: Ansible fails closed if @snapshots is an unexpected ordinary path
+PASS: Playbooks installs the read-only Diaries snapshot-history tool
+PASS: Playbooks installs the physical-extent sharing acceptance tool
+PASS: manager creates read-only native Btrfs snapshots
+PASS: manager rejects cross-filesystem snapshot repository
+PASS: manager requires the verified Diaries marker when integration is enabled
+PASS: snapshot creation shares the receiver writer lock
+PASS: retention operates on complete multi-source timestamp sets and fails closed on partial sets
+PASS: mars/local-backup uses the shared snapshots role
+PASS: backup/remote-backup uses the shared snapshots role
+PASS: remote-backup launcher no longer selects obsolete Snapper-only tags
+PASS: snapshot launcher explicitly supports mars-first then backup deployment
+PASS: 0035 native Btrfs snapshot-manager regression verified
+PASS: verified receiver snapshot creation requires pre-provisioned non-symlink writer lock
+PASS: role cannot reinstall retired legacy-prune units
+PASS: manager does not expose retired legacy commands
+
+=== roles/btrfs-replication/tests/verify-0040-simplified-replication.py ===
+Exit status: 0
+SUCCESS: common parent advanced to 20261101-140039Z
+SUCCESS: reconciled receiver-ahead transfer without retransmission
+test_absent_or_complete_candidate_never_deleted (__main__.Cases.test_absent_or_complete_candidate_never_deleted) ... ok
+test_ambiguous_parent_divergence_refuses (__main__.Cases.test_ambiguous_parent_divergence_refuses) ... ok
+test_choose_newest_eligible_newer (__main__.Cases.test_choose_newest_eligible_newer) ... ok
+test_completed_candidate_uses_advance_without_retransmit (__main__.Cases.test_completed_candidate_uses_advance_without_retransmit) ... ok
+test_filesystem_identity_refusal (__main__.Cases.test_filesystem_identity_refusal) ... ok
+test_held_or_legacy_receipt_refuses (__main__.Cases.test_held_or_legacy_receipt_refuses) ... ok
+test_incomplete_cleanup_exact_subvolume_once (__main__.Cases.test_incomplete_cleanup_exact_subvolume_once) ... ok
+test_invalid_candidate_prevents_cleanup (__main__.Cases.test_invalid_candidate_prevents_cleanup) ... ok
+test_invalid_state_or_rollback_refuses (__main__.Cases.test_invalid_state_or_rollback_refuses) ... ok
+test_latest_invalid_candidate_refuses_rather_than_falling_back (__main__.Cases.test_latest_invalid_candidate_refuses_rather_than_falling_back) ... ok
+test_latest_selection_ignores_symlinks_and_non_snapshots (__main__.Cases.test_latest_selection_ignores_symlinks_and_non_snapshots) ... ok
+test_readonly_or_received_unknown_candidate_refused (__main__.Cases.test_readonly_or_received_unknown_candidate_refused) ... ok
+test_receiver_ahead_lost_ack (__main__.Cases.test_receiver_ahead_lost_ack) ... ok
+test_receiver_backoff_uses_configured_lock (__main__.Cases.test_receiver_backoff_uses_configured_lock) ... ok
+test_receiver_failure_does_not_advance (__main__.Cases.test_receiver_failure_does_not_advance) ... ok
+test_receiver_incomplete_next_run_deletes_then_receives (__main__.Cases.test_receiver_incomplete_next_run_deletes_then_receives) ... INFO: cleaned one incomplete candidate; retrying receive
+ok
+test_sender_lost_ack_advances_local_without_retransmission (__main__.Cases.test_sender_lost_ack_advances_local_without_retransmission) ... ok
+test_single_nonblocking_manager_lock (__main__.Cases.test_single_nonblocking_manager_lock) ... ok
+test_state_atomic_readback (__main__.Cases.test_state_atomic_readback) ... ok
+test_state_record_and_prior (__main__.Cases.test_state_record_and_prior) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.019s
+
+OK
+
+=== roles/btrfs-replication/tests/verify-0040-simplified-protection.py ===
+Exit status: 0
+test_corrupt_and_unsafe_file_blocks_pruning (__main__.Cases.test_corrupt_and_unsafe_file_blocks_pruning) ... ok
+test_missing_file_allows_pre_cutover (__main__.Cases.test_missing_file_allows_pre_cutover) ... ok
+test_parent_and_previous_protected (__main__.Cases.test_parent_and_previous_protected) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+OK
+
+=== roles/btrfs-replication/tests/verify-0040-step12-3-shared-retention.py ===
+Exit status: 0
+PASS: receiver policies share one variable; defaults, 24-hour test and guards verified
+
+SHA256 26ba24e711558a358069775ef042c01765355dd5dc80f9eb5521f42a2673dfc0 roles/snapshots/files/btrfs-snapshot-manager.py
+SHA256 03f42853c847e27371f1a40c4534f60d4179a4a2547a11c6d270c58f3bbc76f8 roles/snapshots/tests/verify-0040-simplified-receiver-retention.py
+PASS: consolidated source fixture regressions. Live Btrfs or Ansible not tested; receiver prune remains disabled.
+
+EXPLICIT SCOPE: Source-only fixture regressions on assembled 6 Nov Playbooks source plus accepted 7 Nov receiver-retention implementation.
+DISPOSABLE REAL BTRFS: Modified fixture requires --run and has not yet been executed on updated source.
+LIVE RECEIVER: No installation or destructive prune performed by package creation. Existing receiver gate remains false.

@@ -1,0 +1,68 @@
+richard@mango:~/playbooks$ cd /home/richard/diaries
+
+FEATURE='change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage'
+LOGDIR="$FEATURE/evidence/Step 12/raw-logs"
+
+mkdir -p "$LOGDIR"
+LOG="$LOGDIR/step12-first-unattended-$(date -u +%Y%m%d-%H%M%S).txt"
+
+(
+    set -euo pipefail
+
+    echo '=== Service execution result ==='
+    ssh mars 'sudo -n systemctl show btrfs-native-push.service \
+        -p Result \
+        -p ExecMainStatus \
+        -p ExecMainStartTimestamp \
+        -p ExecMainExitTimestamp \
+        -p ExecStart'
+
+    echo '=== Scheduled execution journal ==='
+    ssh mars 'sudo -n journalctl \
+        -u btrfs-native-push.service \
+        --since "2026-11-07 03:20:00 UTC" \
+        --until "2026-11-07 04:30:00 UTC" \
+        --no-pager -o short-iso'
+
+    echo '=== Timer state ==='
+    ssh mars 'sudo -n systemctl is-enabled btrfs-native-push.timer'
+echo "Evidence: $LOG"ication stopped (exit $rc)"ks'rds match")simple-agreed-parent.json')"
+=== Service execution result ===
+Result=success
+ExecMainStartTimestamp=Sat 2026-11-07 03:30:01 UTC
+ExecMainExitTimestamp=Sat 2026-11-07 03:30:18 UTC
+ExecMainStatus=0
+ExecStart={ path=/usr/local/bin/btrfs-simplified-replication ; argv[]=/usr/local/bin/btrfs-simplified-replication sender cycle ; ignore_errors=no ; start_time=[Sat 2026-11-07 03:30:01 UTC] ; stop_time=[Sat 2026-11-07 03:30:18 UTC] ; pid=69095 ; code=exited ; status=0 }
+=== Scheduled execution journal ===
+2026-11-07T03:30:01+00:00 mars systemd[1]: Starting btrfs-native-push.service - Push newest accepted-lineage Btrfs snapshot to off-site backup...
+2026-11-07T03:30:01+00:00 mars sudo[69098]:     root : PWD=/ ; USER=richard ; COMMAND=/usr/bin/ssh -o BatchMode=yes -o ConnectTimeout=15 -p 39263 richard@10.254.22.1 'sudo -n /usr/local/bin/btrfs-simplified-replication receiver status'
+2026-11-07T03:30:01+00:00 mars sudo[69098]: pam_unix(sudo:session): session opened for user richard(uid=1001) by (uid=0)
+2026-11-07T03:30:05+00:00 mars sudo[69098]: pam_unix(sudo:session): session closed for user richard
+2026-11-07T03:30:05+00:00 mars sudo[69104]:     root : PWD=/ ; USER=richard ; COMMAND=/usr/bin/ssh -o BatchMode=yes -o ConnectTimeout=15 -p 39263 richard@10.254.22.1 'sudo -n /usr/local/bin/btrfs-simplified-replication receiver status --snapshot 20261107-030031Z'
+2026-11-07T03:30:05+00:00 mars sudo[69104]: pam_unix(sudo:session): session opened for user richard(uid=1001) by (uid=0)
+2026-11-07T03:30:06+00:00 mars sudo[69104]: pam_unix(sudo:session): session closed for user richard
+2026-11-07T03:30:06+00:00 mars sudo[69109]:     root : PWD=/ ; USER=richard ; COMMAND=/usr/bin/ssh -o BatchMode=yes -o ConnectTimeout=15 -p 39263 richard@10.254.22.1 'sudo -n /usr/local/bin/btrfs-simplified-replication receiver receive --snapshot 20261107-030031Z --uuid 7778dda5-2b91-8c4e-8b1a-1dd038a3675b --parent 20261106-160001Z --parent-uuid e28d1139-a311-944c-a048-b60874a4dd02'
+2026-11-07T03:30:06+00:00 mars sudo[69109]: pam_unix(sudo:session): session opened for user richard(uid=1001) by (uid=0)
+2026-11-07T03:30:16+00:00 mars sudo[69109]: pam_unix(sudo:session): session closed for user richard
+2026-11-07T03:30:17+00:00 mars sudo[69112]:     root : PWD=/ ; USER=richard ; COMMAND=/usr/bin/ssh -o BatchMode=yes -o ConnectTimeout=15 -p 39263 richard@10.254.22.1 'sudo -n /usr/local/bin/btrfs-simplified-replication receiver status --snapshot 20261107-030031Z'
+2026-11-07T03:30:17+00:00 mars sudo[69112]: pam_unix(sudo:session): session opened for user richard(uid=1001) by (uid=0)
+2026-11-07T03:30:17+00:00 mars sudo[69112]: pam_unix(sudo:session): session closed for user richard
+2026-11-07T03:30:18+00:00 mars btrfs-simplified-replication[69095]: SUCCESS: common parent advanced to 20261107-030031Z
+2026-11-07T03:30:18+00:00 mars systemd[1]: btrfs-native-push.service: Deactivated successfully.
+2026-11-07T03:30:18+00:00 mars systemd[1]: Finished btrfs-native-push.service - Push newest accepted-lineage Btrfs snapshot to off-site backup.
+2026-11-07T03:30:18+00:00 mars systemd[1]: btrfs-native-push.service: Consumed 4.629s CPU time.
+=== Timer state ===
+enabled
+active
+NEXT                        LEFT LAST                        PASSED UNIT                    ACTIVATES
+Sun 2026-11-08 03:30:00 UTC  17h Sat 2026-11-07 03:30:01 UTC 6h ago btrfs-native-push.timer btrfs-native-push.service
+
+1 timers listed.
+=== Source and receiver agreed-parent records ===
+PASS: Source and receiver agreed-parent records match
+Current parent: {'timestamp': '20261107-030031Z', 'uuid': '7778dda5-2b91-8c4e-8b1a-1dd038a3675b'}
+Previous parent: {'timestamp': '20261106-160001Z', 'uuid': 'e28d1139-a311-944c-a048-b60874a4dd02'}
+PASS: Scheduled replication state checks
+PASS: Verification commands completed
+Evidence: change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/step12-first-unattended-20261107-095251.txt
+richard@mango:~/diaries$

@@ -1,0 +1,14 @@
+=== Check test script ===
+=== Verify manager source on mango ===
+roles/snapshots/files/btrfs-snapshot-manager.py: OK
+=== Check disposable-test prerequisites ===
+/dev/loop4
+/usr/sbin/mkfs.btrfs
+=== Test preview ===
+PREVIEW ONLY. Use --run to create/dispose temporary loop-backed Btrfs test filesystems.
+=== Run isolated real-Btrfs test ===
+RECEIVER-SIMPLE-DELETED 20261002-010000Z subvolume_id=257
+RECEIVER-SIMPLE-DELETED count=1
+RECEIVER-SIMPLE-DELETED count=0
+PASS: disposable received Btrfs prune, holds, two parent pins, receipt preservation, disabled gate and idempotence
+PASS: Disposable real-Btrfs receiver retention test

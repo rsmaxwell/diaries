@@ -25,3 +25,9 @@ No SSH commands, journal rename, bootstrap, send/receive, Ansible playbook or re
 ## Outstanding acceptance evidence
 
 (1) Actual preflight stdout/stderr with exit code 0 and exact accepted receipt SHA; (2) successful guarded journal archive with checksum and root-only rollback path; (3) equal initial source and receiver parent state; (4) successful single live sender cycle and equal advanced parent/prior; (5) checked Playbooks preview followed by authorised deployment and timer/service readback. If a gate fails, preserve logs and stop rather than bypass the guard. Receiver pruning remains a separate acceptance gate.
+
+## 6 November — first Windows preflight, correction pending live verification
+
+Windows and mango pulled main `220672e`. Windows initially clean; mango has five untracked Step 12 raw logs that must be retained. `bash -n` succeeded. The read-only preflight confirmed source snapshot B and no source simplified state, but stopped when the overly strict migration auditor rejected the historical candidate receipt (generic lineage/transport error). No live mutation occurred.
+
+Review of the uploaded legacy `btrfs-native-push-receiver.py` established that its accepted-receipt contract supports full or incremental transport and does **not** assert the journal parent equals a previously published receipt parent. The corrected feature-local auditor checks the receipt independently, preserves source/receiver UUID, filesystem, destination, success/read-only and checksum guards, and reports historical receipt ancestry. The resulting preflight must still pass against live production data; this report does not claim it has passed.

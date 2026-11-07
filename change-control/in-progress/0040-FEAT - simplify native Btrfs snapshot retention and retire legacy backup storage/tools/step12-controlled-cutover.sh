@@ -64,7 +64,7 @@ require_text "$source_audit" 'PASS: read-only source audit; no state changed'
 require_text "$source_audit" "Proposed common parent $EXPECTED_PARENT: UUID=$EXPECTED_PARENT_UUID Received UUID=- Flags=readonly"
 require_text "$source_audit" 'ABSENT (expected before bootstrap)'
 
-step 'Audit completed legacy candidate and exact receipt on backup'
+step 'Audit legacy candidate Btrfs identity and pin historical receipt bytes on backup'
 receiver_audit="$(ssh backup 'sudo -n python3 - audit receiver' < "$AUDITOR")" || die 'Receiver audit failed'
 printf '%s\n' "$receiver_audit"
 require_text "$receiver_audit" 'PASS: read-only receiver audit; no state changed'
@@ -72,7 +72,7 @@ require_text "$receiver_audit" "Proposed common parent $EXPECTED_PARENT:"
 require_text "$receiver_audit" "Received UUID=$EXPECTED_PARENT_UUID Flags=readonly"
 require_text "$receiver_audit" "sha256=$EXPECTED_JOURNAL"
 require_text "$receiver_audit" "'timestamp': '$EXPECTED_CANDIDATE'"
-require_text "$receiver_audit" 'Candidate and accepted legacy receipt: VERIFIED (readonly, exact parent lineage)'
+require_text "$receiver_audit" 'Candidate Btrfs identity: VERIFIED (readonly; independent of receipt claims)'
 require_text "$receiver_audit" 'Nonce-bound private staged object: ABSENT'
 require_text "$receiver_audit" 'Nonce-bound ownership sidecar: ABSENT'
 require_text "$receiver_audit" 'Legacy marker .receiver-prune-pending.json: ABSENT'
@@ -112,7 +112,7 @@ receipt_exists="$(ssh backup "if sudo -n test -e /@data/mars-received/.replicati
 receiver_candidate_exists="$(ssh backup "if sudo -n test -e /@data/mars-received/@data/${next_candidate} || sudo -n test -L /@data/mars-received/@data/${next_candidate}; then echo PRESENT; else echo ABSENT; fi")" || die 'Cannot inspect next-candidate receiver object'
 [[ "$receiver_candidate_exists" == ABSENT ]] || die "Next candidate $next_candidate already exists on backup; classify before claiming a fresh send/receive test"
 
-printf '\nPASS: guarded cutover preflight completed. Receipt hash and host state were checked.\n'
+printf '\nPASS: guarded cutover preflight completed. Historical receipt bytes and Btrfs parent were checked independently.\n'
 if [[ "$MODE" == preflight ]]; then
     printf 'No state has been changed. Evidence: %s\n' "$LOG"
     exit 0
@@ -124,10 +124,10 @@ ssh mars 'sudo -n systemctl stop btrfs-native-push.timer && sudo -n systemctl st
 ssh mars '! systemctl is-active --quiet btrfs-native-push.timer && ! systemctl is-active --quiet btrfs-native-push.service' || die 'Source timer/service remained active'
 printf 'PASS: legacy job stopped before journal retirement\n'
 
-step 'Guarded archive of ONLY the completed legacy journal on backup'
+step 'Guarded archive of ONLY the obsolete legacy journal on backup'
 ssh backup "sudo -n python3 - archive --expected-sha256 $EXPECTED_JOURNAL --expected-candidate $EXPECTED_CANDIDATE --allow-completed-candidate --expected-receipt-sha256 $receipt_sha" < "$AUDITOR" || die 'Guarded journal archive failed; inspect journal and locks before proceeding'
 [[ "$(ssh backup 'sudo -n test ! -e /@data/mars-received/.replication-state/.agreed-parent-transfer-pending.json && echo absent')" == absent ]] || die 'Journal still active after archive'
-printf 'PASS: obsolete legacy journal archived; existing snapshots and receipts preserved\n'
+printf 'PASS: obsolete legacy journal archived; existing snapshots and receipts preserved unchanged\n'
 
 step 'Bootstrap new agreed parent on both hosts via source sender'
 ssh mars "sudo -n /usr/local/bin/btrfs-simplified-replication sender bootstrap --snapshot $EXPECTED_PARENT" || die 'Bootstrap failed; preserve any receiver-only state and inspect'

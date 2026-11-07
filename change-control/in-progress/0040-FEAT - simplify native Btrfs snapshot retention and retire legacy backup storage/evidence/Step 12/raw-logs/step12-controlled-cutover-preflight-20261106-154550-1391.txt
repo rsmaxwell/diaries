@@ -1,0 +1,67 @@
+
+=== Windows Diaries checkout and packaging ===
+C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+main
+220672e
+ M "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/reports/STEP12-CONTROLLED-CUTOVER-PREPARED-20261106.md"
+ M "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/reports/STEP12-LEGACY-JOURNAL-TRANSITION-PREPARED-20261106.md"
+ M "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tests/verify-step12-legacy-journal-transition.py"
+ M "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tools/README-STEP12-LEGACY-JOURNAL-TRANSITION.md"
+ M "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tools/step12-controlled-cutover.sh"
+ M "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tools/step12-legacy-journal-transition.py"
+?? "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/step12-controlled-cutover-preflight-20261106-124146-1351.txt"
+?? "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/step12-controlled-cutover-preflight-20261106-153458-1371.txt"
+?? "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/step12-controlled-cutover-preflight-20261106-154550-1391.txt"
+?? "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/reports/STEP12-HISTORICAL-RECEIPT-DECOUPLING-20261106.md"
+ e45ae170017fdf4974f642f654d7f709269af711 diaries-client (heads/main)
+ bd65d08435c0f5d240337cd6479cb41befe4d8c1 diaries-responder (heads/main)
+ cc147426e93ee6952558b65147e444d38316b3ce diaries-web (heads/main)
+Audit utility: 8811d61768fcb85e310e6c635ff118617e25a4da0ddbf6519aec488e0b0b3bae */cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tools/step12-legacy-journal-transition.py
+Action: preflight
+
+=== Re-audit initial read-only source parent on mars ===
+Filesystem identity: VERIFIED 72d1d8ea-900e-4fca-837f-1b1febec036c
+Proposed common parent 20261101-140039Z: UUID=69ef9a57-50ff-9a4e-92ed-8f10560ab1f2 Received UUID=- Flags=readonly
+Simplified parent /media/usb/@snapshots/.simple-agreed-parent.json: ABSENT (expected before bootstrap)
+PASS: read-only source audit; no state changed
+
+=== Audit legacy candidate Btrfs identity and pin historical receipt bytes on backup ===
+Filesystem identity: VERIFIED b915f967-7cb4-4c14-b11b-f52209637a22
+Proposed common parent 20261101-140039Z: UUID=37dcf2fc-8af2-444c-97b4-b0598b1766dc Received UUID=69ef9a57-50ff-9a4e-92ed-8f10560ab1f2 Flags=readonly
+Simplified parent /@data/mars-received/.replication-state/.simple-agreed-parent.json: ABSENT (expected before bootstrap)
+Legacy marker .agreed-parent-transfer-pending.json: PRESENT
+Legacy marker .receiver-prune-pending.json: ABSENT
+Legacy marker .agreed-parent-provisional.json: ABSENT
+Journal: root 0600, bytes=303, sha256=e11483fe05c482894c2db6fc15ffa63164f6b9c3da831508e0a2990123b9f3f2
+Journal mtime UTC: 2026-11-01T19:39:39.159265+00:00
+Journal: parent={'timestamp': '20261030-030033Z', 'uuid': 'd901ddd2-66c7-0b42-b26c-ab6886273b7a'} candidate={'timestamp': '20261030-170009Z', 'uuid': 'a9b78fb9-4da6-cf4f-b242-13909f574193'}
+Journal fields: candidate, nonce, parent, schema, status
+Receiver journal parent: UUID=21468afc-567a-8944-a854-083838aceae3 Received UUID=d901ddd2-66c7-0b42-b26c-ab6886273b7a Flags=readonly
+Receiver journal candidate: UUID=49cbcd83-683f-9e42-b526-dab448ec273f Received UUID=a9b78fb9-4da6-cf4f-b242-13909f574193 Flags=readonly
+Journal candidate receipt: PRESENT
+Historical receipt source filesystem: differs from current identity (not accepted as transfer proof; preserved only)
+Historical receipt sha256: 1d9b5007af3c153749ce0a6dd0e0106ba915e808d4d8b334d5d216b45574cca9
+Candidate Btrfs identity: VERIFIED (readonly; independent of receipt claims)
+Historical receipt: PRESERVED, not accepted as transfer proof
+Candidate receipt sha256: 1d9b5007af3c153749ce0a6dd0e0106ba915e808d4d8b334d5d216b45574cca9
+Nonce-bound private staged object: ABSENT
+Nonce-bound ownership sidecar: ABSENT
+Staging bound: False
+Publication witnessed: False
+Archive candidate sha256: e11483fe05c482894c2db6fc15ffa63164f6b9c3da831508e0a2990123b9f3f2
+PASS: read-only receiver audit; no state changed
+Pinned completed-candidate receipt SHA-256: 1d9b5007af3c153749ce0a6dd0e0106ba915e808d4d8b334d5d216b45574cca9
+
+=== Confirm installed executable and old service configuration ===
+PASS: accepted binary hash on both hosts: 9be64295a6b6807df0fcd33d924b7a6549959f2a03dcab2953dcf0ac77fa6297
+Current service ExecStart: { path=/usr/local/bin/btrfs-native-push ; argv[]=/usr/local/bin/btrfs-native-push --latest ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+PASS: timer enabled/active; legacy service failed (not running)
+
+=== Verify noninteractive transport and receiver prune configuration ===
+receiver_prune_enabled: False
+
+=== Inspect first newer source candidate and existing receipt ===
+First newer snapshot: 20261101-150004Z
+
+PASS: guarded cutover preflight completed. Historical receipt bytes and Btrfs parent were checked independently.
+No state has been changed. Evidence: /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/step12-controlled-cutover-preflight-20261106-154550-1391.txt

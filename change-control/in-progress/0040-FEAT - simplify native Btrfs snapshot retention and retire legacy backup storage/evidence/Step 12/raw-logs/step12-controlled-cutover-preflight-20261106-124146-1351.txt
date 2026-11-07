@@ -1,0 +1,23 @@
+
+=== Windows Diaries checkout and packaging ===
+C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+main
+220672e
+?? "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/step12-controlled-cutover-preflight-20261106-124146-1351.txt"
+ e45ae170017fdf4974f642f654d7f709269af711 diaries-client (heads/main)
+ bd65d08435c0f5d240337cd6479cb41befe4d8c1 diaries-responder (heads/main)
+ cc147426e93ee6952558b65147e444d38316b3ce diaries-web (heads/main)
+Audit utility: f25584313e5fc12a762c2ed6375732653a738a0c53eeac6e2a240686a0729130 */cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tools/step12-legacy-journal-transition.py
+Action: preflight
+
+=== Re-audit initial read-only source parent on mars ===
+Filesystem identity: VERIFIED 72d1d8ea-900e-4fca-837f-1b1febec036c
+Proposed common parent 20261101-140039Z: UUID=69ef9a57-50ff-9a4e-92ed-8f10560ab1f2 Received UUID=- Flags=readonly
+Simplified parent /media/usb/@snapshots/.simple-agreed-parent.json: ABSENT (expected before bootstrap)
+PASS: read-only source audit; no state changed
+
+=== Audit completed legacy candidate and exact receipt on backup ===
+FAIL: Completed candidate receipt does not match journal lineage and Btrfs transport
+REFUSED: Receiver audit failed
+
+FAIL: Audit completed legacy candidate and exact receipt on backup (exit 1). Evidence: /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/raw-logs/step12-controlled-cutover-preflight-20261106-124146-1351.txt
