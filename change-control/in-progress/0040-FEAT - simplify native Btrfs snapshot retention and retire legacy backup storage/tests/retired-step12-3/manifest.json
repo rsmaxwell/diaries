@@ -1,0 +1,1323 @@
+{
+  "archived_utc": "2026-11-07T12:05:09.186889+00:00",
+  "files": [
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/0040-INCREMENT-3E-ANSIBLE-RECEIVER-OBSERVER.md",
+      "category": "historical-linked-guide",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/0040-INCREMENT-3E-ANSIBLE-RECEIVER-OBSERVER.md",
+      "sha256": "1948699c674cba2f1c517b8474dd959b57b8cad0dc26571ccbfef732b88a7ec2",
+      "size_bytes": 1673,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/0040-INCREMENT-3G-RELEASE-GUARD.md",
+      "category": "historical-linked-guide",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/0040-INCREMENT-3G-RELEASE-GUARD.md",
+      "sha256": "d859738fffc16fb34682410cb530561bc8d314f1b68d5821f395273b4c7604e5",
+      "size_bytes": 1982,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/0040-real-btrfs-staging-README.txt",
+      "category": "historical-linked-guide",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/0040-real-btrfs-staging-README.txt",
+      "sha256": "8de96b667032ee17f3fe801aa89a0b504293a94380b9e923ae2c406da435cb60",
+      "size_bytes": 1812,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/README-0040-STEP12-3-PRIVATE-NAME-RUNTIME.md",
+      "category": "historical-step12-guide",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/README-0040-STEP12-3-PRIVATE-NAME-RUNTIME.md",
+      "sha256": "ddf6865ed0fb69589a01932aac1cfacff100c9117636403c2df800aa0981ebab",
+      "size_bytes": 3642,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/README-0040-STEP12-3-PRIVATE-STREAM-NAME.md",
+      "category": "historical-step12-guide",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/README-0040-STEP12-3-PRIVATE-STREAM-NAME.md",
+      "sha256": "4a70527bfe0308c75575918a040fbd994547dea23bbc2899323ecf190435521c",
+      "size_bytes": 2471,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/README-0040-STEP12-3-RENAME-BOUNDARY.md",
+      "category": "historical-step12-guide",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/README-0040-STEP12-3-RENAME-BOUNDARY.md",
+      "sha256": "cd0c985f7d6373a3fa3dc44a222ac873ab37e7237be954ceb1ceb94a841ea196",
+      "size_bytes": 1933,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/README-0040-STEP12-3-STAGE-OWNERSHIP-WITNESS.md",
+      "category": "historical-step12-guide",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/README-0040-STEP12-3-STAGE-OWNERSHIP-WITNESS.md",
+      "sha256": "538a601c7557e2710d070e11c20cb73684e042718fcd547672180e84aba2dadc",
+      "size_bytes": 2405,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/README-0040-STEP12-3-STAGED-RECOVERY-ASSESSMENT.md",
+      "category": "historical-step12-guide",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/README-0040-STEP12-3-STAGED-RECOVERY-ASSESSMENT.md",
+      "sha256": "52a435db60f7c241120ec62851008de5a678bc9e78cb0389d56fd56b5487907d",
+      "size_bytes": 2745,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-ansible-gates.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-ansible-gates.py",
+      "sha256": "98cf9c957655fa39209ca64d040500a53bfb795ba97d58e8d2b0771885a302f5",
+      "size_bytes": 1621,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-checkpoint-install.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-checkpoint-install.py",
+      "sha256": "56f8b00b5bfc06ff7846b07d3916ddb3c5b5af1522056ddf889145a797c34249",
+      "size_bytes": 1722,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-get-state-install.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-get-state-install.py",
+      "sha256": "dd69157db54af1bda68dc2579681c022bdc0460410bd3460716e1380b244c95d",
+      "size_bytes": 1351,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-get-state-transport.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-get-state-transport.py",
+      "sha256": "64929ba19ec6b9ef7f7e31d7680f7fca0b4a398fc970550cfdf84098769fd4fd",
+      "size_bytes": 3389,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-local-peer.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-local-peer.py",
+      "sha256": "dce029502e72d30a6511246ecc8a378830dc6383d918211b4029185de4ec68df",
+      "size_bytes": 2799,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-local-registration.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-local-registration.py",
+      "sha256": "0af6d350b71cde239c6bfad06b1fcadcf39fed21b63efb68bc1ab1aaf722c745",
+      "size_bytes": 3648,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-locked-get-state.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-locked-get-state.py",
+      "sha256": "ee708870330e0ae78b8909722ed92a21e14006914e5dc25f18bc25b8d0c57a25",
+      "size_bytes": 5053,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-locked-prepare-plan.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-locked-prepare-plan.py",
+      "sha256": "85a5c82d47723bfd36831fb7b56c2b5951372eb659da9c940054253bffdefd28",
+      "size_bytes": 3501,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-preparation-checkpoint.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-preparation-checkpoint.py",
+      "sha256": "a40211a6637b24072b0afc7fa3d076174bea00106b1e1e70c2cc6a2610b8d128",
+      "size_bytes": 4543,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-prepare-integration.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-prepare-integration.py",
+      "sha256": "62ce338d56c64c4d4eb40752c7b8e60109759ea671fa08f4263e8fe996f8b249",
+      "size_bytes": 3861,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-prepare-plan-install.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-prepare-plan-install.py",
+      "sha256": "2c4c9c229e7bc6c21b8ef3d6f836c337815c61ae453d4475a063f2ddf0bb2f5d",
+      "size_bytes": 1619,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-prepare-preflight.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-prepare-preflight.py",
+      "sha256": "c7a872efad63ac57376a92e5c3ee4f314fa8f6eab5c1ff7ed4345bf4bd477887",
+      "size_bytes": 3034,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-prepare-transport-contract.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-prepare-transport-contract.py",
+      "sha256": "9c0b3bdf9483f6cf082fb255edd61137272ed2c9912ac457fdca6ec3c0df3422",
+      "size_bytes": 3517,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-prepare-transport.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-prepare-transport.py",
+      "sha256": "45029444074c6225e3d077b94122cf8665380cd3b5e077d47c4c754153ad916e",
+      "size_bytes": 3603,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-prepared-transfer-review.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-prepared-transfer-review.py",
+      "sha256": "777237ae94f33fa35b5ff6657b993785354affe69badaf95fe767587bfc2809f",
+      "size_bytes": 2587,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-receive-boundary.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-receive-boundary.py",
+      "sha256": "780ff6074d1e184824ded0271ee1e1ae9bc06cfc5c22cbd057086f97920227ed",
+      "size_bytes": 2415,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-receiver-prepare-install.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-receiver-prepare-install.py",
+      "sha256": "8081a968771416a9f0d51f5a0d2ccef47455411565d77ba195b17f9518bd7386",
+      "size_bytes": 2014,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-receiver-prepare.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-receiver-prepare.py",
+      "sha256": "95008a6042577e9291641786088da281655be3bf5c48addfff50cc6c9c4e703a",
+      "size_bytes": 4456,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-receiver-session-binding.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-receiver-session-binding.py",
+      "sha256": "d5faa136d433a87ce0d380df4ce878242f481e55cb850a1918d82bab6500cb8c",
+      "size_bytes": 4011,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-receiver-session-coordinator.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-receiver-session-coordinator.py",
+      "sha256": "bf0bb2891d79384899e92359472495cafd065a3b5c9ed45294860aba1d084784",
+      "size_bytes": 4809,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-recovery-decision.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-recovery-decision.py",
+      "sha256": "bc78c99f94b210a74f2526c90ee0e1741fb5e80d88103bca4826046025384b59",
+      "size_bytes": 5592,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-release-guard.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-release-guard.py",
+      "sha256": "6ae288be7a19129c34d71d800a111f917d78ef7c3c73227cc4783d3be3cdbd11",
+      "size_bytes": 3509,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-selection.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-selection.py",
+      "sha256": "8d3b968df9655763011803968ffe2a9d4fd3109da7d513c0fce6ae0d080c5e0b",
+      "size_bytes": 2832,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-sender-gate.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-sender-gate.py",
+      "sha256": "1770e9c3fcfbaca99d9ce613cffa8d19ae8cf929f15c1ee50ed4647a6f594105",
+      "size_bytes": 2136,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-source-observer-install.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-source-observer-install.py",
+      "sha256": "553505b7a6f452a1f91f36660474dd88f0290fc63e3b838f41dfd4d44eaa85a8",
+      "size_bytes": 1494,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-source-only-recovery.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-source-only-recovery.py",
+      "sha256": "78c8c1e92cbaa657e8ca5a990e79f075e49c911777a1be54ae18feaf0c1372c4",
+      "size_bytes": 4154,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-source-recovery-integration.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-source-recovery-integration.py",
+      "sha256": "54b5b9b8defaa6a71ffbdac6adc802f7c8b69a7eb4249544316b30fc24d3cb86",
+      "size_bytes": 5347,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-absence-transport.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-absence-transport.py",
+      "sha256": "3f1db26466006a8e04385971867183231d14df3f76947f42807d19b36b2337d4",
+      "size_bytes": 2047,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-attestation-transport.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-attestation-transport.py",
+      "sha256": "066829fcfee9b197430f5f45571d5fc044f8998cd66fc8ccd89859784fea85ec",
+      "size_bytes": 3186,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-coordinator.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-coordinator.py",
+      "sha256": "8c9a25577fd7ec8893fe73fb55c6cac5335deb659bdca1e936a1a64a9875e804",
+      "size_bytes": 4362,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-execution-adapter.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-execution-adapter.py",
+      "sha256": "5f9a0510e70a4702000ad73b697e06c6b9460fe042bcfdc10bd2dc04c2527b59",
+      "size_bytes": 3730,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-identity-probe.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-identity-probe.py",
+      "sha256": "c23b239caabb4de0ef19da9c7056a70ee22be968f3ff12810d7314978b159875",
+      "size_bytes": 3118,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-integration-review.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-integration-review.py",
+      "sha256": "89d5f92bdc13edb039b274ec4748fb011591c5e8b38cc04767475da188469051",
+      "size_bytes": 3557,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-plan-install.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-plan-install.py",
+      "sha256": "60dca508e8cc33959163ffb5214e9cf12c6fbf0c65b141b119840c3ebe9a3748",
+      "size_bytes": 1511,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-plan.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-plan.py",
+      "sha256": "fa0c91669b09b71500946cf5f1120172c1ad58d8839c6ac5e0c1d21f03d9c49c",
+      "size_bytes": 5879,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-session.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-session.py",
+      "sha256": "0329499d9567ff85bd0961b006fe4d927fb7b0aaa26bfceffa7191816d824010",
+      "size_bytes": 3389,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-transport-contract.py",
+      "category": "superseded-agreed-parent-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-agreed-parent-transfer-transport-contract.py",
+      "sha256": "831b217bdd816fa808a2ee495f706f246ffcd66215110c1a422e13e4d9c4c658",
+      "size_bytes": 2785,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-atomic-auto-preparation.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-atomic-auto-preparation.py",
+      "sha256": "14b701884225915b87e2a24b231ab6d132d9375b64b6c0dc90ae1f057ce98295",
+      "size_bytes": 3144,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-authenticated-finalisation-link.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-authenticated-finalisation-link.py",
+      "sha256": "eb2afb75458d6ec7d48e7c2387eca232b05a344925a0f4040ebac64e921bf79c",
+      "size_bytes": 3869,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-authority-storage.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-authority-storage.py",
+      "sha256": "ea5b53b446baa964f96c8a3597d863ec8ef9793b338f6fdbaa93bc9a8ea3cb55",
+      "size_bytes": 1741,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-auto-candidate.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-auto-candidate.py",
+      "sha256": "c5c1a87ec52851c7df43160cd64fe05d2cd1be55cc9fb485b1895de910e3d03d",
+      "size_bytes": 3442,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-auto-prepared-cycle.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-auto-prepared-cycle.py",
+      "sha256": "f7683844d6a36284e847d2ba8d70e31f5897a77e27d25713d5650d5a764fdcee",
+      "size_bytes": 4394,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-binary-sender-adapter.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-binary-sender-adapter.py",
+      "sha256": "7e2bb88729a35f1b0da95233cbbb6fe2ef7707556295e5f17186a6071b7242e8",
+      "size_bytes": 2261,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-boot-bound-journal.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-boot-bound-journal.py",
+      "sha256": "bb11d0e1e33b25d879a72eb8189fe09e00acc9baaf51534093480c9428257793",
+      "size_bytes": 2386,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-bounded-binary-receive.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-bounded-binary-receive.py",
+      "sha256": "d15ed1f3fc5e850277abf84f4122ac07a0c9c201a21230c19ec997df08e29ea8",
+      "size_bytes": 2832,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-btrfs-rename-boundary.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-btrfs-rename-boundary.py",
+      "sha256": "a08fe23b1c1cba367d726858d2a229fddca16352f01e16f19fb60ec21392a075",
+      "size_bytes": 6711,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-command-identity-binding.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-command-identity-binding.py",
+      "sha256": "1ef929ace4d45fc54f165474d803a8c4fdee668d6e445e3f7f1797818689e658",
+      "size_bytes": 2212,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-complete-committed.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-complete-committed.py",
+      "sha256": "350454aa21e112d884bb7e9ffd2a2905f410cc3c6ba3a4eb8df2814da191ddcc",
+      "size_bytes": 3203,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-complete-prepared.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-complete-prepared.py",
+      "sha256": "a56fda8aa22c4d4e85b781b7edb650d38a51f97d1857f612b51349978b1e11e0",
+      "size_bytes": 2945,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-cycle-entry.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-cycle-entry.py",
+      "sha256": "23c6201c06bec4a8c9312006c9c0612375764c643bc821e06d44c992b6bb8f75",
+      "size_bytes": 2614,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-dormant-install-gate.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-dormant-install-gate.py",
+      "sha256": "df04cf31b271f92ac9a2e19aed2a03f44fbce812d367974385c9f38f978fa6a9",
+      "size_bytes": 2257,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-endpoint-boundary.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-endpoint-boundary.py",
+      "sha256": "fc0789f9d027b74c99f8a82e805e96db021eb288d2d2ccdc8005573f932f017a",
+      "size_bytes": 3006,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-entry-core-link.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-entry-core-link.py",
+      "sha256": "88e6e9401a4dda544e07468c23e5d139233dedfbdafff64d2600083a5d115f63",
+      "size_bytes": 4456,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-final-receipt-readback.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-final-receipt-readback.py",
+      "sha256": "f60d4cb37bdac0efde1162398dfccee4356a11d23347ce0be0f48f27327fb3b1",
+      "size_bytes": 3827,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-finalisation-core.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-finalisation-core.py",
+      "sha256": "55bbd3767b6fb440f3bfa03a5b35a74c567e86b7831fd0046c1536a642ffd14e",
+      "size_bytes": 4193,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-finalisation-storage.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-finalisation-storage.py",
+      "sha256": "315df3fb9e800c73a057d472b7255815a90cfe9068758f28eae89d8c1e19ded3",
+      "size_bytes": 3128,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-finalisation-transaction.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-finalisation-transaction.py",
+      "sha256": "0af54079584af3b7fcaadca3986fc668e77b1aa1c8432ad799ab0522006ff0f1",
+      "size_bytes": 2734,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-finalise-cli-gate.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-finalise-cli-gate.py",
+      "sha256": "c6c8f8dd4a7cb978708bcf0a16c59646d35e9c8a2989ea2a6150780e1f026b6e",
+      "size_bytes": 2161,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-finalise-operational-binding.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-finalise-operational-binding.py",
+      "sha256": "4e3ec20c7e32431e238a065cd176d6cad658c276e933a3ef97aa0ff5f6e2ca96",
+      "size_bytes": 4394,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-fixed-command-binding.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-fixed-command-binding.py",
+      "sha256": "db54282fda5e4faef5e733a573d4ee0ff9f97019d0402620780ccd7505b8a889",
+      "size_bytes": 2843,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-fixed-receiver-cli.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-fixed-receiver-cli.py",
+      "sha256": "20a1e047d9b52049f7764e36e22a4141a9ace5532e80abefbffbceb23c72a8ef",
+      "size_bytes": 3433,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-fixed-sender-runtime.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-fixed-sender-runtime.py",
+      "sha256": "2890bdb12d56bd8eb6c982be9ebcb3feb325970703697c73d74b456795d22ca4",
+      "size_bytes": 3716,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-incomplete-inspection.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-incomplete-inspection.py",
+      "sha256": "d73f52bd4ab22a793fca558fede3c047a570b23533998c269509a1e891343d25",
+      "size_bytes": 1881,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-incomplete-reconciler.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-incomplete-reconciler.py",
+      "sha256": "64ce1e226eadcb09089e0fe579a98bfa73aabc9f719792ee8ed4aa1ab9354b53",
+      "size_bytes": 3530,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-incomplete-recovery-gate.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-incomplete-recovery-gate.py",
+      "sha256": "29bf50ab78b1cd2f653d10661b39588ea82c159b0614f5431e097a6be20ad4a6",
+      "size_bytes": 3179,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-integrated-receive.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-integrated-receive.py",
+      "sha256": "2352f0856b86d1bcce35e96221b2b5f3e6e6282496d002261f45665e40840bfd",
+      "size_bytes": 5494,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-journal-scope-binding.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-journal-scope-binding.py",
+      "sha256": "9a3a703119ef87a27f0b22b1261bb4db62d211dd46031e54e325d9346d32d48b",
+      "size_bytes": 2668,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-live-scope-lifecycle.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-live-scope-lifecycle.py",
+      "sha256": "ae4c9ba6795cd9dbd040f9d54611999b47dd347022551f6edf00740bb4800d38",
+      "size_bytes": 2852,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-live-scoped-receive.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-live-scoped-receive.py",
+      "sha256": "48e263b5e73bcab6386e573607667004b8cc80d08afc4a65086f21ba7096a668",
+      "size_bytes": 2914,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-lock-inheritance.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-lock-inheritance.py",
+      "sha256": "b0449a41401578ede93381ed82dbfe7aea05d6443c39be44df6ec667beb3c1c1",
+      "size_bytes": 2347,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-locked-candidate.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-locked-candidate.py",
+      "sha256": "f955185adb5050c83bd24841a69180dd08f154ca7cae0054752a4b15ea54ec05",
+      "size_bytes": 2734,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-manual-sender-entry.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-manual-sender-entry.py",
+      "sha256": "3dd2b7d4ad3ce82772b6cb3a1ec2c94615f83fee1a57c4a6b8b606c8fa62b63f",
+      "size_bytes": 1994,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-migrated-receive.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-migrated-receive.py",
+      "sha256": "63dd6c1f81c036a45d31def71e9786587569aa0b4a280793011aef22c978529b",
+      "size_bytes": 5821,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-previous-ack.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-previous-ack.py",
+      "sha256": "e713c1bb31536f9c68ca5140e0cf8734135af2281ebc2df7612ec7f9e412193f",
+      "size_bytes": 3472,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-previous-receiver.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-previous-receiver.py",
+      "sha256": "7f5a124ae7f3ab3e5ff110a9e791c63cc988f4b2e0b0b81b88c6fe30c5941bbb",
+      "size_bytes": 2453,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-private-name-real-btrfs.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-private-name-real-btrfs.py",
+      "sha256": "151df8b8fa0e9ec4188a6a73a9b086abee3fcfbd056abbb6cbd5e88732e18faa",
+      "size_bytes": 6217,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-private-stream-name.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-private-stream-name.py",
+      "sha256": "5a24952f3c60b7b9b1aca917e7043de08110cef20adaaa6782d67a3f08e81793",
+      "size_bytes": 10453,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-private-stream-runtime.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-private-stream-runtime.py",
+      "sha256": "13a3d46af035e956d9ac79860001d01bd0eb06b23cbdf602ebe12f383e3e126e",
+      "size_bytes": 3707,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-privileged-reboot-assessment.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-privileged-reboot-assessment.py",
+      "sha256": "79f80e56c4abdf3f8d2968c90c870085a3ff0de0c3a5588881ca78fd913fa34f",
+      "size_bytes": 1962,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-privileged-scoped-entry.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-privileged-scoped-entry.py",
+      "sha256": "39ba82c5eab3f8b4dee0e1db729cc00d68e2311aa65921f1006cec7b20c8fa45",
+      "size_bytes": 3000,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-promote-command-integration.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-promote-command-integration.py",
+      "sha256": "724abb847b12151580c92bd4d98adf353ceab473f25bca72ea689fccf5e8d669",
+      "size_bytes": 3245,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-proof-key-install.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-proof-key-install.py",
+      "sha256": "bcbce8651baf2ba724e80cff01d8f219f5de17a583f51c65f7c189c37395fa10",
+      "size_bytes": 1664,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-provisional-journal.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-provisional-journal.py",
+      "sha256": "01ddb3dc55b18db5c3a3a22a91a21dbeea6a0ac910c3cb7af811609d6a928f84",
+      "size_bytes": 2517,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-publication-witness.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-publication-witness.py",
+      "sha256": "b653bd0764c0d79f25b551631a5b6529d0855f3e4edc9b03dcb0a1fd17c18bfe",
+      "size_bytes": 2677,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-real-btrfs-staging.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-real-btrfs-staging.py",
+      "sha256": "bfb5ad762b92c0b6c1212fe205c11af375368003b4a7af52ab60b4b1c229f392",
+      "size_bytes": 10085,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-receiver-btrfs-cli.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-receiver-btrfs-cli.py",
+      "sha256": "31fa6d35c02fa7d64ed2d9ea4d7a7990be99fde285cd913ec199b917d0052433",
+      "size_bytes": 3370,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-receiver-btrfs-diagnostics.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-receiver-btrfs-diagnostics.py",
+      "sha256": "52a533e5094e71633c8fbfd5bd481e3fa4b9edf1ec20db4a64eca9bd3fcb41f2",
+      "size_bytes": 2505,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-receiver-core-install.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-receiver-core-install.py",
+      "sha256": "a018731a15a36f8f50e1ea0182c11defbe0d66cc8be421e48c023a50d4585833",
+      "size_bytes": 1600,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-receiver-entry.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-receiver-entry.py",
+      "sha256": "494df6ed8aecd6238576c75f697f1d4c7e647a50bb34bcc0cf640a307865ead8",
+      "size_bytes": 3455,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-receiver-incomplete-cli.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-receiver-incomplete-cli.py",
+      "sha256": "d07df9f2bbf09aa531d7392d21256e870a0bdfe9adfcfc2703d287917bb53019",
+      "size_bytes": 4386,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-receiver-launcher.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-receiver-launcher.py",
+      "sha256": "8484c67c7cc4a6eaba1c0622a81ba94e15902f44b6320e1c58b5798d7021aa44",
+      "size_bytes": 1417,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-receiver-operation-contract.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-receiver-operation-contract.py",
+      "sha256": "d68b5005be78f6a6c2b5e6b60e591cfdb04fcdb2d67d691228f538e74c7e4d82",
+      "size_bytes": 3484,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promoted-readback.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promoted-readback.py",
+      "sha256": "6f014844d73d97a7f58a66858344532d24502cf624c372ccc0983a4225f54109",
+      "size_bytes": 2956,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promotion-adapter.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promotion-adapter.py",
+      "sha256": "b59c02980ebe68f235d7e0ec77810be2567f48508c76efbdfd2d9cfaa2b2d62c",
+      "size_bytes": 2954,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promotion-binding.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promotion-binding.py",
+      "sha256": "232c8ce57300e8c40a2209cf7e3a6dd7793f04c7dd8be0babda210cba2f2a272",
+      "size_bytes": 3449,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promotion.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-receiver-promotion.py",
+      "sha256": "ab62d86a9932caf8cd9fb6b1f1cec0f2324ee6d1cdf57b98093811f4880a701d",
+      "size_bytes": 4989,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-receiver-reserved-stream.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-receiver-reserved-stream.py",
+      "sha256": "d7cdc458013223dbebe568f04e9e4e600f839ca3b485bf8be3efa994818f97ba",
+      "size_bytes": 3027,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-receiver-scoped-lifetime.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-receiver-scoped-lifetime.py",
+      "sha256": "4671c6114313c44ca879aa601a7b0143e08958016e65fa9da6ebbc1d595bb44a",
+      "size_bytes": 2652,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-recovery-cycle.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-recovery-cycle.py",
+      "sha256": "d4e54e8d603c1306209c0707379cca994240c8fef09feb6f888b271169c7852f",
+      "size_bytes": 4037,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-runtime-manifest.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-runtime-manifest.py",
+      "sha256": "4ef838dd5170179c786d33fdcdc58054abcc2bcc0bf01df82a21a83fae02bac4",
+      "size_bytes": 1616,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-same-parent-storage.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-same-parent-storage.py",
+      "sha256": "3269f7d351ee77d06f2e931994751147e603c922bb7c9e89846b514b27b9685f",
+      "size_bytes": 3138,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-scope-observer.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-scope-observer.py",
+      "sha256": "aba5cf926f7e810a9c6d7a63ee5e93da48438b72de8ca3729be78cf22be36ee4",
+      "size_bytes": 2263,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-scoped-finalisation.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-scoped-finalisation.py",
+      "sha256": "06b17a705c64b0d5442f5f2e7a730fb23da74f67b2fde05710573b136fcff417",
+      "size_bytes": 3492,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-scoped-integrated-binding.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-scoped-integrated-binding.py",
+      "sha256": "106b1cdc953f7f2e8e2a5f7ed99d00987baac80750dd9f93ebcc955cf4baf250",
+      "size_bytes": 2769,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-scoped-reconciliation-contract.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-scoped-reconciliation-contract.py",
+      "sha256": "e22468f2573ea14d8008fc8a4fbe5e7cc3bdd9238130f0f0a30de68b70e61529",
+      "size_bytes": 2526,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-scoped-session-readback.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-scoped-session-readback.py",
+      "sha256": "7dd6ff3f523ae78c3740e9f2359024034211e134e7faf593a5293464cd07ff97",
+      "size_bytes": 2700,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-sender-execution.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-sender-execution.py",
+      "sha256": "9b4dbba4ef9bc4e469b6f6d24b8b60c189e71510c066c24269e8c04ed324fbcc",
+      "size_bytes": 4479,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-sender-fixed-integration.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-sender-fixed-integration.py",
+      "sha256": "7c35ad601992e245d4e9224174e7ebf4d1866492ad274d96b62981cdec948de2",
+      "size_bytes": 3242,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-sender-key-descriptor.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-sender-key-descriptor.py",
+      "sha256": "52d9a0653bb6c828106bf806c48f57bab69e6d0447b5cfda1153e6297cc9b8eb",
+      "size_bytes": 2694,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-sender-locked-runtime.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-sender-locked-runtime.py",
+      "sha256": "d2ad0302c07ec3b833e56b1c6dc5cc1b9a6bab5565881b8a44150d43cd07fa8e",
+      "size_bytes": 3362,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-sender-promotion-coordinator.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-sender-promotion-coordinator.py",
+      "sha256": "caaa730897205f912bc81629720609468ca2e947c8620dedac7240b1f141e383",
+      "size_bytes": 4021,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-sender-promotion-runtime.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-sender-promotion-runtime.py",
+      "sha256": "6d526f4707bd758ceda1bfb3af3e9bb84db3f9ec7cfbcfa11cfa0587d7da9405",
+      "size_bytes": 3979,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-sender-proof-handoff.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-sender-proof-handoff.py",
+      "sha256": "ba1f0c8963561fbb3052e82a459a110cd6fff68733a0529da59a967c2ee6cc40",
+      "size_bytes": 3342,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-sender-transaction.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-sender-transaction.py",
+      "sha256": "3cd79d040541b07c284c310066141490f6248d57750e5f170fb53378d4ad086d",
+      "size_bytes": 3265,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-sender-workflow.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-sender-workflow.py",
+      "sha256": "80edafad23327a31828c8d38ff3171bade64844703f32166053a0e96985db5cb",
+      "size_bytes": 4306,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-session-proof.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-session-proof.py",
+      "sha256": "980f96f34382a06814fb0b418b6a01c9082b09572cc02b3dacf37ce077f7e6ff",
+      "size_bytes": 2101,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-session-query.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-session-query.py",
+      "sha256": "b3ca8eb03309a43a9d3f619912b3b8e4c7289496ca146199ac9ad2b7b5ae0067",
+      "size_bytes": 2777,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-stage-observer-integration.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-stage-observer-integration.py",
+      "sha256": "e96367025c7cc7e60b5fe2f2b475e42e95085caa85031fef9bdac1bb40f85de9",
+      "size_bytes": 2650,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-stage-ownership-capture.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-stage-ownership-capture.py",
+      "sha256": "8bb05c42a84b5be8628bc14fb75ec5f4a5bd4afc87bfc4968297bb9039c4a78d",
+      "size_bytes": 4945,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-staged-coordinator.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-staged-coordinator.py",
+      "sha256": "09b7dac378337e4bb798653bbd806ec7c96e7e8a3b6ef9f5f539cbfa8f19fe4c",
+      "size_bytes": 3744,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-staged-endpoint-journal.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-staged-endpoint-journal.py",
+      "sha256": "3a97c5f07923076722122caab7bfda0eb423e7dba430d686018f2e8aa2c7387c",
+      "size_bytes": 2477,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-staged-finalisation.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-staged-finalisation.py",
+      "sha256": "1767a9fc1793a950023fb97c5a16d45320986c4a0763c02f8f04bdba3cb0223b",
+      "size_bytes": 7412,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-staged-fixed-receiver.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-staged-fixed-receiver.py",
+      "sha256": "c4eea3c11ddad5370a105dbdec9ae9251082ad3f2599c6d8dfb080af46f63127",
+      "size_bytes": 4776,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-staged-no-legacy-cleanup.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-staged-no-legacy-cleanup.py",
+      "sha256": "bfa75b37782d069adc74a4a2177dbae38dc1244f51c5fb4665fd388d8c967e0a",
+      "size_bytes": 1821,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-staged-postreceive.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-staged-postreceive.py",
+      "sha256": "7eea11fe6d2b1342361e0a757f00dece9dc70ce961e01f444ed038208e62c4d8",
+      "size_bytes": 3627,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-staged-received-inspection.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-staged-received-inspection.py",
+      "sha256": "02a374423f6a960699cc8c2396d1499cf7b82c9d157d818efc819e187f16cd1e",
+      "size_bytes": 3453,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-staged-recovery-assessment.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-staged-recovery-assessment.py",
+      "sha256": "af33d64c4f1218796d2a0acc8b8fd1740d08f59547342be3bc9a9cc53620302a",
+      "size_bytes": 5593,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-staged-transaction-dispatch.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-staged-transaction-dispatch.py",
+      "sha256": "6af782e45b90a100f446c824a34d80ef4177a2299d78b4577ceceb3ed728b37b",
+      "size_bytes": 3676,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-staging-contract.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-staging-contract.py",
+      "sha256": "2954a7eecb7101323522712e594031566745842f23fe96cee554192e40e8b358",
+      "size_bytes": 2498,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-staging-publication.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-staging-publication.py",
+      "sha256": "aca560e1bac7a2383f4304fad555748fd428c8f348202198958c764f773bc95d",
+      "size_bytes": 3013,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-staging-storage.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-staging-storage.py",
+      "sha256": "76d4f3ce3f2335a3e2a2bd5a90c2eda3ea163d1561f68099ec473593bd5539df",
+      "size_bytes": 1272,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-unattended-coordinator.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-unattended-coordinator.py",
+      "sha256": "1283215ace786d6ea59c8896b9eb06ddaa168e879a33a48c6340e3acec295ed9",
+      "size_bytes": 4614,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-unattended-driver.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-unattended-driver.py",
+      "sha256": "76dbe8fb60ff2d4904b60e8c948fdfbb15fc4edb2efa563cca714f777f105aba",
+      "size_bytes": 3061,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-unattended-policy.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-unattended-policy.py",
+      "sha256": "be43f5b63b54c613590fe2dc7c687bc55181739185e6ca420cb91ab7c0c2d848",
+      "size_bytes": 3021,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3-witnessed-published-absence.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-witnessed-published-absence.py",
+      "sha256": "db38c30f48843d0e51c3502c54613ce34841dbe6fe7d4949f6d94aaf49a29573",
+      "size_bytes": 1708,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3c-receiver-cli.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3c-receiver-cli.py",
+      "sha256": "8e82ae8bdbd38fc63dd49af1d634a0b14dee129d7944bcdfd0a71c982d57dbd8",
+      "size_bytes": 1941,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-3c-receiver-wiring.py",
+      "category": "superseded-step12-prototype",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3c-receiver-wiring.py",
+      "sha256": "679f159457fe415ad5e089bbf88b0887494ab34fa447a609f6b47e80ec1f477d",
+      "size_bytes": 2628,
+      "tracked_in_git": true
+    },
+    {
+      "archive": "playbooks/roles/btrfs-replication/tests/verify-0040-step12-unattended-gateway.py",
+      "category": "superseded-step12-gateway",
+      "git_status_at_archive": "",
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-unattended-gateway.py",
+      "sha256": "19d6ad70d705b727b3f6c99f849e2c558cd01b755886298a57fc54fe068d8814",
+      "size_bytes": 3148,
+      "tracked_in_git": true
+    }
+  ],
+  "playbooks_branch": "main",
+  "playbooks_head_revision": "813b7210d08865337770ae821bb9d88529115188",
+  "purpose": "0040-FEAT historical superseded replication test preservation",
+  "schema": 2
+}
