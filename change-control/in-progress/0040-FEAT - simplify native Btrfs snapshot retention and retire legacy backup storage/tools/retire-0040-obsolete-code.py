@@ -169,14 +169,18 @@ files={p['path'] for p in req['targets']}
 legacy={p for p in files if p.startswith('/usr/local/')}
 roots=('/etc/systemd/system','/etc/cron.d','/etc/cron.daily',
        '/etc/cron.hourly','/etc/cron.weekly','/etc/cron.monthly',
-       '/usr/local/bin','/usr/local/sbin','/root/scripts')
+       '/usr/local/bin','/usr/local/sbin','/usr/local/libexec','/root/scripts')
 extra=('/home/richard/.ssh/authorized_keys','/root/.ssh/authorized_keys',
        '/etc/crontab','/etc/sudoers')
 checks=set(extra)
 for root in roots:
     if not os.path.isdir(root): continue
     for base, dirs, names in os.walk(root, followlinks=False):
-        dirs[:]=[d for d in dirs if not os.path.islink(os.path.join(base,d))]
+        # Bytecode caches are generated artefacts, not runnable entrypoints.
+        # They can contain obsolete string constants from files retired together.
+        # Continue scanning actual scripts, systemd units and other configs.
+        dirs[:]=[d for d in dirs if d != '__pycache__' and
+                 not os.path.islink(os.path.join(base,d))]
         for name in names:
             checks.add(os.path.join(base,name))
 errors=[]
