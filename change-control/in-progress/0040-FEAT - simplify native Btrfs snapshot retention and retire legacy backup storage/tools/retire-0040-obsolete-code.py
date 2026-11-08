@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """0040: guarded, exact-file, post-acceptance removal of obsolete code.
 
-Run from /home/richard/diaries on mango. Default --capture is read-only.
+Run from /home/richard/diaries on mango. --capture is read-only.
 --apply requires a verified actual unattended prune receipt and explicit
 operator approval; it makes local rollback tarballs before any remote unlink.
+--finalize verifies an already-completed removal and writes a receipt ONLY;
+it does not delete files, restore archives, or run replication/pruning.
 Never targets Btrfs datasets, snapshots, receipts, agreed-parent state or holds.
 """
 import argparse
@@ -138,11 +140,16 @@ def audit_deployment(*, legacy_units_removed=False):
     status = json.loads(ssh('backup', 'sudo -n /usr/local/bin/btrfs-simplified-replication receiver status'))
     require(status['state']['parent']['timestamp'] == check['offsite']['latest']['snapshot'],
             'receiver parent changed after status check')
-    timer = ssh('backup', 'systemctl list-unit-files btrfs-legacy-prune.timer --no-legend --no-pager').strip()
     if legacy_units_removed:
-        require(re.search(r'(?m)^btrfs-legacy-prune\.timer\s', timer) is None,
-                'obsolete legacy prune timer remains installed')
+        # `systemctl list-unit-files <missing-unit>` exits 1 on systemd.
+        # A removed timer is the expected outcome: query its LoadState instead.
+        load_state = ssh('backup',
+                         'systemctl show btrfs-legacy-prune.timer -p LoadState --value').strip()
+        require(load_state == 'not-found',
+                'obsolete legacy prune timer is still loaded: ' + load_state)
     else:
+        timer = ssh('backup',
+                    'systemctl list-unit-files btrfs-legacy-prune.timer --no-legend --no-pager').strip()
         require('btrfs-legacy-prune.timer' in timer and 'disabled' in timer,
                 'legacy prune timer must be installed but disabled before controlled retirement')
         legacy_state = ssh('backup', 'systemctl show btrfs-legacy-prune.timer -p ActiveState --value').strip()
@@ -229,17 +236,121 @@ def archive(host, items, stamp):
     return place
 
 
-def apply(allowed, manifest_path, receipt_path, approval):
-    require(approval == 'RETIRE-0040-OBSOLETE-CODE', 'explicit operator acceptance absent')
+def acceptance_and_manifest(allowed, manifest_path, receipt_path):
     receipt = json.loads(Path(receipt_path).read_text())
     require(receipt.get('feature') == '0040-FEAT' and
             receipt.get('check') == 'first-unattended-receiver-simple-prune' and
-            receipt.get('date') == '2026-11-08' and receipt.get('diagnostic_pass') is True and
+            receipt.get('date') == '2026-11-08' and
+            receipt.get('diagnostic_pass') is True and
             receipt.get('formal_acceptance') == 'ACCEPTED',
             'unattended receiver-prune evidence has not been formally accepted')
     data = json.loads(Path(manifest_path).read_text())
-    require(data['feature'] == '0040-FEAT' and set(data['hosts']) == {'mars','backup'},
-            'wrong manifest')
+    require(data.get('feature') == '0040-FEAT' and
+            set(data.get('hosts', {})) == {'mars', 'backup'}, 'wrong manifest')
+    for host in ('mars', 'backup'):
+        items = data['hosts'][host]
+        require(len(items) == len(allowed[host]) and
+                {v['path'] for v in items} == set(allowed[host]),
+                'manifest does not exactly match reviewed candidate paths')
+        require(len(items) == len({v['path'] for v in items}),
+                'duplicate manifest paths')
+    return data
+
+
+def verify_saved_archive(host, items, stamp, expected_hash):
+    require(len(expected_hash) == 64 and all(c in '0123456789abcdef' for c in expected_hash),
+            'invalid expected archive SHA-256')
+    place = EVIDENCE / 'rollback' / f'legacy-code-{host}-{stamp}.tar'
+    require(place.is_file() and not place.is_symlink(), 'missing/unsafe rollback TAR: ' + str(place))
+    with place.open('rb') as stream:
+        actual_hash = hashlib.file_digest(stream, 'sha256').hexdigest()
+    require(actual_hash == expected_hash, f'{host}: rollback TAR checksum mismatch')
+    expected_paths = {v['path'].lstrip('/') for v in items}
+    with tarfile.open(place, 'r:') as tar:
+        members = tar.getmembers()
+        require(len(members) == len(items) and
+                {m.name for m in members} == expected_paths,
+                f'{host}: rollback TAR member list mismatch')
+        lookup = {m.name: m for m in members}
+        for item in items:
+            member = lookup[item['path'].lstrip('/')]
+            require(member.isfile() and member.uid == 0 and member.gid == 0 and
+                    member.mode == item['mode'] and member.size == item['bytes'],
+                    f'{host}: rollback TAR metadata mismatch: {member.name}')
+            content = tar.extractfile(member)
+            require(content is not None and
+                    hashlib.file_digest(content, 'sha256').hexdigest() == item['sha256'],
+                    f'{host}: rollback TAR content checksum mismatch: {member.name}')
+    print(f'PASS: {host} archive SHA-256, {len(items)} members and metadata verified')
+    return place
+
+
+def assert_removed(host, items):
+    # No writes: os.path.lexists also detects dangling symlinks at retired paths.
+    probe = r'''
+import json, os, sys
+request=json.load(sys.stdin)
+assert os.geteuid() == 0
+assert os.uname().nodename.split('.')[0] == request['host'] in ('mars','backup')
+paths=request['paths']
+assert len(paths) == len(set(paths)) and 1 <= len(paths) <= 100
+print(json.dumps({'remaining':[p for p in paths if os.path.lexists(p)]}))
+'''
+    output = ssh(host, 'sudo -n python3 -c ' + shlex.quote(probe),
+                 data=json.dumps({'host':host,'paths':[v['path'] for v in items]}))
+    remaining = json.loads(output)['remaining']
+    require(not remaining, f'{host}: previously retired files still exist: {remaining[:12]}')
+    print(f'PASS: {host} all {len(items)} manifest paths absent')
+
+
+def finalize(allowed, manifest_path, receipt_path, stamp, archive_hashes, approval):
+    """Recover the receipt after successful file removal and failed final audit.
+
+    This mode cannot remove, reinstall, transfer or mutate any remote file.
+    """
+    require(approval == 'FINALIZE-0040-RETIRED-CODE',
+            'explicit post-retirement finalisation confirmation absent')
+    require(bool(re.fullmatch(r'20\d{6}-\d{6}Z', stamp)),
+            'invalid original rollback archive UTC stamp')
+    data = acceptance_and_manifest(allowed, manifest_path, receipt_path)
+    require(set(archive_hashes) == {'mars','backup'}, 'both archive hashes required')
+    receipt_out = EVIDENCE / 'rollback' / f'legacy-code-retirement-{stamp}.json'
+    require(not receipt_out.exists(), 'retirement receipt already exists: ' + str(receipt_out))
+    archives = {}
+    for host in ('mars','backup'):
+        place = verify_saved_archive(host, data['hosts'][host], stamp,
+                                     archive_hashes[host])
+        archives[host] = str(place)
+    for host in ('mars','backup'):
+        assert_removed(host, data['hosts'][host])
+    audit_deployment(legacy_units_removed=True)
+    for host in ('mars','backup'):
+        audit_unretired_references(host, data['hosts'][host])
+    for host, timer in (('mars', 'btrfs-native-push.timer'),
+                        ('backup', 'btrfs-receiver-simple-prune.timer')):
+        require(ssh(host, f'systemctl is-enabled {timer}').strip() == 'enabled' and
+                ssh(host, f'systemctl is-active {timer}').strip() == 'active',
+                f'{host}: required replication/retention timer not enabled and active')
+    now = dt.datetime.now(dt.timezone.utc).strftime('%Y%m%d-%H%M%SZ')
+    payload = {
+        'feature':'0040-FEAT', 'status':'VERIFIED_AFTER_RETIREMENT',
+        'original_removal_utc':stamp, 'verified_utc':now,
+        'source_manifest':str(manifest_path), 'acceptance_report':str(receipt_path),
+        'archives':archives, 'archive_sha256':archive_hashes,
+        'removed_count':{host:len(data['hosts'][host]) for host in ('mars','backup')},
+        'evidence_note':('All paths absent after the original removal; original runner '
+                         'exited before receipt due to an absent-unit systemctl query. '
+                         'This finalisation did not remove or restore files.'),
+    }
+    receipt_out.parent.mkdir(parents=True, exist_ok=True)
+    with receipt_out.open('x') as output:
+        json.dump(payload, output, indent=2, sort_keys=True)
+        output.write('\n')
+    print(f'PASS: read-only retirement finalised; receipt {receipt_out}')
+
+def apply(allowed, manifest_path, receipt_path, approval):
+    require(approval == 'RETIRE-0040-OBSOLETE-CODE', 'explicit operator acceptance absent')
+    data = acceptance_and_manifest(allowed, manifest_path, receipt_path)
     for host in ('mars','backup'):
         items = data['hosts'][host]
         require({v['path'] for v in items} == set(allowed[host]),
@@ -271,6 +382,10 @@ def main():
     args = argparse.ArgumentParser(description=__doc__)
     args.add_argument('--capture', action='store_true', help='read-only capture of approved path/sha manifest')
     args.add_argument('--apply', action='store_true', help='destructive mode, requires acceptance and explicit approval')
+    args.add_argument('--finalize', action='store_true', help='receipt-only recovery after an already completed deletion')
+    args.add_argument('--archive-stamp', help='UTC stamp of the already verified rollback TARs')
+    args.add_argument('--mars-archive-sha256')
+    args.add_argument('--backup-archive-sha256')
     args.add_argument('--manifest')
     args.add_argument('--prune-acceptance')
     args.add_argument('--confirm')
@@ -278,15 +393,29 @@ def main():
     require(Path.cwd().resolve().name == 'diaries' and
             run(['hostname','-s']).strip() == 'mango', 'run from /home/richard/diaries on mango')
     allowed = allowed_paths()
-    require(opts.capture != opts.apply, 'choose exactly one of --capture or --apply')
+    require(sum((opts.capture, opts.apply, opts.finalize)) == 1,
+            'choose exactly one of --capture, --apply or --finalize')
     if opts.capture:
-        require(not any((opts.manifest,opts.prune_acceptance,opts.confirm)),
-                '--capture does not use destructive options')
+        require(not any((opts.manifest,opts.prune_acceptance,opts.confirm,
+                         opts.archive_stamp,opts.mars_archive_sha256,
+                         opts.backup_archive_sha256)),
+                '--capture does not use other options')
         capture(allowed)
-    else:
-        require(all((opts.manifest,opts.prune_acceptance,opts.confirm)),
-                'apply requires manifest, prune acceptance and exact confirmation')
+    elif opts.apply:
+        require(all((opts.manifest,opts.prune_acceptance,opts.confirm)) and
+                not any((opts.archive_stamp,opts.mars_archive_sha256,
+                         opts.backup_archive_sha256)),
+                'apply requires manifest, acceptance, confirmation, no archive options')
         apply(allowed,opts.manifest,opts.prune_acceptance,opts.confirm)
+    else:
+        require(all((opts.manifest, opts.prune_acceptance, opts.confirm,
+                     opts.archive_stamp, opts.mars_archive_sha256,
+                     opts.backup_archive_sha256)),
+                'finalize requires manifest, acceptance, original archive UTC '
+                'stamp, both archive SHA-256 values and confirmation')
+        finalize(allowed,opts.manifest,opts.prune_acceptance,opts.archive_stamp,
+                 {'mars':opts.mars_archive_sha256,'backup':opts.backup_archive_sha256},
+                 opts.confirm)
 
 if __name__ == '__main__':
     try:
