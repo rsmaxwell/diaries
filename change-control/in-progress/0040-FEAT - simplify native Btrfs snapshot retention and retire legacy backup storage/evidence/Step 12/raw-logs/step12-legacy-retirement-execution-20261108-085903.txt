@@ -1,0 +1,11 @@
+=== Verify execution repository ===
+=== Verify required evidence ===
+=== Execute guarded legacy-code retirement ===
+FAIL: command failed rc=1: ['ssh', '-T', '-o']: 
+PASS: new status, agreed parent, scheduled sender/receiver and sudoers guards
+PASS: mars no exact legacy executable references in operational files
+PASS: backup no exact legacy executable references in operational files
+PASS: mars verified rollback archive change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/rollback/legacy-code-mars-20261108-085914Z.tar sha256=c7c900e99a8dd552a1966cd2ed5185dc38e57a41efd264e453fdd783cf26b638
+PASS: backup verified rollback archive change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/rollback/legacy-code-backup-20261108-085914Z.tar sha256=7769d82d75a1c4f7bad2428a8df3d247070a8340403a7890c39d566eb892648c
+PASS: mars retired 39 checksum-validated files
+PASS: backup retired 35 checksum-validated files

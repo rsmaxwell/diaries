@@ -1,0 +1,21 @@
+{
+  "acceptance_report": "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/receipts/first-unattended-prune-formal-acceptance-20261108.json",
+  "archive_sha256": {
+    "backup": "7769d82d75a1c4f7bad2428a8df3d247070a8340403a7890c39d566eb892648c",
+    "mars": "c7c900e99a8dd552a1966cd2ed5185dc38e57a41efd264e453fdd783cf26b638"
+  },
+  "archives": {
+    "backup": "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/rollback/legacy-code-backup-20261108-085914Z.tar",
+    "mars": "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/rollback/legacy-code-mars-20261108-085914Z.tar"
+  },
+  "evidence_note": "All paths absent after the original removal; original runner exited before receipt due to an absent-unit systemctl query. This finalisation did not remove or restore files.",
+  "feature": "0040-FEAT",
+  "original_removal_utc": "20261108-085914Z",
+  "removed_count": {
+    "backup": 35,
+    "mars": 39
+  },
+  "source_manifest": "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/manifests/legacy-code-retirement-manifest-20261108-083525Z.json",
+  "status": "VERIFIED_AFTER_RETIREMENT",
+  "verified_utc": "20261108-091642Z"
+}

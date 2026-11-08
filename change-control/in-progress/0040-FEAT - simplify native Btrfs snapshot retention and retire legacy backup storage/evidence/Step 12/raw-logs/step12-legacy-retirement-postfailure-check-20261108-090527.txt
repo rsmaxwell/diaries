@@ -1,0 +1,17 @@
+=== Verify rollback archives ===
+change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/rollback/legacy-code-mars-20261108-085914Z.tar: OK
+change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/rollback/legacy-code-backup-20261108-085914Z.tar: OK
+=== Verify every retired file is absent ===
+PASS: mars — all 39 legacy files absent
+PASS: backup — all 35 legacy files absent
+=== Verify obsolete receiver timer is unloaded ===
+Legacy timer LoadState=not-found
+=== Verify simplified replication ===
+PASS: Verified agreed parent: {'timestamp': '20261108-030011Z', 'uuid': 'dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58'}
+PASS: Diaries backup status
+=== Verify active timers ===
+enabled
+active
+enabled
+active
+PASS: Post-retirement operational checks

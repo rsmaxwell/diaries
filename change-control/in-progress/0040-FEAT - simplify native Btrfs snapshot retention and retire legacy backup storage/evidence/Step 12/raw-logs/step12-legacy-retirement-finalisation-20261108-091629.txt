@@ -1,0 +1,44 @@
+=== Synchronise Diaries ===
+From github.com:rsmaxwell/diaries
+   6db33a1..a6bf0c1  main       -> origin/main
+Updating 6db33a1..a6bf0c1
+Fast-forward
+ ...GACY-RETIREMENT-POSTFAILURE-RECEIPT-20261108.md |  35 +++++
+ ...0040-step12-post-retirement-finalize-offline.py | 126 ++++++++++++++++
+ .../tools/retire-0040-obsolete-code.py             | 159 +++++++++++++++++++--
+ 3 files changed, 305 insertions(+), 15 deletions(-)
+ create mode 100644 change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/reports/STEP12-LEGACY-RETIREMENT-POSTFAILURE-RECEIPT-20261108.md
+ create mode 100644 change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tests/verify-0040-step12-post-retirement-finalize-offline.py
+a6bf0c1 0040-FEAT: Finalise verified legacy-code retirement
+=== Verify finalisation safeguards ===
+{
+  "feature": "0040-FEAT",
+  "check": "first-unattended-receiver-simple-prune",
+  "date": "2026-11-08",
+  "captured_utc": "20261108-091630Z",
+  "diagnostic_pass": true,
+  "deleted_count": 0,
+  "errors": [],
+  "raw_log": "/tmp/tmpfdui1asj/step12-first-unattended-prune-20261108-091630Z.txt",
+  "formal_acceptance": "PENDING_OPERATOR_REVIEW"
+}
+PASS: fixed code-only allowlist, deletion refusal without approval, and synthetic zero-delete unattended receipt
+PASS: mars archive SHA-256, 2 members and metadata verified
+PASS: backup archive SHA-256, 2 members and metadata verified
+PASS: new status, agreed parent, scheduled sender/receiver and sudoers guards
+PASS: mars archive SHA-256, 2 members and metadata verified
+PASS: backup archive SHA-256, 2 members and metadata verified
+PASS: mars all 2 manifest paths absent
+PASS: backup all 2 manifest paths absent
+PASS: read-only retirement finalised; receipt /tmp/tmps3soq326/rollback/legacy-code-retirement-20261108-085914Z.json
+PASS: absent-unit audit, tamper-proof TAR validation, receipt-only finalisation and fail-closed guards
+=== Finalise already completed retirement ===
+PASS: mars archive SHA-256, 39 members and metadata verified
+PASS: backup archive SHA-256, 35 members and metadata verified
+PASS: mars all 39 manifest paths absent
+PASS: backup all 35 manifest paths absent
+PASS: new status, agreed parent, scheduled sender/receiver and sudoers guards
+PASS: mars no exact legacy executable references in operational files
+PASS: backup no exact legacy executable references in operational files
+PASS: read-only retirement finalised; receipt change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/rollback/legacy-code-retirement-20261108-085914Z.json
+PASS: Legacy retirement finalisation
