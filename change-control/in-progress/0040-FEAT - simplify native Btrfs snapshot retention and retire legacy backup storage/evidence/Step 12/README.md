@@ -1,7 +1,7 @@
 # 0040-FEAT — Step 12.1–12.2 source verification evidence
 
 **Date:** 26 October 2026  
-**Status:** source verification PASSED; Step 12 overall OPEN; deployment NOT authorised.
+**Historical status as of 26 October 2026:** source verification PASSED; Step 12 overall OPEN and deployment not yet authorised on that date. **Later outcome:** Step 12 was CLOSED on 8 November 2026; see [`../../reports/STEP12-FINAL-ACCEPTANCE-AND-CLOSURE-20261108.md`](../../reports/STEP12-FINAL-ACCEPTANCE-AND-CLOSURE-20261108.md). The original tests, evidence and stage-specific restrictions below are preserved as a historical record.
 
 ## Scope and implementation
 

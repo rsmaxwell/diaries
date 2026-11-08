@@ -1,6 +1,6 @@
 # 0040-FEAT — Production promotion manifest
 
-**Status: IN PROGRESS — earlier shared-manager deployment accepted; simplified Step 12 design accepted 5 November 2026; replacement runtime deployment, receiver-pruning activation and overall feature closure remain pending.** The previous planning statement below is historical, not the current operational state.
+**Status: IN PROGRESS — Step 12 replacement runtime, first unattended receiver-pruning activation and guarded legacy-code retirement accepted and CLOSED on 8 November 2026. Steps 13 (final configuration/runbook and promotion evidence) and 14 (overall feature closure) remain OPEN.** Earlier descriptions of pending deployments below are historical planning/acceptance snapshots, not the current operating state.
 
 ## Original design extension (historical planning record)
 
@@ -37,3 +37,16 @@ The new shared manager implementation has been installed on `mars` and `backup`,
 | Operational documentation | `roles/local-backup/README.md` | Removed obsolete legacy-pruning instructions | Final documentation audit |
 
 The backup-only 115 original legacy Snapper snapshots, plus the APT-generated extra snapshot and empty legacy container subvolumes, were retired under their separately documented guarded approvals. This does not close overall Steps 10–11 or authorise deletion of received snapshots. Keep the raw evidence/approved manifest on `mango` until it has been archived as historical evidence; do not move evidence scripts into permanent operational roles.
+
+
+## Step 12 final production promotion and rollback — 8 November 2026
+
+**Accepted and CLOSED for Step 12; feature not yet closed.** Source versions: Playbooks `6553ace` (simplified sender/receiver retention) and `e5ae755` (read-only sender status, updated `diaries-backup-status`, legacy installer gates). Final archived Diaries evidence revision: `a719542`.
+
+- `mars`: `/usr/local/bin/btrfs-simplified-replication sender cycle` invoked by retained `btrfs-native-push.service` and 03:30 UTC timer. `sudo -n /usr/local/bin/btrfs-simplified-replication sender status` and `sudo -n /usr/local/sbin/diaries-backup-status --json` verified. Obsolete sudoers removed through Ansible.
+- `backup`: same simplified replication executable serves receiver operations; `btrfs-receiver-simple-prune.timer` enabled/active at 04:15 UTC with maximum 10 deletions/run; first unattended execution successful on 8 November with 0 eligible deletion candidates.
+- Guarded retirement: `39` obsolete executable/module files on `mars`, `35` files/units on `backup`; removed with exact-file checksums and verified TAR archives, followed by independent operational verification and receipt-only finalisation. The obsolete `btrfs-legacy-prune.timer` is now unloaded. This did **not** remove any snapshots, agreed-parent state, holds or datasets.
+- Rollback ownership: feature `evidence/Step 12/rollback/` contains original per-host files in `legacy-code-mars-20261108-085914Z.tar` and `legacy-code-backup-20261108-085914Z.tar`. SHA-256 `c7c900e99a8dd552a1966cd2ed5185dc38e57a41efd264e453fdd783cf26b638` (`mars`) and `7769d82d75a1c4f7bad2428a8df3d247070a8340403a7890c39d566eb892648c` (`backup`). Restoration, if required, needs separate explicit operator authorisation; restoring old files is not authorisation to invoke their old protocol.
+- Completion receipt: `evidence/Step 12/rollback/legacy-code-retirement-20261108-085914Z.json`; original failure and independent successful checks are preserved under `evidence/Step 12/raw-logs/`.
+
+See [`reports/STEP12-FINAL-ACCEPTANCE-AND-CLOSURE-20261108.md`](reports/STEP12-FINAL-ACCEPTANCE-AND-CLOSURE-20261108.md) for the full evidence index and explicit closure decision. Final feature-wide promotion/runbook reconciliation remains part of Step 13.

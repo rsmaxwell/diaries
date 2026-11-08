@@ -1,6 +1,6 @@
 # 0040-FEAT — Simplify native Btrfs snapshot retention and retire legacy backup storage
 
-**Status: IN PROGRESS — historical Steps 1–8 and Step 11 have recorded closure; Step 12 simplified agreed-parent replication/retry and overall feature closure remain OPEN.** Created 23 October 2026. Step 3 design acceptance includes the documented cross-host rehearsal waiver. The backup-only portions of Steps 10–11 are accepted; native `mars` root-snapshot retirement and receiver pruning remain unauthorised.
+**Status: IN PROGRESS — Step 12 CLOSED on 8 November 2026 following accepted live deployment, unattended receiver-pruning execution and verified retirement of 74 obsolete runtime files. Steps 13 (final configuration/evidence reconciliation) and 14 (overall feature closure) remain OPEN.** Created 23 October 2026. Historical step decisions and their contemporary acceptance restrictions remain documented in the reports and implementation plan.
 
 ## Classification
 
@@ -54,4 +54,4 @@ Permanent reusable code belongs in the Playbooks repository **only after review/
 
 Implement the simplified Step 12 workflow as one coherent change, followed by consolidated tests and controlled cutover. Use **Cygwin** for ZIP application and local orchestration, SSH terminals on **mars** and **backup** for inspection, and **mango** for Ansible with `--vault-password-file ~/.vault_pass.txt`. Review `--check --diff`, then explicitly approve changes, deploy, verify and prove idempotency. Record results and exact source revisions. Close the feature only after all acceptance gates, then move its whole directory to `change-control/complete/`.
 
-**Current action (5 November 2026):** simplified source and disposable real-Btrfs tests **formally ACCEPTED**. Next: read-only operational preflight and reviewed controlled deployment (`reports/STEP12-SIMPLIFIED-SOURCE-AND-REAL-BTRFS-ACCEPTANCE-20261105.md`, `tools/README-STEP12-SIMPLIFIED-OPERATIONAL-PREFLIGHT.md`). Preserve the existing 03:30 service and disabled receiver pruning until their own acceptance gates.
+**Current position (8 November 2026):** Step 12 **CLOSED**; its final decision and raw evidence links are in [`reports/STEP12-FINAL-ACCEPTANCE-AND-CLOSURE-20261108.md`](reports/STEP12-FINAL-ACCEPTANCE-AND-CLOSURE-20261108.md). The simplified sender remains scheduled at 03:30 UTC on `mars` and receiver-pruning at 04:15 UTC on `backup`. Proceed with Step 13 final configuration/runbook/evidence reconciliation, followed by independent Step 14 feature closure. Preserve historical records and the rollback TARs; do not repeat accepted tests without a new defect or material change.
