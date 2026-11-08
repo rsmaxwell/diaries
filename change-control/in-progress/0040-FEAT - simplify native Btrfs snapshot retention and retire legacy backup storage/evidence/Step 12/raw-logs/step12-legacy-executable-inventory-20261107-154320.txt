@@ -1,0 +1,202 @@
+========== mars ==========
+=== Host ===
+mars
+=== Installed Btrfs utilities ===
+/usr/local/bin/btrfs-agreed-parent-sender 6877 bytes
+/usr/local/bin/btrfs-native-push 47271 bytes
+/usr/local/bin/btrfs-simplified-replication 21497 bytes
+/usr/local/bin/__pycache__/btrfs-native-pushcpython-312.pyc 50527 bytes
+/usr/local/libexec/btrfs-agreed-parent-fixed-commands.py 4841 bytes
+/usr/local/libexec/btrfs-agreed-parent-get-state-transport.py 3962 bytes
+/usr/local/libexec/btrfs-agreed-parent-initialise.py 6469 bytes
+/usr/local/libexec/btrfs-agreed-parent-locked-get-state.py 3544 bytes
+/usr/local/libexec/btrfs-agreed-parent-locked-prepare-plan.py 3344 bytes
+/usr/local/libexec/btrfs-agreed-parent-observation-bridge.py 2338 bytes
+/usr/local/libexec/btrfs-agreed-parent-preparation-checkpoint.py 5966 bytes
+/usr/local/libexec/btrfs-agreed-parent-prepared-transfer-review.py 4092 bytes
+/usr/local/libexec/btrfs-agreed-parent-prepare-preflight.py 3994 bytes
+/usr/local/libexec/btrfs-agreed-parent-prepare-transport-contract.py 4777 bytes
+/usr/local/libexec/btrfs-agreed-parent-prepare-transport.py 3905 bytes
+/usr/local/libexec/btrfs-agreed-parent-receipt-readback.py 2472 bytes
+/usr/local/libexec/btrfs-agreed-parent-recovery-decision.py 4860 bytes
+/usr/local/libexec/btrfs-agreed-parent-selection.py 3230 bytes
+/usr/local/libexec/btrfs-agreed-parent-sender-execution.py 9383 bytes
+/usr/local/libexec/btrfs-agreed-parent-sender-previous-ack.py 4192 bytes
+/usr/local/libexec/btrfs-agreed-parent-sender-promotion-coordinator.py 3484 bytes
+/usr/local/libexec/btrfs-agreed-parent-sender-promotion-runtime.py 4381 bytes
+/usr/local/libexec/btrfs-agreed-parent-sender-proof-handoff.py 5417 bytes
+/usr/local/libexec/btrfs-agreed-parent-sender-transaction.py 5242 bytes
+/usr/local/libexec/btrfs-agreed-parent-sender-workflow.py 5373 bytes
+/usr/local/libexec/btrfs-agreed-parent-session-proof.py 3629 bytes
+/usr/local/libexec/btrfs-agreed-parent-source-evidence.py 3500 bytes
+/usr/local/libexec/btrfs-agreed-parent-source-observer.py 3695 bytes
+/usr/local/libexec/btrfs-agreed-parent-source-only-recovery.py 5069 bytes
+/usr/local/libexec/btrfs-agreed-parent-source-recovery-integration.py 4002 bytes
+/usr/local/libexec/btrfs-agreed-parent-source-transition.py 4537 bytes
+/usr/local/libexec/btrfs-agreed-parent-state.py 5209 bytes
+/usr/local/libexec/btrfs-agreed-parent-stream-adapter.py 3652 bytes
+/usr/local/libexec/btrfs-agreed-parent-transfer-absence-transport.py 3100 bytes
+/usr/local/libexec/btrfs-agreed-parent-transfer-attestation-transport.py 4972 bytes
+/usr/local/libexec/btrfs-agreed-parent-transfer-execution-adapter.py 4268 bytes
+/usr/local/libexec/btrfs-agreed-parent-transfer-identity-probe.py 2216 bytes
+/usr/local/libexec/btrfs-agreed-parent-transfer-integration-review.py 4253 bytes
+/usr/local/libexec/btrfs-agreed-parent-transfer-plan.py 6013 bytes
+/usr/local/libexec/btrfs-agreed-parent-transfer-transport-contract.py 3833 bytes
+/usr/local/libexec/btrfs-native-endpoint 22497 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-fixed-commands.cpython-312.pyc 6490 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-get-state-transport.cpython-312.pyc 5205 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-initialise.cpython-312.pyc 10972 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-locked-get-state.cpython-312.pyc 6115 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-observation-bridge.cpython-312.pyc 3703 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-prepared-transfer-review.cpython-312.pyc 6048 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-prepare-preflight.cpython-312.pyc 5505 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-prepare-transport-contract.cpython-312.pyc 7037 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-prepare-transport.cpython-312.pyc 5272 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-receipt-readback.cpython-312.pyc 4080 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-recovery-decision.cpython-312.pyc 6599 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-selection.cpython-312.pyc 5050 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-sender-execution.cpython-312.pyc 11143 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-sender-previous-ack.cpython-312.pyc 4972 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-sender-promotion-runtime.cpython-312.pyc 5374 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-sender-proof-handoff.cpython-312.pyc 8181 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-sender-transaction.cpython-312.pyc 6268 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-sender-workflow.cpython-312.pyc 6583 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-session-proof.cpython-312.pyc 5384 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-source-evidence.cpython-312.pyc 5494 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-source-observer.cpython-312.pyc 6282 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-source-recovery-integration.cpython-312.pyc 5351 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-source-transition.cpython-312.pyc 5502 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-state.cpython-312.pyc 8669 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-stream-adapter.cpython-312.pyc 5191 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-transfer-absence-transport.cpython-312.pyc 4392 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-transfer-attestation-transport.cpython-312.pyc 6726 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-transfer-execution-adapter.cpython-312.pyc 5088 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-transfer-plan.cpython-312.pyc 8372 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-transfer-transport-contract.cpython-312.pyc 5057 bytes
+/usr/local/libexec/__pycache__/btrfs-native-endpointcpython-312.pyc 25817 bytes
+/usr/local/sbin/btrfs-extent-sharing 2818 bytes
+/usr/local/sbin/btrfs-snapshot-manager.239090.2026-10-19@12:40:22~ 33375 bytes
+/usr/local/sbin/btrfs-snapshot-manager.239621.2026-10-19@13:04:32~ 41927 bytes
+/usr/local/sbin/btrfs-snapshot-manager.240180.2026-10-19@17:46:21~ 42231 bytes
+/usr/local/sbin/btrfs-snapshot-manager.240746.2026-10-19@18:21:17~ 42561 bytes
+/usr/local/sbin/btrfs-snapshot-manager.243021.2026-10-19@22:34:32~ 43269 bytes
+/usr/local/sbin/btrfs-snapshot-manager.251059.2026-10-20@14:06:16~ 46828 bytes
+/usr/local/sbin/btrfs-snapshot-manager.251244.2026-10-20@14:28:30~ 48503 bytes
+/usr/local/sbin/btrfs-snapshot-manager.251473.2026-10-20@14:36:35~ 52354 bytes
+/usr/local/sbin/btrfs-snapshot-manager 74872 bytes
+/usr/local/sbin/diaries-backup-history 15881 bytes
+/usr/local/sbin/diaries-backup-status 7100 bytes
+/usr/local/sbin/__pycache__/btrfs-snapshot-managercpython-312.pyc 95514 bytes
+=== Btrfs systemd units ===
+UNIT FILE                     STATE   PRESET
+btrfs-native-push.service     static  -
+btrfs-snapshot-create.service static  -
+btrfs-snapshot-prune.service  static  -
+btrfs-native-push.timer       enabled enabled
+btrfs-snapshot-create.timer   enabled enabled
+btrfs-snapshot-prune.timer    enabled enabled
+
+6 unit files listed.
+=== Legacy status utility references ===
+12:PUSH = '/usr/local/bin/btrfs-native-push'
+13:RECEIVER = '/usr/local/bin/btrfs-native-push-receiver'
+68:    replication = json_command(operator_prefix + [args.push, '--latest', '--preflight'])
+70:    receiver = json_command(operator_prefix + ['ssh', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=8',
+71:                             '-p', str(args.receiver_port), args.receiver_host, args.receiver_command, '--list'])
+72:    values = receiver.get('data') if receiver['ok'] else None
+74:        receiver['ok'] = False
+75:        receiver['error'] = receiver.get('error') or 'unexpected receiver list'
+77:        receiver['latest'] = max((v for v in values if isinstance(v, dict) and 'snapshot' in v),
+79:        receiver.pop('data', None)
+87:            'replicationPreflight': replication, 'offsite': receiver}
+138:    parser.add_argument('--receiver-host', default='richard@10.254.22.1')
+139:    parser.add_argument('--receiver-port', type=int, default=39263)
+140:    parser.add_argument('--receiver-command', default=RECEIVER)
+=== Relevant active processes ===
+========== backup ==========
+=== Host ===
+backup
+=== Installed Btrfs utilities ===
+/usr/local/bin/btrfs-agreed-parent-receiver 288 bytes
+/usr/local/bin/btrfs-native-push-receiver 51174 bytes
+/usr/local/bin/btrfs-simplified-replication 21497 bytes
+/usr/local/bin/__pycache__/btrfs-native-push-receivercpython-312.pyc 49777 bytes
+/usr/local/libexec/btrfs-agreed-parent-endpoint.py 4313 bytes
+/usr/local/libexec/btrfs-agreed-parent-finalisation-core.py 6716 bytes
+/usr/local/libexec/btrfs-agreed-parent-finalisation-storage.py 3534 bytes
+/usr/local/libexec/btrfs-agreed-parent-finalisation-transaction.py 4103 bytes
+/usr/local/libexec/btrfs-agreed-parent-get-state-endpoint.py 3648 bytes
+/usr/local/libexec/btrfs-agreed-parent-incomplete-inspection.py 6645 bytes
+/usr/local/libexec/btrfs-agreed-parent-incomplete-reconciler.py 6830 bytes
+/usr/local/libexec/btrfs-agreed-parent-initialise.py 6469 bytes
+/usr/local/libexec/btrfs-agreed-parent-locked-session-review.py 4420 bytes
+/usr/local/libexec/btrfs-agreed-parent-prepare-endpoint.py 4088 bytes
+/usr/local/libexec/btrfs-agreed-parent-prepare-verifier.py 2014 bytes
+/usr/local/libexec/btrfs-agreed-parent-previous-ack.py 2970 bytes
+/usr/local/libexec/btrfs-agreed-parent-provisional-journal.py 4263 bytes
+/usr/local/libexec/btrfs-agreed-parent-receive-boundary.py 3290 bytes
+/usr/local/libexec/btrfs-agreed-parent-receive-core.py 16895 bytes
+/usr/local/libexec/btrfs-agreed-parent-receiver-entry.py 32169 bytes
+/usr/local/libexec/btrfs-agreed-parent-receiver-operation-contract.py 2836 bytes
+/usr/local/libexec/btrfs-agreed-parent-receiver-promoted-readback.py 2342 bytes
+/usr/local/libexec/btrfs-agreed-parent-receiver-promotion-adapter.py 2809 bytes
+/usr/local/libexec/btrfs-agreed-parent-receiver-promotion-binding.py 1979 bytes
+/usr/local/libexec/btrfs-agreed-parent-receiver.py 5157 bytes
+/usr/local/libexec/btrfs-agreed-parent-receiver-session-binding.py 4732 bytes
+/usr/local/libexec/btrfs-agreed-parent-receive-transaction.py 4310 bytes
+/usr/local/libexec/btrfs-agreed-parent-scope-observer.py 5208 bytes
+/usr/local/libexec/btrfs-agreed-parent-session-proof.py 3629 bytes
+/usr/local/libexec/btrfs-agreed-parent-state.py 5209 bytes
+/usr/local/libexec/btrfs-agreed-parent-transfer-absence.py 3773 bytes
+/usr/local/libexec/btrfs-agreed-parent-transfer-attestation.py 6435 bytes
+/usr/local/libexec/btrfs-agreed-parent-transition.py 5001 bytes
+/usr/local/libexec/btrfs-native-endpoint 22497 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-endpoint.cpython-312.pyc 6674 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-finalisation-core.cpython-312.pyc 6171 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-finalisation-storage.cpython-312.pyc 6043 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-finalisation-transaction.cpython-312.pyc 5829 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-incomplete-inspection.cpython-312.pyc 7767 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-incomplete-reconciler.cpython-312.pyc 8305 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-initialise.cpython-312.pyc 10972 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-prepare-endpoint.cpython-312.pyc 6175 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-prepare-verifier.cpython-312.pyc 3329 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-previous-ack.cpython-312.pyc 4333 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-provisional-journal.cpython-312.pyc 3961 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-receive-boundary.cpython-312.pyc 4540 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-receive-core.cpython-312.pyc 14102 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-receiver.cpython-312.pyc 7261 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-receiver-entry.cpython-312.pyc 29568 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-receiver-promoted-readback.cpython-312.pyc 3360 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-receiver-promotion-adapter.cpython-312.pyc 3921 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-receiver-promotion-binding.cpython-312.pyc 3033 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-receiver-session-binding.cpython-312.pyc 7382 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-session-proof.cpython-312.pyc 5384 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-state.cpython-312.pyc 8669 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-transfer-absence.cpython-312.pyc 5754 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-transfer-attestation.cpython-312.pyc 9041 bytes
+/usr/local/libexec/__pycache__/btrfs-agreed-parent-transition.cpython-312.pyc 5981 bytes
+/usr/local/libexec/__pycache__/btrfs-native-endpointcpython-312.pyc 25817 bytes
+/usr/local/sbin/btrfs-clear-stale-qgroups 3047 bytes
+/usr/local/sbin/btrfs-extent-sharing 2818 bytes
+/usr/local/sbin/btrfs-receiver-prune 11755 bytes
+/usr/local/sbin/btrfs-snapshot-manager 86622 bytes
+/usr/local/sbin/diaries-backup-history 15881 bytes
+/usr/local/sbin/__pycache__/btrfs-snapshot-managercpython-310.pyc 43253 bytes
+/usr/local/sbin/__pycache__/btrfs-snapshot-managercpython-312.pyc 95514 bytes
+=== Btrfs systemd units ===
+UNIT FILE                           STATE    PRESET
+btrfs-clear-stale-qgroups.service   static   -
+btrfs-legacy-prune.service          static   -
+btrfs-receiver-simple-prune.service static   -
+btrfs-snapshot-create.service       static   -
+btrfs-snapshot-prune.service        static   -
+btrfs-clear-stale-qgroups.timer     enabled  enabled
+btrfs-legacy-prune.timer            disabled enabled
+btrfs-receiver-simple-prune.timer   enabled  enabled
+btrfs-snapshot-create.timer         disabled enabled
+btrfs-snapshot-prune.timer          disabled enabled
+
+10 unit files listed.
+=== Legacy status utility references ===
+=== Relevant active processes ===
+PASS: Legacy executable inventory collected
