@@ -1,0 +1,36 @@
+=== Synchronise Diaries ===
+From github.com:rsmaxwell/diaries
+   eefdb82..560b527  main       -> origin/main
+Updating eefdb82..560b527
+Fast-forward
+ .../STEP12-LEGACY-REFERENCE-AUDIT-FIX-20261108.md  |  37 ++++++++
+ .../verify-0040-step12-reference-audit-offline.py  | 102 +++++++++++++++++++++
+ .../tools/retire-0040-obsolete-code.py             |   8 +-
+ 3 files changed, 145 insertions(+), 2 deletions(-)
+ create mode 100644 change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/reports/STEP12-LEGACY-REFERENCE-AUDIT-FIX-20261108.md
+ create mode 100644 change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tests/verify-0040-step12-reference-audit-offline.py
+560b527 0040-FEAT: Correct legacy executable reference audit
+=== Offline regression tests ===
+{
+  "feature": "0040-FEAT",
+  "check": "first-unattended-receiver-simple-prune",
+  "date": "2026-11-08",
+  "captured_utc": "20261108-085025Z",
+  "diagnostic_pass": true,
+  "deleted_count": 0,
+  "errors": [],
+  "raw_log": "/tmp/tmpxr1xnn9a/step12-first-unattended-prune-20261108-085025Z.txt",
+  "formal_acceptance": "PENDING_OPERATOR_REVIEW"
+}
+PASS: fixed code-only allowlist, deletion refusal without approval, and synthetic zero-delete unattended receipt
+PASS: mars no exact legacy executable references in operational files
+PASS: mars no exact legacy executable references in operational files
+PASS: ignore compiled caches, continue blocking live legacy references
+=== Live read-only retirement readiness ===
+PASS: mars exact manifest unchanged
+PASS: backup exact manifest unchanged
+PASS: new status, agreed parent, scheduled sender/receiver and sudoers guards
+PASS: mars no exact legacy executable references in operational files
+PASS: backup no exact legacy executable references in operational files
+PASS: Retirement readiness verified
+PASS: Consolidated read-only verification

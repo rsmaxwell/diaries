@@ -1,0 +1,59 @@
+=== Verify Playbooks revision ===
+=== Preview obsolete sudoers cleanup ===
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for mars, backup
+
+TASK [btrfs-replication : Native Btrfs | Install source endpoint sudoers rule] ***
+skipping: [backup]
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Require no obsolete endpoint sudoers when simplified sender is active] ***
+skipping: [backup]
+changed: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Retire redundant receiver sudoers rule] ***
+skipping: [mars]
+ok: [backup]
+
+PLAY RECAP *********************************************************************
+backup                     : ok=2    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+mars                       : ok=2    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+
+=== Apply permanent sudoers cleanup ===
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for mars, backup
+
+TASK [btrfs-replication : Native Btrfs | Install source endpoint sudoers rule] ***
+skipping: [backup]
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Require no obsolete endpoint sudoers when simplified sender is active] ***
+skipping: [backup]
+changed: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Retire redundant receiver sudoers rule] ***
+skipping: [mars]
+ok: [backup]
+
+PLAY RECAP *********************************************************************
+backup                     : ok=2    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+mars                       : ok=2    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+
+=== Verify obsolete sudoers absent ===
+PASS: mars obsolete sudoers absent
+PASS: backup obsolete sudoers absent
+=== Verify retirement prerequisites and references ===
+PASS: new status, agreed parent, scheduled sender/receiver and sudoers guards
+Traceback (most recent call last):
+  File "<stdin>", line 28, in <module>
+  File "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tools/retire-0040-obsolete-code.py", line 198, in audit_unretired_references
+    require(not refs, f'{host} still has unretired references: {refs[:12]}')
+  File "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/tools/retire-0040-obsolete-code.py", line 68, in require
+    raise RuntimeError(reason)
+RuntimeError: mars still has unretired references: [{'file': '/usr/local/bin/__pycache__/btrfs-native-pushcpython-312.pyc', 'reference': '/usr/local/libexec/btrfs-native-endpoint'}, {'file': '/usr/local/bin/__pycache__/btrfs-native-pushcpython-312.pyc', 'reference': '/usr/local/bin/btrfs-native-push'}]

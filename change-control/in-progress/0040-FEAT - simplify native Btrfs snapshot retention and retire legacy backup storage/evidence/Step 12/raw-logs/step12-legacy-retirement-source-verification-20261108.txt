@@ -1,0 +1,121 @@
+=== Git state ===
+main
+6553ace 0040-FEAT: Commit simplified replication and receiver retention
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/files/btrfs-simplified-replication.py
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md
+ M roles/btrfs-replication/tests/verify-0040-simplified-replication.py
+ M roles/snapshots/files/diaries-backup-status.py
+ M roles/snapshots/tests/verify-diaries-backup-status.py
+?? roles/btrfs-replication/tests/verify-0040-legacy-retirement-source.py
+=== Simplified replication regression ===
+test_absent_or_complete_candidate_never_deleted (__main__.Cases.test_absent_or_complete_candidate_never_deleted) ... ok
+test_ambiguous_parent_divergence_refuses (__main__.Cases.test_ambiguous_parent_divergence_refuses) ... ok
+test_choose_newest_eligible_newer (__main__.Cases.test_choose_newest_eligible_newer) ... ok
+test_completed_candidate_uses_advance_without_retransmit (__main__.Cases.test_completed_candidate_uses_advance_without_retransmit) ... ERROR
+test_filesystem_identity_refusal (__main__.Cases.test_filesystem_identity_refusal) ... ok
+test_held_or_legacy_receipt_refuses (__main__.Cases.test_held_or_legacy_receipt_refuses) ... ok
+test_incomplete_cleanup_exact_subvolume_once (__main__.Cases.test_incomplete_cleanup_exact_subvolume_once) ... ok
+test_invalid_candidate_prevents_cleanup (__main__.Cases.test_invalid_candidate_prevents_cleanup) ... ok
+test_invalid_state_or_rollback_refuses (__main__.Cases.test_invalid_state_or_rollback_refuses) ... ok
+test_latest_invalid_candidate_refuses_rather_than_falling_back (__main__.Cases.test_latest_invalid_candidate_refuses_rather_than_falling_back) ... ok
+test_latest_selection_ignores_symlinks_and_non_snapshots (__main__.Cases.test_latest_selection_ignores_symlinks_and_non_snapshots) ... ok
+test_readonly_lock_never_creates_missing_lockfile (__main__.Cases.test_readonly_lock_never_creates_missing_lockfile) ... ok
+test_readonly_or_received_unknown_candidate_refused (__main__.Cases.test_readonly_or_received_unknown_candidate_refused) ... ok
+test_receiver_ahead_lost_ack (__main__.Cases.test_receiver_ahead_lost_ack) ... ok
+test_receiver_backoff_uses_configured_lock (__main__.Cases.test_receiver_backoff_uses_configured_lock) ... ok
+test_receiver_failure_does_not_advance (__main__.Cases.test_receiver_failure_does_not_advance) ... ERROR
+test_receiver_incomplete_next_run_deletes_then_receives (__main__.Cases.test_receiver_incomplete_next_run_deletes_then_receives) ... ERROR
+test_sender_lost_ack_advances_local_without_retransmission (__main__.Cases.test_sender_lost_ack_advances_local_without_retransmission) ... ERROR
+test_sender_status_receiver_ahead_does_not_reconcile_or_save (__main__.Cases.test_sender_status_receiver_ahead_does_not_reconcile_or_save) ... ok
+test_sender_status_rejects_unverified_receiver_identity (__main__.Cases.test_sender_status_rejects_unverified_receiver_identity) ... ok
+test_sender_status_uses_verified_readonly_identity_without_mutation (__main__.Cases.test_sender_status_uses_verified_readonly_identity_without_mutation) ... ok
+test_single_nonblocking_manager_lock (__main__.Cases.test_single_nonblocking_manager_lock) ... ok
+test_state_atomic_readback (__main__.Cases.test_state_atomic_readback) ... ERROR
+test_state_record_and_prior (__main__.Cases.test_state_record_and_prior) ... ok
+
+======================================================================
+ERROR: test_completed_candidate_uses_advance_without_retransmit (__main__.Cases.test_completed_candidate_uses_advance_without_retransmit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/richard/playbooks/roles/btrfs-replication/tests/verify-0040-simplified-replication.py", line 346, in test_completed_candidate_uses_advance_without_retransmit
+    m.sender_main(SimpleNamespace(operation='cycle'))
+  File "/home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py", line 410, in sender_main
+    with locked(create=(args.operation != 'status')):
+  File "/usr/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py", line 138, in locked
+    fd = take_lock(create=create)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py", line 124, in take_lock
+    fd = os.open(path, flags, 0o600)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/run/lock/btrfs-snapshot-manager.lock'
+
+======================================================================
+ERROR: test_receiver_failure_does_not_advance (__main__.Cases.test_receiver_failure_does_not_advance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/richard/playbooks/roles/btrfs-replication/tests/verify-0040-simplified-replication.py", line 301, in test_receiver_failure_does_not_advance
+    self.assertEqual(m.load_state(state_file),self.state)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py", line 87, in load_state
+    require(stat.S_ISREG(info.st_mode) and info.st_nlink == 1 and info.st_uid == 0 and
+  File "/home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py", line 47, in require
+    raise Refuse(reason)
+simplified0040.Refuse: Unsafe state permissions/size
+
+======================================================================
+ERROR: test_receiver_incomplete_next_run_deletes_then_receives (__main__.Cases.test_receiver_incomplete_next_run_deletes_then_receives)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/richard/playbooks/roles/btrfs-replication/tests/verify-0040-simplified-replication.py", line 281, in test_receiver_incomplete_next_run_deletes_then_receives
+    result = m.receive_receiver(B, U2, A, U1, run=run)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py", line 259, in receive_receiver
+    state = load_state(RECEIVER_STATE)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py", line 87, in load_state
+    require(stat.S_ISREG(info.st_mode) and info.st_nlink == 1 and info.st_uid == 0 and
+  File "/home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py", line 47, in require
+    raise Refuse(reason)
+simplified0040.Refuse: Unsafe state permissions/size
+
+======================================================================
+ERROR: test_sender_lost_ack_advances_local_without_retransmission (__main__.Cases.test_sender_lost_ack_advances_local_without_retransmission)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/richard/playbooks/roles/btrfs-replication/tests/verify-0040-simplified-replication.py", line 319, in test_sender_lost_ack_advances_local_without_retransmission
+    m.sender_main(args)
+  File "/home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py", line 410, in sender_main
+    with locked(create=(args.operation != 'status')):
+  File "/usr/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py", line 138, in locked
+    fd = take_lock(create=create)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py", line 124, in take_lock
+    fd = os.open(path, flags, 0o600)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/run/lock/btrfs-snapshot-manager.lock'
+
+======================================================================
+ERROR: test_state_atomic_readback (__main__.Cases.test_state_atomic_readback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/richard/playbooks/roles/btrfs-replication/tests/verify-0040-simplified-replication.py", line 117, in test_state_atomic_readback
+    self.assertEqual(m.load_state(path), self.state)
+                     ^^^^^^^^^^^^^^^^^^
+  File "/home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py", line 87, in load_state
+    require(stat.S_ISREG(info.st_mode) and info.st_nlink == 1 and info.st_uid == 0 and
+  File "/home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py", line 47, in require
+    raise Refuse(reason)
+simplified0040.Refuse: Unsafe state permissions/size
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.039s
+
+FAILED (errors=5)

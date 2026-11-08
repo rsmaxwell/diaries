@@ -1,0 +1,455 @@
+{
+  "captured_utc": "20261108-083525Z",
+  "feature": "0040-FEAT",
+  "hosts": {
+    "backup": [
+      {
+        "bytes": 288,
+        "mode": 493,
+        "path": "/usr/local/bin/btrfs-agreed-parent-receiver",
+        "sha256": "995189037c71821e15c8e07881685a91133ab4547823d989354ead340a81a4b4"
+      },
+      {
+        "bytes": 51174,
+        "mode": 493,
+        "path": "/usr/local/bin/btrfs-native-push-receiver",
+        "sha256": "6fd463bbc052ac5e2cd0f5cd2aa85c1db702df5868457c2118d71a4239a37a80"
+      },
+      {
+        "bytes": 4313,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-endpoint.py",
+        "sha256": "4a117c93866ddde1360432c0a1e62ed613c34a389066d6a623871f6f5fef4a5d"
+      },
+      {
+        "bytes": 6716,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-finalisation-core.py",
+        "sha256": "145331c05f6e7e683c64301d9c8ffbd08ebbaee0bf09f2f491ea5e4229dfcb54"
+      },
+      {
+        "bytes": 3534,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-finalisation-storage.py",
+        "sha256": "d0b664dc409afed18e1bc751add6870e298bff14a9b1277a7f83b348f303461d"
+      },
+      {
+        "bytes": 4103,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-finalisation-transaction.py",
+        "sha256": "d9dae3ccf2a6bbecd56cdd4fedb000f4b704c7dd35d05fea9bace787bb2eb77d"
+      },
+      {
+        "bytes": 3648,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-get-state-endpoint.py",
+        "sha256": "1e3e6d932f71003f270ab65965aeafad910a831a6465668c7275890c8395ca03"
+      },
+      {
+        "bytes": 6645,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-incomplete-inspection.py",
+        "sha256": "a6542ba9b4b8dac1dacccfdfcfa8ee94a83d9a325f3b12b11ef80d4b7e4fdee8"
+      },
+      {
+        "bytes": 6830,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-incomplete-reconciler.py",
+        "sha256": "faaf83165080e7f8647a98edb5f54a9e22a9b67a6a6a2854de44f0dd6fe54ec0"
+      },
+      {
+        "bytes": 6469,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-initialise.py",
+        "sha256": "4a60718ca6d5dcfa4a521810b1a4476d51d4e6d11a2548853df3a82e1f6dcfb3"
+      },
+      {
+        "bytes": 4420,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-locked-session-review.py",
+        "sha256": "41ee16dcf9d6a0723e4c5eea7d27630eaef040f5950ed1ba0782e2d3d1b27d5c"
+      },
+      {
+        "bytes": 4088,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-prepare-endpoint.py",
+        "sha256": "8ebd8c806b98b10bdf6669176d3824e2a51aa58e07f9757d9a9c57348c2d9b61"
+      },
+      {
+        "bytes": 2014,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-prepare-verifier.py",
+        "sha256": "6a324277a02cb66c9d21d04da69aca8e2049795e396e1a55dab91e9a4a08c55d"
+      },
+      {
+        "bytes": 2970,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-previous-ack.py",
+        "sha256": "71586a9a7f884b5fee98ee481318eef3c871c2a0c04804c46fa1494edb955e00"
+      },
+      {
+        "bytes": 4263,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-provisional-journal.py",
+        "sha256": "c4c0cd27572840e670b5f76fe2b4f5c4d07d3b2670981c722dccf162c52ecabe"
+      },
+      {
+        "bytes": 3290,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-receive-boundary.py",
+        "sha256": "b326a1b55a8d29391007faf5b3c66c72bf5bf8dbaec537e1a84a2854b936db33"
+      },
+      {
+        "bytes": 16895,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-receive-core.py",
+        "sha256": "75ecf1e9fb559dc899005810dc3181307b39ab6002073902cb0956db06c601d3"
+      },
+      {
+        "bytes": 32169,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-receiver-entry.py",
+        "sha256": "0fcbe6e82eda7b4ac2d945426e5dbeba8637d5cbf8c06df4e7de907645838312"
+      },
+      {
+        "bytes": 2836,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-receiver-operation-contract.py",
+        "sha256": "408066b3a62c29abe7ef10e772a90454a7b55bc6fcb0fffe03be66cbe2b31cea"
+      },
+      {
+        "bytes": 2342,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-receiver-promoted-readback.py",
+        "sha256": "cb10acc629d5f4fd078371bbe0dc07419b1b0709836c46d02f510ca74c1021f7"
+      },
+      {
+        "bytes": 2809,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-receiver-promotion-adapter.py",
+        "sha256": "ce44973f43bb5bda729b08ea79ae52c060033819dfc2988f6a66087cc4ae4eed"
+      },
+      {
+        "bytes": 1979,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-receiver-promotion-binding.py",
+        "sha256": "137677ea83f849ff17479ba3e8992fd6be752f5297ba052b7e695677f4fc38fa"
+      },
+      {
+        "bytes": 5157,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-receiver.py",
+        "sha256": "072092c7fdca956acfa34199cfbf82f377173355a5468f4a46466364cbb8cf36"
+      },
+      {
+        "bytes": 4732,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-receiver-session-binding.py",
+        "sha256": "cfe4769a583b6db9206ddbc879fa7e0bd95e326bdcf8dee41e8691070763dacf"
+      },
+      {
+        "bytes": 4310,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-receive-transaction.py",
+        "sha256": "f2ecd9b1612be8be029eb99295baaf3f02f1969b1b3209b11bd7b7dba58744b6"
+      },
+      {
+        "bytes": 5208,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-scope-observer.py",
+        "sha256": "5ec5009b64f8f00db84e5e0f28d0fe5bb2543afc59cf8a7cc7478613e0e96ae9"
+      },
+      {
+        "bytes": 3629,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-session-proof.py",
+        "sha256": "ccdd29eeba3b33b3d88648633eb42b0b9857e33b50ab76b792af2364e6a4c971"
+      },
+      {
+        "bytes": 5209,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-state.py",
+        "sha256": "0bc4dd104591a9d3f767988f68829d9b59e9d4992bbd0563fba9d72b5e9702cd"
+      },
+      {
+        "bytes": 3773,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-transfer-absence.py",
+        "sha256": "5f71a5074f822b99269145af50fa9f4f40eedf162691ba626c61fc371ead5a43"
+      },
+      {
+        "bytes": 6435,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-transfer-attestation.py",
+        "sha256": "9f4fe797d7ce6facf49f8049be0bbb074d8e4db900924a66facb1c9910eb8470"
+      },
+      {
+        "bytes": 5001,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-transition.py",
+        "sha256": "fc703207bb6ff3178dff829c8ef26f4754a7bc7e024b930cea55c995307fdfa0"
+      },
+      {
+        "bytes": 22497,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-native-endpoint",
+        "sha256": "d1a7fa590e5c412af48f1cec34899c1170e0bb5b3f5044ee23096ef72901ca32"
+      },
+      {
+        "bytes": 11755,
+        "mode": 493,
+        "path": "/usr/local/sbin/btrfs-receiver-prune",
+        "sha256": "3df569174fe7a80761cf662dcb9430cfe08c2c2982b30fc72fb39d6e25e8eca9"
+      },
+      {
+        "bytes": 439,
+        "mode": 420,
+        "path": "/etc/systemd/system/btrfs-legacy-prune.service",
+        "sha256": "e8d20836e89fea50feb5f6fe85ad95a8004044138e8e8f5456aa449150d76fc6"
+      },
+      {
+        "bytes": 207,
+        "mode": 420,
+        "path": "/etc/systemd/system/btrfs-legacy-prune.timer",
+        "sha256": "4fbe3ddb5800b5e2e1de4f5a35c6bfd455e68dde8306845d6bc45f0d3188154e"
+      }
+    ],
+    "mars": [
+      {
+        "bytes": 6877,
+        "mode": 493,
+        "path": "/usr/local/bin/btrfs-agreed-parent-sender",
+        "sha256": "523d9ed98aad1a4526bfc057aee9c1eb19d0d1e1c26a480c1152cd0dc06311fa"
+      },
+      {
+        "bytes": 47271,
+        "mode": 493,
+        "path": "/usr/local/bin/btrfs-native-push",
+        "sha256": "66387ab564341365c18c6e16b9d66882b569d80c0b3be3ed6780a4360987c1db"
+      },
+      {
+        "bytes": 4841,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-fixed-commands.py",
+        "sha256": "20a0359332573133d2f6266e9b11070bd8f41352ad22243ed27fd1e92ba8b384"
+      },
+      {
+        "bytes": 3962,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-get-state-transport.py",
+        "sha256": "cc7f33b93a763a8242a9618ea1369f74f294f39851ab1cb3f4a319f4bf7e71a7"
+      },
+      {
+        "bytes": 6469,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-initialise.py",
+        "sha256": "4a60718ca6d5dcfa4a521810b1a4476d51d4e6d11a2548853df3a82e1f6dcfb3"
+      },
+      {
+        "bytes": 3544,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-locked-get-state.py",
+        "sha256": "fb36f46f1c34f445d95fd15216aa5026aed8c268c807c196c8b62a2e942f10ab"
+      },
+      {
+        "bytes": 3344,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-locked-prepare-plan.py",
+        "sha256": "c7a874c9c66ca7e0231d7e5cbbe3cf91e6a2a3ee0e22195c6bb362229ea09296"
+      },
+      {
+        "bytes": 2338,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-observation-bridge.py",
+        "sha256": "0befb31e892e430fc8c93c214b64a3383ac9591be48ff83ff76a4c21026b4a4e"
+      },
+      {
+        "bytes": 5966,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-preparation-checkpoint.py",
+        "sha256": "d27602b16279b9c0a78b9cc5423df7b6e15b113b2b7fc47ec70531542045e2e4"
+      },
+      {
+        "bytes": 4092,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-prepared-transfer-review.py",
+        "sha256": "2634b9fe161d885cf0f307c2088afa67d4d5ab7a0110b1fca77c033fcedb47c2"
+      },
+      {
+        "bytes": 3994,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-prepare-preflight.py",
+        "sha256": "2a865a8f743d5e89a735da9d50e455e5c64a5d06bcf1d491a7cc7f736b1ce526"
+      },
+      {
+        "bytes": 4777,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-prepare-transport-contract.py",
+        "sha256": "0bbb5d483a03747569c583a3f7805c53580f0e0a5009efa42f51d9162051fd15"
+      },
+      {
+        "bytes": 3905,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-prepare-transport.py",
+        "sha256": "1bd6dd3c70d0637eedbb5206291ec5ba3f1ed5c0a98e4325f3d70de6c91e1fb6"
+      },
+      {
+        "bytes": 2472,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-receipt-readback.py",
+        "sha256": "cfd4f52b3ca63c565af905ccfbec41fe289416be8d619f483809e56a9a9b2ead"
+      },
+      {
+        "bytes": 4860,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-recovery-decision.py",
+        "sha256": "786e715b4b46c1f6b6d788c54161c041e2161e29ccb6a56b83b26138c2156e5c"
+      },
+      {
+        "bytes": 3230,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-selection.py",
+        "sha256": "f22f44c29db5023b36b0b157db9d9e2923ae9f705fba369a62838aeca4ecf5a1"
+      },
+      {
+        "bytes": 9383,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-sender-execution.py",
+        "sha256": "03e9eb3f52ec7b814bc81927d085ae96490344dca3937d3ef50830857add0f91"
+      },
+      {
+        "bytes": 4192,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-sender-previous-ack.py",
+        "sha256": "8f4083beab4582695266d881fe3fc924b22ceb0bf17efbcd5d74a1a087e57e2e"
+      },
+      {
+        "bytes": 3484,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-sender-promotion-coordinator.py",
+        "sha256": "18710c00f5e39e67045816844eb7815ee3b44460e510ed216624982a4fc17277"
+      },
+      {
+        "bytes": 4381,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-sender-promotion-runtime.py",
+        "sha256": "c8fd57b352896677fc73f10e71422b5ce795ac2c5d3ef7d6dc305cba61b83388"
+      },
+      {
+        "bytes": 5417,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-sender-proof-handoff.py",
+        "sha256": "42c501d1d1846b7b39b89a66397d78698f486f3fb15b3d5f2f2f433ec5c59d32"
+      },
+      {
+        "bytes": 5242,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-sender-transaction.py",
+        "sha256": "797dd162f6628a670689047dd04adfe265af963d00cbed8e3d6fdc1d858a5754"
+      },
+      {
+        "bytes": 5373,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-sender-workflow.py",
+        "sha256": "e98272178297379cd9c25963d7300ea2a23c690e46b31eb7327c9967f11b6772"
+      },
+      {
+        "bytes": 3629,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-session-proof.py",
+        "sha256": "ccdd29eeba3b33b3d88648633eb42b0b9857e33b50ab76b792af2364e6a4c971"
+      },
+      {
+        "bytes": 3500,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-source-evidence.py",
+        "sha256": "288283f14068d3882b8236948815489259ba7238d122691e98b033858db5e5d6"
+      },
+      {
+        "bytes": 3695,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-source-observer.py",
+        "sha256": "4e0cd37a149c6e894c8dc1e874e5e1716b6e7bb496b45fcc861843743f6e6de5"
+      },
+      {
+        "bytes": 5069,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-source-only-recovery.py",
+        "sha256": "aa19adf39196b87ccee3c5e1a7a2594413438967ba91c12a62196f1ff3ffeb64"
+      },
+      {
+        "bytes": 4002,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-source-recovery-integration.py",
+        "sha256": "058c8653bb351983b48452cd4bccf7fcaf3a060888104c345bf933a5078d2dc6"
+      },
+      {
+        "bytes": 4537,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-source-transition.py",
+        "sha256": "fe6f2029b3a78ec3eb9b5925cd29dea239771d5fcd418f851d11c190efb958f8"
+      },
+      {
+        "bytes": 5209,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-state.py",
+        "sha256": "0bc4dd104591a9d3f767988f68829d9b59e9d4992bbd0563fba9d72b5e9702cd"
+      },
+      {
+        "bytes": 3652,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-stream-adapter.py",
+        "sha256": "61371ecacf54f5fca329cabaac947fd6c9e9a09a2656dad68dcbcaef3a5f1df0"
+      },
+      {
+        "bytes": 3100,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-transfer-absence-transport.py",
+        "sha256": "fa4436aa07c6e394d6d9249f03b6de3984abb8bc3da281595c1f2e123d21a95a"
+      },
+      {
+        "bytes": 4972,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-transfer-attestation-transport.py",
+        "sha256": "6dfb2f18c5ee44d08432b047068515ab33153a553c49ba9acb52cee65689fa18"
+      },
+      {
+        "bytes": 4268,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-transfer-execution-adapter.py",
+        "sha256": "fa3c4e92a077e1bbe41e9402c417a7120f2fc6e86837cd39535d8324475f65cf"
+      },
+      {
+        "bytes": 2216,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-transfer-identity-probe.py",
+        "sha256": "06f4e7bd900d7d8451f73fe14f8de223a1bf4d16554e9bb7970b18e3ae05f228"
+      },
+      {
+        "bytes": 4253,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-transfer-integration-review.py",
+        "sha256": "6b16c4f882edf5ad34b40e7dae2e6ea1c96d286cdd5a1c8ea071534fbd7ae386"
+      },
+      {
+        "bytes": 6013,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-transfer-plan.py",
+        "sha256": "c2ffb3436c1190909bb9cef4357ebbf362c1ed4072ea8a0017a34b3895a0acc3"
+      },
+      {
+        "bytes": 3833,
+        "mode": 420,
+        "path": "/usr/local/libexec/btrfs-agreed-parent-transfer-transport-contract.py",
+        "sha256": "5e11d51782de1ecd18d3a49ede61998fb7b42f6c31c82779ee8bd34740b50141"
+      },
+      {
+        "bytes": 22497,
+        "mode": 493,
+        "path": "/usr/local/libexec/btrfs-native-endpoint",
+        "sha256": "d1a7fa590e5c412af48f1cec34899c1170e0bb5b3f5044ee23096ef72901ca32"
+      }
+    ]
+  },
+  "note": "Reviewed SHA-256/owner/mode path manifest; no snapshots or state files"
+}

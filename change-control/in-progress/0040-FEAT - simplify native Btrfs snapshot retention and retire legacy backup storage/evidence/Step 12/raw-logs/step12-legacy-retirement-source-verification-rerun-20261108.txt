@@ -1,0 +1,493 @@
+=== Repository state ===
+main
+6553ace 0040-FEAT: Commit simplified replication and receiver retention
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/files/btrfs-simplified-replication.py
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md
+ M roles/btrfs-replication/tests/verify-0040-simplified-replication.py
+ M roles/snapshots/files/diaries-backup-status.py
+ M roles/snapshots/tests/verify-diaries-backup-status.py
+?? roles/btrfs-replication/tests/verify-0040-legacy-retirement-source.py
+=== Simplified replication regression ===
+test_absent_or_complete_candidate_never_deleted (__main__.Cases.test_absent_or_complete_candidate_never_deleted) ... ok
+test_ambiguous_parent_divergence_refuses (__main__.Cases.test_ambiguous_parent_divergence_refuses) ... ok
+test_choose_newest_eligible_newer (__main__.Cases.test_choose_newest_eligible_newer) ... ok
+test_completed_candidate_uses_advance_without_retransmit (__main__.Cases.test_completed_candidate_uses_advance_without_retransmit) ... ok
+test_filesystem_identity_refusal (__main__.Cases.test_filesystem_identity_refusal) ... ok
+test_held_or_legacy_receipt_refuses (__main__.Cases.test_held_or_legacy_receipt_refuses) ... ok
+test_incomplete_cleanup_exact_subvolume_once (__main__.Cases.test_incomplete_cleanup_exact_subvolume_once) ... ok
+test_invalid_candidate_prevents_cleanup (__main__.Cases.test_invalid_candidate_prevents_cleanup) ... ok
+test_invalid_state_or_rollback_refuses (__main__.Cases.test_invalid_state_or_rollback_refuses) ... ok
+test_latest_invalid_candidate_refuses_rather_than_falling_back (__main__.Cases.test_latest_invalid_candidate_refuses_rather_than_falling_back) ... ok
+test_latest_selection_ignores_symlinks_and_non_snapshots (__main__.Cases.test_latest_selection_ignores_symlinks_and_non_snapshots) ... ok
+test_readonly_lock_never_creates_missing_lockfile (__main__.Cases.test_readonly_lock_never_creates_missing_lockfile) ... ok
+test_readonly_or_received_unknown_candidate_refused (__main__.Cases.test_readonly_or_received_unknown_candidate_refused) ... ok
+test_receiver_ahead_lost_ack (__main__.Cases.test_receiver_ahead_lost_ack) ... ok
+test_receiver_backoff_uses_configured_lock (__main__.Cases.test_receiver_backoff_uses_configured_lock) ... ok
+test_receiver_failure_does_not_advance (__main__.Cases.test_receiver_failure_does_not_advance) ... ok
+test_receiver_incomplete_next_run_deletes_then_receives (__main__.Cases.test_receiver_incomplete_next_run_deletes_then_receives) ... INFO: cleaned one incomplete candidate; retrying receive
+ok
+test_sender_lost_ack_advances_local_without_retransmission (__main__.Cases.test_sender_lost_ack_advances_local_without_retransmission) ... ok
+test_sender_status_receiver_ahead_does_not_reconcile_or_save (__main__.Cases.test_sender_status_receiver_ahead_does_not_reconcile_or_save) ... ok
+test_sender_status_rejects_unverified_receiver_identity (__main__.Cases.test_sender_status_rejects_unverified_receiver_identity) ... ok
+test_sender_status_uses_verified_readonly_identity_without_mutation (__main__.Cases.test_sender_status_uses_verified_readonly_identity_without_mutation) ... ok
+test_single_nonblocking_manager_lock (__main__.Cases.test_single_nonblocking_manager_lock) ... ok
+test_state_atomic_readback (__main__.Cases.test_state_atomic_readback) ... ok
+test_state_record_and_prior (__main__.Cases.test_state_record_and_prior) ... ok
+test_state_rejects_nonroot_owner_and_insecure_mode (__main__.Cases.test_state_rejects_nonroot_owner_and_insecure_mode) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.065s
+
+OK
+SUCCESS: common parent advanced to 20261101-140039Z
+SUCCESS: reconciled receiver-ahead transfer without retransmission
+=== Legacy installation regression ===
+PASS: simplified installer gates, status source and obsolete sudoers policy
+=== Backup-status regression ===
+DIARIES BACKUP STATUS (read-only)
+
+SNAPSHOT HEALTH
+complete_timestamp_sets=2;incomplete_timestamp_sets=0
+
+BACKUP HISTORY
+UNAVAILABLE: history not configured
+
+LAST VERIFIED PULL (CURRENT RECEIVING MARKER)
+  backupId=20261014-010000Z logicalDataset=production verifiedAt=now
+  sourceIdentity=None snapshotEligible=True
+
+LAST ACCEPTED OFF-SITE REPLICATION
+  snapshot=20261014-010000Z source_uuid=123 (receiver identity verified)
+
+NEXT SIMPLIFIED PUSH PREFLIGHT (READ-ONLY)
+  action=up-to-date source=None parent=20261014-010000Z
+
+Note: history verification configuration limitation is tracked under 0035-FEAT.
+PASS: simplified read-only aggregate, invalid receiver refusal, and verified marker handling
+=== Ansible syntax ===
+
+playbook: btrfs-replication.yaml
+=== Ansible deployment preflight ===
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for mars, backup
+
+TASK [btrfs-replication : Native Btrfs | Require simplified runtime installation before service cutover] ***
+skipping: [backup]
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install source-initiated push service and timer] ***
+skipping: [backup] => (item=btrfs-native-push.service) 
+skipping: [backup] => (item=btrfs-native-push.timer) 
+skipping: [backup]
+ok: [mars] => (item=btrfs-native-push.service)
+ok: [mars] => (item=btrfs-native-push.timer)
+
+TASK [btrfs-replication : Native Btrfs | Check for active legacy rsync off-site phase before scheduling native push] ***
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Refuse dual off-site transports] ******
+skipping: [backup]
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Apply explicit push schedule state] ***
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install simplified agreed-parent command (opt in)] ***
+--- before: /usr/local/bin/btrfs-simplified-replication
++++ after: /home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py
+@@ -3,7 +3,7 @@
+ 
+ Single local flock per host, small agreed-parent record, ordinary logs,
+ receiver-owned inspection/cleanup, one attempt per scheduled cycle.
+-Not installed as the active systemd job until the cutover gate is accepted.
++The source status command is read-only and never initiates a sender cycle.
+ """
+ import argparse
+ from contextlib import contextmanager
+@@ -113,12 +113,15 @@
+         if os.path.exists(temp):
+             os.unlink(temp)
+ 
+-def take_lock(path=None):
++def take_lock(path=None, *, create=True):
+     # Resolve the configured lock at call time, including in isolated fixtures.
+     if path is None:
+         path = MANAGER_LOCK
+     require(not path.is_symlink(), 'Unsafe lock path')
+-    fd = os.open(path, os.O_RDWR | os.O_CREAT | os.O_CLOEXEC | os.O_NOFOLLOW, 0o600)
++    flags = os.O_RDWR | os.O_CLOEXEC | os.O_NOFOLLOW
++    if create:
++        flags |= os.O_CREAT
++    fd = os.open(path, flags, 0o600)
+     try:
+         require(stat.S_ISREG(os.fstat(fd).st_mode), 'Invalid lock file')
+         try:
+@@ -131,8 +134,8 @@
+         raise
+ 
+ @contextmanager
+-def locked():
+-    fd = take_lock()
++def locked(*, create=True):
++    fd = take_lock(create=create)
+     try:
+         yield
+     finally:
+@@ -275,7 +278,7 @@
+     return {'status': 'received', 'state': load_state(RECEIVER_STATE)}
+ 
+ def receiver_main(args):
+-    with locked():
++    with locked(create=(args.operation != 'status')):
+         require_filesystem(RECEIVER_MOUNT, RECEIVER_FS)
+         safe_directory(RECEIVED)
+         if args.operation == 'status':
+@@ -357,8 +360,54 @@
+                     (sender_error + remote_error).decode(errors='replace')[-2000:])
+             return json.loads(output)
+ 
++def sender_readonly_status():
++    """Inspect both ends without sending, advancing or saving agreed-parent state.
++
++    Uses the same root-owned manager lock as the scheduled sender.  Refusal or
++    a busy receiver is reported as an unavailable preflight, never a transfer.
++    """
++    source = load_state(SOURCE_STATE)
++    parent = source['parent']
++    parent_info = subvolume_info(SOURCE, parent['timestamp'])
++    require(verified(parent_info, parent['uuid'], received=False),
++            'Source parent identity invalid')
++    if source['prior']:
++        prior = source['prior']
++        require(verified(subvolume_info(SOURCE, prior['timestamp']),
++                         prior['uuid'], received=False), 'Source prior identity invalid')
++
++    remote = validate_state(peer('status')['state'])
++    relation = reconcile(source, remote)
++    # Verify the actual Btrfs Received UUID, not only the remote JSON record.
++    receiver_parent = remote['parent']
++    inspection = peer('status', '--snapshot', receiver_parent['timestamp'])
++    require(validate_state(inspection['state']) == remote and
++            verified(inspection['candidate'], receiver_parent['uuid'], received=True),
++            'Receiver parent identity or agreed-parent state changed')
++
++    if relation == 'receiver-ahead':
++        require(verified(subvolume_info(SOURCE, receiver_parent['timestamp']),
++                         receiver_parent['uuid'], received=False),
++                'Receiver ahead but source new parent is invalid')
++        preflight = {'action': 'receiver-ahead-reconciliation-required',
++                     'source': None, 'parent': parent['timestamp']}
++    else:
++        selected = choose_next(parent['timestamp'])
++        if selected:
++            stamp, uuid = selected
++            candidate = subvolume_info(SOURCE, stamp)
++            require(candidate['Parent UUID'] == parent_info['Parent UUID'],
++                    'Candidate source lineage differs from agreed parent')
++            preflight = {'action': 'incremental', 'source': stamp,
++                         'source_uuid': uuid, 'parent': parent['timestamp']}
++        else:
++            preflight = {'action': 'up-to-date', 'source': None,
++                         'parent': parent['timestamp']}
++    return {'state': source, 'receiver': remote, 'relation': relation,
++            'receiver_parent_verified': True, 'preflight': preflight}
++
+ def sender_main(args):
+-    with locked():
++    with locked(create=(args.operation != 'status')):
+         require_filesystem(SOURCE_MOUNT, SOURCE_FS)
+         safe_directory(SOURCE)
+         if args.operation == 'bootstrap':
+@@ -374,6 +423,9 @@
+             if not SOURCE_STATE.exists():
+                 save_state(SOURCE_STATE, expected, create=True)
+             print('SUCCESS: both agreed-parent records initialised')
++            return
++        if args.operation == 'status':
++            print(json.dumps(sender_readonly_status(), sort_keys=True))
+             return
+         current = load_state(SOURCE_STATE)
+         require(verified(subvolume_info(SOURCE, current['parent']['timestamp']),
+@@ -433,7 +485,7 @@
+         if args.parent_uuid:
+             uid(args.parent_uuid)
+         if args.host == 'sender':
+-            require(args.operation in ('cycle','bootstrap'), 'Unsupported sender operation')
++            require(args.operation in ('cycle','bootstrap','status'), 'Unsupported sender operation')
+             sender_main(args)
+         else:
+             require(args.operation in ('status','bootstrap','receive','advance'),
+
+changed: [mars]
+--- before: /usr/local/bin/btrfs-simplified-replication
++++ after: /home/richard/playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py
+@@ -3,7 +3,7 @@
+ 
+ Single local flock per host, small agreed-parent record, ordinary logs,
+ receiver-owned inspection/cleanup, one attempt per scheduled cycle.
+-Not installed as the active systemd job until the cutover gate is accepted.
++The source status command is read-only and never initiates a sender cycle.
+ """
+ import argparse
+ from contextlib import contextmanager
+@@ -113,12 +113,15 @@
+         if os.path.exists(temp):
+             os.unlink(temp)
+ 
+-def take_lock(path=None):
++def take_lock(path=None, *, create=True):
+     # Resolve the configured lock at call time, including in isolated fixtures.
+     if path is None:
+         path = MANAGER_LOCK
+     require(not path.is_symlink(), 'Unsafe lock path')
+-    fd = os.open(path, os.O_RDWR | os.O_CREAT | os.O_CLOEXEC | os.O_NOFOLLOW, 0o600)
++    flags = os.O_RDWR | os.O_CLOEXEC | os.O_NOFOLLOW
++    if create:
++        flags |= os.O_CREAT
++    fd = os.open(path, flags, 0o600)
+     try:
+         require(stat.S_ISREG(os.fstat(fd).st_mode), 'Invalid lock file')
+         try:
+@@ -131,8 +134,8 @@
+         raise
+ 
+ @contextmanager
+-def locked():
+-    fd = take_lock()
++def locked(*, create=True):
++    fd = take_lock(create=create)
+     try:
+         yield
+     finally:
+@@ -275,7 +278,7 @@
+     return {'status': 'received', 'state': load_state(RECEIVER_STATE)}
+ 
+ def receiver_main(args):
+-    with locked():
++    with locked(create=(args.operation != 'status')):
+         require_filesystem(RECEIVER_MOUNT, RECEIVER_FS)
+         safe_directory(RECEIVED)
+         if args.operation == 'status':
+@@ -357,8 +360,54 @@
+                     (sender_error + remote_error).decode(errors='replace')[-2000:])
+             return json.loads(output)
+ 
++def sender_readonly_status():
++    """Inspect both ends without sending, advancing or saving agreed-parent state.
++
++    Uses the same root-owned manager lock as the scheduled sender.  Refusal or
++    a busy receiver is reported as an unavailable preflight, never a transfer.
++    """
++    source = load_state(SOURCE_STATE)
++    parent = source['parent']
++    parent_info = subvolume_info(SOURCE, parent['timestamp'])
++    require(verified(parent_info, parent['uuid'], received=False),
++            'Source parent identity invalid')
++    if source['prior']:
++        prior = source['prior']
++        require(verified(subvolume_info(SOURCE, prior['timestamp']),
++                         prior['uuid'], received=False), 'Source prior identity invalid')
++
++    remote = validate_state(peer('status')['state'])
++    relation = reconcile(source, remote)
++    # Verify the actual Btrfs Received UUID, not only the remote JSON record.
++    receiver_parent = remote['parent']
++    inspection = peer('status', '--snapshot', receiver_parent['timestamp'])
++    require(validate_state(inspection['state']) == remote and
++            verified(inspection['candidate'], receiver_parent['uuid'], received=True),
++            'Receiver parent identity or agreed-parent state changed')
++
++    if relation == 'receiver-ahead':
++        require(verified(subvolume_info(SOURCE, receiver_parent['timestamp']),
++                         receiver_parent['uuid'], received=False),
++                'Receiver ahead but source new parent is invalid')
++        preflight = {'action': 'receiver-ahead-reconciliation-required',
++                     'source': None, 'parent': parent['timestamp']}
++    else:
++        selected = choose_next(parent['timestamp'])
++        if selected:
++            stamp, uuid = selected
++            candidate = subvolume_info(SOURCE, stamp)
++            require(candidate['Parent UUID'] == parent_info['Parent UUID'],
++                    'Candidate source lineage differs from agreed parent')
++            preflight = {'action': 'incremental', 'source': stamp,
++                         'source_uuid': uuid, 'parent': parent['timestamp']}
++        else:
++            preflight = {'action': 'up-to-date', 'source': None,
++                         'parent': parent['timestamp']}
++    return {'state': source, 'receiver': remote, 'relation': relation,
++            'receiver_parent_verified': True, 'preflight': preflight}
++
+ def sender_main(args):
+-    with locked():
++    with locked(create=(args.operation != 'status')):
+         require_filesystem(SOURCE_MOUNT, SOURCE_FS)
+         safe_directory(SOURCE)
+         if args.operation == 'bootstrap':
+@@ -374,6 +423,9 @@
+             if not SOURCE_STATE.exists():
+                 save_state(SOURCE_STATE, expected, create=True)
+             print('SUCCESS: both agreed-parent records initialised')
++            return
++        if args.operation == 'status':
++            print(json.dumps(sender_readonly_status(), sort_keys=True))
+             return
+         current = load_state(SOURCE_STATE)
+         require(verified(subvolume_info(SOURCE, current['parent']['timestamp']),
+@@ -433,7 +485,7 @@
+         if args.parent_uuid:
+             uid(args.parent_uuid)
+         if args.host == 'sender':
+-            require(args.operation in ('cycle','bootstrap'), 'Unsupported sender operation')
++            require(args.operation in ('cycle','bootstrap','status'), 'Unsupported sender operation')
+             sender_main(args)
+         else:
+             require(args.operation in ('status','bootstrap','receive','advance'),
+
+changed: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install simplified Diaries backup status report] ***
+skipping: [backup]
+--- before: /usr/local/sbin/diaries-backup-status
++++ after: /home/richard/playbooks/roles/snapshots/files/diaries-backup-status.py
+@@ -9,8 +9,7 @@
+ 
+ MANAGER = '/usr/local/sbin/btrfs-snapshot-manager'
+ HISTORY = '/usr/local/sbin/diaries-backup-history'
+-PUSH = '/usr/local/bin/btrfs-native-push'
+-RECEIVER = '/usr/local/bin/btrfs-native-push-receiver'
++PUSH = '/usr/local/bin/btrfs-simplified-replication'
+ 
+ 
+ def command(args, timeout=40):
+@@ -64,19 +63,33 @@
+     snapshot = command([args.manager, '--config', args.config, 'status'])
+     history = json_command([args.history, '--config', args.config, '--json', 'list'])
+     marker = read_marker(config)
+-    operator_prefix = ['runuser', '-u', args.operator, '--'] if os.geteuid() == 0 else []
+-    replication = json_command(operator_prefix + [args.push, '--latest', '--preflight'])
+-    # Receiver list is read-only and contains acknowledged snapshot/UUID pairs.
+-    receiver = json_command(operator_prefix + ['ssh', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=8',
+-                             '-p', str(args.receiver_port), args.receiver_host, args.receiver_command, '--list'])
+-    values = receiver.get('data') if receiver['ok'] else None
+-    if not isinstance(values, list):
+-        receiver['ok'] = False
+-        receiver['error'] = receiver.get('error') or 'unexpected receiver list'
++    # The simplified sender offers one guarded read-only inspection of the
++    # local agreed-parent state, actual source and receiver Btrfs identities,
++    # and next eligible snapshot. Never invoke `sender cycle` here.
++    # Root is required to access the 0600 agreed-parent record; when run as an
++    # ordinary operator sudo must be explicitly authorised by the host.
++    privileged = ['sudo', '-n'] if os.geteuid() != 0 else []
++    inspection = json_command(privileged + [args.push, 'sender', 'status'])
++    payload = inspection.get('data') if inspection['ok'] else None
++    if (not isinstance(payload, dict) or
++            payload.get('receiver_parent_verified') is not True or
++            payload.get('relation') not in ('equal', 'receiver-ahead') or
++            not isinstance(payload.get('preflight'), dict) or
++            not isinstance(payload.get('receiver'), dict)):
++        inspection['ok'] = False
++        inspection['error'] = inspection.get('error') or 'invalid simplified sender status'
++        replication = {'ok': False, 'error': inspection['error']}
++        receiver = {'ok': False, 'error': inspection['error']}
+     else:
+-        receiver['latest'] = max((v for v in values if isinstance(v, dict) and 'snapshot' in v),
+-                                 key=lambda v: v['snapshot'], default=None)
+-        receiver.pop('data', None)
++        replication = {'ok': True, 'data': payload['preflight']}
++        parent = payload['receiver'].get('parent')
++        if isinstance(parent, dict) and {'timestamp', 'uuid'} <= set(parent):
++            receiver = {'ok': True, 'latest': {
++                'snapshot': parent['timestamp'], 'source_uuid': parent['uuid']},
++                'relation': payload['relation'], 'identity_verified': True}
++        else:
++            receiver = {'ok': False, 'error': 'missing remote agreed parent'}
++            replication = {'ok': False, 'error': 'missing remote agreed parent'}
+     if isinstance(history.get('data'), dict):
+         rows = history['data'].get('backups', [])
+         history['count'] = len(rows)
+@@ -115,11 +128,11 @@
+     o = record['offsite']
+     if o['ok']:
+         v = o['latest']
+-        print(f"  snapshot={v['snapshot']} source_uuid={v.get('source_uuid')}" if v else '  No accepted receipts reported')
++        print(f"  snapshot={v['snapshot']} source_uuid={v.get('source_uuid')} (receiver identity verified)" if v else '  No agreed parent reported')
+     else:
+         print('UNAVAILABLE: ' + (o.get('error') or 'unknown'))
+     p = record['replicationPreflight']
+-    print('\nNEXT PUSH PREFLIGHT')
++    print('\nNEXT SIMPLIFIED PUSH PREFLIGHT (READ-ONLY)')
+     if p['ok'] and isinstance(p.get('data'), dict):
+         v = p['data']
+         print(f"  action={v.get('action')} source={v.get('source')} parent={v.get('parent')}")
+@@ -130,14 +143,10 @@
+ 
+ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument('--operator', default='richard', help='Unprivileged native push/SSH account')
+     parser.add_argument('--config', default='/etc/btrfs-snapshot-manager.json')
+     parser.add_argument('--manager', default=MANAGER)
+     parser.add_argument('--history', default=HISTORY)
+     parser.add_argument('--push', default=PUSH)
+-    parser.add_argument('--receiver-host', default='richard@10.254.22.1')
+-    parser.add_argument('--receiver-port', type=int, default=39263)
+-    parser.add_argument('--receiver-command', default=RECEIVER)
+     parser.add_argument('--limit', type=int, default=5)
+     parser.add_argument('--json', action='store_true')
+     args = parser.parse_args()
+
+changed: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Validate simplified receiver retention settings] ***
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install shared manager with simplified receiver retention] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver config with independent deletion gate] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install dormant simplified receiver retention units] ***
+skipping: [mars] => (item=btrfs-receiver-simple-prune.service) 
+skipping: [mars] => (item=btrfs-receiver-simple-prune.timer) 
+skipping: [mars]
+ok: [backup] => (item=btrfs-receiver-simple-prune.service)
+ok: [backup] => (item=btrfs-receiver-simple-prune.timer)
+
+TASK [btrfs-replication : Native Btrfs | Enforce explicit receiver retention timer state] ***
+skipping: [mars]
+skipping: [backup]
+
+PLAY RECAP *********************************************************************
+backup                     : ok=6    changed=1    unreachable=0    failed=0    skipped=7    rescued=0    ignored=0   
+mars                       : ok=8    changed=2    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
+
+PASS: Consolidated verification

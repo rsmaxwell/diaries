@@ -1,0 +1,9 @@
+=== Diaries repository revision ===
+eefdb82 0040-FEAT: Accept first unattended receiver pruning
+=== Check obsolete sudoers on mars ===
+ATTENTION: obsolete sudoers file remains installed
+=== Capture exact installed legacy-file manifest ===
+PASS: mars observed 39 exact legacy files
+PASS: backup observed 35 exact legacy files
+READ ONLY: manifest prepared change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 12/manifests/legacy-code-retirement-manifest-20261108-083525Z.json
+PASS: Read-only retirement manifest capture

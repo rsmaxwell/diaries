@@ -1,0 +1,103 @@
+=== Source revision ===
+e5ae755 Consolidated Playbooks verification
+=== Agreed-parent state checksums before deployment ===
+=== Deploy accepted implementation ===
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for mars, backup
+
+TASK [btrfs-replication : Native Btrfs | Require simplified runtime installation before service cutover] ***
+skipping: [backup]
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install source-initiated push service and timer] ***
+skipping: [backup] => (item=btrfs-native-push.service) 
+skipping: [backup] => (item=btrfs-native-push.timer) 
+skipping: [backup]
+ok: [mars] => (item=btrfs-native-push.service)
+ok: [mars] => (item=btrfs-native-push.timer)
+
+TASK [btrfs-replication : Native Btrfs | Check for active legacy rsync off-site phase before scheduling native push] ***
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Refuse dual off-site transports] ******
+skipping: [backup]
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Apply explicit push schedule state] ***
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install simplified agreed-parent command (opt in)] ***
+changed: [backup]
+changed: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install simplified Diaries backup status report] ***
+skipping: [backup]
+changed: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Validate simplified receiver retention settings] ***
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install shared manager with simplified receiver retention] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver config with independent deletion gate] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install dormant simplified receiver retention units] ***
+skipping: [mars] => (item=btrfs-receiver-simple-prune.service) 
+skipping: [mars] => (item=btrfs-receiver-simple-prune.timer) 
+skipping: [mars]
+ok: [backup] => (item=btrfs-receiver-simple-prune.service)
+ok: [backup] => (item=btrfs-receiver-simple-prune.timer)
+
+TASK [btrfs-replication : Native Btrfs | Enforce explicit receiver retention timer state] ***
+skipping: [mars]
+ok: [backup]
+
+PLAY RECAP *********************************************************************
+backup                     : ok=7    changed=1    unreachable=0    failed=0    skipped=6    rescued=0    ignored=0   
+mars                       : ok=8    changed=2    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
+
+=== Verify installed replication executables ===
+PASS: mars executable matches Playbooks
+PASS: backup executable matches Playbooks
+=== Verify read-only sender status ===
+PASS: Verified sender/receiver state: {'timestamp': '20261108-030011Z', 'uuid': 'dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58'}
+Preflight: {'action': 'incremental', 'parent': '20261108-030011Z', 'source': '20261108-080031Z', 'source_uuid': 'dc03aa66-6d02-b245-98d2-1013c818d4e6'}
+=== Verify backup status reporting ===
+PASS: Backup status and verified off-site parent
+Off-site: {'snapshot': '20261108-030011Z', 'source_uuid': 'dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58'}
+=== Verify timers remain enabled and active ===
+enabled
+active
+enabled
+active
+=== Verify agreed-parent state remains unchanged ===
+PASS: Both agreed-parent records unchanged
+PASS: Deployment and operational verification
