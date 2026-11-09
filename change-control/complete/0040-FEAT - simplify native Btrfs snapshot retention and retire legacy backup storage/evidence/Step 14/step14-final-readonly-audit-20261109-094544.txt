@@ -1,0 +1,68 @@
+=== Repository revisions ===
+4f166ac 0040-FEAT: Formally close Step 12
+?? "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 13-14-final-review-20261108.txt"
+?? "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 13-14-snapshot-timer-diagnostic-20261108.txt"
+?? "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 13/"
+?? "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 14/"
+e0da797 0040-FEAT: Remove obsolete replication task backup
+=== MARS: root snapshot retirement ===
+Root snapshot directory entries:
+find: ‘/media/usb/@snapshots/root’: Permission denied
+Native root snapshot subvolumes:
+=== MARS: managed snapshots and capacity ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=764
+qgroups_stale=606
+qgroups_under_deletion=0
+qgroups_status=warning
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=147;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=147
+diaries_verification=valid;logicalDataset=production;backupId=20261109-003055Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdb1       3.7T  330G  3.4T   9% /media/usb
+=== MARS: unattended schedules ===
+NEXT                         LEFT LAST                           PASSED UNIT                        ACTIVATES
+Mon 2026-11-09 10:00:00 UTC 14min Mon 2026-11-09 09:00:11 UTC 45min ago btrfs-snapshot-create.timer btrfs-snapshot-create.service
+Tue 2026-11-10 03:30:00 UTC   17h Mon 2026-11-09 03:30:18 UTC    6h ago btrfs-native-push.timer     btrfs-native-push.service
+-                               - Mon 2026-11-09 09:45:39 UTC   12s ago btrfs-snapshot-prune.timer  btrfs-snapshot-prune.service
+
+3 timers listed.
+# /etc/systemd/system/btrfs-snapshot-prune.service
+[Unit]
+Description=Prune timestamp-named Btrfs snapshots
+After=local-fs.target
+ConditionPathExists=/etc/btrfs-snapshot-manager.json
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/btrfs-snapshot-manager --config /etc/btrfs-snapshot-manager.json prune --max-delete 10
+=== BACKUP: legacy tree retirement ===
+REVIEW: Path remains: /@data/backup
+ABSENT: /@data/.snapshots
+REVIEW: Path remains: /@snapshots/@data
+REVIEW: Path remains: /@snapshots/root
+ABSENT: /.snapshots
+=== BACKUP: received data and receipts ===
+Received snapshot directories:
+32
+Historical JSON receipts:
+29
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2       1.9T  992G  856G  54% /
+=== BACKUP: receiver retention and schedules ===
+RECEIVER-SIMPLE-PLAN {"candidates": 0, "enabled": true, "historical_receipts_on_candidates": 0, "historical_receipts_orphaned": 0, "historical_receipts_preserved": 27, "holds": ["20261013-171228Z", "20261018-165453Z"], "keep": 32, "parent": {"timestamp": "20261109-030030Z", "uuid": "239f29b4-9577-0e4b-b4f2-5f5cb9f7484c"}, "prior": {"timestamp": "20261108-030011Z", "uuid": "dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58"}}
+NEXT                        LEFT LAST                              PASSED UNIT                              ACTIVATES
+Tue 2026-11-10 04:15:00 GMT  18h Mon 2026-11-09 04:15:02 GMT 5h 30min ago btrfs-receiver-simple-prune.timer btrfs-receiver-simple-prune.service
+
+1 timers listed.
+=== Installed binary identities ===
+89602f0aac07900b367a82728e42339ee9c9d3ed40e55010af87576dadc7a2b7  /usr/local/sbin/btrfs-snapshot-manager
+7eba4a04aca1f9b04333cd82952744ab1559cc7736092d7d1dcc11a25be67363  /usr/local/bin/btrfs-simplified-replication
+26ba24e711558a358069775ef042c01765355dd5dc80f9eb5521f42a2673dfc0  /usr/local/sbin/btrfs-snapshot-manager
+7eba4a04aca1f9b04333cd82952744ab1559cc7736092d7d1dcc11a25be67363  /usr/local/bin/btrfs-simplified-replication
+=== Latest agreed-parent state ===
+{"preflight": {"action": "incremental", "parent": "20261109-030030Z", "source": "20261109-090011Z", "source_uuid": "40f7c1aa-ef4e-544e-a2d3-de7737ab1642"}, "receiver": {"parent": {"timestamp": "20261109-030030Z", "uuid": "239f29b4-9577-0e4b-b4f2-5f5cb9f7484c"}, "prior": {"timestamp": "20261108-030011Z", "uuid": "dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58"}, "schema": 1}, "receiver_parent_verified": true, "relation": "equal", "state": {"parent": {"timestamp": "20261109-030030Z", "uuid": "239f29b4-9577-0e4b-b4f2-5f5cb9f7484c"}, "prior": {"timestamp": "20261108-030011Z", "uuid": "dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58"}, "schema": 1}}
+{"state": {"parent": {"timestamp": "20261109-030030Z", "uuid": "239f29b4-9577-0e4b-b4f2-5f5cb9f7484c"}, "prior": {"timestamp": "20261108-030011Z", "uuid": "dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58"}, "schema": 1}}
+PASS: Step 14 read-only audit commands completed

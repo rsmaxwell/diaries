@@ -1,0 +1,49 @@
+=== Verify Playbooks source ===
+e0da797 0040-FEAT: Remove obsolete replication task backup
+=== Receiver Ansible idempotency ===
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for backup
+
+TASK [btrfs-replication : Native Btrfs | Validate simplified receiver retention settings] ***
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install shared manager with simplified receiver retention] ***
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver config with independent deletion gate] ***
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install dormant simplified receiver retention units] ***
+ok: [backup] => (item=btrfs-receiver-simple-prune.service)
+ok: [backup] => (item=btrfs-receiver-simple-prune.timer)
+
+TASK [btrfs-replication : Native Btrfs | Enforce explicit receiver retention timer state] ***
+skipping: [backup]
+
+PLAY RECAP *********************************************************************
+backup                     : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+
+=== Verify Ansible changes ===
+Review recap above: expected changed=0 failed=0
+=== Sender snapshot-service state ===
+Id=btrfs-snapshot-create.service
+ActiveState=inactive
+SubState=dead
+
+Id=btrfs-snapshot-prune.service
+ActiveState=inactive
+SubState=dead
+=== Sender/receiver parent agreement ===
+PASS: Sender and receiver agree
+Parent: {'timestamp': '20261109-030030Z', 'uuid': '239f29b4-9577-0e4b-b4f2-5f5cb9f7484c'}
+Prior: {'timestamp': '20261108-030011Z', 'uuid': 'dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58'}
+PASS: Remaining verification commands completed

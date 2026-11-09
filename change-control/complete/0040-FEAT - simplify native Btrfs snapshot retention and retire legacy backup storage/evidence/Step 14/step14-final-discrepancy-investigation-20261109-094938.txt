@@ -1,0 +1,112 @@
+=== 1. MARS: privileged root snapshot inspection ===
+Root directory contents:
+Matching Btrfs subvolumes:
+=== 2. BACKUP: remaining legacy path identities ===
+--- /@data/backup ---
+Type=directory Mode=775 Path=/@data/backup
+Not itself a Btrfs subvolume
+Immediate contents:
+d /@data/backup/nas
+d /@data/backup/richard-laptop
+d /@data/backup/richard-pc
+d /@data/backup/mars
+d /@data/backup/bob
+d /@data/backup/mango
+d /@data/backup/pluto
+f /@data/backup/.btrfs-snapshot-writer.lock
+f /@data/backup/.diaries-snapshot-verified.json
+--- /@data/.snapshots ---
+ABSENT
+--- /@snapshots/@data ---
+Type=directory Mode=700 Path=/@snapshots/@data
+Not itself a Btrfs subvolume
+Immediate contents:
+--- /@snapshots/root ---
+Type=directory Mode=700 Path=/@snapshots/root
+Not itself a Btrfs subvolume
+Immediate contents:
+--- /.snapshots ---
+ABSENT
+=== Legacy-path Btrfs subvolume inventory ===
+=== 3. Compare installed manager with Playbooks source ===
+playbooks: SHA256=89602f0aac07900b367a82728e42339ee9c9d3ed40e55010af87576dadc7a2b7
+mars: SHA256=89602f0aac07900b367a82728e42339ee9c9d3ed40e55010af87576dadc7a2b7
+backup: SHA256=26ba24e711558a358069775ef042c01765355dd5dc80f9eb5521f42a2673dfc0
+PASS: mars matches Playbooks source
+REVIEW: backup differs from Playbooks source
+--- Playbooks source
++++ backup installed
+@@ -825,11 +825,7 @@
+     return int(matches[0])
+ 
+ 
+-def prune(config: Config, dry_run: bool = False, max_delete: int | None = None) -> int:
+-    # A bounded scheduled prune prevents an accumulated backlog from being
+-    # deleted in one run. Keep direct legacy invocations backward-compatible.
+-    if max_delete is not None and (type(max_delete) is not int or not 1 <= max_delete <= 10):
+-        raise SnapshotError("source prune max_delete must be between 1 and 10")
++def prune(config: Config, dry_run: bool = False) -> int:
+     if config.mode != "source":
+         raise SnapshotError("receiver pruning is not implemented; fail closed")
+     preflight(config)
+@@ -860,16 +856,10 @@
+                   for source in prune_sources if snapshot_path(config, source, name).exists()]
+     for name, source in candidates:
+         validate_prune_candidate(config, source, name)
+-    # Evaluate and validate every eligible snapshot, even when the run is
+-    # capped. Selection follows the existing newest-first iteration order.
+-    eligible = [name for name, _ in complete if name not in keep]
+-    selected = set(eligible[:max_delete]) if max_delete is not None else set(eligible)
+     deleted_sets = 0
+     print(f"RETENTION sets: total={len(complete)} keep={len(keep)} sources={len(config.sources)}")
+-    if max_delete is not None:
+-        print(f"PRUNE-CAP: eligible={len(eligible)} selected={len(selected)} max_delete={max_delete}")
+     for name, _ in complete:
+-        if name not in selected:
++        if name in keep:
+             continue
+         deleted_sets += 1
+         if dry_run:
+@@ -1670,7 +1660,6 @@
+     create_parser.add_argument("--timestamp")
+     prune_parser = sub.add_parser("prune")
+     prune_parser.add_argument("--dry-run", action="store_true")
+-    prune_parser.add_argument("--max-delete", type=int, help="limit source pruning to 1..10 snapshot sets per run")
+     sub.add_parser("list")
+     sub.add_parser("status")
+     sub.add_parser("receiver-inventory")
+@@ -1710,7 +1699,7 @@
+             if args.command == "create":
+                 create_all(config, args.timestamp)
+             elif args.command == "prune":
+-                prune(config, args.dry_run, args.max_delete)
++                prune(config, args.dry_run)
+             elif args.command == "list":
+                 show_list(config)
+             elif args.command == "status":
+=== 4. MARS: latest pruning execution ===
+Result=success
+ExecMainStartTimestamp=Mon 2026-11-09 09:45:39 UTC
+ExecMainExitTimestamp=Mon 2026-11-09 09:45:53 UTC
+ExecMainStatus=0
+ActiveState=inactive
+Nov 09 09:45:39 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 09 09:45:52 mars btrfs-snapshot-manager[98205]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Nov 09 09:45:52 mars btrfs-snapshot-manager[98205]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z', '20261101-140039Z']
+Nov 09 09:45:52 mars btrfs-snapshot-manager[98205]: RETENTION sets: total=147 keep=69 sources=1
+Nov 09 09:45:52 mars btrfs-snapshot-manager[98205]: PRUNE-CAP: eligible=78 selected=10 max_delete=10
+Nov 09 09:45:52 mars btrfs-snapshot-manager[98205]: DELETE @data 20261107-090021Z subvol_id=21543 /media/usb/@snapshots/@data/20261107-090021Z
+Nov 09 09:45:52 mars btrfs-snapshot-manager[98205]: DELETE @data 20261031-170017Z subvol_id=21384 /media/usb/@snapshots/@data/20261031-170017Z
+Nov 09 09:45:52 mars btrfs-snapshot-manager[98205]: DELETE @data 20261031-160001Z subvol_id=21383 /media/usb/@snapshots/@data/20261031-160001Z
+Nov 09 09:45:53 mars btrfs-snapshot-manager[98205]: DELETE @data 20261031-150039Z subvol_id=21382 /media/usb/@snapshots/@data/20261031-150039Z
+Nov 09 09:45:53 mars btrfs-snapshot-manager[98205]: DELETE @data 20261031-140020Z subvol_id=21381 /media/usb/@snapshots/@data/20261031-140020Z
+Nov 09 09:45:53 mars btrfs-snapshot-manager[98205]: DELETE @data 20261031-130011Z subvol_id=21380 /media/usb/@snapshots/@data/20261031-130011Z
+Nov 09 09:45:53 mars btrfs-snapshot-manager[98205]: DELETE @data 20261031-120001Z subvol_id=21379 /media/usb/@snapshots/@data/20261031-120001Z
+Nov 09 09:45:53 mars btrfs-snapshot-manager[98205]: DELETE @data 20261031-110031Z subvol_id=21378 /media/usb/@snapshots/@data/20261031-110031Z
+Nov 09 09:45:53 mars btrfs-snapshot-manager[98205]: DELETE @data 20261031-100021Z subvol_id=21377 /media/usb/@snapshots/@data/20261031-100021Z
+Nov 09 09:45:53 mars btrfs-snapshot-manager[98205]: DELETE @data 20261031-090003Z subvol_id=21376 /media/usb/@snapshots/@data/20261031-090003Z
+Nov 09 09:45:53 mars btrfs-snapshot-manager[98205]: Deleted 10 complete timestamp sets
+Nov 09 09:45:53 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+Nov 09 09:45:53 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 09 09:45:53 mars systemd[1]: btrfs-snapshot-prune.service: Consumed 2.175s CPU time.
+PASS: Discrepancy investigation collected

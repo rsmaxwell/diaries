@@ -1,6 +1,6 @@
 # 0040-FEAT — Production promotion manifest
 
-**Status: IN PROGRESS — Step 12 CLOSED; Step 13 operationally accepted and closure-ready following Playbooks housekeeping `e0da797` (9 November 2026). Its formal CLOSED record becomes effective when the final Diaries source/evidence package is committed and pushed. Step 14 remains OPEN.** Historical sections below preserve their original contemporaneous scope.
+**Final status (9 November 2026): Step 12 and Step 13 CLOSED; Step 14 operational audit and receiver reconciliation PASSED. Whole-feature closure is CONDITIONAL on explicit acceptance of retaining historical `/@data/backup` and two empty legacy directory containers, followed by a successful full feature-directory Git move/commit/push to `change-control/complete/`.** Until that promotion, 0040-FEAT is IN PROGRESS. Playbooks `e0da797`; latest confirmed Windows Diaries base `815eb25`. Historical statements below retain their contemporaneous dates and meanings.
 
 ## Original design extension (historical planning record)
 
@@ -70,3 +70,20 @@ See [`reports/STEP12-FINAL-ACCEPTANCE-AND-CLOSURE-20261108.md`](reports/STEP12-F
 **Final Playbooks housekeeping revision:** Operator verification on `mango` at Playbooks `6ccbf73` confirmed that tracked `roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags` was unreferenced. The 9 November `git rm`/commit/push created **`e0da797`** and clean `main` (`origin/main` matched). Exactly one historical 281-line task backup was removed from Git; no production scripts, timers or retention state were changed by this commit. `6ccbf73` remains the exact deployed source-prune runtime revision. Final Windows Diaries evidence/documentation promotion is required before Step 13 closure is recorded as complete.
 
 **Follow-on boundary:** At accepted `:45` run, `mars` had 146 complete source snapshot sets, zero incomplete, and 606 stale qgroups, with `qgroups_under_deletion=0`; stale-qgroup recurrence stays in 0039-DEF. No new restore or destructive cleanup is authorised by this manifest. Step 14 must assess whole-feature cleanup and independent closure before moving the directory.
+
+
+## Step 14 final source/deployment and retention reconciliation — 9 November 2026
+
+| Component | Accepted state | Evidence / qualification |
+| --- | --- | --- |
+| Playbooks | `main` commit `e0da797`, clean checkout; deployed source-manager change from `6ccbf73` | `step14-receiver-and-legacy-data-review-20261109-095639.txt`, `step14-receiver-manager-reconciliation-20261109-100229.txt` |
+| Shared manager | Identical Playbooks/source/receiver SHA-256 `89602f0aac07900b367a82728e42339ee9c9d3ed40e55010af87576dadc7a2b7` | Receiver Ansible deploy `changed=1 failed=0`, receiver repeat `--check --diff` `changed=0 failed=0` |
+| Simplified sender/receiver | Identical executable hashes `7eba4a04aca1f9b04333cd82952744ab1559cc7736092d7d1dcc11a25be67363`; agreed parent `20261109-030030Z`, prior `20261108-030011Z`, status `relation=equal` | `step14-final-readonly-audit-20261109-094544.txt`, `step14-receiver-final-verification-20261109-103348.txt` |
+| Source snapshots | No native `mars` root snapshot subvolumes; hourly `@data` creation; `:45` source prune with 10-set cap; 09:45 prune success | `step14-final-discrepancy-investigation-20261109-094938.txt` |
+| Received snapshots | `backup` 32 retained, 0 candidates, 27 historical receipts preserved, 0 orphaned; receiver timer active/enabled | `step14-receiver-manager-reconciliation-20261109-100229.txt` |
+| Recovery/rollback | Step 11 root-retirement receipts, Step 12 TAR rollback records, Step 13 source prune pause/runbook preserved | Prior accepted feature evidence, no new destructive test |
+| Legacy backup | `/@data/backup` **still contains historical backup data; NOT removed** | Protected by `roles/remote-backup/README.md` and existing 0035 verification; material exception to originally listed retirement scope requires explicit approval |
+| Empty containers | `/@snapshots/@data`, `/@snapshots/root` are empty ordinary directories, not Btrfs subvolumes | No deletion required for data safety; retention exception to literal directory absence |
+| Capacity and warning | `mars` 3.4 TB available, `backup` 856 GB available at audit; `mars` 606 stale qgroups | 0039-DEF owns stale-qgroup recurrence; 0041-FEAT owns sender/receiver user hardening |
+
+**Feature status gate:** A Step 14 closure report is prepared, not automatically effective. Accept the stated historical-data and empty-directory exceptions explicitly, then perform the whole feature-directory move to `change-control/complete/` using the authoritative Windows checkout, stage exact feature scope, review/commit/push. Any failure leaves 0040-FEAT OPEN. Keep historical evidence and decisions; do not delete `/@data/backup` or either parent/hold.

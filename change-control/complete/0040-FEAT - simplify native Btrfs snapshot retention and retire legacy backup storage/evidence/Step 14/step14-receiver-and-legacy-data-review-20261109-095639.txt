@@ -1,0 +1,160 @@
+=== BACKUP: legacy dataset ownership ===
+Mount containing legacy dataset:
+TARGET SOURCE    FSTYPE OPTIONS
+/      /dev/sda2 btrfs  rw,relatime,discard=async,space_cache=v2,subvolid=5,subvol=/
+Legacy dataset metadata:
+directory | owner=richard:richard | modified=2026-10-10 03:15:05.437935880 +0100 | /@data/backup
+regular file | owner=richard:richard | modified=2026-10-09 17:42:06.712981141 +0100 | /@data/backup/.diaries-snapshot-verified.json
+Immediate dataset contents and timestamps:
+d | 2024-05-26 17:33:57.3751947820 | /@data/backup/nas
+d | 2024-05-27 09:29:35.0520426660 | /@data/backup/richard-laptop
+d | 2024-05-27 09:00:59.7412782430 | /@data/backup/richard-pc
+d | 2024-05-28 09:19:20.1221890230 | /@data/backup/mars
+d | 2026-01-28 11:25:12.7382708720 | /@data/backup/bob
+d | 2026-01-28 15:27:06.4345150950 | /@data/backup/mango
+d | 2026-10-10 03:15:11.9144615010 | /@data/backup/pluto
+f | 2026-10-09 17:30:26.5466130910 | /@data/backup/.btrfs-snapshot-writer.lock
+f | 2026-10-09 17:42:06.7129811410 | /@data/backup/.diaries-snapshot-verified.json
+Legacy snapshot containers:
+directory | owner=root:root | /@snapshots/@data
+PASS: /@snapshots/@data is empty
+directory | owner=root:root | /@snapshots/root
+PASS: /@snapshots/root is empty
+=== PLAYBOOKS: references to legacy dataset ===
+e0da797 0040-FEAT: Remove obsolete replication task backup
+roles/local-backup/README.md:10:diaries_pull_destination_parent: /media/usb/@data/backup/pluto
+roles/local-backup/README.md:12:diaries_pull_verification_marker: /media/usb/@data/backup/.diaries-snapshot-verified.json
+roles/local-backup/README.md:13:diaries_pull_repository_lock: /media/usb/@data/backup/.btrfs-snapshot-writer.lock
+roles/local-backup/README.md:20:The normal-user and root machine backup wrappers also take the same whole-backup lock. This serialises the known `mars` writers with one another and with native snapshot creation. Before enabling automatic native snapshots, inventory any other device/client writers to `/media/usb/@data/backup`; an uncoordinated external writer remains a blocker to unattended activation.
+roles/local-backup/README.md:44:*mutable* `/media/usb/@data/backup` tree and sets default directory ACLs
+roles/local-backup/defaults/main.yaml:12:diaries_pull_destination_parent: /media/usb/@data/backup/pluto
+roles/local-backup/defaults/main.yaml:14:diaries_pull_verification_marker: /media/usb/@data/backup/.diaries-snapshot-verified.json
+roles/local-backup/defaults/main.yaml:15:diaries_pull_repository_lock: /media/usb/@data/backup/.btrfs-snapshot-writer.lock
+roles/local-backup/defaults/main.yaml:30:diaries_snapshot_source_acl_path: /media/usb/@data/backup
+roles/local-backup/tasks/source_snapshot_access.yaml:7:      - diaries_snapshot_source_acl_path == '/media/usb/@data/backup'
+roles/local-backup/templates/backup-machine/cron/backup.sh.j2:6:location="/media/usb/@data/backup/mars"
+roles/local-backup/templates/backup-machine/home/backup.sh.j2:7:location="/media/usb/@data/backup/mars"
+roles/local-backup/templates/backup-machine/remote/backup.sh.j2:7:location="/@data/backup"
+roles/local-backup/templates/backup-machine/remote/backup.sh.j2:22:    /media/usb/@data/backup${source}/ ${host}:${dest}
+roles/local-backup/templates/backup/cron/backup.sh.j2:7:location="/media/usb/@data/backup/mars"
+roles/local-backup/templates/backup/home/backup.sh.j2:7:location="/media/usb/@data/backup/mars"
+roles/local-backup/tests/verify-diaries-pull.py:60:assert 'location="/media/usb/@data/backup/mars"' in home
+roles/local-backup/tests/verify-diaries-pull.py:61:assert 'location="/media/usb/@data/backup/mars"' in root_home
+roles/local-backup/tests/verify-diaries-pull.py:62:assert '/media/usb/@data/backup${source}/ ${host}:${dest}' in remote
+roles/remote-backup/README.md:21:Never delete historical read-only received snapshots or `/@data/backup` as cleanup.
+verification/0034-step10/README.md:32:Record Btrfs mounts/subvolumes, existing Snapper configurations, timer states and root cron. In particular, prove the current 02:00/02:15 jobs and whether any other writers target `/media/usb/@data/backup`.
+verification/0034-step11-4/verify-unattended.yaml:126:        current=/media/usb/@data/backup/pluto/diaries-backup
+verification/0034-step6/README.md:31:- Inspect existing include/exclude lists and scheduled rsync paths to ensure `/media/usb/@data/backup/pluto` will not be deleted or altered by existing jobs.
+verification/0034-step6/install-and-preflight.yaml:52:    step6_mars_dest: /media/usb/@data/backup/pluto
+verification/0034-step6/install-and-preflight.yaml:56:        argv: [findmnt, -T, /media/usb/@data/backup, -n, -o, FSTYPE]
+verification/0035-step1/README.md:45:- `backup`: filesystem UUID/mount; `@data` identity; the retained historical `/@data/backup` path; native received snapshots under `/@data/mars-received/@data`; accepted receiver receipts and source/received UUID lineage.
+verification/0035-step1/README.md:49:- the old `/@data/backup` receiver is explicitly classified as historical/non-native and remains untouched.
+verification/0035-step1/capture-baseline.yaml:113:        for path in /media/usb /media/usb/@data /media/usb/@data/backup /media/usb/@snapshots; do
+verification/0035-step1/capture-baseline.yaml:278:        for path in / /@data /@data/backup /@data/mars-received /@data/mars-received/@data /@snapshots; do
+verification/0035-step1/verify-source-contract.py:12:    '/media/usb/@data/backup',
+verification/0035-step1/verify-source-contract.py:14:    '/@data/backup',
+verification/0035-step2/capture-mars.yaml:11:        findmnt -T /media/usb/@data/backup -o TARGET,SOURCE,FSTYPE,UUID
+verification/0035-step2/capture-mars.yaml:50:        ls -ld /media/usb/@data/backup/.btrfs-snapshot-writer.lock /run/lock/btrfs-snapshot-manager.lock 2>&1 || true
+verification/0035-step3/README.md:5:Current received repository: `/@data/mars-received/@data/<timestamp>`; acceptance receipts: `/@data/mars-received/.replication-state/<timestamp>.json`; transaction lock: `.replication-state/writer.lock`. These are separate from historical `/@data/backup` and from any locally managed `/@snapshots` namespace. The receive parent is an ordinary root-owned directory; received entries themselves are Btrfs subvolumes, not ordinary copy directories.
+verification/0035-step3/README.md:7:**Retention policy:** Received snapshots are not covered by the local root/@data GFS rules. No automated received-snapshot pruning is authorised. Preserve every accepted receive and its receipt until a separately reviewed receiver-pruning design proves source/receiver locks, a valid common incremental parent, and safe fail-closed handling for unreceipted or mismatched received entries. In particular preserve the most recent accepted receive and the last common send parent; protect any active send/receive pair. No deletion of the historical `/@data/backup` mirror or Snapper numeric snapshots is permitted.
+verification/0035-step3/capture-backup.yaml:13:        for p in /@data/backup /@data/mars-received /@data/mars-received/@data /@data/mars-received/.replication-state /@data/mars-received/.replication-state/writer.lock; do
+verification/0035-step7/README.md:16:Gate also requires review of `0035` Step 2/3/6 transcript lineage, historical `/@data/backup`, checkpoint and replication protection. Verify installation scripts and host scheduler states without deleting, pruning, snapshotting, receiving, or changing systemd units. If all checks pass, record evidence in Diaries Step 7 and mark closed only after review.
+verification/0035-step7/verify-source-contract.py:5:for marker in ('hosts: mars','hosts: pluto','hosts: backup','checksum_algorithm: sha256','diaries-snapshot-cleanup','diaries-backup-history','btrfs-native-push-receiver','btrfs-snapshot-create.timer','btrfs-snapshot-prune.timer','/@data/backup','changed_when: false'):
+verification/0035-step7/verify-staged.yaml:129:      loop: [/@data/backup, /@data/mars-received/@data, /@data/mars-received/.replication-state]
+verification/0035-step8/verify-acceptance.yaml:54:        assert Path('/@data/backup').is_dir(), 'legacy backup mirror missing'
+verification/0035-step8/verify-acceptance.yaml:70:        print('PASS: legacy /@data/backup present')
+verification/0035-step9/preflight.yaml:48:        test -d /@data/backup
+verification/0035-step9/verify-gate-9c.yaml:59:        test -d /@data/backup
+verification/0036-gate-d/collect-gate-d.sh:49:p=pathlib.Path("/media/usb/@data/backup")
+verification/0036-gate-e/assess-final-rollback.py:10: 'mars': {'base':'/media/usb/@data/backup/pluto','service':'diaries-pull.service','timer':'diaries-pull.timer'},
+verification/0036-gate-e/assess-generation-contents.sh:14:    mars) base=/media/usb/@data/backup/pluto ;;
+verification/0036-gate-e/assess-legacy-generations.sh:8:  if [[ "$host" == pluto ]]; then base=/home/richard/projects/diaries/data; else base=/media/usb/@data/backup/pluto; fi
+verification/0036-gate-e/check-retirement-dependencies.py:13:base=pathlib.Path('/home/richard/projects/diaries/data') if host=='pluto' else pathlib.Path('/media/usb/@data/backup/pluto')
+verification/0036-gate-e/collect-gate-e-readonly.sh:20:run mars publication 'for p in /media/usb/@data/backup/pluto/diaries-backup /media/usb/@data/backup/pluto/diaries-backup.pre-0036-rollback /media/usb/@data/backup/pluto/.diaries-backup-generations /media/usb/@data/backup/.diaries-snapshot-verified.json; do stat -c "%F %n %N" "$p" 2>&1 || :; done; ls -ld /media/usb/@data/backup/pluto/.diaries-backup-generations/* 2>/dev/null || :'
+verification/0036-gate-e/retire-nonalias-generations.py:23:        'base': '/media/usb/@data/backup/pluto',
+verification/0036-gate-e/retire-rollback-aliases.py:10:    'mars': dict(base='/media/usb/@data/backup/pluto', service='diaries-pull.service', timer='diaries-pull.timer', held=['20261007-145013Z','20261009-154847Z','20261015-003023Z']),
+REVIEW: Source references found
+=== BACKUP: receiver-only Ansible preview ===
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for backup
+
+TASK [btrfs-replication : Native Btrfs | Validate simplified receiver retention settings] ***
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install shared manager with simplified receiver retention] ***
+--- before: /usr/local/sbin/btrfs-snapshot-manager
++++ after: /home/richard/playbooks/roles/snapshots/files/btrfs-snapshot-manager.py
+@@ -825,7 +825,11 @@
+     return int(matches[0])
+ 
+ 
+-def prune(config: Config, dry_run: bool = False) -> int:
++def prune(config: Config, dry_run: bool = False, max_delete: int | None = None) -> int:
++    # A bounded scheduled prune prevents an accumulated backlog from being
++    # deleted in one run. Keep direct legacy invocations backward-compatible.
++    if max_delete is not None and (type(max_delete) is not int or not 1 <= max_delete <= 10):
++        raise SnapshotError("source prune max_delete must be between 1 and 10")
+     if config.mode != "source":
+         raise SnapshotError("receiver pruning is not implemented; fail closed")
+     preflight(config)
+@@ -856,10 +860,16 @@
+                   for source in prune_sources if snapshot_path(config, source, name).exists()]
+     for name, source in candidates:
+         validate_prune_candidate(config, source, name)
++    # Evaluate and validate every eligible snapshot, even when the run is
++    # capped. Selection follows the existing newest-first iteration order.
++    eligible = [name for name, _ in complete if name not in keep]
++    selected = set(eligible[:max_delete]) if max_delete is not None else set(eligible)
+     deleted_sets = 0
+     print(f"RETENTION sets: total={len(complete)} keep={len(keep)} sources={len(config.sources)}")
++    if max_delete is not None:
++        print(f"PRUNE-CAP: eligible={len(eligible)} selected={len(selected)} max_delete={max_delete}")
+     for name, _ in complete:
+-        if name in keep:
++        if name not in selected:
+             continue
+         deleted_sets += 1
+         if dry_run:
+@@ -1660,6 +1670,7 @@
+     create_parser.add_argument("--timestamp")
+     prune_parser = sub.add_parser("prune")
+     prune_parser.add_argument("--dry-run", action="store_true")
++    prune_parser.add_argument("--max-delete", type=int, help="limit source pruning to 1..10 snapshot sets per run")
+     sub.add_parser("list")
+     sub.add_parser("status")
+     sub.add_parser("receiver-inventory")
+@@ -1699,7 +1710,7 @@
+             if args.command == "create":
+                 create_all(config, args.timestamp)
+             elif args.command == "prune":
+-                prune(config, args.dry_run)
++                prune(config, args.dry_run, args.max_delete)
+             elif args.command == "list":
+                 show_list(config)
+             elif args.command == "status":
+
+changed: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver config with independent deletion gate] ***
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install dormant simplified receiver retention units] ***
+ok: [backup] => (item=btrfs-receiver-simple-prune.service)
+ok: [backup] => (item=btrfs-receiver-simple-prune.timer)
+
+TASK [btrfs-replication : Native Btrfs | Enforce explicit receiver retention timer state] ***
+skipping: [backup]
+
+PLAY RECAP *********************************************************************
+backup                     : ok=5    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+
+PASS: Read-only investigation and preview completed

@@ -1,0 +1,49 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ cd /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+
+FEATURE='change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage'
+PACKAGE='/cygdrive/c/Users/Richard/Downloads/0040-step14-evidence-20261109.zip'
+
+(
+    set -euo pipefail
+
+    echo '=== Verify Windows repository ==='
+    test "$(git branch --show-current)" = main
+    test "$(git rev-parse --short=7 HEAD)" = 815eb25
+
+    echo '=== Protect existing files ==='
+    test ! -e "$FEATURE/evidence/Step 14"
+    test ! -e "$PACKAGE"
+
+    echo '=== Collect Step 14 evidence from mango ==='
+    ssh mango '
+        cd /home/richard/diaries
+        zip -q -r - \
+          "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 14"
+    ' > "$PACKAGE"
+
+    echo '=== Validate archive ==='
+    unzip -tqq "$PACKAGE"
+
+    echo '=== Import evidence ==='
+fi  echo "FAIL: Step 14 evidence reconciliation (exit $rc)"ies'rification-20261109-103348.txt"txt"
+=== Verify Windows repository ===
+=== Protect existing files ===
+=== Collect Step 14 evidence from mango ===
+=== Validate archive ===
+=== Import evidence ===
+=== Verify essential records ===
+=== Evidence inventory ===
+change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 14/step14-final-discrepancy-investigation-20261109-094938.txt
+change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 14/step14-final-readonly-audit-20261109-094544.txt
+change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 14/step14-receiver-and-legacy-data-review-20261109-095639.txt
+change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 14/step14-receiver-final-verification-20261109-103348.txt
+change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 14/step14-receiver-manager-reconciliation-20261109-100229.txt
+=== Git status ===
+?? "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 14/"
+PASS: Step 14 evidence imported into Windows Diaries
+PASS: Step 14 evidence reconciliation
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$
