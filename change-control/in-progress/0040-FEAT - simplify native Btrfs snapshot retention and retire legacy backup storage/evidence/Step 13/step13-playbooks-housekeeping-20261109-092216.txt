@@ -1,0 +1,51 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+(
+    set -euo pipefail
+
+    CAND='roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags'
+
+    test "$(git branch --show-current)" = main
+    test "$(git rev-parse --short=7 HEAD)" = 6ccbf73
+    test -z "$(git status --porcelain)"
+
+    echo '=== Remove obsolete backup file ==='
+    git rm -- "$CAND"
+
+    echo '=== Verify deletion ==='
+    git diff --cached --check
+    git diff --cached --stat
+
+    echo '=== Commit housekeeping ==='
+    git commit -m "0040-FEAT: Remove obsolete replication task backup"
+    git push
+
+    echo '=== Final revision ==='
+    git log -1 --oneline
+    git status --short
+
+    echo 'PASS: Obsolete Playbooks backup removed'
+fi  echo "FAIL: Playbooks housekeeping (exit $rc)"
+=== Remove obsolete backup file ===
+rm 'roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags'
+=== Verify deletion ===
+ roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags | 281 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 1 file changed, 281 deletions(-)
+=== Commit housekeeping ===
+[main e0da797] 0040-FEAT: Remove obsolete replication task backup
+ 1 file changed, 281 deletions(-)
+ delete mode 100644 roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 449 bytes | 449.00 KiB/s, done.
+Total 5 (delta 4), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+To github.com:rsmaxwell/ansible-playbooks.git
+   6ccbf73..e0da797  main -> main
+=== Final revision ===
+e0da797 (HEAD -> main, origin/main) 0040-FEAT: Remove obsolete replication task backup
+PASS: Obsolete Playbooks backup removed
+PASS: Playbooks housekeeping
+richard@mango:~/playbooks$

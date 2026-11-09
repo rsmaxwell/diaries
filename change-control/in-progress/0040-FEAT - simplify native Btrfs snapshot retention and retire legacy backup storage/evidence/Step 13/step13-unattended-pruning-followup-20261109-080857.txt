@@ -1,0 +1,102 @@
+=== Pruning history since 8 November 15:15 ===
+Nov 08 15:15:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 08 15:15:00 mars btrfs-snapshot-manager[86996]: ERROR: another operation holds /run/lock/btrfs-snapshot-manager.lock
+Nov 08 15:15:00 mars systemd[1]: btrfs-snapshot-prune.service: Failed with result 'exit-code'.
+Nov 08 15:15:00 mars systemd[1]: Failed to start btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 08 16:15:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 08 16:15:00 mars btrfs-snapshot-manager[88017]: ERROR: another operation holds /run/lock/btrfs-snapshot-manager.lock
+Nov 08 16:15:00 mars systemd[1]: btrfs-snapshot-prune.service: Failed with result 'exit-code'.
+Nov 08 16:15:00 mars systemd[1]: Failed to start btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 08 17:15:09 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 08 17:15:15 mars btrfs-snapshot-manager[88078]: PRUNE-CAP: eligible=202 selected=10 max_delete=10
+Nov 08 17:15:15 mars btrfs-snapshot-manager[88078]: Deleted 10 complete timestamp sets
+Nov 08 17:15:15 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 08 18:15:39 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 08 18:16:06 mars btrfs-snapshot-manager[88579]: PRUNE-CAP: eligible=193 selected=10 max_delete=10
+Nov 08 18:16:07 mars btrfs-snapshot-manager[88579]: Deleted 10 complete timestamp sets
+Nov 08 18:16:07 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 08 19:15:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 08 19:15:00 mars btrfs-snapshot-manager[89044]: ERROR: another operation holds /run/lock/btrfs-snapshot-manager.lock
+Nov 08 19:15:00 mars systemd[1]: btrfs-snapshot-prune.service: Failed with result 'exit-code'.
+Nov 08 19:15:00 mars systemd[1]: Failed to start btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 08 20:15:01 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 08 20:15:06 mars btrfs-snapshot-manager[89124]: PRUNE-CAP: eligible=185 selected=10 max_delete=10
+Nov 08 20:15:06 mars btrfs-snapshot-manager[89124]: Deleted 10 complete timestamp sets
+Nov 08 20:15:06 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 08 21:15:06 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 08 21:15:11 mars btrfs-snapshot-manager[89579]: PRUNE-CAP: eligible=176 selected=10 max_delete=10
+Nov 08 21:24:24 mars btrfs-snapshot-manager[89579]: Deleted 10 complete timestamp sets
+Nov 08 21:24:24 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 08 22:15:01 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 08 22:15:05 mars btrfs-snapshot-manager[90019]: PRUNE-CAP: eligible=167 selected=10 max_delete=10
+Nov 08 22:21:05 mars btrfs-snapshot-manager[90019]: Deleted 10 complete timestamp sets
+Nov 08 22:21:05 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 08 23:15:11 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 08 23:16:52 mars btrfs-snapshot-manager[90438]: PRUNE-CAP: eligible=157 selected=10 max_delete=10
+Nov 08 23:16:52 mars btrfs-snapshot-manager[90438]: Deleted 10 complete timestamp sets
+Nov 08 23:16:52 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 09 00:15:01 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 09 00:15:05 mars btrfs-snapshot-manager[90848]: PRUNE-CAP: eligible=149 selected=10 max_delete=10
+Nov 09 00:22:42 mars btrfs-snapshot-manager[90848]: Deleted 10 complete timestamp sets
+Nov 09 00:22:42 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 09 01:15:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 09 01:15:00 mars btrfs-snapshot-manager[91232]: ERROR: another operation holds /run/lock/btrfs-snapshot-manager.lock
+Nov 09 01:15:00 mars systemd[1]: btrfs-snapshot-prune.service: Failed with result 'exit-code'.
+Nov 09 01:15:00 mars systemd[1]: Failed to start btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 09 02:15:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 09 02:15:00 mars btrfs-snapshot-manager[92065]: ERROR: another operation holds /run/lock/btrfs-snapshot-manager.lock
+Nov 09 02:15:00 mars systemd[1]: btrfs-snapshot-prune.service: Failed with result 'exit-code'.
+Nov 09 02:15:00 mars systemd[1]: Failed to start btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 09 03:15:21 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 09 03:15:24 mars btrfs-snapshot-manager[92644]: PRUNE-CAP: eligible=141 selected=10 max_delete=10
+Nov 09 03:22:32 mars btrfs-snapshot-manager[92644]: Deleted 10 complete timestamp sets
+Nov 09 03:22:32 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 09 04:15:01 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 09 04:15:04 mars btrfs-snapshot-manager[93027]: PRUNE-CAP: eligible=133 selected=10 max_delete=10
+Nov 09 04:23:51 mars btrfs-snapshot-manager[93027]: Deleted 10 complete timestamp sets
+Nov 09 04:23:51 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 09 05:15:11 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 09 05:15:14 mars btrfs-snapshot-manager[93379]: PRUNE-CAP: eligible=124 selected=10 max_delete=10
+Nov 09 05:23:41 mars btrfs-snapshot-manager[93379]: Deleted 10 complete timestamp sets
+Nov 09 05:23:41 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 09 06:15:03 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 09 06:15:06 mars btrfs-snapshot-manager[93714]: PRUNE-CAP: eligible=115 selected=10 max_delete=10
+Nov 09 06:22:11 mars btrfs-snapshot-manager[93714]: Deleted 10 complete timestamp sets
+Nov 09 06:22:11 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 09 07:15:11 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 09 07:19:44 mars btrfs-snapshot-manager[94151]: PRUNE-CAP: eligible=106 selected=10 max_delete=10
+Nov 09 07:19:44 mars btrfs-snapshot-manager[94151]: Deleted 10 complete timestamp sets
+Nov 09 07:19:44 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 09 07:56:50 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 09 07:57:36 mars btrfs-snapshot-manager[96316]: PRUNE-CAP: eligible=96 selected=10 max_delete=10
+Nov 09 07:57:36 mars btrfs-snapshot-manager[96316]: Deleted 10 complete timestamp sets
+Nov 09 07:57:36 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+=== Latest service result ===
+Result=success
+ExecMainStartTimestamp=Mon 2026-11-09 07:56:50 UTC
+ExecMainExitTimestamp=Mon 2026-11-09 07:57:36 UTC
+ExecMainStatus=0
+ActiveState=inactive
+=== Current timer schedules ===
+NEXT                         LEFT LAST                              PASSED UNIT                        ACTIVATES
+Mon 2026-11-09 08:45:00 UTC 35min Mon 2026-11-09 07:56:50 UTC    12min ago btrfs-snapshot-prune.timer  btrfs-snapshot-prune.service
+Mon 2026-11-09 09:00:00 UTC 50min Mon 2026-11-09 08:00:01 UTC     8min ago btrfs-snapshot-create.timer btrfs-snapshot-create.service
+Tue 2026-11-10 03:30:00 UTC   19h Mon 2026-11-09 03:30:18 UTC 4h 38min ago btrfs-native-push.timer     btrfs-native-push.service
+
+3 timers listed.
+=== Snapshot and qgroup health ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=763
+qgroups_stale=596
+qgroups_under_deletion=0
+qgroups_status=warning
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=156;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=156
+diaries_verification=valid;logicalDataset=production;backupId=20261109-003055Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== Verify agreed replication parents ===
+PASS: Sender and receiver parents agree
+Parent: {'timestamp': '20261109-030030Z', 'uuid': '239f29b4-9577-0e4b-b4f2-5f5cb9f7484c'}
+Prior: {'timestamp': '20261108-030011Z', 'uuid': 'dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58'}
+PASS: Unattended pruning follow-up collected

@@ -1,0 +1,55 @@
+=== Source pruning timer ===
+NextElapseUSecRealtime=Sun 2026-11-08 15:15:00 UTC
+LastTriggerUSec=Sun 2026-11-08 14:43:17 UTC
+ActiveState=active
+UnitFileState=enabled
+NEXT                         LEFT LAST                           PASSED UNIT                       ACTIVATES
+Sun 2026-11-08 15:15:00 UTC 13min Sun 2026-11-08 14:43:17 UTC 18min ago btrfs-snapshot-prune.timer btrfs-snapshot-prune.service
+
+1 timers listed.
+=== Source pruning service result ===
+Result=success
+ExecMainStartTimestamp=Sun 2026-11-08 14:43:17 UTC
+ExecMainExitTimestamp=Sun 2026-11-08 14:43:24 UTC
+ExecMainCode=1
+ExecMainStatus=0
+ActiveState=inactive
+SubState=dead
+=== Actual first pruning execution ===
+Nov 08 14:43:17 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 08 14:43:23 mars btrfs-snapshot-manager[86169]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Nov 08 14:43:23 mars btrfs-snapshot-manager[86169]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z', '20261101-140039Z']
+Nov 08 14:43:23 mars btrfs-snapshot-manager[86169]: RETENTION sets: total=278 keep=69 sources=1
+Nov 08 14:43:23 mars btrfs-snapshot-manager[86169]: PRUNE-CAP: eligible=209 selected=10 max_delete=10
+Nov 08 14:43:23 mars btrfs-snapshot-manager[86169]: DELETE @data 20261106-130001Z subvol_id=21524 /media/usb/@snapshots/@data/20261106-130001Z
+Nov 08 14:43:23 mars btrfs-snapshot-manager[86169]: DELETE @data 20261106-120004Z subvol_id=21523 /media/usb/@snapshots/@data/20261106-120004Z
+Nov 08 14:43:23 mars btrfs-snapshot-manager[86169]: DELETE @data 20261106-110001Z subvol_id=21522 /media/usb/@snapshots/@data/20261106-110001Z
+Nov 08 14:43:23 mars btrfs-snapshot-manager[86169]: DELETE @data 20261106-100001Z subvol_id=21521 /media/usb/@snapshots/@data/20261106-100001Z
+Nov 08 14:43:23 mars btrfs-snapshot-manager[86169]: DELETE @data 20261106-090030Z subvol_id=21520 /media/usb/@snapshots/@data/20261106-090030Z
+Nov 08 14:43:23 mars btrfs-snapshot-manager[86169]: DELETE @data 20261106-080019Z subvol_id=21519 /media/usb/@snapshots/@data/20261106-080019Z
+Nov 08 14:43:24 mars btrfs-snapshot-manager[86169]: DELETE @data 20261106-070001Z subvol_id=21518 /media/usb/@snapshots/@data/20261106-070001Z
+Nov 08 14:43:24 mars btrfs-snapshot-manager[86169]: DELETE @data 20261106-060040Z subvol_id=21517 /media/usb/@snapshots/@data/20261106-060040Z
+Nov 08 14:43:24 mars btrfs-snapshot-manager[86169]: DELETE @data 20261106-050003Z subvol_id=21516 /media/usb/@snapshots/@data/20261106-050003Z
+Nov 08 14:43:24 mars btrfs-snapshot-manager[86169]: DELETE @data 20261106-040040Z subvol_id=21515 /media/usb/@snapshots/@data/20261106-040040Z
+Nov 08 14:43:24 mars btrfs-snapshot-manager[86169]: Deleted 10 complete timestamp sets
+Nov 08 14:43:24 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+Nov 08 14:43:24 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 08 14:43:24 mars systemd[1]: btrfs-snapshot-prune.service: Consumed 6.546s CPU time.
+=== Current source snapshot health ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=746
+qgroups_stale=466
+qgroups_under_deletion=0
+qgroups_status=warning
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=269;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=269
+diaries_verification=valid;logicalDataset=production;backupId=20261108-003143Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== Sender and receiver parent verification ===
+PASS: Sender and receiver parents agree
+Parent: {'timestamp': '20261108-030011Z', 'uuid': 'dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58'}
+Prior: {'timestamp': '20261107-030031Z', 'uuid': '7778dda5-2b91-8c4e-8b1a-1dd038a3675b'}
+=== Receiver snapshot status ===
+{"state": {"parent": {"timestamp": "20261108-030011Z", "uuid": "dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58"}, "prior": {"timestamp": "20261107-030031Z", "uuid": "7778dda5-2b91-8c4e-8b1a-1dd038a3675b"}, "schema": 1}}
+PASS: Read-only verification collected

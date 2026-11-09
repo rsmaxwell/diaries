@@ -1,6 +1,6 @@
 # 0040-FEAT — Production promotion manifest
 
-**Status: IN PROGRESS — Step 12 replacement runtime, first unattended receiver-pruning activation and guarded legacy-code retirement accepted and CLOSED on 8 November 2026. Steps 13 (final configuration/runbook and promotion evidence) and 14 (overall feature closure) remain OPEN.** Earlier descriptions of pending deployments below are historical planning/acceptance snapshots, not the current operating state.
+**Status: IN PROGRESS — Step 12 CLOSED; Step 13 operationally accepted and closure-ready following Playbooks housekeeping `e0da797` (9 November 2026). Its formal CLOSED record becomes effective when the final Diaries source/evidence package is committed and pushed. Step 14 remains OPEN.** Historical sections below preserve their original contemporaneous scope.
 
 ## Original design extension (historical planning record)
 
@@ -50,3 +50,23 @@ The backup-only 115 original legacy Snapper snapshots, plus the APT-generated ex
 - Completion receipt: `evidence/Step 12/rollback/legacy-code-retirement-20261108-085914Z.json`; original failure and independent successful checks are preserved under `evidence/Step 12/raw-logs/`.
 
 See [`reports/STEP12-FINAL-ACCEPTANCE-AND-CLOSURE-20261108.md`](reports/STEP12-FINAL-ACCEPTANCE-AND-CLOSURE-20261108.md) for the full evidence index and explicit closure decision. Final feature-wide promotion/runbook reconciliation remains part of Step 13.
+
+
+## Step 13 bounded source-prune promotion and rollback — 8–9 November 2026
+
+**Step 13 CLOSED upon successful Windows Diaries Git promotion of this closure package; Step 14 remains OPEN.** Runtime source Playbooks **`6ccbf73`** (pushed, deployed), succeeding `e5ae755`, provides source `prune --max-delete N` with a 1–10 cap, default 10 for the scheduled service; source prune timer is independently activation-gated with explicit inactive/disabled enforcement until approved. The existing receiver `btrfs-receiver-simple-prune.timer` at 04:15 UTC and its independent limit were unchanged.
+
+| Host | Component / setting | Accepted state and rollback |
+|---|---|---|
+| `mars` | `/usr/local/sbin/btrfs-snapshot-manager`; `btrfs-snapshot-prune.service` | `--config /etc/btrfs-snapshot-manager.json prune --max-delete 10`; preserve holds and parent protection. |
+| `mars` | `/etc/ansible/host_vars/mars/local-backup.yaml` | `btrfs_snapshot_activation_enabled: true`, `btrfs_snapshot_prune_activation_enabled: true`, `btrfs_snapshot_prune_on_calendar: "*-*-* *:45:00"`; source creation remains hourly at `:00`. Config ownership: `mango` Ansible inventory, not Diaries or Playbooks Git checkout. |
+| `mars` | `btrfs-snapshot-prune.timer` | Enabled/active; first ordinary `:45` prune successfully deleted 10 complete sets on 9 Nov 08:45–08:51 UTC. For emergency pause: `ssh mars 'sudo -n systemctl disable --now btrfs-snapshot-prune.timer'`; set inventory activation variable `false` and reapply the tagged snapshots role to make the pause persistent. |
+| `mars` / `backup` | Simplified replication | Sender 03:30 UTC; receiver prune 04:15 UTC. Verified current agreed parent `20261109-030030Z`, prior `20261108-030011Z`; leave receiver state, receipts, checkpoints and both parents intact. |
+
+**Evidence:** The 21 original raw `evidence/Step 13/` files were imported from `mango` into Windows, with ZIP verification and the final accepted journal checked on 9 November. Primary sources: `step13-capped-source-deployment-20261108.txt`; `step13-prune-schedule-45-deployment-20261109-075503.txt`; `step13-unattended-pruning-followup-20261109-080857.txt`; `step13-prune-0845-completion-20261109.txt`. Historical `:15` lock-contention failures and inventory/verification-script corrections remain retained, not erased. Reports: `reports/STEP13-SOURCE-PRUNE-CATCHUP-PLAN-20261108.md`, `reports/STEP13-BOUNDED-SOURCE-PRUNING-OPERATIONAL-ACCEPTANCE-20261109.md`, `reports/STEP13-SOURCE-PRUNING-RUNBOOK-20261109.md` and `reports/STEP13-FINAL-RECONCILIATION-20261109.md` and `reports/STEP13-FORMAL-CLOSURE-20261109.md`. The additional 22nd file `evidence/Step 13/step13-playbooks-housekeeping-20261109-092216.txt` preserves the source-cleanup commit/push transcript.
+
+**Idempotency:** initial bounded manager deployment verified `changed=0, failed=0` on recheck; schedule-change Ansible preview showed precisely one intended timer change, live deployment `changed=1, failed=0`. No full-role idempotency run after the schedule change is separately claimed. The 8 November source activation was explicitly approved. Do not invoke unbounded manual prune to accelerate the backlog.
+
+**Final Playbooks housekeeping revision:** Operator verification on `mango` at Playbooks `6ccbf73` confirmed that tracked `roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags` was unreferenced. The 9 November `git rm`/commit/push created **`e0da797`** and clean `main` (`origin/main` matched). Exactly one historical 281-line task backup was removed from Git; no production scripts, timers or retention state were changed by this commit. `6ccbf73` remains the exact deployed source-prune runtime revision. Final Windows Diaries evidence/documentation promotion is required before Step 13 closure is recorded as complete.
+
+**Follow-on boundary:** At accepted `:45` run, `mars` had 146 complete source snapshot sets, zero incomplete, and 606 stale qgroups, with `qgroups_under_deletion=0`; stale-qgroup recurrence stays in 0039-DEF. No new restore or destructive cleanup is authorised by this manifest. Step 14 must assess whole-feature cleanup and independent closure before moving the directory.

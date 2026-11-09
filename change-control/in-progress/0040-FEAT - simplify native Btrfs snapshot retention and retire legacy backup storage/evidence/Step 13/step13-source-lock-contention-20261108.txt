@@ -1,0 +1,39 @@
+=== Scheduled timers on mars ===
+NEXT                                 LEFT LAST                              PASSED UNIT                           ACTIVATES
+Sun 2026-11-08 16:00:00 UTC         22min Sun 2026-11-08 15:00:11 UTC    36min ago btrfs-snapshot-create.timer    btrfs-snapshot-create.service
+Sun 2026-11-08 16:15:00 UTC         37min Sun 2026-11-08 15:15:00 UTC    22min ago btrfs-snapshot-prune.timer     btrfs-snapshot-prune.service
+Mon 2026-11-09 00:00:00 UTC            8h Sun 2026-11-08 00:00:11 UTC      15h ago dpkg-db-backup.timer           dpkg-db-backup.service
+Mon 2026-11-09 00:00:00 UTC            8h Sun 2026-11-08 00:00:11 UTC      15h ago logrotate.timer                logrotate.service
+Mon 2026-11-09 00:16:17 UTC            8h Mon 2026-11-02 01:19:13 UTC   6 days ago fstrim.timer                   fstrim.service
+Mon 2026-11-09 01:30:00 UTC            9h Sun 2026-11-08 01:30:02 UTC      14h ago diaries-pull.timer             diaries-pull.service
+Mon 2026-11-09 01:30:22 UTC            9h Sun 2026-11-08 06:46:21 UTC       8h ago man-db.timer                   man-db.service
+Mon 2026-11-09 02:58:17 UTC           11h Sun 2026-11-08 13:20:05 UTC 2h 16min ago apt-daily.timer                apt-daily.service
+Mon 2026-11-09 03:30:00 UTC           11h Sun 2026-11-08 03:30:39 UTC      12h ago btrfs-native-push.timer        btrfs-native-push.service
+Mon 2026-11-09 06:55:02 UTC           15h Sun 2026-11-08 06:20:47 UTC       9h ago apt-daily-upgrade.timer        apt-daily-upgrade.service
+Mon 2026-11-09 08:14:15 UTC           16h Sun 2026-11-08 13:20:05 UTC 2h 16min ago motd-news.timer                motd-news.service
+Mon 2026-11-09 09:12:52 UTC           17h Sun 2026-11-08 09:12:52 UTC       6h ago update-notifier-download.timer update-notifier-download.service
+Mon 2026-11-09 09:22:04 UTC           17h Sun 2026-11-08 09:22:04 UTC       6h ago systemd-tmpfiles-clean.timer   systemd-tmpfiles-clean.service
+Sun 2026-11-15 03:10:09 UTC        6 days Sun 2026-11-08 03:10:39 UTC      12h ago e2scrub_all.timer              e2scrub_all.service
+Sat 2026-11-21 16:00:10 UTC 1 week 6 days Sun 2026-11-08 13:20:16 UTC 2h 16min ago update-notifier-motd.timer     update-notifier-motd.service
+-                                       - -                                      - apport-autoreport.timer        apport-autoreport.service
+-                                       - -                                      - fwupd-refresh.timer            -
+-                                       - -                                      - snapd.snap-repair.timer        snapd.snap-repair.service
+-                                       - -                                      - ua-timer.timer                 ua-timer.service
+
+19 timers listed.
+=== Activity surrounding the failed run ===
+2026-11-08T15:15:00.407999+00:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+2026-11-08T15:15:00.787126+00:00 mars btrfs-snapshot-manager[86996]: ERROR: another operation holds /run/lock/btrfs-snapshot-manager.lock
+2026-11-08T15:15:00.832837+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Main process exited, code=exited, status=2/INVALIDARGUMENT
+2026-11-08T15:15:00.833515+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Failed with result 'exit-code'.
+2026-11-08T15:15:00.834476+00:00 mars systemd[1]: Failed to start btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+2026-11-08T15:15:01.810493+00:00 mars CRON[86998]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2026-11-08T15:15:01.813512+00:00 mars CRON[86999]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+2026-11-08T15:15:01.822339+00:00 mars CRON[86998]: pam_unix(cron:session): session closed for user root
+=== Current snapshot-manager lock holders ===
+  PID COMMAND          TYPE MODE  PATH
+=== Current pruning timer ===
+NextElapseUSecRealtime=Sun 2026-11-08 16:15:00 UTC
+LastTriggerUSec=Sun 2026-11-08 15:15:00 UTC
+ActiveState=active
+UnitFileState=enabled

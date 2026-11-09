@@ -1,0 +1,513 @@
+=== Source changes ===
+ M roles/snapshots/README.md
+ M roles/snapshots/defaults/main.yaml
+ M roles/snapshots/files/btrfs-snapshot-manager.py
+ M roles/snapshots/tasks/main.yaml
+ M roles/snapshots/templates/btrfs-snapshot-prune.service.j2
+?? roles/snapshots/tests/verify-0040-step13-source-prune-cap.py
+ roles/snapshots/README.md                          | 22 ++++++++++++++++++++++
+ roles/snapshots/defaults/main.yaml                 |  5 +++++
+ roles/snapshots/files/btrfs-snapshot-manager.py    | 17 ++++++++++++++---
+ roles/snapshots/tasks/main.yaml                    | 12 +++++++++---
+ .../templates/btrfs-snapshot-prune.service.j2      |  2 +-
+ 5 files changed, 51 insertions(+), 7 deletions(-)
+=== Snapshot manager tests ===
+PASS: retention always keeps newest snapshot
+PASS: retention keeps configured recent hourly buckets
+PASS: retention keeps configured daily buckets
+PASS: retention keeps configured weekly buckets
+PASS: retention thins older snapshots
+PASS: numeric Snapper IDs are outside the managed timestamp namespace
+PASS: timestamp naming is unambiguous UTC
+PASS: native snapshot activation is default-off
+PASS: native timer enablement is behind explicit activation
+PASS: ordinary deployment installs/preflights units without scheduling
+PASS: Ansible fails closed if @snapshots is an unexpected ordinary path
+PASS: Playbooks installs the read-only Diaries snapshot-history tool
+PASS: Playbooks installs the physical-extent sharing acceptance tool
+PASS: manager creates read-only native Btrfs snapshots
+PASS: manager rejects cross-filesystem snapshot repository
+PASS: manager requires the verified Diaries marker when integration is enabled
+PASS: snapshot creation shares the receiver writer lock
+PASS: retention operates on complete multi-source timestamp sets and fails closed on partial sets
+PASS: mars/local-backup uses the shared snapshots role
+PASS: backup/remote-backup uses the shared snapshots role
+PASS: remote-backup launcher no longer selects obsolete Snapper-only tags
+PASS: snapshot launcher explicitly supports mars-first then backup deployment
+PASS: 0035 native Btrfs snapshot-manager regression verified
+PASS: verified receiver snapshot creation requires pre-provisioned non-symlink writer lock
+PASS: role cannot reinstall retired legacy-prune units
+PASS: manager does not expose retired legacy commands
+PASS: limit=1 dry_run=False selected=1 prevalidated=3
+PASS: limit=2 dry_run=False selected=2 prevalidated=3
+PASS: limit=10 dry_run=False selected=3 prevalidated=3
+PASS: limit=1 dry_run=True selected=1 prevalidated=3
+PASS: limit=None dry_run=False selected=3 prevalidated=3
+PASS: refused invalid limit 0
+PASS: refused invalid limit -1
+PASS: refused invalid limit 11
+PASS: refused invalid limit True
+PASS: capped scheduled prune + enforced paused timer across reboot
+=== Ansible syntax check ===
+
+playbook: local-backup.yaml
+=== Snapshots-only deployment preview ===
+
+PLAY [local_backup] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [mars]
+
+TASK [local-backup : Get normal user account information] **********************
+ok: [mars]
+
+TASK [local-backup : Set normal user home directory] ***************************
+ok: [mars]
+
+TASK [local-backup : Validate 0034 unattended backup scheduling controls] ******
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [Setup Btrfs snapshot support with optional verified-Diaries barrier] *****
+included: snapshots for mars
+
+TASK [snapshots : snapshots | Refuse generic management of native receiver hosts] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Validate activation and Diaries integration gates] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Validate per-source snapshot flags] **************
+ok: [mars] => (item=@data) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "creation": true,
+        "name": "@data",
+        "path": "/media/usb/@data",
+        "prune": true,
+        "required": true
+    }
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Install native Btrfs snapshot prerequisites] *****
+ok: [mars]
+
+TASK [snapshots | Ensure managed data subvolume exists] ************************
+included: btrfs for mars
+
+TASK [snapshots : snapshots | Resolve managed snapshot root] *******************
+ok: [mars]
+
+TASK [snapshots : snapshots | Inspect managed snapshot root] *******************
+ok: [mars]
+
+TASK [snapshots : snapshots | Verify existing snapshot root is a Btrfs subvolume] ***
+skipping: [mars]
+
+TASK [snapshots : snapshots | Refuse a non-subvolume snapshot root] ************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Create managed snapshot-root subvolume] **********
+skipping: [mars]
+
+TASK [snapshots : snapshots | Create per-source timestamp directories] *********
+ok: [mars] => (item={'name': '@data', 'path': '/media/usb/@data', 'required': True, 'creation': True, 'prune': True})
+
+TASK [snapshots : snapshots | Install snapshot manager] ************************
+--- before: /usr/local/sbin/btrfs-snapshot-manager
++++ after: /home/richard/playbooks/roles/snapshots/files/btrfs-snapshot-manager.py
+@@ -825,7 +825,11 @@
+     return int(matches[0])
+ 
+ 
+-def prune(config: Config, dry_run: bool = False) -> int:
++def prune(config: Config, dry_run: bool = False, max_delete: int | None = None) -> int:
++    # A bounded scheduled prune prevents an accumulated backlog from being
++    # deleted in one run. Keep direct legacy invocations backward-compatible.
++    if max_delete is not None and (type(max_delete) is not int or not 1 <= max_delete <= 10):
++        raise SnapshotError("source prune max_delete must be between 1 and 10")
+     if config.mode != "source":
+         raise SnapshotError("receiver pruning is not implemented; fail closed")
+     preflight(config)
+@@ -856,10 +860,16 @@
+                   for source in prune_sources if snapshot_path(config, source, name).exists()]
+     for name, source in candidates:
+         validate_prune_candidate(config, source, name)
++    # Evaluate and validate every eligible snapshot, even when the run is
++    # capped. Selection follows the existing newest-first iteration order.
++    eligible = [name for name, _ in complete if name not in keep]
++    selected = set(eligible[:max_delete]) if max_delete is not None else set(eligible)
+     deleted_sets = 0
+     print(f"RETENTION sets: total={len(complete)} keep={len(keep)} sources={len(config.sources)}")
++    if max_delete is not None:
++        print(f"PRUNE-CAP: eligible={len(eligible)} selected={len(selected)} max_delete={max_delete}")
+     for name, _ in complete:
+-        if name in keep:
++        if name not in selected:
+             continue
+         deleted_sets += 1
+         if dry_run:
+@@ -1335,6 +1345,214 @@
+     raise SnapshotError("receiver pruning blocked: live common-parent coordination not implemented")
+ 
+ 
++
++# 0040 Step 12 — the same snapshot manager/retention algorithm is used at both
++# endpoints.  The simplified receiver creates no legacy receipt, so receiver
++# inventory is established from Btrfs itself, not from legacy receipt claims.
++_SIMPLE_RECEIVER_ROOT = Path("/@data/mars-received")
++_SIMPLE_RECEIVED = _SIMPLE_RECEIVER_ROOT / "@data"
++_SIMPLE_STATE = _SIMPLE_RECEIVER_ROOT / ".replication-state"
++_SIMPLE_RECEIVER_FS = "b915f967-7cb4-4c14-b11b-f52209637a22"
++_SIMPLE_RECEIVER_MOUNT = Path("/")
++_SIMPLE_MANAGER_LOCK = Path("/run/lock/btrfs-snapshot-manager.lock")
++_SIMPLE_UUID = re.compile(r"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\Z")
++_SIMPLE_BLOCKERS = (
++    ".agreed-parent-transfer-pending.json",
++    ".agreed-parent-provisional.json",
++    ".receiver-prune-pending.json",
++    ".simple-prune-pending.json",
++)
++
++
++def receiver_simple_identity(path: Path) -> dict[str, str]:
++    """The authoritative identity of a single, read-only Btrfs receive."""
++    if path.is_symlink() or not path.is_dir():
++        raise SnapshotError(f"unsafe received snapshot: {path}")
++    output = run(["btrfs", "subvolume", "show", str(path)]).stdout
++    fields = {}
++    for field in ("UUID", "Received UUID"):
++        matches = re.findall(r"^\s*" + field + r":\s*(\S+)\s*$", output, re.M)
++        if len(matches) != 1 or not _SIMPLE_UUID.fullmatch(matches[0]):
++            raise SnapshotError(f"invalid {field} for received snapshot: {path}")
++        fields[field] = matches[0]
++    ro = run(["btrfs", "property", "get", "-ts", str(path), "ro"]).stdout.strip()
++    if ro != "ro=true":
++        raise SnapshotError(f"writable received snapshot: {path}")
++    fields["Subvolume ID"] = str(native_prune_subvolume_id(path))
++    return fields
++
++
++def receiver_simple_validate(config: Config) -> None:
++    """Fail-closed fixed-root, lock and filesystem boundary."""
++    if (config.mode != "receiver" or config.snapshot_root != _SIMPLE_RECEIVER_ROOT or
++            config.receiver_state_dir != _SIMPLE_STATE or
++            len(config.sources) != 1 or
++            source_directory(config, config.sources[0]) != _SIMPLE_RECEIVED or
++            config.lock_path != _SIMPLE_MANAGER_LOCK):
++        raise SnapshotError("unexpected simplified receiver configuration")
++    preflight(config)
++    if not _SIMPLE_STATE.is_dir() or _SIMPLE_STATE.is_symlink():
++        raise SnapshotError("unsafe receiver state directory")
++    filesystem = run(["btrfs", "filesystem", "show", str(_SIMPLE_RECEIVER_MOUNT)]).stdout
++    if not re.search(r"\buuid:\s*" + re.escape(_SIMPLE_RECEIVER_FS) + r"\b", filesystem, re.I):
++        raise SnapshotError("unexpected receiver filesystem UUID")
++    for filename in _SIMPLE_BLOCKERS:
++        entry = _SIMPLE_STATE / filename
++        if entry.exists() or entry.is_symlink():
++            raise SnapshotError(f"unfinished transaction blocks receiver retention: {filename}")
++
++
++def receiver_simple_plan(config: Config, *, now: datetime | None = None) -> dict[str, object]:
++    """Non-mutating cross-generation retention using existing bucket policy.
++
++    A legacy receipt remains immutable forensic evidence, not a permanent
++    exemption from the configured retention buckets.  Receipt data is never
++    accepted as Btrfs identity proof, and an orphan receipt after a normal
++    prune is permitted. Current/prior parents are checked against actual
++    received UUIDs, including after cutover.
++    The caller must hold the same manager lock as simplified receive.
++    """
++    receiver_simple_validate(config)
++    directory = _SIMPLE_RECEIVED
++    # list_managed intentionally ignores symlinks; they must not hide inside
++    # a retention plan which otherwise appears complete.
++    for path in directory.iterdir():
++        if TIMESTAMP_RE.fullmatch(path.name) and (path.is_symlink() or not path.is_dir()):
++            raise SnapshotError(f"unexpected received snapshot entry: {path}")
++    entries = list_managed(config, config.sources[0])
++    identity = {stamp: receiver_simple_identity(path) for stamp, _, path in entries}
++    if len({item["Received UUID"] for item in identity.values()}) != len(identity):
++        raise SnapshotError("duplicate received UUID in receiver dataset")
++    pins = simplified_agreed_parent_pins(config)
++    if not pins:
++        raise SnapshotError("simplified agreed parent missing")
++    state = json.loads((_SIMPLE_STATE / ".simple-agreed-parent.json").read_text(encoding="utf-8"))
++    for name in ("parent", "prior"):
++        value = state[name]
++        if value is not None:
++            stamp = value["timestamp"]
++            if stamp not in identity or identity[stamp]["Received UUID"] != value["uuid"]:
++                raise SnapshotError(f"simplified {name} Btrfs identity mismatch: {stamp}")
++    # Keep all newer-than-parent objects, even if a previous completed transfer
++    # has not yet been acknowledged by the sender.
++    current_stamp = state["parent"]["timestamp"]
++    keep = retention_keep_set(entries, config.retention, now or datetime.now(timezone.utc))
++    keep.update(pins)
++    keep.update(stamp for stamp in identity if stamp >= current_stamp)
++    keep.update(agreed_parent_pins(config))
++
++    # Independently protected checkpoints: bind the hold UUID to the real
++    # Btrfs Received UUID rather than an untrusted historical receipt.
++    if not config.checkpoint_holds_required:
++        raise SnapshotError("receiver checkpoint holds are mandatory")
++    holds = read_checkpoint_holds(config)
++    for stamp, value in holds.items():
++        if (stamp not in identity or
++                identity[stamp]["Received UUID"] != value["source_uuids"][config.sources[0].name]):
++            raise SnapshotError(f"checkpoint hold identity mismatch: {stamp}")
++    keep.update(holds)
++
++    # The new sender produces no legacy receipts. Retain all historical
++    # receipts as forensic evidence without using their contents as proof of
++    # received identity or as an indefinite retention pin. After an approved
++    # prune, a receipt for a deleted snapshot is *expected* to remain on disk.
++    # Timestamp-named symlink/non-file entries are still rejected outright.
++    historical_receipts = set()
++    for path in _SIMPLE_STATE.iterdir():
++        if not path.name.endswith(".json") or not TIMESTAMP_RE.fullmatch(path.stem):
++            continue
++        if path.is_symlink() or not path.is_file():
++            raise SnapshotError(f"unsafe historical receipt: {path}")
++        historical_receipts.add(path.stem)
++    candidates = [stamp for stamp, _, _ in entries if stamp not in keep]
++    receipt_candidates = sorted(set(candidates).intersection(historical_receipts))
++    orphan_receipts = sorted(historical_receipts.difference(identity))
++    return {
++        "parent": state["parent"], "prior": state["prior"],
++        "keep": sorted(keep), "candidates": candidates,
++        "identity": identity, "historical_receipts": sorted(historical_receipts),
++        "historical_receipts_on_candidates": receipt_candidates,
++        "historical_receipts_orphaned": orphan_receipts,
++        "holds": sorted(holds), "executable": config.receiver_prune_enabled,
++    }
++
++
++def receiver_simple_print_plan(plan: dict[str, object]) -> None:
++    print("RECEIVER-SIMPLE-PLAN " + json.dumps({
++        "parent": plan["parent"], "prior": plan["prior"],
++        "keep": len(plan["keep"]), "candidates": len(plan["candidates"]),
++        "historical_receipts_preserved": len(plan["historical_receipts"]),
++        "historical_receipts_on_candidates": len(plan["historical_receipts_on_candidates"]),
++        "historical_receipts_orphaned": len(plan["historical_receipts_orphaned"]),
++        "holds": plan["holds"], "enabled": plan["executable"],
++    }, sort_keys=True))
++    keep = set(plan["keep"])
++    for stamp in sorted(plan["identity"], reverse=True):
++        label = ("RETAIN" if stamp in keep else
++                 "ELIGIBLE-WHEN-APPROVED" if plan["executable"] else
++                 "CANDIDATE-NOT-AUTHORIZED")
++        receipt_note = " historical_receipt=preserved" if stamp in plan["historical_receipts"] else ""
++        print(f"{label} {stamp} received_uuid={plan['identity'][stamp]['Received UUID']} "
++              f"subvolume_id={plan['identity'][stamp]['Subvolume ID']}{receipt_note}")
++
++
++def receiver_simple_prune(config: Config, *, max_delete: int) -> int:
++    """Guarded receiver-only deletion.  Caller holds manager flock throughout.
++
++    No legacy receipt is ever removed. A durable single-candidate journal
++    blocks subsequent runs if deletion or verification is interrupted.
++    """
++    if config.receiver_prune_enabled is not True:
++        raise SnapshotError("receiver pruning disabled by configuration")
++    if not isinstance(max_delete, int) or not 1 <= max_delete <= 20:
++        raise SnapshotError("max-delete must be within 1..20")
++    plan = receiver_simple_plan(config)
++    deleted = 0
++    journal = _SIMPLE_STATE / ".simple-prune-pending.json"
++    for stamp in plan["candidates"][:max_delete]:
++        # Re-evaluate policy/state/holds for every candidate before mutation.
++        latest = receiver_simple_plan(config)
++        if stamp not in latest["candidates"]:
++            raise SnapshotError(f"candidate no longer eligible: {stamp}")
++        expected = plan["identity"][stamp]
++        if latest["identity"][stamp] != expected:
++            raise SnapshotError(f"candidate identity changed: {stamp}")
++        path = _SIMPLE_RECEIVED / stamp
++        validate_prune_candidate(config, config.sources[0], stamp)
++        if str(native_prune_subvolume_id(path)) != expected["Subvolume ID"]:
++            raise SnapshotError(f"candidate subvolume ID changed: {stamp}")
++        if journal.exists() or journal.is_symlink():
++            raise SnapshotError("unfinished receiver prune transaction")
++        payload = {"schema": 1, "candidate": stamp,
++                   "received_uuid": expected["Received UUID"],
++                   "subvolume_id": expected["Subvolume ID"],
++                   "parent": latest["parent"], "prior": latest["prior"]}
++        fd = os.open(journal, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
++        with os.fdopen(fd, "w", encoding="utf-8") as stream:
++            json.dump(payload, stream, sort_keys=True)
++            stream.write("\n")
++            stream.flush()
++            os.fsync(stream.fileno())
++        parent_fd = os.open(_SIMPLE_STATE, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
++        try:
++            os.fsync(parent_fd)
++        finally:
++            os.close(parent_fd)
++        # No catch-and-retry here: preserve the journal on any uncertainty.
++        run(["btrfs", "subvolume", "delete", str(path)])
++        if path.exists() or path.is_symlink():
++            raise SnapshotError(f"receiver deletion not confirmed: {stamp}")
++        journal.unlink()
++        parent_fd = os.open(_SIMPLE_STATE, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
++        try:
++            os.fsync(parent_fd)
++        finally:
++            os.close(parent_fd)
++        deleted += 1
++        print(f"RECEIVER-SIMPLE-DELETED {stamp} subvolume_id={expected['Subvolume ID']}", flush=True)
++    print(f"RECEIVER-SIMPLE-DELETED count={deleted}")
++    return deleted
++
+ def show_list(config: Config) -> None:
+     complete, incomplete = managed_snapshot_sets(config)
+     print("TIMESTAMP          STATE      SOURCES")
+@@ -1452,10 +1670,14 @@
+     create_parser.add_argument("--timestamp")
+     prune_parser = sub.add_parser("prune")
+     prune_parser.add_argument("--dry-run", action="store_true")
++    prune_parser.add_argument("--max-delete", type=int, help="limit source pruning to 1..10 snapshot sets per run")
+     sub.add_parser("list")
+     sub.add_parser("status")
+     sub.add_parser("receiver-inventory")
+     sub.add_parser("receiver-plan", help="read-only retention selection for verified received snapshots")
++    sub.add_parser("receiver-simple-plan", help="Btrfs-verified simplified receiver retention preview")
++    simple_prune = sub.add_parser("receiver-simple-prune", help="explicitly gated simplified receiver retention")
++    simple_prune.add_argument("--max-delete", type=int, required=True)
+     coordination = sub.add_parser("receiver-coordination-check", help="lock-held read-only receiver parent validation; no deletion authority")
+     coordination.add_argument("--snapshot", required=True)
+     coordination.add_argument("--source-uuid", required=True)
+@@ -1474,9 +1696,9 @@
+     try:
+         require_root()
+         config = load_config(Path(args.config))
+-        if config.mode == "receiver" and args.command not in {"list", "status", "receiver-inventory", "receiver-plan", "receiver-prune", "receiver-coordination-check", "receiver-recovery-plan"}:
+-            raise SnapshotError("receiver mode is read-only until safe pruning is implemented")
+-        manager_lock = with_lock(config.lock_path) if args.command in {"create", "prune", "run", "hold-add", "hold-release", "hold-list", "receiver-prune", "receiver-coordination-check", "receiver-recovery-plan", "receiver-inventory", "receiver-plan"} else None
++        if config.mode == "receiver" and args.command not in {"list", "status", "receiver-inventory", "receiver-plan", "receiver-prune", "receiver-coordination-check", "receiver-recovery-plan", "receiver-simple-plan", "receiver-simple-prune"}:
++            raise SnapshotError("receiver mode supports only explicit receiver operations")
++        manager_lock = with_lock(config.lock_path) if args.command in {"create", "prune", "run", "hold-add", "hold-release", "hold-list", "receiver-prune", "receiver-coordination-check", "receiver-recovery-plan", "receiver-inventory", "receiver-plan", "receiver-simple-plan", "receiver-simple-prune"} else None
+         writer_lock = None
+         try:
+             if args.command in {"receiver-prune", "receiver-coordination-check", "receiver-recovery-plan", "receiver-inventory", "receiver-plan"}:
+@@ -1488,7 +1710,7 @@
+             if args.command == "create":
+                 create_all(config, args.timestamp)
+             elif args.command == "prune":
+-                prune(config, args.dry_run)
++                prune(config, args.dry_run, args.max_delete)
+             elif args.command == "list":
+                 show_list(config)
+             elif args.command == "status":
+@@ -1497,6 +1719,10 @@
+                 receiver_inventory(config)
+             elif args.command == "receiver-plan":
+                 receiver_plan(config)
++            elif args.command == "receiver-simple-plan":
++                receiver_simple_print_plan(receiver_simple_plan(config))
++            elif args.command == "receiver-simple-prune":
++                receiver_simple_prune(config, max_delete=args.max_delete)
+             elif args.command == "receiver-coordination-check":
+                 receiver_coordination_check(config, args.snapshot, args.source_uuid)
+             elif args.command == "receiver-recovery-plan":
+
+changed: [mars]
+
+TASK [snapshots : snapshots | Install receiver stale-qgroup maintenance executable] ***
+skipping: [mars]
+
+TASK [snapshots : snapshots | Install receiver stale-qgroup maintenance units] ***
+skipping: [mars] => (item=btrfs-clear-stale-qgroups.service) 
+skipping: [mars] => (item=btrfs-clear-stale-qgroups.timer) 
+skipping: [mars]
+
+TASK [snapshots : snapshots | Install Diaries backup-history tool] *************
+ok: [mars]
+
+TASK [snapshots : snapshots | Install Btrfs extent-sharing acceptance tool] ****
+ok: [mars]
+
+TASK [snapshots : snapshots | Create shared schema-2 verifier directory] *******
+ok: [mars]
+
+TASK [snapshots : snapshots | Install independent schema-2 verifier for history checks] ***
+ok: [mars]
+
+TASK [snapshots : snapshots | Initialise checkpoint hold state without overwriting existing holds] ***
+ok: [mars]
+
+TASK [snapshots : snapshots | Install snapshot manager configuration] **********
+ok: [mars]
+
+TASK [snapshots : snapshots | Install systemd units without activating them] ***
+ok: [mars] => (item=btrfs-snapshot-create.service)
+ok: [mars] => (item=btrfs-snapshot-create.timer)
+--- before: /etc/systemd/system/btrfs-snapshot-prune.service
++++ after: /home/richard/.ansible/tmp/ansible-local-276535f9cz9w_n/tmpn209eqmo/btrfs-snapshot-prune.service.j2
+@@ -5,4 +5,4 @@
+ 
+ [Service]
+ Type=oneshot
+-ExecStart=/usr/local/sbin/btrfs-snapshot-manager --config /etc/btrfs-snapshot-manager.json prune
++ExecStart=/usr/local/sbin/btrfs-snapshot-manager --config /etc/btrfs-snapshot-manager.json prune --max-delete 10
+
+changed: [mars] => (item=btrfs-snapshot-prune.service)
+ok: [mars] => (item=btrfs-snapshot-prune.timer)
+
+TASK [snapshots : snapshots | Flush systemd unit changes before preflight] *****
+
+RUNNING HANDLER [snapshots : Reload systemd for Btrfs snapshot manager] ********
+ok: [mars]
+
+TASK [snapshots : snapshots | Preflight native snapshot manager before changing schedulers] ***
+skipping: [mars]
+
+TASK [snapshots : snapshots | Show native snapshot-manager preflight] **********
+ok: [mars] => {
+    "btrfs_snapshot_manager_status.stdout_lines": []
+}
+
+TASK [snapshots : snapshots | Enable native snapshot creation timer after explicit acceptance] ***
+ok: [mars]
+
+TASK [snapshots : snapshots | Enforce explicitly approved source pruning timer state] ***
+changed: [mars]
+
+TASK [snapshots : snapshots | Inspect receiver stale-qgroup timer installation] ***
+skipping: [mars]
+
+TASK [snapshots : snapshots | Explicitly activate or deactivate receiver qgroup maintenance] ***
+skipping: [mars]
+
+PLAY RECAP *********************************************************************
+mars                       : ok=26   changed=3    unreachable=0    failed=0    skipped=7    rescued=0    ignored=0   
+
+PASS: Capped source deployment ready

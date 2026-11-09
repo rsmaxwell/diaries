@@ -1,0 +1,42 @@
+=== Pruning service completion ===
+Result=success
+ExecMainStartTimestamp=Mon 2026-11-09 08:45:39 UTC
+ExecMainExitTimestamp=Mon 2026-11-09 08:51:53 UTC
+ExecMainStatus=0
+ActiveState=inactive
+=== 08:45 pruning journal ===
+Nov 09 08:45:39 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 09 08:45:41 mars btrfs-snapshot-manager[97362]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Nov 09 08:45:41 mars btrfs-snapshot-manager[97362]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z', '20261101-140039Z']
+Nov 09 08:45:41 mars btrfs-snapshot-manager[97362]: RETENTION sets: total=156 keep=69 sources=1
+Nov 09 08:45:41 mars btrfs-snapshot-manager[97362]: PRUNE-CAP: eligible=87 selected=10 max_delete=10
+Nov 09 08:45:41 mars btrfs-snapshot-manager[97362]: DELETE @data 20261107-080002Z subvol_id=21542 /media/usb/@snapshots/@data/20261107-080002Z
+Nov 09 08:51:52 mars btrfs-snapshot-manager[97362]: DELETE @data 20261101-030013Z subvol_id=21394 /media/usb/@snapshots/@data/20261101-030013Z
+Nov 09 08:51:52 mars btrfs-snapshot-manager[97362]: DELETE @data 20261101-020031Z subvol_id=21393 /media/usb/@snapshots/@data/20261101-020031Z
+Nov 09 08:51:52 mars btrfs-snapshot-manager[97362]: DELETE @data 20261101-010030Z subvol_id=21392 /media/usb/@snapshots/@data/20261101-010030Z
+Nov 09 08:51:52 mars btrfs-snapshot-manager[97362]: DELETE @data 20261101-000031Z subvol_id=21391 /media/usb/@snapshots/@data/20261101-000031Z
+Nov 09 08:51:52 mars btrfs-snapshot-manager[97362]: DELETE @data 20261031-220021Z subvol_id=21389 /media/usb/@snapshots/@data/20261031-220021Z
+Nov 09 08:51:52 mars btrfs-snapshot-manager[97362]: DELETE @data 20261031-210025Z subvol_id=21388 /media/usb/@snapshots/@data/20261031-210025Z
+Nov 09 08:51:52 mars btrfs-snapshot-manager[97362]: DELETE @data 20261031-200015Z subvol_id=21387 /media/usb/@snapshots/@data/20261031-200015Z
+Nov 09 08:51:53 mars btrfs-snapshot-manager[97362]: DELETE @data 20261031-190021Z subvol_id=21386 /media/usb/@snapshots/@data/20261031-190021Z
+Nov 09 08:51:53 mars btrfs-snapshot-manager[97362]: DELETE @data 20261031-180024Z subvol_id=21385 /media/usb/@snapshots/@data/20261031-180024Z
+Nov 09 08:51:53 mars btrfs-snapshot-manager[97362]: Deleted 10 complete timestamp sets
+Nov 09 08:51:53 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+Nov 09 08:51:53 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 09 08:51:53 mars systemd[1]: btrfs-snapshot-prune.service: Consumed 2.355s CPU time, 14.6M memory peak, 0B memory swap peak.
+=== Snapshot health ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=763
+qgroups_stale=606
+qgroups_under_deletion=0
+qgroups_status=warning
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=146;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=146
+diaries_verification=valid;logicalDataset=production;backupId=20261109-003055Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== Next pruning schedule ===
+NEXT                         LEFT LAST                          PASSED UNIT                       ACTIVATES
+Mon 2026-11-09 09:45:00 UTC 51min Mon 2026-11-09 08:45:39 UTC 8min ago btrfs-snapshot-prune.timer btrfs-snapshot-prune.service
+
+1 timers listed.

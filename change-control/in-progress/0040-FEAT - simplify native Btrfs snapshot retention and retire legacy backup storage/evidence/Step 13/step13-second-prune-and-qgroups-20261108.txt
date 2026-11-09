@@ -1,0 +1,29 @@
+=== Latest source pruning runs ===
+Nov 08 14:43:17 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 08 14:43:23 mars btrfs-snapshot-manager[86169]: PRUNE-CAP: eligible=209 selected=10 max_delete=10
+Nov 08 14:43:24 mars btrfs-snapshot-manager[86169]: Deleted 10 complete timestamp sets
+Nov 08 14:43:24 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+Nov 08 15:15:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 08 15:15:00 mars systemd[1]: btrfs-snapshot-prune.service: Failed with result 'exit-code'.
+Nov 08 15:15:00 mars systemd[1]: Failed to start btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+=== Current timer and service state ===
+LastTriggerUSec=Sun 2026-11-08 15:15:00 UTC
+ActiveState=active
+UnitFileState=enabled
+Result=exit-code
+ExecMainStatus=2
+ActiveState=failed
+=== Snapshot and qgroup status ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=746
+qgroups_stale=466
+qgroups_under_deletion=0
+qgroups_status=warning
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=269;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=269
+diaries_verification=valid;logicalDataset=production;backupId=20261108-003143Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== Verify agreed parents ===
+{"preflight": {"action": "incremental", "parent": "20261108-030011Z", "source": "20261108-150011Z", "source_uuid": "5bb4101f-6da4-d048-9125-8a5500d3fe34"}, "receiver": {"parent": {"timestamp": "20261108-030011Z", "uuid": "dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58"}, "prior": {"timestamp": "20261107-030031Z", "uuid": "7778dda5-2b91-8c4e-8b1a-1dd038a3675b"}, "schema": 1}, "receiver_parent_verified": true, "relation": "equal", "state": {"parent": {"timestamp": "20261108-030011Z", "uuid": "dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58"}, "prior": {"timestamp": "20261107-030031Z", "uuid": "7778dda5-2b91-8c4e-8b1a-1dd038a3675b"}, "schema": 1}}
+PASS: Second pruning and qgroup diagnostics collected

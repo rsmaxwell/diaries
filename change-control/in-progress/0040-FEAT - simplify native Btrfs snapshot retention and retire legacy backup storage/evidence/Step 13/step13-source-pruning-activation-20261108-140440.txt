@@ -1,0 +1,12 @@
+=== Verify Playbooks revision ===
+=== Verify current parent and bounded deletion plan ===
+PASS: parent protected: 20261108-030011Z
+PASS: prior protected: 20261107-030031Z
+PASS: checkpoint hold protected: 20261013-171228Z
+PASS: checkpoint hold protected: 20261018-165453Z
+PASS: Bounded deletion plan: 10/10 selected
+=== Confirm existing pruning is paused ===
+=== Record approved activation in mars host inventory ===
+Traceback (most recent call last):
+  File "<stdin>", line 17, in <module>
+AssertionError: Existing mars host-vars directory needs reconciliation

@@ -1,0 +1,33 @@
+=== First normal :45 pruning run ===
+Nov 09 08:45:39 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 09 08:45:41 mars btrfs-snapshot-manager[97362]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+Nov 09 08:45:41 mars btrfs-snapshot-manager[97362]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z', '20261101-140039Z']
+Nov 09 08:45:41 mars btrfs-snapshot-manager[97362]: RETENTION sets: total=156 keep=69 sources=1
+Nov 09 08:45:41 mars btrfs-snapshot-manager[97362]: PRUNE-CAP: eligible=87 selected=10 max_delete=10
+Nov 09 08:45:41 mars btrfs-snapshot-manager[97362]: DELETE @data 20261107-080002Z subvol_id=21542 /media/usb/@snapshots/@data/20261107-080002Z
+=== Timer and latest service result ===
+NextElapseUSecRealtime=
+LastTriggerUSec=Mon 2026-11-09 08:45:39 UTC
+ActiveState=active
+UnitFileState=enabled
+Result=success
+ExecMainStartTimestamp=Mon 2026-11-09 08:45:39 UTC
+ExecMainExitTimestamp=
+ExecMainStatus=0
+ActiveState=activating
+=== Snapshot and qgroup health ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=763
+qgroups_stale=601
+qgroups_under_deletion=0
+qgroups_status=warning
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=153;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=149
+diaries_verification=valid;logicalDataset=production;backupId=20261109-003055Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== Verify replication-parent agreement ===
+PASS: Sender and receiver agree
+Parent: {'timestamp': '20261109-030030Z', 'uuid': '239f29b4-9577-0e4b-b4f2-5f5cb9f7484c'}
+Prior: {'timestamp': '20261108-030011Z', 'uuid': 'dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58'}
+PASS: Operational evidence collected

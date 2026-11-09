@@ -1,0 +1,31 @@
+=== Snapshot creation and pruning history ===
+2026-11-08T15:00:11.233025+00:00 mars systemd[1]: Starting btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots...
+2026-11-08T15:15:00.407999+00:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+2026-11-08T15:15:00.787126+00:00 mars btrfs-snapshot-manager[86996]: ERROR: another operation holds /run/lock/btrfs-snapshot-manager.lock
+2026-11-08T15:15:00.832837+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Main process exited, code=exited, status=2/INVALIDARGUMENT
+2026-11-08T15:15:00.833515+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Failed with result 'exit-code'.
+2026-11-08T15:15:00.834476+00:00 mars systemd[1]: Failed to start btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+2026-11-08T15:17:22.653780+00:00 mars btrfs-snapshot-manager[86736]: VERIFIED-DIARIES production 20261108-003143Z manifest=2e8f7fefb4ba6d512b87bd6f13384b1dfa3c759d1bc3ce4dbac46a072ec3fc53
+2026-11-08T15:17:22.653780+00:00 mars btrfs-snapshot-manager[86736]: CREATE @data: /media/usb/@data -> /media/usb/@snapshots/@data/20261108-150011Z
+2026-11-08T15:17:22.653780+00:00 mars btrfs-snapshot-manager[86736]: Created timestamp set 20261108-150011Z (1 snapshots)
+2026-11-08T15:17:22.744235+00:00 mars systemd[1]: btrfs-snapshot-create.service: Deactivated successfully.
+2026-11-08T15:17:22.746189+00:00 mars systemd[1]: Finished btrfs-snapshot-create.service - Create timestamp-named Btrfs snapshots.
+2026-11-08T15:17:22.747526+00:00 mars systemd[1]: btrfs-snapshot-create.service: Consumed 4min 34.627s CPU time.
+=== Last snapshot creation execution ===
+Result=success
+ExecMainStartTimestamp=Sun 2026-11-08 15:00:11 UTC
+ExecMainExitTimestamp=Sun 2026-11-08 15:17:22 UTC
+ExecMainStatus=0
+ActiveState=inactive
+=== Last source pruning execution ===
+Result=exit-code
+ExecMainStartTimestamp=Sun 2026-11-08 15:15:00 UTC
+ExecMainExitTimestamp=Sun 2026-11-08 15:15:00 UTC
+ExecMainStatus=2
+ActiveState=failed
+=== Upcoming pruning execution ===
+NEXT                         LEFT LAST                           PASSED UNIT                       ACTIVATES
+Sun 2026-11-08 16:15:00 UTC 35min Sun 2026-11-08 15:15:00 UTC 24min ago btrfs-snapshot-prune.timer btrfs-snapshot-prune.service
+
+1 timers listed.
+PASS: Source operation history collected

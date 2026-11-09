@@ -1,0 +1,15 @@
+=== Complete pruning journal around 15:15 ===
+Nov 08 15:15:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+Nov 08 15:15:00 mars btrfs-snapshot-manager[86996]: ERROR: another operation holds /run/lock/btrfs-snapshot-manager.lock
+Nov 08 15:15:00 mars systemd[1]: btrfs-snapshot-prune.service: Main process exited, code=exited, status=2/INVALIDARGUMENT
+Nov 08 15:15:00 mars systemd[1]: btrfs-snapshot-prune.service: Failed with result 'exit-code'.
+Nov 08 15:15:00 mars systemd[1]: Failed to start btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+=== Other snapshot operations around 15:15 ===
+-- No entries --
+=== Current service and timer states ===
+Result=exit-code
+ExecMainStatus=2
+ActiveState=failed
+NextElapseUSecRealtime=Sun 2026-11-08 16:15:00 UTC
+ActiveState=active
+UnitFileState=enabled
