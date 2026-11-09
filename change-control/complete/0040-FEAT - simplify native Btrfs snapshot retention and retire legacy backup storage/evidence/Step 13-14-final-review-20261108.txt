@@ -1,0 +1,173 @@
+=== Diaries repository ===
+4f166ac 0040-FEAT: Formally close Step 12
+?? "change-control/in-progress/0040-FEAT - simplify native Btrfs snapshot retention and retire legacy backup storage/evidence/Step 13-14-final-review-20261108.txt"
+=== Playbooks repository ===
+e5ae755 Consolidated Playbooks verification
+=== Installed simplified executable checksums ===
+PASS: mars executable matches Playbooks
+PASS: backup executable matches Playbooks
+=== Sender and receiver agreed-parent status ===
+{"preflight": {"action": "incremental", "parent": "20261108-030011Z", "source": "20261108-090031Z", "source_uuid": "4bc32fe7-235b-a442-ab05-322c6cf0c67d"}, "receiver": {"parent": {"timestamp": "20261108-030011Z", "uuid": "dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58"}, "prior": {"timestamp": "20261107-030031Z", "uuid": "7778dda5-2b91-8c4e-8b1a-1dd038a3675b"}, "schema": 1}, "receiver_parent_verified": true, "relation": "equal", "state": {"parent": {"timestamp": "20261108-030011Z", "uuid": "dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58"}, "prior": {"timestamp": "20261107-030031Z", "uuid": "7778dda5-2b91-8c4e-8b1a-1dd038a3675b"}, "schema": 1}}
+{"state": {"parent": {"timestamp": "20261108-030011Z", "uuid": "dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58"}, "prior": {"timestamp": "20261107-030031Z", "uuid": "7778dda5-2b91-8c4e-8b1a-1dd038a3675b"}, "schema": 1}}
+=== Receiver retention plan ===
+RECEIVER-SIMPLE-PLAN {"candidates": 0, "enabled": true, "historical_receipts_on_candidates": 0, "historical_receipts_orphaned": 0, "historical_receipts_preserved": 27, "holds": ["20261013-171228Z", "20261018-165453Z"], "keep": 31, "parent": {"timestamp": "20261108-030011Z", "uuid": "dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58"}, "prior": {"timestamp": "20261107-030031Z", "uuid": "7778dda5-2b91-8c4e-8b1a-1dd038a3675b"}}
+=== Active schedules ===
+NEXT                         LEFT LAST                                  PASSED UNIT                        ACTIVATES
+Sun 2026-11-08 10:00:00 UTC 21min Sun 2026-11-08 09:00:31 UTC        37min ago btrfs-snapshot-create.timer btrfs-snapshot-create.service
+Mon 2026-11-09 03:30:00 UTC   17h Sun 2026-11-08 03:30:39 UTC           6h ago btrfs-native-push.timer     btrfs-native-push.service
+-                               - Fri 2026-10-30 14:15:21 UTC 1 week 1 day ago btrfs-snapshot-prune.timer  btrfs-snapshot-prune.service
+
+3 timers listed.
+NEXT                        LEFT LAST                              PASSED UNIT                              ACTIVATES
+Mon 2026-11-09 04:15:00 GMT  18h Sun 2026-11-08 04:15:04 GMT 5h 23min ago btrfs-receiver-simple-prune.timer btrfs-receiver-simple-prune.service
+
+1 timers listed.
+=== Legacy configuration references in permanent Playbooks ===
+roles/btrfs-replication/README.md:44:| `btrfs_native_push_schedule_enabled` | `true` | `false` |
+roles/btrfs-replication/defaults/main.yaml:8:btrfs_native_push_schedule_enabled: false
+roles/btrfs-replication/defaults/main.yaml:41:btrfs_agreed_parent_receiver_observer_install_enabled: false
+roles/btrfs-replication/defaults/main.yaml:42:btrfs_agreed_parent_receiver_observer_sudo_enabled: false
+roles/btrfs-replication/tasks/agreed-parent-runtime.yaml:9:      - (btrfs_native_endpoint_role == 'source') if inventory_hostname == 'mars' else (btrfs_native_endpoint_role == 'receiver')
+roles/btrfs-replication/tasks/native.yaml:6:      - btrfs_native_endpoint_role in ['source', 'receiver']
+roles/btrfs-replication/tasks/native.yaml:8:      - btrfs_native_push_schedule_enabled is boolean
+roles/btrfs-replication/tasks/native.yaml:34:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:42:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:53:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:70:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:92:    (btrfs_native_endpoint_role == 'source' and not (btrfs_simplified_replication_active_enabled | bool))
+roles/btrfs-replication/tasks/native.yaml:93:    or (btrfs_native_endpoint_role == 'receiver' and not (btrfs_simplified_replication_install_enabled | bool))
+roles/btrfs-replication/tasks/native.yaml:107:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:117:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:127:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:142:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:158:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:175:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:189:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:200:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:214:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:227:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:240:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:251:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:268:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:284:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:298:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:316:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:330:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:344:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:358:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:370:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:385:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:398:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:408:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:416:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:426:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:443:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:460:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:461:    - btrfs_native_push_schedule_enabled | bool
+roles/btrfs-replication/tasks/native.yaml:473:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:474:    - btrfs_native_push_schedule_enabled | bool
+roles/btrfs-replication/tasks/native.yaml:480:    enabled: "{{ btrfs_native_push_schedule_enabled | bool }}"
+roles/btrfs-replication/tasks/native.yaml:481:    state: "{{ 'started' if (btrfs_native_push_schedule_enabled | bool) else 'stopped' }}"
+roles/btrfs-replication/tasks/native.yaml:484:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:498:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:507:      - btrfs_agreed_parent_receiver_observer_install_enabled is boolean
+roles/btrfs-replication/tasks/native.yaml:508:      - btrfs_agreed_parent_receiver_observer_sudo_enabled is boolean
+roles/btrfs-replication/tasks/native.yaml:509:      - not btrfs_agreed_parent_receiver_observer_sudo_enabled or btrfs_agreed_parent_receiver_observer_install_enabled
+roles/btrfs-replication/tasks/native.yaml:511:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:524:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:525:    - btrfs_agreed_parent_receiver_observer_install_enabled | bool
+roles/btrfs-replication/tasks/native.yaml:539:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:540:    - btrfs_agreed_parent_receiver_observer_sudo_enabled | bool
+roles/btrfs-replication/tasks/native.yaml:549:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:550:    - not (btrfs_agreed_parent_receiver_observer_sudo_enabled | bool)
+roles/btrfs-replication/tasks/native.yaml:559:      - btrfs_native_endpoint_role in ['source', 'receiver']
+roles/btrfs-replication/tasks/native.yaml:582:      - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:583:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:596:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:606:      - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:608:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:621:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:631:      - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:633:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:645:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:654:      - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:670:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:679:      - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:681:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:697:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:706:      - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:722:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:731:      - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:751:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:761:      - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:775:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:785:      - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:799:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:809:      - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:822:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:833:      - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:846:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:856:      - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:858:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:874:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:882:      - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:884:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:896:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:903:      - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:905:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:917:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:926:      - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:929:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:944:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:953:      - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:956:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:971:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:980:      - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:983:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:1005:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:1016:      - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:1018:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:1042:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:1052:      - btrfs_native_endpoint_role == ('source' if inventory_hostname == 'mars' else 'receiver')
+roles/btrfs-replication/tasks/native.yaml:1118:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml:1127:      - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:1134:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:1146:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:1159:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:1175:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml:1188:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:6:      - btrfs_native_endpoint_role in ['source', 'receiver']
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:8:      - btrfs_native_push_schedule_enabled is boolean
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:34:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:42:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:53:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:69:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:104:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:115:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:129:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:142:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:156:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:170:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:181:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:192:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:201:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:209:  when: btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:225:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:241:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:242:    - btrfs_native_push_schedule_enabled | bool
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:254:    - btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:255:    - btrfs_native_push_schedule_enabled | bool
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:261:    enabled: "{{ btrfs_native_push_schedule_enabled | bool }}"
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:262:    state: "{{ 'started' if (btrfs_native_push_schedule_enabled | bool) else 'stopped' }}"
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:265:  when: btrfs_native_endpoint_role == 'source'
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags:279:    - btrfs_native_endpoint_role == 'receiver'
+roles/btrfs-replication/templates/btrfs-native-sudoers.j2:3:{{ btrfs_native_operator }} ALL=(root) NOPASSWD: /usr/local/libexec/btrfs-native-endpoint --role {{ btrfs_native_endpoint_role }} --snapshot *
+roles/btrfs-replication/templates/btrfs-native-sudoers.j2:4:{{ btrfs_native_operator }} ALL=(root) NOPASSWD: /usr/local/libexec/btrfs-native-endpoint --role inspect-{{ btrfs_native_endpoint_role }} --snapshot *
+roles/btrfs-replication/templates/btrfs-native-sudoers.j2:6:{% if btrfs_native_endpoint_role == 'source' %}
+roles/btrfs-replication/templates/btrfs-native-sudoers.j2:11:{% elif btrfs_native_endpoint_role == 'receiver' %}
+roles/btrfs-replication/tests/0040-STEP03-RECEIVER-ENDPOINT-EXPOSURE.md:4:- Changes sudoers template **only** behind `btrfs_native_enable_receiver_delete_endpoint | default(false) | bool`, constrained to `btrfs_native_endpoint_role == receiver`.
+roles/btrfs-replication/tests/verify-native-btrfs-static.py:26:assert 'btrfs_native_endpoint_role' in (root / 'tasks/native.yaml').read_text()
+roles/btrfs-replication/tests/verify-native-btrfs-static.py:30:assert 'btrfs_native_push_schedule_enabled: false' in (root / 'defaults/main.yaml').read_text()
+roles/btrfs-replication/tests/verify-replication-protection-idempotency.py:22:assert "btrfs_native_endpoint_role == 'source'" in task
+roles/btrfs-replication/tests/verify-step03-production-boundary.py:46:      "btrfs_native_endpoint_role == 'receiver'" in sudoers and
+PASS: Final read-only review collected

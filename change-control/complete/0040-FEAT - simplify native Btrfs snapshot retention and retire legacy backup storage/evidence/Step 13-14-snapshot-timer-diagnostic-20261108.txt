@@ -1,0 +1,62 @@
+=== Mars snapshot timer state ===
+mars
+NextElapseUSecRealtime=Sun 2026-11-08 10:00:00 UTC
+LastTriggerUSec=Sun 2026-11-08 09:00:31 UTC
+Id=btrfs-snapshot-create.timer
+LoadState=loaded
+ActiveState=active
+UnitFileState=enabled
+
+NextElapseUSecRealtime=
+LastTriggerUSec=Fri 2026-10-30 14:15:21 UTC
+Id=btrfs-snapshot-prune.timer
+LoadState=loaded
+ActiveState=inactive
+UnitFileState=enabled
+=== Installed timer definitions ===
+# /etc/systemd/system/btrfs-snapshot-create.timer
+[Unit]
+Description=Schedule timestamp-named Btrfs snapshots
+
+[Timer]
+OnCalendar=*-*-* *:00:00
+Persistent=true
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target
+# /etc/systemd/system/btrfs-snapshot-prune.timer
+[Unit]
+Description=Schedule GFS-style Btrfs snapshot pruning
+
+[Timer]
+OnCalendar=*-*-* *:15:00
+Persistent=true
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target
+=== Current snapshot-manager status ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=740
+qgroups_stale=456
+qgroups_under_deletion=0
+qgroups_status=warning
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=273;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=273
+diaries_verification=valid;logicalDataset=production;backupId=20261108-003143Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== Recent pruning journal ===
+Hint: You are currently not seeing messages from other users and the system.
+      Users in groups 'adm', 'systemd-journal' can see all messages.
+      Pass -q to turn off this notice.
+-- No entries --
+=== Effective mars snapshot inventory ===
+btrfs_snapshot_activation_enabled = True
+btrfs_snapshot_create_on_calendar = '<role default>'
+btrfs_snapshot_prune_on_calendar = '<role default>'
+btrfs_snapshot_sources = [{'creation': True, 'name': '@data', 'path': '{{ btrfs_subvolume_path }}', 'prune': True, 'required': True}]
+=== Check tracked old task backup ===
+roles/btrfs-replication/tasks/native.yaml.pre-wrapper-tags
+PASS: Snapshot timer diagnostic completed
