@@ -1,0 +1,147 @@
+=== 0042 final read-only acceptance ===
+Tue Nov 10 08:44:08 UTC 2026
+=== Verify rollback archive against receipt ===
+PASS: rollback archive SHA-256 d00f75fd7d3d5000f234f633ad65887331f122f57a58c3e9b1302971facba37b
+archived_files=215
+=== mars: simplified backup status ===
+{
+  "history": {
+    "count": 18,
+    "error": "",
+    "exit": 0,
+    "latest": {
+      "backupId": "20261110-003113Z",
+      "firstRetainedSnapshot": "20261110-020014Z",
+      "lastRetainedSnapshot": "20261110-080021Z",
+      "logicalDataset": "production",
+      "snapshots": 7,
+      "status": "verified"
+    },
+    "ok": true,
+    "recent": [
+      {
+        "backupId": "20261110-003113Z",
+        "firstRetainedSnapshot": "20261110-020014Z",
+        "lastRetainedSnapshot": "20261110-080021Z",
+        "logicalDataset": "production",
+        "snapshots": 7,
+        "status": "verified"
+      },
+      {
+        "backupId": "20261109-003055Z",
+        "firstRetainedSnapshot": "20261109-020020Z",
+        "lastRetainedSnapshot": "20261110-010002Z",
+        "logicalDataset": "production",
+        "snapshots": 24,
+        "status": "verified"
+      },
+      {
+        "backupId": "20261108-003143Z",
+        "firstRetainedSnapshot": "20261108-080031Z",
+        "lastRetainedSnapshot": "20261109-010012Z",
+        "logicalDataset": "production",
+        "snapshots": 18,
+        "status": "verified"
+      },
+      {
+        "backupId": "20261107-003217Z",
+        "firstRetainedSnapshot": "20261107-230001Z",
+        "lastRetainedSnapshot": "20261107-230001Z",
+        "logicalDataset": "production",
+        "snapshots": 1,
+        "status": "verified"
+      },
+      {
+        "backupId": "20261106-003055Z",
+        "firstRetainedSnapshot": "20261106-230012Z",
+        "lastRetainedSnapshot": "20261106-230012Z",
+        "logicalDataset": "production",
+        "snapshots": 1,
+        "status": "verified"
+      }
+    ],
+    "stdout": "{\"backups\": [{\"backupId\": \"20261009-154847Z\", \"firstRetainedSnapshot\": \"20261011-230026Z\", \"lastRetainedSnapshot\": \"20261013-171228Z\", \"logicalDataset\": \"production\", \"snapshots\": 2, \"status\": \"verified\"}, {\"backupId\": \"20261018-003102Z\", \"firstRetainedSnapshot\": \"20261018-165453Z\", \"lastRetainedSnapshot\": \"20261018-230008Z\", \"logicalDataset\": \"production\", \"snapshots\": 2, \"status\": \"verified\"}, {\"backupId\": \"20261023-003234Z\", \"firstRetainedSnapshot\": \"20261023-030037Z\", \"lastRetainedSnapshot\": \"20261023-030037Z\", \"logicalDataset\": \"production\", \"snapshots\": 1, \"status\": \"verified\"}, {\"backupId\": \"20261025-003218Z\", \"firstRetainedSnapshot\": \"20261025-230012Z\", \"lastRetainedSnapshot\": \"20261025-230012Z\", \"logicalDataset\": \"production\", \"snapshots\": 1, \"status\": \"verified\"}, {\"backupId\": \"20261028-003103Z\", \"firstRetainedSnapshot\": \"20261028-230006Z\", \"lastRetainedSnapshot\": \"20261028-230006Z\", \"logicalDataset\": \"production\", \"snapshots\": 1, \"status\": \"verified\"}, {\"backupId\": \"20261029-003106Z\", \"firstRetainedSnapshot\": \"20261029-030003Z\", \"lastRetainedSnapshot\": \"20261029-230001Z\", \"logicalDataset\": \"production\", \"snapshots\": 2, \"status\": \"verified\"}, {\"backupId\": \"20261030-003052Z\", \"firstRetainedSnapshot\": \"20261030-030033Z\", \"lastRetainedSnapshot\": \"20261030-230004Z\", \"logicalDataset\": \"production\", \"snapshots\": 3, \"status\": \"verified\"}, {\"backupId\": \"20261031-003105Z\", \"firstRetainedSnapshot\": \"20261031-230021Z\", \"lastRetainedSnapshot\": \"20261031-230021Z\", \"logicalDataset\": \"production\", \"snapshots\": 1, \"status\": \"verified\"}, {\"backupId\": \"20261101-003051Z\", \"firstRetainedSnapshot\": \"20261101-140039Z\", \"lastRetainedSnapshot\": \"20261101-230001Z\", \"logicalDataset\": \"production\", \"snapshots\": 2, \"status\": \"verified\"}, {\"backupId\": \"20261102-003100Z\", \"firstRetainedSnapshot\": \"20261102-230039Z\", \"lastRetainedSnapshot\": \"20261102-230039Z\", \"logicalDataset\": \"production\", \"snapshots\": 1, \"status\": \"verified\"}, {\"backupId\": \"20261103-003057Z\", \"firstRetainedSnapshot\": \"20261103-230001Z\", \"lastRetainedSnapshot\": \"20261103-230001Z\", \"logicalDataset\": \"production\", \"snapshots\": 1, \"status\": \"verified\"}, {\"backupId\": \"20261104-003111Z\", \"firstRetainedSnapshot\": \"20261104-230035Z\", \"lastRetainedSnapshot\": \"20261104-230035Z\", \"logicalDataset\": \"production\", \"snapshots\": 1, \"status\": \"verified\"}, {\"backupId\": \"20261105-003108Z\", \"firstRetainedSnapshot\": \"20261105-230008Z\", \"lastRetainedSnapshot\": \"20261105-230008Z\", \"logicalDataset\": \"production\", \"snapshots\": 1, \"status\": \"verified\"}, {\"backupId\": \"20261106-003055Z\", \"firstRetainedSnapshot\": \"20261106-230012Z\", \"lastRetainedSnapshot\": \"20261106-230012Z\", \"logicalDataset\": \"production\", \"snapshots\": 1, \"status\": \"verified\"}, {\"backupId\": \"20261107-003217Z\", \"firstRetainedSnapshot\": \"20261107-230001Z\", \"lastRetainedSnapshot\": \"20261107-230001Z\", \"logicalDataset\": \"production\", \"snapshots\": 1, \"status\": \"verified\"}, {\"backupId\": \"20261108-003143Z\", \"firstRetainedSnapshot\": \"20261108-080031Z\", \"lastRetainedSnapshot\": \"20261109-010012Z\", \"logicalDataset\": \"production\", \"snapshots\": 18, \"status\": \"verified\"}, {\"backupId\": \"20261109-003055Z\", \"firstRetainedSnapshot\": \"20261109-020020Z\", \"lastRetainedSnapshot\": \"20261110-010002Z\", \"logicalDataset\": \"production\", \"snapshots\": 24, \"status\": \"verified\"}, {\"backupId\": \"20261110-003113Z\", \"firstRetainedSnapshot\": \"20261110-020014Z\", \"lastRetainedSnapshot\": \"20261110-080021Z\", \"logicalDataset\": \"production\", \"snapshots\": 7, \"status\": \"verified\"}], \"warnings\": []}"
+  },
+  "lastVerifiedPull": {
+    "data": {
+      "backupId": "20261110-003113Z",
+      "datasetRelativePath": "backup/pluto/diaries-backup",
+      "feature": "0034-FEAT/0035-FEAT",
+      "format": 1,
+      "logicalDataset": "production",
+      "manifestSha256": "fdcd4bc60e148bd27555b14d948d2b1046c040c82a7846637dfb75004b3e57e1",
+      "snapshotEligible": true,
+      "sourceIdentity": "pluto:/home/richard/projects/diaries/data/diaries-backup",
+      "state": "verified-published",
+      "verifiedAt": "2026-11-10T01:30:07.769668Z"
+    },
+    "ok": true,
+    "path": "/media/usb/@data/backup/.diaries-snapshot-verified.json"
+  },
+  "offsite": {
+    "identity_verified": true,
+    "latest": {
+      "snapshot": "20261110-030004Z",
+      "source_uuid": "c2a5c8d4-cc6a-bd43-bd6c-746cf866eb16"
+    },
+    "ok": true,
+    "relation": "equal"
+  },
+  "replicationPreflight": {
+    "data": {
+      "action": "incremental",
+      "parent": "20261110-030004Z",
+      "source": "20261110-080021Z",
+      "source_uuid": "a4c2659d-5304-a443-86d2-07a62e663bb0"
+    },
+    "ok": true
+  },
+  "snapshot": {
+    "error": "",
+    "exit": 0,
+    "ok": true,
+    "stdout": "snapshot_root=/media/usb/@snapshots\nfilesystem=btrfs\nqgroups_total=84\nqgroups_stale=3\nqgroups_under_deletion=0\nqgroups_status=ok\nretention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30\ncomplete_timestamp_sets=70;incomplete_timestamp_sets=0\nsource=@data:/media/usb/@data;managed_snapshots=70\ndiaries_verification=valid;logicalDataset=production;backupId=20261110-003113Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json"
+  }
+}
+=== Source-control baselines ===
+--- Windows Diaries ---
+## main...origin/main
+ M "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/DESIGN-AND-SAFETY.md"
+ M "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/IMPLEMENTATION-STEPS.md"
+ M "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/README.md"
+?? "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/evidence/Step 08/"
+?? "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/evidence/Step 09/"
+?? "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/evidence/Step 10/"
+?? "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/evidence/Step 11/"
+?? "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/reports/"
+?? "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/tools/collect-0039-step08-host-baseline.sh"
+?? "change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/"
+bca29dbb98d47afaf24642c0c4db09c2e5f07dcb
+--- mango Playbooks ---
+D  roles/snapshots/tests/verify-0040-agreed-parent-initialise.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-inspection.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-locked-session-review.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-observation-bridge.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-orchestrator.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-prepare-endpoint.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-protocol.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-receipt-commit-contract.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-receive-transaction.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-receiver.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-rpc.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-sender-completion-protocol.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-source-evidence.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-source-observer.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-source-transition.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-ssh.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-transaction-sim.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-transfer-absence.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-transfer-attestation.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-transition-endpoint.py
+D  roles/snapshots/tests/verify-0040-agreed-parent-transition.py
+D  roles/snapshots/tests/verify-0040-step12-3-durable-receiver-promotion.py
+ M roles/snapshots/tests/verify-btrfs-clear-stale-qgroups.py
+?? roles/btrfs-replication/tasks/qgroup-maintenance.yaml
+?? roles/snapshots/templates/btrfs-stale-qgroups.json.j2
+e0da797310ab452ddc61e7368c50a444fe881e41
+staged_deletions=215
