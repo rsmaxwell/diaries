@@ -1,0 +1,32 @@
+richard@mango:~/playbooks$ if (
+  cd /home/richard/playbooks || exit 1
+
+  test "$(git rev-parse HEAD)" = \
+    '7dfa93fef6d975aa82f5f4cfdf54497b106e7645' || exit 1
+
+  test -z "$(git status --porcelain)" || exit 1
+
+  git push origin main || exit 1
+
+  test "$(git rev-parse origin/main)" = \
+    '7dfa93fef6d975aa82f5f4cfdf54497b106e7645' || exit 1
+
+  git status --short --branch
+
+); then
+  echo 'PASS: 0044 Playbooks published'
+else
+  echo 'FAIL: 0044 Playbooks publication'
+fi
+Enumerating objects: 40, done.
+Counting objects: 100% (40/40), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (32/32), done.
+Writing objects: 100% (32/32), 8.47 KiB | 4.24 MiB/s, done.
+Total 32 (delta 24), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (24/24), completed with 8 local objects.
+To github.com:rsmaxwell/ansible-playbooks.git
+   6d7f397..7dfa93f  main -> main
+## main...origin/main
+PASS: 0044 Playbooks published
+richard@mango:~/playbooks$

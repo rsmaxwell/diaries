@@ -1,0 +1,20 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ if (
+  cd '/cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries' || exit 1
+  set -o pipefail
+
+  feature='change-control/in-progress/0044-FEAT - normalise permanent Btrfs regression test names'
+
+  tar -cf - "$feature" |
+    ssh mango 'cd /home/richard/diaries && tar -xf -' || exit 1
+
+); then
+  echo 'PASS: 0044 rename tool transferred'
+else
+  echo 'FAIL: 0044 transfer'
+fi
+PASS: 0044 rename tool transferred
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

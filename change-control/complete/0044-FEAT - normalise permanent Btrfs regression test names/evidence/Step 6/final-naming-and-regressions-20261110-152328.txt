@@ -1,0 +1,107 @@
+richard@mango:~/playbooks$ if (
+  cd /home/richard/playbooks || exit 1
+
+  echo '=== Verify repository baseline ==='
+  test "$(git branch --show-current)" = main || exit 1
+  test "$(git rev-parse HEAD)" = \
+    '4c17fac7455d8fa8a3f4caa1dd003eaac2427c32' || exit 1
+
+  echo '=== Verify renamed files ==='
+  test -f roles/btrfs-replication/tests/README.md || exit 1
+  test -f roles/btrfs-replication/tests/verify-replication.py || exit 1
+  test -f roles/btrfs-replication/tests/verify-protection.py || exit 1
+
+  echo '=== Update README references ==='
+  sed -i \
+    -e 's/verify-simplified-replication\.py/verify-replication.py/g' \
+    -e 's/verify-simplified-protection\.py/verify-protection.py/g' \
+    roles/btrfs-replication/tests/README.md \
+    roles/snapshots/tests/README-0040-SIMPLIFIED-RECEIVER-RETENTION.md \
+    || exit 1
+
+  echo '=== Stage renamed files and documentation ==='
+  git add -A -- \
+    roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md \
+    roles/btrfs-replication/tests/README.md \
+    roles/btrfs-replication/tests/verify-replication.py \
+    roles/btrfs-replication/tests/verify-protection.py \
+    roles/snapshots/tests/README-0040-SIMPLIFIED-RECEIVER-RETENTION.md \
+fiecho 'FAIL: 0044 regression naming'on naming complete'n names' \ON.md' |
+=== Verify repository baseline ===
+=== Verify renamed files ===
+=== Update README references ===
+=== Stage renamed files and documentation ===
+=== Check obsolete references ===
+=== Run permanent regressions ===
+test_absent_or_complete_candidate_never_deleted (__main__.Cases.test_absent_or_complete_candidate_never_deleted) ... ok
+test_ambiguous_parent_divergence_refuses (__main__.Cases.test_ambiguous_parent_divergence_refuses) ... ok
+test_choose_newest_eligible_newer (__main__.Cases.test_choose_newest_eligible_newer) ... ok
+test_completed_candidate_uses_advance_without_retransmit (__main__.Cases.test_completed_candidate_uses_advance_without_retransmit) ... SUCCESS: common parent advanced to 20261101-140039Z
+ok
+test_filesystem_identity_refusal (__main__.Cases.test_filesystem_identity_refusal) ... ok
+test_held_or_legacy_receipt_refuses (__main__.Cases.test_held_or_legacy_receipt_refuses) ... ok
+test_incomplete_cleanup_exact_subvolume_once (__main__.Cases.test_incomplete_cleanup_exact_subvolume_once) ... ok
+test_invalid_candidate_prevents_cleanup (__main__.Cases.test_invalid_candidate_prevents_cleanup) ... ok
+test_invalid_state_or_rollback_refuses (__main__.Cases.test_invalid_state_or_rollback_refuses) ... ok
+test_latest_invalid_candidate_refuses_rather_than_falling_back (__main__.Cases.test_latest_invalid_candidate_refuses_rather_than_falling_back) ... ok
+test_latest_selection_ignores_symlinks_and_non_snapshots (__main__.Cases.test_latest_selection_ignores_symlinks_and_non_snapshots) ... ok
+test_readonly_lock_never_creates_missing_lockfile (__main__.Cases.test_readonly_lock_never_creates_missing_lockfile) ... ok
+test_readonly_or_received_unknown_candidate_refused (__main__.Cases.test_readonly_or_received_unknown_candidate_refused) ... ok
+test_receiver_ahead_lost_ack (__main__.Cases.test_receiver_ahead_lost_ack) ... ok
+test_receiver_backoff_uses_configured_lock (__main__.Cases.test_receiver_backoff_uses_configured_lock) ... ok
+test_receiver_failure_does_not_advance (__main__.Cases.test_receiver_failure_does_not_advance) ... ok
+test_receiver_incomplete_next_run_deletes_then_receives (__main__.Cases.test_receiver_incomplete_next_run_deletes_then_receives) ... INFO: cleaned one incomplete candidate; retrying receive
+ok
+test_sender_lost_ack_advances_local_without_retransmission (__main__.Cases.test_sender_lost_ack_advances_local_without_retransmission) ... SUCCESS: reconciled receiver-ahead transfer without retransmission
+ok
+test_sender_status_receiver_ahead_does_not_reconcile_or_save (__main__.Cases.test_sender_status_receiver_ahead_does_not_reconcile_or_save) ... ok
+test_sender_status_rejects_unverified_receiver_identity (__main__.Cases.test_sender_status_rejects_unverified_receiver_identity) ... ok
+test_sender_status_uses_verified_readonly_identity_without_mutation (__main__.Cases.test_sender_status_uses_verified_readonly_identity_without_mutation) ... ok
+test_single_nonblocking_manager_lock (__main__.Cases.test_single_nonblocking_manager_lock) ... ok
+test_state_atomic_readback (__main__.Cases.test_state_atomic_readback) ... ok
+test_state_record_and_prior (__main__.Cases.test_state_record_and_prior) ... ok
+test_state_rejects_nonroot_owner_and_insecure_mode (__main__.Cases.test_state_rejects_nonroot_owner_and_insecure_mode) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.069s
+
+OK
+test_corrupt_and_unsafe_file_blocks_pruning (__main__.Cases.test_corrupt_and_unsafe_file_blocks_pruning) ... ok
+test_missing_file_allows_pre_cutover (__main__.Cases.test_missing_file_allows_pre_cutover) ... ok
+test_nonroot_owned_state_blocks_pruning (__main__.Cases.test_nonroot_owned_state_blocks_pruning) ... ok
+test_parent_and_previous_protected (__main__.Cases.test_parent_and_previous_protected) ... ok
+test_pruning_planners_consult_agreed_parent_pins (__main__.Cases.test_pruning_planners_consult_agreed_parent_pins)
+All three current prune planners must consult the protected parent set. ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.014s
+
+OK
+PASS: receiver policies share one variable; defaults, 24-hour test and guards verified
+=== Review changes ===
+R097    roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md roles/btrfs-replication/tests/README.md
+R100    roles/btrfs-replication/tests/verify-simplified-protection.py   roles/btrfs-replication/tests/verify-protection.py
+R100    roles/btrfs-replication/tests/verify-simplified-replication.py  roles/btrfs-replication/tests/verify-replication.py
+M       roles/snapshots/tests/README-0040-SIMPLIFIED-RECEIVER-RETENTION.md
+ roles/btrfs-replication/tests/{README-0040-SIMPLIFIED.md => README.md}                    | 6 +++---
+ roles/btrfs-replication/tests/{verify-simplified-protection.py => verify-protection.py}   | 0
+ roles/btrfs-replication/tests/{verify-simplified-replication.py => verify-replication.py} | 0
+ roles/snapshots/tests/README-0040-SIMPLIFIED-RECEIVER-RETENTION.md                        | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+=== Verify exact staged filenames ===
+=== Commit final names ===
+[main 7dfa93f] 0044-FEAT: finalise permanent replication regression names
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+ rename roles/btrfs-replication/tests/{README-0040-SIMPLIFIED.md => README.md} (97%)
+ rename roles/btrfs-replication/tests/{verify-simplified-protection.py => verify-protection.py} (100%)
+ rename roles/btrfs-replication/tests/{verify-simplified-replication.py => verify-replication.py} (100%)
+commit 7dfa93fef6d975aa82f5f4cfdf54497b106e7645 (HEAD -> main)
+Author:     Richard Maxwell <richard@rsmaxwell.co.uk>
+AuthorDate: Tue Nov 10 15:23:12 2026 +0000
+Commit:     Richard Maxwell <richard@rsmaxwell.co.uk>
+CommitDate: Tue Nov 10 15:23:12 2026 +0000
+
+    0044-FEAT: finalise permanent replication regression names
+## main...origin/main [ahead 4]
+PASS: 0044 permanent regression naming complete
+richard@mango:~/playbooks$

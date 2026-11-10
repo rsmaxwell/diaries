@@ -1,0 +1,17 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ if (
+  cd '/cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries' || exit 1
+
+  bash 'change-control/in-progress/0044-FEAT - normalise permanent Btrfs regression test names/tools/close-0044.sh' || exit 1
+
+); then
+  echo 'PASS: 0044 Diaries closure committed'
+else
+  echo 'FAIL: 0044 Diaries closure'
+fi
+FAIL: Unexpected checkout: C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+FAIL: 0044 Diaries closure
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

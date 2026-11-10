@@ -1,0 +1,37 @@
+richard@mango:~/playbooks$ if (
+  cd /home/richard/playbooks || exit 1
+
+  cache='roles/btrfs-replication/tests/__pycache__'
+
+  test "$(git rev-parse --show-toplevel)" = \
+    '/home/richard/playbooks' || exit 1
+
+  if [ ! -e "$cache" ] && [ ! -L "$cache" ]; then
+    echo 'Cache directory already absent'
+    exit 0
+  fi
+
+  test -d "$cache" && test ! -L "$cache" || exit 1
+
+  # Do not delete files tracked by Git.
+  test -z "$(git ls-files -- "$cache")" || {
+    echo 'FAIL: Cache contains Git-tracked files'
+    exit 1
+  }
+
+  echo '=== Cache before deletion ==='
+  du -sh "$cache"
+  find "$cache" -type f | wc -l
+
+  echo '=== Remove disposable Python bytecode ==='
+  rm -rf -- "$cache" || exit 1
+
+fiecho 'FAIL: Python cache cleanup'it 1
+=== Cache before deletion ===
+392K    roles/btrfs-replication/tests/__pycache__
+44
+=== Remove disposable Python bytecode ===
+=== Verify Git state ===
+## main...origin/main [ahead 3]
+PASS: Python cache cleanup
+richard@mango:~/playbooks$

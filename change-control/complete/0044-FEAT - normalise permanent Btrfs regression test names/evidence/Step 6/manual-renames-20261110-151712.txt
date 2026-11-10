@@ -1,0 +1,18 @@
+richard@mango:~/playbooks$ cd /home/richard/playbooks
+
+git mv \
+  roles/btrfs-replication/tests/verify-simplified-replication.py \
+  roles/btrfs-replication/tests/verify-replication.py
+
+git mv \
+  roles/btrfs-replication/tests/verify-simplified-protection.py \
+  roles/btrfs-replication/tests/verify-protection.py
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$
+richard@mango:~/playbooks$ git grep -n -E 'verify-simplified-(replication|protection)\.py'
+roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md:52:  sudo -n env PYTHONDONTWRITEBYTECODE=1 python3 roles/btrfs-replication/tests/verify-simplified-replication.py
+roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md:53:  sudo -n env PYTHONDONTWRITEBYTECODE=1 python3 roles/btrfs-replication/tests/verify-simplified-protection.py
+roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md:93:`verify-simplified-replication.py` also checks `sender status`: verified
+roles/snapshots/tests/README-0040-SIMPLIFIED-RECEIVER-RETENTION.md:10:python3 roles/btrfs-replication/tests/verify-simplified-replication.py
+richard@mango:~/playbooks$

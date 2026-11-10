@@ -1,0 +1,21 @@
+commit 06cf0886a863ce2d4d5e19289fc1fbf124d97554
+Author:     Richard Maxwell <richard@rsmaxwell.co.uk>
+AuthorDate: Tue Nov 10 14:44:55 2026 +0000
+Commit:     Richard Maxwell <richard@rsmaxwell.co.uk>
+CommitDate: Tue Nov 10 14:44:55 2026 +0000
+
+    0044-FEAT: normalise permanent Btrfs regression test names
+commit 06cf0886a863ce2d4d5e19289fc1fbf124d97554
+Author: Richard Maxwell <richard@rsmaxwell.co.uk>
+
+    0044-FEAT: normalise permanent Btrfs regression test names
+
+ roles/btrfs-replication/tests/README-0040-SIMPLIFIED.md        | 10 +++++-----
+ ...retirement-source.py => verify-legacy-retirement-source.py} |  0
+ ...step12-3-shared-retention.py => verify-shared-retention.py} |  0
+ ...ver-readiness.py => verify-simplified-cutover-readiness.py} |  0
+ ...implified-protection.py => verify-simplified-protection.py} |  0
+ ...plified-replication.py => verify-simplified-replication.py} |  0
+ .../tests/README-0040-SIMPLIFIED-RECEIVER-RETENTION.md         |  2 +-
+ 7 files changed, 6 insertions(+), 6 deletions(-)
+## main...origin/main [ahead 1]
