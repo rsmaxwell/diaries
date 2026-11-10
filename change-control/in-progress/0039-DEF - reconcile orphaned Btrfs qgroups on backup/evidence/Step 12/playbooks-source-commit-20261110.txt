@@ -1,0 +1,25 @@
+commit ba8dfe59dd720dc2c84c6d9480552d5d475e8aca
+Author:     Richard Maxwell <richard@rsmaxwell.co.uk>
+AuthorDate: Tue Nov 10 09:28:58 2026 +0000
+Commit:     Richard Maxwell <richard@rsmaxwell.co.uk>
+CommitDate: Tue Nov 10 09:28:58 2026 +0000
+
+    0039-DEF: implement shared guarded Btrfs qgroup maintenance
+commit ba8dfe59dd720dc2c84c6d9480552d5d475e8aca
+Author: Richard Maxwell <richard@rsmaxwell.co.uk>
+
+    0039-DEF: implement shared guarded Btrfs qgroup maintenance
+
+ roles/btrfs-replication/defaults/main.yaml         |  13 +
+ roles/btrfs-replication/tasks/native.yaml          |   5 +
+ .../tasks/qgroup-maintenance.yaml                  |  77 ++++
+ roles/snapshots/README-STALE-QGROUP-MAINTENANCE.md | 110 +++++-
+ roles/snapshots/defaults/main.yaml                 |   4 -
+ roles/snapshots/files/btrfs-clear-stale-qgroups.py | 323 ++++++++++++++---
+ roles/snapshots/tasks/main.yaml                    |  46 ---
+ .../templates/btrfs-clear-stale-qgroups.service.j2 |  14 +-
+ .../templates/btrfs-clear-stale-qgroups.timer.j2   |   4 +-
+ .../templates/btrfs-stale-qgroups.json.j2          |   8 +
+ .../tests/verify-btrfs-clear-stale-qgroups.py      | 401 +++++++++++++++++----
+ 11 files changed, 822 insertions(+), 183 deletions(-)
+## main...origin/main [ahead 2]

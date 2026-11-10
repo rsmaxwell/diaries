@@ -1,0 +1,71 @@
+0039-DEF Step 9 revised source proposal — offline checks, 2026-11-09
+Environment: isolated source bundles; no Git working tree or live host access.
+Both endpoints have separate JSON configs, rendered from Ansible variables.
+
+$ python3 roles/snapshots/tests/verify-btrfs-clear-stale-qgroups.py
+test_host_specific_configuration (__main__.ContractTests.test_host_specific_configuration) ... ok
+test_invalid_host_specific_configuration (__main__.ContractTests.test_invalid_host_specific_configuration) ... ok
+test_lock_inode_and_contention (__main__.ContractTests.test_lock_inode_and_contention) ... ok
+test_valid_source_and_receiver (__main__.ContractTests.test_valid_source_and_receiver) ... ok
+test_wrong_config_fail_closed (__main__.ContractTests.test_wrong_config_fail_closed) ... ok
+test_native_route_and_default_off (__main__.IntegrationSourceTests.test_native_route_and_default_off) ... ok
+test_malformed_or_unsupported_rejected (__main__.ParseTests.test_malformed_or_unsupported_rejected) ... ok
+test_parses_stale_and_does_not_misclassify_pending (__main__.ParseTests.test_parses_stale_and_does_not_misclassify_pending) ... ok
+test_subvolume_ids_fail_closed (__main__.ParseTests.test_subvolume_ids_fail_closed) ... ok
+test_bound_and_persisting_stale (__main__.RunTests.test_bound_and_persisting_stale) ... ok
+test_dry_run_never_calls_mutating_tool (__main__.RunTests.test_dry_run_never_calls_mutating_tool) ... ok
+test_fail_closed_on_unsupported_version_or_orphans (__main__.RunTests.test_fail_closed_on_unsupported_version_or_orphans) ... ok
+test_native_cleanup_one_call (__main__.RunTests.test_native_cleanup_one_call) ... ok
+test_nonstale_mutation_detected (__main__.RunTests.test_nonstale_mutation_detected) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.013s
+
+OK
+exit=0
+
+$ python3 roles/snapshots/tests/verify-qgroup-audit.py
+PASS: version-compatible conservative classification
+PASS: version-compatible conservative classification
+PASS: version-compatible conservative classification
+PASS: failed closed
+PASS: failed closed
+PASS: failed closed
+PASS: failed closed
+PASS: 31,001-record bounded report
+PASS: real mars multiword header, path and retained limit
+PASS: failed closed
+PASS: unknown multiword heading fails closed
+PASS: full manifest and targeted ID lookup preserve all evidence
+PASS: full 31,001-record export with bounded summary
+exit=0
+
+$ python3 <0039>/tools/test-cleanup-qgroups.py
+............ACKNOWLEDGED: /tmp/tmpkfkqcp7n/stage-c-20261021-201036Z-598228.jsonl.ack.json deleted IDs verified: 675
+.ACKNOWLEDGED: /tmp/tmpyxc0o_an/stage-c-20261021-201036Z-598228.jsonl.ack.json deleted IDs verified: 675
+.ACKNOWLEDGED: /tmp/tmpn1gsrmr6/stage-c-20261021-201036Z-598228.jsonl.ack.json deleted IDs verified: 675
+....
+----------------------------------------------------------------------
+Ran 18 tests in 0.062s
+
+OK
+exit=0
+
+$ bash -n tools/collect-0039-step08-host-baseline.sh
+exit=0
+
+$ python3 PyYAML + Jinja2 source checks
+PASS YAML roles/snapshots/defaults/main.yaml 24
+PASS YAML roles/snapshots/tasks/main.yaml 24
+PASS YAML roles/btrfs-replication/defaults/main.yaml 34
+PASS YAML roles/btrfs-replication/tasks/native.yaml 91
+PASS YAML roles/btrfs-replication/tasks/qgroup-maintenance.yaml 6
+PASS Jinja2 source btrfs-clear-stale-qgroups.service.j2
+PASS Jinja2 source btrfs-clear-stale-qgroups.timer.j2
+PASS Jinja2 source btrfs-stale-qgroups.json.j2
+PASS Jinja2 receiver btrfs-clear-stale-qgroups.service.j2
+PASS Jinja2 receiver btrfs-clear-stale-qgroups.timer.j2
+PASS Jinja2 receiver btrfs-stale-qgroups.json.j2
+exit=0
+
+NOT RUN: ansible-playbook --syntax-check, --check --diff, remote Btrfs capability, live deployment, timer activation, integration or recurrence observation.

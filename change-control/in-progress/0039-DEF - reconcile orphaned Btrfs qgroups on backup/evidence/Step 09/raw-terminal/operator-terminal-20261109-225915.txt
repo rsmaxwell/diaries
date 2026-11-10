@@ -1,0 +1,128 @@
+richard@mango:~/diaries$ if (
+  cd /home/richard/playbooks || exit 1
+
+  echo '=== Verify mars timer is still disabled ==='
+  ssh mars '
+    test "$(systemctl is-enabled btrfs-clear-stale-qgroups.timer)" = disabled &&
+    test "$(systemctl is-active btrfs-clear-stale-qgroups.timer)" = inactive
+  ' || exit 1
+
+  echo '=== mars: snapshot status BEFORE ==='
+  ssh mars \
+    'sudo -n /usr/local/sbin/btrfs-snapshot-manager status' \
+    || exit 1
+
+  echo '=== mars: execute improved cleanup ==='
+  if ! ssh mars \
+    'sudo -n systemctl start btrfs-clear-stale-qgroups.service'; then
+    ssh mars \
+      'sudo -n journalctl -u btrfs-clear-stale-qgroups.service -n 30 --no-pager'
+    exit 1
+  fi
+
+  echo '=== mars: cleanup result ==='
+  ssh mars '
+    sudo -n systemctl show btrfs-clear-stale-qgroups.service \
+      -p Result -p ExecMainStatus &&
+    sudo -n journalctl -u btrfs-clear-stale-qgroups.service \
+      -n 20 --no-pager
+fiecho 'FAIL: 0039 cleanup verification or activation'vation'imerd":true,"btrfs_stale_qgroup_maintenance_enabled":true}' \
+=== Verify mars timer is still disabled ===
+=== mars: snapshot status BEFORE ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=183
+qgroups_stale=103
+qgroups_under_deletion=0
+qgroups_status=warning
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=69;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=69
+diaries_verification=valid;logicalDataset=production;backupId=20261109-003055Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== mars: execute improved cleanup ===
+=== mars: cleanup result ===
+Result=success
+ExecMainStatus=0
+Nov 09 14:25:10 mars systemd[1]: Starting btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (source)...
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: mode=source filesystem=/media/usb uuid=72d1d8ea-900e-4fca-837f-1b1febec036c qgroups=769 stale_before=656 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 clear_stale_supported=true
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: btrfs-clear-stale-qgroups: REFUSED: command failed rc=1: btrfs qgroup clear-stale /media/usb: ERROR: cannot delete qgroup 0/21336: Device or resource busy
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: ERROR: cannot delete qgroup 0/21337: Device or resource busy
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: ERROR: cannot delete qgroup 0/21338: Device or resource busy
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: ERROR: cannot delete qgroup 0/21339: Device or resource busy
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: ERROR: cannot delete qgroup 0/21340: Device or resource busy
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: ERROR: cannot delete qgroup 0/21341: Device or resource busy
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: ERROR: cannot delete qgroup 0/2134
+Nov 09 14:25:10 mars systemd[1]: btrfs-clear-stale-qgroups.service: Main process exited, code=exited, status=1/FAILURE
+Nov 09 14:25:10 mars systemd[1]: btrfs-clear-stale-qgroups.service: Failed with result 'exit-code'.
+Nov 09 14:25:10 mars systemd[1]: Failed to start btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (source).
+Nov 09 22:58:34 mars systemd[1]: Starting btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (source)...
+Nov 09 22:58:34 mars btrfs-clear-stale-qgroups[105537]: mode=source filesystem=/media/usb uuid=72d1d8ea-900e-4fca-837f-1b1febec036c qgroups=183 stale_before=103 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=8 stale_pending=8 stale_eligible=95 clear_stale_supported=true
+Nov 09 22:58:34 mars btrfs-clear-stale-qgroups[105537]: stale_after=8 removed=95 deferred_pending=8 pending_deletions_after=8 native_rc=1 result=deferred_pending dry_run=false
+Nov 09 22:58:34 mars systemd[1]: btrfs-clear-stale-qgroups.service: Deactivated successfully.
+Nov 09 22:58:34 mars systemd[1]: Finished btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (source).
+=== Verify no immediately eligible stale qgroups remain ===
+mode=source filesystem=/media/usb uuid=72d1d8ea-900e-4fca-837f-1b1febec036c qgroups=88 stale_before=8 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=8 stale_pending=8 stale_eligible=0 clear_stale_supported=true
+dry_run=true
+=== Verify snapshot health ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=88
+qgroups_stale=8
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=69;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=69
+diaries_verification=valid;logicalDataset=production;backupId=20261109-003055Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== Enable automatic maintenance on mars ===
+
+PLAY [Configure native Btrfs replication endpoints] ***************************************************************************************************************************************************************************************************
+
+TASK [Configure native Btrfs endpoint] ****************************************************************************************************************************************************************************************************************
+included: btrfs-replication for mars
+
+TASK [btrfs-replication : Qgroups | Validate explicit endpoint and activation contract] ***************************************************************************************************************************************************************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Qgroups | Install one shared cleanup executable on both endpoints] **********************************************************************************************************************************************************
+ok: [mars]
+
+TASK [btrfs-replication : Qgroups | Render host-local stale-qgroup maintenance configuration] *********************************************************************************************************************************************************
+ok: [mars]
+
+TASK [btrfs-replication : Qgroups | Install endpoint-specific service and common timer] ***************************************************************************************************************************************************************
+ok: [mars] => (item=btrfs-clear-stale-qgroups.service)
+ok: [mars] => (item=btrfs-clear-stale-qgroups.timer)
+
+TASK [btrfs-replication : Qgroups | Read current installed timer state for safe check mode] ***********************************************************************************************************************************************************
+ok: [mars]
+
+TASK [btrfs-replication : Qgroups | Apply explicit timer activation state] ****************************************************************************************************************************************************************************
+changed: [mars]
+
+PLAY RECAP ********************************************************************************************************************************************************************************************************************************************
+mars                       : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+=== Verify both timers ===
+=== mars ===
+enabled
+active
+NEXT                        LEFT LAST PASSED UNIT                            ACTIVATES
+Tue 2026-11-10 05:30:00 UTC   6h -         - btrfs-clear-stale-qgroups.timer btrfs-clear-stale-qgroups.service
+
+1 timers listed.
+=== backup ===
+enabled
+active
+NEXT                        LEFT LAST                         PASSED UNIT                            ACTIVATES
+Tue 2026-11-10 05:30:00 GMT   6h Mon 2026-11-09 05:30:02 GMT 17h ago btrfs-clear-stale-qgroups.timer btrfs-clear-stale-qgroups.service
+
+1 timers listed.
+PASS: 0039 cleanup verification and timer activation
+richard@mango:~/diaries$

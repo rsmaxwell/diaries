@@ -1,0 +1,52 @@
+richard@mango:~/diaries$ if (
+  cd /home/richard/playbooks || exit 1
+
+  echo '=== Verify mars target and timer ==='
+  ssh mars '
+    test "$(findmnt -n -o FSTYPE --mountpoint /media/usb)" = btrfs &&
+    test "$(systemctl is-active btrfs-clear-stale-qgroups.timer)" = inactive &&
+    test "$(systemctl is-enabled btrfs-clear-stale-qgroups.timer)" = disabled
+  ' || exit 1
+
+  echo '=== Pending deletions BEFORE ==='
+  ssh mars 'sudo -n btrfs subvolume list -d /media/usb' |
+    awk 'END {print "pending_before=" NR}'
+
+  echo '=== Flush filesystem and initiate queued cleanup ==='
+  ssh mars 'sudo -n btrfs filesystem sync /media/usb' || exit 1
+
+  echo '=== Wait up to 20 minutes for queued deletions ==='
+  sync_rc=0
+  ssh mars 'timeout 1200s sudo -n btrfs subvolume sync /media/usb' \
+    || sync_rc=$?
+
+  echo "subvolume_sync_rc=$sync_rc"
+
+  echo '=== Pending deletions AFTER ==='
+  ssh mars 'sudo -n btrfs subvolume list -d /media/usb' |
+    awk 'END {print "pending_after=" NR}'
+
+fiecho 'FAIL or INCOMPLETE: 0039 pending deletion synchronization' \
+=== Verify mars target and timer ===
+=== Pending deletions BEFORE ===
+pending_before=43
+=== Flush filesystem and initiate queued cleanup ===
+=== Wait up to 20 minutes for queued deletions ===
+subvolume_sync_rc=124
+=== Pending deletions AFTER ===
+pending_after=38
+=== Remaining stale qgroups ===
+stale_total=100 zero=62 nonzero=38
+=== Snapshot health ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=181
+qgroups_stale=100
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=70;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=70
+diaries_verification=valid;logicalDataset=production;backupId=20261109-003055Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+FAIL or INCOMPLETE: 0039 pending deletion synchronization
+richard@mango:~/diaries$

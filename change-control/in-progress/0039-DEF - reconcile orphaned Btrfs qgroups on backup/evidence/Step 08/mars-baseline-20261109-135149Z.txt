@@ -1,0 +1,960 @@
+0039-DEF Step 8 read-only baseline host=mars fs=/media/usb utc=2026-11-09T13:51:50Z
+
+===== hostname -f =====
+mars
+RESULT rc=0
+
+===== uname -a =====
+Linux mars 6.8.0-147-generic #147-Ubuntu SMP PREEMPT_DYNAMIC Thu Sep 24 11:33:16 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+RESULT rc=0
+
+===== btrfs version =====
+btrfs-progs v6.6.3
+RESULT rc=0
+
+===== findmnt -n -o TARGET,FSTYPE,UUID --mountpoint /media/usb =====
+/media/usb btrfs  72d1d8ea-900e-4fca-837f-1b1febec036c
+RESULT rc=0
+
+===== systemctl is-enabled btrfs-clear-stale-qgroups.timer =====
+not-found
+OPTIONAL RESULT rc=4
+
+===== systemctl is-active btrfs-clear-stale-qgroups.timer =====
+inactive
+OPTIONAL RESULT rc=4
+
+===== systemctl list-timers --all btrfs-clear-stale-qgroups.timer =====
+NEXT LEFT LAST PASSED UNIT ACTIVATES
+
+0 timers listed.
+OPTIONAL RESULT rc=0
+
+===== systemctl status --no-pager -l btrfs-clear-stale-qgroups.service =====
+Unit btrfs-clear-stale-qgroups.service could not be found.
+OPTIONAL RESULT rc=4
+
+===== sudo -n sha256sum /usr/local/sbin/btrfs-snapshot-manager /usr/local/sbin/btrfs-clear-stale-qgroups =====
+89602f0aac07900b367a82728e42339ee9c9d3ed40e55010af87576dadc7a2b7  /usr/local/sbin/btrfs-snapshot-manager
+sha256sum: /usr/local/sbin/btrfs-clear-stale-qgroups: No such file or directory
+OPTIONAL RESULT rc=1
+
+===== sudo -n python3 -c import json; d=json.load(open("/etc/btrfs-stale-qgroups.json")); print(d) =====
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: '/etc/btrfs-stale-qgroups.json'
+OPTIONAL RESULT rc=1
+
+===== sudo -n python3 -c import json; d=json.load(open("/etc/btrfs-snapshot-manager.json")); print({k:d.get(k) for k in ("mode","snapshot_root","lock_path","writer_lock_path","receiver_state_dir")}) =====
+{'mode': None, 'snapshot_root': '/media/usb/@snapshots', 'lock_path': '/run/lock/btrfs-snapshot-manager.lock', 'writer_lock_path': '/media/usb/@data/backup/.btrfs-snapshot-writer.lock', 'receiver_state_dir': None}
+RESULT rc=0
+
+===== sudo -n btrfs qgroup show /media/usb =====
+Qgroupid    Referenced    Exclusive   Path 
+--------    ----------    ---------   ---- 
+0/5           16.00KiB     16.00KiB   <toplevel>
+0/260        326.53GiB     16.00KiB   @data
+0/262            0.00B        0.00B   <stale>
+0/263            0.00B        0.00B   <stale>
+0/402            0.00B        0.00B   <stale>
+0/5705           0.00B        0.00B   <stale>
+0/13705          0.00B        0.00B   <stale>
+0/14449          0.00B        0.00B   <stale>
+0/15121          0.00B        0.00B   <stale>
+0/15865          0.00B        0.00B   <stale>
+0/16585          0.00B        0.00B   <stale>
+0/17329          0.00B        0.00B   <stale>
+0/18049          0.00B        0.00B   <stale>
+0/18793          0.00B        0.00B   <stale>
+0/19517          0.00B        0.00B   <stale>
+0/20189          0.00B        0.00B   <stale>
+0/20213          0.00B        0.00B   <stale>
+0/20237          0.00B        0.00B   <stale>
+0/20261          0.00B        0.00B   <stale>
+0/20285          0.00B        0.00B   <stale>
+0/20309          0.00B        0.00B   <stale>
+0/20333          0.00B        0.00B   <stale>
+0/20357          0.00B        0.00B   <stale>
+0/20381          0.00B        0.00B   <stale>
+0/20405          0.00B        0.00B   <stale>
+0/20429          0.00B        0.00B   <stale>
+0/20445          0.00B        0.00B   <stale>
+0/20446       92.00KiB     92.00KiB   @snapshots
+0/20451          0.00B        0.00B   <stale>
+0/20464          0.00B        0.00B   <stale>
+0/20465          0.00B        0.00B   <stale>
+0/20510          0.00B        0.00B   <stale>
+0/20511          0.00B        0.00B   <stale>
+0/20556          0.00B        0.00B   <stale>
+0/20557      325.34GiB     50.20MiB   @snapshots/@data/20261011-230026Z
+0/20602          0.00B        0.00B   <stale>
+0/20603          0.00B        0.00B   <stale>
+0/20638          0.00B        0.00B   <stale>
+0/20639      325.34GiB     49.47MiB   @snapshots/@data/20261013-171228Z
+0/20650          0.00B        0.00B   <stale>
+0/20651          0.00B        0.00B   <stale>
+0/20698          0.00B        0.00B   <stale>
+0/20699          0.00B        0.00B   <stale>
+0/20744          0.00B        0.00B   <stale>
+0/20745          0.00B        0.00B   <stale>
+0/20799          0.00B        0.00B   <stale>
+0/20800          0.00B        0.00B   <stale>
+0/20847          0.00B        0.00B   <stale>
+0/20848      325.63GiB     31.26MiB   @snapshots/@data/20261017-230035Z
+0/20875          0.00B        0.00B   <stale>
+0/20876          0.00B        0.00B   <stale>
+0/20877          0.00B        0.00B   <stale>
+0/20878          0.00B        0.00B   <stale>
+0/20879          0.00B        0.00B   <stale>
+0/20880          0.00B        0.00B   <stale>
+0/20883          0.00B        0.00B   <stale>
+0/20884      325.63GiB      2.56MiB   @snapshots/@data/20261018-165453Z
+0/20885          0.00B        0.00B   <stale>
+0/20886          0.00B        0.00B   <stale>
+0/20887          0.00B        0.00B   <stale>
+0/20888          0.00B        0.00B   <stale>
+0/20889          0.00B        0.00B   <stale>
+0/20890          0.00B        0.00B   <stale>
+0/20891          0.00B        0.00B   <stale>
+0/20892          0.00B        0.00B   <stale>
+0/20893          0.00B        0.00B   <stale>
+0/20894          0.00B        0.00B   <stale>
+0/20895          0.00B        0.00B   <stale>
+0/20896          0.00B        0.00B   <stale>
+0/20897          0.00B        0.00B   <stale>
+0/20898      325.63GiB    864.00KiB   @snapshots/@data/20261018-230008Z
+0/20899          0.00B        0.00B   <stale>
+0/20900          0.00B        0.00B   <stale>
+0/20901          0.00B        0.00B   <stale>
+0/20902          0.00B        0.00B   <stale>
+0/20903          0.00B        0.00B   <stale>
+0/20904          0.00B        0.00B   <stale>
+0/20905          0.00B        0.00B   <stale>
+0/20906          0.00B        0.00B   <stale>
+0/20907          0.00B        0.00B   <stale>
+0/20908          0.00B        0.00B   <stale>
+0/20909          0.00B        0.00B   <stale>
+0/20910          0.00B        0.00B   <stale>
+0/20911          0.00B        0.00B   <stale>
+0/20912          0.00B        0.00B   <stale>
+0/20913          0.00B        0.00B   <stale>
+0/20914          0.00B        0.00B   <stale>
+0/20915          0.00B        0.00B   <stale>
+0/20916          0.00B        0.00B   <stale>
+0/20917          0.00B        0.00B   <stale>
+0/20918          0.00B        0.00B   <stale>
+0/20919          0.00B        0.00B   <stale>
+0/20920          0.00B        0.00B   <stale>
+0/20921          0.00B        0.00B   <stale>
+0/20922          0.00B        0.00B   <stale>
+0/20923          0.00B        0.00B   <stale>
+0/20924          0.00B        0.00B   <stale>
+0/20925          0.00B        0.00B   <stale>
+0/20926          0.00B        0.00B   <stale>
+0/20927          0.00B        0.00B   <stale>
+0/20928          0.00B        0.00B   <stale>
+0/20929          0.00B        0.00B   <stale>
+0/20930          0.00B        0.00B   <stale>
+0/20931          0.00B        0.00B   <stale>
+0/20932          0.00B        0.00B   <stale>
+0/20933          0.00B        0.00B   <stale>
+0/20934          0.00B        0.00B   <stale>
+0/20935          0.00B        0.00B   <stale>
+0/20936          0.00B        0.00B   <stale>
+0/20937          0.00B        0.00B   <stale>
+0/20938          0.00B        0.00B   <stale>
+0/20939          0.00B        0.00B   <stale>
+0/20940          0.00B        0.00B   <stale>
+0/20941          0.00B        0.00B   <stale>
+0/20942          0.00B        0.00B   <stale>
+0/20943          0.00B        0.00B   <stale>
+0/20944          0.00B        0.00B   <stale>
+0/20945          0.00B        0.00B   <stale>
+0/20946      325.63GiB      3.45MiB   @snapshots/@data/20261019-230026Z
+0/20947          0.00B        0.00B   <stale>
+0/20948          0.00B        0.00B   <stale>
+0/20949          0.00B        0.00B   <stale>
+0/20950          0.00B        0.00B   <stale>
+0/20951          0.00B        0.00B   <stale>
+0/20952          0.00B        0.00B   <stale>
+0/20953          0.00B        0.00B   <stale>
+0/20954          0.00B        0.00B   <stale>
+0/20955          0.00B        0.00B   <stale>
+0/20956          0.00B        0.00B   <stale>
+0/20957          0.00B        0.00B   <stale>
+0/20958          0.00B        0.00B   <stale>
+0/20959          0.00B        0.00B   <stale>
+0/20960          0.00B        0.00B   <stale>
+0/20961          0.00B        0.00B   <stale>
+0/20962          0.00B        0.00B   <stale>
+0/20963          0.00B        0.00B   <stale>
+0/20964          0.00B        0.00B   <stale>
+0/20965          0.00B        0.00B   <stale>
+0/20966          0.00B        0.00B   <stale>
+0/20967          0.00B        0.00B   <stale>
+0/20968          0.00B        0.00B   <stale>
+0/20969          0.00B        0.00B   <stale>
+0/20970          0.00B        0.00B   <stale>
+0/20971          0.00B        0.00B   <stale>
+0/20972          0.00B        0.00B   <stale>
+0/20973          0.00B        0.00B   <stale>
+0/20974          0.00B        0.00B   <stale>
+0/20975          0.00B        0.00B   <stale>
+0/20976          0.00B        0.00B   <stale>
+0/20977          0.00B        0.00B   <stale>
+0/20978          0.00B        0.00B   <stale>
+0/20979          0.00B        0.00B   <stale>
+0/20980          0.00B        0.00B   <stale>
+0/20981          0.00B        0.00B   <stale>
+0/20982          0.00B        0.00B   <stale>
+0/20983          0.00B        0.00B   <stale>
+0/20984          0.00B        0.00B   <stale>
+0/20985          0.00B        0.00B   <stale>
+0/20986          0.00B        0.00B   <stale>
+0/20987          0.00B        0.00B   <stale>
+0/20988          0.00B        0.00B   <stale>
+0/20989          0.00B        0.00B   <stale>
+0/20990          0.00B        0.00B   <stale>
+0/20991          0.00B        0.00B   <stale>
+0/20992          0.00B        0.00B   <stale>
+0/20993          0.00B        0.00B   <stale>
+0/20994      325.63GiB     45.53MiB   @snapshots/@data/20261020-230018Z
+0/20995          0.00B        0.00B   <stale>
+0/20996          0.00B        0.00B   <stale>
+0/20997          0.00B        0.00B   <stale>
+0/20998          0.00B        0.00B   <stale>
+0/20999          0.00B        0.00B   <stale>
+0/21000          0.00B        0.00B   <stale>
+0/21001          0.00B        0.00B   <stale>
+0/21002          0.00B        0.00B   <stale>
+0/21003          0.00B        0.00B   <stale>
+0/21004          0.00B        0.00B   <stale>
+0/21005          0.00B        0.00B   <stale>
+0/21006          0.00B        0.00B   <stale>
+0/21007          0.00B        0.00B   <stale>
+0/21008          0.00B        0.00B   <stale>
+0/21009          0.00B        0.00B   <stale>
+0/21010          0.00B        0.00B   <stale>
+0/21011          0.00B        0.00B   <stale>
+0/21012          0.00B        0.00B   <stale>
+0/21013          0.00B        0.00B   <stale>
+0/21014          0.00B        0.00B   <stale>
+0/21015          0.00B        0.00B   <stale>
+0/21016          0.00B        0.00B   <stale>
+0/21017          0.00B        0.00B   <stale>
+0/21018          0.00B        0.00B   <stale>
+0/21019          0.00B        0.00B   <stale>
+0/21020          0.00B        0.00B   <stale>
+0/21021          0.00B        0.00B   <stale>
+0/21022          0.00B        0.00B   <stale>
+0/21023          0.00B        0.00B   <stale>
+0/21024          0.00B        0.00B   <stale>
+0/21025          0.00B        0.00B   <stale>
+0/21026          0.00B        0.00B   <stale>
+0/21027          0.00B        0.00B   <stale>
+0/21028          0.00B        0.00B   <stale>
+0/21029          0.00B        0.00B   <stale>
+0/21030          0.00B        0.00B   <stale>
+0/21031          0.00B        0.00B   <stale>
+0/21032          0.00B        0.00B   <stale>
+0/21033          0.00B        0.00B   <stale>
+0/21034          0.00B        0.00B   <stale>
+0/21035          0.00B        0.00B   <stale>
+0/21036          0.00B        0.00B   <stale>
+0/21037          0.00B        0.00B   <stale>
+0/21038          0.00B        0.00B   <stale>
+0/21039          0.00B        0.00B   <stale>
+0/21040          0.00B        0.00B   <stale>
+0/21041          0.00B        0.00B   <stale>
+0/21042      325.63GiB     10.98MiB   @snapshots/@data/20261021-230016Z
+0/21043          0.00B        0.00B   <stale>
+0/21044          0.00B        0.00B   <stale>
+0/21045          0.00B        0.00B   <stale>
+0/21046          0.00B        0.00B   <stale>
+0/21047          0.00B        0.00B   <stale>
+0/21048          0.00B        0.00B   <stale>
+0/21049          0.00B        0.00B   <stale>
+0/21050          0.00B        0.00B   <stale>
+0/21051          0.00B        0.00B   <stale>
+0/21052          0.00B        0.00B   <stale>
+0/21053          0.00B        0.00B   <stale>
+0/21054          0.00B        0.00B   <stale>
+0/21055          0.00B        0.00B   <stale>
+0/21056          0.00B        0.00B   <stale>
+0/21057          0.00B        0.00B   <stale>
+0/21058          0.00B        0.00B   <stale>
+0/21059          0.00B        0.00B   <stale>
+0/21060          0.00B        0.00B   <stale>
+0/21061          0.00B        0.00B   <stale>
+0/21062          0.00B        0.00B   <stale>
+0/21063          0.00B        0.00B   <stale>
+0/21064          0.00B        0.00B   <stale>
+0/21065          0.00B        0.00B   <stale>
+0/21066          0.00B        0.00B   <stale>
+0/21067          0.00B        0.00B   <stale>
+0/21068          0.00B        0.00B   <stale>
+0/21069          0.00B        0.00B   <stale>
+0/21070          0.00B        0.00B   <stale>
+0/21071          0.00B        0.00B   <stale>
+0/21072          0.00B        0.00B   <stale>
+0/21073          0.00B        0.00B   <stale>
+0/21074          0.00B        0.00B   <stale>
+0/21075          0.00B        0.00B   <stale>
+0/21076          0.00B        0.00B   <stale>
+0/21077          0.00B        0.00B   <stale>
+0/21078          0.00B        0.00B   <stale>
+0/21079          0.00B        0.00B   <stale>
+0/21080          0.00B        0.00B   <stale>
+0/21081          0.00B        0.00B   <stale>
+0/21082          0.00B        0.00B   <stale>
+0/21083          0.00B        0.00B   <stale>
+0/21084          0.00B        0.00B   <stale>
+0/21085          0.00B        0.00B   <stale>
+0/21086          0.00B        0.00B   <stale>
+0/21087          0.00B        0.00B   <stale>
+0/21088          0.00B        0.00B   <stale>
+0/21089          0.00B        0.00B   <stale>
+0/21090          0.00B        0.00B   <stale>
+0/21091          0.00B        0.00B   <stale>
+0/21092          0.00B        0.00B   <stale>
+0/21093          0.00B        0.00B   <stale>
+0/21094      325.66GiB      7.16MiB   @snapshots/@data/20261022-230029Z
+0/21095          0.00B        0.00B   <stale>
+0/21096          0.00B        0.00B   <stale>
+0/21097          0.00B        0.00B   <stale>
+0/21098          0.00B        0.00B   <stale>
+0/21099          0.00B        0.00B   <stale>
+0/21100          0.00B        0.00B   <stale>
+0/21101          0.00B        0.00B   <stale>
+0/21102      325.66GiB    896.00KiB   @snapshots/@data/20261023-030037Z
+0/21103          0.00B        0.00B   <stale>
+0/21104          0.00B        0.00B   <stale>
+0/21105          0.00B        0.00B   <stale>
+0/21106          0.00B        0.00B   <stale>
+0/21107          0.00B        0.00B   <stale>
+0/21108          0.00B        0.00B   <stale>
+0/21109          0.00B        0.00B   <stale>
+0/21110          0.00B        0.00B   <stale>
+0/21111          0.00B        0.00B   <stale>
+0/21112          0.00B        0.00B   <stale>
+0/21113          0.00B        0.00B   <stale>
+0/21114          0.00B        0.00B   <stale>
+0/21115          0.00B        0.00B   <stale>
+0/21116          0.00B        0.00B   <stale>
+0/21117       16.00KiB     16.00KiB   @data/0040-step03l-rehearsal/source
+0/21118       16.00KiB     16.00KiB   @data/0040-step03l-rehearsal/received-simulated/20261023-000001Z
+0/21119          0.00B        0.00B   <stale>
+0/21120       16.00KiB     16.00KiB   @data/0040-step03l-rehearsal/received-simulated/20261023-000003Z
+0/21121          0.00B        0.00B   <stale>
+0/21122          0.00B        0.00B   <stale>
+0/21123          0.00B        0.00B   <stale>
+0/21124          0.00B        0.00B   <stale>
+0/21125          0.00B        0.00B   <stale>
+0/21126          0.00B        0.00B   <stale>
+0/21127          0.00B        0.00B   <stale>
+0/21128          0.00B        0.00B   <stale>
+0/21129          0.00B        0.00B   <stale>
+0/21130          0.00B        0.00B   <stale>
+0/21131          0.00B        0.00B   <stale>
+0/21132          0.00B        0.00B   <stale>
+0/21133          0.00B        0.00B   <stale>
+0/21134          0.00B        0.00B   <stale>
+0/21135          0.00B        0.00B   <stale>
+0/21136          0.00B        0.00B   <stale>
+0/21137          0.00B        0.00B   <stale>
+0/21138       16.00KiB     16.00KiB   @data/0040-step03-manager-rehearsal/source/test-data
+0/21139       16.00KiB     16.00KiB   @data/0040-step03-manager-rehearsal/source/20261023-000001Z
+0/21140          0.00B        0.00B   <stale>
+0/21141       16.00KiB     16.00KiB   @data/0040-step03-manager-rehearsal/source/20261023-000002Z
+0/21142          0.00B        0.00B   <stale>
+0/21143       16.00KiB     16.00KiB   @data/0040-step03-manager-rehearsal/source/20261023-000003Z
+0/21144       16.00KiB     16.00KiB   @data/0040-step03-manager-rehearsal/received/20261023-000003Z
+0/21145          0.00B        0.00B   <stale>
+0/21146          0.00B        0.00B   <stale>
+0/21147          0.00B        0.00B   <stale>
+0/21148          0.00B        0.00B   <stale>
+0/21149          0.00B        0.00B   <stale>
+0/21150          0.00B        0.00B   <stale>
+0/21151          0.00B        0.00B   <stale>
+0/21152          0.00B        0.00B   <stale>
+0/21153          0.00B        0.00B   <stale>
+0/21154      325.66GiB      3.76MiB   @snapshots/@data/20261023-230005Z
+0/21155          0.00B        0.00B   <stale>
+0/21156          0.00B        0.00B   <stale>
+0/21157          0.00B        0.00B   <stale>
+0/21158          0.00B        0.00B   <stale>
+0/21159          0.00B        0.00B   <stale>
+0/21160          0.00B        0.00B   <stale>
+0/21161          0.00B        0.00B   <stale>
+0/21162          0.00B        0.00B   <stale>
+0/21163          0.00B        0.00B   <stale>
+0/21164          0.00B        0.00B   <stale>
+0/21165          0.00B        0.00B   <stale>
+0/21166          0.00B        0.00B   <stale>
+0/21167          0.00B        0.00B   <stale>
+0/21168          0.00B        0.00B   <stale>
+0/21169          0.00B        0.00B   <stale>
+0/21170          0.00B        0.00B   <stale>
+0/21171          0.00B        0.00B   <stale>
+0/21172          0.00B        0.00B   <stale>
+0/21173          0.00B        0.00B   <stale>
+0/21174          0.00B        0.00B   <stale>
+0/21175          0.00B        0.00B   <stale>
+0/21176          0.00B        0.00B   <stale>
+0/21177          0.00B        0.00B   <stale>
+0/21178          0.00B        0.00B   <stale>
+0/21179          0.00B        0.00B   <stale>
+0/21180          0.00B        0.00B   <stale>
+0/21181          0.00B        0.00B   <stale>
+0/21182          0.00B        0.00B   <stale>
+0/21183          0.00B        0.00B   <stale>
+0/21184          0.00B        0.00B   <stale>
+0/21185          0.00B        0.00B   <stale>
+0/21186          0.00B        0.00B   <stale>
+0/21187          0.00B        0.00B   <stale>
+0/21188          0.00B        0.00B   <stale>
+0/21189          0.00B        0.00B   <stale>
+0/21190          0.00B        0.00B   <stale>
+0/21191          0.00B        0.00B   <stale>
+0/21192          0.00B        0.00B   <stale>
+0/21193          0.00B        0.00B   <stale>
+0/21194          0.00B        0.00B   <stale>
+0/21195          0.00B        0.00B   <stale>
+0/21196          0.00B        0.00B   <stale>
+0/21197          0.00B        0.00B   <stale>
+0/21198          0.00B        0.00B   <stale>
+0/21199          0.00B        0.00B   <stale>
+0/21200          0.00B        0.00B   <stale>
+0/21201          0.00B        0.00B   <stale>
+0/21202      325.67GiB      6.34MiB   @snapshots/@data/20261024-230011Z
+0/21203          0.00B        0.00B   <stale>
+0/21204          0.00B        0.00B   <stale>
+0/21205          0.00B        0.00B   <stale>
+0/21206          0.00B        0.00B   <stale>
+0/21207          0.00B        0.00B   <stale>
+0/21208          0.00B        0.00B   <stale>
+0/21209          0.00B        0.00B   <stale>
+0/21210          0.00B        0.00B   <stale>
+0/21211          0.00B        0.00B   <stale>
+0/21212          0.00B        0.00B   <stale>
+0/21213          0.00B        0.00B   <stale>
+0/21214          0.00B        0.00B   <stale>
+0/21215          0.00B        0.00B   <stale>
+0/21216          0.00B        0.00B   <stale>
+0/21217          0.00B        0.00B   <stale>
+0/21218          0.00B        0.00B   <stale>
+0/21219          0.00B        0.00B   <stale>
+0/21220          0.00B        0.00B   <stale>
+0/21221          0.00B        0.00B   <stale>
+0/21222          0.00B        0.00B   <stale>
+0/21223          0.00B        0.00B   <stale>
+0/21224          0.00B        0.00B   <stale>
+0/21225          0.00B        0.00B   <stale>
+0/21226          0.00B        0.00B   <stale>
+0/21227          0.00B        0.00B   <stale>
+0/21228          0.00B        0.00B   <stale>
+0/21229          0.00B        0.00B   <stale>
+0/21230          0.00B        0.00B   <stale>
+0/21231          0.00B        0.00B   <stale>
+0/21232          0.00B        0.00B   <stale>
+0/21233          0.00B        0.00B   <stale>
+0/21234          0.00B        0.00B   <stale>
+0/21235          0.00B        0.00B   <stale>
+0/21236          0.00B        0.00B   <stale>
+0/21237          0.00B        0.00B   <stale>
+0/21238          0.00B        0.00B   <stale>
+0/21239          0.00B        0.00B   <stale>
+0/21240          0.00B        0.00B   <stale>
+0/21241          0.00B        0.00B   <stale>
+0/21242          0.00B        0.00B   <stale>
+0/21243          0.00B        0.00B   <stale>
+0/21244          0.00B        0.00B   <stale>
+0/21245          0.00B        0.00B   <stale>
+0/21246      325.66GiB     26.51MiB   @snapshots/@data/20261025-230012Z
+0/21247          0.00B        0.00B   <stale>
+0/21248          0.00B        0.00B   <stale>
+0/21249          0.00B        0.00B   <stale>
+0/21250          0.00B        0.00B   <stale>
+0/21251          0.00B        0.00B   <stale>
+0/21252          0.00B        0.00B   <stale>
+0/21253          0.00B        0.00B   <stale>
+0/21254          0.00B        0.00B   <stale>
+0/21255          0.00B        0.00B   <stale>
+0/21256          0.00B        0.00B   <stale>
+0/21257          0.00B        0.00B   <stale>
+0/21258          0.00B        0.00B   <stale>
+0/21259          0.00B        0.00B   <stale>
+0/21260          0.00B        0.00B   <stale>
+0/21261          0.00B        0.00B   <stale>
+0/21262          0.00B        0.00B   <stale>
+0/21263          0.00B        0.00B   <stale>
+0/21264          0.00B        0.00B   <stale>
+0/21265          0.00B        0.00B   <stale>
+0/21266          0.00B        0.00B   <stale>
+0/21267          0.00B        0.00B   <stale>
+0/21268          0.00B        0.00B   <stale>
+0/21269          0.00B        0.00B   <stale>
+0/21270      325.66GiB      7.20MiB   @snapshots/@data/20261026-230038Z
+0/21271          0.00B        0.00B   <stale>
+0/21272          0.00B        0.00B   <stale>
+0/21273          0.00B        0.00B   <stale>
+0/21274          0.00B        0.00B   <stale>
+0/21275          0.00B        0.00B   <stale>
+0/21276          0.00B        0.00B   <stale>
+0/21277          0.00B        0.00B   <stale>
+0/21278          0.00B        0.00B   <stale>
+0/21279          0.00B        0.00B   <stale>
+0/21280          0.00B        0.00B   <stale>
+0/21281          0.00B        0.00B   <stale>
+0/21282          0.00B        0.00B   <stale>
+0/21283          0.00B        0.00B   <stale>
+0/21284          0.00B        0.00B   <stale>
+0/21285          0.00B        0.00B   <stale>
+0/21286          0.00B        0.00B   <stale>
+0/21287          0.00B        0.00B   <stale>
+0/21288          0.00B        0.00B   <stale>
+0/21289          0.00B        0.00B   <stale>
+0/21290          0.00B        0.00B   <stale>
+0/21291          0.00B        0.00B   <stale>
+0/21292          0.00B        0.00B   <stale>
+0/21293          0.00B        0.00B   <stale>
+0/21294      325.94GiB      9.60MiB   @snapshots/@data/20261027-230021Z
+0/21295          0.00B        0.00B   <stale>
+0/21296          0.00B        0.00B   <stale>
+0/21297          0.00B        0.00B   <stale>
+0/21298          0.00B        0.00B   <stale>
+0/21299          0.00B        0.00B   <stale>
+0/21300          0.00B        0.00B   <stale>
+0/21301          0.00B        0.00B   <stale>
+0/21302          0.00B        0.00B   <stale>
+0/21303          0.00B        0.00B   <stale>
+0/21304          0.00B        0.00B   <stale>
+0/21305          0.00B        0.00B   <stale>
+0/21306          0.00B        0.00B   <stale>
+0/21307          0.00B        0.00B   <stale>
+0/21308          0.00B        0.00B   <stale>
+0/21309          0.00B        0.00B   <stale>
+0/21310      325.94GiB     16.00KiB   @snapshots/@data/20261028-150014Z
+0/21311      325.94GiB     16.00KiB   @snapshots/@data/20261028-160024Z
+0/21312      325.94GiB     16.00KiB   @snapshots/@data/20261028-170033Z
+0/21313      325.94GiB     16.00KiB   @snapshots/@data/20261028-180013Z
+0/21314      325.94GiB     16.00KiB   @snapshots/@data/20261028-190006Z
+0/21315      325.94GiB     16.00KiB   @snapshots/@data/20261028-200006Z
+0/21316      325.94GiB     16.00KiB   @snapshots/@data/20261028-210038Z
+0/21317      325.94GiB     16.00KiB   @snapshots/@data/20261028-220006Z
+0/21318      325.94GiB     16.00KiB   @snapshots/@data/20261028-230006Z
+0/21319      325.94GiB     16.00KiB   @snapshots/@data/20261029-000005Z
+0/21320      325.94GiB     16.00KiB   @snapshots/@data/20261029-010006Z
+0/21321      325.94GiB    160.00KiB   @snapshots/@data/20261029-020002Z
+0/21322      325.94GiB     16.00KiB   @snapshots/@data/20261029-030003Z
+0/21323      325.94GiB     16.00KiB   @snapshots/@data/20261029-040026Z
+0/21324      325.94GiB     16.00KiB   @snapshots/@data/20261029-050016Z
+0/21325      325.94GiB     16.00KiB   @snapshots/@data/20261029-060016Z
+0/21326      325.94GiB     16.00KiB   @snapshots/@data/20261029-070009Z
+0/21327      325.94GiB     16.00KiB   @snapshots/@data/20261029-080036Z
+0/21328      325.94GiB     16.00KiB   @snapshots/@data/20261029-090028Z
+0/21329      325.94GiB     16.00KiB   @snapshots/@data/20261029-100007Z
+0/21330      325.94GiB     16.00KiB   @snapshots/@data/20261029-110002Z
+0/21331      325.94GiB     16.00KiB   @snapshots/@data/20261029-120026Z
+0/21332      325.94GiB     16.00KiB   @snapshots/@data/20261029-130035Z
+0/21333      325.94GiB     16.00KiB   @snapshots/@data/20261029-140036Z
+0/21334      325.94GiB     16.00KiB   @snapshots/@data/20261029-150022Z
+0/21335      325.94GiB     16.00KiB   @snapshots/@data/20261029-160032Z
+0/21336      325.94GiB     16.00KiB   <stale>
+0/21337      325.94GiB     16.00KiB   <stale>
+0/21338      325.94GiB     16.00KiB   <stale>
+0/21339      325.94GiB     16.00KiB   <stale>
+0/21340      325.94GiB     16.00KiB   <stale>
+0/21341      325.94GiB     16.00KiB   <stale>
+0/21342      325.94GiB     16.00KiB   @snapshots/@data/20261029-230001Z
+0/21343      325.94GiB     16.00KiB   <stale>
+0/21344      325.94GiB     16.00KiB   <stale>
+0/21345      325.94GiB     96.00KiB   <stale>
+0/21346      325.94GiB     16.00KiB   @snapshots/@data/20261030-030033Z
+0/21347      325.94GiB     16.00KiB   <stale>
+0/21348      325.94GiB     16.00KiB   <stale>
+0/21349      325.94GiB     16.00KiB   <stale>
+0/21350      325.94GiB     16.00KiB   <stale>
+0/21351      325.94GiB     16.00KiB   <stale>
+0/21352      325.94GiB     16.00KiB   <stale>
+0/21353      325.94GiB     16.00KiB   <stale>
+0/21354      325.94GiB     16.00KiB   <stale>
+0/21355      325.94GiB     16.00KiB   <stale>
+0/21356      325.94GiB     16.00KiB   <stale>
+0/21357      325.94GiB     16.00KiB   <stale>
+0/21358      325.94GiB     16.00KiB   <stale>
+0/21359      325.94GiB     16.00KiB   <stale>
+0/21360      325.94GiB     16.00KiB   @snapshots/@data/20261030-170009Z
+0/21361      325.94GiB     16.00KiB   <stale>
+0/21362      325.94GiB     16.00KiB   <stale>
+0/21363      325.94GiB     16.00KiB   <stale>
+0/21364      325.94GiB     16.00KiB   <stale>
+0/21365      325.94GiB     16.00KiB   <stale>
+0/21366      325.94GiB     16.00KiB   @snapshots/@data/20261030-230004Z
+0/21367      325.94GiB     16.00KiB   <stale>
+0/21368      325.94GiB     16.00KiB   <stale>
+0/21369      325.94GiB    112.00KiB   <stale>
+0/21370      325.94GiB     16.00KiB   <stale>
+0/21371      325.94GiB     16.00KiB   <stale>
+0/21372      325.94GiB     16.00KiB   <stale>
+0/21373      325.94GiB     16.00KiB   <stale>
+0/21374      325.94GiB     16.00KiB   <stale>
+0/21375      325.95GiB     16.00KiB   <stale>
+0/21376      325.95GiB     16.00KiB   <stale>
+0/21377      325.95GiB     16.00KiB   <stale>
+0/21378      325.95GiB     16.00KiB   <stale>
+0/21379      325.95GiB     16.00KiB   <stale>
+0/21380      325.95GiB     16.00KiB   <stale>
+0/21381      325.95GiB     16.00KiB   <stale>
+0/21382      325.95GiB     16.00KiB   <stale>
+0/21383      325.95GiB     16.00KiB   <stale>
+0/21384      325.95GiB     16.00KiB   <stale>
+0/21385      325.95GiB     16.00KiB   <stale>
+0/21386      325.95GiB     16.00KiB   <stale>
+0/21387      325.95GiB     16.00KiB   <stale>
+0/21388      325.95GiB     16.00KiB   <stale>
+0/21389      325.95GiB     16.00KiB   <stale>
+0/21390      325.95GiB     16.00KiB   @snapshots/@data/20261031-230021Z
+0/21391      325.95GiB     16.00KiB   <stale>
+0/21392      325.95GiB     16.00KiB   <stale>
+0/21393      326.51GiB    128.00KiB   <stale>
+0/21394      326.51GiB     16.00KiB   <stale>
+0/21395      326.51GiB     16.00KiB   <stale>
+0/21396      326.51GiB     16.00KiB   <stale>
+0/21397      326.51GiB     16.00KiB   <stale>
+0/21398      326.51GiB     16.00KiB   <stale>
+0/21399      326.51GiB     16.00KiB   <stale>
+0/21400      326.51GiB     16.00KiB   <stale>
+0/21401      326.51GiB     16.00KiB   <stale>
+0/21402          0.00B        0.00B   <stale>
+0/21403          0.00B        0.00B   <stale>
+0/21404          0.00B        0.00B   <stale>
+0/21405      326.51GiB     16.00KiB   @snapshots/@data/20261101-140039Z
+0/21406          0.00B        0.00B   <stale>
+0/21407          0.00B        0.00B   <stale>
+0/21408          0.00B        0.00B   <stale>
+0/21409          0.00B        0.00B   <stale>
+0/21410          0.00B        0.00B   <stale>
+0/21411          0.00B        0.00B   <stale>
+0/21412          0.00B        0.00B   <stale>
+0/21413          0.00B        0.00B   <stale>
+0/21414      326.51GiB     16.00KiB   @snapshots/@data/20261101-230001Z
+0/21415          0.00B        0.00B   <stale>
+0/21416          0.00B        0.00B   <stale>
+0/21417          0.00B        0.00B   <stale>
+0/21418          0.00B        0.00B   <stale>
+0/21419          0.00B        0.00B   <stale>
+0/21420          0.00B        0.00B   <stale>
+0/21421          0.00B        0.00B   <stale>
+0/21422          0.00B        0.00B   <stale>
+0/21423          0.00B        0.00B   <stale>
+0/21424          0.00B        0.00B   <stale>
+0/21425          0.00B        0.00B   <stale>
+0/21426          0.00B        0.00B   <stale>
+0/21427          0.00B        0.00B   <stale>
+0/21428          0.00B        0.00B   <stale>
+0/21429          0.00B        0.00B   <stale>
+0/21430          0.00B        0.00B   <stale>
+0/21431          0.00B        0.00B   <stale>
+0/21432          0.00B        0.00B   <stale>
+0/21433          0.00B        0.00B   <stale>
+0/21434          0.00B        0.00B   <stale>
+0/21435          0.00B        0.00B   <stale>
+0/21436          0.00B        0.00B   <stale>
+0/21437          0.00B        0.00B   <stale>
+0/21438      326.52GiB      7.77MiB   @snapshots/@data/20261102-230039Z
+0/21439          0.00B        0.00B   <stale>
+0/21440          0.00B        0.00B   <stale>
+0/21441          0.00B        0.00B   <stale>
+0/21442          0.00B        0.00B   <stale>
+0/21443          0.00B        0.00B   <stale>
+0/21444          0.00B        0.00B   <stale>
+0/21445          0.00B        0.00B   <stale>
+0/21446          0.00B        0.00B   <stale>
+0/21447          0.00B        0.00B   <stale>
+0/21448          0.00B        0.00B   <stale>
+0/21449          0.00B        0.00B   <stale>
+0/21450          0.00B        0.00B   <stale>
+0/21451          0.00B        0.00B   <stale>
+0/21452          0.00B        0.00B   <stale>
+0/21453          0.00B        0.00B   <stale>
+0/21454          0.00B        0.00B   <stale>
+0/21455          0.00B        0.00B   <stale>
+0/21456          0.00B        0.00B   <stale>
+0/21457          0.00B        0.00B   <stale>
+0/21458          0.00B        0.00B   <stale>
+0/21459          0.00B        0.00B   <stale>
+0/21460          0.00B        0.00B   <stale>
+0/21461          0.00B        0.00B   <stale>
+0/21462      326.52GiB     42.69MiB   @snapshots/@data/20261103-230001Z
+0/21463          0.00B        0.00B   <stale>
+0/21464          0.00B        0.00B   <stale>
+0/21465          0.00B        0.00B   <stale>
+0/21466          0.00B        0.00B   <stale>
+0/21467          0.00B        0.00B   <stale>
+0/21468          0.00B        0.00B   <stale>
+0/21469          0.00B        0.00B   <stale>
+0/21470          0.00B        0.00B   <stale>
+0/21471          0.00B        0.00B   <stale>
+0/21472          0.00B        0.00B   <stale>
+0/21473          0.00B        0.00B   <stale>
+0/21474          0.00B        0.00B   <stale>
+0/21475          0.00B        0.00B   <stale>
+0/21476          0.00B        0.00B   <stale>
+0/21477          0.00B        0.00B   <stale>
+0/21478          0.00B        0.00B   <stale>
+0/21479          0.00B        0.00B   <stale>
+0/21480          0.00B        0.00B   <stale>
+0/21481          0.00B        0.00B   <stale>
+0/21482          0.00B        0.00B   <stale>
+0/21483          0.00B        0.00B   <stale>
+0/21484          0.00B        0.00B   <stale>
+0/21485          0.00B        0.00B   <stale>
+0/21486      326.52GiB     27.07MiB   @snapshots/@data/20261104-230035Z
+0/21487          0.00B        0.00B   <stale>
+0/21488          0.00B        0.00B   <stale>
+0/21489          0.00B        0.00B   <stale>
+0/21490          0.00B        0.00B   <stale>
+0/21491          0.00B        0.00B   <stale>
+0/21492          0.00B        0.00B   <stale>
+0/21493          0.00B        0.00B   <stale>
+0/21494          0.00B        0.00B   <stale>
+0/21495          0.00B        0.00B   <stale>
+0/21496          0.00B        0.00B   <stale>
+0/21497          0.00B        0.00B   <stale>
+0/21498          0.00B        0.00B   <stale>
+0/21499          0.00B        0.00B   <stale>
+0/21500          0.00B        0.00B   <stale>
+0/21501          0.00B        0.00B   <stale>
+0/21502          0.00B        0.00B   <stale>
+0/21503          0.00B        0.00B   <stale>
+0/21504          0.00B        0.00B   <stale>
+0/21505          0.00B        0.00B   <stale>
+0/21506          0.00B        0.00B   <stale>
+0/21507          0.00B        0.00B   <stale>
+0/21508          0.00B        0.00B   <stale>
+0/21509          0.00B        0.00B   <stale>
+0/21510      326.52GiB     34.88MiB   @snapshots/@data/20261105-230008Z
+0/21511          0.00B        0.00B   <stale>
+0/21512          0.00B        0.00B   <stale>
+0/21513          0.00B        0.00B   <stale>
+0/21514          0.00B        0.00B   <stale>
+0/21515          0.00B        0.00B   <stale>
+0/21516          0.00B        0.00B   <stale>
+0/21517          0.00B        0.00B   <stale>
+0/21518          0.00B        0.00B   <stale>
+0/21519          0.00B        0.00B   <stale>
+0/21520          0.00B        0.00B   <stale>
+0/21521          0.00B        0.00B   <stale>
+0/21522          0.00B        0.00B   <stale>
+0/21523          0.00B        0.00B   <stale>
+0/21524          0.00B        0.00B   <stale>
+0/21525          0.00B        0.00B   <stale>
+0/21526          0.00B        0.00B   <stale>
+0/21527          0.00B        0.00B   <stale>
+0/21528          0.00B        0.00B   <stale>
+0/21529          0.00B        0.00B   <stale>
+0/21530          0.00B        0.00B   <stale>
+0/21531          0.00B        0.00B   <stale>
+0/21532          0.00B        0.00B   <stale>
+0/21533      326.52GiB     16.02MiB   @snapshots/@data/20261106-230012Z
+0/21534          0.00B        0.00B   <stale>
+0/21535          0.00B        0.00B   <stale>
+0/21536          0.00B        0.00B   <stale>
+0/21537          0.00B        0.00B   <stale>
+0/21538          0.00B        0.00B   <stale>
+0/21539          0.00B        0.00B   <stale>
+0/21540          0.00B        0.00B   <stale>
+0/21541          0.00B        0.00B   <stale>
+0/21542      326.52GiB     16.00KiB   <stale>
+0/21543      326.52GiB     16.00KiB   <stale>
+0/21544      326.52GiB     16.00KiB   <stale>
+0/21545      326.52GiB     16.00KiB   <stale>
+0/21546      326.52GiB     16.00KiB   <stale>
+0/21547      326.52GiB     16.00KiB   <stale>
+0/21548      326.52GiB     16.00KiB   @snapshots/@data/20261107-140028Z
+0/21549      326.52GiB     16.00KiB   @snapshots/@data/20261107-150037Z
+0/21550      326.52GiB     16.00KiB   @snapshots/@data/20261107-160039Z
+0/21551      326.52GiB     16.00KiB   @snapshots/@data/20261107-170040Z
+0/21552      326.52GiB     16.00KiB   @snapshots/@data/20261107-180003Z
+0/21553      326.52GiB     16.00KiB   @snapshots/@data/20261107-190001Z
+0/21554      326.52GiB     16.00KiB   @snapshots/@data/20261107-200001Z
+0/21555      326.52GiB     16.00KiB   @snapshots/@data/20261107-210031Z
+0/21556      326.52GiB     16.00KiB   @snapshots/@data/20261107-220001Z
+0/21557      326.52GiB     16.00KiB   @snapshots/@data/20261107-230001Z
+0/21558      326.52GiB     16.00KiB   @snapshots/@data/20261108-000011Z
+0/21559      326.52GiB     16.00KiB   @snapshots/@data/20261108-010001Z
+0/21560      326.52GiB    112.00KiB   @snapshots/@data/20261108-020001Z
+0/21561      326.52GiB     16.00KiB   @snapshots/@data/20261108-030011Z
+0/21562      326.52GiB     16.00KiB   @snapshots/@data/20261108-040003Z
+0/21563      326.52GiB     16.00KiB   @snapshots/@data/20261108-050011Z
+0/21564      326.52GiB     16.00KiB   @snapshots/@data/20261108-060011Z
+0/21565      326.52GiB     16.00KiB   @snapshots/@data/20261108-070021Z
+0/21566      326.52GiB     16.00KiB   @snapshots/@data/20261108-080031Z
+0/21567      326.52GiB     16.00KiB   @snapshots/@data/20261108-090031Z
+0/21568      326.52GiB     16.00KiB   @snapshots/@data/20261108-100021Z
+0/21569      326.52GiB     32.00KiB   @snapshots/@data/20261108-110003Z
+0/21570      326.52GiB     16.00KiB   @snapshots/@data/20261108-120031Z
+0/21571      326.52GiB     16.00KiB   @snapshots/@data/20261108-130023Z
+0/21572      326.52GiB     16.00KiB   @snapshots/@data/20261108-140002Z
+0/21573      326.52GiB     16.00KiB   @snapshots/@data/20261108-150011Z
+0/21574      326.52GiB     16.00KiB   @snapshots/@data/20261108-160020Z
+0/21575      326.52GiB     16.00KiB   @snapshots/@data/20261108-170040Z
+0/21576      326.52GiB     16.00KiB   @snapshots/@data/20261108-180009Z
+0/21577      326.52GiB     16.00KiB   @snapshots/@data/20261108-190040Z
+0/21578      326.52GiB     16.00KiB   @snapshots/@data/20261108-200040Z
+0/21579      326.52GiB     16.00KiB   @snapshots/@data/20261108-210007Z
+0/21580      326.52GiB     16.00KiB   @snapshots/@data/20261108-220015Z
+0/21581      326.52GiB     16.00KiB   @snapshots/@data/20261108-230040Z
+0/21582      326.52GiB     16.00KiB   @snapshots/@data/20261109-000004Z
+0/21583      326.52GiB     16.00KiB   @snapshots/@data/20261109-010012Z
+0/21584      326.52GiB    128.00KiB   @snapshots/@data/20261109-020020Z
+0/21585      326.52GiB     16.00KiB   @snapshots/@data/20261109-030030Z
+0/21586      326.52GiB     16.00KiB   @snapshots/@data/20261109-040037Z
+0/21587      326.52GiB     16.00KiB   @snapshots/@data/20261109-050001Z
+0/21588      326.52GiB     16.00KiB   @snapshots/@data/20261109-060040Z
+0/21589      326.52GiB     16.00KiB   @snapshots/@data/20261109-070001Z
+0/21590      326.53GiB     16.00KiB   @snapshots/@data/20261109-080001Z
+0/21591      326.53GiB     16.00KiB   @snapshots/@data/20261109-090011Z
+0/21592      326.53GiB     16.00KiB   @snapshots/@data/20261109-100001Z
+0/21593      326.53GiB    144.00KiB   @snapshots/@data/20261109-110001Z
+0/21594      326.53GiB     16.00KiB   @snapshots/@data/20261109-120011Z
+0/21595      326.53GiB     16.00KiB   @snapshots/@data/20261109-130021Z
+RESULT rc=0
+
+===== sudo -n btrfs subvolume list /media/usb =====
+ID 260 gen 62753 top level 5 path @data
+ID 20446 gen 62758 top level 5 path @snapshots
+ID 20557 gen 60119 top level 20446 path @snapshots/@data/20261011-230026Z
+ID 20639 gen 60266 top level 20446 path @snapshots/@data/20261013-171228Z
+ID 20848 gen 60807 top level 20446 path @snapshots/@data/20261017-230035Z
+ID 20884 gen 60894 top level 20446 path @snapshots/@data/20261018-165453Z
+ID 20898 gen 60924 top level 20446 path @snapshots/@data/20261018-230008Z
+ID 20946 gen 61103 top level 20446 path @snapshots/@data/20261019-230026Z
+ID 20994 gen 61298 top level 20446 path @snapshots/@data/20261020-230018Z
+ID 21042 gen 61410 top level 20446 path @snapshots/@data/20261021-230016Z
+ID 21094 gen 61533 top level 20446 path @snapshots/@data/20261022-230029Z
+ID 21102 gen 61554 top level 20446 path @snapshots/@data/20261023-030037Z
+ID 21117 gen 61640 top level 260 path @data/0040-step03l-rehearsal/source
+ID 21118 gen 61599 top level 260 path @data/0040-step03l-rehearsal/received-simulated/20261023-000001Z
+ID 21120 gen 61601 top level 260 path @data/0040-step03l-rehearsal/received-simulated/20261023-000003Z
+ID 21138 gen 61649 top level 260 path @data/0040-step03-manager-rehearsal/source/test-data
+ID 21139 gen 61643 top level 260 path @data/0040-step03-manager-rehearsal/source/20261023-000001Z
+ID 21141 gen 61646 top level 260 path @data/0040-step03-manager-rehearsal/source/20261023-000002Z
+ID 21143 gen 61649 top level 260 path @data/0040-step03-manager-rehearsal/source/20261023-000003Z
+ID 21144 gen 61652 top level 260 path @data/0040-step03-manager-rehearsal/received/20261023-000003Z
+ID 21154 gen 61678 top level 20446 path @snapshots/@data/20261023-230005Z
+ID 21202 gen 61795 top level 20446 path @snapshots/@data/20261024-230011Z
+ID 21246 gen 61949 top level 20446 path @snapshots/@data/20261025-230012Z
+ID 21270 gen 62021 top level 20446 path @snapshots/@data/20261026-230038Z
+ID 21294 gen 62087 top level 20446 path @snapshots/@data/20261027-230021Z
+ID 21310 gen 62133 top level 20446 path @snapshots/@data/20261028-150014Z
+ID 21311 gen 62135 top level 20446 path @snapshots/@data/20261028-160024Z
+ID 21312 gen 62137 top level 20446 path @snapshots/@data/20261028-170033Z
+ID 21313 gen 62139 top level 20446 path @snapshots/@data/20261028-180013Z
+ID 21314 gen 62141 top level 20446 path @snapshots/@data/20261028-190006Z
+ID 21315 gen 62143 top level 20446 path @snapshots/@data/20261028-200006Z
+ID 21316 gen 62145 top level 20446 path @snapshots/@data/20261028-210038Z
+ID 21317 gen 62147 top level 20446 path @snapshots/@data/20261028-220006Z
+ID 21318 gen 62149 top level 20446 path @snapshots/@data/20261028-230006Z
+ID 21319 gen 62151 top level 20446 path @snapshots/@data/20261029-000005Z
+ID 21320 gen 62156 top level 20446 path @snapshots/@data/20261029-010006Z
+ID 21321 gen 62161 top level 20446 path @snapshots/@data/20261029-020002Z
+ID 21322 gen 62169 top level 20446 path @snapshots/@data/20261029-030003Z
+ID 21323 gen 62172 top level 20446 path @snapshots/@data/20261029-040026Z
+ID 21324 gen 62174 top level 20446 path @snapshots/@data/20261029-050016Z
+ID 21325 gen 62176 top level 20446 path @snapshots/@data/20261029-060016Z
+ID 21326 gen 62178 top level 20446 path @snapshots/@data/20261029-070009Z
+ID 21327 gen 62181 top level 20446 path @snapshots/@data/20261029-080036Z
+ID 21328 gen 62183 top level 20446 path @snapshots/@data/20261029-090028Z
+ID 21329 gen 62185 top level 20446 path @snapshots/@data/20261029-100007Z
+ID 21330 gen 62187 top level 20446 path @snapshots/@data/20261029-110002Z
+ID 21331 gen 62193 top level 20446 path @snapshots/@data/20261029-120026Z
+ID 21332 gen 62196 top level 20446 path @snapshots/@data/20261029-130035Z
+ID 21333 gen 62198 top level 20446 path @snapshots/@data/20261029-140036Z
+ID 21334 gen 62200 top level 20446 path @snapshots/@data/20261029-150022Z
+ID 21335 gen 62202 top level 20446 path @snapshots/@data/20261029-160032Z
+ID 21342 gen 62218 top level 20446 path @snapshots/@data/20261029-230001Z
+ID 21346 gen 62233 top level 20446 path @snapshots/@data/20261030-030033Z
+ID 21360 gen 62276 top level 20446 path @snapshots/@data/20261030-170009Z
+ID 21366 gen 62283 top level 20446 path @snapshots/@data/20261030-230004Z
+ID 21390 gen 62315 top level 20446 path @snapshots/@data/20261031-230021Z
+ID 21405 gen 62339 top level 20446 path @snapshots/@data/20261101-140039Z
+ID 21414 gen 62354 top level 20446 path @snapshots/@data/20261101-230001Z
+ID 21438 gen 62385 top level 20446 path @snapshots/@data/20261102-230039Z
+ID 21462 gen 62419 top level 20446 path @snapshots/@data/20261103-230001Z
+ID 21486 gen 62451 top level 20446 path @snapshots/@data/20261104-230035Z
+ID 21510 gen 62484 top level 20446 path @snapshots/@data/20261105-230008Z
+ID 21533 gen 62521 top level 20446 path @snapshots/@data/20261106-230012Z
+ID 21548 gen 62545 top level 20446 path @snapshots/@data/20261107-140028Z
+ID 21549 gen 62546 top level 20446 path @snapshots/@data/20261107-150037Z
+ID 21550 gen 62547 top level 20446 path @snapshots/@data/20261107-160039Z
+ID 21551 gen 62548 top level 20446 path @snapshots/@data/20261107-170040Z
+ID 21552 gen 62549 top level 20446 path @snapshots/@data/20261107-180003Z
+ID 21553 gen 62550 top level 20446 path @snapshots/@data/20261107-190001Z
+ID 21554 gen 62551 top level 20446 path @snapshots/@data/20261107-200001Z
+ID 21555 gen 62552 top level 20446 path @snapshots/@data/20261107-210031Z
+ID 21556 gen 62553 top level 20446 path @snapshots/@data/20261107-220001Z
+ID 21557 gen 62554 top level 20446 path @snapshots/@data/20261107-230001Z
+ID 21558 gen 62555 top level 20446 path @snapshots/@data/20261108-000011Z
+ID 21559 gen 62556 top level 20446 path @snapshots/@data/20261108-010001Z
+ID 21560 gen 62560 top level 20446 path @snapshots/@data/20261108-020001Z
+ID 21561 gen 62562 top level 20446 path @snapshots/@data/20261108-030011Z
+ID 21562 gen 62565 top level 20446 path @snapshots/@data/20261108-040003Z
+ID 21563 gen 62566 top level 20446 path @snapshots/@data/20261108-050011Z
+ID 21564 gen 62567 top level 20446 path @snapshots/@data/20261108-060011Z
+ID 21565 gen 62568 top level 20446 path @snapshots/@data/20261108-070021Z
+ID 21566 gen 62572 top level 20446 path @snapshots/@data/20261108-080031Z
+ID 21567 gen 62574 top level 20446 path @snapshots/@data/20261108-090031Z
+ID 21568 gen 62577 top level 20446 path @snapshots/@data/20261108-100021Z
+ID 21569 gen 62579 top level 20446 path @snapshots/@data/20261108-110003Z
+ID 21570 gen 62582 top level 20446 path @snapshots/@data/20261108-120031Z
+ID 21571 gen 62583 top level 20446 path @snapshots/@data/20261108-130023Z
+ID 21572 gen 62585 top level 20446 path @snapshots/@data/20261108-140002Z
+ID 21573 gen 62589 top level 20446 path @snapshots/@data/20261108-150011Z
+ID 21574 gen 62596 top level 20446 path @snapshots/@data/20261108-160020Z
+ID 21575 gen 62599 top level 20446 path @snapshots/@data/20261108-170040Z
+ID 21576 gen 62604 top level 20446 path @snapshots/@data/20261108-180009Z
+ID 21577 gen 62617 top level 20446 path @snapshots/@data/20261108-190040Z
+ID 21578 gen 62622 top level 20446 path @snapshots/@data/20261108-200040Z
+ID 21579 gen 62627 top level 20446 path @snapshots/@data/20261108-210007Z
+ID 21580 gen 62633 top level 20446 path @snapshots/@data/20261108-220015Z
+ID 21581 gen 62641 top level 20446 path @snapshots/@data/20261108-230040Z
+ID 21582 gen 62653 top level 20446 path @snapshots/@data/20261109-000004Z
+ID 21583 gen 62659 top level 20446 path @snapshots/@data/20261109-010012Z
+ID 21584 gen 62665 top level 20446 path @snapshots/@data/20261109-020020Z
+ID 21585 gen 62670 top level 20446 path @snapshots/@data/20261109-030030Z
+ID 21586 gen 62682 top level 20446 path @snapshots/@data/20261109-040037Z
+ID 21587 gen 62688 top level 20446 path @snapshots/@data/20261109-050001Z
+ID 21588 gen 62694 top level 20446 path @snapshots/@data/20261109-060040Z
+ID 21589 gen 62703 top level 20446 path @snapshots/@data/20261109-070001Z
+ID 21590 gen 62711 top level 20446 path @snapshots/@data/20261109-080001Z
+ID 21591 gen 62722 top level 20446 path @snapshots/@data/20261109-090011Z
+ID 21592 gen 62729 top level 20446 path @snapshots/@data/20261109-100001Z
+ID 21593 gen 62736 top level 20446 path @snapshots/@data/20261109-110001Z
+ID 21594 gen 62745 top level 20446 path @snapshots/@data/20261109-120011Z
+ID 21595 gen 62753 top level 20446 path @snapshots/@data/20261109-130021Z
+RESULT rc=0
+
+===== sudo -n btrfs qgroup --help =====
+usage: btrfs qgroup <command> [options] <path>
+
+    btrfs qgroup assign [options] <src> <dst> <path>
+        Assign SRC as the child qgroup of DST.
+    btrfs qgroup remove [options] <src> <dst> <path>
+        Remove the relation between child qgroup SRC from DST.
+    btrfs qgroup create <qgroupid> <path>
+        Create a subvolume quota group.
+    btrfs qgroup clear-stale <path>
+        Clear all stale qgroups (level 0/subvolid), without a subvolume.
+    btrfs qgroup destroy <qgroupid> <path>
+        Destroy a quota group.
+    btrfs qgroup show [options] <path>
+        List subvolume quota groups.
+    btrfs qgroup limit [options] <size>|none [<qgroupid>] <path>
+        Set the limits a subvolume quota group.
+
+manage quota groups
+OPTIONAL RESULT rc=0
+
+STEP08_BASELINE_STATUS=PASS

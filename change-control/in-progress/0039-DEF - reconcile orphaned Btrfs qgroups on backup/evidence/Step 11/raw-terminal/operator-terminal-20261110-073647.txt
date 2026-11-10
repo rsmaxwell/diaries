@@ -1,0 +1,91 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ if (
+  cd '/cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries' || exit 1
+
+  feature='change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup'
+  evidence="$feature/evidence/Step 11"
+  mkdir -p "$evidence" || exit 1
+  log="$evidence/integration-$(date -u +%Y%m%d-%H%M%SZ).txt"
+
+  {
+    echo '=== Step 11 integration verification ==='
+    date -u
+
+    echo '=== Diaries Git revision ==='
+    git rev-parse HEAD || exit 1
+    git submodule status || exit 1
+
+    for host in mars backup; do
+      echo "=== $host: scheduled maintenance ==="
+
+      ssh "$host" '
+        systemctl is-enabled btrfs-clear-stale-qgroups.timer &&
+        systemctl is-active btrfs-clear-stale-qgroups.timer &&
+        sudo -n systemctl show btrfs-clear-stale-qgroups.service \
+          -p Result -p ExecMainStatus &&
+        sudo -n journalctl -u btrfs-clear-stale-qgroups.service \
+          --since "2026-11-10 05:20:00 UTC" \
+          -n 30 --no-pager
+fiecho 'FAIL: 0039 Step 11 integration verification'ected'-p ExecMainStatus' \-stale-qgroups.json' \
+=== Step 11 integration verification ===
+Tue Nov 10 07:36:18 UTC 2026
+=== Diaries Git revision ===
+bca29dbb98d47afaf24642c0c4db09c2e5f07dcb
+ e45ae170017fdf4974f642f654d7f709269af711 diaries-client (heads/main)
+ bd65d08435c0f5d240337cd6479cb41befe4d8c1 diaries-responder (heads/main)
+ cc147426e93ee6952558b65147e444d38316b3ce diaries-web (heads/main)
+=== mars: scheduled maintenance ===
+enabled
+active
+Result=success
+ExecMainStatus=0
+Nov 10 05:30:21 mars systemd[1]: Starting btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (source)...
+Nov 10 05:30:21 mars btrfs-clear-stale-qgroups[107314]: mode=source filesystem=/media/usb uuid=72d1d8ea-900e-4fca-837f-1b1febec036c qgroups=95 stale_before=14 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=14 clear_stale_supported=true
+Nov 10 05:30:21 mars btrfs-clear-stale-qgroups[107314]: stale_after=0 removed=14 deferred_pending=0 pending_deletions_after=0 native_rc=0 result=complete dry_run=false
+Nov 10 05:30:21 mars systemd[1]: btrfs-clear-stale-qgroups.service: Deactivated successfully.
+Nov 10 05:30:21 mars systemd[1]: Finished btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (source).
+=== mars: current qgroups ===
+mode=source filesystem=/media/usb uuid=72d1d8ea-900e-4fca-837f-1b1febec036c qgroups=83 stale_before=2 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=2 clear_stale_supported=true
+dry_run=true
+=== mars: snapshot integrity ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=83
+qgroups_stale=2
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=70;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=70
+diaries_verification=valid;logicalDataset=production;backupId=20261110-003113Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== backup: scheduled maintenance ===
+enabled
+active
+Result=success
+ExecMainStatus=0
+Nov 10 05:30:00 backup systemd[1]: Starting btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (receiver)...
+Nov 10 05:30:00 backup btrfs-clear-stale-qgroups[2859965]: mode=receiver filesystem=/ uuid=b915f967-7cb4-4c14-b11b-f52209637a22 qgroups=36 stale_before=0 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=0 clear_stale_supported=true
+Nov 10 05:30:00 backup btrfs-clear-stale-qgroups[2859965]: stale_after=0 removed=0 deferred_pending=0 pending_deletions_after=0 native_rc=0 result=complete dry_run=false
+Nov 10 05:30:00 backup systemd[1]: btrfs-clear-stale-qgroups.service: Deactivated successfully.
+Nov 10 05:30:00 backup systemd[1]: Finished btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (receiver).
+=== backup: current qgroups ===
+mode=receiver filesystem=/ uuid=b915f967-7cb4-4c14-b11b-f52209637a22 qgroups=36 stale_before=0 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=0 clear_stale_supported=true
+dry_run=true
+=== backup: snapshot integrity ===
+snapshot_root=/@data/mars-received
+filesystem=btrfs
+qgroups_total=36
+qgroups_stale=0
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=33;incomplete_timestamp_sets=0
+source=@data:None;managed_snapshots=33
+diaries_verification=disabled
+=== Native replication: verified common parent ===
+bash: line 1: /usr/local/bin/btrfs-native-push: No such file or directory
+FAIL: 0039 Step 11 integration verification
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

@@ -1,0 +1,163 @@
+0039-DEF Step 8 read-only baseline host=backup fs=/ utc=2026-11-09T13:51:52Z
+
+===== hostname -f =====
+backup
+RESULT rc=0
+
+===== uname -a =====
+Linux backup 6.8.0-147-generic #147-Ubuntu SMP PREEMPT_DYNAMIC Thu Sep 24 11:33:16 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+RESULT rc=0
+
+===== btrfs version =====
+btrfs-progs v6.6.3
+RESULT rc=0
+
+===== findmnt -n -o TARGET,FSTYPE,UUID --mountpoint / =====
+/      btrfs  b915f967-7cb4-4c14-b11b-f52209637a22
+RESULT rc=0
+
+===== systemctl is-enabled btrfs-clear-stale-qgroups.timer =====
+enabled
+OPTIONAL RESULT rc=0
+
+===== systemctl is-active btrfs-clear-stale-qgroups.timer =====
+active
+OPTIONAL RESULT rc=0
+
+===== systemctl list-timers --all btrfs-clear-stale-qgroups.timer =====
+NEXT                        LEFT LAST                        PASSED UNIT                            ACTIVATES
+Tue 2026-11-10 05:30:00 GMT  15h Mon 2026-11-09 05:30:02 GMT 8h ago btrfs-clear-stale-qgroups.timer btrfs-clear-stale-qgroups.service
+
+1 timers listed.
+OPTIONAL RESULT rc=0
+
+===== systemctl status --no-pager -l btrfs-clear-stale-qgroups.service =====
+○ btrfs-clear-stale-qgroups.service - Safely reconcile stale Btrfs qgroups on off-site receiver
+     Loaded: loaded (/etc/systemd/system/btrfs-clear-stale-qgroups.service; static)
+     Active: inactive (dead) since Mon 2026-11-09 05:30:02 GMT; 8h ago
+TriggeredBy: ● btrfs-clear-stale-qgroups.timer
+    Process: 2709872 ExecStart=/usr/local/sbin/btrfs-clear-stale-qgroups --execute (code=exited, status=0/SUCCESS)
+   Main PID: 2709872 (code=exited, status=0/SUCCESS)
+        CPU: 72ms
+
+Nov 09 05:30:02 backup systemd[1]: Starting btrfs-clear-stale-qgroups.service - Safely reconcile stale Btrfs qgroups on off-site receiver...
+Nov 09 05:30:02 backup btrfs-clear-stale-qgroups[2709872]: stale_before=0 ids=
+Nov 09 05:30:02 backup btrfs-clear-stale-qgroups[2709872]: stale_after=0 removed=0
+Nov 09 05:30:02 backup systemd[1]: btrfs-clear-stale-qgroups.service: Deactivated successfully.
+Nov 09 05:30:02 backup systemd[1]: Finished btrfs-clear-stale-qgroups.service - Safely reconcile stale Btrfs qgroups on off-site receiver.
+OPTIONAL RESULT rc=3
+
+===== sudo -n sha256sum /usr/local/sbin/btrfs-snapshot-manager /usr/local/sbin/btrfs-clear-stale-qgroups =====
+89602f0aac07900b367a82728e42339ee9c9d3ed40e55010af87576dadc7a2b7  /usr/local/sbin/btrfs-snapshot-manager
+e27af729ea80eea318c06eee496961d95e1f37636023be6846060d1937c2be50  /usr/local/sbin/btrfs-clear-stale-qgroups
+OPTIONAL RESULT rc=0
+
+===== sudo -n python3 -c import json; d=json.load(open("/etc/btrfs-stale-qgroups.json")); print(d) =====
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: '/etc/btrfs-stale-qgroups.json'
+OPTIONAL RESULT rc=1
+
+===== sudo -n python3 -c import json; d=json.load(open("/etc/btrfs-snapshot-manager.json")); print({k:d.get(k) for k in ("mode","snapshot_root","lock_path","writer_lock_path","receiver_state_dir")}) =====
+{'mode': 'receiver', 'snapshot_root': '/@data/mars-received', 'lock_path': '/run/lock/btrfs-snapshot-manager.lock', 'writer_lock_path': '/@data/mars-received/.replication-state/writer.lock', 'receiver_state_dir': '/@data/mars-received/.replication-state'}
+RESULT rc=0
+
+===== sudo -n btrfs qgroup show / =====
+Qgroupid    Referenced    Exclusive   Path 
+--------    ----------    ---------   ---- 
+0/5            9.36GiB      9.36GiB   <toplevel>
+0/275        325.20GiB    325.20GiB   @data
+0/55511       16.00KiB     16.00KiB   @snapshots
+0/55593      325.19GiB    325.19GiB   @data/mars-received/@data/20261009-170001Z
+0/55707      325.34GiB      8.12MiB   @data/mars-received/@data/20261013-050016Z
+0/55708      325.34GiB    176.00KiB   @data/mars-received/@data/20261013-140006Z
+0/55715      325.34GiB     16.00KiB   @data/mars-received/@data/20261013-171228Z
+0/55716      325.34GiB     16.00KiB   @data/mars-received/@data/20261013-180016Z
+0/55749      325.34GiB      7.98MiB   @data/mars-received/@data/20261014-100031Z
+0/55762      325.43GiB     29.22MiB   @data/mars-received/@data/20261015-030004Z
+0/55787      325.53GiB     15.04MiB   @data/mars-received/@data/20261016-030037Z
+0/55788      325.63GiB     15.05MiB   @data/mars-received/@data/20261017-030007Z
+0/55789      325.63GiB     22.08MiB   @data/mars-received/@data/20261018-030006Z
+0/55790      325.63GiB      1.98MiB   @data/mars-received/@data/20261018-165453Z
+0/55791      325.63GiB     23.16MiB   @data/mars-received/@data/20261019-030038Z
+0/55792      325.63GiB     22.69MiB   @data/mars-received/@data/20261020-030026Z
+0/55805      325.63GiB     28.41MiB   @data/mars-received/@data/20261021-030006Z
+0/55815      325.64GiB     16.00KiB   @data/mars-received/@data/20261022-030026Z
+0/55816      325.64GiB     16.00KiB   @data/mars-received/@data/20261022-082824Z
+0/55833      325.66GiB    272.00KiB   @data/mars-received/@data/20261022-120034Z
+0/55834      325.66GiB      2.60MiB   @data/mars-received/@data/20261023-030037Z
+0/55835      325.66GiB      6.86MiB   @data/mars-received/@data/20261024-030038Z
+0/55872      325.66GiB     27.19MiB   @data/mars-received/@data/20261025-030026Z
+0/55874      325.66GiB      6.49MiB   @data/mars-received/@data/20261026-030019Z
+0/55875      325.66GiB      6.86MiB   @data/mars-received/@data/20261027-030038Z
+0/55892      325.94GiB     25.89MiB   @data/mars-received/@data/20261028-030036Z
+0/55893      325.94GiB      9.61MiB   @data/mars-received/@data/20261029-030003Z
+0/55894      325.94GiB    644.00KiB   @data/mars-received/@data/20261030-030033Z
+0/55895      326.50GiB     16.00KiB   @data/mars-received/@data/20261101-140039Z
+0/55896      325.94GiB     11.96MiB   @data/mars-received/@data/20261030-170009Z
+0/55897      326.50GiB     16.00KiB   @data/mars-received/@data/20261101-150004Z
+0/55898      326.51GiB     18.31MiB   @data/mars-received/@data/20261106-160001Z
+0/55899      326.51GiB      7.18MiB   @data/mars-received/@data/20261107-030031Z
+0/55900      326.52GiB     21.95MiB   @data/mars-received/@data/20261108-030011Z
+0/55901      326.52GiB     50.64MiB   @data/mars-received/@data/20261109-030030Z
+RESULT rc=0
+
+===== sudo -n btrfs subvolume list / =====
+ID 275 gen 605771 top level 5 path @data
+ID 55511 gen 605771 top level 5 path @snapshots
+ID 55593 gen 528732 top level 275 path @data/mars-received/@data/20261009-170001Z
+ID 55707 gen 533040 top level 275 path @data/mars-received/@data/20261013-050016Z
+ID 55708 gen 533292 top level 275 path @data/mars-received/@data/20261013-140006Z
+ID 55715 gen 533353 top level 275 path @data/mars-received/@data/20261013-171228Z
+ID 55716 gen 535173 top level 275 path @data/mars-received/@data/20261013-180016Z
+ID 55749 gen 537030 top level 275 path @data/mars-received/@data/20261014-100031Z
+ID 55762 gen 539713 top level 275 path @data/mars-received/@data/20261015-030004Z
+ID 55787 gen 542356 top level 275 path @data/mars-received/@data/20261016-030037Z
+ID 55788 gen 545003 top level 275 path @data/mars-received/@data/20261017-030007Z
+ID 55789 gen 546478 top level 275 path @data/mars-received/@data/20261018-030006Z
+ID 55790 gen 547644 top level 275 path @data/mars-received/@data/20261018-165453Z
+ID 55791 gen 550277 top level 275 path @data/mars-received/@data/20261019-030038Z
+ID 55792 gen 552922 top level 275 path @data/mars-received/@data/20261020-030026Z
+ID 55805 gen 555572 top level 275 path @data/mars-received/@data/20261021-030006Z
+ID 55815 gen 556130 top level 275 path @data/mars-received/@data/20261022-030026Z
+ID 55816 gen 556648 top level 275 path @data/mars-received/@data/20261022-082824Z
+ID 55833 gen 558339 top level 275 path @data/mars-received/@data/20261022-120034Z
+ID 55834 gen 561082 top level 275 path @data/mars-received/@data/20261023-030037Z
+ID 55835 gen 563867 top level 275 path @data/mars-received/@data/20261024-030038Z
+ID 55872 gen 566596 top level 275 path @data/mars-received/@data/20261025-030026Z
+ID 55874 gen 569341 top level 275 path @data/mars-received/@data/20261026-030019Z
+ID 55875 gen 572106 top level 275 path @data/mars-received/@data/20261027-030038Z
+ID 55892 gen 574851 top level 275 path @data/mars-received/@data/20261028-030036Z
+ID 55893 gen 577595 top level 275 path @data/mars-received/@data/20261029-030003Z
+ID 55894 gen 584944 top level 275 path @data/mars-received/@data/20261030-030033Z
+ID 55895 gen 598227 top level 275 path @data/mars-received/@data/20261101-140039Z
+ID 55896 gen 584947 top level 275 path @data/mars-received/@data/20261030-170009Z
+ID 55897 gen 598355 top level 275 path @data/mars-received/@data/20261101-150004Z
+ID 55898 gen 599558 top level 275 path @data/mars-received/@data/20261106-160001Z
+ID 55899 gen 602304 top level 275 path @data/mars-received/@data/20261107-030031Z
+ID 55900 gen 605047 top level 275 path @data/mars-received/@data/20261108-030011Z
+ID 55901 gen 605049 top level 275 path @data/mars-received/@data/20261109-030030Z
+RESULT rc=0
+
+===== sudo -n btrfs qgroup --help =====
+usage: btrfs qgroup <command> [options] <path>
+
+    btrfs qgroup assign [options] <src> <dst> <path>
+        Assign SRC as the child qgroup of DST.
+    btrfs qgroup remove [options] <src> <dst> <path>
+        Remove the relation between child qgroup SRC from DST.
+    btrfs qgroup create <qgroupid> <path>
+        Create a subvolume quota group.
+    btrfs qgroup clear-stale <path>
+        Clear all stale qgroups (level 0/subvolid), without a subvolume.
+    btrfs qgroup destroy <qgroupid> <path>
+        Destroy a quota group.
+    btrfs qgroup show [options] <path>
+        List subvolume quota groups.
+    btrfs qgroup limit [options] <size>|none [<qgroupid>] <path>
+        Set the limits a subvolume quota group.
+
+manage quota groups
+OPTIONAL RESULT rc=0
+
+STEP08_BASELINE_STATUS=PASS

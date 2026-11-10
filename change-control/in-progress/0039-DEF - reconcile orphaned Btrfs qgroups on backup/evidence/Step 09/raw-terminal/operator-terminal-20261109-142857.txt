@@ -1,0 +1,67 @@
+richard@mango:~/diaries$ if (
+  cd /home/richard/playbooks || exit 1
+  set -o pipefail
+
+  echo '=== Pause mars cleanup timer ==='
+  ssh mars \
+    'sudo -n systemctl disable --now btrfs-clear-stale-qgroups.timer &&
+     systemctl show btrfs-clear-stale-qgroups.timer -p ActiveState -p UnitFileState' \
+    || exit 1
+
+  echo '=== mars: stale qgroups after failed cleanup ==='
+  ssh mars 'sudo -n btrfs qgroup show /media/usb' |
+    awk '
+      NR > 2 && $NF == "<stale>" {
+        total++
+        if ($2 == "0.00B" && $3 == "0.00B") {
+          zero++
+        } else {
+          nonzero++
+          if (nonzero <= 10) print "NONZERO:", $0
+        }
+      }
+      END {
+        printf "stale_total=%d zero_accounting=%d nonzero_accounting=%d\n",
+               total, zero, nonzero
+      }
+    ' || exit 1
+
+fiecho 'FAIL: 0039 failure diagnostics'collected'er -p ActiveState -p UnitFileState' \
+=== Pause mars cleanup timer ===
+Removed "/etc/systemd/system/timers.target.wants/btrfs-clear-stale-qgroups.timer".
+ActiveState=inactive
+UnitFileState=disabled
+=== mars: stale qgroups after failed cleanup ===
+NONZERO: 0/21336      325.94GiB     16.00KiB   <stale>
+NONZERO: 0/21337      325.94GiB     16.00KiB   <stale>
+NONZERO: 0/21338      325.94GiB     16.00KiB   <stale>
+NONZERO: 0/21339      325.94GiB     16.00KiB   <stale>
+NONZERO: 0/21340      325.94GiB     16.00KiB   <stale>
+NONZERO: 0/21341      325.94GiB     16.00KiB   <stale>
+NONZERO: 0/21343      325.94GiB     16.00KiB   <stale>
+NONZERO: 0/21344      325.94GiB     16.00KiB   <stale>
+NONZERO: 0/21345      325.94GiB     96.00KiB   <stale>
+NONZERO: 0/21347      325.94GiB     16.00KiB   <stale>
+stale_total=62 zero_accounting=0 nonzero_accounting=62
+=== mars: quota rescan status (read-only) ===
+no rescan operation in progress
+rescan_status_rc=0
+=== mars: kernel quota flags ===
+enabled=1
+inconsistent=0
+=== mars: snapshot health ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=175
+qgroups_stale=62
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=102;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=102
+diaries_verification=valid;logicalDataset=production;backupId=20261109-003055Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== backup: timer remains enabled ===
+ActiveState=active
+UnitFileState=enabled
+PASS: 0039 failure diagnostics collected
+richard@mango:~/diaries$

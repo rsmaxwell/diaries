@@ -1,0 +1,84 @@
+richard@mango:~/diaries$ if (
+  cd /home/richard/playbooks || exit 1
+
+  echo '=== mars: deleted subvolumes pending cleanup ==='
+  ssh mars \
+    'sudo -n btrfs subvolume list -d /media/usb' \
+    || exit 1
+
+  echo '=== mars: quota state ==='
+  ssh mars \
+    'sudo -n btrfs quota rescan -s /media/usb' \
+    || exit 1
+
+  echo '=== mars: kernel Btrfs messages ==='
+  ssh mars \
+    'sudo -n journalctl -k --since "2026-11-09 14:20:00" --no-pager -n 150' \
+    || exit 1
+
+  echo '=== mars: current stale-qgroup breakdown ==='
+  ssh mars 'sudo -n btrfs qgroup show /media/usb' |
+    awk '
+      NR > 2 && $NF == "<stale>" {
+        total++
+        if ($2 == "0.00B" && $3 == "0.00B")
+          zero++
+        else
+          nonzero++
+      }
+fiecho 'FAIL: 0039 post-rescan diagnostics'ps.timer -p ActiveState -p UnitFileState' \
+=== mars: deleted subvolumes pending cleanup ===
+ID 20848 gen 60807 top level 0 path DELETED
+ID 20946 gen 61103 top level 0 path DELETED
+ID 20994 gen 61298 top level 0 path DELETED
+ID 21042 gen 61410 top level 0 path DELETED
+ID 21094 gen 61533 top level 0 path DELETED
+ID 21154 gen 61678 top level 0 path DELETED
+ID 21202 gen 61795 top level 0 path DELETED
+ID 21270 gen 62021 top level 0 path DELETED
+ID 21310 gen 62133 top level 0 path DELETED
+ID 21311 gen 62135 top level 0 path DELETED
+ID 21312 gen 62137 top level 0 path DELETED
+ID 21313 gen 62139 top level 0 path DELETED
+ID 21314 gen 62141 top level 0 path DELETED
+ID 21315 gen 62143 top level 0 path DELETED
+ID 21316 gen 62145 top level 0 path DELETED
+ID 21317 gen 62147 top level 0 path DELETED
+ID 21319 gen 62151 top level 0 path DELETED
+ID 21320 gen 62156 top level 0 path DELETED
+ID 21321 gen 62161 top level 0 path DELETED
+ID 21323 gen 62172 top level 0 path DELETED
+ID 21324 gen 62174 top level 0 path DELETED
+ID 21325 gen 62176 top level 0 path DELETED
+ID 21326 gen 62178 top level 0 path DELETED
+ID 21327 gen 62181 top level 0 path DELETED
+ID 21328 gen 62183 top level 0 path DELETED
+ID 21329 gen 62185 top level 0 path DELETED
+ID 21330 gen 62187 top level 0 path DELETED
+ID 21331 gen 62193 top level 0 path DELETED
+ID 21332 gen 62196 top level 0 path DELETED
+ID 21333 gen 62198 top level 0 path DELETED
+ID 21334 gen 62200 top level 0 path DELETED
+ID 21335 gen 62202 top level 0 path DELETED
+ID 21336 gen 62204 top level 0 path DELETED
+ID 21337 gen 62207 top level 0 path DELETED
+ID 21338 gen 62209 top level 0 path DELETED
+ID 21339 gen 62211 top level 0 path DELETED
+ID 21340 gen 62214 top level 0 path DELETED
+ID 21548 gen 62545 top level 0 path DELETED
+ID 21549 gen 62546 top level 0 path DELETED
+ID 21550 gen 62547 top level 0 path DELETED
+ID 21551 gen 62548 top level 0 path DELETED
+ID 21552 gen 62549 top level 0 path DELETED
+ID 21553 gen 62550 top level 0 path DELETED
+=== mars: quota state ===
+no rescan operation in progress
+=== mars: kernel Btrfs messages ===
+Nov 09 16:37:59 mars kernel: BTRFS info (device sdb1): qgroup scan completed (inconsistency flag cleared)
+=== mars: current stale-qgroup breakdown ===
+total=100 zero=56 nonzero=44
+=== mars: cleanup timer remains disabled ===
+ActiveState=inactive
+UnitFileState=disabled
+PASS: 0039 post-rescan diagnostics
+richard@mango:~/diaries$

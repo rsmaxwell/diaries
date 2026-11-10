@@ -1,0 +1,152 @@
+richard@mango:~/diaries$ if (
+  cd /home/richard/playbooks || exit 1
+
+  echo '=== Git revision and changes ==='
+  git status --short --branch
+  git rev-parse HEAD || exit 1
+
+  echo '=== Shared regression tests ==='
+  python3 roles/snapshots/tests/verify-btrfs-clear-stale-qgroups.py || exit 1
+
+  echo '=== Deploy to mars, timer disabled ==='
+  ansible-playbook btrfs-replication.yaml \
+    --vault-password-file ~/.vault_pass.txt \
+    --limit mars \
+    --tags qgroup-maintenance \
+    --extra-vars '{"btrfs_stale_qgroup_maintenance_install_enabled":true,"btrfs_stale_qgroup_maintenance_enabled":false}' \
+    || exit 1
+
+  echo '=== Deploy to backup, timer enabled ==='
+  ansible-playbook btrfs-replication.yaml \
+    --vault-password-file ~/.vault_pass.txt \
+    --limit backup \
+    --tags qgroup-maintenance \
+    --extra-vars '{"btrfs_stale_qgroup_maintenance_install_enabled":true,"btrfs_stale_qgroup_maintenance_enabled":true}' \
+    || exit 1
+
+  echo '=== Installed dry runs ==='
+  for host in mars backup; do
+fiecho 'FAIL: 0039 shared cleanup update'installed'groups.timer)" = activeed &&&le-qgroups.json' \
+=== Git revision and changes ===
+## main...origin/main
+ M roles/btrfs-replication/defaults/main.yaml
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/snapshots/README-STALE-QGROUP-MAINTENANCE.md
+ M roles/snapshots/defaults/main.yaml
+ M roles/snapshots/files/btrfs-clear-stale-qgroups.py
+ M roles/snapshots/tasks/main.yaml
+ M roles/snapshots/templates/btrfs-clear-stale-qgroups.service.j2
+ M roles/snapshots/templates/btrfs-clear-stale-qgroups.timer.j2
+ M roles/snapshots/tests/verify-btrfs-clear-stale-qgroups.py
+?? roles/btrfs-replication/tasks/qgroup-maintenance.yaml
+?? roles/snapshots/templates/btrfs-stale-qgroups.json.j2
+e0da797310ab452ddc61e7368c50a444fe881e41
+=== Shared regression tests ===
+test_host_specific_configuration (__main__.ContractTests.test_host_specific_configuration) ... ok
+test_invalid_host_specific_configuration (__main__.ContractTests.test_invalid_host_specific_configuration) ... ok
+test_lock_inode_and_contention (__main__.ContractTests.test_lock_inode_and_contention) ... ok
+test_valid_source_and_receiver (__main__.ContractTests.test_valid_source_and_receiver) ... ok
+test_wrong_config_fail_closed (__main__.ContractTests.test_wrong_config_fail_closed) ... ok
+test_native_route_and_default_off (__main__.IntegrationSourceTests.test_native_route_and_default_off) ... ok
+test_compact_header_still_accepted (__main__.ParseTests.test_compact_header_still_accepted) ... ok
+test_malformed_or_unsupported_rejected (__main__.ParseTests.test_malformed_or_unsupported_rejected) ... ok
+test_native_busy_error_classification (__main__.ParseTests.test_native_busy_error_classification) ... ok
+test_parses_stale_and_does_not_misclassify_pending (__main__.ParseTests.test_parses_stale_and_does_not_misclassify_pending) ... ok
+test_pending_deletions_from_real_host_shape (__main__.ParseTests.test_pending_deletions_from_real_host_shape) ... ok
+test_real_v663_baseline_header_and_rows (__main__.ParseTests.test_real_v663_baseline_header_and_rows) ... ok
+test_subvolume_ids_fail_closed (__main__.ParseTests.test_subvolume_ids_fail_closed) ... ok
+test_bound_and_persisting_stale (__main__.RunTests.test_bound_and_persisting_stale) ... ok
+test_deferred_requires_post_cleanup_pending_match (__main__.RunTests.test_deferred_requires_post_cleanup_pending_match) ... ok
+test_dry_run_never_calls_mutating_tool (__main__.RunTests.test_dry_run_never_calls_mutating_tool) ... ok
+test_fail_closed_on_unsupported_version_or_orphans (__main__.RunTests.test_fail_closed_on_unsupported_version_or_orphans) ... ok
+test_native_cleanup_one_call (__main__.RunTests.test_native_cleanup_one_call) ... ok
+test_nonstale_mutation_detected (__main__.RunTests.test_nonstale_mutation_detected) ... ok
+test_partial_busy_is_expected_only_when_pending (__main__.RunTests.test_partial_busy_is_expected_only_when_pending) ... ok
+test_partial_failure_remains_failure_for_unexpected_error (__main__.RunTests.test_partial_failure_remains_failure_for_unexpected_error) ... ok
+test_real_eleven_pending_ninety_one_eligible_case (__main__.RunTests.test_real_eleven_pending_ninety_one_eligible_case) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.012s
+
+OK
+=== Deploy to mars, timer disabled ===
+
+PLAY [Configure native Btrfs replication endpoints] ***************************************************************************************************************************************************************************************************
+
+TASK [Configure native Btrfs endpoint] ****************************************************************************************************************************************************************************************************************
+included: btrfs-replication for mars
+
+TASK [btrfs-replication : Qgroups | Validate explicit endpoint and activation contract] ***************************************************************************************************************************************************************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Qgroups | Install one shared cleanup executable on both endpoints] **********************************************************************************************************************************************************
+changed: [mars]
+
+TASK [btrfs-replication : Qgroups | Render host-local stale-qgroup maintenance configuration] *********************************************************************************************************************************************************
+ok: [mars]
+
+TASK [btrfs-replication : Qgroups | Install endpoint-specific service and common timer] ***************************************************************************************************************************************************************
+ok: [mars] => (item=btrfs-clear-stale-qgroups.service)
+ok: [mars] => (item=btrfs-clear-stale-qgroups.timer)
+
+TASK [btrfs-replication : Qgroups | Read current installed timer state for safe check mode] ***********************************************************************************************************************************************************
+ok: [mars]
+
+TASK [btrfs-replication : Qgroups | Apply explicit timer activation state] ****************************************************************************************************************************************************************************
+ok: [mars]
+
+PLAY RECAP ********************************************************************************************************************************************************************************************************************************************
+mars                       : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+=== Deploy to backup, timer enabled ===
+
+PLAY [Configure native Btrfs replication endpoints] ***************************************************************************************************************************************************************************************************
+
+TASK [Configure native Btrfs endpoint] ****************************************************************************************************************************************************************************************************************
+included: btrfs-replication for backup
+
+TASK [btrfs-replication : Qgroups | Validate explicit endpoint and activation contract] ***************************************************************************************************************************************************************
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Qgroups | Install one shared cleanup executable on both endpoints] **********************************************************************************************************************************************************
+changed: [backup]
+
+TASK [btrfs-replication : Qgroups | Render host-local stale-qgroup maintenance configuration] *********************************************************************************************************************************************************
+ok: [backup]
+
+TASK [btrfs-replication : Qgroups | Install endpoint-specific service and common timer] ***************************************************************************************************************************************************************
+ok: [backup] => (item=btrfs-clear-stale-qgroups.service)
+ok: [backup] => (item=btrfs-clear-stale-qgroups.timer)
+
+TASK [btrfs-replication : Qgroups | Read current installed timer state for safe check mode] ***********************************************************************************************************************************************************
+ok: [backup]
+
+TASK [btrfs-replication : Qgroups | Apply explicit timer activation state] ****************************************************************************************************************************************************************************
+ok: [backup]
+
+PLAY RECAP ********************************************************************************************************************************************************************************************************************************************
+backup                     : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+=== Installed dry runs ===
+=== mars ===
+mode=source filesystem=/media/usb uuid=72d1d8ea-900e-4fca-837f-1b1febec036c qgroups=183 stale_before=103 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=9 stale_pending=9 stale_eligible=94 clear_stale_supported=true
+dry_run=true
+=== backup ===
+mode=receiver filesystem=/ uuid=b915f967-7cb4-4c14-b11b-f52209637a22 qgroups=35 stale_before=0 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=0 clear_stale_supported=true
+dry_run=true
+=== Confirm mars timer disabled ===
+=== Confirm backup timer active ===
+PASS: 0039 shared cleanup update installed
+richard@mango:~/diaries$

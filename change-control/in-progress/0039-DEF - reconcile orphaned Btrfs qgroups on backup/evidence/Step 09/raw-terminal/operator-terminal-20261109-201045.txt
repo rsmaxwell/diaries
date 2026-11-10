@@ -1,0 +1,61 @@
+richard@mango:~/diaries$ if (
+  cd /home/richard/playbooks || exit 1
+  set -o pipefail
+
+  echo '=== Verify mars cleanup timer remains disabled ==='
+  ssh mars '
+    test "$(systemctl is-active btrfs-clear-stale-qgroups.timer)" = inactive &&
+    test "$(systemctl is-enabled btrfs-clear-stale-qgroups.timer)" = disabled
+  ' || exit 1
+
+  echo '=== Verify Btrfs target ==='
+  ssh mars \
+    'findmnt -n -o TARGET,FSTYPE --mountpoint /media/usb' \
+    || exit 1
+
+  echo '=== Snapshot status before rescan ==='
+  ssh mars \
+    'sudo -n /usr/local/sbin/btrfs-snapshot-manager status' \
+    || exit 1
+
+  echo '=== Execute quota rescan and wait for completion ==='
+  ssh mars \
+    'sudo -n btrfs quota rescan -w /media/usb' \
+    || exit 1
+
+  echo '=== Verify rescan completed ==='
+  ssh mars \
+    'sudo -n btrfs quota rescan -s /media/usb' \
+fiecho 'FAIL: 0039 quota rescan or diagnostics''ger status' \ounting=%d\n",
+=== Verify mars cleanup timer remains disabled ===
+=== Verify Btrfs target ===
+/media/usb btrfs
+=== Snapshot status before rescan ===
+snapshot_root=/media/usb/@snapshots
+qgroups_stale=72
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=93;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=93
+diaries_verification=valid;logicalDataset=production;backupId=20261109-003055Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== Execute quota rescan and wait for completion ===
+quota rescan started
+=== Verify rescan completed ===
+no rescan operation in progress
+=== Stale qgroup accounting after rescan ===
+stale_total=82 zero_accounting=19 nonzero_accounting=63
+=== Snapshot status after rescan ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=177
+qgroups_stale=82
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=84;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=84
+diaries_verification=valid;logicalDataset=production;backupId=20261109-003055Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+PASS: 0039 quota rescan and diagnostics
+richard@mango:~/diaries$
+richard@mango:~/diaries$

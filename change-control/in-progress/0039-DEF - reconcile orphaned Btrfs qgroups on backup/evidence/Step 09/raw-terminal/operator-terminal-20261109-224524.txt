@@ -1,0 +1,52 @@
+richard@mango:~/diaries$ if (
+  cd /home/richard/playbooks || exit 1
+
+  echo '=== Correlate pending deletions and stale qgroups ==='
+
+  ssh mars 'sudo -n python3 -' <<'PY' || exit 1
+import re
+import subprocess
+
+def run(*args):
+    return subprocess.check_output(args, text=True)
+
+pending = set()
+for line in run("btrfs", "subvolume", "list", "-d",
+                "/media/usb").splitlines():
+    match = re.match(r"ID (\d+)\b", line)
+    if match:
+        pending.add(int(match.group(1)))
+
+zero = set()
+nonzero = set()
+
+for line in run("btrfs", "qgroup", "show",
+                "/media/usb").splitlines():
+    fields = line.split()
+    if len(fields) < 4 or not fields[0].startswith("0/"):
+        continue
+    if fields[-1] != "<stale>":
+fiecho 'FAIL: 0039 deletion/qgroup correlation'imer -p ActiveState -p UnitFileState' \
+=== Correlate pending deletions and stale qgroups ===
+pending_deletions = 11
+stale_zero       = 91
+stale_nonzero    = 11
+pending_and_nonzero = 11
+nonzero_not_pending = []
+pending_not_nonzero = []
+=== Current snapshot health ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=183
+qgroups_stale=102
+qgroups_under_deletion=0
+qgroups_status=warning
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=70;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=70
+diaries_verification=valid;logicalDataset=production;backupId=20261109-003055Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== Timer remains disabled ===
+ActiveState=inactive
+UnitFileState=disabled
+PASS: 0039 deletion/qgroup correlation
+richard@mango:~/diaries$

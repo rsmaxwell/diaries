@@ -1,0 +1,104 @@
+richard@mango:~/diaries$ if (
+  cd /home/richard/playbooks || exit 1
+
+  for host in backup mars; do
+    echo "=== $host: snapshot status BEFORE ==="
+    ssh "$host" \
+      'sudo -n /usr/local/sbin/btrfs-snapshot-manager status' \
+      || exit 1
+
+    echo "=== $host: execute installed cleanup service ==="
+    if ! ssh "$host" \
+      'sudo -n systemctl start btrfs-clear-stale-qgroups.service'; then
+      echo "FAIL: cleanup service on $host"
+      ssh "$host" \
+        'sudo -n journalctl -u btrfs-clear-stale-qgroups.service -n 30 --no-pager'
+      exit 1
+    fi
+
+    echo "=== $host: cleanup service result ==="
+    ssh "$host" \
+      'sudo -n systemctl show btrfs-clear-stale-qgroups.service -p Result -p ExecMainStatus;
+       sudo -n journalctl -u btrfs-clear-stale-qgroups.service -n 15 --no-pager' \
+      || exit 1
+
+    echo "=== $host: verify zero stale qgroups ==="
+    ssh "$host" \
+      'sudo -n /usr/local/sbin/btrfs-clear-stale-qgroups --config /etc/btrfs-stale-qgroups.json' \
+fiecho 'FAIL: 0039 controlled cleanup or verification''mer' \&\
+=== backup: snapshot status BEFORE ===
+snapshot_root=/@data/mars-received
+filesystem=btrfs
+qgroups_total=35
+qgroups_stale=0
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=32;incomplete_timestamp_sets=0
+source=@data:None;managed_snapshots=32
+diaries_verification=disabled
+=== backup: execute installed cleanup service ===
+=== backup: cleanup service result ===
+Result=success
+ExecMainStatus=0
+Nov 08 05:30:04 backup systemd[1]: Starting btrfs-clear-stale-qgroups.service - Safely reconcile stale Btrfs qgroups on off-site receiver...
+Nov 08 05:30:04 backup btrfs-clear-stale-qgroups[2558851]: stale_before=0 ids=
+Nov 08 05:30:04 backup btrfs-clear-stale-qgroups[2558851]: stale_after=0 removed=0
+Nov 08 05:30:04 backup systemd[1]: btrfs-clear-stale-qgroups.service: Deactivated successfully.
+Nov 08 05:30:04 backup systemd[1]: Finished btrfs-clear-stale-qgroups.service - Safely reconcile stale Btrfs qgroups on off-site receiver.
+Nov 09 05:30:02 backup systemd[1]: Starting btrfs-clear-stale-qgroups.service - Safely reconcile stale Btrfs qgroups on off-site receiver...
+Nov 09 05:30:02 backup btrfs-clear-stale-qgroups[2709872]: stale_before=0 ids=
+Nov 09 05:30:02 backup btrfs-clear-stale-qgroups[2709872]: stale_after=0 removed=0
+Nov 09 05:30:02 backup systemd[1]: btrfs-clear-stale-qgroups.service: Deactivated successfully.
+Nov 09 05:30:02 backup systemd[1]: Finished btrfs-clear-stale-qgroups.service - Safely reconcile stale Btrfs qgroups on off-site receiver.
+Nov 09 14:24:06 backup systemd[1]: Starting btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (receiver)...
+Nov 09 14:24:06 backup btrfs-clear-stale-qgroups[2767395]: mode=receiver filesystem=/ uuid=b915f967-7cb4-4c14-b11b-f52209637a22 qgroups=35 stale_before=0 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 clear_stale_supported=true
+Nov 09 14:24:06 backup btrfs-clear-stale-qgroups[2767395]: stale_after=0 removed=0 dry_run=false
+Nov 09 14:24:06 backup systemd[1]: btrfs-clear-stale-qgroups.service: Deactivated successfully.
+Nov 09 14:24:06 backup systemd[1]: Finished btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (receiver).
+=== backup: verify zero stale qgroups ===
+mode=receiver filesystem=/ uuid=b915f967-7cb4-4c14-b11b-f52209637a22 qgroups=35 stale_before=0 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 clear_stale_supported=true
+dry_run=true
+=== backup: snapshot status AFTER ===
+snapshot_root=/@data/mars-received
+filesystem=btrfs
+qgroups_total=35
+qgroups_stale=0
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=32;incomplete_timestamp_sets=0
+source=@data:None;managed_snapshots=32
+diaries_verification=disabled
+=== backup: timer still active ===
+enabled
+active
+=== mars: snapshot status BEFORE ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=769
+qgroups_stale=656
+qgroups_under_deletion=0
+qgroups_status=warning
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=102;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=102
+diaries_verification=valid;logicalDataset=production;backupId=20261109-003055Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== mars: execute installed cleanup service ===
+Job for btrfs-clear-stale-qgroups.service failed because the control process exited with error code.
+See "systemctl status btrfs-clear-stale-qgroups.service" and "journalctl -xeu btrfs-clear-stale-qgroups.service" for details.
+FAIL: cleanup service on mars
+Nov 09 14:25:10 mars systemd[1]: Starting btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (source)...
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: mode=source filesystem=/media/usb uuid=72d1d8ea-900e-4fca-837f-1b1febec036c qgroups=769 stale_before=656 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 clear_stale_supported=true
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: btrfs-clear-stale-qgroups: REFUSED: command failed rc=1: btrfs qgroup clear-stale /media/usb: ERROR: cannot delete qgroup 0/21336: Device or resource busy
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: ERROR: cannot delete qgroup 0/21337: Device or resource busy
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: ERROR: cannot delete qgroup 0/21338: Device or resource busy
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: ERROR: cannot delete qgroup 0/21339: Device or resource busy
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: ERROR: cannot delete qgroup 0/21340: Device or resource busy
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: ERROR: cannot delete qgroup 0/21341: Device or resource busy
+Nov 09 14:25:10 mars btrfs-clear-stale-qgroups[101819]: ERROR: cannot delete qgroup 0/2134
+Nov 09 14:25:10 mars systemd[1]: btrfs-clear-stale-qgroups.service: Main process exited, code=exited, status=1/FAILURE
+Nov 09 14:25:10 mars systemd[1]: btrfs-clear-stale-qgroups.service: Failed with result 'exit-code'.
+Nov 09 14:25:10 mars systemd[1]: Failed to start btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (source).
+FAIL: 0039 controlled cleanup or verification
+richard@mango:~/diaries$

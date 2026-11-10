@@ -1,0 +1,58 @@
+=== 0039 automatic maintenance verification ===
+Tue Nov 10 07:29:18 UTC 2026
+=== Diaries revision ===
+bca29dbb98d47afaf24642c0c4db09c2e5f07dcb
+=== mars ===
+--- Timer ---
+enabled
+active
+--- Latest service result ---
+Result=success
+ExecMainStatus=0
+--- Scheduled execution journal ---
+Nov 10 05:30:21 mars systemd[1]: Starting btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (source)...
+Nov 10 05:30:21 mars btrfs-clear-stale-qgroups[107314]: mode=source filesystem=/media/usb uuid=72d1d8ea-900e-4fca-837f-1b1febec036c qgroups=95 stale_before=14 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=14 clear_stale_supported=true
+Nov 10 05:30:21 mars btrfs-clear-stale-qgroups[107314]: stale_after=0 removed=14 deferred_pending=0 pending_deletions_after=0 native_rc=0 result=complete dry_run=false
+Nov 10 05:30:21 mars systemd[1]: btrfs-clear-stale-qgroups.service: Deactivated successfully.
+Nov 10 05:30:21 mars systemd[1]: Finished btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (source).
+--- Current qgroup state ---
+mode=source filesystem=/media/usb uuid=72d1d8ea-900e-4fca-837f-1b1febec036c qgroups=83 stale_before=2 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=2 clear_stale_supported=true
+dry_run=true
+--- Snapshot health ---
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=83
+qgroups_stale=2
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=70;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=70
+diaries_verification=valid;logicalDataset=production;backupId=20261110-003113Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== backup ===
+--- Timer ---
+enabled
+active
+--- Latest service result ---
+Result=success
+ExecMainStatus=0
+--- Scheduled execution journal ---
+Nov 10 05:30:00 backup systemd[1]: Starting btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (receiver)...
+Nov 10 05:30:00 backup btrfs-clear-stale-qgroups[2859965]: mode=receiver filesystem=/ uuid=b915f967-7cb4-4c14-b11b-f52209637a22 qgroups=36 stale_before=0 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=0 clear_stale_supported=true
+Nov 10 05:30:00 backup btrfs-clear-stale-qgroups[2859965]: stale_after=0 removed=0 deferred_pending=0 pending_deletions_after=0 native_rc=0 result=complete dry_run=false
+Nov 10 05:30:00 backup systemd[1]: btrfs-clear-stale-qgroups.service: Deactivated successfully.
+Nov 10 05:30:00 backup systemd[1]: Finished btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (receiver).
+--- Current qgroup state ---
+mode=receiver filesystem=/ uuid=b915f967-7cb4-4c14-b11b-f52209637a22 qgroups=36 stale_before=0 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=0 clear_stale_supported=true
+dry_run=true
+--- Snapshot health ---
+snapshot_root=/@data/mars-received
+filesystem=btrfs
+qgroups_total=36
+qgroups_stale=0
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=33;incomplete_timestamp_sets=0
+source=@data:None;managed_snapshots=33
+diaries_verification=disabled
