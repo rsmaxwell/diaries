@@ -1,0 +1,519 @@
+richard@mango:~/playbooks$ if (
+  cd /home/richard/playbooks || exit 1
+
+  echo '=== Verify authoritative inventory ==='
+  test -f \
+    /etc/ansible/group_vars/all/btrfs-maintenance-schedule.yaml \
+    || exit 1
+
+  mars=$(ansible-inventory --host mars --yaml \
+    --vault-password-file ~/.vault_pass.txt) || exit 1
+
+  backup=$(ansible-inventory --host backup --yaml \
+    --vault-password-file ~/.vault_pass.txt) || exit 1
+
+  printf '%s\n' "$mars" | grep -Fxq \
+    "btrfs_snapshot_prune_on_calendar: '*-*-* 04:15:00 UTC'" \
+    || exit 1
+
+  printf '%s\n' "$mars" | grep -Fxq \
+    'btrfs_snapshot_prune_max_delete: 32' || exit 1
+
+  printf '%s\n' "$backup" | grep -Fxq \
+    "btrfs_simplified_receiver_prune_on_calendar: '*-*-* 04:15:00 UTC'" \
+    || exit 1
+
+  echo '=== Source regression ==='
+  python3 roles/snapshots/tests/verify-0040-step13-source-prune-cap.py \
+fiecho 'FAIL: 0043 deployment or verification incomplete'd''
+=== Verify authoritative inventory ===
+=== Source regression ===
+PASS: limit=1 dry_run=False selected=1 prevalidated=3
+PASS: limit=2 dry_run=False selected=2 prevalidated=3
+PASS: limit=10 dry_run=False selected=3 prevalidated=3
+PASS: limit=32 dry_run=False selected=3 prevalidated=3
+PASS: limit=1 dry_run=True selected=1 prevalidated=3
+PASS: limit=None dry_run=False selected=3 prevalidated=3
+PASS: refused invalid limit 0
+PASS: refused invalid limit -1
+PASS: refused invalid limit 33
+PASS: refused invalid limit True
+PASS: limit=32 dry_run=False selected=32 prevalidated=40
+PASS: limit=32 dry_run=True selected=32 prevalidated=40
+PASS: capped scheduled prune + enforced paused timer across reboot
+=== Verify source changes ===
+=== Deploy snapshot manager and source schedule ===
+
+PLAY [local_backup] ***********************************************************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ********************************************************************************************************************************************************************************************************************************
+ok: [mars]
+
+TASK [local-backup : Get normal user account information] *********************************************************************************************************************************************************************************************
+ok: [mars]
+
+TASK [local-backup : Set normal user home directory] **************************************************************************************************************************************************************************************************
+ok: [mars]
+
+TASK [local-backup : Validate 0034 unattended backup scheduling controls] *****************************************************************************************************************************************************************************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [Setup Btrfs snapshot support with optional verified-Diaries barrier] ****************************************************************************************************************************************************************************
+included: snapshots for mars
+
+TASK [snapshots : snapshots | Refuse generic management of native receiver hosts] *********************************************************************************************************************************************************************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Validate activation and Diaries integration gates] **********************************************************************************************************************************************************************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Validate per-source snapshot flags] *************************************************************************************************************************************************************************************
+ok: [mars] => (item=@data) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "creation": true,
+        "name": "@data",
+        "path": "/media/usb/@data",
+        "prune": true,
+        "required": true
+    }
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Install native Btrfs snapshot prerequisites] ****************************************************************************************************************************************************************************
+ok: [mars]
+
+TASK [snapshots | Ensure managed data subvolume exists] ***********************************************************************************************************************************************************************************************
+included: btrfs for mars
+
+TASK [snapshots : snapshots | Resolve managed snapshot root] ******************************************************************************************************************************************************************************************
+ok: [mars]
+
+TASK [snapshots : snapshots | Inspect managed snapshot root] ******************************************************************************************************************************************************************************************
+ok: [mars]
+
+TASK [snapshots : snapshots | Verify existing snapshot root is a Btrfs subvolume] *********************************************************************************************************************************************************************
+ok: [mars]
+
+TASK [snapshots : snapshots | Refuse a non-subvolume snapshot root] ***********************************************************************************************************************************************************************************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Create managed snapshot-root subvolume] *********************************************************************************************************************************************************************************
+skipping: [mars]
+
+TASK [snapshots : snapshots | Create per-source timestamp directories] ********************************************************************************************************************************************************************************
+ok: [mars] => (item={'name': '@data', 'path': '/media/usb/@data', 'required': True, 'creation': True, 'prune': True})
+
+TASK [snapshots : snapshots | Install snapshot manager] ***********************************************************************************************************************************************************************************************
+changed: [mars]
+
+TASK [snapshots : snapshots | Install Diaries backup-history tool] ************************************************************************************************************************************************************************************
+ok: [mars]
+
+TASK [snapshots : snapshots | Install Btrfs extent-sharing acceptance tool] ***************************************************************************************************************************************************************************
+ok: [mars]
+
+TASK [snapshots : snapshots | Create shared schema-2 verifier directory] ******************************************************************************************************************************************************************************
+ok: [mars]
+
+TASK [snapshots : snapshots | Install independent schema-2 verifier for history checks] ***************************************************************************************************************************************************************
+ok: [mars]
+
+TASK [snapshots : snapshots | Initialise checkpoint hold state without overwriting existing holds] ****************************************************************************************************************************************************
+ok: [mars]
+
+TASK [snapshots : snapshots | Install snapshot manager configuration] *********************************************************************************************************************************************************************************
+ok: [mars]
+
+TASK [snapshots : snapshots | Install systemd units without activating them] **************************************************************************************************************************************************************************
+ok: [mars] => (item=btrfs-snapshot-create.service)
+changed: [mars] => (item=btrfs-snapshot-create.timer)
+changed: [mars] => (item=btrfs-snapshot-prune.service)
+changed: [mars] => (item=btrfs-snapshot-prune.timer)
+
+TASK [snapshots : snapshots | Flush systemd unit changes before preflight] ****************************************************************************************************************************************************************************
+
+RUNNING HANDLER [snapshots : Reload systemd for Btrfs snapshot manager] *******************************************************************************************************************************************************************************
+ok: [mars]
+
+TASK [snapshots : snapshots | Preflight native snapshot manager before changing schedulers] ***********************************************************************************************************************************************************
+ok: [mars]
+
+TASK [snapshots : snapshots | Show native snapshot-manager preflight] *********************************************************************************************************************************************************************************
+ok: [mars] => {
+    "btrfs_snapshot_manager_status.stdout_lines": [
+        "snapshot_root=/media/usb/@snapshots",
+        "filesystem=btrfs",
+        "qgroups_total=89",
+        "qgroups_stale=8",
+        "qgroups_under_deletion=0",
+        "qgroups_status=ok",
+        "retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30",
+        "complete_timestamp_sets=70;incomplete_timestamp_sets=0",
+        "source=@data:/media/usb/@data;managed_snapshots=70",
+        "diaries_verification=valid;logicalDataset=production;backupId=20261110-003113Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json"
+    ]
+}
+
+TASK [snapshots : snapshots | Enable native snapshot creation timer after explicit acceptance] ********************************************************************************************************************************************************
+ok: [mars]
+
+TASK [snapshots : snapshots | Enforce explicitly approved source pruning timer state] *****************************************************************************************************************************************************************
+ok: [mars]
+
+PLAY [remote_backup] **********************************************************************************************************************************************************************************************************************************
+skipping: no hosts matched
+
+PLAY RECAP ********************************************************************************************************************************************************************************************************************************************
+mars                       : ok=28   changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+=== Deploy replication and receiver schedule ===
+
+PLAY [Configure native Btrfs replication endpoints] ***************************************************************************************************************************************************************************************************
+
+TASK [Configure native Btrfs endpoint] ****************************************************************************************************************************************************************************************************************
+included: btrfs-replication for mars, backup
+
+TASK [btrfs-replication : Native Btrfs | Reject unsupported deployment host] **************************************************************************************************************************************************************************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Ensure privileged helper directory exists] *******************************************************************************************************************************************************************
+ok: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Initialize root-owned source protection state if missing] ****************************************************************************************************************************************************
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Read existing 0035 manager configuration] ********************************************************************************************************************************************************************
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install replication-aware 0035 pruning manager] **************************************************************************************************************************************************************
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Activate fail-closed protection in existing 0035 config] *****************************************************************************************************************************************************
+skipping: [backup]
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Keep retired endpoint sudoers absent] ************************************************************************************************************************************************************************
+ok: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Provision isolated receiver parent] **************************************************************************************************************************************************************************
+skipping: [mars] => (item=/@data/mars-received)
+skipping: [mars] => (item=/@data/mars-received/@data)
+skipping: [mars]
+ok: [backup] => (item=/@data/mars-received)
+ok: [backup] => (item=/@data/mars-received/@data)
+
+TASK [btrfs-replication : Native Btrfs | Provision operator-owned transaction state] ******************************************************************************************************************************************************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver-mode manager (opt in)] **********************************************************************************************************************************************************************
+skipping: [mars]
+changed: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Inspect independent receiver checkpoint holds] ***************************************************************************************************************************************************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Validate existing hold-file permissions] *********************************************************************************************************************************************************************
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Read existing hold state without altering it] ****************************************************************************************************************************************************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Validate mandatory checkpoints in existing hold state] *******************************************************************************************************************************************************
+skipping: [mars] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}})
+skipping: [mars] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}})
+skipping: [mars]
+ok: [backup] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "key": "20261013-171228Z",
+        "value": {
+            "reason": "Historical recovery baseline",
+            "source_uuids": {
+                "@data": "340674cc-d02c-244e-b7ec-e3ea5a6b151f"
+            }
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "key": "20261018-165453Z",
+        "value": {
+            "reason": "Preserved evidence checkpoint",
+            "source_uuids": {
+                "@data": "087c906a-0518-e34a-88f7-40a5b693c41a"
+            }
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Initialise receiver checkpoint holds only when absent] *******************************************************************************************************************************************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Read mandatory receiver checkpoint receipts] *****************************************************************************************************************************************************************
+skipping: [mars] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}})
+skipping: [mars] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}})
+skipping: [mars]
+ok: [backup] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}})
+ok: [backup] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}})
+
+TASK [btrfs-replication : Native Btrfs | Validate mandatory receiver checkpoint receipt identities] ***************************************************************************************************************************************************
+skipping: [mars] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': "btrfs_native_endpoint_role == 'receiver'", 'ansible_loop_var': 'item', 'item': {'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}})
+skipping: [mars] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': "btrfs_native_endpoint_role == 'receiver'", 'ansible_loop_var': 'item', 'item': {'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}})
+skipping: [mars]
+ok: [backup] => (item={'changed': False, 'failed': False, 'ansible_loop_var': 'item', 'item': {'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}, 'content': 'ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX3V1aWQiOiAiMzQwNjc0Y2MtZDAyYy0yNDRlLWI3ZWMtZTNlYTVhNmIxNTFmIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIzNDA2NzRjYy1kMDJjLTI0NGUtYjdlYy1lM2VhNWE2YjE1MWYiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTMtMTQwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJjMGI4MTM4My1iZGZjLTIyNGUtOTdiMS05MGNlZWU0ZDU0ZjAiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTEzVDE4OjA3OjAwLjk3MTM0NyswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K', 'source': '/@data/mars-received/.replication-state/20261013-171228Z.json', 'encoding': 'base64'}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "content": "ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX3V1aWQiOiAiMzQwNjc0Y2MtZDAyYy0yNDRlLWI3ZWMtZTNlYTVhNmIxNTFmIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIzNDA2NzRjYy1kMDJjLTI0NGUtYjdlYy1lM2VhNWE2YjE1MWYiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTMtMTQwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJjMGI4MTM4My1iZGZjLTIyNGUtOTdiMS05MGNlZWU0ZDU0ZjAiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTEzVDE4OjA3OjAwLjk3MTM0NyswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K",
+        "encoding": "base64",
+        "failed": false,
+        "item": {
+            "key": "20261013-171228Z",
+            "value": {
+                "reason": "Historical recovery baseline",
+                "source_uuids": {
+                    "@data": "340674cc-d02c-244e-b7ec-e3ea5a6b151f"
+                }
+            }
+        },
+        "source": "/@data/mars-received/.replication-state/20261013-171228Z.json"
+    }
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => (item={'changed': False, 'failed': False, 'ansible_loop_var': 'item', 'item': {'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}, 'content': 'ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX3V1aWQiOiAiMDg3YzkwNmEtMDUxOC1lMzRhLTg4ZjctNDBhNWI2OTNjNDFhIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIwODdjOTA2YS0wNTE4LWUzNGEtODhmNy00MGE1YjY5M2M0MWEiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTgtMDMwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJmOTFiMzIyYS00YWE3LWFkNDUtYTc2Ni1kN2ExZTJlYjE1YjkiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTE4VDE2OjU1OjM2LjE4NTE0NCswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K', 'source': '/@data/mars-received/.replication-state/20261018-165453Z.json', 'encoding': 'base64'}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "content": "ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX3V1aWQiOiAiMDg3YzkwNmEtMDUxOC1lMzRhLTg4ZjctNDBhNWI2OTNjNDFhIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIwODdjOTA2YS0wNTE4LWUzNGEtODhmNy00MGE1YjY5M2M0MWEiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTgtMDMwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJmOTFiMzIyYS00YWE3LWFkNDUtYTc2Ni1kN2ExZTJlYjE1YjkiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTE4VDE2OjU1OjM2LjE4NTE0NCswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K",
+        "encoding": "base64",
+        "failed": false,
+        "item": {
+            "key": "20261018-165453Z",
+            "value": {
+                "reason": "Preserved evidence checkpoint",
+                "source_uuids": {
+                    "@data": "087c906a-0518-e34a-88f7-40a5b693c41a"
+                }
+            }
+        },
+        "source": "/@data/mars-received/.replication-state/20261018-165453Z.json"
+    }
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install receiver-mode read-only config (opt in)] *************************************************************************************************************************************************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Provision stable transaction lock] ***************************************************************************************************************************************************************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Retire obsolete backup-initiated pull executable] ************************************************************************************************************************************************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Retire obsolete rsync-based pull helper] *********************************************************************************************************************************************************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Require simplified runtime installation before service cutover] **********************************************************************************************************************************************
+skipping: [backup]
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install source-initiated push service and timer] *************************************************************************************************************************************************************
+skipping: [backup] => (item=btrfs-native-push.service)
+skipping: [backup] => (item=btrfs-native-push.timer)
+skipping: [backup]
+ok: [mars] => (item=btrfs-native-push.service)
+ok: [mars] => (item=btrfs-native-push.timer)
+
+TASK [btrfs-replication : Native Btrfs | Check for active legacy rsync off-site phase before scheduling native push] **********************************************************************************************************************************
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Refuse dual off-site transports] *****************************************************************************************************************************************************************************
+skipping: [backup]
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Apply explicit push schedule state] **************************************************************************************************************************************************************************
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install public receiver retention policy (opt in)] ***********************************************************************************************************************************************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Keep retired observer sudoers absent] ************************************************************************************************************************************************************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install simplified agreed-parent command (opt in)] ***********************************************************************************************************************************************************
+ok: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install simplified Diaries backup status report] *************************************************************************************************************************************************************
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Validate simplified receiver retention settings] *************************************************************************************************************************************************************
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install shared manager with simplified receiver retention] ***************************************************************************************************************************************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver config with independent deletion gate] ******************************************************************************************************************************************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install dormant simplified receiver retention units] *********************************************************************************************************************************************************
+skipping: [mars] => (item=btrfs-receiver-simple-prune.service)
+skipping: [mars] => (item=btrfs-receiver-simple-prune.timer)
+skipping: [mars]
+ok: [backup] => (item=btrfs-receiver-simple-prune.service)
+ok: [backup] => (item=btrfs-receiver-simple-prune.timer)
+
+TASK [btrfs-replication : Native Btrfs | Enforce explicit receiver retention timer state] *************************************************************************************************************************************************************
+skipping: [mars]
+ok: [backup]
+
+PLAY RECAP ********************************************************************************************************************************************************************************************************************************************
+backup                     : ok=25   changed=1    unreachable=0    failed=0    skipped=11   rescued=0    ignored=0
+mars                       : ok=14   changed=0    unreachable=0    failed=0    skipped=22   rescued=0    ignored=0
+
+=== Check installed source prune timer ===
+# /etc/systemd/system/btrfs-snapshot-prune.timer
+[Unit]
+Description=Schedule GFS-style Btrfs snapshot pruning
+
+[Timer]
+OnCalendar=*-*-* 04:15:00 UTC
+Persistent=true
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target
+# /etc/systemd/system/btrfs-snapshot-prune.service
+[Unit]
+Description=Prune timestamp-named Btrfs snapshots
+After=local-fs.target
+ConditionPathExists=/etc/btrfs-snapshot-manager.json
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/btrfs-snapshot-manager --config /etc/btrfs-snapshot-manager.json prune --max-delete 32
+enabled
+=== Check installed receiver prune timer ===
+# /etc/systemd/system/btrfs-receiver-simple-prune.timer
+[Unit]
+Description=0040 Simplified Btrfs receiver retention timer
+
+[Timer]
+OnCalendar=*-*-* 04:15:00 UTC
+Persistent=false
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target
+enabled
+PASS: 0043 deployment and timer readback completed
+richard@mango:~/playbooks$

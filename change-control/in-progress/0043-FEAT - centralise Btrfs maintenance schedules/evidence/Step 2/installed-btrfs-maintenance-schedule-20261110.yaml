@@ -1,0 +1,21 @@
+---
+# 0043-FEAT. Canonical schedule definition for the Ansible controller.
+# Install into /etc/ansible/group_vars/all/diaries-maintenance-schedule.yaml
+# with: python3 scripts/maintenance-schedule.py --plan
+#       sudo -n python3 scripts/maintenance-schedule.py --apply
+# These are UTC schedules; activation gates remain in existing group/host inventory.
+
+# mars: verified Diaries production backup pull (separate from user-home backup)
+diaries_pull_on_calendar: "*-*-* 01:30:00 UTC"
+
+# mars: hourly snapshots, daily bounded source pruning
+btrfs_snapshot_create_on_calendar: "*-*-* *:00:00 UTC"
+btrfs_snapshot_prune_on_calendar: "*-*-* 04:15:00 UTC"
+btrfs_snapshot_prune_max_delete: 32
+
+# mars: off-site sender; backup: independent receiver pruning
+btrfs_native_push_on_calendar: "*-*-* 03:30:00 UTC"
+btrfs_simplified_receiver_prune_on_calendar: "*-*-* 04:15:00 UTC"
+
+# mars and backup: shared stale-qgroup reconciliation (after pruning)
+btrfs_stale_qgroup_on_calendar: "*-*-* 05:30:00 UTC"

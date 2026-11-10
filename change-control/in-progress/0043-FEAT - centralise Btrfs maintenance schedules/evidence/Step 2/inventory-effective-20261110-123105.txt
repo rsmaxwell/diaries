@@ -1,0 +1,44 @@
+richard@mango:~/playbooks$ if (
+  cd /home/richard/playbooks || exit 1
+
+  file=/etc/ansible/host_vars/mars/local-backup.yaml
+
+  echo '=== Inspect existing override ==='
+  sudo grep -n 'btrfs_snapshot_prune_on_calendar' "$file" || true
+
+  echo '=== Remove obsolete override if present ==='
+  sudo python3 - "$file" <<'PY'
+from pathlib import Path
+import re
+import sys
+
+path = Path(sys.argv[1])
+lines = path.read_bytes().splitlines(keepends=True)
+
+matches = [
+    i for i, line in enumerate(lines)
+    if re.match(rb'^btrfs_snapshot_prune_on_calendar\s*:', line)
+]
+
+if len(matches) > 1:
+    sys.exit("FAIL: Duplicate source pruning definitions")
+
+if not matches:
+    print("PASS: Override already absent")
+else:
+fiecho 'FAIL: Central maintenance schedule reconciliation' 04:15:00 UTC'" \
+=== Inspect existing override ===
+=== Remove obsolete override if present ===
+PASS: Override already absent
+=== Verify mars effective schedule ===
+btrfs_simplified_receiver_prune_on_calendar: '*-*-* 04:15:00 UTC'
+btrfs_snapshot_prune_max_delete: 32
+btrfs_snapshot_prune_on_calendar: '*-*-* 04:15:00 UTC'
+=== Verify backup effective schedule ===
+btrfs_simplified_receiver_prune_max_delete: 10
+btrfs_simplified_receiver_prune_on_calendar: '*-*-* 04:15:00 UTC'
+btrfs_snapshot_prune_max_delete: 32
+btrfs_snapshot_prune_on_calendar: '*-*-* 04:15:00 UTC'
+=== Verify pruning capacity ===
+PASS: Central maintenance schedule reconciled
+richard@mango:~/playbooks$

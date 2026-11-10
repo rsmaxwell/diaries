@@ -1,0 +1,19 @@
+commit 6d7f397048b8ed47c94f973a98096fc6e806e4e8
+Author:     Richard Maxwell <richard@rsmaxwell.co.uk>
+AuthorDate: Tue Nov 10 13:23:00 2026 +0000
+Commit:     Richard Maxwell <richard@rsmaxwell.co.uk>
+CommitDate: Tue Nov 10 13:23:00 2026 +0000
+
+    0043-FEAT: centralise Btrfs maintenance scheduling
+commit 6d7f397048b8ed47c94f973a98096fc6e806e4e8
+Author: Richard Maxwell <richard@rsmaxwell.co.uk>
+
+    0043-FEAT: centralise Btrfs maintenance scheduling
+
+ MAINTENANCE-SCHEDULE.md                            | 82 ++++++++++++++++++++++
+ roles/snapshots/README.md                          | 26 ++++++-
+ roles/snapshots/files/btrfs-snapshot-manager.py    |  9 ++-
+ roles/snapshots/tasks/main.yaml                    |  2 +-
+ .../tests/verify-0040-step13-source-prune-cap.py   | 19 ++++-
+ 5 files changed, 129 insertions(+), 9 deletions(-)
+## main...origin/main [ahead 1]
