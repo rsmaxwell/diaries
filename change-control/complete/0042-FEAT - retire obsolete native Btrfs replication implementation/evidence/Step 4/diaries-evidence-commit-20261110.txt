@@ -1,0 +1,78 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ if (
+  cd '/cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries' || exit 1
+
+  feature='change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation'
+
+  raw1="$feature/evidence/Step 1/source-verification-20261110.txt"
+  raw2="$feature/evidence/Step 2/deployment-20261110.txt"
+
+  echo '=== Verify raw evidence is present ==='
+  test -f "$raw1" && test -f "$raw2" || exit 1
+
+  echo '=== Verify only 0042 files are staged ==='
+  unexpected=$(git diff --cached --name-only |
+    grep -Fv "$feature/" || true)
+
+  if test -n "$unexpected"; then
+    printf 'FAIL: Unexpected staged files:\n%s\n' "$unexpected"
+    exit 1
+  fi
+
+  test -n "$(git diff --cached --name-only)" || exit 1
+
+  echo '=== Check documentation and tools, excluding two raw logs ==='
+  git diff --cached --check -- \
+    "$feature" \
+    ":(exclude)$raw1" \
+    ":(exclude)$raw2" \
+fiecho 'FAIL: 0042 Diaries evidence commit'ed''ement acceptance" \)
+=== Verify raw evidence is present ===
+=== Verify only 0042 files are staged ===
+=== Check documentation and tools, excluding two raw logs ===
+=== Confirm both raw logs remain staged ===
+raw_logs_staged=2
+=== Commit 0042 Diaries documentation and evidence ===
+[main e8907ba] 0042-FEAT: record legacy replication retirement acceptance
+ 17 files changed, 4368 insertions(+)
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/IMPLEMENTATION-STEPS.md
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/README.md
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/evidence/Step 1/0042-source-retirement-20261110-081412Z.json
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/evidence/Step 1/source-retirement-plan.txt
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/evidence/Step 1/source-verification-20261110.txt
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/evidence/Step 2/deployment-20261110.txt
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/evidence/Step 3/final-readback-20261110.txt
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/evidence/Step 3/post-deployment-20261110.txt
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/evidence/Step 4/playbooks-source-commit-20261110.txt
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/reports/ACCEPTANCE-RECONCILIATION-20261110.md
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/reports/SOURCE-CONTROL-RECONCILIATION-20261110.md
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/reports/SOURCE-RETIREMENT-PLAN-20261110.md
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/tools/accepted-0040-host-retirement-paths.json
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/tools/obsolete-playbooks-paths.json
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/tools/retire-0042-playbooks-source.py
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/tools/stage-0042-only.py
+ create mode 100644 change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/tools/verify-0042-host-retirement.py
+=== Diaries commit receipt ===
+commit e8907ba9c7544d239671e6acf6fedc7eaa194947 (HEAD -> main)
+Author:     Richard Maxwell <richard@rsmaxwell.co.uk>
+AuthorDate: Tue Nov 10 09:00:53 2026 +0000
+Commit:     Richard Maxwell <richard@rsmaxwell.co.uk>
+CommitDate: Tue Nov 10 09:00:53 2026 +0000
+
+    0042-FEAT: record legacy replication retirement acceptance
+=== Remaining working-tree changes ===
+## main...origin/main [ahead 1]
+ M "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/DESIGN-AND-SAFETY.md"
+ M "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/IMPLEMENTATION-STEPS.md"
+ M "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/README.md"
+?? "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/evidence/Step 08/"
+?? "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/evidence/Step 09/"
+?? "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/evidence/Step 10/"
+?? "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/evidence/Step 11/"
+?? "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/reports/"
+?? "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/tools/collect-0039-step08-host-baseline.sh"
+PASS: 0042 Diaries evidence committed
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

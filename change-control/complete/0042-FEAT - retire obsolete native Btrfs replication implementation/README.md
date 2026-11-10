@@ -1,6 +1,6 @@
 # 0042-FEAT — Retire obsolete native Btrfs replication implementation
 
-**Prepared:** 10 November 2026. **Execution updated:** 10 November 2026. **Status:** Steps 1–2 verified; Step 3 core host checks passed but final backup-status readback remains; formal acceptance and source-control receipts remain OPEN.
+**Prepared:** 10 November 2026. **Accepted:** 10 November 2026. **Status:** CLOSED (on committing the closure move to `change-control/complete/`). Steps 1–4 accepted with source, deployment, host and Git evidence. See `reports/FINAL-CLOSURE-20261110.md`.
 
 ## Purpose
 
@@ -20,10 +20,14 @@ The **host executable retirement was already accepted under 0040 Step 12**; this
 
 The Playbooks removal utility verified, archived and staged exactly 215 tracked files (Git baseline `e0da797310ab452ddc61e7368c50a444fe881e41`). Its archive and JSON receipt were transferred back to the Windows Diaries feature directory. The corrected regression suites all passed, including 22 tests of the separately uncommitted 0039 maintenance feature. Ansible syntax and `--check --diff` passed on both hosts. The actual deployment used `--skip-tags qgroup-maintenance` and reported **0 changed, 0 failed** on `mars` and `backup`. The read-only host audit found all 39 retired `mars` paths and all 35 retired `backup` paths absent. The simplified service and receiver status agreed on parent `20261110-030004Z`; protected checkpoints were validated, and all relevant timers were enabled/active. Snapshot status: `mars` 70 complete/0 incomplete with valid production backup, `backup` 33 complete/0 incomplete. See `reports/ACCEPTANCE-RECONCILIATION-20261110.md` and original raw evidence in `evidence/Step 1` through `Step 3`.
 
-No new data deletion, off-site transfer, restore, quota rescan or qgroup cleanup occurred during 0042 deployment or its read-only acceptance audit. The source deletions remain **staged but uncommitted** at the end of the supplied log. Existing 0039 work remains uncommitted and must not be mixed accidentally into a 0042 source commit. An explicit read-only backup-status check and source-control commit receipts are the remaining closure reconciliation items; no repeat of completed deployment or regression suites is needed.
+No new data deletion, off-site transfer, restore, quota rescan or qgroup cleanup occurred during 0042 deployment or its read-only acceptance audit. The 215 source deletions and eight 0042-only updates were committed in Playbooks as `328b81b3606ebff98fc8787d2a08eff3627d2a78`. The Diaries implementation/evidence commit is `e8907ba9c7544d239671e6acf6fedc7eaa194947`. The 0039 work remains separate and uncommitted. The final `diaries-backup-status --json` readback and rollback archive checksum both passed. The last close-out commit additionally tracks the otherwise ignored rollback archive and moves the accepted feature to `complete`.
 
 ## Execution and acceptance
 
-See `IMPLEMENTATION-STEPS.md`. Apply source changes with Beyond Compare 4 first; deletion is **not** implied by applying a ZIP. Run the standalone feature tool `--plan` then `--apply` on mango after explicitly synchronising the Windows Diaries feature to `/home/richard/diaries`. Its archive and receipt are temporary in the mango execution copy; preserve them by synchronising into the authoritative Windows Diaries repository before closure. After that run a consolidated regression, Ansible syntax/check preview, deploy once and verify active hosts. Keep implementation evidence under this feature; formal closure requires reviewed acceptance.
+See `IMPLEMENTATION-STEPS.md`. Apply source changes with Beyond Compare 4 first; deletion is **not** implied by applying a ZIP. Run the standalone feature tool `--plan` then `--apply` on mango after explicitly synchronising the Windows Diaries feature to `/home/richard/diaries`. Its archive and receipt were synchronised into the authoritative Windows Diaries repository; the final closure commit force-tracks the ignored rollback archive for reproducible recovery. After that run a consolidated regression, Ansible syntax/check preview, deploy once and verify active hosts. Keep implementation evidence under this feature; formal closure requires reviewed acceptance.
 
 No snapshot deletion, quota rescan, native transfer, parent reset, data-set removal or changes to backup recovery capability are in scope.
+
+## Formal closure and retained records
+
+Steps 1–4 are accepted based on the 10 November 2026 execution evidence and separate Playbooks/Diaries Git receipts. The closed feature and its signed-off report are kept under `change-control/complete/0042-FEAT - retire obsolete native Btrfs replication implementation/`. The immutable raw Ansible logs are preserved. The rollback archive is tracked by explicit `git add -f` despite the generic evidence archive ignore rule. This exception is limited to the 0042 rollback archive; 0039 remains open.

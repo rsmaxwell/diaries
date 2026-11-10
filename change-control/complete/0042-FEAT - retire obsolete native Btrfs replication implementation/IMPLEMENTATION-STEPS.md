@@ -1,6 +1,6 @@
 # 0042-FEAT — Implementation and verification
 
-**Status as of 10 November 2026: Steps 1–2 VERIFIED; Step 3 CORE CHECKS PASSED WITH BACKUP-STATUS READBACK PENDING; FORMAL ACCEPTANCE PENDING.** All historical raw evidence is preserved under this feature. The 215 Playbooks deletions remain staged and not yet committed. 0039 changes must be kept distinct.
+**Status as of 10 November 2026: Steps 1–4 CLOSED upon final closure commit; 0042-FEAT formally accepted.** The completed feature includes source retirement, deployment, rollback evidence, independent host verification and separate source-control receipts. 0039 remains independent and OPEN.
 
 ## Step 1 — Verify source and archive obsolete Playbooks code
 
@@ -57,15 +57,22 @@ This checks **39 accepted 0040 paths on mars and 35 on backup** for continued ab
 
 Verify **read-only** on mars and backup: `systemctl show ... -p ExecStart`, `btrfs-simplified-replication sender status`, `receiver status`, status report `diaries-backup-status --json`, all enabled timers, absence of the old endpoint sudoers, and current snapshot-manager health. The accepted production parent from the 10 November baseline is `20261110-030004Z` and both ends reported `relation=equal`, `receiver_parent_verified=true`; the *later* parent may have advanced normally. Compare sender and receiver, not against a frozen date. Check that older host binaries did not reappear; do not delete host files from this feature. Reuse accepted 0040 restore and transfer evidence.
 
-Step 3 and overall feature close only after user acceptance; preserve a separate change package and Git receipts for Diaries and Playbooks.
+Step 3 was accepted from the successful read-only host audit and subsequent backup-status readback. The source-control receipts and feature closure are recorded in Step 4 below.
 
 
 ## Executed-stage evidence reconciliation — 10 November 2026
 
 | Step | Technical outcome | Evidence | Formal status |
 |---|---|---|---|
-| 1 — Source verification and archive | 215 exact source files hash-checked, archived, archive read back, and staged with `git rm`; all eight regression suites passed after correcting the root-ownership test fixture | `evidence/Step 1/0042-source-retirement-20261110-081412Z.json`, `0042-retired-playbooks-20261110-081412Z.tar.gz`, `source-retirement-plan.txt`, `source-verification-20261110.txt` | Awaiting user acceptance and Playbooks Git receipt |
-| 2 — Syntax and deployment | Ansible syntax passed; preview 0 changed/0 failed; deployed with `--skip-tags qgroup-maintenance`, `mars` 14 OK/0 changed, `backup` 25 OK/0 changed | `evidence/Step 2/deployment-20261110.txt`; preview in Step 1 verification | Awaiting user acceptance |
-| 3 — Host acceptance | Previously retired 39 `mars` and 35 `backup` paths absent; same verified parent at both ends; timers active; snapshot integrity passed; 0039 qgroup functionality intact | `evidence/Step 3/post-deployment-20261110.txt` | Awaiting final backup-status readback and user acceptance |
+| 1 — Source verification and archive | 215 exact source files hash-checked, archived and retired; all eight regression suites passed | Step 1 evidence plus Playbooks commit `328b81b` | **CLOSED** |
+| 2 — Syntax and deployment | Ansible syntax passed; preview and real deployment both 0 changed/0 failed | `evidence/Step 2/deployment-20261110.txt`; preview in Step 1 | **CLOSED** |
+| 3 — Host acceptance | 39 `mars` and 35 `backup` legacy paths absent; equal parent; timers active; snapshots and latest production backup verified | `evidence/Step 3/post-deployment-20261110.txt`, `final-readback-20261110.txt` | **CLOSED** |
+| 4 — Source-control reconciliation and formal closure | Separate 0042 commits verified; rollback archive SHA-256 matches receipt and is explicitly tracked in closure commit; 0039 changes excluded | `evidence/Step 4/playbooks-source-commit-20261110.txt`, `diaries-evidence-commit-20261110.txt`, `reports/FINAL-CLOSURE-20261110.md` | **CLOSED on final closure commit** |
 
-Outstanding for formal closure: one read-only `diaries-backup-status --json` check on `mars` (planned in Step 3 but not present in the uploaded execution logs), verification that the rollback archive hash equals the receipt's `archive_sha256` after synchronisation, separate Git commit receipts for 0042 Playbooks and Diaries, and explicit acceptance of Steps 1–3. Avoid staging uncommitted 0039 files indiscriminately. No fresh restore, snapshot deletion or replication transfer is required.
+## Step 4 — Formal acceptance and final repository move
+
+The Playbooks retirement was committed as `328b81b3606ebff98fc8787d2a08eff3627d2a78` (215 deletions and eight 0042 updates). The Diaries acceptance evidence was committed as `e8907ba9c7544d239671e6acf6fedc7eaa194947` (17 files). Both commits kept the uncommitted 0039 changes separate. The final 10 November readback verified archive SHA-256 `d00f75fd7d3d5000f234f633ad65887331f122f57a58c3e9b1302971facba37b` and 215 archive members. `diaries-backup-status --json` showed verified production backup `20261110-003113Z` and identical parent `20261110-030004Z`.
+
+The raw rollback archive had been copied to Windows but was excluded by the repository's generic `change-control/**/evidence/**/*.tar.gz` rule. The final closure change therefore tracks this one archive using `git add -f` and then moves the feature directory, including the tracked archive, from `in-progress` to `complete`. This is an explicit evidence-preservation exception, not a change to the general ignore rules. Historical raw logs remain unchanged.
+
+**Acceptance:** The previously agreed implementation, regression, deployment and host criteria have been satisfied. Steps 1–4 are formally closed when the operator applies and commits the reviewed closure move. No further host action or new restore test is required. 0039-DEF remains in progress and must not be staged or committed as part of 0042.
