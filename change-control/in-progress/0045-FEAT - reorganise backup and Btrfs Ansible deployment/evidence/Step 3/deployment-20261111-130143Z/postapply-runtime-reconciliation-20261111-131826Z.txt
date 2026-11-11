@@ -1,0 +1,18 @@
+=== Step 3: reconciled v2 static installation comparison ===
+RECONCILED: mars systemd_units:btrfs-clear-stale-qgroups.service (ExecStart execution-history digest only; installed unit, drop-ins and loaded properties unchanged)
+RECONCILED: mars systemd_units:btrfs-native-push.service (ExecStart execution-history digest only; installed unit, drop-ins and loaded properties unchanged)
+RECONCILED: mars systemd_units:btrfs-snapshot-create.service (ExecStart execution-history digest only; installed unit, drop-ins and loaded properties unchanged)
+RECONCILED: mars systemd_units:btrfs-snapshot-prune.service (ExecStart execution-history digest only; installed unit, drop-ins and loaded properties unchanged)
+RECONCILED: mars systemd_units:diaries-pull.service (ExecStart execution-history digest only; installed unit, drop-ins and loaded properties unchanged)
+PASS: mars static installation fingerprint identical
+PASS: backup static installation fingerprint identical
+PASS: Both hosts static fingerprints identical; review runtime and source-to-destination coverage separately
+=== Step 3: verify loaded services are current (mars) ===
+PASS: btrfs-clear-stale-qgroups.service loaded and up to date
+PASS: btrfs-native-push.service loaded and up to date
+PASS: btrfs-snapshot-create.service loaded and up to date
+PASS: btrfs-snapshot-prune.service loaded and up to date
+PASS: diaries-pull.service loaded and up to date
+=== Step 3: Docker apt signing key remained unchanged ===
+PASS: Docker signing key unchanged
+PASS: read-only reconciliation complete; Step 3 still requires acceptance review

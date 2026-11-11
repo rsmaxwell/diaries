@@ -1,0 +1,6 @@
+=== 0045 Jenkins live-pod caller audit (read-only) ===
+pod: jenkins-7bc7947b9-pvtts
+job_config_files: 27
+PASS: No legacy backup playbook or launcher references in scanned Jenkins job files
+PASS: All running Jenkins pods scanned; no legacy callers found
+NOTE: Jenkinsfiles fetched dynamically from SCM and external schedulers are not covered

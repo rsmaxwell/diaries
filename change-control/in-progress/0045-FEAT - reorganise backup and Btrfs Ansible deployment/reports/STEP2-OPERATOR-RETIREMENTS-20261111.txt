@@ -1,0 +1,16 @@
+0045-FEAT — candidate Playbooks operator-file retirements AFTER caller audit
+
+DO NOT remove installed /root/scripts/backup/remote/ on mars.
+DO NOT modify Btrfs snapshot datasets.
+
+Playbooks repository files to remove only after verifying external callers:
+  local-backup.yaml
+  scripts/local-backup.sh
+  remote-backup.yaml
+  scripts/remote-backup.sh
+
+Alternative receiver operation:
+  ansible-playbook btrfs-replication.yaml --limit backup --vault-password-file ~/.vault_pass.txt
+
+A source-only zip archive cannot remove files in a working repository.
+Do not use rsync --delete or mirror the ZIP over the repository.

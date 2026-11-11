@@ -1,0 +1,315 @@
+
+PLAY [local_backup] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [mars]
+
+TASK [docker : Docker | Install prerequisite packages] *************************
+ok: [mars]
+
+TASK [docker : Docker | Ensure apt keyrings directory exists] ******************
+ok: [mars]
+
+TASK [docker : Docker | Install Docker apt signing key] ************************
+ok: [mars]
+
+TASK [docker : Docker | Remove legacy Docker repository definition] ************
+ok: [mars]
+
+TASK [docker : Docker | Add Docker repository] *********************************
+ok: [mars]
+
+TASK [docker : Docker | Update apt cache after repository change] **************
+skipping: [mars]
+
+TASK [docker : Docker | Install Docker packages] *******************************
+ok: [mars]
+
+TASK [docker : Docker | Add remote user to docker group] ***********************
+ok: [mars]
+
+TASK [docker : Docker | Enable and start Docker] *******************************
+ok: [mars]
+
+TASK [local-backup : Get normal user account information] **********************
+ok: [mars]
+
+TASK [local-backup : Set normal user home directory] ***************************
+ok: [mars]
+
+TASK [local-backup : Validate 0034 unattended backup scheduling controls] ******
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [local-backup : local-backup:utilities | Install utility packages] ********
+ok: [mars]
+
+TASK [local-backup : Mount the external USB drive] *****************************
+ok: [mars]
+
+TASK [local-backup : diaries pull | Validate opt-in configuration] *************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [local-backup : diaries pull | Create normal-user-owned script and receiving directories] ***
+ok: [mars] => (item=/home/richard/scripts/backup)
+ok: [mars] => (item=/media/usb/@data/backup/pluto)
+
+TASK [local-backup : diaries pull | Inspect shared whole-backup writer lock] ***
+ok: [mars]
+
+TASK [local-backup : diaries pull | Create shared whole-backup writer lock once] ***
+skipping: [mars]
+
+TASK [local-backup : diaries pull | Preserve writer-lock ownership/mode for normal-user backup jobs] ***
+ok: [mars]
+
+TASK [local-backup : diaries pull | Install opt-in pull helper as the normal SSH user] ***
+ok: [mars]
+
+TASK [local-backup : diaries pull | Install receiving publisher as the normal SSH user] ***
+ok: [mars]
+
+TASK [local-backup : diaries pull | Install schema-2 manifest verifier as the normal SSH user] ***
+ok: [mars]
+
+TASK [local-backup : diaries pull | Template configured operator wrapper] ******
+ok: [mars]
+
+TASK [local-backup : diaries pull | Inspect previously installed unattended receive timer] ***
+ok: [mars]
+
+TASK [local-backup : diaries pull | Disable stale unattended receive timer when helper is not installed] ***
+skipping: [mars]
+
+TASK [local-backup : diaries pull | Install unattended receive service and timer] ***
+ok: [mars] => (item=diaries-pull.service)
+ok: [mars] => (item=diaries-pull.timer)
+
+TASK [local-backup : diaries pull | Flush systemd unit changes before timer state] ***
+
+TASK [local-backup : diaries pull | Apply explicit unattended receive schedule state] ***
+ok: [mars]
+
+TASK [local-backup : source snapshot access | Validate explicit opt-in and fixed source boundary] ***
+skipping: [mars]
+
+TASK [local-backup : source snapshot access | Confirm writable Btrfs source is a real directory] ***
+skipping: [mars]
+
+TASK [local-backup : source snapshot access | Refuse missing or redirected source] ***
+skipping: [mars]
+
+TASK [local-backup : source snapshot access | Install ACL utilities] ***********
+skipping: [mars]
+
+TASK [local-backup : source snapshot access | Read-only ACL for existing backup source tree] ***
+skipping: [mars]
+
+TASK [local-backup : source snapshot access | Configure default ACLs on source directories] ***
+skipping: [mars]
+
+TASK [local-backup : source snapshot access | Confirm source marker readable as transfer account] ***
+skipping: [mars]
+
+TASK [local-backup : source snapshot access | Explain immutable snapshot acceptance] ***
+skipping: [mars]
+
+TASK [Setup Btrfs snapshot support with optional verified-Diaries barrier] *****
+included: snapshots for mars
+
+TASK [snapshots : snapshots | Refuse generic management of native receiver hosts] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Validate activation and Diaries integration gates] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Validate per-source snapshot flags] **************
+ok: [mars] => (item=@data) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "creation": true,
+        "name": "@data",
+        "path": "/media/usb/@data",
+        "prune": true,
+        "required": true
+    }
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Install native Btrfs snapshot prerequisites] *****
+ok: [mars]
+
+TASK [snapshots | Ensure managed data subvolume exists] ************************
+included: btrfs for mars
+
+TASK [btrfs : Create btrfs subvolume] ******************************************
+ok: [mars]
+
+TASK [btrfs : Show Btrfs creation output] **************************************
+ok: [mars] => {
+    "result.stdout_lines": [
+        "{ filesystem: '/media/usb', subvolume: '/media/usb/@data', limit: '4000000000000' }",
+        "The btrfs filesystem '/media/usb' exists",
+        "The btrfs subvolume '/media/usb/@data' already exists",
+        "The qgroups in the btrfs subvolume '/media/usb/@data' were displayed sucessfully",
+        "{ qgroupid: '0/260', refer: '350613590016', excl: '16384', max_rfer: '4000000000000', max_excl: 'none', path: '@data' }"
+    ]
+}
+
+TASK [btrfs : Set file permissions for the btrfs subvolume] ********************
+ok: [mars]
+
+TASK [snapshots : snapshots | Resolve managed snapshot root] *******************
+ok: [mars]
+
+TASK [snapshots : snapshots | Inspect managed snapshot root] *******************
+ok: [mars]
+
+TASK [snapshots : snapshots | Verify existing snapshot root is a Btrfs subvolume] ***
+ok: [mars]
+
+TASK [snapshots : snapshots | Refuse a non-subvolume snapshot root] ************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [snapshots : snapshots | Create managed snapshot-root subvolume] **********
+skipping: [mars]
+
+TASK [snapshots : snapshots | Create per-source timestamp directories] *********
+ok: [mars] => (item={'name': '@data', 'path': '/media/usb/@data', 'required': True, 'creation': True, 'prune': True})
+
+TASK [snapshots : snapshots | Install snapshot manager] ************************
+ok: [mars]
+
+TASK [snapshots : snapshots | Install Diaries backup-history tool] *************
+ok: [mars]
+
+TASK [snapshots : snapshots | Install Btrfs extent-sharing acceptance tool] ****
+ok: [mars]
+
+TASK [snapshots : snapshots | Create shared schema-2 verifier directory] *******
+ok: [mars]
+
+TASK [snapshots : snapshots | Install independent schema-2 verifier for history checks] ***
+ok: [mars]
+
+TASK [snapshots : snapshots | Initialise checkpoint hold state without overwriting existing holds] ***
+ok: [mars]
+
+TASK [snapshots : snapshots | Install snapshot manager configuration] **********
+ok: [mars]
+
+TASK [snapshots : snapshots | Install systemd units without activating them] ***
+ok: [mars] => (item=btrfs-snapshot-create.service)
+ok: [mars] => (item=btrfs-snapshot-create.timer)
+ok: [mars] => (item=btrfs-snapshot-prune.service)
+ok: [mars] => (item=btrfs-snapshot-prune.timer)
+
+TASK [snapshots : snapshots | Flush systemd unit changes before preflight] *****
+
+TASK [snapshots : snapshots | Preflight native snapshot manager before changing schedulers] ***
+ok: [mars]
+
+TASK [snapshots : snapshots | Show native snapshot-manager preflight] **********
+ok: [mars] => {
+    "btrfs_snapshot_manager_status.stdout_lines": [
+        "snapshot_root=/media/usb/@snapshots",
+        "filesystem=btrfs",
+        "qgroups_total=89",
+        "qgroups_stale=0",
+        "qgroups_under_deletion=0",
+        "qgroups_status=ok",
+        "retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30",
+        "complete_timestamp_sets=78;incomplete_timestamp_sets=0",
+        "source=@data:/media/usb/@data;managed_snapshots=78",
+        "diaries_verification=valid;logicalDataset=production;backupId=20261111-003057Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json"
+    ]
+}
+
+TASK [snapshots : snapshots | Enable native snapshot creation timer after explicit acceptance] ***
+ok: [mars]
+
+TASK [snapshots : snapshots | Enforce explicitly approved source pruning timer state] ***
+ok: [mars]
+
+TASK [local-backup : install_user_scripts | Create directories] ****************
+ok: [mars] => (item=/home/richard/scripts/backup)
+ok: [mars] => (item=/home/richard/scripts/backup/cron)
+ok: [mars] => (item=/home/richard/scripts/backup/home)
+ok: [mars] => (item=/home/richard/log/backup)
+
+TASK [local-backup : install_user_scripts | Copy scripts] **********************
+ok: [mars]
+
+TASK [local-backup : debug] ****************************************************
+ok: [mars] => {
+    "user_script_sync.stdout_lines": []
+}
+
+TASK [local-backup : install_user_scripts | Template backup scripts] ***********
+ok: [mars] => (item=backup.sh)
+ok: [mars] => (item=cron/backup.sh)
+ok: [mars] => (item=home/backup.sh)
+
+TASK [local-backup : Set user home and cron backup schedule] *******************
+ok: [mars]
+
+TASK [local-backup : install_machine_scripts | Create directories] *************
+ok: [mars] => (item=/root/scripts/backup)
+ok: [mars] => (item=/root/scripts/backup/cron)
+ok: [mars] => (item=/root/scripts/backup/home)
+ok: [mars] => (item=/root/scripts/backup/remote)
+ok: [mars] => (item=/root/log/backup)
+
+TASK [local-backup : install_machine_scripts | Copy files] *********************
+ok: [mars]
+
+TASK [local-backup : debug] ****************************************************
+ok: [mars] => {
+    "machine_script_sync.stdout_lines": []
+}
+
+TASK [local-backup : install_machine_scripts | Template backup scripts] ********
+ok: [mars] => (item=backup.sh)
+ok: [mars] => (item=cron/backup.sh)
+ok: [mars] => (item=home/backup.sh)
+ok: [mars] => (item=remote/backup.sh)
+
+TASK [local-backup : install_machine_scripts | Install cron jobs] **************
+ok: [mars] => (item={'name': 'backup', 'script': 'scripts/backup/backup.sh', 'minute': '15', 'hour': '2'})
+
+PLAY RECAP *********************************************************************
+mars                       : ok=61   changed=0    unreachable=0    failed=0    skipped=12   rescued=0    ignored=0   
+

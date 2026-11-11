@@ -1,0 +1,7 @@
+FAIL: mars 5 static installation differences
+  DIFFERENCE: systemd_units:btrfs-clear-stale-qgroups.service
+  DIFFERENCE: systemd_units:btrfs-native-push.service
+  DIFFERENCE: systemd_units:btrfs-snapshot-create.service
+  DIFFERENCE: systemd_units:btrfs-snapshot-prune.service
+  DIFFERENCE: systemd_units:diaries-pull.service
+PASS: backup static installation fingerprint identical

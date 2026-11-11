@@ -1,0 +1,7 @@
+# 0045-FEAT Step 2 — Jenkins persistent volume follow-up (11 November 2026)
+
+The four-host caller audit completed successfully but did not cover Jenkins jobs on `pluto`, because the default Jenkins root locations were absent. The Playbooks source in `playbook-sources-20261111-111917.zip` declares the Jenkins PV host path `/mnt/jenkins-data` (`roles/builder/files/sync/helm/builder/templates/jenkins-pv.yaml`). The deployed state should be confirmed; this is a source declaration, not proof of the live PV mount.
+
+Run `tools/audit-0045-pluto-jenkins.sh` from Windows Cygwin. It connects using `ssh pluto` as the configured user (`richard`), uses read-only `sudo -n` to inspect job `config.xml`, `Jenkinsfile`, `.groovy`, `.yaml`, `.yml`, and `.sh` candidates in `/mnt/jenkins-data/jobs`, plus global Jenkins configuration/init Groovy. It ignores build outputs and caches and reports **matching paths only**. The script fails on missing jobs directory, unreadable candidates, or oversized candidates; it does not claim absence when coverage is incomplete. It writes evidence into the 0045 feature directory.
+
+Even a clean scan cannot prove that SCM-hosted Jenkinsfiles, dynamically constructed jobs, other external job runners or other repositories do not invoke the old entry points. Do not retire existing launchers solely on this audit. Preserve them unless a replacement/caller migration is verified, or leave retirement outside the current Step 2 refactor.

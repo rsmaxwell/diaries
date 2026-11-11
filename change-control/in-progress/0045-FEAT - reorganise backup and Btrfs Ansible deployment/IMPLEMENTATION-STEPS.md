@@ -1,6 +1,6 @@
 # 0045-FEAT — Implementation plan and acceptance gates
 
-**Step 1 CLOSED (11 November 2026)** following accepted definitive v2 installed manifests and Playbooks source/inventory freeze. **Steps 2–4 OPEN.** 0039-DEF and 0043-FEAT are CLOSED. Prefer one substantial refactor plus one consolidated verification rather than numerous implementation increments.
+**Steps 1–3 CLOSED (11 November 2026)** after accepted baseline, source equivalence, actual deployment and zero-change reapply. **Step 4 OPEN** pending final Diaries Git/evidence publication and feature closure. 0039-DEF and 0043-FEAT are CLOSED. Prefer one substantial refactor plus one consolidated verification rather than numerous implementation increments.
 
 ## Step 1 — Freeze accepted source, effective inventory and installed baseline (CLOSED — 11 November 2026)
 
@@ -14,7 +14,7 @@
 
 **Gate: ACCEPTED.** Definitive schema-v2 baseline `evidence/Step 1/baseline-20261111-111819Z/` records Playbooks Git, inventory topology, installed files/units/packages/ACL/cron/mount and read-only runtime state for both hosts. Source-to-installed mapping and known launcher references are reconciled in `reports/STEP1-FINAL-ACCEPTANCE-20261111.md`; temporary artifacts are excluded. No installed-system changes occurred. Actual external callers (including unattended invocations outside tracked Playbooks) must be checked immediately before retiring `remote-backup.yaml` or launcher in Step 2, because Step 1 source/audit evidence alone cannot prove the absence of those callers.
 
-## Step 2 — Implement one coherent Ledger-style refactor (OPEN)
+## Step 2 — Implement one coherent Ledger-style refactor (CLOSED — 11 November 2026)
 
 **Target:** `/home/richard/playbooks` on `mango`, after confirming clean baseline. Prepare the coherent change package for Beyond Compare 4; **no** edits to Playbooks inventory copies or permanent one-off scripts.
 
@@ -27,7 +27,9 @@
 
 **Gate:** Playbooks diff is complete, readable, limited in scope and reviewable as one package; every old installed asset and condition has a source mapping; risk-sensitive operations and rollback are identified. No deployment during code editing.
 
-## Step 3 — Consolidated regressions, controlled apply, and installed-state equivalence (OPEN)
+**Gate: ACCEPTED.** Phase imports retained all 24 snapshot tasks and all 36 native replication tasks with identical conditions, tags, arguments and ordering; native/generic dispatch and existing safety controls were preserved. Source-equivalence regression, syntax checks, permanent tests and caller audits passed. Playbooks commit `1939a0984934062d03c01de826ad4a5a87d3338d` is published. Legacy `local-backup`/`remote-backup` launchers are intentionally retained because external callers outside the inspected environment cannot be ruled out. See `reports/STEP2-FINAL-ACCEPTANCE-20261111.md`.
+
+## Step 3 — Consolidated regressions, controlled apply, and installed-state equivalence (CLOSED — 11 November 2026)
 
 **Offline checks on `mango`:** full relevant Ansible syntax and host/tag selection checks, no obsolete executable entry-point references, permanent Btrfs replication tests (`verify-replication.py`, `verify-protection.py`, `verify-shared-retention.py`), maintained snapshot/backup tests, guards for source/receiver mismatch, role/task install-map tests, templated-unit comparisons and `--check --diff` where meaningful.
 
@@ -36,6 +38,8 @@
 **Evidence (`evidence/Step 3/`, reports in `reports/`):** offline regression outputs, Ansible results, before/after manifest comparison, service and unit readbacks, natural scheduler state, any deviations with corrections and affected retests only.
 
 **Gate:** *identical installation* accepted according to `INSTALLATION-EQUIVALENCE-CONTRACT.md`, maintained regressions all pass, no unapproved changed state, no failure concealed by summary output. If differences appear, keep 0045 open and fix/refactor/retest affected scope.
+
+**Gate: ACCEPTED.** Read-only initial comparison and nine focused comparator tests reconciled five `mars` systemd execution-history-only digests; actual unit files, drop-ins, loaded properties, permissions and service configuration remained identical. `backup` and `mars` v2 static fingerprints match the accepted baseline. The 11 November 13:22 UTC second application showed `changed=0`, `failed=0`, `unreachable=0` on `mars` and `backup`. Docker signing key unchanged; live manager readbacks healthy. No restore, manual snapshot or replication was needed. See `reports/STEP3-FINAL-ACCEPTANCE-20261111.md`.
 
 ## Step 4 — Final evidence reconciliation, source-control publication and formal closure (OPEN)
 

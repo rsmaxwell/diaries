@@ -1,0 +1,8 @@
+0045 Step 3 controlled apply UTC 20261111-132219Z
+Evidence: C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries/change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 3/deployment-20261111-132219Z
+=== Preflight: committed Playbooks and unchanged inventory choice ===
+=== Before: Docker signing key identity (mars) ===
+=== APPLY 1: backup-collection.yaml on mars ===
+=== APPLY 1: native btrfs-replication.yaml on mars and backup ===
+=== After: static fingerprints ===
+PASS: initial apply and static installation comparison; idempotence apply still to be accepted separately

@@ -1,9 +1,9 @@
 # 0045-FEAT — Reorganise backup and Btrfs Ansible deployment
 
-**State:** IN PROGRESS — Step 1 baseline accepted and CLOSED (11 November 2026); Step 2 implementation OPEN
-**Created:** 10 November 2026  
-**Ownership:** Diaries parent repository, `change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/`  
-**Implementation location:** `/home/richard/playbooks` on `mango`  
+**State:** IN PROGRESS — Steps 1–3 CLOSED (11 November 2026); Step 4 final Git/evidence reconciliation OPEN
+**Created:** 10 November 2026
+**Ownership:** Diaries parent repository, `change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/`
+**Implementation location:** `/home/richard/playbooks` on `mango`
 **Execution window:** Active after 0039-DEF and 0043-FEAT closure on 11 November 2026.
 
 ## Objective
@@ -57,3 +57,9 @@ The old and new source layouts may differ; the installed artifacts, activation s
 - [`tests/ACCEPTANCE-MATRIX.md`](tests/ACCEPTANCE-MATRIX.md) — consolidated regression/deployment/readback evidence matrix.
 
 **Closure rule:** Leave this feature `in-progress` and its steps OPEN until the accepted comparison and source-control evidence support formal closure. Preserve all original evidence under this feature, not `/home/richard` or the Playbooks repository.
+
+## 0045 deployment and equivalence acceptance (11 November 2026)
+
+- **Step 2 CLOSED:** Playbooks refactoring committed and pushed as `1939a0984934062d03c01de826ad4a5a87d3338d`. Source task-equivalence tests, permanent regression suite and three Ansible syntax checks passed. Original operator launchers remain in place; external and Jenkins audits found no callers within inspected scope, but dynamic SCM Jenkinsfiles and unmanaged external schedulers were not exhaustively covered. See `reports/STEP2-FINAL-ACCEPTANCE-20261111.md`.
+- **Step 3 CLOSED:** First apply and second idempotence apply succeeded; second apply had `changed=0`, `failed=0`, `unreachable=0` on each target play. Static installation manifests on `mars` and `backup` match the accepted `baseline-20261111-111819Z`; five systemd `ExecStart` differences were execution-history only, with unchanged unit configuration and no pending reload. The Docker signing key stayed unchanged. See `reports/STEP3-FINAL-ACCEPTANCE-20261111.md`.
+- **Step 4 remains OPEN:** Preserve/report all actual raw evidence and source-control receipts, publish the Diaries changes, then perform the formal feature closure move and final Git status verification. Do not repeat already accepted backup restores or Ansible applications.

@@ -1,0 +1,12 @@
+snapshot_root=/@data/mars-received
+filesystem=btrfs
+qgroups_total=37
+qgroups_stale=0
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=34;incomplete_timestamp_sets=0
+source=@data:None;managed_snapshots=34
+diaries_verification=disabled
+Result=success
+ExecMainStatus=0

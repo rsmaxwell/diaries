@@ -1,0 +1,8 @@
+RECONCILED: mars systemd_units:btrfs-clear-stale-qgroups.service (ExecStart execution-history digest only; installed unit, drop-ins and loaded properties unchanged)
+RECONCILED: mars systemd_units:btrfs-native-push.service (ExecStart execution-history digest only; installed unit, drop-ins and loaded properties unchanged)
+RECONCILED: mars systemd_units:btrfs-snapshot-create.service (ExecStart execution-history digest only; installed unit, drop-ins and loaded properties unchanged)
+RECONCILED: mars systemd_units:btrfs-snapshot-prune.service (ExecStart execution-history digest only; installed unit, drop-ins and loaded properties unchanged)
+RECONCILED: mars systemd_units:diaries-pull.service (ExecStart execution-history digest only; installed unit, drop-ins and loaded properties unchanged)
+PASS: mars static installation fingerprint identical
+PASS: backup static installation fingerprint identical
+PASS: Both hosts static fingerprints identical; review runtime and source-to-destination coverage separately

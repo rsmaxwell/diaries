@@ -1,0 +1,32 @@
+{
+  "coverage": {
+    "/etc/cron.d": "scanned_directory",
+    "/etc/cron.daily": "scanned_directory",
+    "/etc/cron.hourly": "scanned_directory",
+    "/etc/cron.monthly": "scanned_directory",
+    "/etc/cron.weekly": "scanned_directory",
+    "/etc/crontab": "scanned_file",
+    "/etc/systemd/system": "scanned_directory",
+    "/usr/lib/systemd/system": "scanned_directory",
+    "/var/spool/cron": "scanned_directory",
+    "/var/spool/cron/crontabs": "scanned_directory"
+  },
+  "host": "mars",
+  "jenkins_filesystem_visible": null,
+  "large_files_skipped": [],
+  "limitations": [
+    "File-path matches only; indirect invocations and code-generated commands are not detected",
+    "Jenkins jobs deployed in containers/Kubernetes or accessible only via Jenkins API are not covered by host filesystem scanning",
+    "Unregistered external automation and other machines are outside this host audit"
+  ],
+  "matching_files": [],
+  "schema": "0045-legacy-caller-audit-v1",
+  "searched_reference_names": [
+    "local-backup.yaml",
+    "remote-backup.yaml",
+    "local-backup.sh",
+    "remote-backup.sh"
+  ],
+  "timestamp_utc": "2026-11-11T12:20:41.342023+00:00",
+  "unreadable_paths": []
+}

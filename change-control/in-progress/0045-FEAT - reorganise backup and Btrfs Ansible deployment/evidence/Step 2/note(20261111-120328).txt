@@ -1,0 +1,52 @@
+richard@mango:~/playbooks$ if (
+  cd /home/richard/playbooks || exit 1
+
+  test -f backup-collection.yaml || {
+    echo 'FAIL: backup-collection.yaml missing'
+    exit 1
+  }
+
+  test -f scripts/backup-collection.sh || {
+    echo 'FAIL: scripts/backup-collection.sh missing'
+    exit 1
+  }
+
+  bash -n scripts/backup-collection.sh || exit 1
+
+  git status --short --branch || exit 1
+
+); then
+  echo 'PASS: New backup collection entry points present'
+else
+  echo 'FAIL: Missing or invalid entry points'
+fi
+## main...origin/main
+ M AGENTS.md
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/tasks/main.yaml
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/local-backup/README.md
+ M roles/snapshots/README.md
+ M roles/snapshots/tasks/main.yaml
+?? backup-collection.yaml
+?? roles/btrfs-replication/INSTALLATION-MAP-0045.md
+?? roles/btrfs-replication/tasks/endpoint-setup.yaml
+?? roles/btrfs-replication/tasks/qgroup-deployment.yaml
+?? roles/btrfs-replication/tasks/receiver-config.yaml
+?? roles/btrfs-replication/tasks/receiver-holds.yaml
+?? roles/btrfs-replication/tasks/receiver-policy.yaml
+?? roles/btrfs-replication/tasks/receiver-retention.yaml
+?? roles/btrfs-replication/tasks/retire-legacy-pull.yaml
+?? roles/btrfs-replication/tasks/simplified-runtime.yaml
+?? roles/btrfs-replication/tasks/source-scheduling.yaml
+?? roles/snapshots/tasks/activation.yaml
+?? roles/snapshots/tasks/installed-files.yaml
+?? roles/snapshots/tasks/preflight.yaml
+?? roles/snapshots/tasks/prerequisites.yaml
+?? roles/snapshots/tasks/snapshot-roots.yaml
+?? roles/snapshots/tasks/state-and-config.yaml
+?? roles/snapshots/tasks/systemd-units.yaml
+?? roles/snapshots/tasks/validate.yaml
+?? scripts/backup-collection.sh
+PASS: New backup collection entry points present
+richard@mango:~/playbooks$

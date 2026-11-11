@@ -1,0 +1,57 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ if (
+  cd '/cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries' || exit 1
+
+  feature='change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment'
+
+  ssh mango 'bash -s' \
+    < "$feature/tools/audit-0045-legacy-entrypoint-callers.sh" || exit 1
+
+); then
+  echo 'PASS: 0045 mango caller-audit command completed'
+else
+  echo 'FAIL: 0045 mango caller audit'
+fi
+=== Git baseline ===
+main
+7dfa93fef6d975aa82f5f4cfdf54497b106e7645
+ M AGENTS.md
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/tasks/main.yaml
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/local-backup/README.md
+ M roles/snapshots/README.md
+ M roles/snapshots/tasks/main.yaml
+?? backup-collection.yaml
+?? roles/btrfs-replication/INSTALLATION-MAP-0045.md
+?? roles/btrfs-replication/tasks/endpoint-setup.yaml
+?? roles/btrfs-replication/tasks/qgroup-deployment.yaml
+?? roles/btrfs-replication/tasks/receiver-config.yaml
+?? roles/btrfs-replication/tasks/receiver-holds.yaml
+?? roles/btrfs-replication/tasks/receiver-policy.yaml
+?? roles/btrfs-replication/tasks/receiver-retention.yaml
+?? roles/btrfs-replication/tasks/retire-legacy-pull.yaml
+?? roles/btrfs-replication/tasks/simplified-runtime.yaml
+?? roles/btrfs-replication/tasks/source-scheduling.yaml
+?? roles/snapshots/tasks/activation.yaml
+?? roles/snapshots/tasks/installed-files.yaml
+?? roles/snapshots/tasks/preflight.yaml
+?? roles/snapshots/tasks/prerequisites.yaml
+?? roles/snapshots/tasks/snapshot-roots.yaml
+?? roles/snapshots/tasks/state-and-config.yaml
+?? roles/snapshots/tasks/systemd-units.yaml
+?? roles/snapshots/tasks/validate.yaml
+?? scripts/backup-collection.sh
+=== Tracked source callers (exclude historical verification/docs) ===
+scripts/local-backup.sh:24:    local-backup.yaml
+scripts/remote-backup.sh:24:    remote-backup.yaml
+=== Local cron and systemd references on mango ===
+grep: /etc/systemd/system/timers.target.wants/fwupd-refresh.timer: No such file or directory
+grep: /etc/systemd/system/multi-user.target.wants/snapd.aa-prompt-listener.service: No such file or directory
+=== Jenkins job/script references (when accessible) ===
+NOTE: Jobs stored on other hosts, externally managed schedules and user crontabs may also need operator inspection.
+PASS: 0045 mango caller-audit command completed
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

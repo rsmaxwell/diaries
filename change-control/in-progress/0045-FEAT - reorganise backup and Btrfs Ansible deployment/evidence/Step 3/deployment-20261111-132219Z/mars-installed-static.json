@@ -1,0 +1,856 @@
+{
+  "acl": {
+    "/media/usb/@data/backup": {
+      "gid": 1001,
+      "mode": "0775",
+      "posix_acl_xattrs": {
+        "system.posix_acl_access": {
+          "present": false
+        },
+        "system.posix_acl_default": {
+          "present": false
+        }
+      },
+      "present": true,
+      "uid": 1001
+    }
+  },
+  "captured_utc": "2026-11-11T13:25:14.776999+00:00",
+  "cron": {
+    "richard": {
+      "present": true,
+      "sha256": "f88e0efad55cad56267dd082613cb8d62195d8ea6e00d47668fd1220c7497e40"
+    },
+    "root": {
+      "present": true,
+      "sha256": "4536d895c920bcc399da5aa991f3aff4ff0b1f16b2435f4a2944d751e55079bc"
+    }
+  },
+  "host": "mars",
+  "managed": {
+    "/@data/mars-received": {
+      "present": false
+    },
+    "/@data/mars-received/.replication-state": {
+      "present": false
+    },
+    "/@data/mars-received/@data": {
+      "present": false
+    },
+    "/etc/btrfs-receiver-retention.json": {
+      "present": false
+    },
+    "/etc/btrfs-snapshot-manager.json": {
+      "gid": 0,
+      "mode": "0600",
+      "present": true,
+      "sha256": "9b201cd4839ad5f7dc210fbbab0f0df8503947103aafe98a62384bbe768fcee0",
+      "size": 996,
+      "type": "file",
+      "uid": 0
+    },
+    "/etc/btrfs-stale-qgroups.json": {
+      "gid": 0,
+      "mode": "0600",
+      "present": true,
+      "sha256": "31ac01138b3531e08745a081f83556c37f65b040e4f6a4636b090d3fb34579c6",
+      "size": 247,
+      "type": "file",
+      "uid": 0
+    },
+    "/etc/sudoers.d/diaries-agreed-parent-observer": {
+      "present": false
+    },
+    "/etc/sudoers.d/diaries-native-btrfs": {
+      "present": false
+    },
+    "/etc/systemd/system/btrfs-clear-stale-qgroups.service": {
+      "gid": 0,
+      "mode": "0644",
+      "present": true,
+      "sha256": "839e47ec1f90909fc3520e1b88134117b656a7bcff4633421f2b6ed113d207ba",
+      "size": 449,
+      "type": "file",
+      "uid": 0
+    },
+    "/etc/systemd/system/btrfs-clear-stale-qgroups.service.d": {
+      "present": false
+    },
+    "/etc/systemd/system/btrfs-clear-stale-qgroups.timer": {
+      "gid": 0,
+      "mode": "0644",
+      "present": true,
+      "sha256": "990a46179239857319dd79a68e32ee5777250e1475f340990fa4a451da2d4472",
+      "size": 201,
+      "type": "file",
+      "uid": 0
+    },
+    "/etc/systemd/system/btrfs-clear-stale-qgroups.timer.d": {
+      "present": false
+    },
+    "/etc/systemd/system/btrfs-native-push.service": {
+      "gid": 0,
+      "mode": "0644",
+      "present": true,
+      "sha256": "f7bd144899299f3736dd49509b302d5cd47e0ff1b435aa83c40ab3b2059880c6",
+      "size": 339,
+      "type": "file",
+      "uid": 0
+    },
+    "/etc/systemd/system/btrfs-native-push.service.d": {
+      "present": false
+    },
+    "/etc/systemd/system/btrfs-native-push.timer": {
+      "gid": 0,
+      "mode": "0644",
+      "present": true,
+      "sha256": "f5c1202aaa7076b10e549f27b0d6f0bec8f32191e0f07d4bab5885c6059cf2d4",
+      "size": 186,
+      "type": "file",
+      "uid": 0
+    },
+    "/etc/systemd/system/btrfs-native-push.timer.d": {
+      "present": false
+    },
+    "/etc/systemd/system/btrfs-receiver-simple-prune.service": {
+      "present": false
+    },
+    "/etc/systemd/system/btrfs-receiver-simple-prune.service.d": {
+      "present": false
+    },
+    "/etc/systemd/system/btrfs-receiver-simple-prune.timer": {
+      "present": false
+    },
+    "/etc/systemd/system/btrfs-receiver-simple-prune.timer.d": {
+      "present": false
+    },
+    "/etc/systemd/system/btrfs-snapshot-create.service": {
+      "gid": 0,
+      "mode": "0644",
+      "present": true,
+      "sha256": "24cc60816fa092c38a42ebe7ae686df91c3f5c0e923765a2e859db5d2c45709e",
+      "size": 255,
+      "type": "file",
+      "uid": 0
+    },
+    "/etc/systemd/system/btrfs-snapshot-create.service.d": {
+      "present": false
+    },
+    "/etc/systemd/system/btrfs-snapshot-create.timer": {
+      "gid": 0,
+      "mode": "0644",
+      "present": true,
+      "sha256": "15031acab9674088f3f67ba0a0b5a2c87bc6eb869d45245fc60de7d09b1179d7",
+      "size": 165,
+      "type": "file",
+      "uid": 0
+    },
+    "/etc/systemd/system/btrfs-snapshot-create.timer.d": {
+      "present": false
+    },
+    "/etc/systemd/system/btrfs-snapshot-prune.service": {
+      "gid": 0,
+      "mode": "0644",
+      "present": true,
+      "sha256": "d37a2882fdd3c69672c4bc51602cdec6fde5dc2db6cda26e2671b70c9564a147",
+      "size": 269,
+      "type": "file",
+      "uid": 0
+    },
+    "/etc/systemd/system/btrfs-snapshot-prune.service.d": {
+      "present": false
+    },
+    "/etc/systemd/system/btrfs-snapshot-prune.timer": {
+      "gid": 0,
+      "mode": "0644",
+      "present": true,
+      "sha256": "ec7877114a5c31ff074ec62ed4f63bd2e01b027e49403b68c124168a5e5f68ab",
+      "size": 167,
+      "type": "file",
+      "uid": 0
+    },
+    "/etc/systemd/system/btrfs-snapshot-prune.timer.d": {
+      "present": false
+    },
+    "/etc/systemd/system/diaries-pull.service": {
+      "gid": 0,
+      "mode": "0644",
+      "present": true,
+      "sha256": "d8bf17643c6e04f64a3fd07d5f250659d5c8a6643e8d2ed5b24ba6bd25fff35e",
+      "size": 335,
+      "type": "file",
+      "uid": 0
+    },
+    "/etc/systemd/system/diaries-pull.service.d": {
+      "present": false
+    },
+    "/etc/systemd/system/diaries-pull.timer": {
+      "gid": 0,
+      "mode": "0644",
+      "present": true,
+      "sha256": "f48a20e7d6c6e9ac75c9f125266c46f631e3748c523b356fd25be65aea45591b",
+      "size": 176,
+      "type": "file",
+      "uid": 0
+    },
+    "/etc/systemd/system/diaries-pull.timer.d": {
+      "present": false
+    },
+    "/home/richard/log/backup": {
+      "gid": 1001,
+      "mode": "0750",
+      "present": true,
+      "type": "directory",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup": {
+      "gid": 1001,
+      "mode": "0750",
+      "present": true,
+      "type": "directory",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/backup.sh": {
+      "gid": 1001,
+      "mode": "0744",
+      "present": true,
+      "sha256": "a5f2bb66ef8c0783f0c058c5c80eee1b13aef8cd66be3c80860283ef37ee10ba",
+      "size": 282,
+      "type": "file",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/complete-dataset-manifest.py": {
+      "gid": 1001,
+      "mode": "0755",
+      "present": true,
+      "sha256": "d9490f706f427b11a5b5758b9a818e3218aa0624e5e659ea6187b2518fdfbc73",
+      "size": 29872,
+      "type": "file",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/complete-dataset-publisher.py": {
+      "gid": 1001,
+      "mode": "0755",
+      "present": true,
+      "sha256": "ae5431fdc56eba7fea4411103d869f6f913e87f91c0c4500a4cc5185e89b64ea",
+      "size": 9796,
+      "type": "file",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/cron": {
+      "gid": 1001,
+      "mode": "0750",
+      "present": true,
+      "type": "directory",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/cron/backup.sh": {
+      "gid": 1001,
+      "mode": "0744",
+      "present": true,
+      "sha256": "71b94ace3b55056e9db47f1e1dd2b723839c40e3a9c916b117e8c0d4d38666f6",
+      "size": 673,
+      "type": "file",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/diaries-pull.py": {
+      "gid": 1001,
+      "mode": "0755",
+      "present": true,
+      "sha256": "44813c2f3f45834976bb6653a5ec607ed4b160dfb762a209c0a3416d49151fcf",
+      "size": 15869,
+      "type": "file",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/diaries-pull.sh": {
+      "gid": 1001,
+      "mode": "0755",
+      "present": true,
+      "sha256": "8929283b5c945db257fb8848b146484e39c30a5f66fa57e22866498708a65074",
+      "size": 738,
+      "type": "file",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/home": {
+      "gid": 1001,
+      "mode": "0750",
+      "present": true,
+      "type": "directory",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/home/backup.sh": {
+      "gid": 1001,
+      "mode": "0744",
+      "present": true,
+      "sha256": "7245e1c7b368e41ba306cfc22cd78c742a87d935f48f9c26416eefd78bb5d625",
+      "size": 447,
+      "type": "file",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/home/excludes-1": {
+      "gid": 1001,
+      "mode": "0664",
+      "present": true,
+      "sha256": "7225808ccc8c9c684ae1098d0ea46557c49419342ddc5d88af004413cb27e1d9",
+      "size": 20,
+      "type": "file",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/home/excludes-2": {
+      "gid": 1001,
+      "mode": "0664",
+      "present": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "type": "file",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/home/includes": {
+      "gid": 1001,
+      "mode": "0664",
+      "present": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "type": "file",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/pre-0036-rollback": {
+      "gid": 1001,
+      "mode": "0775",
+      "present": true,
+      "type": "directory",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/pre-0036-rollback/complete-dataset-manifest.py": {
+      "gid": 1001,
+      "mode": "0755",
+      "present": true,
+      "sha256": "6878a61aeaf4abfe561d9be2c883bb12fb2d67b72b5b7ec0b9420c018fad6cc3",
+      "size": 28809,
+      "type": "file",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/pre-0036-rollback/diaries-pull.py": {
+      "gid": 1001,
+      "mode": "0755",
+      "present": true,
+      "sha256": "80e6fe85934b41b2d7b80980a11b5c3b34ff55115a04769b893727076ccd330c",
+      "size": 10536,
+      "type": "file",
+      "uid": 1001
+    },
+    "/home/richard/scripts/backup/pre-0036-rollback/diaries-pull.sh": {
+      "gid": 1001,
+      "mode": "0755",
+      "present": true,
+      "sha256": "581bd8286671b13be2b051885a2f0fb2f1085a9112395aef3bf29b4e797e010f",
+      "size": 626,
+      "type": "file",
+      "uid": 1001
+    },
+    "/media/usb": {
+      "gid": 0,
+      "mode": "0755",
+      "present": true,
+      "type": "directory",
+      "uid": 0
+    },
+    "/media/usb/@data": {
+      "gid": 0,
+      "mode": "0777",
+      "present": true,
+      "type": "directory",
+      "uid": 0
+    },
+    "/media/usb/@data/backup": {
+      "gid": 1001,
+      "mode": "0775",
+      "present": true,
+      "type": "directory",
+      "uid": 1001
+    },
+    "/media/usb/@data/backup/pluto": {
+      "gid": 1001,
+      "mode": "0750",
+      "present": true,
+      "type": "directory",
+      "uid": 1001
+    },
+    "/media/usb/@snapshots": {
+      "gid": 0,
+      "mode": "0755",
+      "present": true,
+      "type": "directory",
+      "uid": 0
+    },
+    "/media/usb/@snapshots/@data": {
+      "gid": 0,
+      "mode": "0700",
+      "present": true,
+      "type": "directory",
+      "uid": 0
+    },
+    "/root/log/backup": {
+      "gid": 0,
+      "mode": "0755",
+      "present": true,
+      "type": "directory",
+      "uid": 0
+    },
+    "/root/scripts/backup": {
+      "gid": 1001,
+      "mode": "0750",
+      "present": true,
+      "type": "directory",
+      "uid": 1001
+    },
+    "/root/scripts/backup/backup.sh": {
+      "gid": 1001,
+      "mode": "0744",
+      "present": true,
+      "sha256": "a079933fe9d16c48983ba6532f74cd75a892680759d22d4ce874c60ea2de4f78",
+      "size": 524,
+      "type": "file",
+      "uid": 1001
+    },
+    "/root/scripts/backup/cron": {
+      "gid": 1001,
+      "mode": "0775",
+      "present": true,
+      "type": "directory",
+      "uid": 1001
+    },
+    "/root/scripts/backup/cron/backup.sh": {
+      "gid": 1001,
+      "mode": "0744",
+      "present": true,
+      "sha256": "355370da67e13c2f6e47c4cd8312793d964520a1bb38660db811271e17b3191c",
+      "size": 642,
+      "type": "file",
+      "uid": 1001
+    },
+    "/root/scripts/backup/home": {
+      "gid": 1001,
+      "mode": "0750",
+      "present": true,
+      "type": "directory",
+      "uid": 1001
+    },
+    "/root/scripts/backup/home/backup.sh": {
+      "gid": 1001,
+      "mode": "0744",
+      "present": true,
+      "sha256": "3041a6bf0faeb3cef7eb9ae572f8375838efcfdae059cc00e6bac123bcb7b160",
+      "size": 512,
+      "type": "file",
+      "uid": 1001
+    },
+    "/root/scripts/backup/home/excludes-1": {
+      "gid": 1001,
+      "mode": "0664",
+      "present": true,
+      "sha256": "82e17319c7c4ee418ebfb23c94b3327e6c16614fa694a42154efeda9d1107b4b",
+      "size": 149,
+      "type": "file",
+      "uid": 1001
+    },
+    "/root/scripts/backup/home/excludes-2": {
+      "gid": 1001,
+      "mode": "0664",
+      "present": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "type": "file",
+      "uid": 1001
+    },
+    "/root/scripts/backup/home/includes": {
+      "gid": 1001,
+      "mode": "0664",
+      "present": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "type": "file",
+      "uid": 1001
+    },
+    "/root/scripts/backup/remote": {
+      "gid": 1001,
+      "mode": "0750",
+      "present": true,
+      "type": "directory",
+      "uid": 1001
+    },
+    "/root/scripts/backup/remote/backup.sh": {
+      "gid": 1001,
+      "mode": "0744",
+      "present": true,
+      "sha256": "f7a8a11271dd7b03a2fad1240b00e2c9ae274506f3f57825c4af52e57d072e79",
+      "size": 469,
+      "type": "file",
+      "uid": 1001
+    },
+    "/root/scripts/backup/remote/excludes-1": {
+      "gid": 1001,
+      "mode": "0664",
+      "present": true,
+      "sha256": "9898acd1777ad4ac07242209c2ce351578531596fb9f85d3e2abc6a9dd8e241b",
+      "size": 16,
+      "type": "file",
+      "uid": 1001
+    },
+    "/root/scripts/backup/remote/excludes-2": {
+      "gid": 1001,
+      "mode": "0664",
+      "present": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "type": "file",
+      "uid": 1001
+    },
+    "/root/scripts/backup/remote/includes": {
+      "gid": 1001,
+      "mode": "0664",
+      "present": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "type": "file",
+      "uid": 1001
+    },
+    "/usr/local/bin/btrfs-native-pull": {
+      "present": false
+    },
+    "/usr/local/bin/btrfs-simplified-replication": {
+      "gid": 0,
+      "mode": "0755",
+      "present": true,
+      "sha256": "7eba4a04aca1f9b04333cd82952744ab1559cc7736092d7d1dcc11a25be67363",
+      "size": 24178,
+      "type": "file",
+      "uid": 0
+    },
+    "/usr/local/lib/diaries-backup": {
+      "gid": 0,
+      "mode": "0755",
+      "present": true,
+      "type": "directory",
+      "uid": 0
+    },
+    "/usr/local/lib/diaries-backup/complete-dataset-manifest.py": {
+      "gid": 0,
+      "mode": "0755",
+      "present": true,
+      "sha256": "d9490f706f427b11a5b5758b9a818e3218aa0624e5e659ea6187b2518fdfbc73",
+      "size": 29872,
+      "type": "file",
+      "uid": 0
+    },
+    "/usr/local/libexec": {
+      "gid": 0,
+      "mode": "0755",
+      "present": true,
+      "type": "directory",
+      "uid": 0
+    },
+    "/usr/local/libexec/whole-backup-pull.py": {
+      "present": false
+    },
+    "/usr/local/sbin/assess-qgroup-safety": {
+      "present": false
+    },
+    "/usr/local/sbin/btrfs-clear-stale-qgroups": {
+      "gid": 0,
+      "mode": "0755",
+      "present": true,
+      "sha256": "a3eb0c1f5104ec0f31f54f33746d56d824361ae184f54d7171e0b3002a79e727",
+      "size": 14368,
+      "type": "file",
+      "uid": 0
+    },
+    "/usr/local/sbin/btrfs-extent-sharing": {
+      "gid": 0,
+      "mode": "0755",
+      "present": true,
+      "sha256": "64e8af3bbb8657a06a4e52ae64fad9de967deecde5101d1eef468658c13168d1",
+      "size": 2818,
+      "type": "file",
+      "uid": 0
+    },
+    "/usr/local/sbin/btrfs-qgroup-audit": {
+      "present": false
+    },
+    "/usr/local/sbin/btrfs-snapshot-manager": {
+      "gid": 0,
+      "mode": "0755",
+      "present": true,
+      "sha256": "1b45354fade081cd868acbd214bef4c9d5b37e4768df68c5e0237ba9429f26a7",
+      "size": 87621,
+      "type": "file",
+      "uid": 0
+    },
+    "/usr/local/sbin/diaries-backup-history": {
+      "gid": 0,
+      "mode": "0755",
+      "present": true,
+      "sha256": "1059abfb06c2b1f20b138fcffc298033e787b8f1c2ef743679ae540cbd3627a5",
+      "size": 15881,
+      "type": "file",
+      "uid": 0
+    },
+    "/usr/local/sbin/diaries-backup-status": {
+      "gid": 0,
+      "mode": "0755",
+      "present": true,
+      "sha256": "b933cd04258f82c01feed5deb7bd451d210a5108094e9519d77af975878f65a0",
+      "size": 7608,
+      "type": "file",
+      "uid": 0
+    },
+    "/usr/local/sbin/diaries-snapshot-cleanup": {
+      "gid": 0,
+      "mode": "0755",
+      "present": true,
+      "sha256": "f18472142254c62655c5b4256ffe3b02ab3a51eb71baa27ceb207c5fcd373360",
+      "size": 2871,
+      "type": "file",
+      "uid": 0
+    }
+  },
+  "mount": {
+    "/media/usb": "/dev/sdb1 btrfs  rw,relatime,space_cache=v2,subvolid=5,subvol=/"
+  },
+  "mutable_state_metadata": {
+    "/@data/mars-received/.replication-state/writer.lock": {
+      "present": false
+    },
+    "/etc/btrfs-receiver-checkpoint-holds.json": {
+      "present": false
+    },
+    "/media/usb/@data/backup/.btrfs-snapshot-writer.lock": {
+      "gid": 1001,
+      "mode": "0664",
+      "present": true,
+      "type": "file",
+      "uid": 1001
+    },
+    "/media/usb/@snapshots/.checkpoint-holds.json": {
+      "gid": 0,
+      "mode": "0600",
+      "present": true,
+      "type": "file",
+      "uid": 0
+    },
+    "/media/usb/@snapshots/.replication-protection.json": {
+      "gid": 0,
+      "mode": "0600",
+      "present": true,
+      "type": "file",
+      "uid": 0
+    }
+  },
+  "packages": {
+    "acl": {
+      "dpkg_status": "unknown ok not-installed",
+      "present": false,
+      "version": ""
+    },
+    "btrfs-progs": {
+      "dpkg_status": "install ok installed",
+      "present": true,
+      "version": "6.6.3-1.1build2"
+    },
+    "cron": {
+      "dpkg_status": "install ok installed",
+      "present": true,
+      "version": "3.0pl1-184ubuntu2"
+    },
+    "jq": {
+      "dpkg_status": "install ok installed",
+      "present": true,
+      "version": "1.7.1-3ubuntu0.24.04.2"
+    },
+    "python3": {
+      "dpkg_status": "install ok installed",
+      "present": true,
+      "version": "3.12.3-0ubuntu2.1"
+    },
+    "rsync": {
+      "dpkg_status": "install ok installed",
+      "present": true,
+      "version": "3.2.7-1ubuntu1.5"
+    },
+    "sudo": {
+      "dpkg_status": "install ok installed",
+      "present": true,
+      "version": "1.9.15p5-3ubuntu5.24.04.4"
+    },
+    "systemd": {
+      "dpkg_status": "install ok installed",
+      "present": true,
+      "version": "255.4-1ubuntu8.18"
+    },
+    "tree": {
+      "dpkg_status": "install ok installed",
+      "present": true,
+      "version": "2.1.1-2ubuntu3.24.04.2"
+    },
+    "unzip": {
+      "dpkg_status": "install ok installed",
+      "present": true,
+      "version": "6.0-28ubuntu4.1"
+    },
+    "zip": {
+      "dpkg_status": "install ok installed",
+      "present": true,
+      "version": "3.0-13ubuntu0.2"
+    }
+  },
+  "schema": "0045-static-installed-v2",
+  "systemd_units": {
+    "btrfs-clear-stale-qgroups.service": {
+      "DropInPaths": "",
+      "ExecStartSHA256": "be759a24bd02356a13df40cf7f85fe787fc88595de3f20bb44da2d01ffb9cf97",
+      "FragmentPath": "/etc/systemd/system/btrfs-clear-stale-qgroups.service",
+      "Group": "root",
+      "LoadState": "loaded",
+      "UnitFileState": "static",
+      "User": "root"
+    },
+    "btrfs-clear-stale-qgroups.timer": {
+      "ActiveState": "active",
+      "DropInPaths": "",
+      "FragmentPath": "/etc/systemd/system/btrfs-clear-stale-qgroups.timer",
+      "LoadState": "loaded",
+      "UnitFileState": "enabled",
+      "schedule": {
+        "OnCalendar": [
+          "*-*-* 05:30:00 UTC"
+        ],
+        "Persistent": [
+          "false"
+        ]
+      }
+    },
+    "btrfs-native-push.service": {
+      "DropInPaths": "",
+      "ExecStartSHA256": "fc74a13e0273592d7db8f8361f8da194dab6d2a5b2ee416ee6069f2a2247f497",
+      "FragmentPath": "/etc/systemd/system/btrfs-native-push.service",
+      "Group": "root",
+      "LoadState": "loaded",
+      "UnitFileState": "static",
+      "User": "root"
+    },
+    "btrfs-native-push.timer": {
+      "ActiveState": "active",
+      "DropInPaths": "",
+      "FragmentPath": "/etc/systemd/system/btrfs-native-push.timer",
+      "LoadState": "loaded",
+      "UnitFileState": "enabled",
+      "schedule": {
+        "AccuracySec": [
+          "1min"
+        ],
+        "OnCalendar": [
+          "*-*-* 03:30:00 UTC"
+        ],
+        "Persistent": [
+          "false"
+        ]
+      }
+    },
+    "btrfs-receiver-simple-prune.service": {
+      "DropInPaths": "",
+      "FragmentPath": "",
+      "Group": "",
+      "LoadState": "not-found",
+      "UnitFileState": "",
+      "User": ""
+    },
+    "btrfs-receiver-simple-prune.timer": {
+      "ActiveState": "inactive",
+      "DropInPaths": "",
+      "FragmentPath": "",
+      "LoadState": "not-found",
+      "UnitFileState": ""
+    },
+    "btrfs-snapshot-create.service": {
+      "DropInPaths": "",
+      "ExecStartSHA256": "388cbe913960f4cb8a2a03fb6edf16f5d8c91080a98cd191ee42c5ff4f6c18fa",
+      "FragmentPath": "/etc/systemd/system/btrfs-snapshot-create.service",
+      "Group": "",
+      "LoadState": "loaded",
+      "UnitFileState": "static",
+      "User": ""
+    },
+    "btrfs-snapshot-create.timer": {
+      "ActiveState": "active",
+      "DropInPaths": "",
+      "FragmentPath": "/etc/systemd/system/btrfs-snapshot-create.timer",
+      "LoadState": "loaded",
+      "UnitFileState": "enabled",
+      "schedule": {
+        "AccuracySec": [
+          "1min"
+        ],
+        "OnCalendar": [
+          "*-*-* *:00:00 UTC"
+        ],
+        "Persistent": [
+          "true"
+        ]
+      }
+    },
+    "btrfs-snapshot-prune.service": {
+      "DropInPaths": "",
+      "ExecStartSHA256": "4101ec6d0b6f6646ef9fb97ada3e612f7cbb015332d4416fcb9ae5862fb3a89e",
+      "FragmentPath": "/etc/systemd/system/btrfs-snapshot-prune.service",
+      "Group": "",
+      "LoadState": "loaded",
+      "UnitFileState": "static",
+      "User": ""
+    },
+    "btrfs-snapshot-prune.timer": {
+      "ActiveState": "active",
+      "DropInPaths": "",
+      "FragmentPath": "/etc/systemd/system/btrfs-snapshot-prune.timer",
+      "LoadState": "loaded",
+      "UnitFileState": "enabled",
+      "schedule": {
+        "AccuracySec": [
+          "1min"
+        ],
+        "OnCalendar": [
+          "*-*-* 04:15:00 UTC"
+        ],
+        "Persistent": [
+          "true"
+        ]
+      }
+    },
+    "diaries-pull.service": {
+      "DropInPaths": "",
+      "ExecStartSHA256": "5ac9c3927592dfbf1ae3422385f74e9d1873a2ba47c41949baba6e1cd343ce70",
+      "FragmentPath": "/etc/systemd/system/diaries-pull.service",
+      "Group": "richard",
+      "LoadState": "loaded",
+      "UnitFileState": "static",
+      "User": "richard"
+    },
+    "diaries-pull.timer": {
+      "ActiveState": "active",
+      "DropInPaths": "",
+      "FragmentPath": "/etc/systemd/system/diaries-pull.timer",
+      "LoadState": "loaded",
+      "UnitFileState": "enabled",
+      "schedule": {
+        "AccuracySec": [
+          "1min"
+        ],
+        "OnCalendar": [
+          "*-*-* 01:30:00 UTC"
+        ],
+        "Persistent": [
+          "true"
+        ]
+      }
+    }
+  }
+}
