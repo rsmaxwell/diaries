@@ -1,82 +1,62 @@
-# 0046-FEAT — Move non-sensitive Ansible inventory into Playbooks Git
+# 0046-FEAT — Private Ansible controller with public Playbooks and private inventory submodules
 
-**State:** PLANNED — NOT STARTED  
-**Created:** 10 November 2026  
-**Owner:** Diaries parent Git repository, `change-control/in-progress/0046-FEAT - move non-sensitive Ansible inventory into Playbooks Git/`  
-**Execution host / operational Playbooks:** `mango`, `/home/richard/playbooks`  
-**Dependency:** **Start only after 0045-FEAT has been formally CLOSED and published.** Complete the already in-progress 0039-DEF and 0043-FEAT before beginning 0045, in line with the accepted 0045 plan.
+**State:** PLANNED — architecture agreed; implementation and acceptance OPEN.
 
-## Objective
+**Original change-control directory name:** Retained to preserve existing feature references. Its former objective—committing only non-confidential inventory into the public Playbooks repository—is **superseded** by the three-repository decision of 11 November 2026.
 
-Move the **non-sensitive** Ansible inventory (host and group declarations, group/host variables and relevant Ansible repository configuration) from its current authoritative location in `/etc/ansible/` on `mango` into the **Playbooks Git repository**. Keep all Vault-protected secret material and the Vault password outside Git. Make the source-controlled inventory the **single authoritative non-secret inventory** used by normal invocations from the Playbooks checkout, without requiring routine `-i` arguments.
+**Change-control owner:** Diaries parent Git repository, this feature directory.
 
-**Non-negotiable acceptance contract:** Using the **same then-current, post-0045 Playbooks installation-producing revision**, an installation driven by the new Git-controlled inventory must produce **exactly the same installed result as the original `/etc/ansible` inventory for every managed host and every applicable playbook/host targeting combination**. This is an estate-wide criterion, **not** a special case for `mars` and `backup`. No differences are authorised in managed files, rendered settings, ownership, permissions, packages, units, schedules, privileges, operational policy or behaviour. Pre-existing data and naturally changing runtime state must remain safe and are not installation artifacts.
+**Prerequisites:** 0045-FEAT and 0047-FEAT formally closed and published (reported completed on 11 November 2026); verify live Git revisions and state again before implementing. 0048-FEAT remains dependent on formal 0046 closure.
 
-**Variable precedence and effective variable equality are diagnostic tools, not independent acceptance gates.** They may differ if the resulting installation and behaviour remain demonstrably identical for all hosts. Any differences must be investigated and shown not to affect the installation, host targeting, secrets handling or security before acceptance.
+## Agreed outcome
 
-This is an **inventory-source relocation**, not a chance to change role defaults, backup policy, credentials, deployments or installed software. The only permitted deliberate differences are **controller-side inventory location/version control and secure external Vault discovery**, provided the target installations remain identical. A precedence-preserving loader is one possible way to achieve this, but is not mandatory.
+Use three distinct Git repositories with explicit visibility:
 
-## Sequence and baseline
+| Repository | Visibility | Role |
+|---|---|---|
+| `rsmaxwell/ansible-controller` (proposed name; verify/create) | **PRIVATE** | Top-level operational checkout; pins two Git submodules and contains controller setup/usage documentation. |
+| `rsmaxwell/ansible-playbooks` (existing) | **PUBLIC** | Reusable playbooks, roles, tests, templates; **no inventory, Vault ciphertext or protected site configuration**. |
+| `rsmaxwell/ansible-inventory` (proposed name; verify/create) | **PRIVATE** | Entire site inventory: hosts, `group_vars`, `host_vars`, Vault-encrypted values and files. |
 
-1. Complete and formally close **0045-FEAT — Reorganise backup and Btrfs Ansible deployment**. Do **not** base 0046 implementation on the older November Playbooks source archive or on a Playbooks commit recorded before 0045.
-2. At the **start of 0046**, freeze the then-current clean, published Playbooks Git SHA and the actual authoritative `/etc/ansible` inventory/configuration from `mango`; identify **every managed host and applicable playbook**, all callers and secret sources. Capture a per-host baseline of the installation produced by the original inventory.
-3. Migrate reviewed non-secret inventory into Git **without modifying installation-producing roles or their template/source contents**. Choose a secure external Vault loader and verify both inventories side by side. Use precedence/effective-variable comparison to identify risks, not as a substitute for installed-result comparison.
-4. Run one consolidated, **estate-wide host-by-host installation-equivalence verification** using the same Playbooks source and repeatable collectors. Include `mars`, `backup` and **all other managed hosts**; do not use successful tests on two hosts as a proxy for the rest. Use safe controlled applications and/or fully verified deterministic installation-output comparison as appropriate to each host, and keep the feature OPEN wherever exact installation equality cannot be established.
-5. Publish the two repositories' accepted changes and evidence, then formally close and move the feature to `change-control/complete/`.
-
-**No work on 0046 begins merely because the planning ZIP has been applied.** Every implementation and acceptance step remains OPEN until actual evidence is collected and accepted.
-
-## Proposed destination (subject to Step 1 discovery)
+Keep `/home/richard/.vault_pass.txt`, private SSH keys, access tokens and any other **plaintext credentials** outside all three repositories. A private Git repository is an additional access boundary, **not a licence to commit plaintext passwords**.
 
 ```text
-/home/richard/playbooks/                 # tracked in Playbooks Git
-  ansible.cfg                            # sets repo inventory, retains existing effective config
-  inventory/
-    hosts.yaml                           # complete non-secret host/group definitions
-    group_vars/                          # non-secret group settings
-      all/btrfs-maintenance-schedule.yaml
-      ...
-    host_vars/                           # non-secret host settings
-      ...
-  roles/ ...
-  *.yaml                                  # playbooks, as delivered at 0045 closure
+/home/richard/ansible-controller/             # new proposed checkout on mango (PRIVATE parent)
+  .gitmodules
+  README.md
+  playbooks/                               # existing PUBLIC Git repository as submodule
+    backup-collection.yaml
+    snapshots.yaml
+    btrfs-replication.yaml
+    roles/ ...
+  inventory/                               # new PRIVATE Git repository as submodule
+    hosts                                  # final filename decided from live inventory
+    group_vars/ ...                        # public-inventory-type data stays private here
+    host_vars/ ...
+    ...                                    # Vault-encrypted files in original group/host scope
 
-/etc/ansible/vault/ (or verified existing external Vault paths on mango)
-  ...                                     # encrypted secret vars ONLY; outside Playbooks Git
-~/.vault_pass.txt                         # outside Git; never copied to evidence
+/etc/ansible/ansible.cfg                   # system config points to new inventory path at cutover
+/home/richard/.vault_pass.txt             # external, never committed
 ```
 
-The directory layout is a **proposal**, not a claim that the current `/etc/ansible` inventory has been inspected. Existing Vault files need not be physically relocated if their original protected locations are appropriate. The migration must preserve an unambiguous secret-loading mechanism; Ansible does **not** automatically discover external `/etc/ansible/group_vars/` after switching inventory source to a repository directory.
+**Do not assume these repositories or the checkout exist yet.** Repository creation and credential/access configuration are implementation steps, not work already done. Do not replace the current running `/home/richard/playbooks` checkout or `/etc/ansible` inventory until acceptance supports cutover.
 
-## In scope
+## Critical acceptance contract
 
-- Read-only source/variable classification and tracing of `/etc/ansible/hosts`, inventory plugins, `group_vars/`, `host_vars/`, `ansible.cfg`, wrappers, scheduled invocations, dynamic inventory if present, and all non-secret overrides (including current Btrfs maintenance scheduling).
-- Complete transfer of reviewed **non-secret** inventory into Git, maintaining all managed-host and playbook targeting coverage. Variable names, source ordering and precedence may change **only where no installed-result or security difference arises**. Update active operator documentation, launchers/config resolution and controller bootstrap guidance as required.
-- Keep **Vault files**, encrypted `!vault` values and secret credentials outside Git. Preserve Vault access/permissions and the existing `--vault-password-file ~/.vault_pass.txt` workflow unless equivalent secure behaviour is explicitly accepted.
-- Baseline, secure variable-resolution diagnostics, **every-host installed-result equality**, and source-control/rollback evidence. Verify all applicable hosts and playbooks, not just backup endpoints. Plan safe controlled applications or equivalent complete deterministic installation-output proof for other hosts; never mistake syntax/host-list checks alone for installation equality.
+With the *same frozen Playbooks installation-producing revision*, every managed host and every applicable playbook/host selection must have **identical installed configuration and secure behaviour** using old `/etc/ansible` inventory versus the private inventory submodule. Include all managed hosts, not only `mars` and `backup`. Variable precedence/effective values are diagnostics; any differences must be investigated and proven not to affect installations, targeting or security.
 
-## Out of scope and prohibitions
+The final operational checkout must be reproducible by cloning the **private controller parent** and initializing its **exact pinned submodule commits**. The normal Ansible commands run from `playbooks/`, with the system configuration selecting the sibling private inventory and the existing Vault password file. No routine `-i` override.
 
-- No modifications to backup/replication/snapshot role logic, installed asset contents, service/timer calendar/activation, prune limits, retention, qgroups, agreed-parent pins, SSH/sudoers policy, backup data or deployment flags.
-- No real secret values, Vault ciphertext, private keys, credential-bearing rendered files or Vault password in **either Git repository**, ZIP changes, committed evidence, terminal receipts or unsafe diagnostic output.
-- No blind `ansible-inventory --list/--host` dumps into logs: those commands can expose decrypted inventory secrets. Sanitise **inside** the trusted comparison process before writing evidence; write only PASS/FAIL for protected-value equality.
-- No duplicate active inventory in Git and `/etc/ansible`, no automatic fallbacks that silently select the old inventory, and no unreviewed use of higher-precedence `vars_files`/`include_vars` to load secrets.
-- No destructive Btrfs operations, snapshot deletion, manual replication, backup restores, bulk sync against backup/state directories or forced service restarts solely to prove equivalence.
+The current `/etc/ansible` source and `/home/richard/playbooks` checkout remain the working and reversible baseline until controlled activation. The public Playbooks Git history must not acquire private inventory or encrypted Vault data.
 
-## Deliverables
+## Implementation and evidence
 
-- Git-controlled reviewed non-sensitive inventory and documented `ansible.cfg`/external Vault integration in `/home/richard/playbooks`.
-- Secure side-by-side **old vs new inventory** comparison using the **same installation-producing Playbooks source SHA**, with a complete inventory of **every managed host and applicable playbook/host selection**.
-- Same-tool **per-host old/new installation-output and installed-state comparisons across the entire managed estate**, with zero unexplained installation differences; backup data and other existing application data remain untouched.
-- Controlled deployment/idempotence and read-only operational checks, version/commit receipts, rollback plan, final documented acceptance and formal change-control closure in the Diaries parent repository.
+- [IMPLEMENTATION-STEPS.md](IMPLEMENTATION-STEPS.md): baseline, implementation, estate-wide equivalence, cutover/closure.
+- [THREE-REPOSITORY-ARCHITECTURE.md](THREE-REPOSITORY-ARCHITECTURE.md): submodule mechanics, paths and access rules.
+- [SECRETS-AND-DISCOVERY-DESIGN.md](SECRETS-AND-DISCOVERY-DESIGN.md): encrypted Vault handling, preflight, no-leak requirements.
+- [INVENTORY-AND-INSTALLATION-EQUIVALENCE-CONTRACT.md](INVENTORY-AND-INSTALLATION-EQUIVALENCE-CONTRACT.md): binding installation equality.
+- [tests/ACCEPTANCE-MATRIX.md](tests/ACCEPTANCE-MATRIX.md): explicit acceptance gates.
+- [reports/THREE-REPOSITORY-DECISION-20261111.md](reports/THREE-REPOSITORY-DECISION-20261111.md): accepted design and superseded proposal.
+- [tools/README.md](tools/README.md): feature-local discovery/verification tooling rules.
 
-## Documents
-
-- [`IMPLEMENTATION-STEPS.md`](IMPLEMENTATION-STEPS.md): four substantial implementation and acceptance steps.
-- [`INVENTORY-AND-INSTALLATION-EQUIVALENCE-CONTRACT.md`](INVENTORY-AND-INSTALLATION-EQUIVALENCE-CONTRACT.md): exact equality requirements.
-- [`SECRETS-AND-DISCOVERY-DESIGN.md`](SECRETS-AND-DISCOVERY-DESIGN.md): controller discovery, Vault precedence and security approach.
-- [`reports/PLANNING-SOURCE-REVIEW-20261110.md`](reports/PLANNING-SOURCE-REVIEW-20261110.md): supported source observations and unknowns.
-- [`tests/ACCEPTANCE-MATRIX.md`](tests/ACCEPTANCE-MATRIX.md): evidence gate checklist.
-- [`tools/README.md`](tools/README.md): future one-off tools and evidence conventions.
-
-**Closure rule:** Keep 0046 in `in-progress` with all steps OPEN until 0045 is CLOSED and installation equivalence has been proven for **every managed host and every applicable playbook**. Equal variable precedence is **not** required; unresolved or unverified installation results are not acceptable. Only then move to `complete` and publish the final receipts.
+**Status:** This package updates documentation only. No Git repository, submodule, active inventory, Vault file, Ansible configuration, CI job or host installation has been changed by the package.

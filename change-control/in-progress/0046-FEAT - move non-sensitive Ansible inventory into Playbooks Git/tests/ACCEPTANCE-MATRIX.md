@@ -1,34 +1,35 @@
-# 0046-FEAT — Estate-wide installation-equivalence acceptance matrix
+# 0046-FEAT — Three-repository and estate-wide installation acceptance matrix
 
-**Status: ALL OPEN / NOT TESTED.** The **sole equivalence acceptance criterion** is identical installation for **every managed host and every applicable playbook** when using the old `/etc/ansible` inventory versus the Git-controlled inventory, with the **same frozen post-0045 installation-producing Playbooks revision** and other operating inputs. Variable precedence and effective-variable equality are **diagnostics**, not standalone gates.
+**All checks OPEN / NOT TESTED.** Architecture agreed; no operational migration was performed by the documentation amendment.
 
-| ID | Required check | Acceptable evidence | State |
-|---|---|---|---|
-| A01 | 0045 formally CLOSED and published; correct current Git trees | 0045 closure receipts, source SHA, branch/status/submodule pins | OPEN |
-| A02 | Frozen same post-0045 Playbooks installation-producing source, environment and dependencies across comparison | SHA and Ansible/tool/version/config receipts; no change to installation-producing role/template sources | OPEN |
-| A03 | Complete old inventory discovery and secret-safe classification | Original sources, managed-host and operational playbook registry, classified file map | OPEN |
-| A04 | New inventory securely selects the same managed hosts and applicable playbook/tag targeting | Complete old/new host/playbook/selection matrix with no missing coverage | OPEN |
-| A05 | Only reviewed non-sensitive inventory committed; external Vault loading secured | Staged-secret scan, permissions, secure failure-mode checks, no secret in Git/evidence | OPEN |
-| A06 | Repository `ansible.cfg`, launchers and normal operator invocations choose new inventory correctly | Source/config readback and scripts/automation discovery | OPEN |
-| A07 | Full host-by-host baseline of the installation produced by old inventory | Complete all-managed-host installation footprints, stable managed-asset manifests, accepted volatile exclusions | OPEN |
-| A08 | Full host-by-host installation-output comparison of old/new inventories | For every host and applicable playbook, deterministic rendered/install-plan comparisons with zero unexplained differences | OPEN |
-| A09 | All-host controlled post-cutover apply/readback or equivalent validated installed-state proof | Per-host before/after managed-installed manifests, safe execution receipts and zero unexpected deltas | OPEN |
-| A10 | `mars` and `backup` backup/replication/snapshot installation unchanged | Full assets, mode, ACL, units/timers, agreed-parent and policy readbacks | OPEN |
-| A11 | All **other** managed hosts' installation unchanged | Complete per-host install equivalence evidence; representative checks alone insufficient | OPEN |
-| A12 | Package/user/permission/service/cron/mount/security outcomes identical everywhere | Complete target result diff; secret-bearing assets compared securely in restricted process | OPEN |
-| A13 | No host/playbook missing; no unreviewed exceptions | Coverage matrix with host and playbook names, evidence links and reviewer status | OPEN |
-| A14 | Resolved variable and precedence differences reviewed *where they exist* | Redacted diagnostic report and demonstration of zero installed/security effect; equality is optional | OPEN |
-| A15 | Secure Vault loading, secret availability and fail-closed safety unchanged | Protected-value use and access behaviour, negative tests and no disclosed values | OPEN |
-| A16 | Normal backup/Btrfs regression checks and appropriate playbook syntax/host/tag checks pass | Consolidated logs; not accepted as substitutes for all-host installation equality | OPEN |
-| A17 | Safe inventory cutover, no destructive work or silent `/etc/ansible` fallback | Deployment/activation record, change review and safe rollback | OPEN |
-| A18 | Old inventory recoverable and no target installation mutations introduced for migration | Reversible controller source change and read-only backup-state safety evidence | OPEN |
-| A19 | Final evidence/implementation accepted for the **entire managed estate** | Signed-off all-host zero-installation-delta manifest and any analysed non-impacting variable differences | OPEN |
-| A20 | Playbooks and Diaries published; formal feature closure | Commit, remote and status receipts; 0046 under `complete/` | OPEN |
+| ID | Acceptance requirement | Status |
+|---|---|---|
+| A01 | Closed/published 0045 and 0047 prerequisites verified; current Windows Diaries and `mango` Git states captured | OPEN |
+| A02 | Old effective `/etc/ansible` config/inventory and **all hosts/playbooks/callers** discovered without secret leakage | OPEN |
+| A03 | Existing Playbooks install-producing source and runtime dependencies frozen at an exact SHA | OPEN |
+| A04 | Complete all-host installed-state and host/playbook/tag/limit baseline recorded | OPEN |
+| A05 | Real private parent and inventory repositories identified; **PRIVATE** visibility/access confirmed before data push | OPEN |
+| A06 | Existing public Playbooks repository retains its independent history and has no inventory/Vault content | OPEN |
+| A07 | Private parent contains correct `.gitmodules`, two child URLs, and exact pinned child revisions | OPEN |
+| A08 | Complete inventory, group_vars, host_vars and encrypted Vault material migrated **only** to private inventory child | OPEN |
+| A09 | No plaintext secrets/password/private keys in any Git repository, packages, evidence or remote; private staged-secret audit passed | OPEN |
+| A10 | Vault password file remains outside all Git; private submodule and Vault access fail closed | OPEN |
+| A11 | Native inventory-relative `group_vars`/`host_vars` discovery, explicit includes and precedence risks verified | OPEN |
+| A12 | Original `/etc/ansible` and `/home/richard/playbooks` still recoverable during comparisons | OPEN |
+| A13 | All old/new inventory host/group/playbook/tag/limit targets accounted for; no missing host/playbook | OPEN |
+| A14 | Every-host source/rendered/installed output produces identical installation under both inventories with same Playbooks SHA | OPEN |
+| A15 | Packages, file hashes/modes/ACL, sudoers/users, timers/cron, units/services, mounts and privilege/security outcomes identical everywhere | OPEN |
+| A16 | `mars` and `backup` Btrfs/Diaries backup static installation and protection unchanged; health checks safe | OPEN |
+| A17 | All **other** managed hosts checked; no representative-host shortcut | OPEN |
+| A18 | Vault/variable differences resolved as to installed effects; protected comparisons stay secret-safe | OPEN |
+| A19 | Maintained regressions, Ansible syntax, controller freshness and intended failure-mode tests pass | OPEN |
+| A20 | Fresh private-parent clone with `--recurse-submodules` reproduces exact accepted child commits | OPEN |
+| A21 | Effective `/etc/ansible/ansible.cfg` and caller working directories transition with no routine `-i` | OPEN |
+| A22 | All relevant Jenkins/CI/operator/scheduled callers verified with authorised private inventory access | OPEN |
+| A23 | Controlled all-host cutover, exact state readback/idempotence, and documented non-destructive rollback accepted | OPEN |
+| A24 | Public/private child and parent Git SHA/visibility/pin receipts published and clean | OPEN |
+| A25 | All evidence accepted, feature formally CLOSED under Diaries `change-control/complete/`; 0048 unblocked | OPEN |
 
-## Review rules
+**Hard gates:** A single unexplained installation difference, missing host, missing private submodule, failed Vault loading, plaintext secret in staged material, private repo misconfigured as public, or unverified CI caller blocks acceptance. Differences in variable precedence/effective maps are diagnostic but cannot result in changed installed/security behaviour. Do not run backup restores, manual snapshot deletion/pruning, or redundant full end-to-end exercises merely for inventory migration.
 
-- **An installation delta on any managed host is a failure**, including changed managed file content, ownership/mode/ACL, user/privilege, package, service/timer, rendered configuration, or installed security behaviour. Naturally changing timestamps and data are not installation output; document each allowed volatile exclusion.
-- **Changed variable precedence or effective variable value is not automatically a failure.** Investigate it and provide a complete per-host proof that the installed result, host targeting and security behaviour are unaffected. Unexplained differences remain open.
-- A host or applicable playbook lacking installation-equivalence evidence is an **OPEN acceptance gap**, even when both inventories parse and `mars`/`backup` pass.
-- Preserve raw logs and sanitised machine-comparable manifests under `evidence/Step N/` and avoid secret values or encrypted files in Git. Never run destructive backups/restores/snapshot pruning merely to validate inventory relocation.
-- Mark a step CLOSED only after its actual evidence passes; formally close 0046 only when **all managed hosts and applicable playbooks** have PASS status, rollback is recorded and both repositories are published.
+**Evidence:** In `evidence/Step N/`, store only safe manifest metadata, aggregate results, source/parent SHA receipts and sanitised outputs. Never commit actual private inventory or even encrypted Vault ciphertext to Diaries. Preserve unmodified operational evidence inside the designated feature directory where safe.
