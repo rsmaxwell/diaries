@@ -1,13 +1,13 @@
 # 0045-FEAT — Consolidated acceptance matrix
 
-**Status: PLANNED. Nothing below is yet verified.** Fill in actual command, host, effective inventory, timestamps, output paths, result and reviewer acceptance during implementation. This checklist is a coverage contract, not a claim that the current installation has been inspected.
+**Status: Step 1 baseline CLOSED (11 November 2026); implementation and deployment OPEN.** Refer to `reports/STEP1-FINAL-ACCEPTANCE-20261111.md` for the accepted baseline and documented scope of external caller verification before launcher removal.
 
 | ID | Check | Expected acceptance evidence | Status |
 |---|---|---|---|
-| A01 | 0039 and 0043 closed; Playbooks/Diaries Git baseline clean and recorded | Prior closure receipts, branch/SHA/submodules | OPEN |
-| A02 | Effective `/etc/ansible` inventory incl. 0043 central schedule frozen | Redacted effective variables and host/group mappings | OPEN |
-| A03 | Old launcher/playbook caller audit complete | Current `git grep`/launcher/cron/automation references and replacement map | OPEN |
-| A04 | Full old→new managed asset and privilege map | Installed paths, checksums, owners, modes, templates, absent legacy paths | OPEN |
+| A01 | 0039 and 0043 closed; Playbooks/Diaries Git baseline clean and recorded | Completed feature closures; `baseline-20261111-111819Z` captures both source revisions | PASS (Step 1) |
+| A02 | Effective `/etc/ansible` inventory incl. 0043 central schedule frozen | `mango-source-and-inventory.txt`, no plaintext Vault disclosure | PASS (Step 1) |
+| A03 | Old launcher/playbook caller audit complete | Known tracked source references mapped in Step 1; **external invocation check required before Step 2 deletion** | PARTIAL — Step 2 gate |
+| A04 | Full old→new managed asset and privilege map | Baseline old install captured; proposed new install mapping, compare after deployment | BASELINE PASS; new-map verification Step 2/3 OPEN |
 | A05 | All new Ansible syntax, inventory host/tag selection and safety guards pass | Syntax/list-hosts/list-tags, guard test logs | OPEN |
 | A06 | Maintained replication tests pass | `verify-replication.py`, `verify-protection.py`, `verify-shared-retention.py` logs | OPEN |
 | A07 | Maintained snapshots / local backup regression tests pass | Test logs incl. 0043 source prune and 0039 qgroup invariants | OPEN |

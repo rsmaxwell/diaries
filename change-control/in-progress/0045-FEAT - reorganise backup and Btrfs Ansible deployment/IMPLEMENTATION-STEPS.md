@@ -1,8 +1,8 @@
 # 0045-FEAT — Implementation plan and acceptance gates
 
-All steps are **OPEN / NOT STARTED**. This feature is intentionally deferred until **0039-DEF and 0043-FEAT are CLOSED** with accepted evidence. Prefer one substantial refactor plus one consolidated verification rather than numerous implementation increments.
+**Step 1 CLOSED (11 November 2026)** following accepted definitive v2 installed manifests and Playbooks source/inventory freeze. **Steps 2–4 OPEN.** 0039-DEF and 0043-FEAT are CLOSED. Prefer one substantial refactor plus one consolidated verification rather than numerous implementation increments.
 
-## Step 1 — Freeze accepted source, effective inventory and installed baseline (OPEN)
+## Step 1 — Freeze accepted source, effective inventory and installed baseline (CLOSED — 11 November 2026)
 
 **Prerequisites:** 0039 and 0043 formally closed. On the **Windows Cygwin terminal**, verify the Diaries parent working tree and submodule revisions; on **`mango` SSH terminal**, verify `/home/richard/playbooks` branch, HEAD, status, remotes, and current 0044-named regression suite. Confirm actual roles and entry points against the latest Playbooks tree rather than relying on the 9 November archive.
 
@@ -12,7 +12,7 @@ All steps are **OPEN / NOT STARTED**. This feature is intentionally deferred unt
 - Generated source-to-installed-path manifest, inventory-effective non-secret settings, managed installation manifest on **`mars` and `backup`**, service/timer/cron/mount/ACL/sudoers readback and SHA-256/mode/owner snapshots. Capture source/service revision and time.
 - Explicit acceptance of the equivalent-operation scope and no-destructive-change contract. Never stage secrets or raw Vault output.
 
-**Gate:** baseline is complete, reproducible, and the safety-sensitive installed paths and service states have known expected values. No Playbooks refactor begins before this gate. If fresh current source contradicts the planning assumptions, amend the plan first.
+**Gate: ACCEPTED.** Definitive schema-v2 baseline `evidence/Step 1/baseline-20261111-111819Z/` records Playbooks Git, inventory topology, installed files/units/packages/ACL/cron/mount and read-only runtime state for both hosts. Source-to-installed mapping and known launcher references are reconciled in `reports/STEP1-FINAL-ACCEPTANCE-20261111.md`; temporary artifacts are excluded. No installed-system changes occurred. Actual external callers (including unattended invocations outside tracked Playbooks) must be checked immediately before retiring `remote-backup.yaml` or launcher in Step 2, because Step 1 source/audit evidence alone cannot prove the absence of those callers.
 
 ## Step 2 — Implement one coherent Ledger-style refactor (OPEN)
 
@@ -21,6 +21,7 @@ All steps are **OPEN / NOT STARTED**. This feature is intentionally deferred unt
 - Preserve roles `local-backup`, `snapshots`, `btrfs-replication`, `btrfs` and endpoint roles `source|receiver`; keep source/receiver gate, safety assertions, package dependencies, mount logic and snapshot/replication state handling unchanged.
 - Organise `snapshots` and `btrfs-replication` deployment around readable phases: validation/prerequisites; scoped directories; static installed files (loop/manifest or narrow synchronize); rendered templates; privileged/security controls; service unit validation; activation. Refactor `local-backup` only where it reduces duplication, since it already follows Ledger's pattern.
 - Keep all manifest entries explicit, with destination, owner/group/mode and endpoint guards. Avoid copying unneeded test/cache/legacy files and never introduce broad deletion. Preserve task ordering where state/lock/handler/activation gates depend on it.
+- Before deleting old playbooks or launchers, audit current tracked callers and external `/etc/ansible`, cron, systemd, Jenkins and operator entry points; do not retire a required invocation without updating its caller. Historical documentation is retained unchanged.
 - Change only the **operator interface** as approved: propose `local-backup.yaml` → `backup-collection.yaml`, `scripts/local-backup.sh` → `scripts/backup-collection.sh`; retire `remote-backup.yaml` and its wrapper only after proving replacement coverage and no required callers. Keep `btrfs-replication.yaml` and `snapshots.yaml` semantics. Update current operator docs and source tests without rewriting historical completed features.
 - If the default `btrfs-replication/tasks/main.yaml` currently dispatches differently from `native.yaml`, explicitly resolve that interface to avoid invoking generic source snapshot configuration on receiver. Do not hide a changed runtime installation behind renamed tasks.
 

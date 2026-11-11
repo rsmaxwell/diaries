@@ -1,0 +1,132 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ if (
+  cd '/cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries' || exit 1
+
+  feature='change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment'
+
+  echo '=== Verify repository ==='
+  test "$(git branch --show-current)" = main || exit 1
+  test "$(git rev-parse HEAD)" = \
+    '47c96ba390ebffc6349e9c1e320aabd72f32be40' || exit 1
+  test -z "$(git diff --cached --name-only)" || exit 1
+
+  echo '=== Verify definitive baseline ==='
+  evidence="$feature/evidence/Step 1/baseline-20261111-111819Z"
+
+  for host in mars backup; do
+    test -s "$evidence/$host-installed-static.json" || exit 1
+    test -s "$evidence/$host-operational-readback.txt" || exit 1
+
+    python3 -c '
+import json, sys
+d = json.load(open(sys.argv[1], encoding="utf-8"))
+assert d["schema"] == "0045-static-installed-v2"
+assert d["host"] == sys.argv[2]
+assert d["managed"] and d["systemd_units"] and d["packages"]
+' "$evidence/$host-installed-static.json" "$host" || exit 1
+  done
+
+  echo '=== Stage only 0045 ==='
+fiecho 'FAIL: 0045 baseline commit or publication' published'|| exit 1
+=== Verify repository ===
+=== Verify definitive baseline ===
+=== Stage only 0045 ===
+=== Validate and review ===
+ .../baseline-20261111-104317Z/capture-summary.txt  |   3 +
+ .../baseline-20261111-104317Z/diaries-source.txt   |  13 +
+ .../mango-source-and-inventory.txt                 | 485 ++++++++++++
+ .../mars-installed-static.json                     |   0
+ .../backup-installed-static.json                   | 368 +++++++++
+ .../backup-operational-readback.txt                |  12 +
+ .../baseline-20261111-104837Z/capture-summary.txt  |   6 +
+ .../baseline-20261111-104837Z/diaries-source.txt   |  16 +
+ .../mango-source-and-inventory.txt                 | 485 ++++++++++++
+ .../mars-installed-static.json                     | 670 ++++++++++++++++
+ .../mars-operational-readback.txt                  |  12 +
+ .../baseline-20261111-110959Z/capture-summary.txt  |   3 +
+ .../baseline-20261111-110959Z/diaries-source.txt   |  18 +
+ .../mango-source-and-inventory.txt                 | 485 ++++++++++++
+ .../mars-installed-static.json                     |   0
+ .../baseline-20261111-111426Z/capture-summary.txt  |   3 +
+ .../baseline-20261111-111426Z/diaries-source.txt   |  20 +
+ .../mango-source-and-inventory.txt                 | 485 ++++++++++++
+ .../mars-installed-static.json                     | 856 +++++++++++++++++++++
+ .../mars-operational-readback.txt                  |  12 +
+ .../backup-installed-static.json                   | 539 +++++++++++++
+ .../backup-operational-readback.txt                |  12 +
+ .../baseline-20261111-111819Z/capture-summary.txt  |   6 +
+ .../baseline-20261111-111819Z/diaries-source.txt   |  22 +
+ .../mango-source-and-inventory.txt                 | 485 ++++++++++++
+ .../mars-installed-static.json                     | 856 +++++++++++++++++++++
+ .../mars-operational-readback.txt                  |  12 +
+ ...-v2-failed-package-metadata-20261111-111025.txt |  24 +
+ ...ve-v2-failed-wrapper-schema-20261111-111451.txt |  40 +
+ .../initial-baseline-failure-20261111-104341.txt   |  22 +
+ .../Step 1/planning-commit-20261111-104259.txt     |  91 +++
+ .../STEP1-ACL-COLLECTOR-CORRECTION-20261111.md     |  25 +
+ .../STEP1-BASELINE-COVERAGE-REVIEW-20261111.md     |  37 +
+ .../STEP1-DPKG-METADATA-CORRECTION-20261111.md     |  27 +
+ .../STEP1-MANIFEST-SCHEMA-CORRECTION-20261111.md   |  23 +
+ .../tests/test-0045-package-metadata.py            |  53 ++
+ .../tools/README.md                                |   2 +-
+ .../tools/capture-0045-step1-baseline.sh           |  53 +-
+ .../tools/collect-0045-host-state.py               | 153 +++-
+ .../tools/compare-0045-installed-state.py          |  31 +-
+ 40 files changed, 6445 insertions(+), 20 deletions(-)
+=== Commit baseline evidence ===
+[main bb91e33] 0045-FEAT: preserve pre-refactor installation baseline
+ 40 files changed, 6445 insertions(+), 20 deletions(-)
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-104317Z/capture-summary.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-104317Z/diaries-source.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-104317Z/mango-source-and-inventory.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-104317Z/mars-installed-static.json
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-104837Z/backup-installed-static.json
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-104837Z/backup-operational-readback.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-104837Z/capture-summary.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-104837Z/diaries-source.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-104837Z/mango-source-and-inventory.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-104837Z/mars-installed-static.json
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-104837Z/mars-operational-readback.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-110959Z/capture-summary.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-110959Z/diaries-source.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-110959Z/mango-source-and-inventory.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-110959Z/mars-installed-static.json
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-111426Z/capture-summary.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-111426Z/diaries-source.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-111426Z/mango-source-and-inventory.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-111426Z/mars-installed-static.json
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-111426Z/mars-operational-readback.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-111819Z/backup-installed-static.json
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-111819Z/backup-operational-readback.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-111819Z/capture-summary.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-111819Z/diaries-source.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-111819Z/mango-source-and-inventory.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-111819Z/mars-installed-static.json
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/baseline-20261111-111819Z/mars-operational-readback.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/definitive-v2-failed-package-metadata-20261111-111025.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/definitive-v2-failed-wrapper-schema-20261111-111451.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/initial-baseline-failure-20261111-104341.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/Step 1/planning-commit-20261111-104259.txt
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/reports/STEP1-ACL-COLLECTOR-CORRECTION-20261111.md
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/reports/STEP1-BASELINE-COVERAGE-REVIEW-20261111.md
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/reports/STEP1-DPKG-METADATA-CORRECTION-20261111.md
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/reports/STEP1-MANIFEST-SCHEMA-CORRECTION-20261111.md
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/tests/test-0045-package-metadata.py
+=== Publish to GitHub ===
+Enumerating objects: 59, done.
+Counting objects: 100% (59/59), done.
+Delta compression using up to 32 threads
+Compressing objects: 100% (46/46), done.
+Writing objects: 100% (48/48), 26.12 KiB | 1.31 MiB/s, done.
+Total 48 (delta 24), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (24/24), completed with 7 local objects.
+To github.com:rsmaxwell/diaries.git
+   47c96ba..bb91e33  main -> main
+=== Final status ===
+bb91e33 (HEAD -> main, origin/main, origin/HEAD) 0045-FEAT: preserve pre-refactor installation baseline
+## main...origin/main
+PASS: 0045 baseline evidence committed and published
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

@@ -1,10 +1,10 @@
 # 0045-FEAT — Reorganise backup and Btrfs Ansible deployment
 
-**State:** PLANNED — NOT STARTED  
+**State:** IN PROGRESS — Step 1 baseline accepted and CLOSED (11 November 2026); Step 2 implementation OPEN
 **Created:** 10 November 2026  
 **Ownership:** Diaries parent repository, `change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/`  
 **Implementation location:** `/home/richard/playbooks` on `mango`  
-**Execution window:** **After both 0039-DEF and 0043-FEAT have been formally closed.**
+**Execution window:** Active after 0039-DEF and 0043-FEAT closure on 11 November 2026.
 
 ## Objective
 
@@ -16,9 +16,9 @@ The old and new source layouts may differ; the installed artifacts, activation s
 
 ## Dependencies and starting point
 
-- Do **not** start implementation or modify the installed systems before formal acceptance/closure of **0039-DEF** (stale-qgroup reconciliation) and **0043-FEAT** (central Btrfs maintenance scheduling).
+- Dependency **satisfied**: **0039-DEF** and **0043-FEAT** were formally closed on 11 November 2026. The Step 1 source/installed baseline is now accepted; do not change installed systems until the coherent Step 2 code and deployment plan have passed review.
 - The uploaded **9 November 2026 Playbooks source bundle** is the basis for the source review. It predates the accepted 10 November changes, particularly 0043 scheduling and 0044 permanent regression naming. **Do not use that bundle as the implementation baseline.**
-- At plan creation, the last verified Playbooks `main` publication was `7dfa93fef6d975aa82f5f4cfdf54497b106e7645` (0044), and Diaries `main` was `30eeb2e71bfa0de9030eefcef009e06a4e27d572`. Refresh Git, working-tree and effective-inventory baselines at the actual start of this feature; both may have advanced when 0039/0043 close.
+- At plan creation, the last verified Playbooks `main` publication was `7dfa93fef6d975aa82f5f4cfdf54497b106e7645` (0044), and Diaries `main` was `30eeb2e71bfa0de9030eefcef009e06a4e27d572`. Step 1 captured clean Playbooks `main` at `7dfa93fef6d975aa82f5f4cfdf54497b106e7645` and the effective inventory topology; the accepted initial source/installation baseline is `evidence/Step 1/baseline-20261111-111819Z/` (Diaries evidence committed as `bb91e33`). Verify Git and inventory have not drifted immediately before applying Step 2 changes.
 - The authoritative inventory is **`/etc/ansible` on `mango`**, including `/etc/ansible/group_vars/all/btrfs-maintenance-schedule.yaml`. Do not create a duplicate `inventory/` tree in Playbooks. Playbooks Git is `/home/richard/playbooks`; the authoritative Diaries working copy is on Windows.
 
 ## In scope
@@ -37,6 +37,10 @@ The old and new source layouts may differ; the installed artifacts, activation s
 - No changes to snapshot/replication algorithms, checkpoint or agreed-parent states, state schemas, SSH trust, sudoers privilege, mounts, ACLs, services/cron definitions, ownership, permissions, executable contents or installed paths.
 - No migration, deleting backups, destructive Btrfs maintenance, manual send/receive, recovery restore, qgroup reset, legacy snapshot removal, or opportunistic cleanup of installed files.
 - No permanent feature-specific migration/test scripts in the Playbooks repo; tools and evidence live under **this** Diaries feature's `tools/`, `tests/`, `evidence/`, `reports/`.
+
+## Current accepted baseline
+
+**Step 1 CLOSED (11 November 2026).** The authoritative installed-state comparison reference is `evidence/Step 1/baseline-20261111-111819Z/`, using schema `0045-static-installed-v2`. See `reports/STEP1-FINAL-ACCEPTANCE-20261111.md` for source/installed coverage and the mandatory Step 2 caller audit. Historical incomplete collections are retained, not comparison baselines. No Playbooks or managed-host changes were made during Step 1.
 
 ## Deliverables
 
