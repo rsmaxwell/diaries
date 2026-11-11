@@ -1,0 +1,59 @@
+=== 0043: live schedule readback ===
+Wed Nov 11 08:10:29 UTC 2026
+=== Playbooks source revision ===
+7dfa93fef6d975aa82f5f4cfdf54497b106e7645
+## main...origin/main
+=== mars: diaries-pull.timer ===
+PASS: enabled/active/calendar
+=== mars: btrfs-snapshot-create.timer ===
+PASS: enabled/active/calendar
+=== mars: btrfs-snapshot-prune.timer ===
+PASS: enabled/active/calendar
+=== mars: btrfs-native-push.timer ===
+PASS: enabled/active/calendar
+=== mars: btrfs-clear-stale-qgroups.timer ===
+PASS: enabled/active/calendar
+=== backup: btrfs-receiver-simple-prune.timer ===
+PASS: enabled/active/calendar
+=== backup: btrfs-clear-stale-qgroups.timer ===
+PASS: enabled/active/calendar
+=== mars: bounded daily prune capacity ===
+ExecStart=/usr/local/sbin/btrfs-snapshot-manager --config /etc/btrfs-snapshot-manager.json prune --max-delete 32
+=== Installed manager status ===
+=== mars ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=84
+qgroups_stale=0
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=73;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=73
+diaries_verification=valid;logicalDataset=production;backupId=20261111-003057Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== backup ===
+snapshot_root=/@data/mars-received
+filesystem=btrfs
+qgroups_total=37
+qgroups_stale=0
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=34;incomplete_timestamp_sets=0
+source=@data:None;managed_snapshots=34
+diaries_verification=disabled
+=== Agreed parent state (read-only) ===
+PASS: verified same protected parent 20261111-030031Z
+=== Next systemd elapses ===
+--- mars ---
+NEXT                        LEFT LAST                              PASSED UNIT                            ACTIVATES
+Thu 2026-11-12 04:15:00 UTC  20h Wed 2026-11-11 04:15:02 UTC 3h 55min ago btrfs-snapshot-prune.timer      btrfs-snapshot-prune.service
+Thu 2026-11-12 05:30:00 UTC  21h Wed 2026-11-11 05:30:39 UTC 2h 40min ago btrfs-clear-stale-qgroups.timer btrfs-clear-stale-qgroups.service
+
+2 timers listed.
+--- backup ---
+NEXT                        LEFT LAST                              PASSED UNIT                              ACTIVATES
+Thu 2026-11-12 04:15:00 GMT  20h Wed 2026-11-11 04:15:02 GMT 3h 55min ago btrfs-receiver-simple-prune.timer btrfs-receiver-simple-prune.service
+Thu 2026-11-12 05:30:00 GMT  21h Wed 2026-11-11 05:30:02 GMT 2h 40min ago btrfs-clear-stale-qgroups.timer   btrfs-clear-stale-qgroups.service
+
+2 timers listed.

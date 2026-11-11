@@ -1,0 +1,83 @@
+=== 0039-DEF Step 11: read-only unattended cycles ===
+Wed Nov 11 08:09:33 UTC 2026
+host=Windows Cygwin; target_hosts=mars,backup
+=== Diaries repository ===
+C:/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+30eeb2e71bfa0de9030eefcef009e06a4e27d572
+## main...origin/main
+?? "change-control/in-progress/0039-DEF - reconcile orphaned Btrfs qgroups on backup/evidence/Step 11/unattended-20261111-080933Z.txt"
+?? "change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/"
+?? "change-control/in-progress/0046-FEAT - move non-sensitive Ansible inventory into Playbooks Git/"
+=== Playbooks Git revision and changes (mango) ===
+7dfa93fef6d975aa82f5f4cfdf54497b106e7645
+## main...origin/main
+=== mars: installed cleaner and scheduled timers ===
+a3eb0c1f5104ec0f31f54f33746d56d824361ae184f54d7171e0b3002a79e727  /usr/local/sbin/btrfs-clear-stale-qgroups
+--- mars: btrfs-native-push.timer ---
+--- mars: btrfs-clear-stale-qgroups.timer ---
+=== mars: scheduled qgroup service on 2026-11-10 (UTC) ===
+2026-11-10T05:30:21+00:00 mars systemd[1]: Starting btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (source)...
+2026-11-10T05:30:21+00:00 mars btrfs-clear-stale-qgroups[107314]: mode=source filesystem=/media/usb uuid=72d1d8ea-900e-4fca-837f-1b1febec036c qgroups=95 stale_before=14 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=14 clear_stale_supported=true
+2026-11-10T05:30:21+00:00 mars btrfs-clear-stale-qgroups[107314]: stale_after=0 removed=14 deferred_pending=0 pending_deletions_after=0 native_rc=0 result=complete dry_run=false
+2026-11-10T05:30:21+00:00 mars systemd[1]: btrfs-clear-stale-qgroups.service: Deactivated successfully.
+2026-11-10T05:30:21+00:00 mars systemd[1]: Finished btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (source).
+=== mars: scheduled qgroup service on 2026-11-11 (UTC) ===
+2026-11-11T05:30:39+00:00 mars systemd[1]: Starting btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (source)...
+2026-11-11T05:30:39+00:00 mars btrfs-clear-stale-qgroups[117242]: mode=source filesystem=/media/usb uuid=72d1d8ea-900e-4fca-837f-1b1febec036c qgroups=105 stale_before=24 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=24 clear_stale_supported=true
+2026-11-11T05:30:39+00:00 mars btrfs-clear-stale-qgroups[117242]: stale_after=0 removed=24 deferred_pending=0 pending_deletions_after=0 native_rc=0 result=complete dry_run=false
+2026-11-11T05:30:39+00:00 mars systemd[1]: btrfs-clear-stale-qgroups.service: Deactivated successfully.
+2026-11-11T05:30:39+00:00 mars systemd[1]: Finished btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (source).
+=== mars: latest cleanup result ===
+Result=success
+ExecMainStatus=0
+=== mars: current cleaner classification (dry run only) ===
+mode=source filesystem=/media/usb uuid=72d1d8ea-900e-4fca-837f-1b1febec036c qgroups=84 stale_before=0 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=0 clear_stale_supported=true
+dry_run=true
+=== mars: snapshot-manager status (read only) ===
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=84
+qgroups_stale=0
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=73;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=73
+diaries_verification=valid;logicalDataset=production;backupId=20261111-003057Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+=== backup: installed cleaner and scheduled timers ===
+a3eb0c1f5104ec0f31f54f33746d56d824361ae184f54d7171e0b3002a79e727  /usr/local/sbin/btrfs-clear-stale-qgroups
+--- backup: btrfs-receiver-simple-prune.timer ---
+--- backup: btrfs-clear-stale-qgroups.timer ---
+=== backup: scheduled qgroup service on 2026-11-10 (UTC) ===
+2026-11-10T05:30:00+00:00 backup systemd[1]: Starting btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (receiver)...
+2026-11-10T05:30:00+00:00 backup btrfs-clear-stale-qgroups[2859965]: mode=receiver filesystem=/ uuid=b915f967-7cb4-4c14-b11b-f52209637a22 qgroups=36 stale_before=0 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=0 clear_stale_supported=true
+2026-11-10T05:30:00+00:00 backup btrfs-clear-stale-qgroups[2859965]: stale_after=0 removed=0 deferred_pending=0 pending_deletions_after=0 native_rc=0 result=complete dry_run=false
+2026-11-10T05:30:00+00:00 backup systemd[1]: btrfs-clear-stale-qgroups.service: Deactivated successfully.
+2026-11-10T05:30:00+00:00 backup systemd[1]: Finished btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (receiver).
+=== backup: scheduled qgroup service on 2026-11-11 (UTC) ===
+2026-11-11T05:30:02+00:00 backup systemd[1]: Starting btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (receiver)...
+2026-11-11T05:30:02+00:00 backup btrfs-clear-stale-qgroups[3010339]: mode=receiver filesystem=/ uuid=b915f967-7cb4-4c14-b11b-f52209637a22 qgroups=37 stale_before=0 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=0 clear_stale_supported=true
+2026-11-11T05:30:02+00:00 backup btrfs-clear-stale-qgroups[3010339]: stale_after=0 removed=0 deferred_pending=0 pending_deletions_after=0 native_rc=0 result=complete dry_run=false
+2026-11-11T05:30:02+00:00 backup systemd[1]: btrfs-clear-stale-qgroups.service: Deactivated successfully.
+2026-11-11T05:30:02+00:00 backup systemd[1]: Finished btrfs-clear-stale-qgroups.service - 0039 Btrfs stale qgroup reconciliation (receiver).
+=== backup: latest cleanup result ===
+Result=success
+ExecMainStatus=0
+=== backup: current cleaner classification (dry run only) ===
+mode=receiver filesystem=/ uuid=b915f967-7cb4-4c14-b11b-f52209637a22 qgroups=37 stale_before=0 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=0 clear_stale_supported=true
+dry_run=true
+=== backup: snapshot-manager status (read only) ===
+snapshot_root=/@data/mars-received
+filesystem=btrfs
+qgroups_total=37
+qgroups_stale=0
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=34;incomplete_timestamp_sets=0
+source=@data:None;managed_snapshots=34
+diaries_verification=disabled
+=== Both hosts: same installed shared cleaner SHA256 ===
+PASS: installed cleaner sha256=a3eb0c1f5104ec0f31f54f33746d56d824361ae184f54d7171e0b3002a79e727
+=== Read-only simplified agreed-parent verification ===
+PASS: common parent timestamp=20261111-030031Z uuid=a3e61e8c-d851-7748-91e5-d23ffdc18b70

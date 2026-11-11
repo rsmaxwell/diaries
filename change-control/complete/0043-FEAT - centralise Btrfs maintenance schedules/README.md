@@ -1,8 +1,9 @@
 # 0043-FEAT — Centralise Btrfs maintenance schedules
 
-**Status:** IN PROGRESS — deployment, read-only host acceptance and Playbooks
-source commit accepted; first natural daily prune and Diaries source-control
-reconciliation pending. **Opened:** 10 November 2026.
+**Status:** **CLOSED — final operational acceptance 11 November 2026.**
+All four implementation steps are accepted. Formal archive movement and the
+final Diaries Git commit/push remain administrative actions requiring operator
+readback. **Opened:** 10 November 2026.
 
 ## Purpose
 
@@ -45,8 +46,13 @@ evidence and through the established host-configuration backup. See
 - **PASS:** Playbooks 0043 commit
   `6d7f397048b8ed47c94f973a98096fc6e806e4e8` (clean working tree,
   ahead of origin/main by one commit at readback).
-- **NOT YET ACCEPTED:** the first natural 04:15 daily prune cycle
-  (11 November), subsequent 05:30 qgroup cleanup, and final Diaries Git commit.
+- **PASS — natural 11 November 04:15 UTC prune:** `mars` deleted **16** eligible complete timestamp sets (`selected=16`, `max_delete=32`), preserving checkpoint and replication holds. `backup` ran at 04:15 with `RECEIVER-SIMPLE-DELETED count=0`; no deletions were required. Both services returned `Result=success` and `ExecMainStatus=0`.
+- **PASS — post-cycle health at 08:10 UTC:** all seven scheduled timers enabled/active with expected calendars; `mars` 73 and `backup` 34 complete timestamp sets, zero incomplete; stale qgroups zero; source production-backup verification valid; agreed protected parent `20261111-030031Z` on both hosts. The independently accepted 0039 05:30 cleanup ran successfully on both hosts.
+- **PASS — source control:** 0043 Playbooks commit `6d7f397048b8ed47c94f973a98096fc6e806e4e8` and Diaries acceptance commit `293a755248982ce7a5db28ca35854310eb0d7235` were published on 10 November. On 11 November, the later Playbooks revision `7dfa93fef6d975aa82f5f4cfdf54497b106e7645` was clean and synchronised; final Diaries feature-closure commit remains to be executed.
+
+See `reports/FINAL-CLOSURE-RECONCILIATION-20261111.md`,
+`evidence/Step 3/live-schedule-20261111-081029Z.txt` and
+`evidence/Step 3/natural-pruning-20261111.txt`.
 
 The original name-specific installer `scripts/maintenance-schedule.py` and
 its `scripts/tests/verify-maintenance-schedule.py` regression are deliberately
@@ -55,18 +61,21 @@ role workflow. Files in `/etc/ansible` are not automatically versioned in Git.
 
 ## Other features
 
-0042-FEAT remains CLOSED. 0039-DEF remains OPEN in Step 11; its approved
-05:30 stale-qgroup cleanup activation must stay unchanged.
+0042-FEAT remains CLOSED. 0039-DEF's two-cycle unattended housekeeping
+acceptance also passed on 11 November, allowing its separate formal closure.
+The approved 05:30 stale-qgroup cleanup activation stays unchanged.
 
 ## Closure steps
 
 1. Reconcile standard inventory and offline source regression — **PASS**.
 2. Deploy via existing Ansible roles and record readback — **PASS**, 10 November.
-3. Read-only host checks — **PASS**, 10 November; natural pruning
-   behaviour — **OPEN**, next event 11 November at 04:15 UTC.
-4. Playbooks 0043 source commit — **PASS**; Diaries evidence commit and
-   formal closure — **OPEN**.
+3. Read-only host checks — **PASS**, 10 and 11 November; natural pruning
+   behaviour — **PASS**, 11 November at 04:15 UTC.
+4. Playbooks 0043 source commit and Diaries initial evidence commit — **PASS**,
+   published 10 November. Final evidence reconciliation — **PASS**, 11 November.
+   Archive move, final Diaries commit and push — **operator action pending**.
 
-Keep 0043 under `change-control/in-progress/` until host and source-control
-acceptance gates are met. No additional restore or replication test is required
-when existing accepted correctness evidence remains sufficient.
+All implementation/operational gates are accepted. Archive 0043 under
+`change-control/complete/`, commit/publish the closure documentation and verify
+Git state. Do not mark the Git publication as successful until the command
+returns success. No additional restore or replication test is required.

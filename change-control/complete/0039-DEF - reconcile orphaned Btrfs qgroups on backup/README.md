@@ -1,7 +1,7 @@
 # 0039-DEF — Reconcile and manage recurring stale Btrfs qgroups on mars and backup
 
-**Opened:** 21 October 2026. **Scope confirmed:** 9 November 2026. **Evidence reconciled:** 10 November 2026.
-**Status:** **IN PROGRESS**. Steps **1–10 CLOSED** (Steps 1–7 on accepted October evidence, Steps 8–10 on the 9–10 November observations); Steps **11–12 OPEN**. No formal defect closure or feature-directory move has occurred.
+**Opened:** 21 October 2026. **Scope confirmed:** 9 November 2026. **Final operational acceptance:** 11 November 2026.
+**Status:** **CLOSED** — Steps **1–12 accepted**. Steps 1–7 reuse accepted October evidence, Steps 8–10 reuse 9–10 November evidence, Step 11 is accepted on two consecutive natural 05:30 UTC cycles (10 and 11 November), and Step 12 is reconciled in `reports/FINAL-CLOSURE-RECONCILIATION-20261111.md`. The closure directory move and publication must still be verified from the operator's final Git receipt.
 
 ## Accepted historical remediation (Steps 1–7)
 
@@ -15,11 +15,11 @@ The original off-site receiver had a parser incompatibility and 29,437 unmatched
 
 See `reports/STEP08-10-ACCEPTANCE-RECONCILIATION-20261110.md`. Original uploaded terminal transcripts from the 9–10 November investigation are preserved under `evidence/Step 09/raw-terminal/` and `evidence/Step 10/raw-terminal/`. The Windows-collected Step 8 and Step 10 records remain authoritative where present; this package does not replace them.
 
-## Remaining work
+## Final acceptance (11 November 2026)
 
-**Step 11 — OPEN:** Observe at least one *further* 05:30 cycle under ordinary snapshot/replication activity and confirm a bounded or understood deferred backlog, snapshot integrity, scheduled service status and identical agreed-parent records. Use the read-only `tools/verify-0039-step11-unattended.sh` collector after the 11 November run, alongside the already accepted 0042-FEAT source retirement/replication acceptance. This is not a repeat of the large October cleanup, a restore or a receiver reseed.
+**Step 11 — CLOSED:** Two naturally scheduled cleanup cycles were reviewed for each host. On 10 and 11 November, `mars` removed 14 and 24 eligible stale qgroups respectively, reaching zero after each run. `backup` completed both runs with zero stale entries and zero removals required. Both services reported `Result=success`, `ExecMainStatus=0`; current read-only classification found zero stale and zero pending deletions on both hosts. Snapshot managers reported 73/34 complete timestamp sets respectively, zero incomplete sets, valid source production-backup verification and matching protected agreed-parent timestamp `20261111-030031Z`. No quota rescan, manual prune, reseed or restore was required.
 
-**Step 12 — OPEN:** Reconcile the 0039 Playbooks and Diaries source commits separately from closed 0042-FEAT, record accepted Step 11 evidence, formally close the defect and move the entire feature directory to `change-control/complete/`. The historical `evidence/STEP08-FINAL-CLOSEOUT.md` remains a superseded *proposal*, not a completed closure receipt. The 0042 feature is already CLOSED and need not be reopened.
+**Step 12 — CLOSED for acceptance:** The implementation and evidence have been reconciled, including the original interrupted October failure journal, its separate acceptance and the completed 0042 source retirement. Final report: `reports/FINAL-CLOSURE-RECONCILIATION-20261111.md`. Operational evidence: `evidence/Step 11/unattended-20261111-080933Z.txt`. The historical `evidence/STEP08-FINAL-CLOSEOUT.md` remains a superseded *proposal*. Complete the formal Git move and publication as the last administrative action; record the resulting revision rather than presuming a push has occurred.
 
 ## Operational safety
 

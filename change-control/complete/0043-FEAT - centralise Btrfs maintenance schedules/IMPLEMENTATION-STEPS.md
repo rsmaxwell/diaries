@@ -127,7 +127,8 @@ maintained. The 10 November live deployment subsequently passed on both hosts.
 `mars` source and `backup` receiver pruning both have `OnCalendar=*-*-*
 04:15:00 UTC`, are enabled, and the source service runs with `--max-delete 32`.
 See `reports/DEPLOYMENT-RECONCILIATION-20261110.md` and Step 2 raw evidence.
-The first natural daily prune has not yet been verified.
+The first natural daily prune was subsequently verified on 11 November;
+see the final closure reconciliation below.
 
 ## 10 November live acceptance and Playbooks commit
 
@@ -145,13 +146,33 @@ cleanup. The shared protected parent was verified as `20261110-030004Z`.
 Playbooks source changes were committed as
 `6d7f397048b8ed47c94f973a98096fc6e806e4e8` on `main`; five files
 changed, including the bounded source manager, unit configuration, regression
-test and maintenance documentation. The Playbooks working tree was clean,
-one commit ahead of `origin/main`; push status remains unverified. The
-Windows feature's `evidence/Step 4/playbooks-source-commit-20261110.txt`
-preserves the operator readback.
+test and maintenance documentation. The commit was published 10 November;
+0043 Diaries evidence was published as
+`293a755248982ce7a5db28ca35854310eb0d7235` the same day.
+The Windows feature's `evidence/Step 4/playbooks-source-commit-20261110.txt`
+preserves the source readback.
 
-The remaining acceptance is the naturally scheduled **11 November 04:15**
-prune on each host, with subsequent **05:30** qgroup maintenance and ongoing
-parent/backup health. Do not execute a manual prune to force the test. Commit
-0043 Diaries evidence independently and retain the feature `in-progress`
-until the first natural cycle and final acceptance are reviewed.
+## 11 November natural-execution acceptance — Steps 3 and 4 CLOSED for operational acceptance
+
+- At 04:15:02 UTC, `mars` reported `RETENTION sets: total=85 keep=69 sources=1`,
+  `PRUNE-CAP eligible=16 selected=16 max_delete=32` and deleted all 16 selected
+  complete timestamp sets. The journal listed both checkpoint holds and
+  protected replication snapshot timestamps before deletion. The service
+  returned `Result=success`, `ExecMainStatus=0` at 04:15:03 UTC.
+- At 04:15:02 UTC, `backup` reported `RECEIVER-SIMPLE-DELETED count=0`,
+  `Result=success`, `ExecMainStatus=0`. Zero receiver deletions was an ordinary
+  successful result, not a failure to execute.
+- The 08:10 UTC read-only verifier passed all seven timer checks and returned
+  zero incomplete timestamp sets, zero stale/under-deletion qgroups on both
+  hosts and valid production-backup verification on `mars`. The agreed
+  protected parent matched as `20261111-030031Z`.
+- The separate 0039 cleanup services completed at 05:30 UTC on both hosts;
+  no manual prune, rescan, replication or restore was used for this acceptance.
+- The operational and source-control acceptance gates are **PASS**. The final
+  action is to archive the feature into `change-control/complete/`, commit the
+  11 November receipts and verify GitHub publication; that action is not
+  assumed successful before the operator's Git output.
+
+**Evidence:** `evidence/Step 3/live-schedule-20261111-081029Z.txt`,
+`evidence/Step 3/natural-pruning-20261111.txt`, and
+`reports/FINAL-CLOSURE-RECONCILIATION-20261111.md`.

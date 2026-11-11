@@ -1,6 +1,6 @@
 # 0039-DEF — Implementation steps
 
-**Plan consolidated:** 9 November 2026; **latest acceptance reconciliation:** 10 November 2026. **Status:** Steps **1–10 CLOSED** based on accepted October and 9–10 November evidence. Steps **11–12 OPEN**, pending a further unattended-cycle observation, 0039 Git receipts and formal closure. The defect remains under `change-control/in-progress/`. The 0042-FEAT legacy-source retirement is independently **CLOSED**.
+**Plan consolidated:** 9 November 2026; **final acceptance reconciliation:** 11 November 2026. **Status:** Steps **1–12 CLOSED**, following two consecutive unattended 05:30 UTC housekeeping cycles and final evidence reconciliation. The 0042-FEAT legacy-source retirement remains independently **CLOSED**. Formal archiving into `change-control/complete/` and Git publication are the final operator actions; their success is not asserted before terminal readback.
 
 ## Scope and safety
 
@@ -72,18 +72,18 @@ For each new operation, record host/terminal, source revision, installed version
 - **Rollback boundary:** `sudo systemctl disable --now btrfs-clear-stale-qgroups.timer` on a host stops subsequent scheduled runs; reinstalling a prior executable/config is through normal Playbooks and does **not** undo qgroup metadata already cleared. No rollback was required.
 - **Evidence:** `evidence/Step 10/scheduled-maintenance-20261110.txt`, additional read-only captures, and `reports/STEP08-10-ACCEPTANCE-RECONCILIATION-20261110.md`.
 
-### Step 11 — Consolidated recurrence and integration verification — OPEN
+### Step 11 — Consolidated recurrence and integration verification — CLOSED (11 November 2026)
 
 - Exercise normal scheduled snapshot pruning and ordinary replication/receiver activity (using the existing operational schedule and already accepted correctness evidence where sufficient); observe at least enough subsequent maintenance cycles to establish that cleanup runs repeatedly and any newly produced stale qgroups are reconciled or an understood, bounded transient backlog remains.
 - Compare per-host pre/post counts and candidate classification; inspect logs, retries/deferrals and failure handling. Verify protected parents, checkpoint holds, received subvolumes, replication receipts and existing timers remain intact. Check no unbounded accumulation across the observation window; record any version-dependent limitation explicitly rather than claiming it fixed.
 - Run consolidated source/Ansible regressions and relevant integration checks. Correct defects and repeat only affected tests. **Do not require a full restore, reseed or another large one-time 29,437-qgroup cleanup** merely to re-prove the accepted October remediation.
-- **Acceptance:** unattended housekeeping operates safely on both hosts, evidence shows stable/bounded stale-qgroup behaviour under normal operation, failures are visible, and native replication remains valid. If a host cannot meet this because its installed Btrfs utilities lack a safe operation, Step 11 stays OPEN pending a supported solution; an Ubuntu upgrade is not automatically added to scope. **Evidence:** new `evidence/Step 11/`.
+- **Acceptance — PASS, 11 November:** The 10 and 11 November natural 05:30 cycles completed successfully on both hosts. `mars` removed 14 and 24 native stale entries, leaving zero after each run; `backup` removed zero because none were present. `Result=success` and `ExecMainStatus=0` on both hosts; follow-up dry-run classification found zero stale, under-deletion, pending and unmarked orphan entries. Source/receiver complete snapshot sets were 73/34 with zero incomplete, source production-backup verification valid, the installed shared cleaner SHA256 matched, and the agreed-parent timestamp `20261111-030031Z` matched. This demonstrates bounded behaviour in the accepted two-day observation window, **not** that the kernel can never produce future stale entries. **Evidence:** `evidence/Step 11/unattended-20261111-080933Z.txt`; `reports/FINAL-CLOSURE-RECONCILIATION-20261111.md`.
 
-### Step 12 — Final evidence reconciliation and formal defect closure — OPEN
+### Step 12 — Final evidence reconciliation and formal defect closure — CLOSED for acceptance (11 November 2026)
 
 - Reconcile accepted October Steps 1–7 and newly collected Steps 8–11 against the actual Windows Diaries and `mango` Playbooks Git revisions, deployed units and journal evidence. Record remaining limitations and ownership without claiming prevention of future kernel-level stale markings.
-- Once all criteria are accepted, formally close the steps and the defect, preserve original evidence including the interrupted **FAIL** journal and its separate acknowledgement, and move the complete feature directory into `change-control/complete/`. Verify the staged Git move, commit/push and resulting revision. Until the operator accepts the evidence and the repository move is confirmed, Step 12 and 0039-DEF remain **OPEN**.
-- **Evidence:** `evidence/Step 12/` plus original evidence paths; existing `evidence/STEP08-FINAL-CLOSEOUT.md` remains a **historical proposed closeout**, not proof that the newly agreed recurring-qgroup scope is complete.
+- **Acceptance — PASS:** Historical Steps 1–7, accepted Steps 8–10 and the new Step 11 evidence are reconciled. The installed cleaner has identical SHA256 on both hosts; operational health and the protected agreed parent are intact. The defect is accepted for closure without asserting that no future stale entries can arise. Keep all historical evidence, including the interrupted October **FAIL** journal and separate acknowledgement, undisturbed. The existing `evidence/STEP08-FINAL-CLOSEOUT.md` remains a superseded *proposal*.
+- **Evidence:** `reports/FINAL-CLOSURE-RECONCILIATION-20261111.md` with the raw Step 11 terminal capture in `evidence/Step 11/`. The final Git move/commit/push and resulting revision must be verified before claiming repository publication.
 
 ## Agreed decisions and explicit exclusions (9 November 2026)
 

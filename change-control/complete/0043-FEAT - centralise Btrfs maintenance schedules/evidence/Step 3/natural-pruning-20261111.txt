@@ -1,0 +1,41 @@
+=== mars: btrfs-snapshot-prune.service ===
+2026-11-11T04:15:02+00:00 mars systemd[1]: Starting btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots...
+2026-11-11T04:15:02+00:00 mars btrfs-snapshot-manager[117099]: CHECKPOINT-HELD: ['20261013-171228Z', '20261018-165453Z']
+2026-11-11T04:15:02+00:00 mars btrfs-snapshot-manager[117099]: REPLICATION-PROTECTED: ['20261023-030037Z', '20261029-030003Z', '20261030-030033Z', '20261101-140039Z']
+2026-11-11T04:15:02+00:00 mars btrfs-snapshot-manager[117099]: RETENTION sets: total=85 keep=69 sources=1
+2026-11-11T04:15:02+00:00 mars btrfs-snapshot-manager[117099]: PRUNE-CAP: eligible=16 selected=16 max_delete=32
+2026-11-11T04:15:02+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261109-040037Z subvol_id=21586 /media/usb/@snapshots/@data/20261109-040037Z
+2026-11-11T04:15:02+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261109-030030Z subvol_id=21585 /media/usb/@snapshots/@data/20261109-030030Z
+2026-11-11T04:15:02+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261109-020020Z subvol_id=21584 /media/usb/@snapshots/@data/20261109-020020Z
+2026-11-11T04:15:02+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261109-010012Z subvol_id=21583 /media/usb/@snapshots/@data/20261109-010012Z
+2026-11-11T04:15:02+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261109-000004Z subvol_id=21582 /media/usb/@snapshots/@data/20261109-000004Z
+2026-11-11T04:15:02+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261108-220015Z subvol_id=21580 /media/usb/@snapshots/@data/20261108-220015Z
+2026-11-11T04:15:02+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261108-210007Z subvol_id=21579 /media/usb/@snapshots/@data/20261108-210007Z
+2026-11-11T04:15:02+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261108-200040Z subvol_id=21578 /media/usb/@snapshots/@data/20261108-200040Z
+2026-11-11T04:15:02+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261108-190040Z subvol_id=21577 /media/usb/@snapshots/@data/20261108-190040Z
+2026-11-11T04:15:03+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261108-180009Z subvol_id=21576 /media/usb/@snapshots/@data/20261108-180009Z
+2026-11-11T04:15:03+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261108-170040Z subvol_id=21575 /media/usb/@snapshots/@data/20261108-170040Z
+2026-11-11T04:15:03+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261108-160020Z subvol_id=21574 /media/usb/@snapshots/@data/20261108-160020Z
+2026-11-11T04:15:03+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261108-150011Z subvol_id=21573 /media/usb/@snapshots/@data/20261108-150011Z
+2026-11-11T04:15:03+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261108-140002Z subvol_id=21572 /media/usb/@snapshots/@data/20261108-140002Z
+2026-11-11T04:15:03+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261108-130023Z subvol_id=21571 /media/usb/@snapshots/@data/20261108-130023Z
+2026-11-11T04:15:03+00:00 mars btrfs-snapshot-manager[117099]: DELETE @data 20261028-230006Z subvol_id=21318 /media/usb/@snapshots/@data/20261028-230006Z
+2026-11-11T04:15:03+00:00 mars btrfs-snapshot-manager[117099]: Deleted 16 complete timestamp sets
+2026-11-11T04:15:03+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Deactivated successfully.
+2026-11-11T04:15:03+00:00 mars systemd[1]: Finished btrfs-snapshot-prune.service - Prune timestamp-named Btrfs snapshots.
+2026-11-11T04:15:03+00:00 mars systemd[1]: btrfs-snapshot-prune.service: Consumed 1.169s CPU time.
+=== mars: service result ===
+Result=success
+ExecMainStartTimestamp=Wed 2026-11-11 04:15:02 UTC
+ExecMainExitTimestamp=Wed 2026-11-11 04:15:03 UTC
+ExecMainStatus=0
+=== backup: btrfs-receiver-simple-prune.service ===
+2026-11-11T04:15:02+00:00 backup systemd[1]: Starting btrfs-receiver-simple-prune.service - 0040 Simplified Btrfs receiver retention (approved only)...
+2026-11-11T04:15:02+00:00 backup btrfs-snapshot-manager[3002695]: RECEIVER-SIMPLE-DELETED count=0
+2026-11-11T04:15:02+00:00 backup systemd[1]: btrfs-receiver-simple-prune.service: Deactivated successfully.
+2026-11-11T04:15:02+00:00 backup systemd[1]: Finished btrfs-receiver-simple-prune.service - 0040 Simplified Btrfs receiver retention (approved only).
+=== backup: service result ===
+Result=success
+ExecMainStartTimestamp=Wed 2026-11-11 04:15:02 GMT
+ExecMainExitTimestamp=Wed 2026-11-11 04:15:02 GMT
+ExecMainStatus=0
