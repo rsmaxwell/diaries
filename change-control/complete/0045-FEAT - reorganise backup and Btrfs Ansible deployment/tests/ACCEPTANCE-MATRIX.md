@@ -1,6 +1,6 @@
 # 0045-FEAT — Consolidated acceptance matrix
 
-**Status: Steps 1–3 CLOSED (11 November 2026), Step 4 OPEN.** Refer to `reports/STEP1-FINAL-ACCEPTANCE-20261111.md` for the accepted baseline and documented scope of external caller verification before launcher removal.
+**Status: Steps 1–4 CLOSED (11 November 2026), subject to successful final closure publication.** Refer to `reports/STEP1-FINAL-ACCEPTANCE-20261111.md` for the accepted baseline and documented scope of external caller verification before launcher removal.
 
 | ID | Check | Expected acceptance evidence | Status |
 |---|---|---|---|
@@ -18,7 +18,7 @@
 | A12 | Scoped apply and second apply show no unexpected service/data changes | Ansible log and idempotence/managed-file evidence | PASS — 13:22 UTC reapply: all hosts changed=0, failed=0, unreachable=0 |
 | A13 | No destructive backup operation, secret disclosure or unsanctioned `--delete` | Playbooks code review and deployment logs | PASS — source contract and actual apply; no manual data operations; review logs before public Git publication |
 | A14 | Rollback path and accepted correctness evidence retained | Known-good SHA, pre-change manifest, risk/rollback receipt | PASS — rollback Playbooks `7dfa93f` and definitive baseline preserved; no rollback required |
-| A15 | Playbooks and Diaries commits published; formal closure recorded | Git SHA/status/push receipts, feature under `complete/` | OPEN — Playbooks `1939a09` published; Diaries final evidence commit / formal feature move outstanding |
+| A15 | Playbooks and Diaries commits published; formal closure recorded | Git SHA/status/push receipts, feature under `complete/` | PASS upon successful final closure command — Playbooks `1939a09`, Diaries evidence `d93779b`; final closure commit moves feature to `complete/`, validates both origin/main pointers and clean status |
 
 ## Equivalence reporting rules
 

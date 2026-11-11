@@ -1,8 +1,8 @@
 # 0045-FEAT — Reorganise backup and Btrfs Ansible deployment
 
-**State:** IN PROGRESS — Steps 1–3 CLOSED (11 November 2026); Step 4 final Git/evidence reconciliation OPEN
+**State:** CLOSED — Steps 1–4 accepted on 11 November 2026; final repository publication required for the closure record to take effect
 **Created:** 10 November 2026
-**Ownership:** Diaries parent repository, `change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/`
+**Ownership:** Diaries parent repository, `change-control/complete/0045-FEAT - reorganise backup and Btrfs Ansible deployment/`
 **Implementation location:** `/home/richard/playbooks` on `mango`
 **Execution window:** Active after 0039-DEF and 0043-FEAT closure on 11 November 2026.
 
@@ -16,7 +16,7 @@ The old and new source layouts may differ; the installed artifacts, activation s
 
 ## Dependencies and starting point
 
-- Dependency **satisfied**: **0039-DEF** and **0043-FEAT** were formally closed on 11 November 2026. The Step 1 source/installed baseline is now accepted; do not change installed systems until the coherent Step 2 code and deployment plan have passed review.
+- Dependency **satisfied**: **0039-DEF** and **0043-FEAT** were formally closed on 11 November 2026. The Step 1 baseline and Steps 2–3 code and deployment acceptance are complete.
 - The uploaded **9 November 2026 Playbooks source bundle** is the basis for the source review. It predates the accepted 10 November changes, particularly 0043 scheduling and 0044 permanent regression naming. **Do not use that bundle as the implementation baseline.**
 - At plan creation, the last verified Playbooks `main` publication was `7dfa93fef6d975aa82f5f4cfdf54497b106e7645` (0044), and Diaries `main` was `30eeb2e71bfa0de9030eefcef009e06a4e27d572`. Step 1 captured clean Playbooks `main` at `7dfa93fef6d975aa82f5f4cfdf54497b106e7645` and the effective inventory topology; the accepted initial source/installation baseline is `evidence/Step 1/baseline-20261111-111819Z/` (Diaries evidence committed as `bb91e33`). Verify Git and inventory have not drifted immediately before applying Step 2 changes.
 - The authoritative inventory is **`/etc/ansible` on `mango`**, including `/etc/ansible/group_vars/all/btrfs-maintenance-schedule.yaml`. Do not create a duplicate `inventory/` tree in Playbooks. Playbooks Git is `/home/richard/playbooks`; the authoritative Diaries working copy is on Windows.
@@ -56,10 +56,14 @@ The old and new source layouts may differ; the installed artifacts, activation s
 - [`reports/SOURCE-REVIEW-20261110.md`](reports/SOURCE-REVIEW-20261110.md) — actual source observations and assumptions requiring reconfirmation.
 - [`tests/ACCEPTANCE-MATRIX.md`](tests/ACCEPTANCE-MATRIX.md) — consolidated regression/deployment/readback evidence matrix.
 
-**Closure rule:** Leave this feature `in-progress` and its steps OPEN until the accepted comparison and source-control evidence support formal closure. Preserve all original evidence under this feature, not `/home/richard` or the Playbooks repository.
+**Closure record:** All accepted evidence remains in this Diaries feature directory. Step 4 becomes formally CLOSED when the feature is moved to `complete/`, its final change-control commit is published, and both repositories are verified clean. If final publication fails, the closure is not yet effective.
 
 ## 0045 deployment and equivalence acceptance (11 November 2026)
 
 - **Step 2 CLOSED:** Playbooks refactoring committed and pushed as `1939a0984934062d03c01de826ad4a5a87d3338d`. Source task-equivalence tests, permanent regression suite and three Ansible syntax checks passed. Original operator launchers remain in place; external and Jenkins audits found no callers within inspected scope, but dynamic SCM Jenkinsfiles and unmanaged external schedulers were not exhaustively covered. See `reports/STEP2-FINAL-ACCEPTANCE-20261111.md`.
 - **Step 3 CLOSED:** First apply and second idempotence apply succeeded; second apply had `changed=0`, `failed=0`, `unreachable=0` on each target play. Static installation manifests on `mars` and `backup` match the accepted `baseline-20261111-111819Z`; five systemd `ExecStart` differences were execution-history only, with unchanged unit configuration and no pending reload. The Docker signing key stayed unchanged. See `reports/STEP3-FINAL-ACCEPTANCE-20261111.md`.
-- **Step 4 remains OPEN:** Preserve/report all actual raw evidence and source-control receipts, publish the Diaries changes, then perform the formal feature closure move and final Git status verification. Do not repeat already accepted backup restores or Ansible applications.
+- **Step 4 CLOSED on successful publication of the closure commit:** Playbooks publication `1939a09` and Diaries Step 2–3 evidence publication `d93779b` are already confirmed; the final feature move and Git publication are the sole remaining execution action. See `reports/STEP4-FINAL-CLOSURE-20261111.md`. No additional deployment, restore or test is required.
+
+## Accepted residual interface decision
+
+`backup-collection.yaml` and `scripts/backup-collection.sh` are the preferred new collection entry points. The previous `local-backup.yaml`, `remote-backup.yaml` and their launchers remain present for compatibility. Four-host and Jenkins job audits found no references in the inspected scope, but SCM-loaded Jenkinsfiles and external schedulers were not exhaustively audited; no unverified retirement is claimed. This deliberate retention does not compromise installed-state equivalence. The inventory migration belongs to 0046-FEAT and was not part of 0045.

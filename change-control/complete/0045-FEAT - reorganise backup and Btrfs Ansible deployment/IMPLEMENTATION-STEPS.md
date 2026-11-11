@@ -1,6 +1,6 @@
 # 0045-FEAT — Implementation plan and acceptance gates
 
-**Steps 1–3 CLOSED (11 November 2026)** after accepted baseline, source equivalence, actual deployment and zero-change reapply. **Step 4 OPEN** pending final Diaries Git/evidence publication and feature closure. 0039-DEF and 0043-FEAT are CLOSED. Prefer one substantial refactor plus one consolidated verification rather than numerous implementation increments.
+**Steps 1–4 CLOSED (11 November 2026)** upon successful publication of the final feature-move commit. Accepted evidence includes the baseline, source equivalence, live deployment, zero-change reapply, and Step 4 publication reconciliation. 0039-DEF and 0043-FEAT are CLOSED. Prefer one substantial refactor plus one consolidated verification rather than numerous implementation increments.
 
 ## Step 1 — Freeze accepted source, effective inventory and installed baseline (CLOSED — 11 November 2026)
 
@@ -41,13 +41,13 @@
 
 **Gate: ACCEPTED.** Read-only initial comparison and nine focused comparator tests reconciled five `mars` systemd execution-history-only digests; actual unit files, drop-ins, loaded properties, permissions and service configuration remained identical. `backup` and `mars` v2 static fingerprints match the accepted baseline. The 11 November 13:22 UTC second application showed `changed=0`, `failed=0`, `unreachable=0` on `mars` and `backup`. Docker signing key unchanged; live manager readbacks healthy. No restore, manual snapshot or replication was needed. See `reports/STEP3-FINAL-ACCEPTANCE-20261111.md`.
 
-## Step 4 — Final evidence reconciliation, source-control publication and formal closure (OPEN)
+## Step 4 — Final evidence reconciliation, source-control publication and formal closure (CLOSED — 11 November 2026)
 
 - Review complete evidence/rollback and the final map of renamed/retired operator interfaces. Record live deployment/version, measured equality and residual risks.
 - Commit and publish the Playbooks change from `/home/richard/playbooks` on `mango`; record SHA, branch and clean status. Stage feature-local one-off tools, raw logs, receipts, source manifest, plan and reports only under the **Diaries parent repo**. Do not assume the Windows checkout and `/home/richard/diaries` match.
 - Mark each step CLOSED only after accepted criteria; move this feature **only after** formal closure from `in-progress` to `complete` on Windows using Beyond Compare or a safe filesystem move. Commit and publish the Diaries parent; verify both Git remotes and clean worktrees.
 
-**Gate:** equivalent installation confirmed, operational behaviour unchanged, complete evidence and rollback record accepted, Playbooks and Diaries commits published. Otherwise feature remains IN PROGRESS.
+**Gate: ACCEPTED, effective on successful closure commit/push and final repository verification.** Installation equivalence and zero-change reapply are accepted (`reports/STEP3-FINAL-ACCEPTANCE-20261111.md`); Playbooks `1939a0984934062d03c01de826ad4a5a87d3338d` is published; Diaries evidence `d93779b` is published; rollback revision `7dfa93fef6d975aa82f5f4cfdf54497b106e7645` is preserved without being executed. The final closure report is `reports/STEP4-FINAL-CLOSURE-20261111.md`. The feature is moved to `change-control/complete/`, committed and pushed as the final closure action. If that action fails, this step is not yet effectively CLOSED.
 
 ## Operator command conventions for future execution
 
