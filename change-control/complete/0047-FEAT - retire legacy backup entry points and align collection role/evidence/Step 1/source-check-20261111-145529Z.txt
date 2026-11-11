@@ -1,0 +1,282 @@
+=== Retire tracked legacy interfaces ===
+rm 'roles/local-backup/README.md'
+rm 'roles/local-backup/defaults/main.yaml'
+rm 'roles/local-backup/files/backup-machine/diaries-pull.py'
+rm 'roles/local-backup/files/backup-machine/home/excludes-1'
+rm 'roles/local-backup/files/backup-machine/home/excludes-2'
+rm 'roles/local-backup/files/backup-machine/home/includes'
+rm 'roles/local-backup/files/backup-machine/remote/excludes-1'
+rm 'roles/local-backup/files/backup-machine/remote/excludes-2'
+rm 'roles/local-backup/files/backup-machine/remote/includes'
+rm 'roles/local-backup/files/backup/home/excludes-1'
+rm 'roles/local-backup/files/backup/home/excludes-2'
+rm 'roles/local-backup/files/backup/home/includes'
+rm 'roles/local-backup/handlers/main.yaml'
+rm 'roles/local-backup/meta/main.yaml'
+rm 'roles/local-backup/tasks/diaries_pull.yaml'
+rm 'roles/local-backup/tasks/gate-e-verify-noop.yaml'
+rm 'roles/local-backup/tasks/install_machine_scripts.yaml'
+rm 'roles/local-backup/tasks/install_user_scripts.yaml'
+rm 'roles/local-backup/tasks/main.yaml'
+rm 'roles/local-backup/tasks/source_snapshot_access.yaml'
+rm 'roles/local-backup/tasks/user_backup_cron.yaml'
+rm 'roles/local-backup/tasks/utilities.yaml'
+rm 'roles/local-backup/templates/backup-machine/backup.sh.j2'
+rm 'roles/local-backup/templates/backup-machine/config.py.j2'
+rm 'roles/local-backup/templates/backup-machine/cron/backup.sh.j2'
+rm 'roles/local-backup/templates/backup-machine/home/backup.sh.j2'
+rm 'roles/local-backup/templates/backup-machine/remote/backup.sh.j2'
+rm 'roles/local-backup/templates/backup/backup.sh.j2'
+rm 'roles/local-backup/templates/backup/config.py.j2'
+rm 'roles/local-backup/templates/backup/cron/backup.sh.j2'
+rm 'roles/local-backup/templates/backup/home/backup.sh.j2'
+rm 'roles/local-backup/templates/diaries/diaries-pull.service.j2'
+rm 'roles/local-backup/templates/diaries/diaries-pull.sh.j2'
+rm 'roles/local-backup/templates/diaries/diaries-pull.timer.j2'
+rm 'roles/local-backup/tests/verify-0036-cross-host-coordination.py'
+rm 'roles/local-backup/tests/verify-0036-disposable-btrfs-receive.py'
+rm 'roles/local-backup/tests/verify-0036-fixed-destination.py'
+rm 'roles/local-backup/tests/verify-0036-gatec-fixed-optin.py'
+rm 'roles/local-backup/tests/verify-0036-step7-disposable-integration.py'
+rm 'roles/local-backup/tests/verify-0036-step8-cutover-configuration.py'
+rm 'roles/local-backup/tests/verify-diaries-pull.py'
+rm 'roles/local-backup/tests/verify-user-backup-cron.py'
+rm 'diaries-user-backup-cron.yaml'
+rm 'local-backup.yaml'
+rm 'remote-backup.yaml'
+rm 'scripts/local-backup.sh'
+rm 'scripts/remote-backup.sh'
+=== Stage intended replacements ===
+=== Regression: roles/backup-collection/tests/verify-backup-collection-entrypoints.py ===
+PASS: only supported collection, snapshots and native replication entry points remain
+=== Regression: roles/backup-collection/tests/verify-user-backup-cron.py ===
+PASS: shared 01:45 mars cron schedule installed through permanent backup-collection role
+=== Regression: roles/backup-collection/tests/verify-diaries-pull.py ===
+PASS: remote rsync holds shared pluto publisher lock
+PASS: schema-2 verification precedes atomic mars receiving publication
+PASS: mars receive holds the whole-backup writer lock
+PASS: snapshot eligibility is written only after independent verification and publication
+PASS: mars pull --delete remains scoped to a private temporary incoming tree
+PASS: pull installation/scheduling are default-off, normal-user owned and gated by verified snapshot integration
+PASS: mars snapshots role receives the same marker/lock contract only under explicit integration opt-in
+PASS: legacy root-copy cleanup remains explicit opt-in only
+PASS: known mars user/root backup writers share the 0035 whole-backup lock and legacy off-site rsync is explicitly switchable
+PASS: legacy local deletes remain isolated from the mars pluto receive subtree
+PASS: read-only mars preflight creates no marker, lock or transfer staging
+PASS: 0034 Step 10 mars receive source contract
+=== Regression: roles/backup-collection/tests/verify-0036-gatec-fixed-optin.py ===
+PASS: Gate C fixed receiver remains explicit opt-in and default-off
+=== Regression: roles/backup-collection/tests/verify-0036-fixed-destination.py ===
+VERIFIED_FIXED_RECEIVE
+{"backupId": "20261016-120000Z", "datasetRelativePath": "backup/pluto/diaries-backup", "destination": "/tmp/0036-mars-receive-xvw2drp4/backup/pluto/diaries-backup", "logicalDataset": "production", "snapshotEligible": true}
+PASS: fixed receive uses guarded rsync --delete and only marks after validation
+PASS: interrupted receive removes eligibility while retaining working dataset
+PASS: legacy publication symlink refused; historical directory untouched
+=== Regression: roles/backup-collection/tests/verify-0036-step8-cutover-configuration.py ===
+PASS: Step 8 opt-in fixed destination has default-off installation and schedule guards
+=== Regression: roles/snapshots/tests/verify-snapshot-launcher-host-context.py ===
+PASS: snapshots launcher is check-only by default and uses host-specific snapshot role context
+=== Regression: roles/snapshots/tests/verify-btrfs-snapshot-manager.py ===
+PASS: retention always keeps newest snapshot
+PASS: retention keeps configured recent hourly buckets
+PASS: retention keeps configured daily buckets
+PASS: retention keeps configured weekly buckets
+PASS: retention thins older snapshots
+PASS: numeric Snapper IDs are outside the managed timestamp namespace
+PASS: timestamp naming is unambiguous UTC
+PASS: all 24 native snapshot tasks are reachable through static imports
+PASS: native snapshot activation is default-off
+PASS: native timer enablement is behind explicit activation
+PASS: ordinary deployment installs/preflights units without scheduling
+PASS: Ansible fails closed if @snapshots is an unexpected ordinary path
+PASS: Playbooks installs the read-only Diaries snapshot-history tool
+PASS: Playbooks installs the physical-extent sharing acceptance tool
+PASS: manager creates read-only native Btrfs snapshots
+PASS: manager rejects cross-filesystem snapshot repository
+PASS: manager requires the verified Diaries marker when integration is enabled
+PASS: snapshot creation shares the receiver writer lock
+PASS: retention operates on complete multi-source timestamp sets and fails closed on partial sets
+PASS: mars/backup-collection uses the shared snapshots role
+PASS: backup/btrfs-replication uses the shared snapshots role
+PASS: snapshot entry point retains source and receiver safety contexts
+PASS: snapshot launcher explicitly supports mars-first then backup deployment
+PASS: 0035 native Btrfs snapshot-manager regression verified
+PASS: verified receiver snapshot creation requires pre-provisioned non-symlink writer lock
+PASS: role cannot reinstall retired legacy-prune units
+PASS: manager does not expose retired legacy commands
+=== Regression: roles/btrfs-replication/tests/verify-replication.py ===
+test_absent_or_complete_candidate_never_deleted (__main__.Cases.test_absent_or_complete_candidate_never_deleted) ... ok
+test_ambiguous_parent_divergence_refuses (__main__.Cases.test_ambiguous_parent_divergence_refuses) ... ok
+test_choose_newest_eligible_newer (__main__.Cases.test_choose_newest_eligible_newer) ... ok
+test_completed_candidate_uses_advance_without_retransmit (__main__.Cases.test_completed_candidate_uses_advance_without_retransmit) ... ok
+test_filesystem_identity_refusal (__main__.Cases.test_filesystem_identity_refusal) ... ok
+test_held_or_legacy_receipt_refuses (__main__.Cases.test_held_or_legacy_receipt_refuses) ... ok
+test_incomplete_cleanup_exact_subvolume_once (__main__.Cases.test_incomplete_cleanup_exact_subvolume_once) ... ok
+test_invalid_candidate_prevents_cleanup (__main__.Cases.test_invalid_candidate_prevents_cleanup) ... ok
+test_invalid_state_or_rollback_refuses (__main__.Cases.test_invalid_state_or_rollback_refuses) ... ok
+test_latest_invalid_candidate_refuses_rather_than_falling_back (__main__.Cases.test_latest_invalid_candidate_refuses_rather_than_falling_back) ... ok
+test_latest_selection_ignores_symlinks_and_non_snapshots (__main__.Cases.test_latest_selection_ignores_symlinks_and_non_snapshots) ... ok
+test_readonly_lock_never_creates_missing_lockfile (__main__.Cases.test_readonly_lock_never_creates_missing_lockfile) ... ok
+test_readonly_or_received_unknown_candidate_refused (__main__.Cases.test_readonly_or_received_unknown_candidate_refused) ... ok
+test_receiver_ahead_lost_ack (__main__.Cases.test_receiver_ahead_lost_ack) ... ok
+test_receiver_backoff_uses_configured_lock (__main__.Cases.test_receiver_backoff_uses_configured_lock) ... ok
+test_receiver_failure_does_not_advance (__main__.Cases.test_receiver_failure_does_not_advance) ... ok
+test_receiver_incomplete_next_run_deletes_then_receives (__main__.Cases.test_receiver_incomplete_next_run_deletes_then_receives) ... INFO: cleaned one incomplete candidate; retrying receive
+ok
+test_sender_lost_ack_advances_local_without_retransmission (__main__.Cases.test_sender_lost_ack_advances_local_without_retransmission) ... ok
+test_sender_status_receiver_ahead_does_not_reconcile_or_save (__main__.Cases.test_sender_status_receiver_ahead_does_not_reconcile_or_save) ... ok
+test_sender_status_rejects_unverified_receiver_identity (__main__.Cases.test_sender_status_rejects_unverified_receiver_identity) ... ok
+test_sender_status_uses_verified_readonly_identity_without_mutation (__main__.Cases.test_sender_status_uses_verified_readonly_identity_without_mutation) ... ok
+test_single_nonblocking_manager_lock (__main__.Cases.test_single_nonblocking_manager_lock) ... ok
+test_state_atomic_readback (__main__.Cases.test_state_atomic_readback) ... ok
+test_state_record_and_prior (__main__.Cases.test_state_record_and_prior) ... ok
+test_state_rejects_nonroot_owner_and_insecure_mode (__main__.Cases.test_state_rejects_nonroot_owner_and_insecure_mode) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.073s
+SUCCESS: common parent advanced to 20261101-140039Z
+SUCCESS: reconciled receiver-ahead transfer without retransmission
+
+OK
+=== Regression: roles/btrfs-replication/tests/verify-protection.py ===
+test_corrupt_and_unsafe_file_blocks_pruning (__main__.Cases.test_corrupt_and_unsafe_file_blocks_pruning) ... ok
+test_missing_file_allows_pre_cutover (__main__.Cases.test_missing_file_allows_pre_cutover) ... ok
+test_nonroot_owned_state_blocks_pruning (__main__.Cases.test_nonroot_owned_state_blocks_pruning) ... ok
+test_parent_and_previous_protected (__main__.Cases.test_parent_and_previous_protected) ... ok
+test_pruning_planners_consult_agreed_parent_pins (__main__.Cases.test_pruning_planners_consult_agreed_parent_pins)
+All three current prune planners must consult the protected parent set. ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.014s
+
+OK
+=== Regression: roles/btrfs-replication/tests/verify-shared-retention.py ===
+PASS: receiver policies share one variable; defaults, 24-hour test and guards verified
+=== Syntax: backup-collection.yaml ===
+
+playbook: backup-collection.yaml
+=== Syntax: snapshots.yaml ===
+
+playbook: snapshots.yaml
+=== Syntax: btrfs-replication.yaml ===
+
+playbook: btrfs-replication.yaml
+=== Stage summary (review before commit) ===
+ README.md                                          | 23 ++++++++++-----
+ backup-collection.yaml                             |  4 +--
+ diaries-user-backup-cron.yaml                      | 18 ------------
+ local-backup.yaml                                  |  6 ----
+ remote-backup.yaml                                 |  8 -----
+ .../{local-backup => backup-collection}/README.md  |  9 +++---
+ .../defaults/main.yaml                             |  0
+ .../files/backup-machine/diaries-pull.py           |  0
+ .../files/backup-machine/home/excludes-1           |  0
+ .../files/backup-machine/home/excludes-2           |  0
+ .../files/backup-machine/home/includes             |  0
+ .../files/backup-machine/remote/excludes-1         |  0
+ .../files/backup-machine/remote/excludes-2         |  0
+ .../files/backup-machine/remote/includes           |  0
+ .../files/backup/home/excludes-1                   |  0
+ .../files/backup/home/excludes-2                   |  0
+ .../files/backup/home/includes                     |  0
+ .../handlers/main.yaml                             |  2 +-
+ .../meta/main.yaml                                 |  0
+ .../tasks/diaries_pull.yaml                        |  0
+ .../tasks/gate-e-verify-noop.yaml                  |  0
+ .../tasks/install_machine_scripts.yaml             |  0
+ .../tasks/install_user_scripts.yaml                |  0
+ .../tasks/main.yaml                                |  0
+ .../tasks/source_snapshot_access.yaml              |  0
+ .../tasks/user_backup_cron.yaml                    |  0
+ .../tasks/utilities.yaml                           | 26 ++++++++---------
+ .../templates/backup-machine/backup.sh.j2          |  0
+ .../templates/backup-machine/config.py.j2          |  0
+ .../templates/backup-machine/cron/backup.sh.j2     |  0
+ .../templates/backup-machine/home/backup.sh.j2     |  0
+ .../templates/backup-machine/remote/backup.sh.j2   |  0
+ .../templates/backup/backup.sh.j2                  |  0
+ .../templates/backup/config.py.j2                  |  0
+ .../templates/backup/cron/backup.sh.j2             |  0
+ .../templates/backup/home/backup.sh.j2             |  0
+ .../templates/diaries/diaries-pull.service.j2      |  0
+ .../templates/diaries/diaries-pull.sh.j2           |  0
+ .../templates/diaries/diaries-pull.timer.j2        |  0
+ .../tests/verify-0036-cross-host-coordination.py   |  0
+ .../tests/verify-0036-disposable-btrfs-receive.py  |  0
+ .../tests/verify-0036-fixed-destination.py         |  0
+ .../tests/verify-0036-gatec-fixed-optin.py         |  8 ++---
+ .../verify-0036-step7-disposable-integration.py    |  0
+ .../verify-0036-step8-cutover-configuration.py     |  2 +-
+ .../tests/verify-backup-collection-entrypoints.py  | 32 ++++++++++++++++++++
+ .../tests/verify-diaries-pull.py                   |  0
+ .../tests/verify-user-backup-cron.py               | 19 ++++++++++++
+ .../btrfs-replication/tasks/source-scheduling.yaml |  2 +-
+ .../local-backup/tests/verify-user-backup-cron.py  | 19 ------------
+ roles/snapshots/README-0039-DEPLOYMENT.md          |  4 +--
+ roles/snapshots/defaults/main.yaml                 |  2 +-
+ .../tests/verify-btrfs-snapshot-manager.py         | 16 +++++-----
+ .../tests/verify-snapshot-launcher-host-context.py |  4 +--
+ scripts/local-backup.sh                            | 34 ----------------------
+ scripts/remote-backup.sh                           | 34 ----------------------
+ snapshots.yaml                                     |  5 ++--
+ 57 files changed, 107 insertions(+), 170 deletions(-)
+=== Working tree ===
+## main...origin/main
+M  README.md
+M  backup-collection.yaml
+D  diaries-user-backup-cron.yaml
+D  local-backup.yaml
+D  remote-backup.yaml
+R  roles/local-backup/README.md -> roles/backup-collection/README.md
+R  roles/local-backup/defaults/main.yaml -> roles/backup-collection/defaults/main.yaml
+R  roles/local-backup/files/backup-machine/diaries-pull.py -> roles/backup-collection/files/backup-machine/diaries-pull.py
+R  roles/local-backup/files/backup-machine/home/excludes-1 -> roles/backup-collection/files/backup-machine/home/excludes-1
+R  roles/local-backup/files/backup-machine/home/excludes-2 -> roles/backup-collection/files/backup-machine/home/excludes-2
+R  roles/local-backup/files/backup-machine/home/includes -> roles/backup-collection/files/backup-machine/home/includes
+R  roles/local-backup/files/backup-machine/remote/excludes-1 -> roles/backup-collection/files/backup-machine/remote/excludes-1
+R  roles/local-backup/files/backup-machine/remote/excludes-2 -> roles/backup-collection/files/backup-machine/remote/excludes-2
+R  roles/local-backup/files/backup-machine/remote/includes -> roles/backup-collection/files/backup-machine/remote/includes
+R  roles/local-backup/files/backup/home/excludes-1 -> roles/backup-collection/files/backup/home/excludes-1
+R  roles/local-backup/files/backup/home/excludes-2 -> roles/backup-collection/files/backup/home/excludes-2
+R  roles/local-backup/files/backup/home/includes -> roles/backup-collection/files/backup/home/includes
+R  roles/local-backup/handlers/main.yaml -> roles/backup-collection/handlers/main.yaml
+R  roles/local-backup/meta/main.yaml -> roles/backup-collection/meta/main.yaml
+R  roles/local-backup/tasks/diaries_pull.yaml -> roles/backup-collection/tasks/diaries_pull.yaml
+R  roles/local-backup/tasks/gate-e-verify-noop.yaml -> roles/backup-collection/tasks/gate-e-verify-noop.yaml
+R  roles/local-backup/tasks/install_machine_scripts.yaml -> roles/backup-collection/tasks/install_machine_scripts.yaml
+R  roles/local-backup/tasks/install_user_scripts.yaml -> roles/backup-collection/tasks/install_user_scripts.yaml
+R  roles/local-backup/tasks/main.yaml -> roles/backup-collection/tasks/main.yaml
+R  roles/local-backup/tasks/source_snapshot_access.yaml -> roles/backup-collection/tasks/source_snapshot_access.yaml
+R  roles/local-backup/tasks/user_backup_cron.yaml -> roles/backup-collection/tasks/user_backup_cron.yaml
+R  roles/local-backup/tasks/utilities.yaml -> roles/backup-collection/tasks/utilities.yaml
+R  roles/local-backup/templates/backup-machine/backup.sh.j2 -> roles/backup-collection/templates/backup-machine/backup.sh.j2
+R  roles/local-backup/templates/backup-machine/config.py.j2 -> roles/backup-collection/templates/backup-machine/config.py.j2
+R  roles/local-backup/templates/backup-machine/cron/backup.sh.j2 -> roles/backup-collection/templates/backup-machine/cron/backup.sh.j2
+R  roles/local-backup/templates/backup-machine/home/backup.sh.j2 -> roles/backup-collection/templates/backup-machine/home/backup.sh.j2
+R  roles/local-backup/templates/backup-machine/remote/backup.sh.j2 -> roles/backup-collection/templates/backup-machine/remote/backup.sh.j2
+R  roles/local-backup/templates/backup/backup.sh.j2 -> roles/backup-collection/templates/backup/backup.sh.j2
+R  roles/local-backup/templates/backup/config.py.j2 -> roles/backup-collection/templates/backup/config.py.j2
+R  roles/local-backup/templates/backup/cron/backup.sh.j2 -> roles/backup-collection/templates/backup/cron/backup.sh.j2
+R  roles/local-backup/templates/backup/home/backup.sh.j2 -> roles/backup-collection/templates/backup/home/backup.sh.j2
+R  roles/local-backup/templates/diaries/diaries-pull.service.j2 -> roles/backup-collection/templates/diaries/diaries-pull.service.j2
+R  roles/local-backup/templates/diaries/diaries-pull.sh.j2 -> roles/backup-collection/templates/diaries/diaries-pull.sh.j2
+R  roles/local-backup/templates/diaries/diaries-pull.timer.j2 -> roles/backup-collection/templates/diaries/diaries-pull.timer.j2
+R  roles/local-backup/tests/verify-0036-cross-host-coordination.py -> roles/backup-collection/tests/verify-0036-cross-host-coordination.py
+R  roles/local-backup/tests/verify-0036-disposable-btrfs-receive.py -> roles/backup-collection/tests/verify-0036-disposable-btrfs-receive.py
+R  roles/local-backup/tests/verify-0036-fixed-destination.py -> roles/backup-collection/tests/verify-0036-fixed-destination.py
+R  roles/local-backup/tests/verify-0036-gatec-fixed-optin.py -> roles/backup-collection/tests/verify-0036-gatec-fixed-optin.py
+R  roles/local-backup/tests/verify-0036-step7-disposable-integration.py -> roles/backup-collection/tests/verify-0036-step7-disposable-integration.py
+R  roles/local-backup/tests/verify-0036-step8-cutover-configuration.py -> roles/backup-collection/tests/verify-0036-step8-cutover-configuration.py
+A  roles/backup-collection/tests/verify-backup-collection-entrypoints.py
+R  roles/local-backup/tests/verify-diaries-pull.py -> roles/backup-collection/tests/verify-diaries-pull.py
+A  roles/backup-collection/tests/verify-user-backup-cron.py
+M  roles/btrfs-replication/tasks/source-scheduling.yaml
+D  roles/local-backup/tests/verify-user-backup-cron.py
+M  roles/snapshots/README-0039-DEPLOYMENT.md
+M  roles/snapshots/defaults/main.yaml
+M  roles/snapshots/tests/verify-btrfs-snapshot-manager.py
+M  roles/snapshots/tests/verify-snapshot-launcher-host-context.py
+D  scripts/local-backup.sh
+D  scripts/remote-backup.sh
+M  snapshots.yaml
+PASS: 0047 source retirement and consolidated regressions; source not committed or deployed

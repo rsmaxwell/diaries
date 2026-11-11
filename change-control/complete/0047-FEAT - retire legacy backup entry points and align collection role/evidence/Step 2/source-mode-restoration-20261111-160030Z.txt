@@ -1,0 +1,15 @@
+APPLY files/backup: 0775 -> 0750
+APPLY files/backup/home: 0775 -> 0750
+APPLY files/backup-machine: 0775 -> 0750
+APPLY files/backup-machine/home: 0775 -> 0750
+APPLY files/backup-machine/remote: 0775 -> 0750
+APPLY files/backup/home/excludes-1: 0644 -> 0664
+APPLY files/backup/home/excludes-2: 0644 -> 0664
+APPLY files/backup/home/includes: 0644 -> 0664
+APPLY files/backup-machine/home/excludes-1: 0644 -> 0664
+APPLY files/backup-machine/home/excludes-2: 0644 -> 0664
+APPLY files/backup-machine/home/includes: 0644 -> 0664
+APPLY files/backup-machine/remote/excludes-1: 0644 -> 0664
+APPLY files/backup-machine/remote/excludes-2: 0644 -> 0664
+APPLY files/backup-machine/remote/includes: 0644 -> 0664
+PASS: restored 14 Playbooks source paths; all 14 match accepted 0045 source-mode contract
