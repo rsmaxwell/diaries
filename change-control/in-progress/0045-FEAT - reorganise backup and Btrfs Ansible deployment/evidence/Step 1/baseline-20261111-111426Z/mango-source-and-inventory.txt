@@ -1,0 +1,485 @@
+=== Controller and repository ===
+mango
+/home/richard/playbooks
+main
+7dfa93fef6d975aa82f5f4cfdf54497b106e7645
+## main...origin/main
+
+=== Current Playbooks commit and active regression files ===
+commit 7dfa93fef6d975aa82f5f4cfdf54497b106e7645
+Author:     Richard Maxwell <richard@rsmaxwell.co.uk>
+AuthorDate: Tue Nov 10 15:23:12 2026 +0000
+Commit:     Richard Maxwell <richard@rsmaxwell.co.uk>
+CommitDate: Tue Nov 10 15:23:12 2026 +0000
+
+    0044-FEAT: finalise permanent replication regression names
+roles/btrfs-replication/tests/README.md
+roles/btrfs-replication/tests/verify-protection.py
+roles/btrfs-replication/tests/verify-replication.py
+roles/btrfs-replication/tests/verify-shared-retention.py
+roles/local-backup/tests/verify-0036-cross-host-coordination.py
+roles/local-backup/tests/verify-0036-disposable-btrfs-receive.py
+roles/local-backup/tests/verify-0036-fixed-destination.py
+roles/local-backup/tests/verify-0036-gatec-fixed-optin.py
+roles/local-backup/tests/verify-0036-step7-disposable-integration.py
+roles/local-backup/tests/verify-0036-step8-cutover-configuration.py
+roles/local-backup/tests/verify-diaries-pull.py
+roles/local-backup/tests/verify-user-backup-cron.py
+roles/snapshots/tests/0040-INCREMENT-1-AGREED-PARENT.md
+roles/snapshots/tests/0040-INCREMENT-2-PROTOCOL-FOUNDATION.md
+roles/snapshots/tests/0040-INCREMENT-3-EVIDENCE-GATE.md
+roles/snapshots/tests/0040-INCREMENT-3B-OBSERVATION-GATE.md
+roles/snapshots/tests/0040-INCREMENT-3D-RECEIVER-ENDPOINT-CANDIDATE.md
+roles/snapshots/tests/0040-INCREMENT-3G-BOOTSTRAP-CANDIDATE.md
+roles/snapshots/tests/0040-step11/CUTOVER-RUNBOOK.md
+roles/snapshots/tests/0040-step11/README.md
+roles/snapshots/tests/0040-step11/ROOT-RETIREMENT-RUNBOOK.md
+roles/snapshots/tests/0040-step11/commit-checkpoint-hold-migration.py
+roles/snapshots/tests/0040-step11/preview-checkpoint-hold-migration.py
+roles/snapshots/tests/0040-step11/retire-historical-root.py
+roles/snapshots/tests/0040-step11/rollback-checkpoint-hold-migration.py
+roles/snapshots/tests/0040-step11/root-retirement-manifest.json
+roles/snapshots/tests/0040-step11/verify-commit-rollback.py
+roles/snapshots/tests/0040-step11/verify-preview.py
+roles/snapshots/tests/0040-step11/verify-retirement.py
+roles/snapshots/tests/README-0040-SIMPLIFIED-RECEIVER-RETENTION.md
+roles/snapshots/tests/verify-0036-fixed-working-snapshot-compatibility.py
+roles/snapshots/tests/verify-0040-agreed-parent-prune-guard.py
+roles/snapshots/tests/verify-0040-agreed-parent-state.py
+roles/snapshots/tests/verify-0040-per-source-flags.py
+roles/snapshots/tests/verify-0040-prune-source-selection.py
+roles/snapshots/tests/verify-0040-receiver-inventory-agreed-parent.py
+roles/snapshots/tests/verify-0040-receiver-role-guard.py
+roles/snapshots/tests/verify-0040-simplified-receiver-retention.py
+roles/snapshots/tests/verify-0040-source-flags-template.py
+roles/snapshots/tests/verify-0040-step04-migration.py
+roles/snapshots/tests/verify-0040-step05-adversarial.py
+roles/snapshots/tests/verify-0040-step05-suite.py
+roles/snapshots/tests/verify-0040-step12-2-delete-boundary.py
+roles/snapshots/tests/verify-0040-step12-3-crash-recovery-gate.py
+roles/snapshots/tests/verify-0040-step12-3-deletion-boundary-guard.py
+roles/snapshots/tests/verify-0040-step13-source-prune-cap.py
+roles/snapshots/tests/verify-btrfs-clear-stale-qgroups.py
+roles/snapshots/tests/verify-btrfs-snapshot-manager.py
+roles/snapshots/tests/verify-checkpoint-holds.py
+roles/snapshots/tests/verify-diaries-backup-history.py
+roles/snapshots/tests/verify-diaries-backup-status.py
+roles/snapshots/tests/verify-native-prune-subvolume-id.py
+roles/snapshots/tests/verify-qgroup-audit.py
+roles/snapshots/tests/verify-qgroup-manifest-validator.py
+roles/snapshots/tests/verify-qgroup-safety-assessment.py
+roles/snapshots/tests/verify-qgroup-status.py
+roles/snapshots/tests/verify-snapshot-launcher-host-context.py
+
+=== Relevant current entry points / wrappers ===
+PRESENT local-backup.yaml sha256=d2bfb1856cf287fea7a945143d89bc07db4a975ba78c558f3592b3669bba0c7a
+PRESENT remote-backup.yaml sha256=01d091bfe9efbfe10cc147c6f32e8e176e7cb91a82b08959cac2b8e47ab23d9f
+PRESENT btrfs-replication.yaml sha256=cf69b386d6c7a5cb4f4db0c691f1ac27c6df6e87fe4565b0eaca4e5634da6ab2
+PRESENT snapshots.yaml sha256=0371bc41773ee682d60f6c396f92f4d98050d71971b47908edf770cdac29d826
+PRESENT scripts/local-backup.sh sha256=925931d115d89b872c1d65686dcd079ac4e9db26a2c2545893b805d4c088a821
+PRESENT scripts/remote-backup.sh sha256=c86d3810b7acdeff0ec43accf76f0bd9747f618e27599cf5cf5c9bef7b3069b8
+PRESENT scripts/snapshots.sh sha256=99bd1b93b7fe2d9be07e07402c8f85ce4b9190570e22b618831ba72c672e7e3d
+
+=== Installed role source manifest (names only) ===
+roles/btrfs-replication/README-0040-SIMPLE-RECEIVER-RETENTION.md
+roles/btrfs-replication/README.md
+roles/btrfs-replication/defaults/main.yaml
+roles/btrfs-replication/docker-compose.yaml
+roles/btrfs-replication/files/btrfs-simplified-replication.py
+roles/btrfs-replication/tasks/main.yaml
+roles/btrfs-replication/tasks/native.yaml
+roles/btrfs-replication/tasks/qgroup-maintenance.yaml
+roles/btrfs-replication/templates/btrfs-native-push.service.j2
+roles/btrfs-replication/templates/btrfs-native-push.timer.j2
+roles/btrfs-replication/templates/btrfs-receiver-manager.json.j2
+roles/btrfs-replication/templates/btrfs-receiver-retention.json.j2
+roles/btrfs-replication/templates/btrfs-receiver-simple-prune.service.j2
+roles/btrfs-replication/templates/btrfs-receiver-simple-prune.timer.j2
+roles/btrfs-replication/tests/README.md
+roles/btrfs-replication/tests/verify-protection.py
+roles/btrfs-replication/tests/verify-replication.py
+roles/btrfs-replication/tests/verify-shared-retention.py
+roles/btrfs/files/initialise_btrfs_subvolume.py
+roles/btrfs/files/remove_btrfs_subvolume.py
+roles/btrfs/tasks/main.yaml
+roles/local-backup/README.md
+roles/local-backup/defaults/main.yaml
+roles/local-backup/files/backup-machine/diaries-pull.py
+roles/local-backup/files/backup-machine/home/excludes-1
+roles/local-backup/files/backup-machine/home/excludes-2
+roles/local-backup/files/backup-machine/home/includes
+roles/local-backup/files/backup-machine/remote/excludes-1
+roles/local-backup/files/backup-machine/remote/excludes-2
+roles/local-backup/files/backup-machine/remote/includes
+roles/local-backup/files/backup/home/excludes-1
+roles/local-backup/files/backup/home/excludes-2
+roles/local-backup/files/backup/home/includes
+roles/local-backup/handlers/main.yaml
+roles/local-backup/meta/main.yaml
+roles/local-backup/tasks/diaries_pull.yaml
+roles/local-backup/tasks/gate-e-verify-noop.yaml
+roles/local-backup/tasks/install_machine_scripts.yaml
+roles/local-backup/tasks/install_user_scripts.yaml
+roles/local-backup/tasks/main.yaml
+roles/local-backup/tasks/source_snapshot_access.yaml
+roles/local-backup/tasks/user_backup_cron.yaml
+roles/local-backup/tasks/utilities.yaml
+roles/local-backup/templates/backup-machine/backup.sh.j2
+roles/local-backup/templates/backup-machine/config.py.j2
+roles/local-backup/templates/backup-machine/cron/backup.sh.j2
+roles/local-backup/templates/backup-machine/home/backup.sh.j2
+roles/local-backup/templates/backup-machine/remote/backup.sh.j2
+roles/local-backup/templates/backup/backup.sh.j2
+roles/local-backup/templates/backup/config.py.j2
+roles/local-backup/templates/backup/cron/backup.sh.j2
+roles/local-backup/templates/backup/home/backup.sh.j2
+roles/local-backup/templates/diaries/diaries-pull.service.j2
+roles/local-backup/templates/diaries/diaries-pull.sh.j2
+roles/local-backup/templates/diaries/diaries-pull.timer.j2
+roles/local-backup/tests/verify-0036-cross-host-coordination.py
+roles/local-backup/tests/verify-0036-disposable-btrfs-receive.py
+roles/local-backup/tests/verify-0036-fixed-destination.py
+roles/local-backup/tests/verify-0036-gatec-fixed-optin.py
+roles/local-backup/tests/verify-0036-step7-disposable-integration.py
+roles/local-backup/tests/verify-0036-step8-cutover-configuration.py
+roles/local-backup/tests/verify-diaries-pull.py
+roles/local-backup/tests/verify-user-backup-cron.py
+roles/snapshots/README-0039-DEPLOYMENT.md
+roles/snapshots/README-0039-QGROUP-AUDIT.md
+roles/snapshots/README-0039-QGROUP-SAFETY-ASSESSMENT.md
+roles/snapshots/README-STALE-QGROUP-MAINTENANCE.md
+roles/snapshots/README.md
+roles/snapshots/defaults/main.yaml
+roles/snapshots/docker-compose.yaml
+roles/snapshots/files/assess-qgroup-safety.py
+roles/snapshots/files/btrfs-clear-stale-qgroups.py
+roles/snapshots/files/btrfs-extent-sharing.py
+roles/snapshots/files/btrfs-qgroup-audit.py
+roles/snapshots/files/btrfs-snapshot-manager.py
+roles/snapshots/files/diaries-backup-history.py
+roles/snapshots/files/diaries-backup-status.py
+roles/snapshots/files/diaries-snapshot-cleanup.py
+roles/snapshots/files/validate-qgroup-manifest.py
+roles/snapshots/handlers/main.yaml
+roles/snapshots/tasks/main.yaml
+roles/snapshots/templates/btrfs-clear-stale-qgroups.service.j2
+roles/snapshots/templates/btrfs-clear-stale-qgroups.timer.j2
+roles/snapshots/templates/btrfs-snapshot-create.service.j2
+roles/snapshots/templates/btrfs-snapshot-create.timer.j2
+roles/snapshots/templates/btrfs-snapshot-manager.json.j2
+roles/snapshots/templates/btrfs-snapshot-prune.service.j2
+roles/snapshots/templates/btrfs-snapshot-prune.timer.j2
+roles/snapshots/templates/btrfs-stale-qgroups.json.j2
+roles/snapshots/tests/0040-INCREMENT-1-AGREED-PARENT.md
+roles/snapshots/tests/0040-INCREMENT-2-PROTOCOL-FOUNDATION.md
+roles/snapshots/tests/0040-INCREMENT-3-EVIDENCE-GATE.md
+roles/snapshots/tests/0040-INCREMENT-3B-OBSERVATION-GATE.md
+roles/snapshots/tests/0040-INCREMENT-3D-RECEIVER-ENDPOINT-CANDIDATE.md
+roles/snapshots/tests/0040-INCREMENT-3G-BOOTSTRAP-CANDIDATE.md
+roles/snapshots/tests/0040-step11/CUTOVER-RUNBOOK.md
+roles/snapshots/tests/0040-step11/README.md
+roles/snapshots/tests/0040-step11/ROOT-RETIREMENT-RUNBOOK.md
+roles/snapshots/tests/0040-step11/commit-checkpoint-hold-migration.py
+roles/snapshots/tests/0040-step11/preview-checkpoint-hold-migration.py
+roles/snapshots/tests/0040-step11/retire-historical-root.py
+roles/snapshots/tests/0040-step11/rollback-checkpoint-hold-migration.py
+roles/snapshots/tests/0040-step11/root-retirement-manifest.json
+roles/snapshots/tests/0040-step11/verify-commit-rollback.py
+roles/snapshots/tests/0040-step11/verify-preview.py
+roles/snapshots/tests/0040-step11/verify-retirement.py
+roles/snapshots/tests/README-0040-SIMPLIFIED-RECEIVER-RETENTION.md
+roles/snapshots/tests/verify-0036-fixed-working-snapshot-compatibility.py
+roles/snapshots/tests/verify-0040-agreed-parent-prune-guard.py
+roles/snapshots/tests/verify-0040-agreed-parent-state.py
+roles/snapshots/tests/verify-0040-per-source-flags.py
+roles/snapshots/tests/verify-0040-prune-source-selection.py
+roles/snapshots/tests/verify-0040-receiver-inventory-agreed-parent.py
+roles/snapshots/tests/verify-0040-receiver-role-guard.py
+roles/snapshots/tests/verify-0040-simplified-receiver-retention.py
+roles/snapshots/tests/verify-0040-source-flags-template.py
+roles/snapshots/tests/verify-0040-step04-migration.py
+roles/snapshots/tests/verify-0040-step05-adversarial.py
+roles/snapshots/tests/verify-0040-step05-suite.py
+roles/snapshots/tests/verify-0040-step12-2-delete-boundary.py
+roles/snapshots/tests/verify-0040-step12-3-crash-recovery-gate.py
+roles/snapshots/tests/verify-0040-step12-3-deletion-boundary-guard.py
+roles/snapshots/tests/verify-0040-step13-source-prune-cap.py
+roles/snapshots/tests/verify-btrfs-clear-stale-qgroups.py
+roles/snapshots/tests/verify-btrfs-snapshot-manager.py
+roles/snapshots/tests/verify-checkpoint-holds.py
+roles/snapshots/tests/verify-diaries-backup-history.py
+roles/snapshots/tests/verify-diaries-backup-status.py
+roles/snapshots/tests/verify-native-prune-subvolume-id.py
+roles/snapshots/tests/verify-qgroup-audit.py
+roles/snapshots/tests/verify-qgroup-manifest-validator.py
+roles/snapshots/tests/verify-qgroup-safety-assessment.py
+roles/snapshots/tests/verify-qgroup-status.py
+roles/snapshots/tests/verify-snapshot-launcher-host-context.py
+
+=== Playbooks call sites (filenames only) ===
+AGENTS.md
+MAINTENANCE-SCHEDULE.md
+ROLE-RENAME-APPLY.md
+roles/btrfs-replication/README.md
+roles/btrfs-replication/defaults/main.yaml
+roles/local-backup/README.md
+roles/snapshots/README-STALE-QGROUP-MAINTENANCE.md
+roles/snapshots/tasks/main.yaml
+roles/snapshots/tests/0040-INCREMENT-3D-RECEIVER-ENDPOINT-CANDIDATE.md
+scripts/local-backup.sh
+scripts/remote-backup.sh
+verification/0034-step10/README.md
+verification/0034-step11-4/README.md
+verification/0034-step6/README.md
+
+=== System inventory file names (NO CONTENTS) ===
+ansible.cfg
+group_vars/all/btrfs-maintenance-schedule.yaml
+group_vars/all/general.yaml
+group_vars/archiva.yaml
+group_vars/bootstrap.yaml
+group_vars/builder.yaml
+group_vars/diaries.yaml
+group_vars/infrastructure.yaml
+group_vars/ledger.yaml
+group_vars/local_backup.yaml
+group_vars/remote_backup.yaml
+hosts
+host_vars/acorn-bootstrap.yaml
+host_vars/acorn.yaml
+host_vars/backup-bootstrap/backup-bootstrap.yaml
+host_vars/backup-bootstrap/ssh-access.yaml
+host_vars/backup/btrfs.yaml
+host_vars/backup/main.yaml
+host_vars/backup/remote_backup.yaml
+host_vars/backup/ssh-access.yaml
+host_vars/backup/stale-qgroups.yaml
+host_vars/bob-bootstrap.yaml
+host_vars/bob.yaml
+host_vars/boris.yaml
+host_vars/grape-bootstrap.yaml
+host_vars/grape.yaml
+host_vars/major.yaml
+host_vars/mars-bootstrap/mars-bootstrap.yaml
+host_vars/mars-bootstrap/ssh-access.yaml
+host_vars/mars/local-backup.yaml
+host_vars/mars/mars.yaml
+host_vars/mars/ssh-access.yaml
+host_vars/pluto/archiva.yaml
+host_vars/pluto/backup.yaml
+host_vars/pluto-bootstrap/pluto-bootstrap.yaml
+host_vars/pluto/builder.yaml
+host_vars/pluto/connection.yaml
+host_vars/pluto/diaries.yaml
+host_vars/pluto/infrastructure.yaml
+host_vars/pluto/ledger.yaml
+host_vars/pluto/postgres.yaml
+host_vars/pluto/vault.yaml
+host_vars/snowy-bootstrap.yaml
+host_vars/snowy.yaml
+host_vars/tintin.yaml
+
+=== Ansible version and host/group topology (NO --vars, NO --list) ===
+ansible [core 2.21.3]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/richard/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  ansible collection location = /home/richard/.ansible/collections:/usr/share/ansible/collections
+@all:
+  |--@ungrouped:
+  |--@bootstrap:
+  |  |--mars-bootstrap
+  |  |--backup-bootstrap
+  |  |--grape-bootstrap
+  |  |--pluto-bootstrap
+  |  |--acorn-bootstrap
+  |  |--bob-bootstrap
+  |  |--snowy-bootstrap
+  |--@snapshots:
+  |  |--backup
+  |  |--mars
+  |--@development:
+  |  |--acorn
+  |--@builder:
+  |  |--snowy
+  |  |--pluto
+  |--@archiva:
+  |  |--pluto
+  |--@diaries:
+  |  |--acorn
+  |  |--pluto
+  |--@ledger:
+  |  |--bob
+  |  |--pluto
+  |--@infrastructure:
+  |  |--pluto
+  |--@local_backup:
+  |  |--mars
+  |--@remote_backup:
+  |  |--backup
+
+=== Playbook host selection ===
+
+--- local-backup.yaml ---
+
+playbook: local-backup.yaml
+
+  play #1 (local_backup): local_backup	TAGS: []
+    pattern: ['local_backup']
+    hosts (1):
+      mars
+
+--- remote-backup.yaml ---
+
+playbook: remote-backup.yaml
+
+  play #1 (remote_backup): remote_backup	TAGS: []
+    pattern: ['remote_backup']
+    hosts (1):
+      backup
+
+--- btrfs-replication.yaml ---
+
+playbook: btrfs-replication.yaml
+
+  play #1 (local_backup:remote_backup): Configure native Btrfs replication endpoints	TAGS: []
+    pattern: ['local_backup:remote_backup']
+    hosts (2):
+      backup
+      mars
+
+--- snapshots.yaml ---
+
+playbook: snapshots.yaml
+
+  play #1 (local_backup): local_backup	TAGS: []
+    pattern: ['local_backup']
+    hosts (1):
+      mars
+
+  play #2 (remote_backup): remote_backup	TAGS: []
+    pattern: ['remote_backup']
+    hosts (1):
+      backup
+
+=== Allowlisted non-secret effective variables (no inventory dump) ===
+{
+  "backup": {
+    "btrfs_native_endpoint_role": {
+      "present": true,
+      "value": "receiver"
+    },
+    "btrfs_native_push_on_calendar": {
+      "present": true,
+      "value": "*-*-* 03:30:00 UTC"
+    },
+    "btrfs_native_push_schedule_enabled": {
+      "present": true,
+      "value": false
+    },
+    "btrfs_simplified_receiver_prune_enabled": {
+      "present": true,
+      "value": true
+    },
+    "btrfs_simplified_receiver_prune_on_calendar": {
+      "present": true,
+      "value": "*-*-* 04:15:00 UTC"
+    },
+    "btrfs_snapshot_activation_enabled": {
+      "present": false
+    },
+    "btrfs_snapshot_prune_activation_enabled": {
+      "present": false
+    },
+    "btrfs_snapshot_prune_max_delete": {
+      "present": true,
+      "value": 32
+    },
+    "btrfs_snapshot_prune_on_calendar": {
+      "present": true,
+      "value": "*-*-* 04:15:00 UTC"
+    },
+    "btrfs_stale_qgroups_on_calendar": {
+      "present": false
+    },
+    "diaries_pull_install": {
+      "present": false
+    },
+    "diaries_pull_on_calendar": {
+      "present": true,
+      "value": "*-*-* 01:30:00 UTC"
+    },
+    "diaries_pull_schedule_enabled": {
+      "present": false
+    },
+    "local_backup_user_cron_hour": {
+      "present": false
+    },
+    "local_backup_user_cron_minute": {
+      "present": false
+    }
+  },
+  "mars": {
+    "btrfs_native_endpoint_role": {
+      "present": true,
+      "value": "source"
+    },
+    "btrfs_native_push_on_calendar": {
+      "present": true,
+      "value": "*-*-* 03:30:00 UTC"
+    },
+    "btrfs_native_push_schedule_enabled": {
+      "present": true,
+      "value": true
+    },
+    "btrfs_simplified_receiver_prune_enabled": {
+      "present": false
+    },
+    "btrfs_simplified_receiver_prune_on_calendar": {
+      "present": true,
+      "value": "*-*-* 04:15:00 UTC"
+    },
+    "btrfs_snapshot_activation_enabled": {
+      "present": true,
+      "value": true
+    },
+    "btrfs_snapshot_prune_activation_enabled": {
+      "present": true,
+      "value": true
+    },
+    "btrfs_snapshot_prune_max_delete": {
+      "present": true,
+      "value": 32
+    },
+    "btrfs_snapshot_prune_on_calendar": {
+      "present": true,
+      "value": "*-*-* 04:15:00 UTC"
+    },
+    "btrfs_stale_qgroups_on_calendar": {
+      "present": false
+    },
+    "diaries_pull_install": {
+      "present": true,
+      "value": true
+    },
+    "diaries_pull_on_calendar": {
+      "present": true,
+      "value": "*-*-* 01:30:00 UTC"
+    },
+    "diaries_pull_schedule_enabled": {
+      "present": true,
+      "value": true
+    },
+    "local_backup_user_cron_hour": {
+      "present": false
+    },
+    "local_backup_user_cron_minute": {
+      "present": false
+    }
+  }
+}
+
+=== Non-secret central Btrfs schedule checksum (if present) ===
+5db619fdfee9efc5e058b397005e12fa5fbbd78ccb29e0548dfb43c549777b7c  /etc/ansible/group_vars/all/btrfs-maintenance-schedule.yaml
+
+PASS: read-only controller capture

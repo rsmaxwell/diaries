@@ -1,0 +1,40 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ if (
+  cd '/cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries' || exit 1
+
+  feature='change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment'
+
+  echo '=== Verify corrected package parser ==='
+  PYTHONDONTWRITEBYTECODE=1 python3 -B \
+    "$feature/tests/test-0045-package-metadata.py" || exit 1
+
+  echo '=== Capture definitive installation baseline ==='
+  bash "$feature/tools/capture-0045-step1-baseline.sh" || exit 1
+
+); then
+  echo 'PASS: 0045 definitive Step 1 baseline captured'
+else
+  echo 'FAIL: 0045 Step 1 verification or capture'
+fi
+=== Verify corrected package parser ===
+test_config_files_remain_but_no_installed_version (__main__.PackageMetadata) ... ok
+test_installed_package_with_version (__main__.PackageMetadata) ... ok
+test_malformed_record_still_fails (__main__.PackageMetadata) ... ok
+test_no_package_record (__main__.PackageMetadata) ... ok
+test_not_installed_package_empty_version_keeps_tab (__main__.PackageMetadata) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK
+=== Capture definitive installation baseline ===
+0045 Step 1 baseline capture started UTC 20261111-111426Z
+PASS: Windows Diaries revision and submodules recorded
+=== Capture mango source/inventory topology ===
+PASS: mango read-only source/inventory topology recorded
+=== Capture mars static installed manifest ===
+FAIL: 0045 Step 1 verification or capture
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

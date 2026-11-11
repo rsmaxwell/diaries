@@ -1,0 +1,22 @@
+=== Windows Diaries parent ===
+main
+47c96ba390ebffc6349e9c1e320aabd72f32be40
+## main...origin/main
+ M "change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/tools/README.md"
+ M "change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/tools/capture-0045-step1-baseline.sh"
+ M "change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/tools/collect-0045-host-state.py"
+ M "change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/tools/compare-0045-installed-state.py"
+?? "change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/evidence/"
+?? "change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/reports/STEP1-ACL-COLLECTOR-CORRECTION-20261111.md"
+?? "change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/reports/STEP1-BASELINE-COVERAGE-REVIEW-20261111.md"
+?? "change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/reports/STEP1-DPKG-METADATA-CORRECTION-20261111.md"
+?? "change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/reports/STEP1-MANIFEST-SCHEMA-CORRECTION-20261111.md"
+?? "change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/tests/test-0045-package-metadata.py"
+ e45ae170017fdf4974f642f654d7f709269af711 diaries-client (heads/main)
+ bd65d08435c0f5d240337cd6479cb41befe4d8c1 diaries-responder (heads/main)
+ cc147426e93ee6952558b65147e444d38316b3ce diaries-web (heads/main)
+
+=== Relevant closure and planning documents ===
+7163e928ffa563503bfd490f3665cfdab23e02a41b5bab23b93d22690128f00f *change-control/complete/0039-DEF - reconcile orphaned Btrfs qgroups on backup/README.md
+a5a36b919726e53fcc2e571422c4af9fa698834526231f4674dcfe5cd68444e6 *change-control/complete/0043-FEAT - centralise Btrfs maintenance schedules/README.md
+11884bc7a7bb23ba1b1781da3563969377b1d2c77579b871ab99de98754f1437 *change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/README.md

@@ -1,0 +1,12 @@
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=86
+qgroups_stale=0
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=75;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=75
+diaries_verification=valid;logicalDataset=production;backupId=20261111-003057Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+Result=success
+ExecMainStatus=0

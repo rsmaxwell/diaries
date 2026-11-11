@@ -1,0 +1,91 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ if (
+  cd '/cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries' || exit 1
+
+  f45='change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment'
+  f46='change-control/in-progress/0046-FEAT - move non-sensitive Ansible inventory into Playbooks Git'
+
+  echo '=== Verify repository baseline ==='
+  test "$(git branch --show-current)" = main || exit 1
+  test "$(git rev-parse --short=7 HEAD)" = '27e6cbd' || exit 1
+  test -z "$(git diff --cached --name-only)" || exit 1
+
+  echo '=== Verify planning documents and tools ==='
+  test -f "$f45/IMPLEMENTATION-STEPS.md" || exit 1
+  test -f "$f45/tools/capture-0045-step1-baseline.sh" || exit 1
+  test -f "$f46/reports/ACCEPTANCE-CRITERION-REVISION-20261110.md" || exit 1
+
+  echo '=== Stage only 0045 and 0046 ==='
+  git add -A -- "$f45" "$f46" || exit 1
+
+  unexpected=$(git diff --cached --name-only |
+    grep -Ev '^change-control/in-progress/(0045-FEAT - reorganise backup and Btrfs Ansible deployment|0046-FEAT - move non-sensitive Ansible inventory into Playbooks Git)/' || true)
+
+  test -z "$unexpected" || {
+    printf 'FAIL: Unexpected staged files:\n%s\n' "$unexpected"
+    exit 1
+  }
+
+fiecho 'FAIL: Planning commit or publication'nd published'ain)" || exit 1
+=== Verify repository baseline ===
+=== Verify planning documents and tools ===
+=== Stage only 0045 and 0046 ===
+ .../IMPLEMENTATION-STEPS.md                        |  52 ++++++
+ .../INSTALLATION-EQUIVALENCE-CONTRACT.md           |  51 ++++++
+ .../README.md                                      |  55 +++++++
+ .../reports/SOURCE-REVIEW-20261110.md              |  53 ++++++
+ .../reports/STEP1-CAPTURE-PROTOCOL-20261111.md     |  22 +++
+ .../tests/ACCEPTANCE-MATRIX.md                     |  28 ++++
+ .../tools/README.md                                |  27 +++
+ .../tools/capture-0045-step1-baseline.sh           |  53 ++++++
+ .../tools/collect-0045-controller.sh               |  98 +++++++++++
+ .../tools/collect-0045-host-state.py               | 183 +++++++++++++++++++++
+ .../tools/compare-0045-installed-state.py          |  55 +++++++
+ .../IMPLEMENTATION-STEPS.md                        |  58 +++++++
+ ...ENTORY-AND-INSTALLATION-EQUIVALENCE-CONTRACT.md |  50 ++++++
+ .../README.md                                      |  82 +++++++++
+ .../SECRETS-AND-DISCOVERY-DESIGN.md                |  53 ++++++
+ .../ACCEPTANCE-CRITERION-REVISION-20261110.md      |  18 ++
+ .../reports/PLANNING-SOURCE-REVIEW-20261110.md     |  28 ++++
+ .../tests/ACCEPTANCE-MATRIX.md                     |  34 ++++
+ .../tools/README.md                                |  11 ++
+ 19 files changed, 1011 insertions(+)
+=== Commit planning baseline ===
+[main 47c96ba] 0045-FEAT 0046-FEAT: record plans and baseline tooling
+ 19 files changed, 1011 insertions(+)
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/IMPLEMENTATION-STEPS.md
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/INSTALLATION-EQUIVALENCE-CONTRACT.md
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/README.md
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/reports/SOURCE-REVIEW-20261110.md
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/reports/STEP1-CAPTURE-PROTOCOL-20261111.md
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/tests/ACCEPTANCE-MATRIX.md
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/tools/README.md
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/tools/capture-0045-step1-baseline.sh
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/tools/collect-0045-controller.sh
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/tools/collect-0045-host-state.py
+ create mode 100644 change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment/tools/compare-0045-installed-state.py
+ create mode 100644 change-control/in-progress/0046-FEAT - move non-sensitive Ansible inventory into Playbooks Git/IMPLEMENTATION-STEPS.md
+ create mode 100644 change-control/in-progress/0046-FEAT - move non-sensitive Ansible inventory into Playbooks Git/INVENTORY-AND-INSTALLATION-EQUIVALENCE-CONTRACT.md
+ create mode 100644 change-control/in-progress/0046-FEAT - move non-sensitive Ansible inventory into Playbooks Git/README.md
+ create mode 100644 change-control/in-progress/0046-FEAT - move non-sensitive Ansible inventory into Playbooks Git/SECRETS-AND-DISCOVERY-DESIGN.md
+ create mode 100644 change-control/in-progress/0046-FEAT - move non-sensitive Ansible inventory into Playbooks Git/reports/ACCEPTANCE-CRITERION-REVISION-20261110.md
+ create mode 100644 change-control/in-progress/0046-FEAT - move non-sensitive Ansible inventory into Playbooks Git/reports/PLANNING-SOURCE-REVIEW-20261110.md
+ create mode 100644 change-control/in-progress/0046-FEAT - move non-sensitive Ansible inventory into Playbooks Git/tests/ACCEPTANCE-MATRIX.md
+ create mode 100644 change-control/in-progress/0046-FEAT - move non-sensitive Ansible inventory into Playbooks Git/tools/README.md
+=== Publish to GitHub ===
+Enumerating objects: 33, done.
+Counting objects: 100% (33/33), done.
+Delta compression using up to 32 threads
+Compressing objects: 100% (28/28), done.
+Writing objects: 100% (31/31), 46.82 KiB | 737.00 KiB/s, done.
+Total 31 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To github.com:rsmaxwell/diaries.git
+   27e6cbd..47c96ba  main -> main
+47c96ba (HEAD -> main, origin/main, origin/HEAD) 0045-FEAT 0046-FEAT: record plans and baseline tooling
+## main...origin/main
+PASS: 0045 and 0046 plans committed and published
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

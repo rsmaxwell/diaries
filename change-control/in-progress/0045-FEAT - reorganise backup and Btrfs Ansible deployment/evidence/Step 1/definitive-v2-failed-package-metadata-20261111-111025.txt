@@ -1,0 +1,24 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ if (
+  cd '/cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries' || exit 1
+
+  feature='change-control/in-progress/0045-FEAT - reorganise backup and Btrfs Ansible deployment'
+
+  bash "$feature/tools/capture-0045-step1-baseline.sh" || exit 1
+
+); then
+  echo 'PASS: 0045 definitive baseline captured'
+else
+  echo 'FAIL: 0045 definitive baseline capture'
+fi
+0045 Step 1 baseline capture started UTC 20261111-110959Z
+PASS: Windows Diaries revision and submodules recorded
+=== Capture mango source/inventory topology ===
+PASS: mango read-only source/inventory topology recorded
+=== Capture mars static installed manifest ===
+FAIL: 0045 managed-host fingerprint: Unexpected package metadata format: acl
+FAIL: 0045 definitive baseline capture
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$
