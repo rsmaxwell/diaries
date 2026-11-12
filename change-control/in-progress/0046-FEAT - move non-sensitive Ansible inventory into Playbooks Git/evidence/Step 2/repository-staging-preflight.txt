@@ -1,0 +1,7 @@
+=== 0046 three-repository staging: read-only preflight on mango ===
+PASS: prepared 44-file inventory found; no staging Git repository exists
+PASS: private Playbooks origin verified; clean frozen SHA dca638c00cc3b0fe2f2a46ef01c060cb1a1f6296
+PASS: GitHub CLI authenticated as repo owner; Git SSH and commit identity available
+PASS: rsmaxwell/inventory is not currently accessible (HTTP 404); creation will be attempted
+PASS: rsmaxwell/ansible-controller redirects to rsmaxwell/playbooks; new repository creation will be attempted
+PASS: all 0046 staging preflight checks passed; no mutations made

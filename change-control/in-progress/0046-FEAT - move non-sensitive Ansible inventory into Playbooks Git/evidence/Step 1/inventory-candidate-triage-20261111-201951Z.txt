@@ -1,0 +1,45 @@
+=== 0046 candidate classification; NO values shown ===
+files=44
+whole_file_vaults=1
+candidates=33
+REFERENCE_ONLY=18
+PUBLIC_KEY_FORMAT=0
+PATH_REFERENCE_REVIEW=0
+COMPOSITE_OR_COMPLEX_TEMPLATE_REVIEW=0
+PLAINTEXT_LITERAL_REVIEW=15
+HIGH_RISK_LITERAL_OR_CREDENTIAL_URL=0
+CLASSIFY: host_vars/acorn-bootstrap.yaml:7 PLAINTEXT_LITERAL_REVIEW
+CLASSIFY: host_vars/acorn.yaml:109 PLAINTEXT_LITERAL_REVIEW
+CLASSIFY: host_vars/backup-bootstrap/backup-bootstrap.yaml:7 PLAINTEXT_LITERAL_REVIEW
+CLASSIFY: host_vars/bob-bootstrap.yaml:7 PLAINTEXT_LITERAL_REVIEW
+CLASSIFY: host_vars/boris.yaml:13 PLAINTEXT_LITERAL_REVIEW
+CLASSIFY: host_vars/grape-bootstrap.yaml:7 PLAINTEXT_LITERAL_REVIEW
+CLASSIFY: host_vars/grape.yaml:8 PLAINTEXT_LITERAL_REVIEW
+CLASSIFY: host_vars/major.yaml:10 PLAINTEXT_LITERAL_REVIEW
+CLASSIFY: host_vars/major.yaml:15 PLAINTEXT_LITERAL_REVIEW
+CLASSIFY: host_vars/mars-bootstrap/mars-bootstrap.yaml:7 PLAINTEXT_LITERAL_REVIEW
+CLASSIFY: host_vars/pluto/archiva.yaml:9 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/archiva.yaml:14 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/builder.yaml:5 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/builder.yaml:8 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/builder.yaml:20 PLAINTEXT_LITERAL_REVIEW
+CLASSIFY: host_vars/pluto/builder.yaml:27 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/builder.yaml:31 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/diaries.yaml:5 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/diaries.yaml:17 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/diaries.yaml:20 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/diaries.yaml:23 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/diaries.yaml:26 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/diaries.yaml:29 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/diaries.yaml:35 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/diaries.yaml:39 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/diaries.yaml:44 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/diaries.yaml:64 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/infrastructure.yaml:7 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto/postgres.yaml:6 REFERENCE_ONLY
+CLASSIFY: host_vars/pluto-bootstrap/pluto-bootstrap.yaml:7 PLAINTEXT_LITERAL_REVIEW
+CLASSIFY: host_vars/snowy-bootstrap.yaml:7 PLAINTEXT_LITERAL_REVIEW
+CLASSIFY: host_vars/tintin.yaml:9 PLAINTEXT_LITERAL_REVIEW
+CLASSIFY: host_vars/tintin.yaml:11 PLAINTEXT_LITERAL_REVIEW
+NOTICE: no key names, values, ciphertext, plaintext, or Vault password printed
+REVIEW REQUIRED: inspect remaining candidates locally on mango, do not paste values in chat

@@ -1,0 +1,7 @@
+=== 0046 read-only protected-inventory semantic verification ===
+PASS: 44 file paths identical; only 12 expected files changed
+PASS: 14 protected scalars decrypt identically; all other YAML nodes identical
+Inventory normalization: expected_active=8, verified_vault_wrappers=8, unexpected_differences=0
+PASS: active inventory groups and all other hostvars identical
+PASS: 8 active hostvars match after in-memory Vault decryption
+PASS: 0046 prepared inventory equivalent; no files changed, committed or pushed

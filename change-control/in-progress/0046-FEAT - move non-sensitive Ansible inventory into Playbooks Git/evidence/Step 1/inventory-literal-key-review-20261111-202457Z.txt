@@ -1,0 +1,18 @@
+=== 0046 remaining literal variable names ===
+Values and Vault contents are NEVER printed
+host_vars/acorn-bootstrap.yaml:7 key=another_user_password shape=LITERAL_REVIEW
+host_vars/acorn.yaml:109 key=diaries_cloudflare_tunnel_token shape=LITERAL_REVIEW
+host_vars/backup-bootstrap/backup-bootstrap.yaml:7 key=another_user_password shape=LITERAL_REVIEW
+host_vars/bob-bootstrap.yaml:7 key=another_user_password shape=LITERAL_REVIEW
+host_vars/boris.yaml:13 key=hello_password shape=LITERAL_REVIEW
+host_vars/grape-bootstrap.yaml:7 key=another_user_password shape=LITERAL_REVIEW
+host_vars/grape.yaml:8 key=cloudflare_tunnel_token shape=LITERAL_REVIEW
+host_vars/major.yaml:10 key=jenkins_password shape=LITERAL_REVIEW
+host_vars/major.yaml:15 key=deploy_password shape=LITERAL_REVIEW
+host_vars/mars-bootstrap/mars-bootstrap.yaml:7 key=another_user_password shape=LITERAL_REVIEW
+host_vars/pluto/builder.yaml:20 key=jenkins_github_ssh_credential_id shape=LITERAL_REVIEW
+host_vars/pluto-bootstrap/pluto-bootstrap.yaml:7 key=another_user_password shape=LITERAL_REVIEW
+host_vars/snowy-bootstrap.yaml:7 key=another_user_password shape=LITERAL_REVIEW
+host_vars/tintin.yaml:9 key=jenkins_admin_password shape=LITERAL_REVIEW
+host_vars/tintin.yaml:11 key=jenkins_user_password shape=LITERAL_REVIEW
+PASS: 15 candidate key names inspected without values

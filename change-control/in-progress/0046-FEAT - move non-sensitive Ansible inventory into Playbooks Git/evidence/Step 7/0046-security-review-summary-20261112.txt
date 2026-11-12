@@ -1,0 +1,25 @@
+0046-FEAT — Security Review Evidence
+Date: 2026-11-12
+
+GitHub repositories:
+  Controller: rsmaxwell/ansible-controller (PRIVATE)
+  Playbooks:  rsmaxwell/playbooks (PUBLIC)
+  Inventory:  rsmaxwell/inventory (PRIVATE)
+
+Verified revisions:
+f6ba7fec7752f4bbfa1535958500bde9dea3ea84
+ ebcce026723db37b9b53b76ba21903a351d48466 inventory (heads/main)
+ df68a0e3bc57bae29a76f46a58c30835126d7f20 playbooks (heads/main)
+
+Playbooks security scan:
+  Gitleaks findings: 0
+
+Evidence file SHA256 checksums:
+37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570  current-source-gitleaks.json
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  scan.log
+
+Security review conclusion:
+  No findings in the retained current-source Gitleaks JSON.
+  Historical Playbooks Git history was retired.
+  The published Playbooks repository uses clean Git history.
+  Inventory and encrypted Vault files remain private.

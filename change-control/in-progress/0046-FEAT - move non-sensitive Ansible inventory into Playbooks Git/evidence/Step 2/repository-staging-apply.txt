@@ -1,0 +1,25 @@
+=== 0046 three-repository staging: read-only preflight on mango ===
+PASS: prepared 44-file inventory found; no staging Git repository exists
+PASS: private Playbooks origin verified; clean frozen SHA dca638c00cc3b0fe2f2a46ef01c060cb1a1f6296
+PASS: GitHub CLI authenticated as repo owner; Git SSH and commit identity available
+PASS: rsmaxwell/inventory is not currently accessible (HTTP 404); creation will be attempted
+PASS: rsmaxwell/ansible-controller redirects to rsmaxwell/playbooks; new repository creation will be attempted
+PASS: all 0046 staging preflight checks passed; no mutations made
+=== 0046 staging apply: creating/publishing PRIVATE Git repositories ===
+NOTE: do not blindly retry a partially completed apply; preserve evidence and reconcile.
+PASS: created PRIVATE rsmaxwell/inventory
+INFO: Replacing old repository-name redirect for rsmaxwell/ansible-controller
+PASS: created PRIVATE rsmaxwell/ansible-controller
+To github.com:rsmaxwell/inventory.git
+ * [new branch]      main -> main
+PASS: prepared encrypted inventory committed and pushed to PRIVATE repository
+Cloning into '/home/richard/ansible-controller/playbooks'...
+HEAD is now at dca638c 0047-FEAT: preserve individual source modes during collection sync
+To github.com:rsmaxwell/ansible-controller.git
+ * [new branch]      main -> main
+PASS: PRIVATE inventory repository at rsmaxwell/inventory
+PASS: PRIVATE controller repository at rsmaxwell/ansible-controller
+PASS: PRIVATE Playbooks submodule pinned to dca638c00cc3b0fe2f2a46ef01c060cb1a1f6296
+PASS: controller and submodule Git trees clean; repository staging complete
+UNCHANGED: /etc/ansible, /home/richard/playbooks and managed host configurations
+0046 remains IN PROGRESS until estate-wide equivalence testing and controlled cutover

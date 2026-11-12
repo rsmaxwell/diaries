@@ -1,0 +1,73 @@
+=== Verify existing Vault file encryption ===
+PASS: pluto/vault.yaml is Vault-encrypted
+=== Identify files containing Vault markers (filenames only) ===
+/etc/ansible/group_vars/all/general.yaml
+/etc/ansible/host_vars/bob.yaml
+/etc/ansible/host_vars/snowy.yaml
+/etc/ansible/host_vars/pluto/vault.yaml
+/etc/ansible/host_vars/acorn.yaml
+=== Capture inventory file hashes ===
+5db619fdfee9efc5e058b397005e12fa5fbbd78ccb29e0548dfb43c549777b7c  /etc/ansible/group_vars/all/btrfs-maintenance-schedule.yaml
+3c7de2c79c34bd65d2117731237e349ae6313f0f79e2408235b455708b5b827c  /etc/ansible/group_vars/all/general.yaml
+becea1be3a935c9d4b190a3d6393550fafd0be9cef1240cca57e796807db2312  /etc/ansible/group_vars/archiva.yaml
+890aae60f75ea5375941986766d3c80b7aed8f6d6c0e3485b26acf2bd6648080  /etc/ansible/group_vars/bootstrap.yaml
+af07ab535c30af8c1baba288bd4ec07ac30da34f65d214d0405a2b0d212586d4  /etc/ansible/group_vars/builder.yaml
+becea1be3a935c9d4b190a3d6393550fafd0be9cef1240cca57e796807db2312  /etc/ansible/group_vars/diaries.yaml
+070caa4424dea32242e758b096d338843fa7815935392e3ae7d4a6db5124e8e4  /etc/ansible/group_vars/infrastructure.yaml
+4bc6560ec4f7537caf8f51515dcc1a4bb68c6ed12b53c119fcd4f4629669408b  /etc/ansible/group_vars/ledger.yaml
+3b62591416bc55f74f24ddd6927faca617c695fe60576d6d4ebf840c9cf128dd  /etc/ansible/group_vars/local_backup.yaml
+03ea469d6a8882405c3b2201dd1a56777f78ccd2b0335f498afba99d4a087488  /etc/ansible/group_vars/remote_backup.yaml
+b39c8bb0f4ad4e1771c0bba0323620d9f5f16edb05e75755165663a9b8db8e4d  /etc/ansible/host_vars/acorn-bootstrap.yaml
+6e3973f95484b7c9481c32a539cb57324b379513b6130ad37f3932d06868067d  /etc/ansible/host_vars/acorn.yaml
+f0f90e6a4240555a9006f0cfebc41b129b439080ff96bb5c634dc232d0dc30f6  /etc/ansible/host_vars/backup-bootstrap/backup-bootstrap.yaml
+516f686859e99296c55c13b732828331a821c1d17c9a854ecb722f5b46266a15  /etc/ansible/host_vars/backup-bootstrap/ssh-access.yaml
+254ebf10fd0a51908a9e632b074c387a0c0ef98519ee4f6d99f6378dfd50dd51  /etc/ansible/host_vars/backup/btrfs.yaml
+ec37058d3052fa59e2ebb5732d4fea86c34cc7ec8222d79add642e4489274c8c  /etc/ansible/host_vars/backup/main.yaml
+d77131867a5e538776eb82dfe9072a6d809923cfa6d037bda84a70565ff71ca5  /etc/ansible/host_vars/backup/remote_backup.yaml
+da97a3949c279c8f05eb9be9450ffc59669d087ea5a0f66420827cf98ac475d1  /etc/ansible/host_vars/backup/ssh-access.yaml
+32868b25a67416b630fea89f60481c0a220bb892fae1bd567a603ffb99026334  /etc/ansible/host_vars/backup/stale-qgroups.yaml
+c8d8c148b8b8858af08aacdd137d4da389388f1f422135a2381d2644660815f7  /etc/ansible/host_vars/bob-bootstrap.yaml
+3102478f3bcd3b0a3a86b51fa2d93b042c1c2b3a380357ee94b5ae61ed62189e  /etc/ansible/host_vars/bob.yaml
+53faa340c4d7347b8f0459804fb5e9680010e0d041ec4c448430280dad5f5c49  /etc/ansible/host_vars/boris.yaml
+9351b3e64d84af8c18d9789e1581e48b1f2c3e1b94434592132549586e110620  /etc/ansible/host_vars/grape-bootstrap.yaml
+2fc7a93d172dba03966069eacf36b1f5db197088a846d0fbe50bba11dce7e51c  /etc/ansible/host_vars/grape.yaml
+167635eb90ba7e128fa4e76c0dc3545d15270dc78f455d1b51288ed16d77b278  /etc/ansible/host_vars/major.yaml
+7a1cb75130538ed8624bf7883a674fd5cdd10f34039e7215f69ec2b9bfa7a211  /etc/ansible/host_vars/mars-bootstrap/mars-bootstrap.yaml
+516f686859e99296c55c13b732828331a821c1d17c9a854ecb722f5b46266a15  /etc/ansible/host_vars/mars-bootstrap/ssh-access.yaml
+71a2738460eebf485496b665835449a22b8c0707aeaaf6b73638ffaa19672b50  /etc/ansible/host_vars/mars/local-backup.yaml
+f81959d26553af2e552c2397e432d47e36225cf21c11ba6eb7b988144087f456  /etc/ansible/host_vars/mars/mars.yaml
+fc15d4ae9a9a8baf8b437a2072019554ef0a83c7faf4a03f464808733485a9e2  /etc/ansible/host_vars/mars/ssh-access.yaml
+70b912addc7e6f4bad19848c6053a1f5df1c33c569e2c8181485aeb79ef0a315  /etc/ansible/host_vars/pluto-bootstrap/pluto-bootstrap.yaml
+6c95dee562fb52b91336cccd4e74a5383dafe3e6226138daf14e6f74a48bc0c3  /etc/ansible/host_vars/pluto/archiva.yaml
+753aba7539d23f32aeddbbdcabb3d381516ca1878bd59c347f71fefe3d89262a  /etc/ansible/host_vars/pluto/backup.yaml
+e9ca074ae5765acff5379ac0f19aec257c0c15a4b5c6609fe39459268126c2a5  /etc/ansible/host_vars/pluto/builder.yaml
+a697cafe84985edf82ed93268a58250be42327f9354c1d8e5a20da9fa537a2e6  /etc/ansible/host_vars/pluto/connection.yaml
+0b24a7d5d9faef4595b745552ebc77eb89cd7960d376e2fa050c3d9f87d0afa1  /etc/ansible/host_vars/pluto/diaries.yaml
+291b29509f23a6e7915d4c750f3951526879624f7c820c62cece3da299da6116  /etc/ansible/host_vars/pluto/infrastructure.yaml
+a7601f076bf8341b8ce2e5f015b37173146f1c15eb61c791856f345ef5014495  /etc/ansible/host_vars/pluto/ledger.yaml
+fed96ec86a82a4bf901c4ba8ab343eca112687fd6aabaaa6442048a485dcc94a  /etc/ansible/host_vars/pluto/postgres.yaml
+5c175b29d5e75219a930e921ac5d1f8aef4eebb8587e4db8ae70a7a6cf34aa6e  /etc/ansible/host_vars/pluto/vault.yaml
+a2a845acbeaf266aaa13d1d9015f355d82cb5634b3307af327c1c0c2cb4898b0  /etc/ansible/host_vars/snowy-bootstrap.yaml
+6679036d3c7002683343cecc42054fc91307847a73540c4362472b6bdd4d5668  /etc/ansible/host_vars/snowy.yaml
+fe30fd177a4a2e53aeac1c5f56d589dcffa8c68d55372b946f152c167dca5e0b  /etc/ansible/host_vars/tintin.yaml
+db6eb819a9b630d1a7d03b6a5ea3e0a683064b40ac11dfa0f2a42d9bb2815b3c  /etc/ansible/hosts
+=== Effective inventory fingerprint ===
+fc3f5419158dd218b7949cb9cb8e94de780b9b4c1703e8c586a36c6b2f72c328  -
+=== Identify absolute-path dependencies (filenames only) ===
+AGENTS.md
+README.md
+roles/btrfs-replication/README.md
+roles/btrfs-replication/tests/README.md
+roles/snapshots/README-0039-DEPLOYMENT.md
+roles/snapshots/README-0039-QGROUP-AUDIT.md
+roles/snapshots/README-0039-QGROUP-SAFETY-ASSESSMENT.md
+roles/snapshots/README.md
+roles/snapshots/tests/0040-INCREMENT-2-PROTOCOL-FOUNDATION.md
+roles/snapshots/tests/0040-INCREMENT-3-EVIDENCE-GATE.md
+roles/snapshots/tests/0040-INCREMENT-3D-RECEIVER-ENDPOINT-CANDIDATE.md
+roles/snapshots/tests/0040-step11/CUTOVER-RUNBOOK.md
+roles/snapshots/tests/0040-step11/README.md
+roles/snapshots/tests/0040-step11/ROOT-RETIREMENT-RUNBOOK.md
+roles/snapshots/tests/README-0040-SIMPLIFIED-RECEIVER-RETENTION.md
+verification/0036-gate-e/collect-gate-e-readonly.sh
+PASS: Inventory baseline captured

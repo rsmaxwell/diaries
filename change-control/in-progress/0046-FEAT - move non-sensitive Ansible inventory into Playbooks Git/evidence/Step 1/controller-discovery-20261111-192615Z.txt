@@ -1,0 +1,109 @@
+=== Playbooks Git ===
+## main...origin/main
+dca638c00cc3b0fe2f2a46ef01c060cb1a1f6296
+origin
+=== Ansible configuration ===
+ansible [core 2.21.3]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/richard/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  ansible collection location = /home/richard/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible
+  python version = 3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0] (/usr/bin/python3)
+  jinja version = 3.1.2
+  pyyaml version = 6.0.1 (with libyaml v0.2.5)
+=== Ansible environment override names ===
+=== Existing inventory tree: names and permissions only ===
+d 755 root root /etc/ansible
+d 755 root root /etc/ansible/group_vars
+d 755 root root /etc/ansible/group_vars/all
+d 755 root root /etc/ansible/host_vars
+d 755 root root /etc/ansible/host_vars/backup
+d 755 root root /etc/ansible/host_vars/backup-bootstrap
+d 755 root root /etc/ansible/host_vars/mars
+d 755 root root /etc/ansible/host_vars/mars-bootstrap
+d 755 root root /etc/ansible/host_vars/pluto
+d 755 root root /etc/ansible/host_vars/pluto-bootstrap
+d 755 root root /etc/ansible/roles
+f 600 richard richard /etc/ansible/host_vars/pluto/vault.yaml
+f 644 root root /etc/ansible/ansible.cfg
+f 644 root root /etc/ansible/group_vars/all/btrfs-maintenance-schedule.yaml
+f 644 root root /etc/ansible/group_vars/all/general.yaml
+f 644 root root /etc/ansible/group_vars/local_backup.yaml
+f 644 root root /etc/ansible/group_vars/remote_backup.yaml
+f 644 root root /etc/ansible/host_vars/backup-bootstrap/ssh-access.yaml
+f 644 root root /etc/ansible/host_vars/backup/remote_backup.yaml
+f 644 root root /etc/ansible/host_vars/backup/ssh-access.yaml
+f 644 root root /etc/ansible/host_vars/backup/stale-qgroups.yaml
+f 644 root root /etc/ansible/host_vars/mars-bootstrap/ssh-access.yaml
+f 644 root root /etc/ansible/host_vars/mars/local-backup.yaml
+f 644 root root /etc/ansible/host_vars/mars/ssh-access.yaml
+f 644 root root /etc/ansible/host_vars/pluto/archiva.yaml
+f 644 root root /etc/ansible/host_vars/pluto/backup.yaml
+f 644 root root /etc/ansible/host_vars/pluto/builder.yaml
+f 644 root root /etc/ansible/host_vars/pluto/connection.yaml
+f 644 root root /etc/ansible/host_vars/pluto/diaries.yaml
+f 644 root root /etc/ansible/host_vars/pluto/infrastructure.yaml
+f 644 root root /etc/ansible/host_vars/pluto/ledger.yaml
+f 644 root root /etc/ansible/host_vars/pluto/postgres.yaml
+f 644 root root /etc/ansible/hosts
+f 755 root root /etc/ansible/group_vars/archiva.yaml
+f 755 root root /etc/ansible/group_vars/bootstrap.yaml
+f 755 root root /etc/ansible/group_vars/builder.yaml
+f 755 root root /etc/ansible/group_vars/diaries.yaml
+f 755 root root /etc/ansible/group_vars/infrastructure.yaml
+f 755 root root /etc/ansible/group_vars/ledger.yaml
+f 755 root root /etc/ansible/host_vars/acorn-bootstrap.yaml
+f 755 root root /etc/ansible/host_vars/acorn.yaml
+f 755 root root /etc/ansible/host_vars/backup-bootstrap/backup-bootstrap.yaml
+f 755 root root /etc/ansible/host_vars/backup/btrfs.yaml
+f 755 root root /etc/ansible/host_vars/backup/main.yaml
+f 755 root root /etc/ansible/host_vars/bob-bootstrap.yaml
+f 755 root root /etc/ansible/host_vars/bob.yaml
+f 755 root root /etc/ansible/host_vars/boris.yaml
+f 755 root root /etc/ansible/host_vars/grape-bootstrap.yaml
+f 755 root root /etc/ansible/host_vars/grape.yaml
+f 755 root root /etc/ansible/host_vars/major.yaml
+f 755 root root /etc/ansible/host_vars/mars-bootstrap/mars-bootstrap.yaml
+f 755 root root /etc/ansible/host_vars/mars/mars.yaml
+f 755 root root /etc/ansible/host_vars/pluto-bootstrap/pluto-bootstrap.yaml
+f 755 root root /etc/ansible/host_vars/snowy-bootstrap.yaml
+f 755 root root /etc/ansible/host_vars/snowy.yaml
+f 755 root root /etc/ansible/host_vars/tintin.yaml
+=== Inventory/config files already tracked by Playbooks ===
+=== Inventory host/group graph (no variable values) ===
+@all:
+  |--@ungrouped:
+  |--@bootstrap:
+  |  |--mars-bootstrap
+  |  |--backup-bootstrap
+  |  |--grape-bootstrap
+  |  |--pluto-bootstrap
+  |  |--acorn-bootstrap
+  |  |--bob-bootstrap
+  |  |--snowy-bootstrap
+  |--@snapshots:
+  |  |--backup
+  |  |--mars
+  |--@development:
+  |  |--acorn
+  |--@builder:
+  |  |--snowy
+  |  |--pluto
+  |--@archiva:
+  |  |--pluto
+  |--@diaries:
+  |  |--acorn
+  |  |--pluto
+  |--@ledger:
+  |  |--bob
+  |  |--pluto
+  |--@infrastructure:
+  |  |--pluto
+  |--@local_backup:
+  |  |--mars
+  |--@remote_backup:
+  |  |--backup
+=== Vault password file presence (no contents) ===
+PASS: Vault password file readable
+PASS: Read-only controller discovery completed

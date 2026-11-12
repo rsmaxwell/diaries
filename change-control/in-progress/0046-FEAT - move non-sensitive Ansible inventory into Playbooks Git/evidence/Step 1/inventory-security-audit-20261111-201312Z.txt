@@ -1,0 +1,42 @@
+=== 0046 source classification (no variable values) ===
+files=44
+whole_file_vaults=1
+files_with_inline_vault=4
+inline_vault_values=16
+heuristic_plaintext_secret_candidates=33
+malformed_inline_vault_tags=0
+errors=0
+REVIEW: potential unencrypted secret: host_vars/acorn-bootstrap.yaml:7
+REVIEW: potential unencrypted secret: host_vars/acorn.yaml:109
+REVIEW: potential unencrypted secret: host_vars/backup-bootstrap/backup-bootstrap.yaml:7
+REVIEW: potential unencrypted secret: host_vars/bob-bootstrap.yaml:7
+REVIEW: potential unencrypted secret: host_vars/boris.yaml:13
+REVIEW: potential unencrypted secret: host_vars/grape-bootstrap.yaml:7
+REVIEW: potential unencrypted secret: host_vars/grape.yaml:8
+REVIEW: potential unencrypted secret: host_vars/major.yaml:10
+REVIEW: potential unencrypted secret: host_vars/major.yaml:15
+REVIEW: potential unencrypted secret: host_vars/mars-bootstrap/mars-bootstrap.yaml:7
+REVIEW: potential unencrypted secret: host_vars/pluto/archiva.yaml:9
+REVIEW: potential unencrypted secret: host_vars/pluto/archiva.yaml:14
+REVIEW: potential unencrypted secret: host_vars/pluto/builder.yaml:5
+REVIEW: potential unencrypted secret: host_vars/pluto/builder.yaml:8
+REVIEW: potential unencrypted secret: host_vars/pluto/builder.yaml:20
+REVIEW: potential unencrypted secret: host_vars/pluto/builder.yaml:27
+REVIEW: potential unencrypted secret: host_vars/pluto/builder.yaml:31
+REVIEW: potential unencrypted secret: host_vars/pluto/diaries.yaml:5
+REVIEW: potential unencrypted secret: host_vars/pluto/diaries.yaml:17
+REVIEW: potential unencrypted secret: host_vars/pluto/diaries.yaml:20
+REVIEW: potential unencrypted secret: host_vars/pluto/diaries.yaml:23
+REVIEW: potential unencrypted secret: host_vars/pluto/diaries.yaml:26
+REVIEW: potential unencrypted secret: host_vars/pluto/diaries.yaml:29
+REVIEW: potential unencrypted secret: host_vars/pluto/diaries.yaml:35
+REVIEW: potential unencrypted secret: host_vars/pluto/diaries.yaml:39
+REVIEW: potential unencrypted secret: host_vars/pluto/diaries.yaml:44
+REVIEW: potential unencrypted secret: host_vars/pluto/diaries.yaml:64
+REVIEW: potential unencrypted secret: host_vars/pluto/infrastructure.yaml:7
+REVIEW: potential unencrypted secret: host_vars/pluto/postgres.yaml:6
+REVIEW: potential unencrypted secret: host_vars/pluto-bootstrap/pluto-bootstrap.yaml:7
+REVIEW: potential unencrypted secret: host_vars/snowy-bootstrap.yaml:7
+REVIEW: potential unencrypted secret: host_vars/tintin.yaml:9
+REVIEW: potential unencrypted secret: host_vars/tintin.yaml:11
+REVIEW REQUIRED: candidate fields must be classified on mango before private Git staging

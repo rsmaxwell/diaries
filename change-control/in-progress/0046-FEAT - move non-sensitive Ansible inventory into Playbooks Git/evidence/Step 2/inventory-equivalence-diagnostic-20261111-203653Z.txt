@@ -1,0 +1,17 @@
+=== 0046 read-only comparison; no variables or secrets displayed ===
+FILES: source=44 prepared=44 modified=12 expected_modified=12
+PASS: file changes restricted to the 12 expected Vault-conversion files
+VAULT ROUNDTRIP: match=14, mismatch=0
+PASS: all 14 Vault-protected values decrypt to the original values
+=== Resolved inventory diff (key paths and category only) ===
+difference_count=8
+TYPE: TYPE_DIFF count=8
+DIFF: _meta.hostvars.acorn.diaries_cloudflare_tunnel_token TYPE_DIFF
+DIFF: _meta.hostvars.acorn-bootstrap.another_user_password TYPE_DIFF
+DIFF: _meta.hostvars.backup-bootstrap.another_user_password TYPE_DIFF
+DIFF: _meta.hostvars.bob-bootstrap.another_user_password TYPE_DIFF
+DIFF: _meta.hostvars.grape-bootstrap.another_user_password TYPE_DIFF
+DIFF: _meta.hostvars.mars-bootstrap.another_user_password TYPE_DIFF
+DIFF: _meta.hostvars.pluto-bootstrap.another_user_password TYPE_DIFF
+DIFF: _meta.hostvars.snowy-bootstrap.another_user_password TYPE_DIFF
+REVIEW REQUIRED: mismatch isolated; no source or destination changes made
