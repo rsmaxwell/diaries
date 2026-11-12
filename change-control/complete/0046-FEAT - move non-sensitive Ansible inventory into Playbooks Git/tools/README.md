@@ -8,4 +8,4 @@ All tools for controller baseline discovery, private repository staging, no-secr
 
 **Code safety:** Check live branches, SHAs, submodules, working trees and remotes before staging; preserve local uncommitted files. Use fail-fast only inside standalone scripts or subshells, never directly in the user's interactive shell. Report PASS/FAIL on failed checks and retain rollback evidence.
 
-Current state: planning amendment only. Do not run a cutover or create remote repos until Step 1 live discovery and remote access/visibility have been checked.
+**Post-closure note (12 November 2026):** 0046-FEAT is CLOSED. These scripts and the earlier staging restrictions remain archived for historical traceability; do not rerun migration/cutover or repository creation merely because the original instructions use future tense. See `../reports/0046-FEAT-CLOSURE-20261112.md`.

@@ -1,6 +1,8 @@
 # 0046-FEAT — Implementation steps and acceptance gates
 
-**All steps remain OPEN.** The three-repository architecture of 11 November 2026 supersedes the former public-inventory/external-Vault implementation. Prefer one coherent migration and one consolidated all-host verification rather than many trial deployments.
+**ARCHIVED PLANNING RECORD — NOT CURRENT STATUS.** 0046-FEAT was formally CLOSED on 12 November 2026; see [reports/0046-FEAT-CLOSURE-20261112.md](reports/0046-FEAT-CLOSURE-20261112.md). The `OPEN` step headings and requirements below preserve the original pre-implementation design, not post-closure statuses. The final accepted evidence is narrower than some originally proposed exhaustive all-host installation tests; those tests must not be represented as individually passed without separate evidence.
+
+**Original planning text:** The three-repository architecture of 11 November 2026 supersedes the former public-inventory/external-Vault implementation. Prefer one coherent migration and one consolidated all-host verification rather than many trial deployments.
 
 ## Step 1 — Freeze current controller, source, inventory and installed estate (OPEN)
 

@@ -1,6 +1,8 @@
 # 0046-FEAT — Three-repository and estate-wide installation acceptance matrix
 
-**All checks OPEN / NOT TESTED.** Architecture agreed; no operational migration was performed by the documentation amendment.
+**ARCHIVED PLANNING MATRIX — NOT CURRENT FEATURE STATUS.** 0046-FEAT was formally CLOSED on 12 November 2026. Read [../reports/0046-FEAT-CLOSURE-20261112.md](../reports/0046-FEAT-CLOSURE-20261112.md) for the accepted scope and outcomes. The `OPEN` flags below are as written at the planning stage; they were not individually reconciled as PASS/WAIVED, so do not claim all A01–A25 criteria were verified.
+
+**Original matrix text:** Architecture agreed; no operational migration was performed by the documentation amendment.
 
 | ID | Acceptance requirement | Status |
 |---|---|---|

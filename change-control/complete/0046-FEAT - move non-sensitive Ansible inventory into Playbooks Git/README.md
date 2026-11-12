@@ -1,62 +1,42 @@
 # 0046-FEAT — Private Ansible controller with public Playbooks and private inventory submodules
 
-**State:** PLANNED — architecture agreed; implementation and acceptance OPEN.
+**State:** CLOSED — 12 November 2026. Migration, verification, publication and cleanup accepted.
 
-**Original change-control directory name:** Retained to preserve existing feature references. Its former objective—committing only non-confidential inventory into the public Playbooks repository—is **superseded** by the three-repository decision of 11 November 2026.
+**Authoritative closure evidence:** [reports/0046-FEAT-CLOSURE-20261112.md](reports/0046-FEAT-CLOSURE-20261112.md).
 
-**Change-control owner:** Diaries parent Git repository, this feature directory.
+**Change-control owner:** Diaries parent Git repository, under `change-control/complete/`.
 
-**Prerequisites:** 0045-FEAT and 0047-FEAT formally closed and published (reported completed on 11 November 2026); verify live Git revisions and state again before implementing. 0048-FEAT remains dependent on formal 0046 closure.
+## Accepted operational topology
 
-## Agreed outcome
+The completed implementation uses these **actual** repositories (not the preliminary names appearing in historical design notes):
 
-Use three distinct Git repositories with explicit visibility:
+| Repository | Visibility | Purpose | Verified `main` revision at closure |
+| --- | --- | --- | --- |
+| `rsmaxwell/ansible-controller` | **PRIVATE** | Parent checkout, documentation, `enter.sh` and pinned submodules | `f6ba7fec7752f4bbfa1535958500bde9dea3ea84` |
+| `rsmaxwell/playbooks` | **PUBLIC** | Reusable Ansible playbooks, wrappers and roles, no inventory or Vault files | `df68a0e3bc57bae29a76f46a58c30835126d7f20` |
+| `rsmaxwell/inventory` | **PRIVATE** | Complete inventory, group/host variables and encrypted Vault content | `ebcce026723db37b9b53b76ba21903a351d48466` |
 
-| Repository | Visibility | Role |
-|---|---|---|
-| `rsmaxwell/ansible-controller` (proposed name; verify/create) | **PRIVATE** | Top-level operational checkout; pins two Git submodules and contains controller setup/usage documentation. |
-| `rsmaxwell/ansible-playbooks` (existing) | **PUBLIC** | Reusable playbooks, roles, tests, templates; **no inventory, Vault ciphertext or protected site configuration**. |
-| `rsmaxwell/ansible-inventory` (proposed name; verify/create) | **PRIVATE** | Entire site inventory: hosts, `group_vars`, `host_vars`, Vault-encrypted values and files. |
+The canonical operational checkout is `/home/richard/ansible-controller` on `mango`, with `playbooks/` and `inventory/` submodules. From an interactive shell on `mango`:
 
-Keep `/home/richard/.vault_pass.txt`, private SSH keys, access tokens and any other **plaintext credentials** outside all three repositories. A private Git repository is an additional access boundary, **not a licence to commit plaintext passwords**.
-
-```text
-/home/richard/ansible-controller/             # new proposed checkout on mango (PRIVATE parent)
-  .gitmodules
-  README.md
-  playbooks/                               # existing PUBLIC Git repository as submodule
-    backup-collection.yaml
-    snapshots.yaml
-    btrfs-replication.yaml
-    roles/ ...
-  inventory/                               # new PRIVATE Git repository as submodule
-    hosts                                  # final filename decided from live inventory
-    group_vars/ ...                        # public-inventory-type data stays private here
-    host_vars/ ...
-    ...                                    # Vault-encrypted files in original group/host scope
-
-/etc/ansible/ansible.cfg                   # system config points to new inventory path at cutover
-/home/richard/.vault_pass.txt             # external, never committed
+```bash
+source "$HOME/ansible-controller/enter.sh"
 ```
 
-**Do not assume these repositories or the checkout exist yet.** Repository creation and credential/access configuration are implementation steps, not work already done. Do not replace the current running `/home/richard/playbooks` checkout or `/etc/ansible` inventory until acceptance supports cutover.
+The helper moves to the `playbooks/` directory, sets the private inventory path and selects `/etc/ansible/ansible.cfg`. The external Vault password file remains at `~/.vault_pass.txt` and is **not** in any Git repository. Pinned submodule revisions must be updated intentionally; a parent pull does not automatically advance child commits.
 
-## Critical acceptance contract
+## Closure scope and evidence
 
-With the *same frozen Playbooks installation-producing revision*, every managed host and every applicable playbook/host selection must have **identical installed configuration and secure behaviour** using old `/etc/ansible` inventory versus the private inventory submodule. Include all managed hosts, not only `mars` and `backup`. Variable precedence/effective values are diagnostics; any differences must be investigated and proven not to affect installations, targeting or security.
+The closure report records inventory semantic reconciliation, reviewed publication and repository visibility, a clean-source security scan, fresh-clone and submodule-pin verification, 13 inventory hosts, 14/14 top-level Ansible syntax checks and `pluto` connectivity (`pong`, no change). It also documents removal of the obsolete checkout and migration directories.
 
-The final operational checkout must be reproducible by cloning the **private controller parent** and initializing its **exact pinned submodule commits**. The normal Ansible commands run from `playbooks/`, with the system configuration selecting the sibling private inventory and the existing Vault password file. No routine `-i` override.
+Those results do **not** constitute a separately demonstrated all-host installation-equivalence or end-to-end backup restore test. The original broad criteria remain preserved as historical planning requirements in [IMPLEMENTATION-STEPS.md](IMPLEMENTATION-STEPS.md) and [tests/ACCEPTANCE-MATRIX.md](tests/ACCEPTANCE-MATRIX.md). Do not read their original `OPEN` labels as the current feature status or infer that each planned test individually passed. The accepted closure scope and its stated limitations are in the closure report.
 
-The current `/etc/ansible` source and `/home/richard/playbooks` checkout remain the working and reversible baseline until controlled activation. The public Playbooks Git history must not acquire private inventory or encrypted Vault data.
+## Historical design and supporting documents
 
-## Implementation and evidence
+- [reports/0046-FEAT-CLOSURE-20261112.md](reports/0046-FEAT-CLOSURE-20261112.md) — authoritative completion and retained evidence summary.
+- [IMPLEMENTATION-STEPS.md](IMPLEMENTATION-STEPS.md) and [tests/ACCEPTANCE-MATRIX.md](tests/ACCEPTANCE-MATRIX.md) — original requirements, preserved for traceability; not the current status register.
+- [THREE-REPOSITORY-ARCHITECTURE.md](THREE-REPOSITORY-ARCHITECTURE.md) — historical architecture design (names and proposed paths can predate final implementation).
+- [SECRETS-AND-DISCOVERY-DESIGN.md](SECRETS-AND-DISCOVERY-DESIGN.md) — historical secrets design and inventory discovery constraints.
+- [INVENTORY-AND-INSTALLATION-EQUIVALENCE-CONTRACT.md](INVENTORY-AND-INSTALLATION-EQUIVALENCE-CONTRACT.md) — planned comparison standard.
+- [tools/README.md](tools/README.md) — historical feature tooling and safe execution guidance.
 
-- [IMPLEMENTATION-STEPS.md](IMPLEMENTATION-STEPS.md): baseline, implementation, estate-wide equivalence, cutover/closure.
-- [THREE-REPOSITORY-ARCHITECTURE.md](THREE-REPOSITORY-ARCHITECTURE.md): submodule mechanics, paths and access rules.
-- [SECRETS-AND-DISCOVERY-DESIGN.md](SECRETS-AND-DISCOVERY-DESIGN.md): encrypted Vault handling, preflight, no-leak requirements.
-- [INVENTORY-AND-INSTALLATION-EQUIVALENCE-CONTRACT.md](INVENTORY-AND-INSTALLATION-EQUIVALENCE-CONTRACT.md): binding installation equality.
-- [tests/ACCEPTANCE-MATRIX.md](tests/ACCEPTANCE-MATRIX.md): explicit acceptance gates.
-- [reports/THREE-REPOSITORY-DECISION-20261111.md](reports/THREE-REPOSITORY-DECISION-20261111.md): accepted design and superseded proposal.
-- [tools/README.md](tools/README.md): feature-local discovery/verification tooling rules.
-
-**Status:** This package updates documentation only. No Git repository, submodule, active inventory, Vault file, Ansible configuration, CI job or host installation has been changed by the package.
+**Next feature:** 0048-FEAT can proceed using the accepted 0046 closure, without repeating migration or destructive backup operations.
