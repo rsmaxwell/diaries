@@ -1,0 +1,101 @@
+0048 STEP 2 DISPOSABLE CLEAN-CHECKOUT TEST
+UTC: 2026-11-12T21:45:51Z
+HOST: mango
+USER: richard
+CONTROLLER=f6ba7fec7752f4bbfa1535958500bde9dea3ea84
+PLAYBOOKS=df68a0e3bc57bae29a76f46a58c30835126d7f20
+INVENTORY=ebcce026723db37b9b53b76ba21903a351d48466
+PLAYBOOKS_REMOTE=git@github.com:rsmaxwell/playbooks.git
+
+=== Clone published Playbooks and detach at frozen revision ===
+CLEAN_CLONE=df68a0e3bc57bae29a76f46a58c30835126d7f20
+
+=== 14-source-mode inventory and frozen hash comparison ===
+directory  clone=0755 historical=0750 files/backup
+directory  clone=0755 historical=0750 files/backup/home
+directory  clone=0755 historical=0750 files/backup-machine
+directory  clone=0755 historical=0750 files/backup-machine/home
+directory  clone=0755 historical=0750 files/backup-machine/remote
+file       clone=0644 historical=0664 files/backup/home/excludes-1
+file       clone=0644 historical=0664 files/backup/home/excludes-2
+file       clone=0644 historical=0664 files/backup/home/includes
+file       clone=0644 historical=0664 files/backup-machine/home/excludes-1
+file       clone=0644 historical=0664 files/backup-machine/home/excludes-2
+file       clone=0644 historical=0664 files/backup-machine/home/includes
+file       clone=0644 historical=0664 files/backup-machine/remote/excludes-1
+file       clone=0644 historical=0664 files/backup-machine/remote/excludes-2
+file       clone=0644 historical=0664 files/backup-machine/remote/includes
+PASS: 14 clean-clone paths/types and nine content hashes verified
+
+=== Build disposable Ansible harness (local-only targets) ===
+
+=== Ansible run 1 / new disposable target ===
+
+PLAY [0048 Step 2 local-only source-mode convergence test] *********************
+
+TASK [User install | Create directories as production role does] ***************
+[WARNING]: Host 'localhost' is using the discovered Python interpreter at '/usr/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.21/reference_appendices/interpreter_discovery.html for more information.
+changed: [localhost] => (item=)
+changed: [localhost] => (item=cron)
+changed: [localhost] => (item=home)
+
+TASK [User install | Archive-mode sync with production options] ****************
+changed: [localhost]
+
+TASK [Machine install | Create directories as production role does] ************
+changed: [localhost] => (item=)
+changed: [localhost] => (item=cron)
+changed: [localhost] => (item=home)
+changed: [localhost] => (item=remote)
+
+TASK [Machine install | Archive-mode sync with production options] *************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=4    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+=== Final destination modes after run 1 ===
+755 richard:richard /tmp/0048-step2.0u9ZeJnF/disposable-target/user
+755 richard:richard /tmp/0048-step2.0u9ZeJnF/disposable-target/user/home
+755 richard:richard /tmp/0048-step2.0u9ZeJnF/disposable-target/machine
+755 richard:richard /tmp/0048-step2.0u9ZeJnF/disposable-target/machine/home
+755 richard:richard /tmp/0048-step2.0u9ZeJnF/disposable-target/machine/remote
+
+=== Ansible run 2 / same disposable target ===
+
+PLAY [0048 Step 2 local-only source-mode convergence test] *********************
+
+TASK [User install | Create directories as production role does] ***************
+[WARNING]: Host 'localhost' is using the discovered Python interpreter at '/usr/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.21/reference_appendices/interpreter_discovery.html for more information.
+changed: [localhost] => (item=)
+ok: [localhost] => (item=cron)
+changed: [localhost] => (item=home)
+
+TASK [User install | Archive-mode sync with production options] ****************
+changed: [localhost]
+
+TASK [Machine install | Create directories as production role does] ************
+ok: [localhost] => (item=)
+ok: [localhost] => (item=cron)
+ok: [localhost] => (item=home)
+ok: [localhost] => (item=remote)
+
+TASK [Machine install | Archive-mode sync with production options] *************
+ok: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+
+=== Final destination modes after run 2 ===
+755 richard:richard /tmp/0048-step2.0u9ZeJnF/disposable-target/user
+755 richard:richard /tmp/0048-step2.0u9ZeJnF/disposable-target/user/home
+755 richard:richard /tmp/0048-step2.0u9ZeJnF/disposable-target/machine
+755 richard:richard /tmp/0048-step2.0u9ZeJnF/disposable-target/machine/home
+755 richard:richard /tmp/0048-step2.0u9ZeJnF/disposable-target/machine/remote
+
+RUN2_CHANGED=2
+OBSERVED: Disposable Ansible mode tasks did NOT converge on run 2.
+STEP2 B3: FAIL / corrective Playbooks design required. This is a valid diagnostic result, not a production failure.
+PASS: Clean-clone experiment completed; temporary target will be removed

@@ -1,0 +1,242 @@
+
+Richard@RICHARD-PC ~/scripts/backup-diaries
+$ (
+  cd '/cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries' || exit 1
+
+  feature='change-control/in-progress/0048-FEAT - evaluate backup collection permissions and simplify tooling'
+
+  output="$feature/evidence/Step 1/acl-and-access-$(date -u +%Y%m%d-%H%M%SZ).txt"
+
+  (
+    set -o pipefail
+    ssh mango 'bash -s' < "$feature/tools/collect-step1-acls.sh" 2>&1 | tee "$output"
+  ) || exit 1
+)
+rc=$?
+
+if [ "$rc" -eq 0 ]; then
+  echo 'PASS: ACL evidence collected'
+else
+  echo "FAIL: ACL evidence collection (exit $rc)"
+fi
+0048 STEP 1 READ-ONLY ACL COLLECTION
+UTC: 2026-11-12T21:34:15Z
+HOST: mango
+
+=== Controller/submodule revisions and clean-state guards ===
+. HEAD=f6ba7fec7752f4bbfa1535958500bde9dea3ea84
+playbooks HEAD=df68a0e3bc57bae29a76f46a58c30835126d7f20
+inventory HEAD=ebcce026723db37b9b53b76ba21903a351d48466
+ ebcce026723db37b9b53b76ba21903a351d48466 inventory (heads/main)
+ df68a0e3bc57bae29a76f46a58c30835126d7f20 playbooks (heads/main)
+
+=== Effective Ansible entry point (path only) ===
+Ansible working directory: /home/richard/ansible-controller/playbooks
+Ansible inventory: /home/richard/ansible-controller/inventory/hosts
+ANSIBLE_CONFIG=/etc/ansible/ansible.cfg
+ANSIBLE_INVENTORY=/home/richard/ansible-controller/inventory/hosts
+
+=== Mango source metadata: 14 historical contract entries ===
+uid=1001(richard) gid=1001(richard) groups=1001(richard),27(sudo)
+--- SOURCE: roles/backup-collection/files/backup ---
+directory 775 richard:richard roles/backup-collection/files/backup
+user::rwx
+group::rwx
+other::r-x
+
+--- SOURCE: roles/backup-collection/files/backup/home ---
+directory 775 richard:richard roles/backup-collection/files/backup/home
+user::rwx
+group::rwx
+other::r-x
+
+--- SOURCE: roles/backup-collection/files/backup/home/includes ---
+regular empty file 664 richard:richard roles/backup-collection/files/backup/home/includes
+user::rw-
+group::rw-
+other::r--
+
+--- SOURCE: roles/backup-collection/files/backup/home/excludes-1 ---
+regular file 664 richard:richard roles/backup-collection/files/backup/home/excludes-1
+user::rw-
+group::rw-
+other::r--
+
+--- SOURCE: roles/backup-collection/files/backup/home/excludes-2 ---
+regular empty file 664 richard:richard roles/backup-collection/files/backup/home/excludes-2
+user::rw-
+group::rw-
+other::r--
+
+--- SOURCE: roles/backup-collection/files/backup-machine ---
+directory 775 richard:richard roles/backup-collection/files/backup-machine
+user::rwx
+group::rwx
+other::r-x
+
+--- SOURCE: roles/backup-collection/files/backup-machine/home ---
+directory 775 richard:richard roles/backup-collection/files/backup-machine/home
+user::rwx
+group::rwx
+other::r-x
+
+--- SOURCE: roles/backup-collection/files/backup-machine/home/includes ---
+regular empty file 664 richard:richard roles/backup-collection/files/backup-machine/home/includes
+user::rw-
+group::rw-
+other::r--
+
+--- SOURCE: roles/backup-collection/files/backup-machine/home/excludes-1 ---
+regular file 664 richard:richard roles/backup-collection/files/backup-machine/home/excludes-1
+user::rw-
+group::rw-
+other::r--
+
+--- SOURCE: roles/backup-collection/files/backup-machine/home/excludes-2 ---
+regular empty file 664 richard:richard roles/backup-collection/files/backup-machine/home/excludes-2
+user::rw-
+group::rw-
+other::r--
+
+--- SOURCE: roles/backup-collection/files/backup-machine/remote ---
+directory 775 richard:richard roles/backup-collection/files/backup-machine/remote
+user::rwx
+group::rwx
+other::r-x
+
+--- SOURCE: roles/backup-collection/files/backup-machine/remote/includes ---
+regular empty file 664 richard:richard roles/backup-collection/files/backup-machine/remote/includes
+user::rw-
+group::rw-
+other::r--
+
+--- SOURCE: roles/backup-collection/files/backup-machine/remote/excludes-1 ---
+regular file 664 richard:richard roles/backup-collection/files/backup-machine/remote/excludes-1
+user::rw-
+group::rw-
+other::r--
+
+--- SOURCE: roles/backup-collection/files/backup-machine/remote/excludes-2 ---
+regular empty file 664 richard:richard roles/backup-collection/files/backup-machine/remote/excludes-2
+user::rw-
+group::rw-
+other::r--
+
+
+=== Mars installed metadata and parent-directory access ===
+HOST: mars
+uid=1001(richard) gid=1001(richard) groups=1001(richard),27(sudo),999(docker)
+--- INSTALLED: /home/richard ---
+directory 750 richard:richard /home/richard
+user::rwx
+group::r-x
+other::---
+
+--- INSTALLED: /home/richard/scripts ---
+directory 775 richard:richard /home/richard/scripts
+user::rwx
+group::rwx
+other::r-x
+
+--- INSTALLED: /home/richard/scripts/backup ---
+directory 750 richard:richard /home/richard/scripts/backup
+user::rwx
+group::r-x
+other::---
+
+--- INSTALLED: /home/richard/scripts/backup/home ---
+directory 750 richard:richard /home/richard/scripts/backup/home
+user::rwx
+group::r-x
+other::---
+
+--- INSTALLED: /home/richard/scripts/backup/home/includes ---
+regular empty file 664 richard:richard /home/richard/scripts/backup/home/includes
+user::rw-
+group::rw-
+other::r--
+
+--- INSTALLED: /home/richard/scripts/backup/home/excludes-1 ---
+regular file 664 richard:richard /home/richard/scripts/backup/home/excludes-1
+user::rw-
+group::rw-
+other::r--
+
+--- INSTALLED: /home/richard/scripts/backup/home/excludes-2 ---
+regular empty file 664 richard:richard /home/richard/scripts/backup/home/excludes-2
+user::rw-
+group::rw-
+other::r--
+
+--- INSTALLED: /root ---
+directory 700 root:root /root
+user::rwx
+group::---
+other::---
+
+--- INSTALLED: /root/scripts ---
+directory 755 root:root /root/scripts
+user::rwx
+group::r-x
+other::r-x
+
+--- INSTALLED: /root/scripts/backup ---
+directory 750 richard:richard /root/scripts/backup
+user::rwx
+group::r-x
+other::---
+
+--- INSTALLED: /root/scripts/backup/home ---
+directory 750 richard:richard /root/scripts/backup/home
+user::rwx
+group::r-x
+other::---
+
+--- INSTALLED: /root/scripts/backup/home/includes ---
+regular empty file 664 richard:richard /root/scripts/backup/home/includes
+user::rw-
+group::rw-
+other::r--
+
+--- INSTALLED: /root/scripts/backup/home/excludes-1 ---
+regular file 664 richard:richard /root/scripts/backup/home/excludes-1
+user::rw-
+group::rw-
+other::r--
+
+--- INSTALLED: /root/scripts/backup/home/excludes-2 ---
+regular empty file 664 richard:richard /root/scripts/backup/home/excludes-2
+user::rw-
+group::rw-
+other::r--
+
+--- INSTALLED: /root/scripts/backup/remote ---
+directory 750 richard:richard /root/scripts/backup/remote
+user::rwx
+group::r-x
+other::---
+
+--- INSTALLED: /root/scripts/backup/remote/includes ---
+regular empty file 664 richard:richard /root/scripts/backup/remote/includes
+user::rw-
+group::rw-
+other::r--
+
+--- INSTALLED: /root/scripts/backup/remote/excludes-1 ---
+regular file 664 richard:richard /root/scripts/backup/remote/excludes-1
+user::rw-
+group::rw-
+other::r--
+
+--- INSTALLED: /root/scripts/backup/remote/excludes-2 ---
+regular empty file 664 richard:richard /root/scripts/backup/remote/excludes-2
+user::rw-
+group::rw-
+other::r--
+
+
+PASS: 0048 Step 1 read-only ACL collection (no changes made)
+PASS: ACL evidence collected
+
+Richard@RICHARD-PC ~/scripts/backup-diaries
+$

@@ -1,0 +1,140 @@
+0048 STEP 3: SOURCE NORMALISATION AND CHECK-MODE DEPLOYMENT PREVIEW
+UTC: 2026-11-13T08:15:31Z
+HOST: mango
+=== Candidate tracked changes (read-only review) ===
+ M roles/backup-collection/README.md
+ M roles/backup-collection/tasks/install_user_scripts.yaml
+ M roles/backup-collection/tests/verify-collection-source-modes.py
+ roles/backup-collection/README.md                  |  45 ++++---
+ .../tasks/install_user_scripts.yaml                |  14 ++-
+ .../tests/verify-collection-source-modes.py        | 140 ++++++++++++---------
+ 3 files changed, 118 insertions(+), 81 deletions(-)
+PASS: exact previously reviewed candidate source files
+=== Before local checkout mode normalisation ===
+775 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup
+775 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup/home
+775 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine
+775 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/home
+775 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/remote
+664 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup/home/includes
+664 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup/home/excludes-1
+664 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup/home/excludes-2
+664 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/home/includes
+664 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/home/excludes-1
+664 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/home/excludes-2
+664 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/remote/includes
+664 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/remote/excludes-1
+664 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/remote/excludes-2
+=== After local checkout mode normalisation ===
+755 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup
+755 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup/home
+755 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine
+755 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/home
+755 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/remote
+644 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup/home/includes
+644 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup/home/excludes-1
+644 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup/home/excludes-2
+644 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/home/includes
+644 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/home/excludes-1
+644 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/home/excludes-2
+644 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/remote/includes
+644 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/remote/excludes-1
+644 richard:richard /home/richard/ansible-controller/playbooks/roles/backup-collection/files/backup-machine/remote/excludes-2
+=== Revised source-mode preflight and hash validation ===
+PASS: working-copy source metadata matches reviewed clean-clone modes; no explicit synchronized-directory modes; nine filter hashes unchanged
+=== Ansible syntax check ===
+
+playbook: backup-collection.yaml
+=== Mars selected user/machine tasks: check mode only; no --diff ===
+
+PLAY [local_backup] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [mars]
+
+TASK [backup-collection : Get normal user account information] *****************
+ok: [mars]
+
+TASK [backup-collection : Set normal user home directory] **********************
+ok: [mars]
+
+TASK [backup-collection : Validate 0034 unattended backup scheduling controls] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [backup-collection : install_user_scripts | Create directories] ***********
+ok: [mars] => (item={'path': '/home/richard/scripts/backup'})
+ok: [mars] => (item={'path': '/home/richard/scripts/backup/cron', 'mode': '0750'})
+ok: [mars] => (item={'path': '/home/richard/scripts/backup/home'})
+ok: [mars] => (item={'path': '/home/richard/log/backup', 'mode': '0750'})
+
+TASK [backup-collection : install_user_scripts | Copy scripts] *****************
+changed: [mars]
+
+TASK [backup-collection : debug] ***********************************************
+ok: [mars] => {
+    "user_script_sync.stdout_lines": [
+        ".d...p..... ./",
+        ".d...p..... home/",
+        "<f..tp..... home/excludes-1",
+        "<f..tp..... home/excludes-2",
+        "<f..tp..... home/includes"
+    ]
+}
+
+TASK [backup-collection : install_user_scripts | Template backup scripts] ******
+ok: [mars] => (item=backup.sh)
+ok: [mars] => (item=cron/backup.sh)
+ok: [mars] => (item=home/backup.sh)
+
+TASK [backup-collection : Set user home and cron backup schedule] **************
+ok: [mars]
+
+TASK [backup-collection : install_machine_scripts | Create directories] ********
+ok: [mars] => (item=/root/scripts/backup)
+ok: [mars] => (item=/root/scripts/backup/cron)
+ok: [mars] => (item=/root/scripts/backup/home)
+ok: [mars] => (item=/root/scripts/backup/remote)
+ok: [mars] => (item=/root/log/backup)
+
+TASK [backup-collection : install_machine_scripts | Copy files] ****************
+changed: [mars]
+
+TASK [backup-collection : debug] ***********************************************
+ok: [mars] => {
+    "machine_script_sync.stdout_lines": [
+        ".d...p..... ./",
+        ".d...p..... home/",
+        "<f..tp..... home/excludes-1",
+        "<f..tp..... home/excludes-2",
+        "<f..tp..... home/includes",
+        ".d...p..... remote/",
+        "<f..tp..... remote/excludes-1",
+        "<f..tp..... remote/excludes-2",
+        "<f..tp..... remote/includes"
+    ]
+}
+
+TASK [backup-collection : install_machine_scripts | Template backup scripts] ***
+ok: [mars] => (item=backup.sh)
+ok: [mars] => (item=cron/backup.sh)
+ok: [mars] => (item=home/backup.sh)
+ok: [mars] => (item=remote/backup.sh)
+
+TASK [backup-collection : install_machine_scripts | Install cron jobs] *********
+ok: [mars] => (item={'name': 'backup', 'script': 'scripts/backup/backup.sh', 'minute': '15', 'hour': '2'})
+
+PLAY RECAP *********************************************************************
+mars                       : ok=14   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+=== Working-tree status (no Git commit or push performed) ===
+ M roles/backup-collection/README.md
+ M roles/backup-collection/tasks/install_user_scripts.yaml
+ M roles/backup-collection/tests/verify-collection-source-modes.py
+PASS: 0048 checkout source normalised; source/syntax checks and mars check-mode preview completed
+REVIEW REQUIRED: Inspect the Ansible task results before authorising any real deployment.

@@ -1,0 +1,17 @@
+0048 STEP 1 READ-ONLY ACL COLLECTION
+UTC: 2026-11-12T21:31:51Z
+HOST: mango
+
+=== Controller/submodule revisions and clean-state guards ===
+. HEAD=f6ba7fec7752f4bbfa1535958500bde9dea3ea84
+playbooks HEAD=df68a0e3bc57bae29a76f46a58c30835126d7f20
+inventory HEAD=ebcce026723db37b9b53b76ba21903a351d48466
+ ebcce026723db37b9b53b76ba21903a351d48466 inventory (heads/main)
+ df68a0e3bc57bae29a76f46a58c30835126d7f20 playbooks (heads/main)
+
+=== Effective Ansible entry point (path only) ===
+Ansible working directory: /home/richard/ansible-controller/playbooks
+Ansible inventory: /home/richard/ansible-controller/inventory/hosts
+ANSIBLE_CONFIG=/etc/ansible/ansible.cfg
+ANSIBLE_INVENTORY=/home/richard/ansible-controller/inventory/hosts
+INCOMPLETE: getfacl unavailable on mango; no permissions changed

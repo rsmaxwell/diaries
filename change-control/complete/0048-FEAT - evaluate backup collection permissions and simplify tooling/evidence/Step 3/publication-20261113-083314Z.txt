@@ -1,0 +1,39 @@
+0048 STEP 3 — PUBLISH SIMPLIFIED PLAYBOOKS AND CONTROLLER PIN
+UTC: 2026-11-13T08:33:14Z HOST: mango
+From github.com:rsmaxwell/ansible-controller
+ * branch            main       -> FETCH_HEAD
+PASS: candidate files match reviewed package
+=== Verify new preflight and syntax ===
+PASS: five Git-native source directories 0755, nine filters 0644; no conflicting directory mode or rsync override
+
+playbook: backup-collection.yaml
+=== Verify upstream before publication ===
+From github.com:rsmaxwell/playbooks
+ * branch            main       -> FETCH_HEAD
+M	roles/backup-collection/README.md
+M	roles/backup-collection/tasks/install_user_scripts.yaml
+M	roles/backup-collection/tests/verify-collection-source-modes.py
+Your branch is up to date with 'origin/main'.
+Switched to branch 'main'
+=== Remove obsolete active manifest, stage exactly four paths ===
+rm 'roles/backup-collection/source-modes.json'
+ roles/backup-collection/README.md                  |  51 +++++---
+ roles/backup-collection/source-modes.json          | 100 ----------------
+ .../tasks/install_user_scripts.yaml                |  14 ++-
+ .../tests/verify-collection-source-modes.py        | 128 +++++++++++----------
+ 4 files changed, 110 insertions(+), 183 deletions(-)
+[main c510934] 0048-FEAT: use Git-native backup collection permissions
+ 4 files changed, 110 insertions(+), 183 deletions(-)
+ delete mode 100644 roles/backup-collection/source-modes.json
+To github.com:rsmaxwell/playbooks.git
+   df68a0e..c510934  main -> main
+PUBLISHED_PLAYBOOKS=c5109340a2fe13296a2343c682e1079d1a212c8d
+=== Publish parent submodule pin ===
+ playbooks | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[main 83cba34] 0048-FEAT: pin simplified backup collection Playbooks
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To github.com:rsmaxwell/ansible-controller.git
+   f6ba7fe..83cba34  main -> main
+PUBLISHED_CONTROLLER=83cba342d9ffe7da51a97bda9231f32d02beb2e3
+PASS: 0048 Playbooks and parent pin published; mars deployment not executed

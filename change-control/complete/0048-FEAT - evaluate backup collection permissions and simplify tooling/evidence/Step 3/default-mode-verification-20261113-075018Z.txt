@@ -1,0 +1,144 @@
+0048 STEP 3 GIT-NATIVE DEFAULT-MODE PREDEPLOYMENT TEST
+UTC: 2026-11-13T07:50:18Z
+HOST: mango
+CONTROLLER=f6ba7fec7752f4bbfa1535958500bde9dea3ea84
+PLAYBOOKS_BASE=df68a0e3bc57bae29a76f46a58c30835126d7f20
+INVENTORY=ebcce026723db37b9b53b76ba21903a351d48466
+=== Working Playbooks changes (do not mistake candidate files for published code) ===
+ M roles/backup-collection/README.md
+ M roles/backup-collection/tasks/install_user_scripts.yaml
+ M roles/backup-collection/tests/verify-collection-source-modes.py
+PASS: fresh checkout (umask 022) has 5 dirs 0755 and 9 filters 0644, with frozen hashes
+WORKING_COPY_MODE_DIFFERENCES=14
+REVIEW BEFORE DEPLOYMENT: working-copy mode 0775 differs from clean-clone mode: backup
+REVIEW BEFORE DEPLOYMENT: working-copy mode 0775 differs from clean-clone mode: backup/home
+REVIEW BEFORE DEPLOYMENT: working-copy mode 0775 differs from clean-clone mode: backup-machine
+REVIEW BEFORE DEPLOYMENT: working-copy mode 0775 differs from clean-clone mode: backup-machine/home
+REVIEW BEFORE DEPLOYMENT: working-copy mode 0775 differs from clean-clone mode: backup-machine/remote
+REVIEW BEFORE DEPLOYMENT: working-copy mode 0664 differs from clean-clone mode: backup/home/excludes-1
+REVIEW BEFORE DEPLOYMENT: working-copy mode 0664 differs from clean-clone mode: backup-machine/home/excludes-1
+REVIEW BEFORE DEPLOYMENT: working-copy mode 0664 differs from clean-clone mode: backup-machine/remote/excludes-1
+REVIEW BEFORE DEPLOYMENT: working-copy mode 0664 differs from clean-clone mode: backup/home/includes
+REVIEW BEFORE DEPLOYMENT: working-copy mode 0664 differs from clean-clone mode: backup/home/excludes-2
+REVIEW BEFORE DEPLOYMENT: working-copy mode 0664 differs from clean-clone mode: backup-machine/home/includes
+REVIEW BEFORE DEPLOYMENT: working-copy mode 0664 differs from clean-clone mode: backup-machine/home/excludes-2
+REVIEW BEFORE DEPLOYMENT: working-copy mode 0664 differs from clean-clone mode: backup-machine/remote/includes
+REVIEW BEFORE DEPLOYMENT: working-copy mode 0664 differs from clean-clone mode: backup-machine/remote/excludes-2
+PASS: proposed role tasks set NO modes on synchronized directories; no rsync overrides
+=== fresh: Ansible run 1 (disposable target) ===
+
+PLAY [0048 proposed default-mode create and rsync tasks] ***********************
+
+TASK [install_user_scripts | Create directories] *******************************
+[WARNING]: Host 'localhost' is using the discovered Python interpreter at '/usr/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.21/reference_appendices/interpreter_discovery.html for more information.
+changed: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-fresh/user'})
+changed: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-fresh/user/cron', 'mode': '0750'})
+changed: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-fresh/user/home'})
+changed: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-fresh/user-log', 'mode': '0750'})
+
+TASK [install_user_scripts | Copy scripts] *************************************
+changed: [localhost]
+
+TASK [install_machine_scripts | Create directories] ****************************
+changed: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-fresh/machine)
+changed: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-fresh/machine/cron)
+changed: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-fresh/machine/home)
+changed: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-fresh/machine/remote)
+changed: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-fresh/machine-log)
+
+TASK [install_machine_scripts | Copy files] ************************************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=4    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+=== fresh: Ansible run 2 (must be unchanged) ===
+
+PLAY [0048 proposed default-mode create and rsync tasks] ***********************
+
+TASK [install_user_scripts | Create directories] *******************************
+[WARNING]: Host 'localhost' is using the discovered Python interpreter at '/usr/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.21/reference_appendices/interpreter_discovery.html for more information.
+ok: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-fresh/user'})
+ok: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-fresh/user/cron', 'mode': '0750'})
+ok: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-fresh/user/home'})
+ok: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-fresh/user-log', 'mode': '0750'})
+
+TASK [install_user_scripts | Copy scripts] *************************************
+ok: [localhost]
+
+TASK [install_machine_scripts | Create directories] ****************************
+ok: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-fresh/machine)
+ok: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-fresh/machine/cron)
+ok: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-fresh/machine/home)
+ok: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-fresh/machine/remote)
+ok: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-fresh/machine-log)
+
+TASK [install_machine_scripts | Copy files] ************************************
+ok: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+FRESH_RUN2_CHANGED=0
+PASS: fresh effective modes: synced dirs 0755, filters 0644, user cron/log 0750
+=== existing-0750: Ansible run 1 (disposable target) ===
+
+PLAY [0048 proposed default-mode create and rsync tasks] ***********************
+
+TASK [install_user_scripts | Create directories] *******************************
+[WARNING]: Host 'localhost' is using the discovered Python interpreter at '/usr/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.21/reference_appendices/interpreter_discovery.html for more information.
+ok: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-existing-0750/user'})
+ok: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-existing-0750/user/cron', 'mode': '0750'})
+ok: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-existing-0750/user/home'})
+ok: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-existing-0750/user-log', 'mode': '0750'})
+
+TASK [install_user_scripts | Copy scripts] *************************************
+changed: [localhost]
+
+TASK [install_machine_scripts | Create directories] ****************************
+ok: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-existing-0750/machine)
+changed: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-existing-0750/machine/cron)
+ok: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-existing-0750/machine/home)
+ok: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-existing-0750/machine/remote)
+changed: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-existing-0750/machine-log)
+
+TASK [install_machine_scripts | Copy files] ************************************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=4    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+=== existing-0750: Ansible run 2 (must be unchanged) ===
+
+PLAY [0048 proposed default-mode create and rsync tasks] ***********************
+
+TASK [install_user_scripts | Create directories] *******************************
+[WARNING]: Host 'localhost' is using the discovered Python interpreter at '/usr/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.21/reference_appendices/interpreter_discovery.html for more information.
+ok: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-existing-0750/user'})
+ok: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-existing-0750/user/cron', 'mode': '0750'})
+ok: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-existing-0750/user/home'})
+ok: [localhost] => (item={'path': '/tmp/0048-step3.ws0OxE1r/target-existing-0750/user-log', 'mode': '0750'})
+
+TASK [install_user_scripts | Copy scripts] *************************************
+ok: [localhost]
+
+TASK [install_machine_scripts | Create directories] ****************************
+ok: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-existing-0750/machine)
+ok: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-existing-0750/machine/cron)
+ok: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-existing-0750/machine/home)
+ok: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-existing-0750/machine/remote)
+ok: [localhost] => (item=/tmp/0048-step3.ws0OxE1r/target-existing-0750/machine-log)
+
+TASK [install_machine_scripts | Copy files] ************************************
+ok: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+EXISTING-0750_RUN2_CHANGED=0
+PASS: existing-0750 effective modes: synced dirs 0755, filters 0644, user cron/log 0750
+
+=== Read-only mars ancestry and intended reader checks ===
+GROUP_RICHARD=richard:x:1001:
+PASS: existing ancestry denies unauthorized reads; legitimate readers allowed
+PASS: disposable clean-clone default-mode convergence and mars access checks; no production deployment

@@ -1,0 +1,292 @@
+0048 STEP 4 — DEPLOY AND VERIFY MARS BACKUP-COLLECTION USER/MACHINE TASKS
+UTC: 2026-11-13T08:53:33Z HOST: mango
+PASS: five Git-native source directories 0755, nine filters 0644; no conflicting directory mode or rsync override
+
+playbook: backup-collection.yaml
+=== Recheck the exact expected task changes (check mode) ===
+
+PLAY [local_backup] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [mars]
+
+TASK [backup-collection : Get normal user account information] *****************
+ok: [mars]
+
+TASK [backup-collection : Set normal user home directory] **********************
+ok: [mars]
+
+TASK [backup-collection : Validate 0034 unattended backup scheduling controls] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [backup-collection : install_user_scripts | Create directories] ***********
+ok: [mars] => (item={'path': '/home/richard/scripts/backup'})
+ok: [mars] => (item={'path': '/home/richard/scripts/backup/cron', 'mode': '0750'})
+ok: [mars] => (item={'path': '/home/richard/scripts/backup/home'})
+ok: [mars] => (item={'path': '/home/richard/log/backup', 'mode': '0750'})
+
+TASK [backup-collection : install_user_scripts | Copy scripts] *****************
+changed: [mars]
+
+TASK [backup-collection : debug] ***********************************************
+ok: [mars] => {
+    "user_script_sync.stdout_lines": [
+        ".d...p..... ./",
+        ".d...p..... home/",
+        "<f..tp..... home/excludes-1",
+        "<f..tp..... home/excludes-2",
+        "<f..tp..... home/includes"
+    ]
+}
+
+TASK [backup-collection : install_user_scripts | Template backup scripts] ******
+ok: [mars] => (item=backup.sh)
+ok: [mars] => (item=cron/backup.sh)
+ok: [mars] => (item=home/backup.sh)
+
+TASK [backup-collection : Set user home and cron backup schedule] **************
+ok: [mars]
+
+TASK [backup-collection : install_machine_scripts | Create directories] ********
+ok: [mars] => (item=/root/scripts/backup)
+ok: [mars] => (item=/root/scripts/backup/cron)
+ok: [mars] => (item=/root/scripts/backup/home)
+ok: [mars] => (item=/root/scripts/backup/remote)
+ok: [mars] => (item=/root/log/backup)
+
+TASK [backup-collection : install_machine_scripts | Copy files] ****************
+changed: [mars]
+
+TASK [backup-collection : debug] ***********************************************
+ok: [mars] => {
+    "machine_script_sync.stdout_lines": [
+        ".d...p..... ./",
+        ".d...p..... home/",
+        "<f..tp..... home/excludes-1",
+        "<f..tp..... home/excludes-2",
+        "<f..tp..... home/includes",
+        ".d...p..... remote/",
+        "<f..tp..... remote/excludes-1",
+        "<f..tp..... remote/excludes-2",
+        "<f..tp..... remote/includes"
+    ]
+}
+
+TASK [backup-collection : install_machine_scripts | Template backup scripts] ***
+ok: [mars] => (item=backup.sh)
+ok: [mars] => (item=cron/backup.sh)
+ok: [mars] => (item=home/backup.sh)
+ok: [mars] => (item=remote/backup.sh)
+
+TASK [backup-collection : install_machine_scripts | Install cron jobs] *********
+ok: [mars] => (item={'name': 'backup', 'script': 'scripts/backup/backup.sh', 'minute': '15', 'hour': '2'})
+
+PLAY RECAP *********************************************************************
+mars                       : ok=14   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+PASS: check-mode changed tasks are exactly the two approved rsync tasks
+=== Rollback reference and predeployment modes ===
+ROLLBACK_PLAYBOOKS=df68a0e3bc57bae29a76f46a58c30835126d7f20
+CURRENT_PLAYBOOKS=c5109340a2fe13296a2343c682e1079d1a212c8d
+750 richard:richard /home/richard
+700 root:root /root
+750 richard:richard /home/richard/scripts/backup
+750 richard:richard /home/richard/scripts/backup/home
+750 richard:richard /root/scripts/backup
+750 richard:richard /root/scripts/backup/home
+750 richard:richard /root/scripts/backup/remote
+=== Controlled live targeted Ansible deployment ===
+
+PLAY [local_backup] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [mars]
+
+TASK [backup-collection : Get normal user account information] *****************
+ok: [mars]
+
+TASK [backup-collection : Set normal user home directory] **********************
+ok: [mars]
+
+TASK [backup-collection : Validate 0034 unattended backup scheduling controls] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [backup-collection : install_user_scripts | Create directories] ***********
+ok: [mars] => (item={'path': '/home/richard/scripts/backup'})
+ok: [mars] => (item={'path': '/home/richard/scripts/backup/cron', 'mode': '0750'})
+ok: [mars] => (item={'path': '/home/richard/scripts/backup/home'})
+ok: [mars] => (item={'path': '/home/richard/log/backup', 'mode': '0750'})
+
+TASK [backup-collection : install_user_scripts | Copy scripts] *****************
+changed: [mars]
+
+TASK [backup-collection : debug] ***********************************************
+ok: [mars] => {
+    "user_script_sync.stdout_lines": [
+        ".d...p..... ./",
+        ".d...p..... home/",
+        "<f..tp..... home/excludes-1",
+        "<f..tp..... home/excludes-2",
+        "<f..tp..... home/includes"
+    ]
+}
+
+TASK [backup-collection : install_user_scripts | Template backup scripts] ******
+ok: [mars] => (item=backup.sh)
+ok: [mars] => (item=cron/backup.sh)
+ok: [mars] => (item=home/backup.sh)
+
+TASK [backup-collection : Set user home and cron backup schedule] **************
+ok: [mars]
+
+TASK [backup-collection : install_machine_scripts | Create directories] ********
+ok: [mars] => (item=/root/scripts/backup)
+ok: [mars] => (item=/root/scripts/backup/cron)
+ok: [mars] => (item=/root/scripts/backup/home)
+ok: [mars] => (item=/root/scripts/backup/remote)
+ok: [mars] => (item=/root/log/backup)
+
+TASK [backup-collection : install_machine_scripts | Copy files] ****************
+changed: [mars]
+
+TASK [backup-collection : debug] ***********************************************
+ok: [mars] => {
+    "machine_script_sync.stdout_lines": [
+        ".d...p..... ./",
+        ".d...p..... home/",
+        "<f..tp..... home/excludes-1",
+        "<f..tp..... home/excludes-2",
+        "<f..tp..... home/includes",
+        ".d...p..... remote/",
+        "<f..tp..... remote/excludes-1",
+        "<f..tp..... remote/excludes-2",
+        "<f..tp..... remote/includes"
+    ]
+}
+
+TASK [backup-collection : install_machine_scripts | Template backup scripts] ***
+ok: [mars] => (item=backup.sh)
+ok: [mars] => (item=cron/backup.sh)
+ok: [mars] => (item=home/backup.sh)
+ok: [mars] => (item=remote/backup.sh)
+
+TASK [backup-collection : install_machine_scripts | Install cron jobs] *********
+ok: [mars] => (item={'name': 'backup', 'script': 'scripts/backup/backup.sh', 'minute': '15', 'hour': '2'})
+
+PLAY RECAP *********************************************************************
+mars                       : ok=14   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+=== Second application must be fully idempotent ===
+
+PLAY [local_backup] ************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [mars]
+
+TASK [backup-collection : Get normal user account information] *****************
+ok: [mars]
+
+TASK [backup-collection : Set normal user home directory] **********************
+ok: [mars]
+
+TASK [backup-collection : Validate 0034 unattended backup scheduling controls] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [backup-collection : install_user_scripts | Create directories] ***********
+ok: [mars] => (item={'path': '/home/richard/scripts/backup'})
+ok: [mars] => (item={'path': '/home/richard/scripts/backup/cron', 'mode': '0750'})
+ok: [mars] => (item={'path': '/home/richard/scripts/backup/home'})
+ok: [mars] => (item={'path': '/home/richard/log/backup', 'mode': '0750'})
+
+TASK [backup-collection : install_user_scripts | Copy scripts] *****************
+ok: [mars]
+
+TASK [backup-collection : debug] ***********************************************
+ok: [mars] => {
+    "user_script_sync.stdout_lines": []
+}
+
+TASK [backup-collection : install_user_scripts | Template backup scripts] ******
+ok: [mars] => (item=backup.sh)
+ok: [mars] => (item=cron/backup.sh)
+ok: [mars] => (item=home/backup.sh)
+
+TASK [backup-collection : Set user home and cron backup schedule] **************
+ok: [mars]
+
+TASK [backup-collection : install_machine_scripts | Create directories] ********
+ok: [mars] => (item=/root/scripts/backup)
+ok: [mars] => (item=/root/scripts/backup/cron)
+ok: [mars] => (item=/root/scripts/backup/home)
+ok: [mars] => (item=/root/scripts/backup/remote)
+ok: [mars] => (item=/root/log/backup)
+
+TASK [backup-collection : install_machine_scripts | Copy files] ****************
+ok: [mars]
+
+TASK [backup-collection : debug] ***********************************************
+ok: [mars] => {
+    "machine_script_sync.stdout_lines": []
+}
+
+TASK [backup-collection : install_machine_scripts | Template backup scripts] ***
+ok: [mars] => (item=backup.sh)
+ok: [mars] => (item=cron/backup.sh)
+ok: [mars] => (item=home/backup.sh)
+ok: [mars] => (item=remote/backup.sh)
+
+TASK [backup-collection : install_machine_scripts | Install cron jobs] *********
+ok: [mars] => (item={'name': 'backup', 'script': 'scripts/backup/backup.sh', 'minute': '15', 'hour': '2'})
+
+PLAY RECAP *********************************************************************
+mars                       : ok=14   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+PASS: second live Ansible application changed=0, failed=0, unreachable=0
+=== Verify nine deployed filter contents against current sources ===
+/home/richard/scripts/backup/home/includes: OK
+/home/richard/scripts/backup/home/excludes-1: OK
+/home/richard/scripts/backup/home/excludes-2: OK
+/root/scripts/backup/home/includes: OK
+/root/scripts/backup/home/excludes-1: OK
+/root/scripts/backup/home/excludes-2: OK
+/root/scripts/backup/remote/includes: OK
+/root/scripts/backup/remote/excludes-1: OK
+/root/scripts/backup/remote/excludes-2: OK
+=== Inspect installed modes, ancestry and backup scheduling ===
+750 richard:richard /home/richard
+700 root:root /root
+755 richard:richard /home/richard/scripts/backup
+755 richard:richard /home/richard/scripts/backup/home
+755 richard:richard /root/scripts/backup
+755 richard:richard /root/scripts/backup/home
+755 richard:richard /root/scripts/backup/remote
+=== Root backup cron (read-only) ===
+15 2 * * * /root/scripts/backup/backup.sh 1>/root/log/backup/stdout 2>/root/log/backup/stderr
+=== Backup and snapshot timers (read-only) ===
+Fri 2026-11-13 09:00:00 UTC  4min 32s Fri 2026-11-13 08:00:13 UTC    55min ago btrfs-snapshot-create.timer     btrfs-snapshot-create.service
+Sat 2026-11-14 00:00:00 UTC       15h Fri 2026-11-13 00:00:00 UTC       8h ago dpkg-db-backup.timer            dpkg-db-backup.service
+Sat 2026-11-14 01:30:00 UTC       16h Fri 2026-11-13 01:30:02 UTC       7h ago diaries-pull.timer              diaries-pull.service
+Sat 2026-11-14 03:30:00 UTC       18h Fri 2026-11-13 03:30:18 UTC 5h 25min ago btrfs-native-push.timer         btrfs-native-push.service
+Sat 2026-11-14 04:15:00 UTC       19h Fri 2026-11-13 04:15:11 UTC 4h 40min ago btrfs-snapshot-prune.timer      btrfs-snapshot-prune.service
+Sat 2026-11-14 05:30:00 UTC       20h Fri 2026-11-13 05:30:31 UTC 3h 24min ago btrfs-clear-stale-qgroups.timer btrfs-clear-stale-qgroups.service
+PASS: installed permission and schedule checks
+PASS: 0048 targeted mars deployment, repeat idempotence and installed verification
+WARNING: Formal operational acceptance and change-control closure still require review of evidence.

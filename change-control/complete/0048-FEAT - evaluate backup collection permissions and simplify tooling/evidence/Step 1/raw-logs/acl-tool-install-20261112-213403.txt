@@ -1,0 +1,124 @@
+richard@mango:~/ansible-controller/playbooks$ (
+  echo '=== Ensure ACL tools on mango ==='
+  if ! command -v getfacl >/dev/null 2>&1; then
+    sudo apt-get install -y acl || exit 1
+  fi
+
+  echo '=== Ensure ACL tools on mars ==='
+  ssh mars '
+    if ! command -v getfacl >/dev/null 2>&1; then
+      sudo -n apt-get install -y acl || exit 1
+    fi
+    command -v getfacl
+  ' || exit 1
+
+  echo '=== Verify mango ==='
+  command -v getfacl || exit 1
+)
+rc=$?
+
+if [ "$rc" -eq 0 ]; then
+  echo 'PASS: ACL tools available on both hosts'
+else
+  echo "FAIL: ACL tool preparation (exit $rc)"
+fi
+=== Ensure ACL tools on mango ===
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following NEW packages will be installed:
+  acl
+0 upgraded, 1 newly installed, 0 to remove and 45 not upgraded.
+Need to get 39.4 kB of archives.
+After this operation, 197 kB of additional disk space will be used.
+Get:1 http://gb.archive.ubuntu.com/ubuntu noble-updates/main amd64 acl amd64 2.3.2-1build1.1 [39.4 kB]
+Fetched 39.4 kB in 0s (749 kB/s)
+Selecting previously unselected package acl.
+(Reading database ... 174831 files and directories currently installed.)
+Preparing to unpack .../acl_2.3.2-1build1.1_amd64.deb ...
+Unpacking acl (2.3.2-1build1.1) ...
+Setting up acl (2.3.2-1build1.1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Scanning processes...
+Scanning candidates...
+Scanning linux images...
+
+Pending kernel upgrade!
+Running kernel version:
+  6.8.0-142-generic
+Diagnostics:
+  The currently running kernel version is not the expected kernel version 6.8.0-147-generic.
+
+Restarting the system to load the new kernel will not be handled automatically, so you should consider rebooting.
+
+Restarting services...
+
+Service restarts being deferred:
+ /etc/needrestart/restart.d/dbus.service
+ systemctl restart systemd-logind.service
+ systemctl restart unattended-upgrades.service
+
+No containers need to be restarted.
+
+User sessions running outdated binaries:
+ richard @ session #4714: sshd[306453]
+ richard @ session #4742: sshd[307951,308010]
+ richard @ session #4788: sshd[314045,314104]
+ richard @ user manager service: systemd[126073]
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+=== Ensure ACL tools on mars ===
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  libboost-thread1.83.0 libbtrfs0t64 libsnapper7t64
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+  acl
+0 upgraded, 1 newly installed, 0 to remove and 50 not upgraded.
+Need to get 39.4 kB of archives.
+After this operation, 197 kB of additional disk space will be used.
+Get:1 http://gb.archive.ubuntu.com/ubuntu noble-updates/main amd64 acl amd64 2.3.2-1build1.1 [39.4 kB]
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+dpkg-preconfigure: unable to re-open stdin:
+Fetched 39.4 kB in 0s (556 kB/s)
+Selecting previously unselected package acl.
+(Reading database ... 130353 files and directories currently installed.)
+Preparing to unpack .../acl_2.3.2-1build1.1_amd64.deb ...
+Unpacking acl (2.3.2-1build1.1) ...
+Setting up acl (2.3.2-1build1.1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+
+Running kernel seems to be up-to-date.
+
+The processor microcode seems to be up-to-date.
+
+Restarting services...
+
+Service restarts being deferred:
+ /etc/needrestart/restart.d/dbus.service
+ systemctl restart systemd-logind.service
+ systemctl restart unattended-upgrades.service
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+/usr/bin/getfacl
+=== Verify mango ===
+/usr/bin/getfacl
+PASS: ACL tools available on both hosts
+richard@mango:~/ansible-controller/playbooks$

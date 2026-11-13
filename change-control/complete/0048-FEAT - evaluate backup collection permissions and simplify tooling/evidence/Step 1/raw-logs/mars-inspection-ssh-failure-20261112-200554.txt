@@ -1,0 +1,24 @@
+richard@mars:~$ ssh mars 'sudo -n bash -s' <<'MARS'
+echo '=== Installed backup source permissions ==='
+
+for directory in \
+  /home/richard/scripts/backup \
+  /root/scripts/backup
+do
+  if [ ! -d "$directory" ]; then
+    echo "FAIL: Missing $directory"
+    exit 1
+  fi
+
+  find "$directory" -maxdepth 3 \
+    -printf '%m %u:%g %y %p\n' || exit 1
+
+  echo "=== File hashes: $directory ==="
+  find "$directory" -maxdepth 3 -type f -print0 |
+    xargs -0 -r sha256sum || exit 1
+done
+
+echo 'PASS: Read-only installed-state inspection'
+MARS
+richard@mars.localdomain: Permission denied (publickey,password).
+richard@mars:~$

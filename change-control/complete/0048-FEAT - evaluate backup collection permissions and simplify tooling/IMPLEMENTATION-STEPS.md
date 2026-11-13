@@ -1,8 +1,8 @@
 # 0048-FEAT — Implementation and acceptance steps
 
-**Status:** PLANNED / NOT STARTED. **Do not execute until both 0046-FEAT and 0047-FEAT are formally CLOSED.** Prefer one coherent implementation and one consolidated verification, not a series of unnecessary deployments.
+**Status:** CLOSED — Steps 1–4 technically accepted; moved to completed change control and included in the Diaries closure commit. Both 0046-FEAT and 0047-FEAT are formally CLOSED.
 
-## Step 1 — Freeze the accepted baseline and map permission dependencies (OPEN / BLOCKED)
+## Step 1 — Freeze the accepted baseline and map permission dependencies (TECHNICAL ACCEPTANCE PASS)
 
 1. Read the formal 0046 and 0047 closure reports, original 0045 static installation baseline, and the accepted 0047 source-mode verification. Confirm both prerequisite feature directories are in `change-control/complete/` and both publication receipts are valid.
 2. On **Windows Cygwin**, capture authoritative Diaries parent Git branch/full SHA/status, `.gitmodules` and `git submodule status`; on **`mango`**, capture the Playbooks checkout branch/full SHA/status, remotes, effective Ansible configuration and the post-0046 inventory entry point. Check for local modifications before making changes. Keep outputs in `evidence/Step 1/` under this feature.
@@ -11,7 +11,7 @@
 
 **Exit evidence:** full per-path baseline and permission-consumer matrix, frozen revisions and both prerequisite closure receipts. No production mutation.
 
-## Step 2 — Determine minimum necessary permissions in a clean clone (OPEN / BLOCKED)
+## Step 2 — Determine minimum necessary permissions in a clean clone (TECHNICAL ACCEPTANCE PASS; ORIGINAL DEFECT REPRODUCED AND CORRECTED)
 
 1. Create a disposable, clean Playbooks clone at the frozen published revision, using a normal Git checkout and **without** applying the 0047 restoration tool, copying preserved filesystem metadata from `mango`, or importing source-mode overrides. Keep one-off fixtures/results under 0048 `tests/` and `evidence/` (sync the Diaries repo to `mango` explicitly before running its tools there).
 2. Compare fresh-clone source modes to 0047's historical `0664`/`0750` contract and examine the actual process users, ownership, group membership, ACLs and parent directories. Test necessary read, traverse, write, execute and no-unauthorised-access conditions for each affected class/path. A script executing only through an interpreter need not automatically have an executable bit; a directly invoked script does.
@@ -20,16 +20,16 @@
 
 **Exit evidence:** source-versus-installed mode matrix, clean-clone and repeated-run output, permission/security assessment and a proposed minimal design. Any unmet requirement remains a blocker to tool retirement.
 
-## Step 3 — Implement one coherent, reversible simplification (OPEN / BLOCKED)
+## Step 3 — Implement one coherent, reversible simplification (TECHNICAL ACCEPTANCE PASS; PUBLISHED)
 
-1. Prefer retaining `ansible.posix.synchronize` with native archive-mode permission propagation and **without** `--chmod` or `--no-perms`. Where ordinary clone modes satisfy documented requirements, revise affected Ansible directory-mode rules and permanent tests/documentation consistently so one playbook invocation converges and repeated runs are stable.
-2. Retire the *active* 0047 source-mode restoration contract only if Step 2 proves it is unnecessary: remove `roles/backup-collection/source-modes.json` and references to it, replace/retire its special source-mode regression as appropriate, and delete the pre-deployment restoration requirement from active instructions. Do **not** delete or edit one-off 0047 historical tools/evidence in the already-closed Diaries feature.
+1. Preserve `ansible.posix.synchronize` with native archive-mode mode propagation, **without** `--chmod` or `--no-perms`. Do **not** specify an Ansible directory `mode` for the five synchronized directories; let the actual checkout and rsync determine their modes. Retain historical `0750` only on separately created user cron/log directories and `0744` on separately templated scripts. The machine directory task already has no explicit mode. Test both a fresh target and a disposable simulated `0750` pre-existing target, each with two runs.
+2. Before considering deployment, compare the working Playbooks checkout's actual source metadata with a clean clone (the `mango` checkout was `0775`/`0664`, while the clean clone was `0755`/`0644`), and identify any pending one-time source normalisation or clean-checkout switch. Retire the *active* 0047 source-mode restoration contract only after the corrected test and operational checks prove it unnecessary: remove `roles/backup-collection/source-modes.json` and references to it, replace/retire its special source-mode regression as appropriate, and delete the pre-deployment restoration requirement from active instructions. Do **not** delete or edit one-off 0047 historical tools/evidence in the already-closed Diaries feature.
 3. If any mode not representable by Git remains mandatory, preserve the smallest transparent, per-path mechanism needed (or an equivalent explicitly reviewed design). Do not force a retirement outcome or introduce a blanket mode transformation; document why the tool remains necessary.
 4. Produce a **Playbooks-only** repository-relative ZIP for permanent source changes, and a separate **Diaries-only** ZIP for feature tools/tests/reports. Apply via Beyond Compare 4. Stage/commit/push only intended changes; capture both source and rollback revisions. Do not assume `mango` and Windows repositories are synchronized.
 
 **Exit evidence:** coherent reviewed source changes, focused source tests, syntax checks, and an explicit retain-or-retire decision. No service/backup dataset changes before controlled verification.
 
-## Step 4 — Consolidated verification, rollback readiness and formal closure (OPEN / BLOCKED)
+## Step 4 — Consolidated verification, rollback readiness and formal closure (DEPLOYMENT/VERIFICATION PASS; FORMAL CLOSURE PENDING)
 
 1. After checking the exact Playbooks revision, run one guarded normal deployment using the **post-0046 inventory** and accepted vault handling (`--vault-password-file ~/.vault_pass.txt` where needed), limited to the intended `backup-collection` scope on `mars` unless evidence requires another host. Capture the complete Ansible recaps and itemized changes; no unexplained changes are acceptable.
 2. Re-run the same playbook to verify `changed=0`, `failed=0`, `unreachable=0`, including the two rsync tasks and directory-creation tasks. Reconcile installed content hashes, mode, ownership, ACLs, access checks and operational state with the Step 1 baseline, accepting only explicitly documented security-reviewed permission differences.
@@ -38,3 +38,12 @@
 5. Record the full final acceptance, update Step states to CLOSED, commit/push accepted evidence and change control in the authoritative Windows Diaries repo; only after formal acceptance move all of 0048 to `change-control/complete/` and publish the closure commit.
 
 **Stop conditions:** either prerequisite not closed, unresolved security exposure, permission/ACL drift outside approved scope, repeat-run Ansible changes, source-mode dependency not correctly handled on a fresh clone, secrets in evidence, or unverifiable rollback. Do not claim PASS or close on proposed commands alone.
+
+## 13 November 2026 — Recorded outcomes
+
+- **Step 1 PASS:** Windows Diaries baseline, parent/submodule revisions, 0046/0047 closure records, 14-path source/installed permission and consumer matrix, ownership, ACLs and source-task ordering collected. See Step 1 raw logs and `reports/STEP1-ACL-RECONCILIATION-20261112.md`.
+- **Step 2 PASS (diagnostic):** A genuinely clean Git checkout exposed the original source/destination mode oscillation (`RUN2_CHANGED=2`). The failure is expected evidence explaining the correction; not an unresolved current failure.
+- **Step 3 PASS:** Modified user directory tasks omit mode for synchronised directories; machine directory tasks retain no explicit mode; native archive rsync remains unmodified. Both corrected disposable scenarios were idempotent (`FRESH_RUN2_CHANGED=0`, `EXISTING-0750_RUN2_CHANGED=0`). Source metadata was normalised, preview passed, Playbooks published at `c5109340a2fe13296a2343c682e1079d1a212c8d`; controller pin published at `83cba342d9ffe7da51a97bda9231f32d02beb2e3`. Historical manifest removed only from active Playbooks.
+- **Step 4 PASS for deployment and operational verification:** `mars` preview `changed=2` limited to the intended user/machine rsync tasks; live deployment `changed=2`, second application `changed=0`, no failed/unreachable tasks. Nine destination filter hashes, 14 modes/owners, seven launcher modes and ACL absence passed in the verifier. Ancestor, cron/log, backup scheduling, valid backup marker, snapshot health and accepted off-site replication parent passed read-only checks. The accepted rollback Playbooks commit is `df68a0e3bc57bae29a76f46a58c30835126d7f20`. No backup datasets or Btrfs snapshots were modified by 0048 verification.
+
+**Formal closure accepted:** operator acceptance of `reports/0048-FEAT-CLOSURE-REVIEW-20261113.md`, movement of the full feature to `complete`, and the corresponding Windows Diaries closure commit. Do not repeat accepted integration/deployment tests for closure.

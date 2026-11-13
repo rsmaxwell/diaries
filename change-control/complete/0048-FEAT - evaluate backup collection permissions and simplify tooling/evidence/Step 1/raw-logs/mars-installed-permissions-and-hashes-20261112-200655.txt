@@ -1,0 +1,89 @@
+richard@mango:~/ansible-controller/playbooks$ ssh mars 'sudo -n bash -s' <<'MARS'
+echo '=== Installed backup source permissions ==='
+
+for directory in \
+  /home/richard/scripts/backup \
+  /root/scripts/backup
+do
+  if [ ! -d "$directory" ]; then
+    echo "FAIL: Missing $directory"
+    exit 1
+  fi
+
+  find "$directory" -maxdepth 3 \
+    -printf '%m %u:%g %y %p\n' || exit 1
+
+  echo "=== File hashes: $directory ==="
+  find "$directory" -maxdepth 3 -type f -print0 |
+    xargs -0 -r sha256sum || exit 1
+done
+
+echo 'PASS: Read-only installed-state inspection'
+MARS
+=== Installed backup source permissions ===
+750 richard:richard d /home/richard/scripts/backup
+750 richard:richard d /home/richard/scripts/backup/cron
+744 richard:richard f /home/richard/scripts/backup/cron/backup.sh
+775 richard:richard d /home/richard/scripts/backup/pre-0036-rollback
+755 richard:richard f /home/richard/scripts/backup/pre-0036-rollback/complete-dataset-manifest.py
+755 richard:richard f /home/richard/scripts/backup/pre-0036-rollback/diaries-pull.py
+755 richard:richard f /home/richard/scripts/backup/pre-0036-rollback/diaries-pull.sh
+755 richard:richard f /home/richard/scripts/backup/complete-dataset-publisher.py
+750 richard:richard d /home/richard/scripts/backup/home
+664 richard:richard f /home/richard/scripts/backup/home/includes
+664 richard:richard f /home/richard/scripts/backup/home/excludes-1
+664 richard:richard f /home/richard/scripts/backup/home/excludes-2
+744 richard:richard f /home/richard/scripts/backup/home/backup.sh
+755 richard:richard f /home/richard/scripts/backup/complete-dataset-manifest.py
+755 richard:richard f /home/richard/scripts/backup/diaries-pull.py
+755 richard:richard f /home/richard/scripts/backup/diaries-pull.sh
+744 richard:richard f /home/richard/scripts/backup/backup.sh
+775 richard:richard d /home/richard/scripts/backup/__pycache__
+644 richard:richard f /home/richard/scripts/backup/__pycache__/diaries-pull.cpython-312.pyc
+644 richard:richard f /home/richard/scripts/backup/__pycache__/complete-dataset-manifest.cpython-312.pyc
+=== File hashes: /home/richard/scripts/backup ===
+71b94ace3b55056e9db47f1e1dd2b723839c40e3a9c916b117e8c0d4d38666f6  /home/richard/scripts/backup/cron/backup.sh
+6878a61aeaf4abfe561d9be2c883bb12fb2d67b72b5b7ec0b9420c018fad6cc3  /home/richard/scripts/backup/pre-0036-rollback/complete-dataset-manifest.py
+80e6fe85934b41b2d7b80980a11b5c3b34ff55115a04769b893727076ccd330c  /home/richard/scripts/backup/pre-0036-rollback/diaries-pull.py
+581bd8286671b13be2b051885a2f0fb2f1085a9112395aef3bf29b4e797e010f  /home/richard/scripts/backup/pre-0036-rollback/diaries-pull.sh
+ae5431fdc56eba7fea4411103d869f6f913e87f91c0c4500a4cc5185e89b64ea  /home/richard/scripts/backup/complete-dataset-publisher.py
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /home/richard/scripts/backup/home/includes
+7225808ccc8c9c684ae1098d0ea46557c49419342ddc5d88af004413cb27e1d9  /home/richard/scripts/backup/home/excludes-1
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /home/richard/scripts/backup/home/excludes-2
+7245e1c7b368e41ba306cfc22cd78c742a87d935f48f9c26416eefd78bb5d625  /home/richard/scripts/backup/home/backup.sh
+d9490f706f427b11a5b5758b9a818e3218aa0624e5e659ea6187b2518fdfbc73  /home/richard/scripts/backup/complete-dataset-manifest.py
+44813c2f3f45834976bb6653a5ec607ed4b160dfb762a209c0a3416d49151fcf  /home/richard/scripts/backup/diaries-pull.py
+8929283b5c945db257fb8848b146484e39c30a5f66fa57e22866498708a65074  /home/richard/scripts/backup/diaries-pull.sh
+a5f2bb66ef8c0783f0c058c5c80eee1b13aef8cd66be3c80860283ef37ee10ba  /home/richard/scripts/backup/backup.sh
+8df09e1fcf886b5083b6a42b0833d0616c97e3452fdac5384e39f3973a7690d3  /home/richard/scripts/backup/__pycache__/diaries-pull.cpython-312.pyc
+63774cbea07f314f35adb0cd6ea73dc75f902f2797b1ab164481f0a3771a1c8d  /home/richard/scripts/backup/__pycache__/complete-dataset-manifest.cpython-312.pyc
+750 richard:richard d /root/scripts/backup
+750 richard:richard d /root/scripts/backup/remote
+664 richard:richard f /root/scripts/backup/remote/includes
+664 richard:richard f /root/scripts/backup/remote/excludes-1
+664 richard:richard f /root/scripts/backup/remote/excludes-2
+744 richard:richard f /root/scripts/backup/remote/backup.sh
+775 richard:richard d /root/scripts/backup/cron
+744 richard:richard f /root/scripts/backup/cron/backup.sh
+750 richard:richard d /root/scripts/backup/home
+664 richard:richard f /root/scripts/backup/home/includes
+664 richard:richard f /root/scripts/backup/home/excludes-1
+664 richard:richard f /root/scripts/backup/home/excludes-2
+744 richard:richard f /root/scripts/backup/home/backup.sh
+744 richard:richard f /root/scripts/backup/backup.sh
+775 richard:richard d /root/scripts/backup/__pycache__
+644 richard:richard f /root/scripts/backup/__pycache__/diaries-pull.cpython-312.pyc
+=== File hashes: /root/scripts/backup ===
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /root/scripts/backup/remote/includes
+9898acd1777ad4ac07242209c2ce351578531596fb9f85d3e2abc6a9dd8e241b  /root/scripts/backup/remote/excludes-1
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /root/scripts/backup/remote/excludes-2
+f7a8a11271dd7b03a2fad1240b00e2c9ae274506f3f57825c4af52e57d072e79  /root/scripts/backup/remote/backup.sh
+355370da67e13c2f6e47c4cd8312793d964520a1bb38660db811271e17b3191c  /root/scripts/backup/cron/backup.sh
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /root/scripts/backup/home/includes
+82e17319c7c4ee418ebfb23c94b3327e6c16614fa694a42154efeda9d1107b4b  /root/scripts/backup/home/excludes-1
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /root/scripts/backup/home/excludes-2
+3041a6bf0faeb3cef7eb9ae572f8375838efcfdae059cc00e6bac123bcb7b160  /root/scripts/backup/home/backup.sh
+a079933fe9d16c48983ba6532f74cd75a892680759d22d4ce874c60ea2de4f78  /root/scripts/backup/backup.sh
+b3cc8af2384935b46168a5b36b5f7ce0e8ce527e3b46e981506b1bac1fee1487  /root/scripts/backup/__pycache__/diaries-pull.cpython-312.pyc
+PASS: Read-only installed-state inspection
+richard@mango:~/ansible-controller/playbooks$

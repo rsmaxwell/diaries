@@ -1,0 +1,31 @@
+DIARIES BACKUP STATUS (read-only)
+
+SNAPSHOT HEALTH
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=86
+qgroups_stale=2
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=73;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=73
+diaries_verification=valid;logicalDataset=production;backupId=20261113-003059Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+
+BACKUP HISTORY
+Retained distinct backups: 20
+  20261113-003059Z dataset=production occurrences=7 status=verified
+  20261112-003052Z dataset=production occurrences=24 status=verified
+  20261111-003057Z dataset=production occurrences=21 status=verified
+
+LAST VERIFIED PULL (CURRENT RECEIVING MARKER)
+  backupId=20261113-003059Z logicalDataset=production verifiedAt=2026-11-13T01:30:07.982926Z
+  sourceIdentity=pluto:/home/richard/projects/diaries/data/diaries-backup snapshotEligible=True
+
+LAST ACCEPTED OFF-SITE REPLICATION
+  snapshot=20261113-030001Z source_uuid=86e884aa-3561-444e-9b1c-b568840e1115 (receiver identity verified)
+
+NEXT SIMPLIFIED PUSH PREFLIGHT (READ-ONLY)
+  action=incremental source=20261113-080013Z parent=20261113-030001Z
+
+Note: history verification configuration limitation is tracked under 0035-FEAT.

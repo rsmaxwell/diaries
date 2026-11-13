@@ -1,0 +1,53 @@
+
+Richard@RICHARD-PC ~/scripts/backup-diaries
+$ (
+  cd '/cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries' || exit 1
+
+  echo '=== Diaries repository ==='
+  git branch --show-current
+  git rev-parse HEAD
+  git status --short
+  git submodule status --recursive
+  cat .gitmodules
+
+  echo '=== Prerequisite closure directories ==='
+  ls -ld change-control/complete/0046-FEAT*
+  ls -ld change-control/complete/0047-FEAT*
+
+  echo '=== 0048 planning files ==='
+  ls -la 'change-control/in-progress/0048-FEAT - evaluate backup collection permissions and simplify tooling'
+)
+=== Diaries repository ===
+main
+00688a4a1d816baa240db7fecafab47e5b97bfba
+ e45ae170017fdf4974f642f654d7f709269af711 diaries-client (heads/main)
+ bd65d08435c0f5d240337cd6479cb41befe4d8c1 diaries-responder (heads/main)
+ cc147426e93ee6952558b65147e444d38316b3ce diaries-web (heads/main)
+
+[submodule "diaries-responder"]
+        path = diaries-responder
+        url = ../diaries-responder.git
+
+[submodule "diaries-client"]
+        path = diaries-client
+        url = ../diaries-client.git
+
+[submodule "diaries-web"]
+        path = diaries-web
+        url = ../diaries-web.git
+=== Prerequisite closure directories ===
+drwxrwx---+ 1 Richard None 0 Nov 12 19:58 'change-control/complete/0046-FEAT - move non-sensitive Ansible inventory into Playbooks Git'
+drwxrwx---+ 1 Richard None 0 Nov 11 14:55 'change-control/complete/0047-FEAT - retire legacy backup entry points and align collection role'
+=== 0048 planning files ===
+total 32
+drwxrwx---+ 1 Richard None    0 Nov 11 16:44 .
+drwxrwxr-x+ 1 Richard None    0 Nov 12 18:08 ..
+-rwxrwx---+ 1 Richard None 7245 Nov 11 15:48 IMPLEMENTATION-STEPS.md
+-rwxrwx---+ 1 Richard None 5866 Nov 11 15:48 PERMISSION-DECISION-CONTRACT.md
+-rwxrwx---+ 1 Richard None 5423 Nov 11 16:44 README.md
+drwxrwx---+ 1 Richard None    0 Nov 11 15:50 reports
+drwxrwx---+ 1 Richard None    0 Nov 11 15:50 tests
+drwxrwx---+ 1 Richard None    0 Nov 11 15:50 tools
+
+Richard@RICHARD-PC ~/scripts/backup-diaries
+$

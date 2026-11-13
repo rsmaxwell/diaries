@@ -1,0 +1,263 @@
+richard@mango:~/ansible-controller/playbooks$ (
+  cd /home/richard/ansible-controller || exit 1
+
+  echo '=== Controller repository ==='
+  git branch --show-current
+  git rev-parse HEAD
+  git status --short
+  git submodule status
+
+  echo '=== Playbooks repository ==='
+  cd playbooks || exit 1
+  git branch --show-current
+  git rev-parse HEAD
+  git status --short
+
+  echo '=== Historical mode contract ==='
+  cat roles/backup-collection/source-modes.json
+
+  echo '=== Actual source permissions ==='
+  find roles/backup-collection/files/backup \
+       roles/backup-collection/files/backup-machine \
+       -printf '%m %u:%g %y %p\n'
+
+  echo '=== Relevant installation tasks ==='
+  cat roles/backup-collection/tasks/install_user_scripts.yaml
+  cat roles/backup-collection/tasks/install_machine_scripts.yaml
+)
+=== Controller repository ===
+main
+f6ba7fec7752f4bbfa1535958500bde9dea3ea84
+ ebcce026723db37b9b53b76ba21903a351d48466 inventory (heads/main)
+ df68a0e3bc57bae29a76f46a58c30835126d7f20 playbooks (heads/main)
+=== Playbooks repository ===
+df68a0e3bc57bae29a76f46a58c30835126d7f20
+=== Historical mode contract ===
+{
+  "schema": "0047-collection-source-modes-v1",
+  "evidence": "0045-FEAT Step 1 accepted static installation, baseline-20261111-111819Z, mars",
+  "note": "Git does not record group-write or directory mode; restore exact per-path modes in the mango working copy before synchronize. rsync itself applies no --chmod.",
+  "entries": [
+    {
+      "path": "files/backup",
+      "destination": "/home/richard/scripts/backup",
+      "kind": "directory",
+      "mode": "0750"
+    },
+    {
+      "path": "files/backup/home",
+      "destination": "/home/richard/scripts/backup/home",
+      "kind": "directory",
+      "mode": "0750"
+    },
+    {
+      "path": "files/backup-machine",
+      "destination": "/root/scripts/backup",
+      "kind": "directory",
+      "mode": "0750"
+    },
+    {
+      "path": "files/backup-machine/home",
+      "destination": "/root/scripts/backup/home",
+      "kind": "directory",
+      "mode": "0750"
+    },
+    {
+      "path": "files/backup-machine/remote",
+      "destination": "/root/scripts/backup/remote",
+      "kind": "directory",
+      "mode": "0750"
+    },
+    {
+      "path": "files/backup/home/excludes-1",
+      "destination": "/home/richard/scripts/backup/home/excludes-1",
+      "kind": "file",
+      "mode": "0664",
+      "sha256": "7225808ccc8c9c684ae1098d0ea46557c49419342ddc5d88af004413cb27e1d9"
+    },
+    {
+      "path": "files/backup/home/excludes-2",
+      "destination": "/home/richard/scripts/backup/home/excludes-2",
+      "kind": "file",
+      "mode": "0664",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "files/backup/home/includes",
+      "destination": "/home/richard/scripts/backup/home/includes",
+      "kind": "file",
+      "mode": "0664",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "files/backup-machine/home/excludes-1",
+      "destination": "/root/scripts/backup/home/excludes-1",
+      "kind": "file",
+      "mode": "0664",
+      "sha256": "82e17319c7c4ee418ebfb23c94b3327e6c16614fa694a42154efeda9d1107b4b"
+    },
+    {
+      "path": "files/backup-machine/home/excludes-2",
+      "destination": "/root/scripts/backup/home/excludes-2",
+      "kind": "file",
+      "mode": "0664",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "files/backup-machine/home/includes",
+      "destination": "/root/scripts/backup/home/includes",
+      "kind": "file",
+      "mode": "0664",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "files/backup-machine/remote/excludes-1",
+      "destination": "/root/scripts/backup/remote/excludes-1",
+      "kind": "file",
+      "mode": "0664",
+      "sha256": "9898acd1777ad4ac07242209c2ce351578531596fb9f85d3e2abc6a9dd8e241b"
+    },
+    {
+      "path": "files/backup-machine/remote/excludes-2",
+      "destination": "/root/scripts/backup/remote/excludes-2",
+      "kind": "file",
+      "mode": "0664",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "files/backup-machine/remote/includes",
+      "destination": "/root/scripts/backup/remote/includes",
+      "kind": "file",
+      "mode": "0664",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
+=== Actual source permissions ===
+775 richard:richard d roles/backup-collection/files/backup
+775 richard:richard d roles/backup-collection/files/backup/home
+664 richard:richard f roles/backup-collection/files/backup/home/excludes-2
+664 richard:richard f roles/backup-collection/files/backup/home/excludes-1
+664 richard:richard f roles/backup-collection/files/backup/home/includes
+775 richard:richard d roles/backup-collection/files/backup-machine
+775 richard:richard f roles/backup-collection/files/backup-machine/diaries-pull.py
+775 richard:richard d roles/backup-collection/files/backup-machine/home
+664 richard:richard f roles/backup-collection/files/backup-machine/home/excludes-2
+664 richard:richard f roles/backup-collection/files/backup-machine/home/excludes-1
+664 richard:richard f roles/backup-collection/files/backup-machine/home/includes
+775 richard:richard d roles/backup-collection/files/backup-machine/remote
+664 richard:richard f roles/backup-collection/files/backup-machine/remote/excludes-2
+664 richard:richard f roles/backup-collection/files/backup-machine/remote/excludes-1
+664 richard:richard f roles/backup-collection/files/backup-machine/remote/includes
+=== Relevant installation tasks ===
+---
+
+- name: install_user_scripts | Create directories
+  ansible.builtin.file:
+    path: "{{ backup_directory }}"
+    state: directory
+    mode: "0750"
+  loop:
+    - "{{ normal_user_home }}/scripts/backup"
+    - "{{ normal_user_home }}/scripts/backup/cron"
+    - "{{ normal_user_home }}/scripts/backup/home"
+    - "{{ normal_user_home }}/log/backup"
+  loop_control:
+    loop_var: backup_directory
+
+
+- name: install_user_scripts | Copy scripts
+  ansible.posix.synchronize:
+    # Preserve the mode of each source entry, as in roles/ledger/tasks/copy.yaml.
+    archive: true
+    src: "backup/"
+    dest: "{{ normal_user_home }}/scripts/backup/"
+    rsync_opts:
+      - "--omit-dir-times"
+      - "--exclude=__pycache__/"
+      - "--exclude=*.pyc"
+  register: user_script_sync
+- debug:
+    var: user_script_sync.stdout_lines
+
+
+
+- name: install_user_scripts | Template backup scripts
+  ansible.builtin.template:
+    src: "backup/{{ backup_script }}.j2"
+    dest: "{{ normal_user_home }}/scripts/backup/{{ backup_script }}"
+    mode: "0744"
+  loop:
+    - backup.sh
+    - cron/backup.sh
+    - home/backup.sh
+  loop_control:
+    loop_var: backup_script
+
+
+
+
+- name: Install user backup cron job
+  ansible.builtin.import_tasks: user_backup_cron.yaml
+---
+
+
+- name: install_machine_scripts | Create directories
+  ansible.builtin.file:
+    path: "{{ backup_directory }}"
+    state: directory
+  loop:
+    - /root/scripts/backup
+    - /root/scripts/backup/cron
+    - /root/scripts/backup/home
+    - /root/scripts/backup/remote
+    - /root/log/backup
+  loop_control:
+    loop_var: backup_directory
+
+
+- name: install_machine_scripts | Copy files
+  ansible.posix.synchronize:
+    # Preserve the mode of each source entry, as in roles/ledger/tasks/copy.yaml.
+    archive: true
+    src: "backup-machine/"
+    dest: "/root/scripts/backup/"
+    rsync_opts:
+      - "--omit-dir-times"
+      # 0034 Step 8: diaries-pull.py runs as the normal SSH user and is installed
+      # only by tasks/diaries_pull.yaml when explicitly enabled. Never install it
+      # through the generic root machine-script synchronization.
+      - "--exclude=diaries-pull.py"
+      - "--exclude=__pycache__/"
+      - "--exclude=*.pyc"
+  register: machine_script_sync
+- debug:
+    var: machine_script_sync.stdout_lines
+
+
+
+
+- name: install_machine_scripts | Template backup scripts
+  ansible.builtin.template:
+    src: "backup-machine/{{ backup_script }}.j2"
+    dest: "/root/scripts/backup/{{ backup_script }}"
+    mode: "0744"
+  loop:
+    - backup.sh
+    - cron/backup.sh
+    - home/backup.sh
+    - remote/backup.sh
+  loop_control:
+    loop_var: backup_script
+
+
+
+- name: install_machine_scripts | Install cron jobs
+  ansible.builtin.cron:
+    name: "{{ item.name }}"
+    minute: "{{ item.minute }}"
+    hour: "{{ item.hour }}"
+    job: "/root/{{ item.script }} 1>/root/log/{{ item.name }}/stdout 2>/root/log/{{ item.name }}/stderr"
+  loop:
+    - { name: backup, script: scripts/backup/backup.sh, minute:  "15", hour: "2" }
+richard@mango:~/ansible-controller/playbooks$
