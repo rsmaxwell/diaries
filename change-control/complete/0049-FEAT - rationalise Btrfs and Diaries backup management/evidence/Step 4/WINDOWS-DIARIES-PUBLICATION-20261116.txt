@@ -1,0 +1,56 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ (
+  cd /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries || exit 1
+
+  echo "=== VERIFY LOCAL REPOSITORY ==="
+
+  test "$(git branch --show-current)" = "main" || exit 1
+  test "$(git rev-parse --short=7 HEAD)" = "34be53f" || exit 1
+
+  remote="$(git remote get-url origin)" || exit 1
+  echo "Origin: $remote"
+
+  test "$remote" = "git@github.com:rsmaxwell/diaries.git" || {
+    echo "FAIL: Unexpected remote"
+    exit 1
+  }
+
+  git diff --quiet --ignore-submodules=untracked || exit 1
+  git diff --cached --quiet || exit 1
+
+  echo "=== VERIFY REMOTE HISTORY ==="
+
+  git fetch origin || exit 1
+
+  git merge-base --is-ancestor origin/main HEAD || {
+    echo "FAIL: Remote history has diverged"
+    exit 1
+  }
+
+fiecho "0049 DIARIES PUBLICATION: FAIL ($result)"in | awk '{print $1}')"
+=== VERIFY LOCAL REPOSITORY ===
+Origin: git@github.com:rsmaxwell/diaries.git
+=== VERIFY REMOTE HISTORY ===
+34be53f (HEAD -> main) 0049-FEAT: record repository publication evidence
+f48f09d 0049-FEAT: record implementation and technical acceptance
+b3bb0b5 0041-FEAT: close dedicated Btrfs replication service accounts
+=== PUBLISH DIARIES ===
+Enumerating objects: 131, done.
+Counting objects: 100% (131/131), done.
+Delta compression using up to 32 threads
+Compressing objects: 100% (120/120), done.
+Writing objects: 100% (127/127), 185.41 KiB | 1.23 MiB/s, done.
+Total 127 (delta 21), reused 58 (delta 5), pack-reused 0
+remote: Resolving deltas: 100% (21/21), completed with 3 local objects.
+To github.com:rsmaxwell/diaries.git
+   ef53534..34be53f  main -> main
+DIARIES PUBLISHED: 34be53fe219dbe773b516596e3d36fa5b29801bb
+=== FINAL STATUS ===
+ e45ae170017fdf4974f642f654d7f709269af711 diaries-client (heads/main)
+ bd65d08435c0f5d240337cd6479cb41befe4d8c1 diaries-responder (heads/main)
+ cc147426e93ee6952558b65147e444d38316b3ce diaries-web (heads/main)
+0049 DIARIES PUBLICATION: PASS
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

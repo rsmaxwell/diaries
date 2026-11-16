@@ -1,15 +1,15 @@
 # 0049 — Implementation steps
 
-**State (16 November 2026):** TECHNICAL ACCEPTANCE PASSED — COMMITTED REVISIONS AND FORMAL CLOSURE PENDING. Earlier dated reports retain their point-in-time evidence, but the original source-only header is superseded by this update.
+**State (16 November 2026):** CLOSED — explicit formal operator approval received; technical acceptance and repository publication verified. See `reports/REPOSITORY-REVISION-RECORD-20261116.md` and `reports/FORMAL-CLOSURE-RECOMMENDATION-20261116.md`. Earlier dated reports remain point-in-time evidence.
 
 | Step | Current assessment | Evidence / remaining action |
 | --- | --- | --- |
-| 1 — Baseline and contract | Baseline/contract captured | Source review, implementation manifest and deployment preview; final committed revisions still to be recorded |
-| 2 — Integrated implementation | Implemented; verified in source | 32-file Playbooks change, corrected naming and dedicated 0041 sender status transport; source/regression logs |
-| 3 — Consolidated regression | Technical tests passed | 0049 (19), 0041 (8), replication (25), additional snapshot/Diaries tests, Ansible check-mode |
-| 4 — Deployment and acceptance | Live technical gates passed; Git/closure incomplete | Receiver-first deployment, sender deployment, real Btrfs push, independent received-UUID read-back, zero-delete preview and strict two-host Ansible idempotence |
+| 1 — Baseline and contract | **CLOSED** | Baseline source review, interface contract, implementation manifest, published revision record |
+| 2 — Integrated implementation | **CLOSED** | 32-file published Playbooks change, corrected naming and dedicated 0041 sender status transport; source/regression logs |
+| 3 — Consolidated regression | **CLOSED** | 0049 (19), 0041 (8), replication (25), additional snapshot/Diaries tests, Ansible check-mode |
+| 4 — Deployment and acceptance | **CLOSED** | Receiver-first deployment, real Btrfs push, independent read-back, zero-delete preview, strict Ansible idempotence, published revisions and explicit formal closure approval |
 
-No step is marked **CLOSED** until final acceptance and repository records have been reviewed. No additional destructive snapshot test, restore or replication run is required to complete repository finalisation.
+All four feature steps are **CLOSED** on the evidence accepted by the feature owner on 16 November 2026; see `reports/FORMAL-CLOSURE-DECISION-20261116.md`. No destructive snapshot test, restore or repeat replication run is required for this feature.
 
 The objective is one **coherent functional implementation**, followed by consolidated regression/integration verification and a controlled dual-host deployment. These steps are documentary checkpoints, not permission to fragment the feature into small deployments.
 

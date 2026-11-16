@@ -1,6 +1,6 @@
 # 0049 — Acceptance matrix
 
-**Technical result (16 November 2026): PASS.** Application/infrastructure reporting, formatted tables, JSON, renamed units, 0041 identity preservation, receiver holds, live replication, independent receiver read-back and Ansible `changed=0` were verified in source/live evidence. Git revision/publishing and formal feature closure (OP-04 and administrative part of CC-01) remain open. See `reports/FINAL-TECHNICAL-ACCEPTANCE-20261116.md` and `reports/REPOSITORY-FINALISATION-20261116.md`. The following matrix remains the original acceptance contract rather than an invented individual signed-off test record.
+**Technical result (16 November 2026): PASS.** Application/infrastructure reporting, formatted tables, JSON, renamed units, 0041 identity preservation, receiver holds, live replication, independent receiver read-back and Ansible `changed=0` were verified in source/live evidence. Git revision and publication evidence for CC-01/OP-04 is now complete. **Formal operator closure acceptance was granted on 16 November 2026; relocation and publication are the final administrative operation.** See `reports/FINAL-TECHNICAL-ACCEPTANCE-20261116.md`, `reports/REPOSITORY-REVISION-RECORD-20261116.md` and `reports/FORMAL-CLOSURE-RECOMMENDATION-20261116.md`. The following matrix remains the original acceptance contract rather than an invented individual signed-off test record.
 
 | ID | Acceptance condition | Expected evidence |
 | --- | --- | --- |

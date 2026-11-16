@@ -1,7 +1,7 @@
 # 0049-FEAT — Rationalise Btrfs and Diaries backup management
 
 - **Type:** Feature
-- **State:** TECHNICAL ACCEPTANCE PASSED — REPOSITORY REVISIONS AND FORMAL CLOSURE PENDING
+- **State:** CLOSED — FORMAL OPERATOR ACCEPTANCE GRANTED 2026-11-16; repository relocation and closure publication are the final administrative operation
 - **Opened:** 2026-11-16
 - **Ownership:** Diaries **parent** Git repository: feature planning, change control, test/evidence and closure. Permanent operational source, Ansible roles, templates and regression tests belong in the Playbooks repository on `mango`.
 - **Hosts:** `mars` (collection, source snapshots, replication sender) and `backup` (replication receiver, received-snapshot retention).
@@ -13,7 +13,14 @@
 - A complete incremental transfer through `btrfs-push.service` advanced the agreed parent to `20261116-150008Z`. The receiver independently verified the matching received UUID, read-only snapshot, protected parent/prior, two independent holds and 27 preserved historical receipts.
 - The final Ansible reapply returned `changed=0`, `unreachable=0`, `failed=0` on both hosts. No production pruning or restore was performed.
 - Evidence: `reports/FINAL-TECHNICAL-ACCEPTANCE-20261116.md` and `evidence/Step 4/`.
-- **Not yet completed:** commit and record exact Playbooks, Ansible-controller and Windows Diaries Git revisions; then obtain formal closure acceptance.
+- **Repository finalisation:** all three repositories were committed and published on 16 November 2026; exact revisions and remote checks are recorded in `reports/REPOSITORY-REVISION-RECORD-20261116.md`. **Formal closure approved on 16 November 2026.** The directory relocation and publication receipts are produced by the controlled closure operation.
+
+## Publication and closure readiness — 16 November 2026
+
+- **Playbooks:** `a2508ad61f479c1b2bc20cb39896006c1f2906e1` published to `rsmaxwell/playbooks` (`main`).
+- **Ansible-controller:** `a81eafdf1fccf6bcd7d9d1b3dfa77143872682e8` published to `rsmaxwell/ansible-controller` (`main`), pinning that Playbooks commit. Private `inventory` pointer remains unchanged.
+- **Diaries parent:** `34be53fe219dbe773b516596e3d36fa5b29801bb` published to `rsmaxwell/diaries` (`main`); application submodule pointers unchanged.
+- **Formal closure:** explicitly approved by the feature owner on 16 November 2026; see `reports/FORMAL-CLOSURE-DECISION-20261116.md`. The final administrative operation relocates this complete history to `change-control/complete/` and publishes a Diaries-only closure commit.
 
 ## Objective
 
@@ -76,4 +83,4 @@ These are the implemented interface names; their installation on `mars` and `bac
 
 ## Closure condition
 
-Leave this feature under `change-control/in-progress/` until the new interface is implemented, source/integration/runtime tests and command output are accepted, old active timer paths are retired, Git revisions and deployment state are recorded, and rollback readiness is demonstrated. **TECHNICAL ACCEPTANCE PASSED is not CLOSED.** Move the directory to `change-control/complete/` only upon formal closure acceptance.
+All closure criteria were met and formal operator acceptance was granted on 16 November 2026. The approved closure operation moves the complete feature history to `change-control/complete/` without altering operational code or historical evidence. The actual relocation and publication are confirmed by the Git command receipt.

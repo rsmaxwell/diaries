@@ -1,0 +1,24 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ (
+  cd /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries || exit 1
+
+  script="change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/tools/close-0049-feature.sh"
+
+  test -f "$script" || exit 1
+
+  bash "$script"
+)
+
+result=$?
+
+if [ "$result" -eq 0 ]; then
+  echo "0049 FORMAL CLOSURE EXECUTION: PASS"
+else
+  echo "0049 FORMAL CLOSURE EXECUTION: FAIL ($result)"
+fi
+0049 CLOSURE: FAIL — Wrong repository root
+0049 FORMAL CLOSURE EXECUTION: FAIL (1)
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$
