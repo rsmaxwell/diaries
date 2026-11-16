@@ -1,0 +1,42 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ (
+  cd /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries || exit 1
+
+  expected="f48f09dc373a5dc12bdba0493e1e2ed7cb6f0e01"
+
+  git fetch origin || exit 1
+
+  test "$(git rev-parse HEAD)" = "$expected" || {
+    echo "FAIL: Unexpected Diaries revision"
+    exit 1
+  }
+
+  echo "=== DIARIES UNPUBLISHED COMMITS ==="
+  git log --oneline origin/main..HEAD || exit 1
+
+  echo "=== DIARIES SUBMODULES ==="
+  git submodule status
+
+  echo "=== DIARIES WORKING TREE ==="
+  git status --short
+)
+
+result=$?
+echo "0049 DIARIES PUBLICATION AUDIT: $result"
+=== DIARIES UNPUBLISHED COMMITS ===
+f48f09d (HEAD -> main) 0049-FEAT: record implementation and technical acceptance
+b3bb0b5 0041-FEAT: close dedicated Btrfs replication service accounts
+=== DIARIES SUBMODULES ===
+ e45ae170017fdf4974f642f654d7f709269af711 diaries-client (heads/main)
+ bd65d08435c0f5d240337cd6479cb41befe4d8c1 diaries-responder (heads/main)
+ cc147426e93ee6952558b65147e444d38316b3ce diaries-web (heads/main)
+=== DIARIES WORKING TREE ===
+?? "change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 4/GIT-FINALISATION-LOG-SHA256-20261116.md"
+?? "change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 4/MANGO-CONTROLLER-REPEAT-COMMIT-GUARD-20261116.txt"
+?? "change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 4/WINDOWS-DIARIES-COMMIT-20261116.txt"
+?? "change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/reports/DIARIES-COMMIT-AND-CONTROLLER-GUARD-REVIEW-20261116.md"
+0049 DIARIES PUBLICATION AUDIT: 0
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

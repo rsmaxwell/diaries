@@ -1,0 +1,36 @@
+richard@mango:~$ (
+  cd /home/richard/ansible-controller || exit 1
+
+  echo "=== CURRENT CONTROLLER STATE ==="
+  git branch -vv
+  git status --short
+  git submodule status
+
+  expected="a2508ad61f479c1b2bc20cb39896006c1f2906e1"
+
+  test "$(git -C playbooks rev-parse HEAD)" = "$expected" || exit 1
+
+  git diff --cached --quiet || {
+    echo "FAIL: Existing staged controller changes"
+    exit 1
+  }
+
+  git add -- playbooks || exit 1
+
+  test "$(git diff --cached --name-only)" = "playbooks" || exit 1
+  git diff --cached --check || exit 1
+  git diff --cached --submodule=short || exit 1
+
+  git commit -m "0049-FEAT: pin updated Playbooks revision" || exit 1
+
+  echo "=== CONTROLLER COMMIT ==="
+  git rev-parse HEAD
+  git status --short
+echo "0049 CONTROLLER COMMIT EXIT STATUS: $result"
+=== CURRENT CONTROLLER STATE ===
+* main a81eafd [origin/main: ahead 2] 0049-FEAT: pin updated Playbooks revision
+ ? playbooks
+ ebcce026723db37b9b53b76ba21903a351d48466 inventory (heads/main)
+ a2508ad61f479c1b2bc20cb39896006c1f2906e1 playbooks (heads/main)
+0049 CONTROLLER COMMIT EXIT STATUS: 1
+richard@mango:~$

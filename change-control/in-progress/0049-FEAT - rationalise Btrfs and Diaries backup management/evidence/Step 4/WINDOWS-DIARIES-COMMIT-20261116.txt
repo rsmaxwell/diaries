@@ -1,0 +1,99 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ (
+  cd /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries || exit 1
+
+  feature="change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management"
+
+  git add -- "$feature" || exit 1
+  git diff --cached --check || exit 1
+  git diff --cached --stat || exit 1
+
+  git commit -m "0049-FEAT: record implementation and technical acceptance" || exit 1
+
+  echo "=== DIARIES COMMIT ==="
+  git rev-parse HEAD
+  git status --short
+)
+
+result=$?
+echo "0049 DIARIES COMMIT EXIT STATUS: $result"
+ .../IMPLEMENTATION-STEPS.md                        |   74 +
+ .../MANAGEMENT-INTERFACE-CONTRACT.md               |  126 +
+ .../README.md                                      |   79 +
+ .../evidence/README.md                             |   10 +
+ .../MANGO-SOURCE-AND-ANSIBLE-CHECK-20261116.txt    | 3383 ++++++++++++++++++++
+ .../Step 4/BACKUP-FINAL-READBACK-20261116.txt      |  120 +
+ .../BACKUP-POST-CUTOVER-VERIFICATION-20261116.txt  |  110 +
+ .../Step 4/BACKUP-RECEIVER-READBACK-20261116.txt   |  103 +
+ .../evidence/Step 4/FINAL-LOG-SHA256-20261116.md   |    6 +
+ .../Step 4/MANGO-ANSIBLE-REAPPLY-20261116.txt      |  525 +++
+ .../Step 4/MANGO-FINAL-IDEMPOTENCE-20261116.txt    |  525 +++
+ .../Step 4/MANGO-PLAYBOOKS-COMMIT-20261116.txt     |   74 +
+ .../Step 4/MANGO-RECEIVER-DEPLOYMENT-20261116.txt  |  458 +++
+ .../Step 4/MARS-FIRST-PUSH-ACCEPTANCE-20261116.txt |  155 +
+ .../Step 4/PLAYBOOKS-GIT-LOG-SHA256-20261116.md    |    7 +
+ .../Step 4/WINDOWS-PLAYBOOKS-STAGING-20261116.txt  |  136 +
+ .../WINDOWS-REPEATED-STAGING-GUARD-20261116.txt    |   60 +
+ .../source-regression/REGRESSION-LOG-20261116.txt  |  213 ++
+ .../reports/APPLY-AND-VERIFY-20261116.md           |   72 +
+ .../reports/BASELINE-SOURCE-REVIEW-20261116.md     |   31 +
+ .../FINAL-PACKAGED-PLAYBOOKS-MANIFEST-20261116.md  |   42 +
+ .../reports/FINAL-TECHNICAL-ACCEPTANCE-20261116.md |   41 +
+ .../FIRST-PUSH-ACCEPTANCE-REVIEW-20261116.md       |   24 +
+ .../reports/IMPLEMENTATION-SOURCE-20261116.md      |   57 +
+ .../reports/PLAYBOOKS-CHANGE-MANIFEST-20261116.md  |   44 +
+ .../reports/PLAYBOOKS-COMMIT-REVIEW-20261116.md    |   24 +
+ .../reports/RECEIVER-DEPLOYMENT-REVIEW-20261116.md |   35 +
+ ...VER-VERIFICATION-AND-REAPPLY-REVIEW-20261116.md |   32 +
+ ...SITORY-AND-FORMAL-CLOSURE-CHECKLIST-20261116.md |   45 +
+ .../reports/REPOSITORY-FINALISATION-20261116.md    |   24 +
+ .../reports/ROLLBACK-READINESS-20261116.md         |   22 +
+ .../SOURCE-AND-ANSIBLE-PREVIEW-REVIEW-20261116.md  |   30 +
+ .../tests/ACCEPTANCE-MATRIX.md                     |   45 +
+ .../tools/verify-0049-live-readonly.sh             |   29 +
+ .../tools/verify-and-stage-0049-playbooks.py       |   87 +
+ 35 files changed, 6848 insertions(+)
+[main f48f09d] 0049-FEAT: record implementation and technical acceptance
+ 35 files changed, 6848 insertions(+)
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/IMPLEMENTATION-STEPS.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/MANAGEMENT-INTERFACE-CONTRACT.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/README.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/README.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 3/MANGO-SOURCE-AND-ANSIBLE-CHECK-20261116.txt
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 4/BACKUP-FINAL-READBACK-20261116.txt
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 4/BACKUP-POST-CUTOVER-VERIFICATION-20261116.txt
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 4/BACKUP-RECEIVER-READBACK-20261116.txt
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 4/FINAL-LOG-SHA256-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 4/MANGO-ANSIBLE-REAPPLY-20261116.txt
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 4/MANGO-FINAL-IDEMPOTENCE-20261116.txt
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 4/MANGO-PLAYBOOKS-COMMIT-20261116.txt
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 4/MANGO-RECEIVER-DEPLOYMENT-20261116.txt
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 4/MARS-FIRST-PUSH-ACCEPTANCE-20261116.txt
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 4/PLAYBOOKS-GIT-LOG-SHA256-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 4/WINDOWS-PLAYBOOKS-STAGING-20261116.txt
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/Step 4/WINDOWS-REPEATED-STAGING-GUARD-20261116.txt
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/evidence/source-regression/REGRESSION-LOG-20261116.txt
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/reports/APPLY-AND-VERIFY-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/reports/BASELINE-SOURCE-REVIEW-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/reports/FINAL-PACKAGED-PLAYBOOKS-MANIFEST-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/reports/FINAL-TECHNICAL-ACCEPTANCE-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/reports/FIRST-PUSH-ACCEPTANCE-REVIEW-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/reports/IMPLEMENTATION-SOURCE-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/reports/PLAYBOOKS-CHANGE-MANIFEST-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/reports/PLAYBOOKS-COMMIT-REVIEW-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/reports/RECEIVER-DEPLOYMENT-REVIEW-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/reports/RECEIVER-VERIFICATION-AND-REAPPLY-REVIEW-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/reports/REPOSITORY-AND-FORMAL-CLOSURE-CHECKLIST-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/reports/REPOSITORY-FINALISATION-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/reports/ROLLBACK-READINESS-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/reports/SOURCE-AND-ANSIBLE-PREVIEW-REVIEW-20261116.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/tests/ACCEPTANCE-MATRIX.md
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/tools/verify-0049-live-readonly.sh
+ create mode 100644 change-control/in-progress/0049-FEAT - rationalise Btrfs and Diaries backup management/tools/verify-and-stage-0049-playbooks.py
+=== DIARIES COMMIT ===
+f48f09dc373a5dc12bdba0493e1e2ed7cb6f0e01
+0049 DIARIES COMMIT EXIT STATUS: 0
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

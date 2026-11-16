@@ -1,0 +1,58 @@
+richard@mango:~$ (
+  echo "=== PLAYBOOKS PUBLICATION ==="
+  cd /home/richard/ansible-controller/playbooks || exit 1
+
+  expected="a2508ad61f479c1b2bc20cb39896006c1f2906e1"
+
+  test "$(git branch --show-current)" = main || exit 1
+  test "$(git rev-parse HEAD)" = "$expected" || exit 1
+
+  remote="$(git remote get-url origin)" || exit 1
+  echo "Playbooks remote: $remote"
+
+  case "$remote" in
+    git@github.com:rsmaxwell/playbooks.git|https://github.com/rsmaxwell/playbooks.git) ;;
+    *) echo "FAIL: Unexpected Playbooks remote"; exit 1 ;;
+  esac
+
+  git diff --quiet || exit 1
+  git diff --cached --quiet || exit 1
+  git fetch origin || exit 1
+
+  git merge-base --is-ancestor origin/main HEAD || {
+    echo "FAIL: Playbooks remote history diverged"
+    exit 1
+  }
+
+  git log --oneline origin/main..HEAD || exit 1
+echo "0049 MANGO PUBLICATION EXIT STATUS: $result"h"| awk '{print $1}')"smaxwell/ansible-controller.git) ;;
+=== PLAYBOOKS PUBLICATION ===
+Playbooks remote: git@github.com:rsmaxwell/playbooks.git
+a2508ad (HEAD -> main) 0049-FEAT: rationalise Btrfs and Diaries backup management
+0904bc7 0041-FEAT: isolate Btrfs replication with dedicated service identities
+Enumerating objects: 98, done.
+Counting objects: 100% (98/98), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (66/66), done.
+Writing objects: 100% (68/68), 48.74 KiB | 8.12 MiB/s, done.
+Total 68 (delta 40), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (40/40), completed with 22 local objects.
+To github.com:rsmaxwell/playbooks.git
+   c510934..a2508ad  main -> main
+PLAYBOOKS PUBLISHED: a2508ad61f479c1b2bc20cb39896006c1f2906e1
+=== ANSIBLE-CONTROLLER PUBLICATION ===
+Controller remote: git@github.com:rsmaxwell/ansible-controller.git
+a81eafd (HEAD -> main) 0049-FEAT: pin updated Playbooks revision
+e325227 0041-FEAT: pin dedicated Btrfs replication implementation
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 530 bytes | 530.00 KiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 1 local object.
+To github.com:rsmaxwell/ansible-controller.git
+   83cba34..a81eafd  main -> main
+ANSIBLE-CONTROLLER PUBLISHED: a81eafdf1fccf6bcd7d9d1b3dfa77143872682e8
+0049 MANGO PUBLICATION EXIT STATUS: 0
+richard@mango:~$

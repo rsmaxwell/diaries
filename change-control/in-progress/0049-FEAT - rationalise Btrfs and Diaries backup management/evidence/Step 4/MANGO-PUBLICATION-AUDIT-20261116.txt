@@ -1,0 +1,53 @@
+richard@mango:~$ (
+  cd /home/richard/ansible-controller || exit 1
+
+  expected="a2508ad61f479c1b2bc20cb39896006c1f2906e1"
+
+  echo "=== REFRESH REMOTE REFERENCES ==="
+  git fetch origin || exit 1
+  git -C playbooks fetch origin || exit 1
+
+  echo "=== VERIFY PLAYBOOKS SUBMODULE ==="
+  test "$(git -C playbooks rev-parse HEAD)" = "$expected" || exit 1
+
+  pinned="$(git ls-tree HEAD playbooks | awk '$1 == "160000" && $2 == "commit" {print $3}')"
+  echo "Controller-pinned Playbooks: $pinned"
+  test "$pinned" = "$expected" || {
+    echo "FAIL: Controller does not pin the intended Playbooks revision"
+    exit 1
+  }
+
+  echo "=== PLAYBOOKS UNPUBLISHED COMMITS ==="
+  git -C playbooks log --oneline origin/main..HEAD || exit 1
+  git -C playbooks status --short
+
+  echo "=== CONTROLLER REVISION ==="
+  git rev-parse HEAD
+  git log -1 --format='%h %s'
+
+  echo "=== CONTROLLER UNPUBLISHED COMMITS ==="
+echo "0049 MANGO PUBLICATION AUDIT: $result"it 1
+=== REFRESH REMOTE REFERENCES ===
+=== VERIFY PLAYBOOKS SUBMODULE ===
+Controller-pinned Playbooks: a2508ad61f479c1b2bc20cb39896006c1f2906e1
+=== PLAYBOOKS UNPUBLISHED COMMITS ===
+a2508ad (HEAD -> main) 0049-FEAT: rationalise Btrfs and Diaries backup management
+0904bc7 0041-FEAT: isolate Btrfs replication with dedicated service identities
+?? roles/btrfs-replication/files/__pycache__/
+?? roles/snapshots/files/__pycache__/
+=== CONTROLLER REVISION ===
+a81eafdf1fccf6bcd7d9d1b3dfa77143872682e8
+a81eafd 0049-FEAT: pin updated Playbooks revision
+=== CONTROLLER UNPUBLISHED COMMITS ===
+a81eafd (HEAD -> main) 0049-FEAT: pin updated Playbooks revision
+e325227 0041-FEAT: pin dedicated Btrfs replication implementation
+ playbooks | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+=== CONTROLLER SUBMODULES ===
+160000 commit ebcce026723db37b9b53b76ba21903a351d48466  inventory
+160000 commit a2508ad61f479c1b2bc20cb39896006c1f2906e1  playbooks
+ ebcce026723db37b9b53b76ba21903a351d48466 inventory (heads/main)
+ a2508ad61f479c1b2bc20cb39896006c1f2906e1 playbooks (heads/main)
+ ? playbooks
+0049 MANGO PUBLICATION AUDIT: 0
+richard@mango:~$
