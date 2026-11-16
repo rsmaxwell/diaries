@@ -1,0 +1,110 @@
+richard@backup:~$ (
+  echo "=== RECEIVER STATUS ==="
+
+  sudo -n btrfs-backup-status --local-only || exit 1
+
+  echo "=== AGREED-PARENT STATE ==="
+
+  sudo -n btrfs-replication receiver status \
+    | python3 -m json.tool || exit 1
+
+  echo "=== RETENTION PREVIEW ==="
+
+  sudo -n btrfs-snapshot-manager prune \
+    --dry-run --max-delete 10
+)
+
+result=$?
+if [ "$result" -eq 0 ]; then
+  echo "0049 RECEIVER VERIFICATION: PASS"
+else
+  echo "0049 RECEIVER VERIFICATION: FAIL (exit $result)"
+fi
+=== RECEIVER STATUS ===
+BTRFS BACKUP STATUS — backup (receiver)
+Health: HEALTHY
+
+BTRFS SNAPSHOTS AND RETENTION
+Repository: /@data/mars-received
+Retained sets (observed): 40
+Oldest / newest (UTC): 20261009-170001Z / 20261116-030016Z
+Retention: hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+
+FILESYSTEM QGROUP HEALTH
+Qgroups: qgroups_status=ok, qgroups_total=43, qgroups_stale=0, qgroups_under_deletion=0
+
+BTRFS REPLICATION
+Local agreed parent: {'timestamp': '20261116-030016Z', 'uuid': 'b3fe0423-b878-da4f-8619-fd31ca950963'}
+Locally recorded prior parent: {'timestamp': '20261115-140017Z', 'uuid': '9913fcd7-fea4-854d-a2a0-ca433c2700d4'}
+Receiver state: available
+Last verified transfer: unknown (independent receipt not available)
+
+SCHEDULED OPERATIONS
+Unit                          Active    Result   Next/last execution (systemd)
+----------------------------  --------  -------  -----------------------------
+btrfs-receiver-prune.service  inactive  success  -
+btrfs-receiver-prune.timer    active    success  Tue 2026-11-17 04:15:00 GMT
+=== AGREED-PARENT STATE ===
+{
+    "state": {
+        "parent": {
+            "timestamp": "20261116-030016Z",
+            "uuid": "b3fe0423-b878-da4f-8619-fd31ca950963"
+        },
+        "prior": {
+            "timestamp": "20261115-140017Z",
+            "uuid": "9913fcd7-fea4-854d-a2a0-ca433c2700d4"
+        },
+        "schema": 1
+    }
+}
+=== RETENTION PREVIEW ===
+BTRFS RECEIVER PRUNE PLAN
+Deletion gate: enabled  Retained: 40  Selected for deletion: 0  Holds: 2
+Protected parent: 20261116-030016Z  Prior: 20261115-140017Z
+RECEIVED SNAPSHOT RETENTION
+Timestamp UTC     Decision  Received UUID                         Subvolume ID  Historical receipt
+----------------  --------  ------------------------------------  ------------  ------------------
+20261116-030016Z  RETAIN    b3fe0423-b878-da4f-8619-fd31ca950963         55913  -
+20261115-140017Z  RETAIN    9913fcd7-fea4-854d-a2a0-ca433c2700d4         55912  -
+20261115-030001Z  RETAIN    e96f7a7b-b293-8b4e-bbcf-9cebc9ee7158         55907  -
+20261114-030021Z  RETAIN    d3506183-87c5-bd49-8c61-add410ef98b3         55906  -
+20261113-030001Z  RETAIN    86e884aa-3561-444e-9b1c-b568840e1115         55905  -
+20261112-030019Z  RETAIN    186988bb-30f1-7b44-92e0-3ce8e179c6ca         55904  -
+20261111-030031Z  RETAIN    a3e61e8c-d851-7748-91e5-d23ffdc18b70         55903  -
+20261110-030004Z  RETAIN    c2a5c8d4-cc6a-bd43-bd6c-746cf866eb16         55902  -
+20261109-030030Z  RETAIN    239f29b4-9577-0e4b-b4f2-5f5cb9f7484c         55901  -
+20261108-030011Z  RETAIN    dcb7bae6-d1b0-824c-9d2d-1f5c7b8a2d58         55900  -
+20261107-030031Z  RETAIN    7778dda5-2b91-8c4e-8b1a-1dd038a3675b         55899  -
+20261106-160001Z  RETAIN    e28d1139-a311-944c-a048-b60874a4dd02         55898  -
+20261101-150004Z  RETAIN    71a6941e-f2d3-4047-8900-106fe30cbb19         55897  -
+20261101-140039Z  RETAIN    69ef9a57-50ff-9a4e-92ed-8f10560ab1f2         55895  preserved
+20261030-170009Z  RETAIN    a9b78fb9-4da6-cf4f-b242-13909f574193         55896  preserved
+20261030-030033Z  RETAIN    d901ddd2-66c7-0b42-b26c-ab6886273b7a         55894  preserved
+20261029-030003Z  RETAIN    3a2cc82d-a9ab-964f-af85-f073dd45f0a4         55893  preserved
+20261028-030036Z  RETAIN    34d3225c-1a88-ba46-9960-a829371b0514         55892  preserved
+20261027-030038Z  RETAIN    2177b72b-152a-c64e-8a1e-9e7ecb508ff5         55875  preserved
+20261026-030019Z  RETAIN    0c30e4ba-d36f-9344-9926-02f975eb4743         55874  preserved
+20261025-030026Z  RETAIN    3f668b78-4a26-ac41-a152-5c59e15e4732         55872  preserved
+20261024-030038Z  RETAIN    22e0ca45-0f49-c745-85b0-af6b6cfb915c         55835  preserved
+20261023-030037Z  RETAIN    fdcabd00-aa98-7647-bd3a-de5e23186d38         55834  preserved
+20261022-120034Z  RETAIN    068d0325-75f5-6c46-bb19-f4aec4bcf8f0         55833  preserved
+20261022-082824Z  RETAIN    0bf0a247-263f-ff4c-8368-48a91221cc9b         55816  preserved
+20261022-030026Z  RETAIN    571d59ec-5110-4944-b4e1-78b3372675d2         55815  preserved
+20261021-030006Z  RETAIN    c0ad8538-dc61-bc48-8922-6c37eaf1a902         55805  preserved
+20261020-030026Z  RETAIN    2239b0bd-b483-884e-8a14-30dcbb8d8392         55792  preserved
+20261019-030038Z  RETAIN    adb91334-fb87-0d44-90d8-907c67b245d2         55791  preserved
+20261018-165453Z  RETAIN    087c906a-0518-e34a-88f7-40a5b693c41a         55790  preserved
+20261018-030006Z  RETAIN    f91b322a-4aa7-ad45-a766-d7a1e2eb15b9         55789  preserved
+20261017-030007Z  RETAIN    e09023c3-c656-d340-84d6-c8374260eeef         55788  preserved
+20261016-030037Z  RETAIN    e1735c53-0831-764d-ac07-672de8dbe81e         55787  preserved
+20261015-030004Z  RETAIN    6f44e0e0-1968-6e4d-a3bd-9f77d71e9a47         55762  preserved
+20261014-100031Z  RETAIN    5f21c6db-1e66-ad41-aec9-89f163329f8e         55749  preserved
+20261013-180016Z  RETAIN    0048afd8-59ec-7547-9247-e36893331838         55716  preserved
+20261013-171228Z  RETAIN    340674cc-d02c-244e-b7ec-e3ea5a6b151f         55715  preserved
+20261013-140006Z  RETAIN    c0b81383-bdfc-224e-97b1-90ceee4d54f0         55708  preserved
+20261013-050016Z  RETAIN    8bbb4807-9cea-4e42-a932-66e0254191c8         55707  preserved
+20261009-170001Z  RETAIN    052c9376-0616-8b4a-9d28-f757b86fdec8         55593  preserved
+Historical receipts preserved: 27; on eligible snapshots: 0; orphaned: 0
+0049 RECEIVER VERIFICATION: PASS
+richard@backup:~$

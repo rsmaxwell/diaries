@@ -1,0 +1,3383 @@
+richard@mango:~$ (
+  cd /home/richard/ansible-controller/playbooks &&
+  git branch --show-current &&
+  git rev-parse HEAD &&
+  git status --short &&
+  python3 roles/btrfs-replication/tests/verify-0049-backup-management.py &&
+  python3 roles/btrfs-replication/tests/verify-0041-restricted-identity.py &&
+  python3 roles/btrfs-replication/tests/verify-replication.py &&
+  ansible-playbook btrfs-replication.yaml \
+    --limit 'mars,backup' \
+    --check --diff \
+    --vault-password-file ~/.vault_pass.txt
+)
+
+result=$?
+if [ "$result" -eq 0 ]; then
+  echo "0049 SOURCE AND ANSIBLE PREVIEW: PASS"
+else
+  echo "0049 SOURCE AND ANSIBLE PREVIEW: FAIL (exit $result)"
+fi
+main
+0904bc7ebe801e391a3aa4dc59bbc9ccc7dfa532
+ M roles/backup-collection/tasks/source_snapshot_access.yaml
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/defaults/main.yaml
+ M roles/btrfs-replication/files/btrfs-replication-receiver-gate-0041.py
+ M roles/btrfs-replication/files/btrfs-replication-sender-cycle-0041.sh
+ M roles/btrfs-replication/tasks/endpoint-setup.yaml
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/btrfs-replication/tasks/receiver-config.yaml
+ M roles/btrfs-replication/tasks/receiver-retention.yaml
+ M roles/btrfs-replication/tasks/service-identities-0041.yaml
+ M roles/btrfs-replication/tasks/simplified-runtime.yaml
+ M roles/btrfs-replication/tasks/source-scheduling.yaml
+ M roles/btrfs-replication/templates/btrfs-receiver-manager.json.j2
+ M roles/btrfs-replication/tests/README.md
+ M roles/btrfs-replication/tests/verify-0041-restricted-identity.py
+ M roles/btrfs-replication/tests/verify-replication.py
+ M roles/snapshots/README.md
+ M roles/snapshots/files/btrfs-snapshot-manager.py
+ M roles/snapshots/files/diaries-backup-history.py
+ M roles/snapshots/files/diaries-backup-status.py
+ M roles/snapshots/tests/verify-0040-simplified-receiver-retention.py
+ M roles/snapshots/tests/verify-0040-step13-source-prune-cap.py
+ M roles/snapshots/tests/verify-diaries-backup-status.py
+?? roles/btrfs-replication/files/btrfs-replication.py
+?? roles/btrfs-replication/tasks/retire-0049-interfaces.yaml
+?? roles/btrfs-replication/templates/btrfs-push-0041.service.j2
+?? roles/btrfs-replication/templates/btrfs-push.service.j2
+?? roles/btrfs-replication/templates/btrfs-push.timer.j2
+?? roles/btrfs-replication/templates/btrfs-receiver-prune.service.j2
+?? roles/btrfs-replication/templates/btrfs-receiver-prune.timer.j2
+?? roles/btrfs-replication/tests/verify-0049-backup-management.py
+?? roles/snapshots/files/btrfs-backup-status.py
+test_0041_dedicated_user_and_sudoers_preserved (__main__.DeploymentSourceTests.test_0041_dedicated_user_and_sudoers_preserved) ... ok
+test_inventory_compatibility_is_explicit (__main__.DeploymentSourceTests.test_inventory_compatibility_is_explicit) ... ok
+test_protocol_implementation_diff_is_only_executable_name_and_pretty_status (__main__.DeploymentSourceTests.test_protocol_implementation_diff_is_only_executable_name_and_pretty_status) ... ok
+test_unit_cutover_disables_old_before_new_and_removes_old (__main__.DeploymentSourceTests.test_unit_cutover_disables_old_before_new_and_removes_old) ... ok
+test_bad_config_fails_closed (__main__.ReportTests.test_bad_config_fails_closed) ... ok
+test_diaries_empty_report_has_labelled_empty_table (__main__.ReportTests.test_diaries_empty_report_has_labelled_empty_table) ... ok
+test_diaries_json_is_indented_and_errors_use_exit_2 (__main__.ReportTests.test_diaries_json_is_indented_and_errors_use_exit_2) ... ok
+test_diaries_report_has_only_application_data_and_aligns_table (__main__.ReportTests.test_diaries_report_has_only_application_data_and_aligns_table) ... ok
+test_host_json_is_pretty_and_machine_parseable (__main__.ReportTests.test_host_json_is_pretty_and_machine_parseable) ... ok
+test_local_only_skips_sender_ssh_even_when_remote_is_unavailable (__main__.ReportTests.test_local_only_skips_sender_ssh_even_when_remote_is_unavailable) ... ok
+test_qgroup_warning_degrades_infrastructure_status (__main__.ReportTests.test_qgroup_warning_degrades_infrastructure_status) ... ok
+test_receiver_has_no_collection_section_or_ssh_calls (__main__.ReportTests.test_receiver_has_no_collection_section_or_ssh_calls) ... ok
+test_source_remote_success_and_failure_have_distinct_health (__main__.ReportTests.test_source_remote_success_and_failure_have_distinct_health) ... ok
+test_table_does_not_truncate_unicode_or_identifiers (__main__.ReportTests.test_table_does_not_truncate_unicode_or_identifiers) ... ok
+test_old_receiver_subcommands_are_no_longer_accepted (__main__.SnapshotCliTests.test_old_receiver_subcommands_are_no_longer_accepted) ... ok
+test_receiver_create_is_refused (__main__.SnapshotCliTests.test_receiver_create_is_refused) ... ERROR: receiver mode supports only list, status and guarded prune
+ok
+test_receiver_delete_requires_explicit_bound (__main__.SnapshotCliTests.test_receiver_delete_requires_explicit_bound) ... ERROR: receiver prune requires --max-delete N
+ok
+test_receiver_preview_uses_existing_shared_lock_and_never_deletes (__main__.SnapshotCliTests.test_receiver_preview_uses_existing_shared_lock_and_never_deletes) ... ok
+test_source_bounded_prune_remains_distinct (__main__.SnapshotCliTests.test_source_bounded_prune_remains_distinct) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.016s
+
+OK
+test_adversarial_commands_refused (__main__.Contracts.test_adversarial_commands_refused) ... ok
+test_allowed_status_and_advance (__main__.Contracts.test_allowed_status_and_advance) ... ok
+test_dedicated_transport_is_strict (__main__.Contracts.test_dedicated_transport_is_strict) ... ok
+test_header_read_does_not_consume_binary_stream (__main__.Contracts.test_header_read_does_not_consume_binary_stream) ... ok
+test_legacy_transport_not_changed (__main__.Contracts.test_legacy_transport_not_changed) ... ok
+test_root_gate_rejects_bypass (__main__.Contracts.test_root_gate_rejects_bypass) ... ok
+test_sudoers_and_provisioning_do_not_grant_all (__main__.Contracts.test_sudoers_and_provisioning_do_not_grant_all) ... ok
+test_unknown_mode_refuses_instead_of_silent_fallback (__main__.Contracts.test_unknown_mode_refuses_instead_of_silent_fallback) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.001s
+
+OK
+test_absent_or_complete_candidate_never_deleted (__main__.Cases.test_absent_or_complete_candidate_never_deleted) ... ok
+test_ambiguous_parent_divergence_refuses (__main__.Cases.test_ambiguous_parent_divergence_refuses) ... ok
+test_choose_newest_eligible_newer (__main__.Cases.test_choose_newest_eligible_newer) ... ok
+test_completed_candidate_uses_advance_without_retransmit (__main__.Cases.test_completed_candidate_uses_advance_without_retransmit) ... SUCCESS: common parent advanced to 20261101-140039Z
+ok
+test_filesystem_identity_refusal (__main__.Cases.test_filesystem_identity_refusal) ... ok
+test_held_or_legacy_receipt_refuses (__main__.Cases.test_held_or_legacy_receipt_refuses) ... ok
+test_incomplete_cleanup_exact_subvolume_once (__main__.Cases.test_incomplete_cleanup_exact_subvolume_once) ... ok
+test_invalid_candidate_prevents_cleanup (__main__.Cases.test_invalid_candidate_prevents_cleanup) ... ok
+test_invalid_state_or_rollback_refuses (__main__.Cases.test_invalid_state_or_rollback_refuses) ... ok
+test_latest_invalid_candidate_refuses_rather_than_falling_back (__main__.Cases.test_latest_invalid_candidate_refuses_rather_than_falling_back) ... ok
+test_latest_selection_ignores_symlinks_and_non_snapshots (__main__.Cases.test_latest_selection_ignores_symlinks_and_non_snapshots) ... ok
+test_readonly_lock_never_creates_missing_lockfile (__main__.Cases.test_readonly_lock_never_creates_missing_lockfile) ... ok
+test_readonly_or_received_unknown_candidate_refused (__main__.Cases.test_readonly_or_received_unknown_candidate_refused) ... ok
+test_receiver_ahead_lost_ack (__main__.Cases.test_receiver_ahead_lost_ack) ... ok
+test_receiver_backoff_uses_configured_lock (__main__.Cases.test_receiver_backoff_uses_configured_lock) ... ok
+test_receiver_failure_does_not_advance (__main__.Cases.test_receiver_failure_does_not_advance) ... ok
+test_receiver_incomplete_next_run_deletes_then_receives (__main__.Cases.test_receiver_incomplete_next_run_deletes_then_receives) ... INFO: cleaned one incomplete candidate; retrying receive
+ok
+test_sender_lost_ack_advances_local_without_retransmission (__main__.Cases.test_sender_lost_ack_advances_local_without_retransmission) ... SUCCESS: reconciled receiver-ahead transfer without retransmission
+ok
+test_sender_status_receiver_ahead_does_not_reconcile_or_save (__main__.Cases.test_sender_status_receiver_ahead_does_not_reconcile_or_save) ... ok
+test_sender_status_rejects_unverified_receiver_identity (__main__.Cases.test_sender_status_rejects_unverified_receiver_identity) ... ok
+test_sender_status_uses_verified_readonly_identity_without_mutation (__main__.Cases.test_sender_status_uses_verified_readonly_identity_without_mutation) ... ok
+test_single_nonblocking_manager_lock (__main__.Cases.test_single_nonblocking_manager_lock) ... ok
+test_state_atomic_readback (__main__.Cases.test_state_atomic_readback) ... ok
+test_state_record_and_prior (__main__.Cases.test_state_record_and_prior) ... ok
+test_state_rejects_nonroot_owner_and_insecure_mode (__main__.Cases.test_state_rejects_nonroot_owner_and_insecure_mode) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.080s
+
+OK
+
+PLAY [Configure native Btrfs replication endpoints] ********************************************************************
+
+TASK [Configure native Btrfs endpoint] *********************************************************************************
+included: btrfs-replication for mars, backup
+
+TASK [btrfs-replication : Native Btrfs | Reject unsupported deployment host] *******************************************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Ensure privileged helper directory exists] ************************************
+ok: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Initialize root-owned source protection state if missing] *********************
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Read existing 0035 manager configuration] *************************************
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Install replication-aware 0035 pruning manager] *******************************
+skipping: [backup]
+--- before: /usr/local/sbin/btrfs-snapshot-manager
++++ after: /home/richard/ansible-controller/playbooks/roles/snapshots/files/btrfs-snapshot-manager.py
+@@ -27,6 +27,7 @@
+ import stat
+ import subprocess
+ import sys
++import unicodedata
+ from dataclasses import dataclass
+ from datetime import datetime, timezone
+ from pathlib import Path, PurePosixPath
+@@ -763,8 +764,8 @@
+         raise SnapshotError("checkpoint holds not enabled for this host")
+     holds = read_checkpoint_holds(config)
+     if command == "hold-list":
+-        for stamp, record in sorted(holds.items()):
+-            print(f"HELD {stamp} reason={record['reason']}")
++        print_table('BTRFS SNAPSHOT HOLDS', ('Timestamp UTC', 'Reason'),
++                    [(stamp, record['reason']) for stamp, record in sorted(holds.items())])
+         return
+     assert timestamp is not None
+     parse_timestamp(timestamp)
+@@ -831,6 +832,8 @@
+ def prune(config: Config, dry_run: bool = False, max_delete: int | None = None) -> int:
+     # A bounded scheduled prune prevents an accumulated backlog from being
+     # deleted in one run. Keep direct legacy invocations backward-compatible.
++    if not dry_run and max_delete is None:
++        raise SnapshotError("prune requires --max-delete N; unbounded deletion is disabled")
+     if max_delete is not None and (type(max_delete) is not int or not 1 <= max_delete <= SOURCE_PRUNE_MAX_SETS_PER_RUN):
+         raise SnapshotError("source prune max_delete must be between 1 and 32")
+     if config.mode != "source":
+@@ -871,6 +874,7 @@
+     print(f"RETENTION sets: total={len(complete)} keep={len(keep)} sources={len(config.sources)}")
+     if max_delete is not None:
+         print(f"PRUNE-CAP: eligible={len(eligible)} selected={len(selected)} max_delete={max_delete}")
++    preview_rows = []
+     for name, _ in complete:
+         if name not in selected:
+             continue
+@@ -878,7 +882,7 @@
+         if dry_run:
+             for source in prune_sources:
+                 if snapshot_path(config, source, name).exists():
+-                    print(f"WOULD-DELETE {source.name} {name} {snapshot_path(config, source, name)}")
++                    preview_rows.append(('WOULD-DELETE', name, source.name, snapshot_path(config, source, name)))
+             continue
+         for source in reversed(prune_sources):
+             path = snapshot_path(config, source, name)
+@@ -887,6 +891,9 @@
+             subvolume_id = native_prune_subvolume_id(path)
+             print(f"DELETE {source.name} {name} subvol_id={subvolume_id} {path}", flush=True)
+             run(["btrfs", "subvolume", "delete", str(path)])
++    if dry_run:
++        print_table('BTRFS SOURCE PRUNE PLAN',
++                    ('Action', 'Timestamp UTC', 'Source', 'Snapshot path'), preview_rows)
+     print(("Would delete" if dry_run else "Deleted") + f" {deleted_sets} complete timestamp sets")
+     return deleted_sets
+
+@@ -1481,23 +1488,27 @@
+
+
+ def receiver_simple_print_plan(plan: dict[str, object]) -> None:
+-    print("RECEIVER-SIMPLE-PLAN " + json.dumps({
+-        "parent": plan["parent"], "prior": plan["prior"],
+-        "keep": len(plan["keep"]), "candidates": len(plan["candidates"]),
+-        "historical_receipts_preserved": len(plan["historical_receipts"]),
+-        "historical_receipts_on_candidates": len(plan["historical_receipts_on_candidates"]),
+-        "historical_receipts_orphaned": len(plan["historical_receipts_orphaned"]),
+-        "holds": plan["holds"], "enabled": plan["executable"],
+-    }, sort_keys=True))
+-    keep = set(plan["keep"])
+-    for stamp in sorted(plan["identity"], reverse=True):
+-        label = ("RETAIN" if stamp in keep else
+-                 "ELIGIBLE-WHEN-APPROVED" if plan["executable"] else
+-                 "CANDIDATE-NOT-AUTHORIZED")
+-        receipt_note = " historical_receipt=preserved" if stamp in plan["historical_receipts"] else ""
+-        print(f"{label} {stamp} received_uuid={plan['identity'][stamp]['Received UUID']} "
+-              f"subvolume_id={plan['identity'][stamp]['Subvolume ID']}{receipt_note}")
+-
++    print('BTRFS RECEIVER PRUNE PLAN')
++    print(f"Deletion gate: {'enabled' if plan['executable'] else 'disabled'}  "
++          f"Retained: {len(plan['keep'])}  Selected for deletion: {len(plan['candidates'])}  "
++          f"Holds: {len(plan['holds'])}")
++    print(f"Protected parent: {plan['parent']['timestamp']}  "
++          f"Prior: {(plan['prior'] or {}).get('timestamp', 'none')}")
++    keep = set(plan['keep'])
++    rows = []
++    for stamp in sorted(plan['identity'], reverse=True):
++        label = ('RETAIN' if stamp in keep else
++                 'ELIGIBLE' if plan['executable'] and stamp in plan['candidates'] else
++                 'NOT SELECTED' if plan['executable'] else 'BLOCKED BY GATE')
++        rows.append((stamp, label, plan['identity'][stamp]['Received UUID'],
++                     plan['identity'][stamp]['Subvolume ID'],
++                     'preserved' if stamp in plan['historical_receipts'] else '-'))
++    print_table('RECEIVED SNAPSHOT RETENTION',
++                ('Timestamp UTC', 'Decision', 'Received UUID', 'Subvolume ID', 'Historical receipt'),
++                rows, numeric=(3,))
++    print(f"Historical receipts preserved: {len(plan['historical_receipts'])}; "
++          f"on eligible snapshots: {len(plan['historical_receipts_on_candidates'])}; "
++          f"orphaned: {len(plan['historical_receipts_orphaned'])}")
+
+ def receiver_simple_prune(config: Config, *, max_delete: int) -> int:
+     """Guarded receiver-only deletion.  Caller holds manager flock throughout.
+@@ -1552,17 +1563,45 @@
+         finally:
+             os.close(parent_fd)
+         deleted += 1
+-        print(f"RECEIVER-SIMPLE-DELETED {stamp} subvolume_id={expected['Subvolume ID']}", flush=True)
+-    print(f"RECEIVER-SIMPLE-DELETED count={deleted}")
++        print(f"RECEIVER-PRUNE-DELETED {stamp} subvolume_id={expected['Subvolume ID']}", flush=True)
++    print(f"RECEIVER-PRUNE-DELETED count={deleted}")
+     return deleted
++
++
++
++def visible_width(value):
++    return sum(0 if unicodedata.combining(c) else
++               2 if unicodedata.east_asian_width(c) in ('F', 'W') else 1
++               for c in str(value))
++
++def fit(value, width, right=False):
++    value = str(value)
++    pad = ' ' * max(0, width - visible_width(value))
++    return (pad + value) if right else (value + pad)
++
++
++def print_table(title: str, headers: tuple[str, ...], rows: list[tuple[object, ...]], numeric: tuple[int, ...] = ()) -> None:
++    print(title)
++    if not rows:
++        print('No entries')
++        return
++    widths = [max(visible_width(header), *(visible_width(row[i]) for row in rows))
++              for i, header in enumerate(headers)]
++    def line(values):
++        return '  '.join((fit(value, widths[i], right=(i in numeric)))
++                         for i, value in enumerate(values))
++    print(line(headers))
++    print('  '.join('-' * n for n in widths))
++    for row in rows:
++        print(line(row))
+
+ def show_list(config: Config) -> None:
+     complete, incomplete = managed_snapshot_sets(config)
+-    print("TIMESTAMP          STATE      SOURCES")
+-    for name, _ in complete:
+-        print(f"{name:18} COMPLETE   {','.join(source.name for source in config.sources)}")
+-    for name in sorted(incomplete, reverse=True):
+-        print(f"{name:18} INCOMPLETE {','.join(sorted(incomplete[name]))}")
++    rows = [(name, 'COMPLETE', ','.join(source.name for source in config.sources))
++            for name, _ in complete]
++    rows += [(name, 'INCOMPLETE', ','.join(sorted(incomplete[name])))
++             for name in sorted(incomplete, reverse=True)]
++    print_table('BTRFS SNAPSHOT INVENTORY', ('Timestamp UTC', 'State', 'Sources'), rows)
+
+
+ def qgroup_status(path: Path, *, timeout_seconds: int = 8, warning_threshold: int = 100) -> list[str]:
+@@ -1626,18 +1665,6 @@
+     print(f"complete_timestamp_sets={len(complete)};incomplete_timestamp_sets={len(incomplete)}")
+     for source in config.sources:
+         print(f"source={source.name}:{source.source};managed_snapshots={len(list_managed(config, source))}")
+-    if config.verification.required:
+-        state = read_verified_diaries(config, strict=False)
+-        if state and "error" not in state:
+-            print(
+-                "diaries_verification=valid;"
+-                f"logicalDataset={state['logicalDataset']};backupId={state['backupId']};"
+-                f"marker={state['marker']}"
+-            )
+-        else:
+-            print(f"diaries_verification=not-ready;detail={(state or {}).get('error', 'unknown')}")
+-    else:
+-        print("diaries_verification=disabled")
+
+
+ def with_lock(path: Path, *, shared: bool = False, nonblocking: bool = True,
+@@ -1671,23 +1698,11 @@
+     sub = parser.add_subparsers(dest="command", required=True)
+     create_parser = sub.add_parser("create")
+     create_parser.add_argument("--timestamp")
+-    prune_parser = sub.add_parser("prune")
++    prune_parser = sub.add_parser("prune", help="endpoint-aware preview or bounded guarded retention deletion")
+     prune_parser.add_argument("--dry-run", action="store_true")
+-    prune_parser.add_argument("--max-delete", type=int, help="limit source pruning to 1..32 snapshot sets per run")
++    prune_parser.add_argument("--max-delete", type=int, help="maximum deletion count: source 1..32; receiver 1..20")
+     sub.add_parser("list")
+     sub.add_parser("status")
+-    sub.add_parser("receiver-inventory")
+-    sub.add_parser("receiver-plan", help="read-only retention selection for verified received snapshots")
+-    sub.add_parser("receiver-simple-plan", help="Btrfs-verified simplified receiver retention preview")
+-    simple_prune = sub.add_parser("receiver-simple-prune", help="explicitly gated simplified receiver retention")
+-    simple_prune.add_argument("--max-delete", type=int, required=True)
+-    coordination = sub.add_parser("receiver-coordination-check", help="lock-held read-only receiver parent validation; no deletion authority")
+-    coordination.add_argument("--snapshot", required=True)
+-    coordination.add_argument("--source-uuid", required=True)
+-    sub.add_parser("receiver-recovery-plan", help="lock-held non-mutating interrupted receiver prune classification")
+-    guarded = sub.add_parser("receiver-prune", help="explicitly approved, locked receiver deletion")
+-    guarded.add_argument("--approval-file", required=True)
+-    sub.add_parser("run")
+     add_parser = sub.add_parser("hold-add")
+     add_parser.add_argument("timestamp")
+     add_parser.add_argument("--reason", required=True)
+@@ -1699,44 +1714,39 @@
+     try:
+         require_root()
+         config = load_config(Path(args.config))
+-        if config.mode == "receiver" and args.command not in {"list", "status", "receiver-inventory", "receiver-plan", "receiver-prune", "receiver-coordination-check", "receiver-recovery-plan", "receiver-simple-plan", "receiver-simple-prune"}:
+-            raise SnapshotError("receiver mode supports only explicit receiver operations")
+-        manager_lock = with_lock(config.lock_path) if args.command in {"create", "prune", "run", "hold-add", "hold-release", "hold-list", "receiver-prune", "receiver-coordination-check", "receiver-recovery-plan", "receiver-inventory", "receiver-plan", "receiver-simple-plan", "receiver-simple-prune"} else None
++        if config.mode == "receiver" and args.command not in {"list", "status", "prune"}:
++            raise SnapshotError("receiver mode supports only list, status and guarded prune")
++        manager_lock = (with_lock(config.lock_path, shared=True, require_existing=True)
++                        if args.command == 'prune' and args.dry_run else
++                        with_lock(config.lock_path) if args.command in {
++                            "create", "prune", "hold-add", "hold-release", "hold-list"} else None)
+         writer_lock = None
+         try:
+-            if args.command in {"receiver-prune", "receiver-coordination-check", "receiver-recovery-plan", "receiver-inventory", "receiver-plan"}:
+-                if config.receiver_state_dir is None or config.writer_lock_path != config.receiver_state_dir / "writer.lock":
+-                    raise SnapshotError("receiver writer lock configuration missing or inconsistent")
+-                writer_lock = with_lock(config.writer_lock_path, require_existing=True)
+-            if args.command in {"create", "run"} and config.writer_lock_path is not None:
++            if args.command == "create" and config.writer_lock_path is not None:
+                 writer_lock = with_lock(config.writer_lock_path, shared=True, require_existing=True)
+             if args.command == "create":
+                 create_all(config, args.timestamp)
+             elif args.command == "prune":
+-                prune(config, args.dry_run, args.max_delete)
++                if config.mode == "receiver":
++                    if args.dry_run:
++                        if args.max_delete is not None and not 1 <= args.max_delete <= 20:
++                            raise SnapshotError("receiver prune max-delete must be within 1..20")
++                        plan = receiver_simple_plan(config)
++                        if args.max_delete is not None:
++                            plan = dict(plan, candidates=plan["candidates"][:args.max_delete])
++                        receiver_simple_print_plan(plan)
++                    else:
++                        if args.max_delete is None:
++                            raise SnapshotError("receiver prune requires --max-delete N")
++                        receiver_simple_prune(config, max_delete=args.max_delete)
++                else:
++                    prune(config, args.dry_run, args.max_delete)
+             elif args.command == "list":
+                 show_list(config)
+             elif args.command == "status":
+                 show_status(config)
+-            elif args.command == "receiver-inventory":
+-                receiver_inventory(config)
+-            elif args.command == "receiver-plan":
+-                receiver_plan(config)
+-            elif args.command == "receiver-simple-plan":
+-                receiver_simple_print_plan(receiver_simple_plan(config))
+-            elif args.command == "receiver-simple-prune":
+-                receiver_simple_prune(config, max_delete=args.max_delete)
+-            elif args.command == "receiver-coordination-check":
+-                receiver_coordination_check(config, args.snapshot, args.source_uuid)
+-            elif args.command == "receiver-recovery-plan":
+-                receiver_recovery_plan(config)
+-            elif args.command == "receiver-prune":
+-                receiver_guarded_prune(config, Path(args.approval_file))
+             elif args.command in {"hold-add", "hold-release", "hold-list"}:
+                 checkpoint_command(config, args.command, getattr(args, "timestamp", None), getattr(args, "reason", None))
+-            elif args.command == "run":
+-                create_all(config)
+-                prune(config, False)
+         finally:
+             if writer_lock is not None:
+                 writer_lock.close()
+
+changed: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Activate fail-closed protection in existing 0035 config] **********************
+skipping: [backup]
+skipping: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Keep retired endpoint sudoers absent] *****************************************
+ok: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Provision isolated receiver parent] *******************************************
+skipping: [mars] => (item=/@data/mars-received)
+skipping: [mars] => (item=/@data/mars-received/@data)
+skipping: [mars]
+ok: [backup] => (item=/@data/mars-received)
+ok: [backup] => (item=/@data/mars-received/@data)
+
+TASK [btrfs-replication : Native Btrfs | Provision operator-owned transaction state] ***********************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver-mode manager (opt in)] ***************************************
+skipping: [mars]
+--- before: /usr/local/sbin/btrfs-snapshot-manager
++++ after: /home/richard/ansible-controller/playbooks/roles/snapshots/files/btrfs-snapshot-manager.py
+@@ -27,6 +27,7 @@
+ import stat
+ import subprocess
+ import sys
++import unicodedata
+ from dataclasses import dataclass
+ from datetime import datetime, timezone
+ from pathlib import Path, PurePosixPath
+@@ -763,8 +764,8 @@
+         raise SnapshotError("checkpoint holds not enabled for this host")
+     holds = read_checkpoint_holds(config)
+     if command == "hold-list":
+-        for stamp, record in sorted(holds.items()):
+-            print(f"HELD {stamp} reason={record['reason']}")
++        print_table('BTRFS SNAPSHOT HOLDS', ('Timestamp UTC', 'Reason'),
++                    [(stamp, record['reason']) for stamp, record in sorted(holds.items())])
+         return
+     assert timestamp is not None
+     parse_timestamp(timestamp)
+@@ -831,6 +832,8 @@
+ def prune(config: Config, dry_run: bool = False, max_delete: int | None = None) -> int:
+     # A bounded scheduled prune prevents an accumulated backlog from being
+     # deleted in one run. Keep direct legacy invocations backward-compatible.
++    if not dry_run and max_delete is None:
++        raise SnapshotError("prune requires --max-delete N; unbounded deletion is disabled")
+     if max_delete is not None and (type(max_delete) is not int or not 1 <= max_delete <= SOURCE_PRUNE_MAX_SETS_PER_RUN):
+         raise SnapshotError("source prune max_delete must be between 1 and 32")
+     if config.mode != "source":
+@@ -871,6 +874,7 @@
+     print(f"RETENTION sets: total={len(complete)} keep={len(keep)} sources={len(config.sources)}")
+     if max_delete is not None:
+         print(f"PRUNE-CAP: eligible={len(eligible)} selected={len(selected)} max_delete={max_delete}")
++    preview_rows = []
+     for name, _ in complete:
+         if name not in selected:
+             continue
+@@ -878,7 +882,7 @@
+         if dry_run:
+             for source in prune_sources:
+                 if snapshot_path(config, source, name).exists():
+-                    print(f"WOULD-DELETE {source.name} {name} {snapshot_path(config, source, name)}")
++                    preview_rows.append(('WOULD-DELETE', name, source.name, snapshot_path(config, source, name)))
+             continue
+         for source in reversed(prune_sources):
+             path = snapshot_path(config, source, name)
+@@ -887,6 +891,9 @@
+             subvolume_id = native_prune_subvolume_id(path)
+             print(f"DELETE {source.name} {name} subvol_id={subvolume_id} {path}", flush=True)
+             run(["btrfs", "subvolume", "delete", str(path)])
++    if dry_run:
++        print_table('BTRFS SOURCE PRUNE PLAN',
++                    ('Action', 'Timestamp UTC', 'Source', 'Snapshot path'), preview_rows)
+     print(("Would delete" if dry_run else "Deleted") + f" {deleted_sets} complete timestamp sets")
+     return deleted_sets
+
+@@ -1481,23 +1488,27 @@
+
+
+ def receiver_simple_print_plan(plan: dict[str, object]) -> None:
+-    print("RECEIVER-SIMPLE-PLAN " + json.dumps({
+-        "parent": plan["parent"], "prior": plan["prior"],
+-        "keep": len(plan["keep"]), "candidates": len(plan["candidates"]),
+-        "historical_receipts_preserved": len(plan["historical_receipts"]),
+-        "historical_receipts_on_candidates": len(plan["historical_receipts_on_candidates"]),
+-        "historical_receipts_orphaned": len(plan["historical_receipts_orphaned"]),
+-        "holds": plan["holds"], "enabled": plan["executable"],
+-    }, sort_keys=True))
+-    keep = set(plan["keep"])
+-    for stamp in sorted(plan["identity"], reverse=True):
+-        label = ("RETAIN" if stamp in keep else
+-                 "ELIGIBLE-WHEN-APPROVED" if plan["executable"] else
+-                 "CANDIDATE-NOT-AUTHORIZED")
+-        receipt_note = " historical_receipt=preserved" if stamp in plan["historical_receipts"] else ""
+-        print(f"{label} {stamp} received_uuid={plan['identity'][stamp]['Received UUID']} "
+-              f"subvolume_id={plan['identity'][stamp]['Subvolume ID']}{receipt_note}")
+-
++    print('BTRFS RECEIVER PRUNE PLAN')
++    print(f"Deletion gate: {'enabled' if plan['executable'] else 'disabled'}  "
++          f"Retained: {len(plan['keep'])}  Selected for deletion: {len(plan['candidates'])}  "
++          f"Holds: {len(plan['holds'])}")
++    print(f"Protected parent: {plan['parent']['timestamp']}  "
++          f"Prior: {(plan['prior'] or {}).get('timestamp', 'none')}")
++    keep = set(plan['keep'])
++    rows = []
++    for stamp in sorted(plan['identity'], reverse=True):
++        label = ('RETAIN' if stamp in keep else
++                 'ELIGIBLE' if plan['executable'] and stamp in plan['candidates'] else
++                 'NOT SELECTED' if plan['executable'] else 'BLOCKED BY GATE')
++        rows.append((stamp, label, plan['identity'][stamp]['Received UUID'],
++                     plan['identity'][stamp]['Subvolume ID'],
++                     'preserved' if stamp in plan['historical_receipts'] else '-'))
++    print_table('RECEIVED SNAPSHOT RETENTION',
++                ('Timestamp UTC', 'Decision', 'Received UUID', 'Subvolume ID', 'Historical receipt'),
++                rows, numeric=(3,))
++    print(f"Historical receipts preserved: {len(plan['historical_receipts'])}; "
++          f"on eligible snapshots: {len(plan['historical_receipts_on_candidates'])}; "
++          f"orphaned: {len(plan['historical_receipts_orphaned'])}")
+
+ def receiver_simple_prune(config: Config, *, max_delete: int) -> int:
+     """Guarded receiver-only deletion.  Caller holds manager flock throughout.
+@@ -1552,17 +1563,45 @@
+         finally:
+             os.close(parent_fd)
+         deleted += 1
+-        print(f"RECEIVER-SIMPLE-DELETED {stamp} subvolume_id={expected['Subvolume ID']}", flush=True)
+-    print(f"RECEIVER-SIMPLE-DELETED count={deleted}")
++        print(f"RECEIVER-PRUNE-DELETED {stamp} subvolume_id={expected['Subvolume ID']}", flush=True)
++    print(f"RECEIVER-PRUNE-DELETED count={deleted}")
+     return deleted
++
++
++
++def visible_width(value):
++    return sum(0 if unicodedata.combining(c) else
++               2 if unicodedata.east_asian_width(c) in ('F', 'W') else 1
++               for c in str(value))
++
++def fit(value, width, right=False):
++    value = str(value)
++    pad = ' ' * max(0, width - visible_width(value))
++    return (pad + value) if right else (value + pad)
++
++
++def print_table(title: str, headers: tuple[str, ...], rows: list[tuple[object, ...]], numeric: tuple[int, ...] = ()) -> None:
++    print(title)
++    if not rows:
++        print('No entries')
++        return
++    widths = [max(visible_width(header), *(visible_width(row[i]) for row in rows))
++              for i, header in enumerate(headers)]
++    def line(values):
++        return '  '.join((fit(value, widths[i], right=(i in numeric)))
++                         for i, value in enumerate(values))
++    print(line(headers))
++    print('  '.join('-' * n for n in widths))
++    for row in rows:
++        print(line(row))
+
+ def show_list(config: Config) -> None:
+     complete, incomplete = managed_snapshot_sets(config)
+-    print("TIMESTAMP          STATE      SOURCES")
+-    for name, _ in complete:
+-        print(f"{name:18} COMPLETE   {','.join(source.name for source in config.sources)}")
+-    for name in sorted(incomplete, reverse=True):
+-        print(f"{name:18} INCOMPLETE {','.join(sorted(incomplete[name]))}")
++    rows = [(name, 'COMPLETE', ','.join(source.name for source in config.sources))
++            for name, _ in complete]
++    rows += [(name, 'INCOMPLETE', ','.join(sorted(incomplete[name])))
++             for name in sorted(incomplete, reverse=True)]
++    print_table('BTRFS SNAPSHOT INVENTORY', ('Timestamp UTC', 'State', 'Sources'), rows)
+
+
+ def qgroup_status(path: Path, *, timeout_seconds: int = 8, warning_threshold: int = 100) -> list[str]:
+@@ -1626,18 +1665,6 @@
+     print(f"complete_timestamp_sets={len(complete)};incomplete_timestamp_sets={len(incomplete)}")
+     for source in config.sources:
+         print(f"source={source.name}:{source.source};managed_snapshots={len(list_managed(config, source))}")
+-    if config.verification.required:
+-        state = read_verified_diaries(config, strict=False)
+-        if state and "error" not in state:
+-            print(
+-                "diaries_verification=valid;"
+-                f"logicalDataset={state['logicalDataset']};backupId={state['backupId']};"
+-                f"marker={state['marker']}"
+-            )
+-        else:
+-            print(f"diaries_verification=not-ready;detail={(state or {}).get('error', 'unknown')}")
+-    else:
+-        print("diaries_verification=disabled")
+
+
+ def with_lock(path: Path, *, shared: bool = False, nonblocking: bool = True,
+@@ -1671,23 +1698,11 @@
+     sub = parser.add_subparsers(dest="command", required=True)
+     create_parser = sub.add_parser("create")
+     create_parser.add_argument("--timestamp")
+-    prune_parser = sub.add_parser("prune")
++    prune_parser = sub.add_parser("prune", help="endpoint-aware preview or bounded guarded retention deletion")
+     prune_parser.add_argument("--dry-run", action="store_true")
+-    prune_parser.add_argument("--max-delete", type=int, help="limit source pruning to 1..32 snapshot sets per run")
++    prune_parser.add_argument("--max-delete", type=int, help="maximum deletion count: source 1..32; receiver 1..20")
+     sub.add_parser("list")
+     sub.add_parser("status")
+-    sub.add_parser("receiver-inventory")
+-    sub.add_parser("receiver-plan", help="read-only retention selection for verified received snapshots")
+-    sub.add_parser("receiver-simple-plan", help="Btrfs-verified simplified receiver retention preview")
+-    simple_prune = sub.add_parser("receiver-simple-prune", help="explicitly gated simplified receiver retention")
+-    simple_prune.add_argument("--max-delete", type=int, required=True)
+-    coordination = sub.add_parser("receiver-coordination-check", help="lock-held read-only receiver parent validation; no deletion authority")
+-    coordination.add_argument("--snapshot", required=True)
+-    coordination.add_argument("--source-uuid", required=True)
+-    sub.add_parser("receiver-recovery-plan", help="lock-held non-mutating interrupted receiver prune classification")
+-    guarded = sub.add_parser("receiver-prune", help="explicitly approved, locked receiver deletion")
+-    guarded.add_argument("--approval-file", required=True)
+-    sub.add_parser("run")
+     add_parser = sub.add_parser("hold-add")
+     add_parser.add_argument("timestamp")
+     add_parser.add_argument("--reason", required=True)
+@@ -1699,44 +1714,39 @@
+     try:
+         require_root()
+         config = load_config(Path(args.config))
+-        if config.mode == "receiver" and args.command not in {"list", "status", "receiver-inventory", "receiver-plan", "receiver-prune", "receiver-coordination-check", "receiver-recovery-plan", "receiver-simple-plan", "receiver-simple-prune"}:
+-            raise SnapshotError("receiver mode supports only explicit receiver operations")
+-        manager_lock = with_lock(config.lock_path) if args.command in {"create", "prune", "run", "hold-add", "hold-release", "hold-list", "receiver-prune", "receiver-coordination-check", "receiver-recovery-plan", "receiver-inventory", "receiver-plan", "receiver-simple-plan", "receiver-simple-prune"} else None
++        if config.mode == "receiver" and args.command not in {"list", "status", "prune"}:
++            raise SnapshotError("receiver mode supports only list, status and guarded prune")
++        manager_lock = (with_lock(config.lock_path, shared=True, require_existing=True)
++                        if args.command == 'prune' and args.dry_run else
++                        with_lock(config.lock_path) if args.command in {
++                            "create", "prune", "hold-add", "hold-release", "hold-list"} else None)
+         writer_lock = None
+         try:
+-            if args.command in {"receiver-prune", "receiver-coordination-check", "receiver-recovery-plan", "receiver-inventory", "receiver-plan"}:
+-                if config.receiver_state_dir is None or config.writer_lock_path != config.receiver_state_dir / "writer.lock":
+-                    raise SnapshotError("receiver writer lock configuration missing or inconsistent")
+-                writer_lock = with_lock(config.writer_lock_path, require_existing=True)
+-            if args.command in {"create", "run"} and config.writer_lock_path is not None:
++            if args.command == "create" and config.writer_lock_path is not None:
+                 writer_lock = with_lock(config.writer_lock_path, shared=True, require_existing=True)
+             if args.command == "create":
+                 create_all(config, args.timestamp)
+             elif args.command == "prune":
+-                prune(config, args.dry_run, args.max_delete)
++                if config.mode == "receiver":
++                    if args.dry_run:
++                        if args.max_delete is not None and not 1 <= args.max_delete <= 20:
++                            raise SnapshotError("receiver prune max-delete must be within 1..20")
++                        plan = receiver_simple_plan(config)
++                        if args.max_delete is not None:
++                            plan = dict(plan, candidates=plan["candidates"][:args.max_delete])
++                        receiver_simple_print_plan(plan)
++                    else:
++                        if args.max_delete is None:
++                            raise SnapshotError("receiver prune requires --max-delete N")
++                        receiver_simple_prune(config, max_delete=args.max_delete)
++                else:
++                    prune(config, args.dry_run, args.max_delete)
+             elif args.command == "list":
+                 show_list(config)
+             elif args.command == "status":
+                 show_status(config)
+-            elif args.command == "receiver-inventory":
+-                receiver_inventory(config)
+-            elif args.command == "receiver-plan":
+-                receiver_plan(config)
+-            elif args.command == "receiver-simple-plan":
+-                receiver_simple_print_plan(receiver_simple_plan(config))
+-            elif args.command == "receiver-simple-prune":
+-                receiver_simple_prune(config, max_delete=args.max_delete)
+-            elif args.command == "receiver-coordination-check":
+-                receiver_coordination_check(config, args.snapshot, args.source_uuid)
+-            elif args.command == "receiver-recovery-plan":
+-                receiver_recovery_plan(config)
+-            elif args.command == "receiver-prune":
+-                receiver_guarded_prune(config, Path(args.approval_file))
+             elif args.command in {"hold-add", "hold-release", "hold-list"}:
+                 checkpoint_command(config, args.command, getattr(args, "timestamp", None), getattr(args, "reason", None))
+-            elif args.command == "run":
+-                create_all(config)
+-                prune(config, False)
+         finally:
+             if writer_lock is not None:
+                 writer_lock.close()
+
+changed: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Inspect independent receiver checkpoint holds] ********************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Validate existing hold-file permissions] **************************************
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Read existing hold state without altering it] *********************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Validate mandatory checkpoints in existing hold state] ************************
+skipping: [mars] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}})
+skipping: [mars] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}})
+skipping: [mars]
+ok: [backup] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "key": "20261013-171228Z",
+        "value": {
+            "reason": "Historical recovery baseline",
+            "source_uuids": {
+                "@data": "340674cc-d02c-244e-b7ec-e3ea5a6b151f"
+            }
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "key": "20261018-165453Z",
+        "value": {
+            "reason": "Preserved evidence checkpoint",
+            "source_uuids": {
+                "@data": "087c906a-0518-e34a-88f7-40a5b693c41a"
+            }
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Initialise receiver checkpoint holds only when absent] ************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Read mandatory receiver checkpoint receipts] **********************************
+skipping: [mars] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}})
+skipping: [mars] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}})
+skipping: [mars]
+ok: [backup] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}})
+ok: [backup] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}})
+
+TASK [btrfs-replication : Native Btrfs | Validate mandatory receiver checkpoint receipt identities] ********************
+skipping: [mars] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': "btrfs_native_endpoint_role == 'receiver'", 'ansible_loop_var': 'item', 'item': {'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}})
+skipping: [mars] => (item={'changed': False, 'failed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': "btrfs_native_endpoint_role == 'receiver'", 'ansible_loop_var': 'item', 'item': {'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}})
+skipping: [mars]
+ok: [backup] => (item={'changed': False, 'failed': False, 'ansible_loop_var': 'item', 'item': {'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}, 'content': 'ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX3V1aWQiOiAiMzQwNjc0Y2MtZDAyYy0yNDRlLWI3ZWMtZTNlYTVhNmIxNTFmIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIzNDA2NzRjYy1kMDJjLTI0NGUtYjdlYy1lM2VhNWE2YjE1MWYiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTMtMTQwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJjMGI4MTM4My1iZGZjLTIyNGUtOTdiMS05MGNlZWU0ZDU0ZjAiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTEzVDE4OjA3OjAwLjk3MTM0NyswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K', 'source': '/@data/mars-received/.replication-state/20261013-171228Z.json', 'encoding': 'base64'}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "content": "ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX3V1aWQiOiAiMzQwNjc0Y2MtZDAyYy0yNDRlLWI3ZWMtZTNlYTVhNmIxNTFmIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIzNDA2NzRjYy1kMDJjLTI0NGUtYjdlYy1lM2VhNWE2YjE1MWYiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTMtMTQwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJjMGI4MTM4My1iZGZjLTIyNGUtOTdiMS05MGNlZWU0ZDU0ZjAiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTEzVDE4OjA3OjAwLjk3MTM0NyswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K",
+        "encoding": "base64",
+        "failed": false,
+        "item": {
+            "key": "20261013-171228Z",
+            "value": {
+                "reason": "Historical recovery baseline",
+                "source_uuids": {
+                    "@data": "340674cc-d02c-244e-b7ec-e3ea5a6b151f"
+                }
+            }
+        },
+        "source": "/@data/mars-received/.replication-state/20261013-171228Z.json"
+    }
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => (item={'changed': False, 'failed': False, 'ansible_loop_var': 'item', 'item': {'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}, 'content': 'ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX3V1aWQiOiAiMDg3YzkwNmEtMDUxOC1lMzRhLTg4ZjctNDBhNWI2OTNjNDFhIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIwODdjOTA2YS0wNTE4LWUzNGEtODhmNy00MGE1YjY5M2M0MWEiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTgtMDMwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJmOTFiMzIyYS00YWE3LWFkNDUtYTc2Ni1kN2ExZTJlYjE1YjkiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTE4VDE2OjU1OjM2LjE4NTE0NCswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K', 'source': '/@data/mars-received/.replication-state/20261018-165453Z.json', 'encoding': 'base64'}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "content": "ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX3V1aWQiOiAiMDg3YzkwNmEtMDUxOC1lMzRhLTg4ZjctNDBhNWI2OTNjNDFhIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIwODdjOTA2YS0wNTE4LWUzNGEtODhmNy00MGE1YjY5M2M0MWEiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTgtMDMwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJmOTFiMzIyYS00YWE3LWFkNDUtYTc2Ni1kN2ExZTJlYjE1YjkiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTE4VDE2OjU1OjM2LjE4NTE0NCswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K",
+        "encoding": "base64",
+        "failed": false,
+        "item": {
+            "key": "20261018-165453Z",
+            "value": {
+                "reason": "Preserved evidence checkpoint",
+                "source_uuids": {
+                    "@data": "087c906a-0518-e34a-88f7-40a5b693c41a"
+                }
+            }
+        },
+        "source": "/@data/mars-received/.replication-state/20261018-165453Z.json"
+    }
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install receiver-mode read-only config (opt in)] ******************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Provision stable transaction lock] ********************************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Retire obsolete backup-initiated pull executable] *****************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Retire obsolete rsync-based pull helper] **************************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install public receiver retention policy (opt in)] ****************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Keep retired observer sudoers absent] *****************************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Btrfs replication | Install common sender/receiver runtime] **********************************
+--- before
++++ after: /home/richard/ansible-controller/playbooks/roles/btrfs-replication/files/btrfs-replication.py
+@@ -0,0 +1,516 @@
++#!/usr/bin/env python3
++"""0040-FEAT: simple native Btrfs agreed-parent replication (opt-in).
++
++Single local flock per host, small agreed-parent record, ordinary logs,
++receiver-owned inspection/cleanup, one attempt per scheduled cycle.
++The source status command is read-only and never initiates a sender cycle.
++"""
++import argparse
++from contextlib import contextmanager
++import fcntl
++import json
++import os
++from pathlib import Path
++import re
++import shlex
++import stat
++import subprocess
++import sys
++import tempfile
++import time
++
++STAMP = re.compile(r"[0-9]{8}-[0-9]{6}Z\Z")
++UUID = re.compile(r"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\Z")
++SOURCE = Path('/media/usb/@snapshots/@data')
++RECEIVED = Path('/@data/mars-received/@data')
++SOURCE_MOUNT = Path('/media/usb')
++RECEIVER_MOUNT = Path('/')
++SOURCE_FS = '72d1d8ea-900e-4fca-837f-1b1febec036c'
++RECEIVER_FS = 'b915f967-7cb4-4c14-b11b-f52209637a22'
++SOURCE_STATE = Path('/media/usb/@snapshots/.simple-agreed-parent.json')
++RECEIVER_STATE = Path('/@data/mars-received/.replication-state/.simple-agreed-parent.json')
++MANAGER_LOCK = Path('/run/lock/btrfs-snapshot-manager.lock')
++REMOTE = 'richard@10.254.22.1'
++SSH_PORT = '39263'
++SSH_USER = 'richard'
++INSTALL = '/usr/local/bin/btrfs-replication'
++TIMEOUT = 6 * 60 * 60
++
++class Refuse(RuntimeError):
++    pass
++
++class Deferred(Refuse):
++    pass
++
++def require(ok, reason):
++    if not ok:
++        raise Refuse(reason)
++
++def timestamp(s):
++    require(isinstance(s, str) and STAMP.fullmatch(s), 'Invalid timestamp')
++    return s
++
++def uid(s):
++    require(isinstance(s, str) and UUID.fullmatch(s), 'Invalid UUID')
++    return s
++
++def record(stamp, uuid):
++    return {'timestamp': timestamp(stamp), 'uuid': uid(uuid)}
++
++def validate_state(data):
++    require(type(data) is dict and set(data) == {'schema', 'parent', 'prior'} and
++            type(data['schema']) is int and data['schema'] == 1, 'Invalid state schema')
++    def item(obj):
++        require(type(obj) is dict and set(obj) == {'timestamp', 'uuid'}, 'Invalid parent record')
++        return record(obj['timestamp'], obj['uuid'])
++    parent = item(data['parent'])
++    prior = item(data['prior']) if data['prior'] is not None else None
++    require(prior is None or prior['timestamp'] < parent['timestamp'], 'Invalid prior generation')
++    return {'schema': 1, 'parent': parent, 'prior': prior}
++
++def initial_state(stamp, uuid):
++    return validate_state({'schema': 1, 'parent': record(stamp, uuid), 'prior': None})
++
++def advance(state, stamp, uuid):
++    before = validate_state(state)
++    next_parent = record(stamp, uuid)
++    require(next_parent['timestamp'] > before['parent']['timestamp'], 'Candidate not newer than parent')
++    return validate_state({'schema': 1, 'parent': next_parent, 'prior': before['parent']})
++
++def safe_directory(path):
++    require(path.is_dir() and not path.is_symlink(), f'Unsafe directory: {path}')
++
++def load_state(path):
++    safe_directory(path.parent)
++    require(not path.is_symlink() and path.is_file(), f'Missing/unsafe agreed parent: {path}')
++    info = path.stat()
++    require(stat.S_ISREG(info.st_mode) and info.st_nlink == 1 and info.st_uid == 0 and
++            not info.st_mode & 0o077 and info.st_size <= 4096, 'Unsafe state permissions/size')
++    return validate_state(json.loads(path.read_text(encoding='utf-8')))
++
++def save_state(path, state, *, create=False):
++    validated = validate_state(state)
++    safe_directory(path.parent)
++    if create:
++        require(not path.exists() and not path.is_symlink(), 'State already exists')
++    else:
++        load_state(path)
++    fd, temp = tempfile.mkstemp(prefix='.simple-state-', dir=path.parent)
++    try:
++        os.fchmod(fd, 0o600)
++        with os.fdopen(fd, 'w', encoding='utf-8') as out:
++            json.dump(validated, out, sort_keys=True)
++            out.write('\n')
++            out.flush()
++            os.fsync(out.fileno())
++        os.replace(temp, path)
++        directory_fd = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
++        try:
++            os.fsync(directory_fd)
++        finally:
++            os.close(directory_fd)
++    finally:
++        if os.path.exists(temp):
++            os.unlink(temp)
++
++def take_lock(path=None, *, create=True):
++    # Resolve the configured lock at call time, including in isolated fixtures.
++    if path is None:
++        path = MANAGER_LOCK
++    require(not path.is_symlink(), 'Unsafe lock path')
++    flags = os.O_RDWR | os.O_CLOEXEC | os.O_NOFOLLOW
++    if create:
++        flags |= os.O_CREAT
++    fd = os.open(path, flags, 0o600)
++    try:
++        require(stat.S_ISREG(os.fstat(fd).st_mode), 'Invalid lock file')
++        try:
++            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
++        except BlockingIOError as exc:
++            raise Deferred('DEFERRED: local snapshot-manager lock busy') from exc
++        return fd
++    except BaseException:
++        os.close(fd)
++        raise
++
++@contextmanager
++def locked(*, create=True):
++    fd = take_lock(create=create)
++    try:
++        yield
++    finally:
++        os.close(fd)
++
++def call(*args, input=None, timeout=60):
++    return subprocess.run(list(args), input=input, check=True, text=True,
++                          capture_output=True, timeout=timeout)
++
++def require_filesystem(mount, expected):
++    # A mounted data volume must not silently be replaced by an ordinary directory.
++    data = call('btrfs', 'filesystem', 'show', str(mount)).stdout
++    require(re.search(r'\buuid:\s*' + re.escape(expected) + r'\b', data, re.I),
++            f'Unexpected Btrfs filesystem at {mount}')
++
++def subvolume_info(root, stamp):
++    timestamp(stamp)
++    safe_directory(root)
++    path = root / stamp
++    require(not path.is_symlink(), 'Candidate is symlink')
++    if not path.exists():
++        return None
++    require(path.is_dir(), 'Candidate is not a directory')
++    output = call('btrfs', 'subvolume', 'show', str(path)).stdout
++    details = dict(re.findall(r'^\s*(UUID|Received UUID|Flags|Parent UUID):\s*(.*?)\s*$', output, re.M))
++    require(set(details) == {'UUID', 'Received UUID', 'Flags', 'Parent UUID'} and
++            UUID.fullmatch(details['UUID']), 'Candidate is not a verified Btrfs subvolume')
++    return details
++
++def verified(info, expected_uuid, *, received):
++    return info is not None and info['Flags'] == 'readonly' and (
++        info['Received UUID'] == expected_uuid if received else
++        info['UUID'] == expected_uuid and info['Received UUID'] == '-')
++
++def protected_stamps(state):
++    value = validate_state(state)
++    return {item['timestamp'] for item in (value['parent'], value['prior']) if item}
++
++def legacy_blocks():
++    state = RECEIVER_STATE.parent
++    # A dormant older recovery transaction must be reconciled before changing the
++    # receiver dataset. Only these fixed legacy names are considered.
++    return any((state / name).exists() or (state / name).is_symlink() for name in (
++        '.agreed-parent-transfer-pending.json', '.receiver-prune-pending.json',
++        '.agreed-parent-provisional.json'))
++
++def classify_candidate(stamp, uuid, state, *, inspect, receipts_dir=RECEIVER_STATE.parent):
++    timestamp(stamp); uid(uuid)
++    require(stamp not in protected_stamps(state), 'Candidate protected by agreed-parent state')
++    require(not legacy_blocks(), 'Legacy transaction pending')
++    # Independent historical holds are never deletion candidates.
++    holds = Path('/etc/btrfs-receiver-checkpoint-holds.json')
++    if holds.exists():
++        require(not holds.is_symlink(), 'Unsafe checkpoint holds')
++        content = json.loads(holds.read_text())
++        # Check all nested dictionaries because inventory layout varies by generation.
++        require(stamp not in json.dumps(content), 'Candidate appears in independent holds')
++    require(not (receipts_dir / (stamp + '.json')).exists() and
++            not (receipts_dir / (stamp + '.json')).is_symlink(), 'Candidate has legacy receipt')
++    info = inspect(stamp)
++    if info is None:
++        return 'absent'
++    if verified(info, uuid, received=True):
++        return 'complete'
++    # Never delete a readonly candidate, a received UUID, or an unexpected object.
++    require(info['Flags'] != 'readonly' and info['Received UUID'] == '-' and
++            UUID.fullmatch(info['UUID']), 'Ambiguous candidate; manual review')
++    return 'incomplete'
++
++def remove_incomplete(stamp, uuid, state, *, inspect, delete, readback):
++    require(classify_candidate(stamp, uuid, state, inspect=inspect) == 'incomplete',
++            'Cleanup not authorised')
++    before = inspect(stamp)
++    # Recheck immediately before the only destructive operation.
++    require(classify_candidate(stamp, uuid, state, inspect=inspect) == 'incomplete' and
++            inspect(stamp)['UUID'] == before['UUID'], 'Candidate changed before cleanup')
++    delete(stamp)
++    require(readback(stamp) is None, 'Deleted candidate still present')
++    return True
++
++def ssh_command(*args):
++    require(all(isinstance(x, str) and '\x00' not in x for x in args), 'Unsafe SSH argument')
++    # 0041: opt-in per-transaction transport. The currently scheduled root
++    # service continues using the unchanged legacy route until cutover.
++    if os.environ.get('BTRFS_REPLICATION_IDENTITY_MODE') == 'dedicated':
++        command = shlex.join(['btrfs-replication', 'receiver', *args])
++        return [
++            'sudo', '-n', '-u', 'btrfs-send', 'ssh', '-F', '/dev/null',
++            '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15',
++            '-o', 'StrictHostKeyChecking=yes', '-o', 'IdentitiesOnly=yes',
++            '-o', 'UserKnownHostsFile=/etc/btrfs-replication-0041/known_hosts',
++            '-i', '/var/lib/btrfs-send/.ssh/id_ed25519',
++            '-p', SSH_PORT, 'btrfs-receive@10.254.22.1', command]
++    require(os.environ.get('BTRFS_REPLICATION_IDENTITY_MODE', '') == '',
++            'Unknown replication transport mode')
++    command = shlex.join(['sudo', '-n', INSTALL, 'receiver', *args])
++    return ['sudo', '-n', '-u', SSH_USER, 'ssh', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15',
++            '-p', SSH_PORT, REMOTE, command]
++
++def peer(*args):
++    result = subprocess.run(ssh_command(*args), capture_output=True,
++                            text=True, timeout=90)
++    if result.returncode == 75:
++        raise Deferred('DEFERRED: receiver snapshot-manager lock busy')
++    require(result.returncode == 0, 'Receiver failed: ' + result.stderr[-2000:])
++    return json.loads(result.stdout)
++
++def choose_next(current, *, source_root=SOURCE, inspect=None):
++    inspect = inspect or (lambda name: subvolume_info(source_root, name))
++    safe_directory(source_root)
++    # Match the established daily --latest policy: one incremental transfer to
++    # the newest eligible snapshot, rather than falling behind hourly creation.
++    items = sorted((entry.name for entry in source_root.iterdir()
++                    if not entry.is_symlink() and entry.is_dir() and STAMP.fullmatch(entry.name)
++                    and entry.name > current), reverse=True)
++    for stamp in items:
++        info = inspect(stamp)
++        require(info is not None and info['Flags'] == 'readonly' and
++                info['Received UUID'] == '-' and UUID.fullmatch(info['UUID']),
++                'Unsafe source candidate: ' + stamp)
++        return stamp, info['UUID']
++    return None
++
++def reconcile(source, remote):
++    a, b = validate_state(source), validate_state(remote)
++    if a == b:
++        return 'equal'
++    if b['prior'] == a['parent'] and b['parent']['timestamp'] > a['parent']['timestamp']:
++        return 'receiver-ahead'
++    raise Refuse('Agreed-parent states differ ambiguously; preserve both and investigate')
++
++def receive_receiver(stamp, uuid, old_stamp, old_uuid, *, run=call):
++    safe_directory(RECEIVED)
++    state = load_state(RECEIVER_STATE)
++    require(state['parent'] == record(old_stamp, old_uuid), 'Receiver agreed parent changed')
++    require(verified(subvolume_info(RECEIVED, old_stamp), old_uuid, received=True),
++            'Receiver parent identity changed')
++    classification = classify_candidate(stamp, uuid, state,
++        inspect=lambda s: subvolume_info(RECEIVED, s))
++    if classification == 'incomplete':
++        # Not a general garbage collector: only the exact candidate is eligible.
++        remove_incomplete(stamp, uuid, state,
++            inspect=lambda s: subvolume_info(RECEIVED, s),
++            delete=lambda s: run('btrfs', 'subvolume', 'delete', str(RECEIVED / s), timeout=90),
++            readback=lambda s: subvolume_info(RECEIVED, s))
++        print('INFO: cleaned one incomplete candidate; retrying receive', file=sys.stderr)
++    elif classification == 'complete':
++        raise Refuse('Candidate complete; use receiver advance without retransmission')
++    run('btrfs', 'receive', str(RECEIVED), timeout=TIMEOUT)
++    require(verified(subvolume_info(RECEIVED, stamp), uuid, received=True),
++            'Received candidate identity/read-only mismatch')
++    save_state(RECEIVER_STATE, advance(state, stamp, uuid))
++    return {'status': 'received', 'state': load_state(RECEIVER_STATE)}
++
++def receiver_main(args):
++    with locked(create=(args.operation != 'status')):
++        require_filesystem(RECEIVER_MOUNT, RECEIVER_FS)
++        safe_directory(RECEIVED)
++        if args.operation == 'status':
++            state = load_state(RECEIVER_STATE)
++            result = {'state': state}
++            if args.snapshot:
++                result['candidate'] = subvolume_info(RECEIVED, args.snapshot)
++        elif args.operation == 'bootstrap':
++            require(args.snapshot and args.uuid, 'Missing bootstrap parent')
++            require(verified(subvolume_info(RECEIVED, args.snapshot), args.uuid, received=True),
++                    'Invalid receiver bootstrap identity')
++            wanted = initial_state(args.snapshot, args.uuid)
++            if RECEIVER_STATE.exists():
++                require(load_state(RECEIVER_STATE) == wanted, 'Receiver already bootstrapped differently')
++            else:
++                save_state(RECEIVER_STATE, wanted, create=True)
++            result = {'state': load_state(RECEIVER_STATE)}
++        elif args.operation in ('receive', 'advance'):
++            require(all((args.snapshot, args.uuid, args.parent, args.parent_uuid)),
++                    'Missing candidate/parent')
++            state = load_state(RECEIVER_STATE)
++            require(state['parent'] == record(args.parent, args.parent_uuid),
++                    'Receiver parent state changed')
++            require(verified(subvolume_info(RECEIVED, args.parent), args.parent_uuid, received=True),
++                    'Receiver parent identity invalid')
++            if args.operation == 'advance':
++                require(classify_candidate(args.snapshot, args.uuid, state,
++                    inspect=lambda s: subvolume_info(RECEIVED, s)) == 'complete',
++                    'Candidate not already complete')
++                save_state(RECEIVER_STATE, advance(state, args.snapshot, args.uuid))
++                result = {'state': load_state(RECEIVER_STATE), 'status': 'reconciled'}
++            else:
++                # Run btrfs receive with caller's stdin; do not buffer the binary stream.
++                result = receive_receiver(args.snapshot, args.uuid, args.parent,
++                                          args.parent_uuid, run=run_receive_command)
++        else:
++            raise Refuse('Unsupported receiver operation')
++        print(json.dumps(result, sort_keys=True), flush=True)
++
++def run_receive_command(*argv, timeout):
++    with subprocess.Popen(list(argv), stdin=sys.stdin.buffer if argv[1] == 'receive' else None,
++                          stdout=subprocess.DEVNULL, stderr=subprocess.PIPE) as child:
++        try:
++            _, errors = child.communicate(timeout=timeout)
++        except subprocess.TimeoutExpired:
++            child.kill(); child.communicate()
++            raise Refuse('Btrfs operation timed out')
++        require(child.returncode == 0, 'Btrfs operation failed: ' + errors.decode(errors='replace')[-2000:])
++
++def stream_send(parent, candidate):
++    command = ['btrfs', 'send', '-p', str(SOURCE / parent), str(SOURCE / candidate)]
++    remote_command = ssh_command('receive', '--snapshot', candidate,
++                                 '--uuid', subvolume_info(SOURCE, candidate)['UUID'],
++                                 '--parent', parent,
++                                 '--parent-uuid', subvolume_info(SOURCE, parent)['UUID'])
++    # Disk-backed stderr prevents large sender diagnostics filling a pipe
++    # while the receiver is blocked waiting for the next stream bytes.
++    with tempfile.TemporaryFile() as send_errors, subprocess.Popen(
++            command, stdout=subprocess.PIPE, stderr=send_errors,
++            start_new_session=True) as sender:
++        with subprocess.Popen(remote_command, stdin=sender.stdout,
++                              stdout=subprocess.PIPE, stderr=subprocess.PIPE,
++                              start_new_session=True) as receiver:
++            sender.stdout.close()
++            try:
++                output, remote_error = receiver.communicate(timeout=TIMEOUT)
++                sender.wait(timeout=15)
++                send_errors.seek(0)
++                sender_error = send_errors.read()[-2000:]
++            except (subprocess.TimeoutExpired, KeyboardInterrupt):
++                receiver.kill(); sender.kill()
++                receiver.communicate(); sender.communicate()
++                raise Refuse('Transfer timeout/interruption; parent unchanged locally')
++            if receiver.returncode == 75:
++                raise Deferred('DEFERRED: receiver lock busy during transfer')
++            require(sender.returncode == 0 and receiver.returncode == 0,
++                    'Transfer failed: sender=' + str(sender.returncode) +
++                    ' receiver=' + str(receiver.returncode) + ' ' +
++                    (sender_error + remote_error).decode(errors='replace')[-2000:])
++            return json.loads(output)
++
++def sender_readonly_status():
++    """Inspect both ends without sending, advancing or saving agreed-parent state.
++
++    Uses the same root-owned manager lock as the scheduled sender.  Refusal or
++    a busy receiver is reported as an unavailable preflight, never a transfer.
++    """
++    source = load_state(SOURCE_STATE)
++    parent = source['parent']
++    parent_info = subvolume_info(SOURCE, parent['timestamp'])
++    require(verified(parent_info, parent['uuid'], received=False),
++            'Source parent identity invalid')
++    if source['prior']:
++        prior = source['prior']
++        require(verified(subvolume_info(SOURCE, prior['timestamp']),
++                         prior['uuid'], received=False), 'Source prior identity invalid')
++
++    remote = validate_state(peer('status')['state'])
++    relation = reconcile(source, remote)
++    # Verify the actual Btrfs Received UUID, not only the remote JSON record.
++    receiver_parent = remote['parent']
++    inspection = peer('status', '--snapshot', receiver_parent['timestamp'])
++    require(validate_state(inspection['state']) == remote and
++            verified(inspection['candidate'], receiver_parent['uuid'], received=True),
++            'Receiver parent identity or agreed-parent state changed')
++
++    if relation == 'receiver-ahead':
++        require(verified(subvolume_info(SOURCE, receiver_parent['timestamp']),
++                         receiver_parent['uuid'], received=False),
++                'Receiver ahead but source new parent is invalid')
++        preflight = {'action': 'receiver-ahead-reconciliation-required',
++                     'source': None, 'parent': parent['timestamp']}
++    else:
++        selected = choose_next(parent['timestamp'])
++        if selected:
++            stamp, uuid = selected
++            candidate = subvolume_info(SOURCE, stamp)
++            require(candidate['Parent UUID'] == parent_info['Parent UUID'],
++                    'Candidate source lineage differs from agreed parent')
++            preflight = {'action': 'incremental', 'source': stamp,
++                         'source_uuid': uuid, 'parent': parent['timestamp']}
++        else:
++            preflight = {'action': 'up-to-date', 'source': None,
++                         'parent': parent['timestamp']}
++    return {'state': source, 'receiver': remote, 'relation': relation,
++            'receiver_parent_verified': True, 'preflight': preflight}
++
++def sender_main(args):
++    with locked(create=(args.operation != 'status')):
++        require_filesystem(SOURCE_MOUNT, SOURCE_FS)
++        safe_directory(SOURCE)
++        if args.operation == 'bootstrap':
++            require(args.snapshot, 'Missing initial snapshot')
++            source = subvolume_info(SOURCE, args.snapshot)
++            require(source and source['Flags'] == 'readonly' and
++                    source['Received UUID'] == '-', 'Invalid local bootstrap')
++            expected = initial_state(args.snapshot, source['UUID'])
++            if SOURCE_STATE.exists():
++                require(load_state(SOURCE_STATE) == expected, 'Source already bootstrapped differently')
++            result = peer('bootstrap', '--snapshot', args.snapshot, '--uuid', source['UUID'])
++            require(result['state'] == expected, 'Receiver initialisation mismatch')
++            if not SOURCE_STATE.exists():
++                save_state(SOURCE_STATE, expected, create=True)
++            print('SUCCESS: both agreed-parent records initialised')
++            return
++        if args.operation == 'status':
++            print(json.dumps(sender_readonly_status(), sort_keys=True, indent=2))
++            return
++        current = load_state(SOURCE_STATE)
++        require(verified(subvolume_info(SOURCE, current['parent']['timestamp']),
++                         current['parent']['uuid'], received=False), 'Source parent invalid')
++        remote_state = peer('status')['state']
++        relation = reconcile(current, remote_state)
++        if relation == 'receiver-ahead':
++            new = remote_state['parent']
++            require(verified(subvolume_info(SOURCE, new['timestamp']), new['uuid'], received=False),
++                    'Cannot reconcile source: new parent missing/mismatched')
++            save_state(SOURCE_STATE, remote_state)
++            print('SUCCESS: reconciled receiver-ahead transfer without retransmission')
++            return
++        next_snapshot = choose_next(current['parent']['timestamp'])
++        if next_snapshot is None:
++            print('SUCCESS: no newer eligible source snapshot')
++            return
++        stamp, uuid = next_snapshot
++        candidate_info = subvolume_info(SOURCE, stamp)
++        parent_info = subvolume_info(SOURCE, current['parent']['timestamp'])
++        require(candidate_info['Parent UUID'] == parent_info['Parent UUID'],
++                'Candidate source lineage differs from agreed parent')
++        status = peer('status', '--snapshot', stamp)
++        require(status['state'] == current, 'Receiver state changed')
++        prior = current['parent']
++        if verified(status['candidate'], uuid, received=True):
++            response = peer('advance', '--snapshot', stamp, '--uuid', uuid,
++                            '--parent', prior['timestamp'], '--parent-uuid', prior['uuid'])
++        else:
++            # The receiver owns exact candidate cleanup and at most one receive attempt.
++            response = stream_send(prior['timestamp'], stamp)
++        expected = advance(current, stamp, uuid)
++        require(response['state'] == expected, 'Receiver did not confirm agreed-parent advancement')
++        check = peer('status', '--snapshot', stamp)
++        require(check['state'] == expected and
++                verified(check['candidate'], uuid, received=True), 'Receiver readback mismatch')
++        save_state(SOURCE_STATE, expected)
++        print('SUCCESS: common parent advanced to ' + stamp)
++
++def main(argv=None):
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('host', choices=['sender','receiver'])
++    parser.add_argument('operation', choices=['cycle','status','bootstrap','receive','advance'])
++    parser.add_argument('--snapshot')
++    parser.add_argument('--uuid')
++    parser.add_argument('--parent')
++    parser.add_argument('--parent-uuid')
++    args = parser.parse_args(argv)
++    try:
++        require(os.geteuid() == 0, 'Must run as root')
++        if args.snapshot:
++            timestamp(args.snapshot)
++        if args.uuid:
++            uid(args.uuid)
++        if args.parent:
++            timestamp(args.parent)
++        if args.parent_uuid:
++            uid(args.parent_uuid)
++        if args.host == 'sender':
++            require(args.operation in ('cycle','bootstrap','status'), 'Unsupported sender operation')
++            sender_main(args)
++        else:
++            require(args.operation in ('status','bootstrap','receive','advance'),
++                    'Unsupported receiver operation')
++            receiver_main(args)
++        return 0
++    except Deferred as e:
++        print(str(e), file=sys.stderr)
++        return 75
++    except (Refuse, OSError, ValueError, subprocess.SubprocessError, KeyError, json.JSONDecodeError) as e:
++        print('FAILED: ' + str(e), file=sys.stderr)
++        return 1
++
++if __name__ == '__main__':
++    sys.exit(main())
+
+changed: [backup]
+--- before
++++ after: /home/richard/ansible-controller/playbooks/roles/btrfs-replication/files/btrfs-replication.py
+@@ -0,0 +1,516 @@
++#!/usr/bin/env python3
++"""0040-FEAT: simple native Btrfs agreed-parent replication (opt-in).
++
++Single local flock per host, small agreed-parent record, ordinary logs,
++receiver-owned inspection/cleanup, one attempt per scheduled cycle.
++The source status command is read-only and never initiates a sender cycle.
++"""
++import argparse
++from contextlib import contextmanager
++import fcntl
++import json
++import os
++from pathlib import Path
++import re
++import shlex
++import stat
++import subprocess
++import sys
++import tempfile
++import time
++
++STAMP = re.compile(r"[0-9]{8}-[0-9]{6}Z\Z")
++UUID = re.compile(r"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\Z")
++SOURCE = Path('/media/usb/@snapshots/@data')
++RECEIVED = Path('/@data/mars-received/@data')
++SOURCE_MOUNT = Path('/media/usb')
++RECEIVER_MOUNT = Path('/')
++SOURCE_FS = '72d1d8ea-900e-4fca-837f-1b1febec036c'
++RECEIVER_FS = 'b915f967-7cb4-4c14-b11b-f52209637a22'
++SOURCE_STATE = Path('/media/usb/@snapshots/.simple-agreed-parent.json')
++RECEIVER_STATE = Path('/@data/mars-received/.replication-state/.simple-agreed-parent.json')
++MANAGER_LOCK = Path('/run/lock/btrfs-snapshot-manager.lock')
++REMOTE = 'richard@10.254.22.1'
++SSH_PORT = '39263'
++SSH_USER = 'richard'
++INSTALL = '/usr/local/bin/btrfs-replication'
++TIMEOUT = 6 * 60 * 60
++
++class Refuse(RuntimeError):
++    pass
++
++class Deferred(Refuse):
++    pass
++
++def require(ok, reason):
++    if not ok:
++        raise Refuse(reason)
++
++def timestamp(s):
++    require(isinstance(s, str) and STAMP.fullmatch(s), 'Invalid timestamp')
++    return s
++
++def uid(s):
++    require(isinstance(s, str) and UUID.fullmatch(s), 'Invalid UUID')
++    return s
++
++def record(stamp, uuid):
++    return {'timestamp': timestamp(stamp), 'uuid': uid(uuid)}
++
++def validate_state(data):
++    require(type(data) is dict and set(data) == {'schema', 'parent', 'prior'} and
++            type(data['schema']) is int and data['schema'] == 1, 'Invalid state schema')
++    def item(obj):
++        require(type(obj) is dict and set(obj) == {'timestamp', 'uuid'}, 'Invalid parent record')
++        return record(obj['timestamp'], obj['uuid'])
++    parent = item(data['parent'])
++    prior = item(data['prior']) if data['prior'] is not None else None
++    require(prior is None or prior['timestamp'] < parent['timestamp'], 'Invalid prior generation')
++    return {'schema': 1, 'parent': parent, 'prior': prior}
++
++def initial_state(stamp, uuid):
++    return validate_state({'schema': 1, 'parent': record(stamp, uuid), 'prior': None})
++
++def advance(state, stamp, uuid):
++    before = validate_state(state)
++    next_parent = record(stamp, uuid)
++    require(next_parent['timestamp'] > before['parent']['timestamp'], 'Candidate not newer than parent')
++    return validate_state({'schema': 1, 'parent': next_parent, 'prior': before['parent']})
++
++def safe_directory(path):
++    require(path.is_dir() and not path.is_symlink(), f'Unsafe directory: {path}')
++
++def load_state(path):
++    safe_directory(path.parent)
++    require(not path.is_symlink() and path.is_file(), f'Missing/unsafe agreed parent: {path}')
++    info = path.stat()
++    require(stat.S_ISREG(info.st_mode) and info.st_nlink == 1 and info.st_uid == 0 and
++            not info.st_mode & 0o077 and info.st_size <= 4096, 'Unsafe state permissions/size')
++    return validate_state(json.loads(path.read_text(encoding='utf-8')))
++
++def save_state(path, state, *, create=False):
++    validated = validate_state(state)
++    safe_directory(path.parent)
++    if create:
++        require(not path.exists() and not path.is_symlink(), 'State already exists')
++    else:
++        load_state(path)
++    fd, temp = tempfile.mkstemp(prefix='.simple-state-', dir=path.parent)
++    try:
++        os.fchmod(fd, 0o600)
++        with os.fdopen(fd, 'w', encoding='utf-8') as out:
++            json.dump(validated, out, sort_keys=True)
++            out.write('\n')
++            out.flush()
++            os.fsync(out.fileno())
++        os.replace(temp, path)
++        directory_fd = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
++        try:
++            os.fsync(directory_fd)
++        finally:
++            os.close(directory_fd)
++    finally:
++        if os.path.exists(temp):
++            os.unlink(temp)
++
++def take_lock(path=None, *, create=True):
++    # Resolve the configured lock at call time, including in isolated fixtures.
++    if path is None:
++        path = MANAGER_LOCK
++    require(not path.is_symlink(), 'Unsafe lock path')
++    flags = os.O_RDWR | os.O_CLOEXEC | os.O_NOFOLLOW
++    if create:
++        flags |= os.O_CREAT
++    fd = os.open(path, flags, 0o600)
++    try:
++        require(stat.S_ISREG(os.fstat(fd).st_mode), 'Invalid lock file')
++        try:
++            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
++        except BlockingIOError as exc:
++            raise Deferred('DEFERRED: local snapshot-manager lock busy') from exc
++        return fd
++    except BaseException:
++        os.close(fd)
++        raise
++
++@contextmanager
++def locked(*, create=True):
++    fd = take_lock(create=create)
++    try:
++        yield
++    finally:
++        os.close(fd)
++
++def call(*args, input=None, timeout=60):
++    return subprocess.run(list(args), input=input, check=True, text=True,
++                          capture_output=True, timeout=timeout)
++
++def require_filesystem(mount, expected):
++    # A mounted data volume must not silently be replaced by an ordinary directory.
++    data = call('btrfs', 'filesystem', 'show', str(mount)).stdout
++    require(re.search(r'\buuid:\s*' + re.escape(expected) + r'\b', data, re.I),
++            f'Unexpected Btrfs filesystem at {mount}')
++
++def subvolume_info(root, stamp):
++    timestamp(stamp)
++    safe_directory(root)
++    path = root / stamp
++    require(not path.is_symlink(), 'Candidate is symlink')
++    if not path.exists():
++        return None
++    require(path.is_dir(), 'Candidate is not a directory')
++    output = call('btrfs', 'subvolume', 'show', str(path)).stdout
++    details = dict(re.findall(r'^\s*(UUID|Received UUID|Flags|Parent UUID):\s*(.*?)\s*$', output, re.M))
++    require(set(details) == {'UUID', 'Received UUID', 'Flags', 'Parent UUID'} and
++            UUID.fullmatch(details['UUID']), 'Candidate is not a verified Btrfs subvolume')
++    return details
++
++def verified(info, expected_uuid, *, received):
++    return info is not None and info['Flags'] == 'readonly' and (
++        info['Received UUID'] == expected_uuid if received else
++        info['UUID'] == expected_uuid and info['Received UUID'] == '-')
++
++def protected_stamps(state):
++    value = validate_state(state)
++    return {item['timestamp'] for item in (value['parent'], value['prior']) if item}
++
++def legacy_blocks():
++    state = RECEIVER_STATE.parent
++    # A dormant older recovery transaction must be reconciled before changing the
++    # receiver dataset. Only these fixed legacy names are considered.
++    return any((state / name).exists() or (state / name).is_symlink() for name in (
++        '.agreed-parent-transfer-pending.json', '.receiver-prune-pending.json',
++        '.agreed-parent-provisional.json'))
++
++def classify_candidate(stamp, uuid, state, *, inspect, receipts_dir=RECEIVER_STATE.parent):
++    timestamp(stamp); uid(uuid)
++    require(stamp not in protected_stamps(state), 'Candidate protected by agreed-parent state')
++    require(not legacy_blocks(), 'Legacy transaction pending')
++    # Independent historical holds are never deletion candidates.
++    holds = Path('/etc/btrfs-receiver-checkpoint-holds.json')
++    if holds.exists():
++        require(not holds.is_symlink(), 'Unsafe checkpoint holds')
++        content = json.loads(holds.read_text())
++        # Check all nested dictionaries because inventory layout varies by generation.
++        require(stamp not in json.dumps(content), 'Candidate appears in independent holds')
++    require(not (receipts_dir / (stamp + '.json')).exists() and
++            not (receipts_dir / (stamp + '.json')).is_symlink(), 'Candidate has legacy receipt')
++    info = inspect(stamp)
++    if info is None:
++        return 'absent'
++    if verified(info, uuid, received=True):
++        return 'complete'
++    # Never delete a readonly candidate, a received UUID, or an unexpected object.
++    require(info['Flags'] != 'readonly' and info['Received UUID'] == '-' and
++            UUID.fullmatch(info['UUID']), 'Ambiguous candidate; manual review')
++    return 'incomplete'
++
++def remove_incomplete(stamp, uuid, state, *, inspect, delete, readback):
++    require(classify_candidate(stamp, uuid, state, inspect=inspect) == 'incomplete',
++            'Cleanup not authorised')
++    before = inspect(stamp)
++    # Recheck immediately before the only destructive operation.
++    require(classify_candidate(stamp, uuid, state, inspect=inspect) == 'incomplete' and
++            inspect(stamp)['UUID'] == before['UUID'], 'Candidate changed before cleanup')
++    delete(stamp)
++    require(readback(stamp) is None, 'Deleted candidate still present')
++    return True
++
++def ssh_command(*args):
++    require(all(isinstance(x, str) and '\x00' not in x for x in args), 'Unsafe SSH argument')
++    # 0041: opt-in per-transaction transport. The currently scheduled root
++    # service continues using the unchanged legacy route until cutover.
++    if os.environ.get('BTRFS_REPLICATION_IDENTITY_MODE') == 'dedicated':
++        command = shlex.join(['btrfs-replication', 'receiver', *args])
++        return [
++            'sudo', '-n', '-u', 'btrfs-send', 'ssh', '-F', '/dev/null',
++            '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15',
++            '-o', 'StrictHostKeyChecking=yes', '-o', 'IdentitiesOnly=yes',
++            '-o', 'UserKnownHostsFile=/etc/btrfs-replication-0041/known_hosts',
++            '-i', '/var/lib/btrfs-send/.ssh/id_ed25519',
++            '-p', SSH_PORT, 'btrfs-receive@10.254.22.1', command]
++    require(os.environ.get('BTRFS_REPLICATION_IDENTITY_MODE', '') == '',
++            'Unknown replication transport mode')
++    command = shlex.join(['sudo', '-n', INSTALL, 'receiver', *args])
++    return ['sudo', '-n', '-u', SSH_USER, 'ssh', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15',
++            '-p', SSH_PORT, REMOTE, command]
++
++def peer(*args):
++    result = subprocess.run(ssh_command(*args), capture_output=True,
++                            text=True, timeout=90)
++    if result.returncode == 75:
++        raise Deferred('DEFERRED: receiver snapshot-manager lock busy')
++    require(result.returncode == 0, 'Receiver failed: ' + result.stderr[-2000:])
++    return json.loads(result.stdout)
++
++def choose_next(current, *, source_root=SOURCE, inspect=None):
++    inspect = inspect or (lambda name: subvolume_info(source_root, name))
++    safe_directory(source_root)
++    # Match the established daily --latest policy: one incremental transfer to
++    # the newest eligible snapshot, rather than falling behind hourly creation.
++    items = sorted((entry.name for entry in source_root.iterdir()
++                    if not entry.is_symlink() and entry.is_dir() and STAMP.fullmatch(entry.name)
++                    and entry.name > current), reverse=True)
++    for stamp in items:
++        info = inspect(stamp)
++        require(info is not None and info['Flags'] == 'readonly' and
++                info['Received UUID'] == '-' and UUID.fullmatch(info['UUID']),
++                'Unsafe source candidate: ' + stamp)
++        return stamp, info['UUID']
++    return None
++
++def reconcile(source, remote):
++    a, b = validate_state(source), validate_state(remote)
++    if a == b:
++        return 'equal'
++    if b['prior'] == a['parent'] and b['parent']['timestamp'] > a['parent']['timestamp']:
++        return 'receiver-ahead'
++    raise Refuse('Agreed-parent states differ ambiguously; preserve both and investigate')
++
++def receive_receiver(stamp, uuid, old_stamp, old_uuid, *, run=call):
++    safe_directory(RECEIVED)
++    state = load_state(RECEIVER_STATE)
++    require(state['parent'] == record(old_stamp, old_uuid), 'Receiver agreed parent changed')
++    require(verified(subvolume_info(RECEIVED, old_stamp), old_uuid, received=True),
++            'Receiver parent identity changed')
++    classification = classify_candidate(stamp, uuid, state,
++        inspect=lambda s: subvolume_info(RECEIVED, s))
++    if classification == 'incomplete':
++        # Not a general garbage collector: only the exact candidate is eligible.
++        remove_incomplete(stamp, uuid, state,
++            inspect=lambda s: subvolume_info(RECEIVED, s),
++            delete=lambda s: run('btrfs', 'subvolume', 'delete', str(RECEIVED / s), timeout=90),
++            readback=lambda s: subvolume_info(RECEIVED, s))
++        print('INFO: cleaned one incomplete candidate; retrying receive', file=sys.stderr)
++    elif classification == 'complete':
++        raise Refuse('Candidate complete; use receiver advance without retransmission')
++    run('btrfs', 'receive', str(RECEIVED), timeout=TIMEOUT)
++    require(verified(subvolume_info(RECEIVED, stamp), uuid, received=True),
++            'Received candidate identity/read-only mismatch')
++    save_state(RECEIVER_STATE, advance(state, stamp, uuid))
++    return {'status': 'received', 'state': load_state(RECEIVER_STATE)}
++
++def receiver_main(args):
++    with locked(create=(args.operation != 'status')):
++        require_filesystem(RECEIVER_MOUNT, RECEIVER_FS)
++        safe_directory(RECEIVED)
++        if args.operation == 'status':
++            state = load_state(RECEIVER_STATE)
++            result = {'state': state}
++            if args.snapshot:
++                result['candidate'] = subvolume_info(RECEIVED, args.snapshot)
++        elif args.operation == 'bootstrap':
++            require(args.snapshot and args.uuid, 'Missing bootstrap parent')
++            require(verified(subvolume_info(RECEIVED, args.snapshot), args.uuid, received=True),
++                    'Invalid receiver bootstrap identity')
++            wanted = initial_state(args.snapshot, args.uuid)
++            if RECEIVER_STATE.exists():
++                require(load_state(RECEIVER_STATE) == wanted, 'Receiver already bootstrapped differently')
++            else:
++                save_state(RECEIVER_STATE, wanted, create=True)
++            result = {'state': load_state(RECEIVER_STATE)}
++        elif args.operation in ('receive', 'advance'):
++            require(all((args.snapshot, args.uuid, args.parent, args.parent_uuid)),
++                    'Missing candidate/parent')
++            state = load_state(RECEIVER_STATE)
++            require(state['parent'] == record(args.parent, args.parent_uuid),
++                    'Receiver parent state changed')
++            require(verified(subvolume_info(RECEIVED, args.parent), args.parent_uuid, received=True),
++                    'Receiver parent identity invalid')
++            if args.operation == 'advance':
++                require(classify_candidate(args.snapshot, args.uuid, state,
++                    inspect=lambda s: subvolume_info(RECEIVED, s)) == 'complete',
++                    'Candidate not already complete')
++                save_state(RECEIVER_STATE, advance(state, args.snapshot, args.uuid))
++                result = {'state': load_state(RECEIVER_STATE), 'status': 'reconciled'}
++            else:
++                # Run btrfs receive with caller's stdin; do not buffer the binary stream.
++                result = receive_receiver(args.snapshot, args.uuid, args.parent,
++                                          args.parent_uuid, run=run_receive_command)
++        else:
++            raise Refuse('Unsupported receiver operation')
++        print(json.dumps(result, sort_keys=True), flush=True)
++
++def run_receive_command(*argv, timeout):
++    with subprocess.Popen(list(argv), stdin=sys.stdin.buffer if argv[1] == 'receive' else None,
++                          stdout=subprocess.DEVNULL, stderr=subprocess.PIPE) as child:
++        try:
++            _, errors = child.communicate(timeout=timeout)
++        except subprocess.TimeoutExpired:
++            child.kill(); child.communicate()
++            raise Refuse('Btrfs operation timed out')
++        require(child.returncode == 0, 'Btrfs operation failed: ' + errors.decode(errors='replace')[-2000:])
++
++def stream_send(parent, candidate):
++    command = ['btrfs', 'send', '-p', str(SOURCE / parent), str(SOURCE / candidate)]
++    remote_command = ssh_command('receive', '--snapshot', candidate,
++                                 '--uuid', subvolume_info(SOURCE, candidate)['UUID'],
++                                 '--parent', parent,
++                                 '--parent-uuid', subvolume_info(SOURCE, parent)['UUID'])
++    # Disk-backed stderr prevents large sender diagnostics filling a pipe
++    # while the receiver is blocked waiting for the next stream bytes.
++    with tempfile.TemporaryFile() as send_errors, subprocess.Popen(
++            command, stdout=subprocess.PIPE, stderr=send_errors,
++            start_new_session=True) as sender:
++        with subprocess.Popen(remote_command, stdin=sender.stdout,
++                              stdout=subprocess.PIPE, stderr=subprocess.PIPE,
++                              start_new_session=True) as receiver:
++            sender.stdout.close()
++            try:
++                output, remote_error = receiver.communicate(timeout=TIMEOUT)
++                sender.wait(timeout=15)
++                send_errors.seek(0)
++                sender_error = send_errors.read()[-2000:]
++            except (subprocess.TimeoutExpired, KeyboardInterrupt):
++                receiver.kill(); sender.kill()
++                receiver.communicate(); sender.communicate()
++                raise Refuse('Transfer timeout/interruption; parent unchanged locally')
++            if receiver.returncode == 75:
++                raise Deferred('DEFERRED: receiver lock busy during transfer')
++            require(sender.returncode == 0 and receiver.returncode == 0,
++                    'Transfer failed: sender=' + str(sender.returncode) +
++                    ' receiver=' + str(receiver.returncode) + ' ' +
++                    (sender_error + remote_error).decode(errors='replace')[-2000:])
++            return json.loads(output)
++
++def sender_readonly_status():
++    """Inspect both ends without sending, advancing or saving agreed-parent state.
++
++    Uses the same root-owned manager lock as the scheduled sender.  Refusal or
++    a busy receiver is reported as an unavailable preflight, never a transfer.
++    """
++    source = load_state(SOURCE_STATE)
++    parent = source['parent']
++    parent_info = subvolume_info(SOURCE, parent['timestamp'])
++    require(verified(parent_info, parent['uuid'], received=False),
++            'Source parent identity invalid')
++    if source['prior']:
++        prior = source['prior']
++        require(verified(subvolume_info(SOURCE, prior['timestamp']),
++                         prior['uuid'], received=False), 'Source prior identity invalid')
++
++    remote = validate_state(peer('status')['state'])
++    relation = reconcile(source, remote)
++    # Verify the actual Btrfs Received UUID, not only the remote JSON record.
++    receiver_parent = remote['parent']
++    inspection = peer('status', '--snapshot', receiver_parent['timestamp'])
++    require(validate_state(inspection['state']) == remote and
++            verified(inspection['candidate'], receiver_parent['uuid'], received=True),
++            'Receiver parent identity or agreed-parent state changed')
++
++    if relation == 'receiver-ahead':
++        require(verified(subvolume_info(SOURCE, receiver_parent['timestamp']),
++                         receiver_parent['uuid'], received=False),
++                'Receiver ahead but source new parent is invalid')
++        preflight = {'action': 'receiver-ahead-reconciliation-required',
++                     'source': None, 'parent': parent['timestamp']}
++    else:
++        selected = choose_next(parent['timestamp'])
++        if selected:
++            stamp, uuid = selected
++            candidate = subvolume_info(SOURCE, stamp)
++            require(candidate['Parent UUID'] == parent_info['Parent UUID'],
++                    'Candidate source lineage differs from agreed parent')
++            preflight = {'action': 'incremental', 'source': stamp,
++                         'source_uuid': uuid, 'parent': parent['timestamp']}
++        else:
++            preflight = {'action': 'up-to-date', 'source': None,
++                         'parent': parent['timestamp']}
++    return {'state': source, 'receiver': remote, 'relation': relation,
++            'receiver_parent_verified': True, 'preflight': preflight}
++
++def sender_main(args):
++    with locked(create=(args.operation != 'status')):
++        require_filesystem(SOURCE_MOUNT, SOURCE_FS)
++        safe_directory(SOURCE)
++        if args.operation == 'bootstrap':
++            require(args.snapshot, 'Missing initial snapshot')
++            source = subvolume_info(SOURCE, args.snapshot)
++            require(source and source['Flags'] == 'readonly' and
++                    source['Received UUID'] == '-', 'Invalid local bootstrap')
++            expected = initial_state(args.snapshot, source['UUID'])
++            if SOURCE_STATE.exists():
++                require(load_state(SOURCE_STATE) == expected, 'Source already bootstrapped differently')
++            result = peer('bootstrap', '--snapshot', args.snapshot, '--uuid', source['UUID'])
++            require(result['state'] == expected, 'Receiver initialisation mismatch')
++            if not SOURCE_STATE.exists():
++                save_state(SOURCE_STATE, expected, create=True)
++            print('SUCCESS: both agreed-parent records initialised')
++            return
++        if args.operation == 'status':
++            print(json.dumps(sender_readonly_status(), sort_keys=True, indent=2))
++            return
++        current = load_state(SOURCE_STATE)
++        require(verified(subvolume_info(SOURCE, current['parent']['timestamp']),
++                         current['parent']['uuid'], received=False), 'Source parent invalid')
++        remote_state = peer('status')['state']
++        relation = reconcile(current, remote_state)
++        if relation == 'receiver-ahead':
++            new = remote_state['parent']
++            require(verified(subvolume_info(SOURCE, new['timestamp']), new['uuid'], received=False),
++                    'Cannot reconcile source: new parent missing/mismatched')
++            save_state(SOURCE_STATE, remote_state)
++            print('SUCCESS: reconciled receiver-ahead transfer without retransmission')
++            return
++        next_snapshot = choose_next(current['parent']['timestamp'])
++        if next_snapshot is None:
++            print('SUCCESS: no newer eligible source snapshot')
++            return
++        stamp, uuid = next_snapshot
++        candidate_info = subvolume_info(SOURCE, stamp)
++        parent_info = subvolume_info(SOURCE, current['parent']['timestamp'])
++        require(candidate_info['Parent UUID'] == parent_info['Parent UUID'],
++                'Candidate source lineage differs from agreed parent')
++        status = peer('status', '--snapshot', stamp)
++        require(status['state'] == current, 'Receiver state changed')
++        prior = current['parent']
++        if verified(status['candidate'], uuid, received=True):
++            response = peer('advance', '--snapshot', stamp, '--uuid', uuid,
++                            '--parent', prior['timestamp'], '--parent-uuid', prior['uuid'])
++        else:
++            # The receiver owns exact candidate cleanup and at most one receive attempt.
++            response = stream_send(prior['timestamp'], stamp)
++        expected = advance(current, stamp, uuid)
++        require(response['state'] == expected, 'Receiver did not confirm agreed-parent advancement')
++        check = peer('status', '--snapshot', stamp)
++        require(check['state'] == expected and
++                verified(check['candidate'], uuid, received=True), 'Receiver readback mismatch')
++        save_state(SOURCE_STATE, expected)
++        print('SUCCESS: common parent advanced to ' + stamp)
++
++def main(argv=None):
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('host', choices=['sender','receiver'])
++    parser.add_argument('operation', choices=['cycle','status','bootstrap','receive','advance'])
++    parser.add_argument('--snapshot')
++    parser.add_argument('--uuid')
++    parser.add_argument('--parent')
++    parser.add_argument('--parent-uuid')
++    args = parser.parse_args(argv)
++    try:
++        require(os.geteuid() == 0, 'Must run as root')
++        if args.snapshot:
++            timestamp(args.snapshot)
++        if args.uuid:
++            uid(args.uuid)
++        if args.parent:
++            timestamp(args.parent)
++        if args.parent_uuid:
++            uid(args.parent_uuid)
++        if args.host == 'sender':
++            require(args.operation in ('cycle','bootstrap','status'), 'Unsupported sender operation')
++            sender_main(args)
++        else:
++            require(args.operation in ('status','bootstrap','receive','advance'),
++                    'Unsupported receiver operation')
++            receiver_main(args)
++        return 0
++    except Deferred as e:
++        print(str(e), file=sys.stderr)
++        return 75
++    except (Refuse, OSError, ValueError, subprocess.SubprocessError, KeyError, json.JSONDecodeError) as e:
++        print('FAILED: ' + str(e), file=sys.stderr)
++        return 1
++
++if __name__ == '__main__':
++    sys.exit(main())
+
+changed: [mars]
+
+TASK [btrfs-replication : Btrfs replication | Update fixed 0041 entrypoint runtime paths] ******************************
+--- before: /usr/local/libexec/btrfs-replication-receiver-gate-0041
++++ after: /home/richard/ansible-controller/playbooks/roles/btrfs-replication/files/btrfs-replication-receiver-gate-0041.py
+@@ -11,7 +11,7 @@
+ import signal
+ import sys
+
+-RUNTIME = '/usr/local/bin/btrfs-simplified-replication'
++RUNTIME = '/usr/local/bin/btrfs-replication'
+ STAMP = re.compile(r'[0-9]{8}-[0-9]{6}Z\Z')
+ UUID = re.compile(r'[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\Z')
+ MAX_HEADER = 512
+
+changed: [backup]
+--- before: /usr/local/libexec/btrfs-replication-sender-cycle-0041
++++ after: /home/richard/ansible-controller/playbooks/roles/btrfs-replication/files/btrfs-replication-sender-cycle-0041.sh
+@@ -9,4 +9,4 @@
+ # manager lock; its SSH subprocess is delegated to the dedicated non-admin user.
+ BTRFS_REPLICATION_IDENTITY_MODE=dedicated
+ export BTRFS_REPLICATION_IDENTITY_MODE
+-exec /usr/local/bin/btrfs-simplified-replication sender cycle
++exec /usr/local/bin/btrfs-replication sender cycle
+
+changed: [mars]
+
+TASK [btrfs-replication : Btrfs backup | Install host-aware read-only infrastructure report] ***************************
+--- before
++++ after: /home/richard/ansible-controller/playbooks/roles/snapshots/files/btrfs-backup-status.py
+@@ -0,0 +1,281 @@
++#!/usr/bin/env python3
++"""0049: host-aware read-only Btrfs collection/snapshot/replication health summary."""
++import argparse
++import json
++import os
++from pathlib import Path
++import re
++import socket
++import subprocess
++import sys
++import unicodedata
++
++MANAGER = '/usr/local/sbin/btrfs-snapshot-manager'
++REPLICATION = '/usr/local/bin/btrfs-replication'
++SOURCE_PARENT = Path('/media/usb/@snapshots/.simple-agreed-parent.json')
++RECEIVER_PARENT = Path('/@data/mars-received/.replication-state/.simple-agreed-parent.json')
++STAMP = re.compile(r'^\d{8}-\d{6}Z$')
++
++
++def execute(argv, timeout=45):
++    try:
++        proc = subprocess.run(argv, capture_output=True, text=True, timeout=timeout, check=False)
++        return {'ok': proc.returncode == 0, 'exit': proc.returncode,
++                'stdout': proc.stdout.strip(), 'error': proc.stderr.strip()}
++    except (OSError, subprocess.TimeoutExpired) as exc:
++        return {'ok': False, 'error': str(exc), 'stdout': ''}
++
++
++def parse_manager_status(output):
++    result = {}
++    for line in output.splitlines():
++        if line.startswith('source='):
++            result.setdefault('sources', []).append(line[len('source='):])
++        elif line.startswith('retention='):
++            result['retention'] = line[len('retention='):]
++        elif line.startswith('complete_timestamp_sets='):
++            for item in line.split(';'):
++                k, v = item.split('=', 1)
++                result[k] = int(v)
++        elif '=' in line and ';' not in line:
++            k, v = line.split('=', 1)
++            result[k] = v
++    return result
++
++
++def load_accepted_marker(config):
++    verification = config.get('verification', {})
++    sources = {x['name']: x.get('path') for x in config.get('sources', [])}
++    if not verification.get('required'):
++        return {'state': 'not_configured'}
++    parent = sources.get(verification.get('source_name'))
++    relative = verification.get('marker_relative_path')
++    if not parent or not isinstance(relative, str):
++        return {'state': 'unavailable', 'reason': 'verification marker not configured'}
++    rel = Path(relative)
++    if rel.is_absolute() or not relative or any(part in ('.', '..') for part in rel.parts):
++        return {'state': 'unavailable', 'reason': 'unsafe marker relative path'}
++    root = Path(parent).resolve()
++    path = root / rel
++    try:
++        if not path.resolve().is_relative_to(root):
++            raise ValueError('marker escapes source directory')
++        record = json.loads(path.read_text(encoding='utf-8'))
++        if not isinstance(record, dict) or record.get('state') != 'verified-published' or record.get('snapshotEligible') is not True:
++            return {'state': 'degraded', 'reason': 'marker is not verified and snapshot-eligible'}
++        return {'state': 'healthy', 'backupId': record.get('backupId'),
++                'logicalDataset': record.get('logicalDataset'), 'verifiedAt': record.get('verifiedAt')}
++    except (OSError, ValueError) as exc:
++        return {'state': 'unavailable', 'reason': str(exc)}
++
++
++def local_parent(path):
++    try:
++        obj = json.loads(path.read_text(encoding='utf-8'))
++        if not isinstance(obj, dict) or not isinstance(obj.get('parent'), dict):
++            raise ValueError('missing parent in agreed-parent state')
++        return {'state': 'available', 'parent': obj['parent'], 'prior': obj.get('prior'),
++                'evidence': 'local agreed-parent record (not remote verification)'}
++    except (OSError, ValueError) as exc:
++        return {'state': 'unavailable', 'reason': str(exc)}
++
++
++def service_status(unit):
++    outcome = execute(['systemctl', 'show', unit, '-p', 'LoadState', '-p', 'ActiveState',
++                       '-p', 'UnitFileState', '-p', 'Result', '-p', 'ExecMainStatus',
++                       '-p', 'ExecMainExitTimestamp', '-p', 'NextElapseUSecRealtime'])
++    if not outcome['ok']:
++        return {'state': 'unavailable', 'reason': outcome.get('error') or 'systemd query failed'}
++    fields = dict(line.split('=', 1) for line in outcome['stdout'].splitlines() if '=' in line)
++    if fields.get('LoadState') == 'not-found':
++        return {'state': 'unavailable', 'reason': f'{unit} not installed'}
++    return {'state': 'available', 'properties': fields}
++
++
++def report(args):
++    try:
++        config = json.loads(Path(args.config).read_text(encoding='utf-8'))
++        role = config.get('mode', 'source')
++        if role not in ('source', 'receiver'):
++            raise ValueError('unsupported endpoint mode')
++    except (OSError, ValueError, TypeError) as exc:
++        return {'schema': 1, 'health': 'error', 'error': f'cannot load configuration: {exc}'}
++    issues = []
++    status = execute([args.manager, '--config', args.config, 'status'])
++    snapshots = {'state': 'available', **parse_manager_status(status['stdout'])} if status['ok'] else {
++        'state': 'unavailable', 'reason': status.get('error') or status.get('stdout') or 'manager status failed'}
++    if not status['ok']:
++        issues.append('snapshot manager status unavailable')
++    elif snapshots.get('qgroups_status') not in ('ok',):
++        issues.append('qgroup state ' + str(snapshots.get('qgroups_status', 'unavailable')))
++    inventory = execute([args.manager, '--config', args.config, 'list'])
++    timestamps = []
++    if inventory['ok']:
++        timestamps = sorted({line.split()[0] for line in inventory['stdout'].splitlines()
++                             if line.split() and STAMP.fullmatch(line.split()[0])})
++        snapshots['firstSnapshot'] = timestamps[0] if timestamps else None
++        snapshots['latestSnapshot'] = timestamps[-1] if timestamps else None
++    else:
++        issues.append('snapshot inventory unavailable')
++        snapshots['inventoryError'] = inventory.get('error') or inventory.get('stdout')
++    snapshots['retainedSnapshotSetsObserved'] = len(timestamps) if inventory['ok'] else None
++    parent = local_parent(SOURCE_PARENT if role == 'source' else RECEIVER_PARENT)
++    replication = {'localAgreedParent': parent, 'receiverVerification': 'not checked' if args.local_only else 'not available'}
++    if parent['state'] != 'available':
++        issues.append('local agreed-parent record unavailable')
++    if role == 'source' and not args.local_only:
++        result = execute([args.replication, 'sender', 'status'])
++        try:
++            data = json.loads(result['stdout']) if result['ok'] else None
++        except ValueError:
++            data = None
++        if (not isinstance(data, dict) or data.get('receiver_parent_verified') is not True or
++                data.get('relation') not in ('equal', 'receiver-ahead')):
++            replication['remote'] = {'state': 'unavailable', 'reason': result.get('error') or 'unverified sender status'}
++            issues.append('remote replication verification unavailable')
++        else:
++            replication['remote'] = {'state': 'verified', 'relation': data['relation'],
++                                     'receiverParent': data.get('receiver', {}).get('parent'),
++                                     'preflight': data.get('preflight')}
++            replication['receiverVerification'] = 'verified'
++    elif role == 'source':
++        replication['remote'] = {'state': 'not_checked', 'reason': '--local-only'}
++    else:
++        # Receiver status only inspects the local endpoint; never performs SSH.
++        result = execute([args.replication, 'receiver', 'status'])
++        try:
++            data = json.loads(result['stdout']) if result['ok'] else None
++        except ValueError:
++            data = None
++        if isinstance(data, dict) and isinstance(data.get('state'), dict):
++            replication['receiver'] = {'state': 'available', 'record': data['state']}
++        else:
++            replication['receiver'] = {'state': 'unavailable', 'reason': result.get('error') or 'receiver status failed'}
++            issues.append('local receiver status unavailable')
++    collection = load_accepted_marker(config) if role == 'source' else None
++    if role == 'source' and collection['state'] in ('degraded', 'unavailable'):
++        issues.append('verified collection marker unavailable')
++    service_names = (('diaries-pull.service', 'diaries-pull.timer', 'btrfs-snapshot-create.timer',
++                      'btrfs-snapshot-prune.timer', 'btrfs-push.service', 'btrfs-push.timer')
++                     if role == 'source' else ('btrfs-receiver-prune.service', 'btrfs-receiver-prune.timer'))
++    services = {name: service_status(name) for name in service_names}
++    for name, unit in services.items():
++        if unit['state'] != 'available':
++            issues.append(f'{name}: {unit.get("reason", "unavailable")}')
++        elif unit.get('properties', {}).get('Result') == 'failed':
++            issues.append(f'{name}: last service result failed')
++    # 'Exit timestamp' is not a proof of transferred data: keep service runs distinct.
++    if role == 'source':
++        pull = services.get('diaries-pull.service', {}).get('properties', {})
++        collection['lastSuccessfulPullServiceRun'] = (pull.get('ExecMainExitTimestamp')
++            if pull.get('Result') == 'success' and pull.get('ExecMainExitTimestamp') else None)
++    push = services.get('btrfs-push.service', {}).get('properties', {}) if role == 'source' else {}
++    last_completed_push = (push.get('ExecMainExitTimestamp')
++                           if push.get('Result') == 'success' and push.get('ExecMainExitTimestamp') else None)
++
++    return {'schema': 1, 'host': socket.gethostname().split('.')[0], 'role': role,
++            'health': 'degraded' if issues else 'healthy', 'issues': issues,
++            'collection': collection, 'snapshots': snapshots, 'replication': replication,
++            'services': services, 'limits': {'remoteChecked': role == 'source' and not args.local_only,
++                                            'lastSuccessfulPushCycle': last_completed_push,
++                                            'lastVerifiedTransfer': 'unknown: no independent transfer receipt',
++                                            'lastCompletedCycle': 'see systemd service Result/ExecMainExitTimestamp'},
++            'verbose': args.verbose}
++
++
++
++def visible_width(value):
++    return sum(0 if unicodedata.combining(c) else
++               2 if unicodedata.east_asian_width(c) in ('F', 'W') else 1
++               for c in str(value))
++
++def fit(value, width, right=False):
++    value = str(value)
++    pad = ' ' * max(0, width - visible_width(value))
++    return (pad + value) if right else (value + pad)
++
++
++def table(headers, rows, numeric=()):
++    if not rows:
++        return 'No entries'
++    widths = [max(visible_width(h), *(visible_width(row[i]) for row in rows)) for i, h in enumerate(headers)]
++    def line(fields):
++        return '  '.join((fit(v, widths[i], right=(i in numeric)))
++                         for i, v in enumerate(fields))
++    return '\n'.join([line(headers), '  '.join('-' * n for n in widths)] + [line(row) for row in rows])
++
++
++def display(r):
++    if r['health'] == 'error':
++        print('BTRFS BACKUP STATUS: UNAVAILABLE')
++        print(r['error'])
++        return
++    print(f"BTRFS BACKUP STATUS — {r['host']} ({r['role']})")
++    print('Health: ' + r['health'].upper())
++    if r['collection'] is not None:
++        print('\nBACKUP COLLECTION')
++        c = r['collection']
++        print('Accepted published dataset: ' +
++              (f"{c.get('logicalDataset')}/{c.get('backupId')} at {c.get('verifiedAt')}"
++               if c['state'] == 'healthy' else f"{c['state']}: {c.get('reason', 'not configured')}"))
++        print('Last successful collection service run: ' + str(c.get('lastSuccessfulPullServiceRun') or 'unknown'))
++    s = r['snapshots']
++    print('\nBTRFS SNAPSHOTS AND RETENTION')
++    print('Repository: ' + str(s.get('snapshot_root', 'unavailable')))
++    print('Retained sets (observed): ' + str(s.get('retainedSnapshotSetsObserved')))
++    print('Oldest / newest (UTC): ' + str(s.get('firstSnapshot')) + ' / ' + str(s.get('latestSnapshot')))
++    print('Retention: ' + str(s.get('retention', 'unavailable')))
++    print('\nFILESYSTEM QGROUP HEALTH')
++    print('Qgroups: ' + ', '.join(f'{key}={s.get(key, "unavailable")}' for key in
++                                ('qgroups_status', 'qgroups_total', 'qgroups_stale', 'qgroups_under_deletion')))
++    print('\nBTRFS REPLICATION')
++    p = r['replication']['localAgreedParent']
++    print('Local agreed parent: ' + (str(p['parent']) if p['state'] == 'available' else 'unavailable: ' + p['reason']))
++    print('Locally recorded prior parent: ' + (str(p['prior']) if p['state'] == 'available' else 'unavailable'))
++    remote = r['replication'].get('remote')
++    if remote:
++        print('Receiver: ' + remote['state'] + (': ' + str(remote.get('reason')) if 'reason' in remote else ''))
++        if remote.get('preflight'):
++            x = remote['preflight']
++            print('\nNEXT PUSH PREFLIGHT')
++            print(table(('Action', 'Candidate UTC', 'Parent UTC'),
++                        [(x.get('action', '-'), x.get('source') or '-', x.get('parent') or '-')]))
++    elif r['replication'].get('receiver'):
++        print('Receiver state: ' + r['replication']['receiver']['state'])
++    if r['role'] == 'source':
++        print('Last successful push cycle: ' + str(r['limits']['lastSuccessfulPushCycle'] or 'unknown'))
++    print('Last verified transfer: unknown (independent receipt not available)')
++    print('\nSCHEDULED OPERATIONS')
++    entries = []
++    for unit, value in sorted(r['services'].items()):
++        props = value.get('properties', {})
++        entries.append((unit, props.get('ActiveState', value['state']), props.get('Result', '-'),
++                        props.get('NextElapseUSecRealtime') or props.get('ExecMainExitTimestamp') or '-'))
++    print(table(('Unit', 'Active', 'Result', 'Next/last execution (systemd)'), entries))
++    if r['issues']:
++        print('\nHEALTH WARNINGS')
++        print(table(('Check', 'Detail'), [(str(i + 1), item) for i, item in enumerate(r['issues'])]))
++    if r['verbose']:
++        print('\nSNAPSHOT SOURCES')
++        print(table(('Source',), [(x,) for x in s.get('sources', [])]))
++
++
++def main(argv=None):
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--config', default='/etc/btrfs-snapshot-manager.json')
++    parser.add_argument('--manager', default=MANAGER)
++    parser.add_argument('--replication', default=REPLICATION)
++    parser.add_argument('--json', action='store_true')
++    parser.add_argument('--verbose', action='store_true')
++    parser.add_argument('--local-only', action='store_true', help='never contact receiver over SSH')
++    args = parser.parse_args(argv)
++    result = report(args)
++    if args.json:
++        print(json.dumps(result, indent=2, sort_keys=True))
++    else:
++        display(result)
++    return {'healthy': 0, 'degraded': 1, 'error': 2}[result['health']]
++
++
++if __name__ == '__main__':
++    sys.exit(main())
+
+changed: [backup]
+--- before
++++ after: /home/richard/ansible-controller/playbooks/roles/snapshots/files/btrfs-backup-status.py
+@@ -0,0 +1,281 @@
++#!/usr/bin/env python3
++"""0049: host-aware read-only Btrfs collection/snapshot/replication health summary."""
++import argparse
++import json
++import os
++from pathlib import Path
++import re
++import socket
++import subprocess
++import sys
++import unicodedata
++
++MANAGER = '/usr/local/sbin/btrfs-snapshot-manager'
++REPLICATION = '/usr/local/bin/btrfs-replication'
++SOURCE_PARENT = Path('/media/usb/@snapshots/.simple-agreed-parent.json')
++RECEIVER_PARENT = Path('/@data/mars-received/.replication-state/.simple-agreed-parent.json')
++STAMP = re.compile(r'^\d{8}-\d{6}Z$')
++
++
++def execute(argv, timeout=45):
++    try:
++        proc = subprocess.run(argv, capture_output=True, text=True, timeout=timeout, check=False)
++        return {'ok': proc.returncode == 0, 'exit': proc.returncode,
++                'stdout': proc.stdout.strip(), 'error': proc.stderr.strip()}
++    except (OSError, subprocess.TimeoutExpired) as exc:
++        return {'ok': False, 'error': str(exc), 'stdout': ''}
++
++
++def parse_manager_status(output):
++    result = {}
++    for line in output.splitlines():
++        if line.startswith('source='):
++            result.setdefault('sources', []).append(line[len('source='):])
++        elif line.startswith('retention='):
++            result['retention'] = line[len('retention='):]
++        elif line.startswith('complete_timestamp_sets='):
++            for item in line.split(';'):
++                k, v = item.split('=', 1)
++                result[k] = int(v)
++        elif '=' in line and ';' not in line:
++            k, v = line.split('=', 1)
++            result[k] = v
++    return result
++
++
++def load_accepted_marker(config):
++    verification = config.get('verification', {})
++    sources = {x['name']: x.get('path') for x in config.get('sources', [])}
++    if not verification.get('required'):
++        return {'state': 'not_configured'}
++    parent = sources.get(verification.get('source_name'))
++    relative = verification.get('marker_relative_path')
++    if not parent or not isinstance(relative, str):
++        return {'state': 'unavailable', 'reason': 'verification marker not configured'}
++    rel = Path(relative)
++    if rel.is_absolute() or not relative or any(part in ('.', '..') for part in rel.parts):
++        return {'state': 'unavailable', 'reason': 'unsafe marker relative path'}
++    root = Path(parent).resolve()
++    path = root / rel
++    try:
++        if not path.resolve().is_relative_to(root):
++            raise ValueError('marker escapes source directory')
++        record = json.loads(path.read_text(encoding='utf-8'))
++        if not isinstance(record, dict) or record.get('state') != 'verified-published' or record.get('snapshotEligible') is not True:
++            return {'state': 'degraded', 'reason': 'marker is not verified and snapshot-eligible'}
++        return {'state': 'healthy', 'backupId': record.get('backupId'),
++                'logicalDataset': record.get('logicalDataset'), 'verifiedAt': record.get('verifiedAt')}
++    except (OSError, ValueError) as exc:
++        return {'state': 'unavailable', 'reason': str(exc)}
++
++
++def local_parent(path):
++    try:
++        obj = json.loads(path.read_text(encoding='utf-8'))
++        if not isinstance(obj, dict) or not isinstance(obj.get('parent'), dict):
++            raise ValueError('missing parent in agreed-parent state')
++        return {'state': 'available', 'parent': obj['parent'], 'prior': obj.get('prior'),
++                'evidence': 'local agreed-parent record (not remote verification)'}
++    except (OSError, ValueError) as exc:
++        return {'state': 'unavailable', 'reason': str(exc)}
++
++
++def service_status(unit):
++    outcome = execute(['systemctl', 'show', unit, '-p', 'LoadState', '-p', 'ActiveState',
++                       '-p', 'UnitFileState', '-p', 'Result', '-p', 'ExecMainStatus',
++                       '-p', 'ExecMainExitTimestamp', '-p', 'NextElapseUSecRealtime'])
++    if not outcome['ok']:
++        return {'state': 'unavailable', 'reason': outcome.get('error') or 'systemd query failed'}
++    fields = dict(line.split('=', 1) for line in outcome['stdout'].splitlines() if '=' in line)
++    if fields.get('LoadState') == 'not-found':
++        return {'state': 'unavailable', 'reason': f'{unit} not installed'}
++    return {'state': 'available', 'properties': fields}
++
++
++def report(args):
++    try:
++        config = json.loads(Path(args.config).read_text(encoding='utf-8'))
++        role = config.get('mode', 'source')
++        if role not in ('source', 'receiver'):
++            raise ValueError('unsupported endpoint mode')
++    except (OSError, ValueError, TypeError) as exc:
++        return {'schema': 1, 'health': 'error', 'error': f'cannot load configuration: {exc}'}
++    issues = []
++    status = execute([args.manager, '--config', args.config, 'status'])
++    snapshots = {'state': 'available', **parse_manager_status(status['stdout'])} if status['ok'] else {
++        'state': 'unavailable', 'reason': status.get('error') or status.get('stdout') or 'manager status failed'}
++    if not status['ok']:
++        issues.append('snapshot manager status unavailable')
++    elif snapshots.get('qgroups_status') not in ('ok',):
++        issues.append('qgroup state ' + str(snapshots.get('qgroups_status', 'unavailable')))
++    inventory = execute([args.manager, '--config', args.config, 'list'])
++    timestamps = []
++    if inventory['ok']:
++        timestamps = sorted({line.split()[0] for line in inventory['stdout'].splitlines()
++                             if line.split() and STAMP.fullmatch(line.split()[0])})
++        snapshots['firstSnapshot'] = timestamps[0] if timestamps else None
++        snapshots['latestSnapshot'] = timestamps[-1] if timestamps else None
++    else:
++        issues.append('snapshot inventory unavailable')
++        snapshots['inventoryError'] = inventory.get('error') or inventory.get('stdout')
++    snapshots['retainedSnapshotSetsObserved'] = len(timestamps) if inventory['ok'] else None
++    parent = local_parent(SOURCE_PARENT if role == 'source' else RECEIVER_PARENT)
++    replication = {'localAgreedParent': parent, 'receiverVerification': 'not checked' if args.local_only else 'not available'}
++    if parent['state'] != 'available':
++        issues.append('local agreed-parent record unavailable')
++    if role == 'source' and not args.local_only:
++        result = execute([args.replication, 'sender', 'status'])
++        try:
++            data = json.loads(result['stdout']) if result['ok'] else None
++        except ValueError:
++            data = None
++        if (not isinstance(data, dict) or data.get('receiver_parent_verified') is not True or
++                data.get('relation') not in ('equal', 'receiver-ahead')):
++            replication['remote'] = {'state': 'unavailable', 'reason': result.get('error') or 'unverified sender status'}
++            issues.append('remote replication verification unavailable')
++        else:
++            replication['remote'] = {'state': 'verified', 'relation': data['relation'],
++                                     'receiverParent': data.get('receiver', {}).get('parent'),
++                                     'preflight': data.get('preflight')}
++            replication['receiverVerification'] = 'verified'
++    elif role == 'source':
++        replication['remote'] = {'state': 'not_checked', 'reason': '--local-only'}
++    else:
++        # Receiver status only inspects the local endpoint; never performs SSH.
++        result = execute([args.replication, 'receiver', 'status'])
++        try:
++            data = json.loads(result['stdout']) if result['ok'] else None
++        except ValueError:
++            data = None
++        if isinstance(data, dict) and isinstance(data.get('state'), dict):
++            replication['receiver'] = {'state': 'available', 'record': data['state']}
++        else:
++            replication['receiver'] = {'state': 'unavailable', 'reason': result.get('error') or 'receiver status failed'}
++            issues.append('local receiver status unavailable')
++    collection = load_accepted_marker(config) if role == 'source' else None
++    if role == 'source' and collection['state'] in ('degraded', 'unavailable'):
++        issues.append('verified collection marker unavailable')
++    service_names = (('diaries-pull.service', 'diaries-pull.timer', 'btrfs-snapshot-create.timer',
++                      'btrfs-snapshot-prune.timer', 'btrfs-push.service', 'btrfs-push.timer')
++                     if role == 'source' else ('btrfs-receiver-prune.service', 'btrfs-receiver-prune.timer'))
++    services = {name: service_status(name) for name in service_names}
++    for name, unit in services.items():
++        if unit['state'] != 'available':
++            issues.append(f'{name}: {unit.get("reason", "unavailable")}')
++        elif unit.get('properties', {}).get('Result') == 'failed':
++            issues.append(f'{name}: last service result failed')
++    # 'Exit timestamp' is not a proof of transferred data: keep service runs distinct.
++    if role == 'source':
++        pull = services.get('diaries-pull.service', {}).get('properties', {})
++        collection['lastSuccessfulPullServiceRun'] = (pull.get('ExecMainExitTimestamp')
++            if pull.get('Result') == 'success' and pull.get('ExecMainExitTimestamp') else None)
++    push = services.get('btrfs-push.service', {}).get('properties', {}) if role == 'source' else {}
++    last_completed_push = (push.get('ExecMainExitTimestamp')
++                           if push.get('Result') == 'success' and push.get('ExecMainExitTimestamp') else None)
++
++    return {'schema': 1, 'host': socket.gethostname().split('.')[0], 'role': role,
++            'health': 'degraded' if issues else 'healthy', 'issues': issues,
++            'collection': collection, 'snapshots': snapshots, 'replication': replication,
++            'services': services, 'limits': {'remoteChecked': role == 'source' and not args.local_only,
++                                            'lastSuccessfulPushCycle': last_completed_push,
++                                            'lastVerifiedTransfer': 'unknown: no independent transfer receipt',
++                                            'lastCompletedCycle': 'see systemd service Result/ExecMainExitTimestamp'},
++            'verbose': args.verbose}
++
++
++
++def visible_width(value):
++    return sum(0 if unicodedata.combining(c) else
++               2 if unicodedata.east_asian_width(c) in ('F', 'W') else 1
++               for c in str(value))
++
++def fit(value, width, right=False):
++    value = str(value)
++    pad = ' ' * max(0, width - visible_width(value))
++    return (pad + value) if right else (value + pad)
++
++
++def table(headers, rows, numeric=()):
++    if not rows:
++        return 'No entries'
++    widths = [max(visible_width(h), *(visible_width(row[i]) for row in rows)) for i, h in enumerate(headers)]
++    def line(fields):
++        return '  '.join((fit(v, widths[i], right=(i in numeric)))
++                         for i, v in enumerate(fields))
++    return '\n'.join([line(headers), '  '.join('-' * n for n in widths)] + [line(row) for row in rows])
++
++
++def display(r):
++    if r['health'] == 'error':
++        print('BTRFS BACKUP STATUS: UNAVAILABLE')
++        print(r['error'])
++        return
++    print(f"BTRFS BACKUP STATUS — {r['host']} ({r['role']})")
++    print('Health: ' + r['health'].upper())
++    if r['collection'] is not None:
++        print('\nBACKUP COLLECTION')
++        c = r['collection']
++        print('Accepted published dataset: ' +
++              (f"{c.get('logicalDataset')}/{c.get('backupId')} at {c.get('verifiedAt')}"
++               if c['state'] == 'healthy' else f"{c['state']}: {c.get('reason', 'not configured')}"))
++        print('Last successful collection service run: ' + str(c.get('lastSuccessfulPullServiceRun') or 'unknown'))
++    s = r['snapshots']
++    print('\nBTRFS SNAPSHOTS AND RETENTION')
++    print('Repository: ' + str(s.get('snapshot_root', 'unavailable')))
++    print('Retained sets (observed): ' + str(s.get('retainedSnapshotSetsObserved')))
++    print('Oldest / newest (UTC): ' + str(s.get('firstSnapshot')) + ' / ' + str(s.get('latestSnapshot')))
++    print('Retention: ' + str(s.get('retention', 'unavailable')))
++    print('\nFILESYSTEM QGROUP HEALTH')
++    print('Qgroups: ' + ', '.join(f'{key}={s.get(key, "unavailable")}' for key in
++                                ('qgroups_status', 'qgroups_total', 'qgroups_stale', 'qgroups_under_deletion')))
++    print('\nBTRFS REPLICATION')
++    p = r['replication']['localAgreedParent']
++    print('Local agreed parent: ' + (str(p['parent']) if p['state'] == 'available' else 'unavailable: ' + p['reason']))
++    print('Locally recorded prior parent: ' + (str(p['prior']) if p['state'] == 'available' else 'unavailable'))
++    remote = r['replication'].get('remote')
++    if remote:
++        print('Receiver: ' + remote['state'] + (': ' + str(remote.get('reason')) if 'reason' in remote else ''))
++        if remote.get('preflight'):
++            x = remote['preflight']
++            print('\nNEXT PUSH PREFLIGHT')
++            print(table(('Action', 'Candidate UTC', 'Parent UTC'),
++                        [(x.get('action', '-'), x.get('source') or '-', x.get('parent') or '-')]))
++    elif r['replication'].get('receiver'):
++        print('Receiver state: ' + r['replication']['receiver']['state'])
++    if r['role'] == 'source':
++        print('Last successful push cycle: ' + str(r['limits']['lastSuccessfulPushCycle'] or 'unknown'))
++    print('Last verified transfer: unknown (independent receipt not available)')
++    print('\nSCHEDULED OPERATIONS')
++    entries = []
++    for unit, value in sorted(r['services'].items()):
++        props = value.get('properties', {})
++        entries.append((unit, props.get('ActiveState', value['state']), props.get('Result', '-'),
++                        props.get('NextElapseUSecRealtime') or props.get('ExecMainExitTimestamp') or '-'))
++    print(table(('Unit', 'Active', 'Result', 'Next/last execution (systemd)'), entries))
++    if r['issues']:
++        print('\nHEALTH WARNINGS')
++        print(table(('Check', 'Detail'), [(str(i + 1), item) for i, item in enumerate(r['issues'])]))
++    if r['verbose']:
++        print('\nSNAPSHOT SOURCES')
++        print(table(('Source',), [(x,) for x in s.get('sources', [])]))
++
++
++def main(argv=None):
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--config', default='/etc/btrfs-snapshot-manager.json')
++    parser.add_argument('--manager', default=MANAGER)
++    parser.add_argument('--replication', default=REPLICATION)
++    parser.add_argument('--json', action='store_true')
++    parser.add_argument('--verbose', action='store_true')
++    parser.add_argument('--local-only', action='store_true', help='never contact receiver over SSH')
++    args = parser.parse_args(argv)
++    result = report(args)
++    if args.json:
++        print(json.dumps(result, indent=2, sort_keys=True))
++    else:
++        display(result)
++    return {'healthy': 0, 'degraded': 1, 'error': 2}[result['health']]
++
++
++if __name__ == '__main__':
++    sys.exit(main())
+
+changed: [mars]
+
+TASK [btrfs-replication : Diaries | Install dataset-only history summary on source] ************************************
+skipping: [backup]
+--- before: /usr/local/sbin/diaries-backup-status
++++ after: /home/richard/ansible-controller/playbooks/roles/snapshots/files/diaries-backup-status.py
+@@ -1,163 +1,120 @@
+ #!/usr/bin/env python3
+-"""Read-only operational summary of Diaries backup history, snapshots, pull and off-site replication."""
++"""0049: read-only Diaries dataset history and manifest-identity summary (mars)."""
+ import argparse
+ import json
+-import os
+-from pathlib import Path
+ import subprocess
+ import sys
++import unicodedata
+
+-MANAGER = '/usr/local/sbin/btrfs-snapshot-manager'
+ HISTORY = '/usr/local/sbin/diaries-backup-history'
+-PUSH = '/usr/local/bin/btrfs-simplified-replication'
+
+
+-def command(args, timeout=40):
++def inspect_history(binary, config):
+     try:
+-        r = subprocess.run(args, capture_output=True, text=True, timeout=timeout, check=False)
+-        return {'ok': r.returncode == 0, 'exit': r.returncode, 'stdout': r.stdout.strip(),
+-                'error': r.stderr.strip() if r.returncode else ''}
++        result = subprocess.run([binary, '--config', config, '--json', 'list'],
++                                text=True, capture_output=True, timeout=60, check=False)
+     except (OSError, subprocess.TimeoutExpired) as exc:
+-        return {'ok': False, 'error': str(exc), 'stdout': ''}
+-
+-
+-def json_command(args):
+-    outcome = command(args)
+-    if outcome['stdout']:
+-        try:
+-            outcome['data'] = json.loads(outcome['stdout'])
+-        except ValueError:
+-            outcome['ok'] = False
+-            outcome['error'] = 'invalid JSON response: ' + outcome['stdout'][:160]
+-    return outcome
+-
+-
+-def read_marker(config):
+-    verification = config.get('verification') or {}
+-    sources = {s['name']: s['path'] for s in config.get('sources', [])}
+-    name = verification.get('source_name')
+-    relative = verification.get('marker_relative_path')
+-    if not verification.get('required') or not relative or name not in sources:
+-        return {'ok': False, 'error': 'verified Diaries marker not configured'}
+-    # Ensure the inventory-defined relative path cannot escape the source directory.
+-    path = Path(relative)
+-    if path.is_absolute() or any(part in ('..', '.') for part in path.parts):
+-        return {'ok': False, 'error': 'unsafe marker relative path'}
+-    root = Path(sources[name]).resolve()
+-    path = root / path
++        raise RuntimeError('Diaries history check unavailable: ' + str(exc)) from exc
+     try:
+-        if not path.resolve().is_relative_to(root):
+-            raise ValueError('marker outside source')
+-        record = json.loads(path.read_text(encoding='utf-8'))
+-        return {'ok': record.get('snapshotEligible') is True and record.get('state') == 'verified-published',
+-                'path': str(path), 'data': record}
+-    except (OSError, ValueError) as exc:
+-        return {'ok': False, 'path': str(path), 'error': str(exc)}
++        data = json.loads(result.stdout)
++    except ValueError as exc:
++        raise RuntimeError('Diaries history returned invalid JSON') from exc
++    if not isinstance(data, dict) or not isinstance(data.get('backups'), list) or not isinstance(data.get('warnings'), list):
++        raise RuntimeError('Diaries history returned an unexpected schema')
++    if result.returncode not in (0, 2):
++        raise RuntimeError('Diaries history failed: ' + (result.stderr.strip() or f'exit {result.returncode}'))
++    # History reports exit 2 for manifest conflicts/warnings. Other exit-2
++    # failures must not be mistaken for a healthy empty history.
++    if result.returncode == 2 and not (data['warnings'] or
++            any(isinstance(item, dict) and item.get('status') == 'conflict'
++                for item in data['backups'])):
++        raise RuntimeError('Diaries history failed without a reported conflict or warning')
++    return data
+
+
+ def report(args):
+     try:
+-        config = json.loads(Path(args.config).read_text(encoding='utf-8'))
+-    except (OSError, ValueError) as exc:
+-        return {'error': 'Cannot read snapshot configuration: ' + str(exc)}
+-    snapshot = command([args.manager, '--config', args.config, 'status'])
+-    history = json_command([args.history, '--config', args.config, '--json', 'list'])
+-    marker = read_marker(config)
+-    # The simplified sender offers one guarded read-only inspection of the
+-    # local agreed-parent state, actual source and receiver Btrfs identities,
+-    # and next eligible snapshot. Never invoke `sender cycle` here.
+-    # Root is required to access the 0600 agreed-parent record; when run as an
+-    # ordinary operator sudo must be explicitly authorised by the host.
+-    privileged = ['sudo', '-n'] if os.geteuid() != 0 else []
+-    inspection = json_command(privileged + [args.push, 'sender', 'status'])
+-    payload = inspection.get('data') if inspection['ok'] else None
+-    if (not isinstance(payload, dict) or
+-            payload.get('receiver_parent_verified') is not True or
+-            payload.get('relation') not in ('equal', 'receiver-ahead') or
+-            not isinstance(payload.get('preflight'), dict) or
+-            not isinstance(payload.get('receiver'), dict)):
+-        inspection['ok'] = False
+-        inspection['error'] = inspection.get('error') or 'invalid simplified sender status'
+-        replication = {'ok': False, 'error': inspection['error']}
+-        receiver = {'ok': False, 'error': inspection['error']}
+-    else:
+-        replication = {'ok': True, 'data': payload['preflight']}
+-        parent = payload['receiver'].get('parent')
+-        if isinstance(parent, dict) and {'timestamp', 'uuid'} <= set(parent):
+-            receiver = {'ok': True, 'latest': {
+-                'snapshot': parent['timestamp'], 'source_uuid': parent['uuid']},
+-                'relation': payload['relation'], 'identity_verified': True}
+-        else:
+-            receiver = {'ok': False, 'error': 'missing remote agreed parent'}
+-            replication = {'ok': False, 'error': 'missing remote agreed parent'}
+-    if isinstance(history.get('data'), dict):
+-        rows = history['data'].get('backups', [])
+-        history['count'] = len(rows)
+-        history['latest'] = max(rows, key=lambda v: v['backupId'], default=None)
+-        history['recent'] = sorted(rows, key=lambda v: v['backupId'], reverse=True)[:args.limit]
+-        history.pop('data', None)
+-    return {'snapshot': snapshot, 'history': history, 'lastVerifiedPull': marker,
+-            'replicationPreflight': replication, 'offsite': receiver}
++        data = inspect_history(args.history, args.config)
++        rows = data['backups']
++        # A retained manifest identity is not evidence of a fresh full-content verification.
++        for row in rows:
++            if not all(key in row for key in ('logicalDataset', 'backupId', 'snapshots', 'firstRetainedSnapshot', 'lastRetainedSnapshot', 'status')):
++                raise RuntimeError('Diaries history row is missing required fields')
++        rows = sorted(rows, key=lambda row: (row['lastRetainedSnapshot'], row['backupId']), reverse=True)
++        conflicts = sum(row['status'] == 'conflict' for row in rows)
++        warnings = data['warnings']
++        status = 'degraded' if conflicts or warnings else 'healthy'
++        return {
++            'schema': 1, 'component': 'diaries', 'health': status,
++            'evidence': 'retained manifest identity (not full file-content verification)',
++            'distinctBackups': len(rows),
++            'retainedOccurrences': sum(row['snapshots'] for row in rows),
++            'conflictedBackups': conflicts,
++            'latest': rows[0] if rows else None,
++            'recent': rows[:args.limit], 'warnings': warnings,
++        }
++    except (RuntimeError, ValueError, TypeError, KeyError) as exc:
++        return {'schema': 1, 'component': 'diaries', 'health': 'error', 'error': str(exc)}
+
+
+-def display(record):
+-    if 'error' in record:
+-        print('ERROR: ' + record['error'])
+-        return
+-    print('DIARIES BACKUP STATUS (read-only)')
+-    snapshot = record['snapshot']
+-    print('\nSNAPSHOT HEALTH')
+-    print(snapshot['stdout'] if snapshot['ok'] else 'UNAVAILABLE: ' + snapshot.get('error', 'unknown'))
+-    print('\nBACKUP HISTORY')
+-    h = record['history']
+-    if h['ok']:
+-        print(f"Retained distinct backups: {h['count']}")
+-        for item in h['recent']:
+-            print(f"  {item['backupId']} dataset={item['logicalDataset']} occurrences={item['snapshots']} status={item['status']}")
+-    else:
+-        print('UNAVAILABLE: ' + (h.get('error') or h.get('stdout') or 'unknown'))
+-    print('\nLAST VERIFIED PULL (CURRENT RECEIVING MARKER)')
+-    m = record['lastVerifiedPull']
+-    if m['ok']:
+-        v = m['data']
+-        print(f"  backupId={v.get('backupId')} logicalDataset={v.get('logicalDataset')} verifiedAt={v.get('verifiedAt')}")
+-        print(f"  sourceIdentity={v.get('sourceIdentity')} snapshotEligible={v.get('snapshotEligible')}")
+-    else:
+-        print('UNAVAILABLE: ' + m.get('error', 'not verified'))
+-    print('\nLAST ACCEPTED OFF-SITE REPLICATION')
+-    o = record['offsite']
+-    if o['ok']:
+-        v = o['latest']
+-        print(f"  snapshot={v['snapshot']} source_uuid={v.get('source_uuid')} (receiver identity verified)" if v else '  No agreed parent reported')
+-    else:
+-        print('UNAVAILABLE: ' + (o.get('error') or 'unknown'))
+-    p = record['replicationPreflight']
+-    print('\nNEXT SIMPLIFIED PUSH PREFLIGHT (READ-ONLY)')
+-    if p['ok'] and isinstance(p.get('data'), dict):
+-        v = p['data']
+-        print(f"  action={v.get('action')} source={v.get('source')} parent={v.get('parent')}")
+-    else:
+-        print('UNAVAILABLE: ' + (p.get('error') or 'unknown'))
+-    print('\nNote: history verification configuration limitation is tracked under 0035-FEAT.')
++
++def visible_width(value):
++    return sum(0 if unicodedata.combining(c) else
++               2 if unicodedata.east_asian_width(c) in ('F', 'W') else 1
++               for c in str(value))
++
++def fit(value, width, right=False):
++    value = str(value)
++    pad = ' ' * max(0, width - visible_width(value))
++    return (pad + value) if right else (value + pad)
+
+
+-def main():
++def table(headers, rows):
++    if not rows:
++        return 'No retained backups found'
++    widths = [max(visible_width(h), *(visible_width(row[i]) for row in rows)) for i, h in enumerate(headers)]
++    def line(fields):
++        return '  '.join((fit(v, widths[i], right=(i == 4)))
++                         for i, v in enumerate(fields))
++    return '\n'.join([line(headers), '  '.join('-' * n for n in widths)] + [line(row) for row in rows])
++
++
++def display(r):
++    print('DIARIES BACKUP STATUS')
++    if r['health'] == 'error':
++        print('UNAVAILABLE: ' + r['error'])
++        return
++    print('Evidence: ' + r['evidence'])
++    print(f"Health: {r['health'].upper()}  Distinct backups: {r['distinctBackups']}  "
++          f"Retained occurrences: {r['retainedOccurrences']}  Conflicts: {r['conflictedBackups']}")
++    latest = r['latest']
++    print('Latest retained backup: ' + (f"{latest['logicalDataset']}/{latest['backupId']} "
++           f"(last occurrence {latest['lastRetainedSnapshot']} UTC)" if latest else 'none'))
++    print('\nRECENT DIARIES BACKUPS')
++    print(table(('Logical dataset', 'Backup ID', 'First retained UTC', 'Last retained UTC', 'Snapshots', 'Manifest identity'),
++          [(x['logicalDataset'], x['backupId'], x['firstRetainedSnapshot'], x['lastRetainedSnapshot'], x['snapshots'],
++            'conflict' if x['status'] == 'conflict' else 'valid') for x in r['recent']]))
++    if r['warnings']:
++        print('\nDIARIES HISTORY WARNINGS')
++        print(table(('Snapshot', 'Reason'), [(str(x[0]), str(x[1])) for x in r['warnings']]))
++
++
++def main(argv=None):
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument('--config', default='/etc/btrfs-snapshot-manager.json')
+-    parser.add_argument('--manager', default=MANAGER)
+     parser.add_argument('--history', default=HISTORY)
+-    parser.add_argument('--push', default=PUSH)
+     parser.add_argument('--limit', type=int, default=5)
+     parser.add_argument('--json', action='store_true')
+-    args = parser.parse_args()
+-    if args.limit < 0 or args.limit > 100:
++    args = parser.parse_args(argv)
++    if not 0 <= args.limit <= 100:
+         parser.error('--limit must be between 0 and 100')
+     result = report(args)
+     if args.json:
+         print(json.dumps(result, indent=2, sort_keys=True))
+     else:
+         display(result)
+-    return 2 if 'error' in result else 0
++    return {'healthy': 0, 'degraded': 1, 'error': 2}[result['health']]
++
+
+ if __name__ == '__main__':
+     sys.exit(main())
+
+changed: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Validate requested sender service identity] ***********************************
+skipping: [backup]
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Verify dedicated sender prerequisites before service cutover] *****************
+skipping: [backup] => (item=/usr/local/libexec/btrfs-replication-sender-cycle-0041)
+skipping: [backup] => (item=/var/lib/btrfs-send/.ssh/id_ed25519)
+skipping: [backup] => (item=/etc/btrfs-replication-0041/known_hosts)
+skipping: [backup]
+ok: [mars] => (item=/usr/local/libexec/btrfs-replication-sender-cycle-0041)
+ok: [mars] => (item=/var/lib/btrfs-send/.ssh/id_ed25519)
+ok: [mars] => (item=/etc/btrfs-replication-0041/known_hosts)
+
+TASK [btrfs-replication : Native Btrfs | Require protected dedicated sender prerequisites] *****************************
+skipping: [backup]
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Require replication runtime installation before service cutover] **************
+skipping: [backup]
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install source-initiated push service and timer] ******************************
+skipping: [backup] => (item=btrfs-push.service)
+skipping: [backup] => (item=btrfs-push.timer)
+skipping: [backup]
+--- before
++++ after: /home/richard/.ansible/tmp/ansible-local-377196nfo3urad/tmp2qkls8ur/btrfs-push.service.j2
+@@ -0,0 +1,12 @@
++[Unit]
++Description=Push newest accepted-lineage Btrfs snapshot (0041 dedicated service account)
++Wants=network-online.target
++After=network-online.target
++ConditionFileIsExecutable=/usr/local/libexec/btrfs-replication-sender-cycle-0041
++
++[Service]
++Type=oneshot
++User=btrfs-send
++Group=btrfs-send
++ExecStart=/usr/bin/sudo -n /usr/local/libexec/btrfs-replication-sender-cycle-0041
++TimeoutStartSec=6h
+
+changed: [mars] => (item=btrfs-push.service)
+--- before
++++ after: /home/richard/.ansible/tmp/ansible-local-377196nfo3urad/tmp84oi8kgb/btrfs-push.timer.j2
+@@ -0,0 +1,10 @@
++[Unit]
++Description=Schedule source-initiated native Btrfs off-site replication
++
++[Timer]
++OnCalendar=*-*-* 03:30:00 UTC
++Persistent=false
++AccuracySec=1min
++
++[Install]
++WantedBy=timers.target
+
+changed: [mars] => (item=btrfs-push.timer)
+
+TASK [btrfs-replication : Native Btrfs | Check for active legacy rsync off-site phase before scheduling native push] ***
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : Native Btrfs | Refuse dual off-site transports] **********************************************
+skipping: [backup]
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : 0049 | Detect installed old push timer] ******************************************************
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : 0049 | Stop and disable old push timer before enabling replacement] **************************
+skipping: [backup]
+skipping: [mars]
+
+TASK [btrfs-replication : 0049 | Refuse to change names during an active old push transaction] *************************
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : 0049 | Require the old push service to be inactive before timer transition] ******************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Apply explicit push schedule state] *******************************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Validate receiver retention settings] *****************************************
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install shared manager with receiver retention] *******************************
+skipping: [mars]
+--- before: /usr/local/sbin/btrfs-snapshot-manager
++++ after: /home/richard/ansible-controller/playbooks/roles/snapshots/files/btrfs-snapshot-manager.py
+@@ -27,6 +27,7 @@
+ import stat
+ import subprocess
+ import sys
++import unicodedata
+ from dataclasses import dataclass
+ from datetime import datetime, timezone
+ from pathlib import Path, PurePosixPath
+@@ -763,8 +764,8 @@
+         raise SnapshotError("checkpoint holds not enabled for this host")
+     holds = read_checkpoint_holds(config)
+     if command == "hold-list":
+-        for stamp, record in sorted(holds.items()):
+-            print(f"HELD {stamp} reason={record['reason']}")
++        print_table('BTRFS SNAPSHOT HOLDS', ('Timestamp UTC', 'Reason'),
++                    [(stamp, record['reason']) for stamp, record in sorted(holds.items())])
+         return
+     assert timestamp is not None
+     parse_timestamp(timestamp)
+@@ -831,6 +832,8 @@
+ def prune(config: Config, dry_run: bool = False, max_delete: int | None = None) -> int:
+     # A bounded scheduled prune prevents an accumulated backlog from being
+     # deleted in one run. Keep direct legacy invocations backward-compatible.
++    if not dry_run and max_delete is None:
++        raise SnapshotError("prune requires --max-delete N; unbounded deletion is disabled")
+     if max_delete is not None and (type(max_delete) is not int or not 1 <= max_delete <= SOURCE_PRUNE_MAX_SETS_PER_RUN):
+         raise SnapshotError("source prune max_delete must be between 1 and 32")
+     if config.mode != "source":
+@@ -871,6 +874,7 @@
+     print(f"RETENTION sets: total={len(complete)} keep={len(keep)} sources={len(config.sources)}")
+     if max_delete is not None:
+         print(f"PRUNE-CAP: eligible={len(eligible)} selected={len(selected)} max_delete={max_delete}")
++    preview_rows = []
+     for name, _ in complete:
+         if name not in selected:
+             continue
+@@ -878,7 +882,7 @@
+         if dry_run:
+             for source in prune_sources:
+                 if snapshot_path(config, source, name).exists():
+-                    print(f"WOULD-DELETE {source.name} {name} {snapshot_path(config, source, name)}")
++                    preview_rows.append(('WOULD-DELETE', name, source.name, snapshot_path(config, source, name)))
+             continue
+         for source in reversed(prune_sources):
+             path = snapshot_path(config, source, name)
+@@ -887,6 +891,9 @@
+             subvolume_id = native_prune_subvolume_id(path)
+             print(f"DELETE {source.name} {name} subvol_id={subvolume_id} {path}", flush=True)
+             run(["btrfs", "subvolume", "delete", str(path)])
++    if dry_run:
++        print_table('BTRFS SOURCE PRUNE PLAN',
++                    ('Action', 'Timestamp UTC', 'Source', 'Snapshot path'), preview_rows)
+     print(("Would delete" if dry_run else "Deleted") + f" {deleted_sets} complete timestamp sets")
+     return deleted_sets
+
+@@ -1481,23 +1488,27 @@
+
+
+ def receiver_simple_print_plan(plan: dict[str, object]) -> None:
+-    print("RECEIVER-SIMPLE-PLAN " + json.dumps({
+-        "parent": plan["parent"], "prior": plan["prior"],
+-        "keep": len(plan["keep"]), "candidates": len(plan["candidates"]),
+-        "historical_receipts_preserved": len(plan["historical_receipts"]),
+-        "historical_receipts_on_candidates": len(plan["historical_receipts_on_candidates"]),
+-        "historical_receipts_orphaned": len(plan["historical_receipts_orphaned"]),
+-        "holds": plan["holds"], "enabled": plan["executable"],
+-    }, sort_keys=True))
+-    keep = set(plan["keep"])
+-    for stamp in sorted(plan["identity"], reverse=True):
+-        label = ("RETAIN" if stamp in keep else
+-                 "ELIGIBLE-WHEN-APPROVED" if plan["executable"] else
+-                 "CANDIDATE-NOT-AUTHORIZED")
+-        receipt_note = " historical_receipt=preserved" if stamp in plan["historical_receipts"] else ""
+-        print(f"{label} {stamp} received_uuid={plan['identity'][stamp]['Received UUID']} "
+-              f"subvolume_id={plan['identity'][stamp]['Subvolume ID']}{receipt_note}")
+-
++    print('BTRFS RECEIVER PRUNE PLAN')
++    print(f"Deletion gate: {'enabled' if plan['executable'] else 'disabled'}  "
++          f"Retained: {len(plan['keep'])}  Selected for deletion: {len(plan['candidates'])}  "
++          f"Holds: {len(plan['holds'])}")
++    print(f"Protected parent: {plan['parent']['timestamp']}  "
++          f"Prior: {(plan['prior'] or {}).get('timestamp', 'none')}")
++    keep = set(plan['keep'])
++    rows = []
++    for stamp in sorted(plan['identity'], reverse=True):
++        label = ('RETAIN' if stamp in keep else
++                 'ELIGIBLE' if plan['executable'] and stamp in plan['candidates'] else
++                 'NOT SELECTED' if plan['executable'] else 'BLOCKED BY GATE')
++        rows.append((stamp, label, plan['identity'][stamp]['Received UUID'],
++                     plan['identity'][stamp]['Subvolume ID'],
++                     'preserved' if stamp in plan['historical_receipts'] else '-'))
++    print_table('RECEIVED SNAPSHOT RETENTION',
++                ('Timestamp UTC', 'Decision', 'Received UUID', 'Subvolume ID', 'Historical receipt'),
++                rows, numeric=(3,))
++    print(f"Historical receipts preserved: {len(plan['historical_receipts'])}; "
++          f"on eligible snapshots: {len(plan['historical_receipts_on_candidates'])}; "
++          f"orphaned: {len(plan['historical_receipts_orphaned'])}")
+
+ def receiver_simple_prune(config: Config, *, max_delete: int) -> int:
+     """Guarded receiver-only deletion.  Caller holds manager flock throughout.
+@@ -1552,17 +1563,45 @@
+         finally:
+             os.close(parent_fd)
+         deleted += 1
+-        print(f"RECEIVER-SIMPLE-DELETED {stamp} subvolume_id={expected['Subvolume ID']}", flush=True)
+-    print(f"RECEIVER-SIMPLE-DELETED count={deleted}")
++        print(f"RECEIVER-PRUNE-DELETED {stamp} subvolume_id={expected['Subvolume ID']}", flush=True)
++    print(f"RECEIVER-PRUNE-DELETED count={deleted}")
+     return deleted
++
++
++
++def visible_width(value):
++    return sum(0 if unicodedata.combining(c) else
++               2 if unicodedata.east_asian_width(c) in ('F', 'W') else 1
++               for c in str(value))
++
++def fit(value, width, right=False):
++    value = str(value)
++    pad = ' ' * max(0, width - visible_width(value))
++    return (pad + value) if right else (value + pad)
++
++
++def print_table(title: str, headers: tuple[str, ...], rows: list[tuple[object, ...]], numeric: tuple[int, ...] = ()) -> None:
++    print(title)
++    if not rows:
++        print('No entries')
++        return
++    widths = [max(visible_width(header), *(visible_width(row[i]) for row in rows))
++              for i, header in enumerate(headers)]
++    def line(values):
++        return '  '.join((fit(value, widths[i], right=(i in numeric)))
++                         for i, value in enumerate(values))
++    print(line(headers))
++    print('  '.join('-' * n for n in widths))
++    for row in rows:
++        print(line(row))
+
+ def show_list(config: Config) -> None:
+     complete, incomplete = managed_snapshot_sets(config)
+-    print("TIMESTAMP          STATE      SOURCES")
+-    for name, _ in complete:
+-        print(f"{name:18} COMPLETE   {','.join(source.name for source in config.sources)}")
+-    for name in sorted(incomplete, reverse=True):
+-        print(f"{name:18} INCOMPLETE {','.join(sorted(incomplete[name]))}")
++    rows = [(name, 'COMPLETE', ','.join(source.name for source in config.sources))
++            for name, _ in complete]
++    rows += [(name, 'INCOMPLETE', ','.join(sorted(incomplete[name])))
++             for name in sorted(incomplete, reverse=True)]
++    print_table('BTRFS SNAPSHOT INVENTORY', ('Timestamp UTC', 'State', 'Sources'), rows)
+
+
+ def qgroup_status(path: Path, *, timeout_seconds: int = 8, warning_threshold: int = 100) -> list[str]:
+@@ -1626,18 +1665,6 @@
+     print(f"complete_timestamp_sets={len(complete)};incomplete_timestamp_sets={len(incomplete)}")
+     for source in config.sources:
+         print(f"source={source.name}:{source.source};managed_snapshots={len(list_managed(config, source))}")
+-    if config.verification.required:
+-        state = read_verified_diaries(config, strict=False)
+-        if state and "error" not in state:
+-            print(
+-                "diaries_verification=valid;"
+-                f"logicalDataset={state['logicalDataset']};backupId={state['backupId']};"
+-                f"marker={state['marker']}"
+-            )
+-        else:
+-            print(f"diaries_verification=not-ready;detail={(state or {}).get('error', 'unknown')}")
+-    else:
+-        print("diaries_verification=disabled")
+
+
+ def with_lock(path: Path, *, shared: bool = False, nonblocking: bool = True,
+@@ -1671,23 +1698,11 @@
+     sub = parser.add_subparsers(dest="command", required=True)
+     create_parser = sub.add_parser("create")
+     create_parser.add_argument("--timestamp")
+-    prune_parser = sub.add_parser("prune")
++    prune_parser = sub.add_parser("prune", help="endpoint-aware preview or bounded guarded retention deletion")
+     prune_parser.add_argument("--dry-run", action="store_true")
+-    prune_parser.add_argument("--max-delete", type=int, help="limit source pruning to 1..32 snapshot sets per run")
++    prune_parser.add_argument("--max-delete", type=int, help="maximum deletion count: source 1..32; receiver 1..20")
+     sub.add_parser("list")
+     sub.add_parser("status")
+-    sub.add_parser("receiver-inventory")
+-    sub.add_parser("receiver-plan", help="read-only retention selection for verified received snapshots")
+-    sub.add_parser("receiver-simple-plan", help="Btrfs-verified simplified receiver retention preview")
+-    simple_prune = sub.add_parser("receiver-simple-prune", help="explicitly gated simplified receiver retention")
+-    simple_prune.add_argument("--max-delete", type=int, required=True)
+-    coordination = sub.add_parser("receiver-coordination-check", help="lock-held read-only receiver parent validation; no deletion authority")
+-    coordination.add_argument("--snapshot", required=True)
+-    coordination.add_argument("--source-uuid", required=True)
+-    sub.add_parser("receiver-recovery-plan", help="lock-held non-mutating interrupted receiver prune classification")
+-    guarded = sub.add_parser("receiver-prune", help="explicitly approved, locked receiver deletion")
+-    guarded.add_argument("--approval-file", required=True)
+-    sub.add_parser("run")
+     add_parser = sub.add_parser("hold-add")
+     add_parser.add_argument("timestamp")
+     add_parser.add_argument("--reason", required=True)
+@@ -1699,44 +1714,39 @@
+     try:
+         require_root()
+         config = load_config(Path(args.config))
+-        if config.mode == "receiver" and args.command not in {"list", "status", "receiver-inventory", "receiver-plan", "receiver-prune", "receiver-coordination-check", "receiver-recovery-plan", "receiver-simple-plan", "receiver-simple-prune"}:
+-            raise SnapshotError("receiver mode supports only explicit receiver operations")
+-        manager_lock = with_lock(config.lock_path) if args.command in {"create", "prune", "run", "hold-add", "hold-release", "hold-list", "receiver-prune", "receiver-coordination-check", "receiver-recovery-plan", "receiver-inventory", "receiver-plan", "receiver-simple-plan", "receiver-simple-prune"} else None
++        if config.mode == "receiver" and args.command not in {"list", "status", "prune"}:
++            raise SnapshotError("receiver mode supports only list, status and guarded prune")
++        manager_lock = (with_lock(config.lock_path, shared=True, require_existing=True)
++                        if args.command == 'prune' and args.dry_run else
++                        with_lock(config.lock_path) if args.command in {
++                            "create", "prune", "hold-add", "hold-release", "hold-list"} else None)
+         writer_lock = None
+         try:
+-            if args.command in {"receiver-prune", "receiver-coordination-check", "receiver-recovery-plan", "receiver-inventory", "receiver-plan"}:
+-                if config.receiver_state_dir is None or config.writer_lock_path != config.receiver_state_dir / "writer.lock":
+-                    raise SnapshotError("receiver writer lock configuration missing or inconsistent")
+-                writer_lock = with_lock(config.writer_lock_path, require_existing=True)
+-            if args.command in {"create", "run"} and config.writer_lock_path is not None:
++            if args.command == "create" and config.writer_lock_path is not None:
+                 writer_lock = with_lock(config.writer_lock_path, shared=True, require_existing=True)
+             if args.command == "create":
+                 create_all(config, args.timestamp)
+             elif args.command == "prune":
+-                prune(config, args.dry_run, args.max_delete)
++                if config.mode == "receiver":
++                    if args.dry_run:
++                        if args.max_delete is not None and not 1 <= args.max_delete <= 20:
++                            raise SnapshotError("receiver prune max-delete must be within 1..20")
++                        plan = receiver_simple_plan(config)
++                        if args.max_delete is not None:
++                            plan = dict(plan, candidates=plan["candidates"][:args.max_delete])
++                        receiver_simple_print_plan(plan)
++                    else:
++                        if args.max_delete is None:
++                            raise SnapshotError("receiver prune requires --max-delete N")
++                        receiver_simple_prune(config, max_delete=args.max_delete)
++                else:
++                    prune(config, args.dry_run, args.max_delete)
+             elif args.command == "list":
+                 show_list(config)
+             elif args.command == "status":
+                 show_status(config)
+-            elif args.command == "receiver-inventory":
+-                receiver_inventory(config)
+-            elif args.command == "receiver-plan":
+-                receiver_plan(config)
+-            elif args.command == "receiver-simple-plan":
+-                receiver_simple_print_plan(receiver_simple_plan(config))
+-            elif args.command == "receiver-simple-prune":
+-                receiver_simple_prune(config, max_delete=args.max_delete)
+-            elif args.command == "receiver-coordination-check":
+-                receiver_coordination_check(config, args.snapshot, args.source_uuid)
+-            elif args.command == "receiver-recovery-plan":
+-                receiver_recovery_plan(config)
+-            elif args.command == "receiver-prune":
+-                receiver_guarded_prune(config, Path(args.approval_file))
+             elif args.command in {"hold-add", "hold-release", "hold-list"}:
+                 checkpoint_command(config, args.command, getattr(args, "timestamp", None), getattr(args, "reason", None))
+-            elif args.command == "run":
+-                create_all(config)
+-                prune(config, False)
+         finally:
+             if writer_lock is not None:
+                 writer_lock.close()
+
+changed: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver config with independent deletion gate] ***********************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install dormant receiver retention units] *************************************
+skipping: [mars] => (item=btrfs-receiver-prune.service)
+skipping: [mars] => (item=btrfs-receiver-prune.timer)
+skipping: [mars]
+--- before
++++ after: /home/richard/.ansible/tmp/ansible-local-377196nfo3urad/tmp7jddfgjt/btrfs-receiver-prune.service.j2
+@@ -0,0 +1,11 @@
++[Unit]
++Description=Guarded Btrfs receiver snapshot retention (approved only)
++After=network-online.target
++ConditionPathExists=/etc/btrfs-snapshot-manager.json
++
++[Service]
++Type=oneshot
++User=root
++Group=root
++ExecStart=/usr/local/sbin/btrfs-snapshot-manager --config /etc/btrfs-snapshot-manager.json prune --max-delete 10
++TimeoutStartSec=2h
+
+changed: [backup] => (item=btrfs-receiver-prune.service)
+--- before
++++ after: /home/richard/.ansible/tmp/ansible-local-377196nfo3urad/tmpyr7p3rat/btrfs-receiver-prune.timer.j2
+@@ -0,0 +1,10 @@
++[Unit]
++Description=0040 Simplified Btrfs receiver retention timer
++
++[Timer]
++OnCalendar=*-*-* 04:15:00 UTC
++Persistent=false
++AccuracySec=1min
++
++[Install]
++WantedBy=timers.target
+
+changed: [backup] => (item=btrfs-receiver-prune.timer)
+
+TASK [btrfs-replication : 0049 | Detect installed old receiver prune timer] ********************************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : 0049 | Stop and disable old receiver prune timer before enabling replacement] ****************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0049 | Refuse cutover while old receiver prune service is running] ***************************
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : 0049 | Require the old receiver prune service to be inactive] ********************************
+skipping: [mars]
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Enforce explicit receiver retention timer state] ******************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0049 | Remove old push/receiver systemd units] ***********************************************
+skipping: [mars] => (item=btrfs-native-push.service)
+skipping: [mars] => (item=btrfs-native-push.timer)
+skipping: [mars]
+skipping: [backup] => (item=btrfs-receiver-simple-prune.service)
+skipping: [backup] => (item=btrfs-receiver-simple-prune.timer)
+skipping: [backup]
+
+TASK [btrfs-replication : 0049 | Reload unit catalogue after removing old names] ***************************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0049 | Remove obsolete installed simplified replication path] ********************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Qgroups | Validate explicit endpoint and activation contract] ********************************
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Qgroups | Install one shared cleanup executable on both endpoints] ***************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Qgroups | Render host-local stale-qgroup maintenance configuration] **************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Qgroups | Install endpoint-specific service and common timer] ********************************
+skipping: [mars] => (item=btrfs-clear-stale-qgroups.service)
+skipping: [mars] => (item=btrfs-clear-stale-qgroups.timer)
+skipping: [mars]
+skipping: [backup] => (item=btrfs-clear-stale-qgroups.service)
+skipping: [backup] => (item=btrfs-clear-stale-qgroups.timer)
+skipping: [backup]
+
+TASK [btrfs-replication : Qgroups | Read current installed timer state for safe check mode] ****************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : Qgroups | Apply explicit timer activation state] *********************************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Refuse partial host selection or unknown endpoint] ************************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Explain isolated check-mode key handling] *********************************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Create dedicated primary group before user] *******************************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Create dedicated local account] *******************************************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Create isolated source key directories] ***********************************************
+skipping: [mars] => (item=/var/lib/btrfs-send)
+skipping: [mars] => (item=/var/lib/btrfs-send/.ssh)
+skipping: [mars]
+skipping: [backup] => (item=/var/lib/btrfs-send)
+skipping: [backup] => (item=/var/lib/btrfs-send/.ssh)
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Protect receiver home and SSH configuration from service writes] **********************
+skipping: [mars] => (item=/var/lib/btrfs-receive)
+skipping: [mars] => (item=/var/lib/btrfs-receive/.ssh)
+skipping: [mars]
+skipping: [backup] => (item=/var/lib/btrfs-receive)
+skipping: [backup] => (item=/var/lib/btrfs-receive/.ssh)
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Generate source-only Ed25519 key without passphrase] **********************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Confirm key remains private and local] ************************************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Read public key from sender only] *****************************************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Read receiver host public key, not its private key] ***********************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Create root-controlled identity and helper directories] *******************************
+skipping: [mars] => (item=/usr/local/libexec)
+skipping: [mars] => (item=/etc/btrfs-replication-0041)
+skipping: [mars]
+skipping: [backup] => (item=/usr/local/libexec)
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Install root-owned pinned receiver host key on source] ********************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Protect pinned host key from service-account edits] ***********************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Install dual-transport runtime (legacy is still the default)] *************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Install fixed root-owned command gates] ***********************************************
+skipping: [mars] => (item={'src': 'btrfs-replication-sender-cycle-0041.sh', 'dest': '/usr/local/libexec/btrfs-replication-sender-cycle-0041'})
+skipping: [mars]
+skipping: [backup] => (item={'src': 'btrfs-replication-receiver-gate-0041.py', 'dest': '/usr/local/libexec/btrfs-replication-receiver-gate-0041'})
+skipping: [backup] => (item={'src': 'btrfs-replication-ssh-dispatch-0041.py', 'dest': '/usr/local/libexec/btrfs-replication-ssh-dispatch-0041'})
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Install narrowly scoped service-only sudoers] *****************************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Install sole root-managed forced-command receiver public key] *************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Verify SSH daemon config without changing or reloading it] ****************************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Stage candidate service unit at NON-ACTIVE filename only] *****************************
+skipping: [mars]
+skipping: [backup]
+
+PLAY RECAP *************************************************************************************************************
+backup                     : ok=30   changed=6    unreachable=0    failed=0    skipped=47   rescued=0    ignored=0
+mars                       : ok=22   changed=6    unreachable=0    failed=0    skipped=55   rescued=0    ignored=0
+
+0049 SOURCE AND ANSIBLE PREVIEW: PASS
+richard@mango:~$

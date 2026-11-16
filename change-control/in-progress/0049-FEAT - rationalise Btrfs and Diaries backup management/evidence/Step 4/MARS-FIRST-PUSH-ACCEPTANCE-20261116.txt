@@ -1,0 +1,155 @@
+richard@mars:~$ (
+  echo "=== BEFORE REPLICATION ==="
+  sudo -n env BTRFS_REPLICATION_IDENTITY_MODE=dedicated \
+    btrfs-replication sender status || exit 1
+
+  echo "=== EXECUTE REPLICATION ==="
+  sudo -n systemctl start btrfs-push.service
+  push_rc=$?
+
+  echo "=== SERVICE JOURNAL ==="
+  sudo -n journalctl -u btrfs-push.service \
+    -n 100 --no-pager
+
+  if [ "$push_rc" -ne 0 ]; then
+    echo "Push failed: $push_rc"
+    exit "$push_rc"
+  fi
+
+  echo "=== AFTER REPLICATION ==="
+  sudo -n env BTRFS_REPLICATION_IDENTITY_MODE=dedicated \
+    btrfs-replication sender status || exit 1
+
+  sudo -n btrfs-backup-status || exit 1
+)
+
+result=$?
+if [ "$result" -eq 0 ]; then
+  echo "0049 REPLICATION ACCEPTANCE: PASS"
+fiecho "0049 REPLICATION ACCEPTANCE: FAIL ($result)"
+=== BEFORE REPLICATION ===
+{
+  "preflight": {
+    "action": "incremental",
+    "parent": "20261116-030016Z",
+    "source": "20261116-150008Z",
+    "source_uuid": "818b8956-76de-564f-8351-37cc89037d14"
+  },
+  "receiver": {
+    "parent": {
+      "timestamp": "20261116-030016Z",
+      "uuid": "b3fe0423-b878-da4f-8619-fd31ca950963"
+    },
+    "prior": {
+      "timestamp": "20261115-140017Z",
+      "uuid": "9913fcd7-fea4-854d-a2a0-ca433c2700d4"
+    },
+    "schema": 1
+  },
+  "receiver_parent_verified": true,
+  "relation": "equal",
+  "state": {
+    "parent": {
+      "timestamp": "20261116-030016Z",
+      "uuid": "b3fe0423-b878-da4f-8619-fd31ca950963"
+    },
+    "prior": {
+      "timestamp": "20261115-140017Z",
+      "uuid": "9913fcd7-fea4-854d-a2a0-ca433c2700d4"
+    },
+    "schema": 1
+  }
+}
+=== EXECUTE REPLICATION ===
+=== SERVICE JOURNAL ===
+Nov 16 15:56:13 mars systemd[1]: Starting btrfs-push.service - Push newest accepted-lineage Btrfs snapshot (0041 dedicated service account)...
+Nov 16 15:56:13 mars sudo[180350]: btrfs-send : PWD=/ ; USER=root ; COMMAND=/usr/local/libexec/btrfs-replication-sender-cycle-0041
+Nov 16 15:56:13 mars sudo[180350]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=997)
+Nov 16 15:56:13 mars sudo[180354]:     root : PWD=/ ; USER=btrfs-send ; COMMAND=/usr/bin/ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=15 -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -o UserKnownHostsFile=/etc/btrfs-replication-0041/known_hosts -i /var/lib/btrfs-send/.ssh/id_ed25519 -p 39263 btrfs-receive@10.254.22.1 'btrfs-replication receiver status'
+Nov 16 15:56:13 mars sudo[180354]: pam_unix(sudo:session): session opened for user btrfs-send(uid=997) by (uid=0)
+Nov 16 15:56:14 mars sudo[180354]: pam_unix(sudo:session): session closed for user btrfs-send
+Nov 16 15:56:14 mars sudo[180359]:     root : PWD=/ ; USER=btrfs-send ; COMMAND=/usr/bin/ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=15 -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -o UserKnownHostsFile=/etc/btrfs-replication-0041/known_hosts -i /var/lib/btrfs-send/.ssh/id_ed25519 -p 39263 btrfs-receive@10.254.22.1 'btrfs-replication receiver status --snapshot 20261116-150008Z'
+Nov 16 15:56:14 mars sudo[180359]: pam_unix(sudo:session): session opened for user btrfs-send(uid=997) by (uid=0)
+Nov 16 15:56:15 mars sudo[180359]: pam_unix(sudo:session): session closed for user btrfs-send
+Nov 16 15:56:15 mars sudo[180364]:     root : PWD=/ ; USER=btrfs-send ; COMMAND=/usr/bin/ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=15 -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -o UserKnownHostsFile=/etc/btrfs-replication-0041/known_hosts -i /var/lib/btrfs-send/.ssh/id_ed25519 -p 39263 btrfs-receive@10.254.22.1 'btrfs-replication receiver receive --snapshot 20261116-150008Z --uuid 818b8956-76de-564f-8351-37cc89037d14 --parent 20261116-030016Z --parent-uuid b3fe0423-b878-da4f-8619-fd31ca950963'
+Nov 16 15:56:15 mars sudo[180364]: pam_unix(sudo:session): session opened for user btrfs-send(uid=997) by (uid=0)
+Nov 16 15:56:27 mars sudo[180364]: pam_unix(sudo:session): session closed for user btrfs-send
+Nov 16 15:56:27 mars sudo[180367]:     root : PWD=/ ; USER=btrfs-send ; COMMAND=/usr/bin/ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=15 -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -o UserKnownHostsFile=/etc/btrfs-replication-0041/known_hosts -i /var/lib/btrfs-send/.ssh/id_ed25519 -p 39263 btrfs-receive@10.254.22.1 'btrfs-replication receiver status --snapshot 20261116-150008Z'
+Nov 16 15:56:27 mars sudo[180367]: pam_unix(sudo:session): session opened for user btrfs-send(uid=997) by (uid=0)
+Nov 16 15:56:28 mars sudo[180367]: pam_unix(sudo:session): session closed for user btrfs-send
+Nov 16 15:56:28 mars sudo[180351]: SUCCESS: common parent advanced to 20261116-150008Z
+Nov 16 15:56:28 mars sudo[180350]: pam_unix(sudo:session): session closed for user root
+Nov 16 15:56:28 mars systemd[1]: btrfs-push.service: Deactivated successfully.
+Nov 16 15:56:28 mars systemd[1]: Finished btrfs-push.service - Push newest accepted-lineage Btrfs snapshot (0041 dedicated service account).
+Nov 16 15:56:28 mars systemd[1]: btrfs-push.service: Consumed 12.514s CPU time.
+=== AFTER REPLICATION ===
+{
+  "preflight": {
+    "action": "up-to-date",
+    "parent": "20261116-150008Z",
+    "source": null
+  },
+  "receiver": {
+    "parent": {
+      "timestamp": "20261116-150008Z",
+      "uuid": "818b8956-76de-564f-8351-37cc89037d14"
+    },
+    "prior": {
+      "timestamp": "20261116-030016Z",
+      "uuid": "b3fe0423-b878-da4f-8619-fd31ca950963"
+    },
+    "schema": 1
+  },
+  "receiver_parent_verified": true,
+  "relation": "equal",
+  "state": {
+    "parent": {
+      "timestamp": "20261116-150008Z",
+      "uuid": "818b8956-76de-564f-8351-37cc89037d14"
+    },
+    "prior": {
+      "timestamp": "20261116-030016Z",
+      "uuid": "b3fe0423-b878-da4f-8619-fd31ca950963"
+    },
+    "schema": 1
+  }
+}
+BTRFS BACKUP STATUS — mars (source)
+Health: HEALTHY
+
+BACKUP COLLECTION
+Accepted published dataset: production/20261116-003112Z at 2026-11-16T01:30:09.642886Z
+Last successful collection service run: Mon 2026-11-16 01:30:09 UTC
+
+BTRFS SNAPSHOTS AND RETENTION
+Repository: /media/usb/@snapshots
+Retained sets (observed): 82
+Oldest / newest (UTC): 20261011-230026Z / 20261116-150008Z
+Retention: hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+
+FILESYSTEM QGROUP HEALTH
+Qgroups: qgroups_status=ok, qgroups_total=95, qgroups_stale=2, qgroups_under_deletion=0
+
+BTRFS REPLICATION
+Local agreed parent: {'timestamp': '20261116-150008Z', 'uuid': '818b8956-76de-564f-8351-37cc89037d14'}
+Locally recorded prior parent: {'timestamp': '20261116-030016Z', 'uuid': 'b3fe0423-b878-da4f-8619-fd31ca950963'}
+Receiver: verified
+
+NEXT PUSH PREFLIGHT
+Action      Candidate UTC  Parent UTC
+----------  -------------  ----------------
+up-to-date  -              20261116-150008Z
+Last successful push cycle: Mon 2026-11-16 15:56:28 UTC
+Last verified transfer: unknown (independent receipt not available)
+
+SCHEDULED OPERATIONS
+Unit                         Active    Result   Next/last execution (systemd)
+---------------------------  --------  -------  -----------------------------
+btrfs-push.service           inactive  success  Mon 2026-11-16 15:56:28 UTC
+btrfs-push.timer             active    success  Tue 2026-11-17 03:30:00 UTC
+btrfs-snapshot-create.timer  active    success  Mon 2026-11-16 16:00:00 UTC
+btrfs-snapshot-prune.timer   active    success  Tue 2026-11-17 04:15:00 UTC
+diaries-pull.service         inactive  success  Mon 2026-11-16 01:30:09 UTC
+diaries-pull.timer           active    success  Tue 2026-11-17 01:30:00 UTC
+0049 REPLICATION ACCEPTANCE: PASS
+richard@mars:~$
