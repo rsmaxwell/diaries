@@ -1,0 +1,49 @@
+0041 STEP 8 LIVE SECURITY / IDEMPOTENCE: 2026-11-15T14:33:15Z on mango
+
+=== Source/inventory revisions and working-tree changes ===
+ ebcce026723db37b9b53b76ba21903a351d48466 inventory (heads/main)
+ c5109340a2fe13296a2343c682e1079d1a212c8d playbooks (heads/main)
+ M roles/btrfs-replication/defaults/main.yaml
+ M roles/btrfs-replication/files/btrfs-simplified-replication.py
+ M roles/btrfs-replication/tasks/native.yaml
+?? roles/btrfs-replication/README-0041-DEDICATED-IDENTITIES.md
+?? roles/btrfs-replication/files/btrfs-replication-receiver-gate-0041.py
+?? roles/btrfs-replication/files/btrfs-replication-sender-cycle-0041.sh
+?? roles/btrfs-replication/files/btrfs-replication-ssh-dispatch-0041.py
+?? roles/btrfs-replication/tasks/service-identities-0041.yaml
+?? roles/btrfs-replication/templates/btrfs-0041-service-sudoers.j2
+?? roles/btrfs-replication/templates/btrfs-native-push-0041.service.j2
+?? roles/btrfs-replication/tests/verify-0041-restricted-identity.py
+
+=== Capture current production scheduler/service definitions ===
+
+=== Confirm dedicated accounts have no administrative groups ===
+PASS: sender account group and shell
+PASS: receiver account group and shell
+
+=== Verify receiver key restrictions and non-writable config ===
+PASS: single root-managed restricted receiver key; service cannot modify it
+
+=== Verify neither dedicated account has unrestricted sudo ===
+PASS: btrfs-send rejects sudo /usr/bin/id (exit=1)
+PASS: btrfs-send rejects sudo /usr/local/libexec/btrfs-replication-sender-cycle-0041 status (exit=1)
+PASS: btrfs-receive rejects sudo /usr/bin/id (exit=1)
+PASS: btrfs-receive rejects sudo /usr/local/libexec/btrfs-replication-receiver-gate-0041 status (exit=1)
+/etc/sudoers.d/btrfs-0041-service: parsed OK
+/etc/sudoers.d/btrfs-0041-service: parsed OK
+
+=== Verify dedicated SSH status succeeds with pinned key ===
+PASS: dedicated status verifies receiver parent, relation=equal
+
+=== Adversarial forced-command refusals (no Btrfs modifications) ===
+PASS: receiver rejects arbitrary id (exit=64)
+PASS: receiver rejects shell request (exit=64)
+PASS: receiver rejects bootstrap (exit=64)
+PASS: receiver rejects shell operator injection (exit=64)
+PASS: receiver rejects path traversal (exit=64)
+
+=== Reapply additive Ansible role and require changed=0 ===
+Ansible working directory: /home/richard/ansible-controller/playbooks
+Ansible inventory: /home/richard/ansible-controller/inventory/hosts
+bash: line 102: cd: playbooks: No such file or directory
+FAIL: 0041 Step 8 stopped (exit 1). 03:30 timer cutover NOT requested.

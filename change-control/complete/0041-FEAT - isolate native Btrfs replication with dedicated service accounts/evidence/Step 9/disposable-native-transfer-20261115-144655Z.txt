@@ -1,0 +1,35 @@
+0041 STEP 9 DISPOSABLE BTRFS SEND/RECEIVE: 2026-11-15T14:46:55Z
+SOURCE_HOST=mars FIXTURE_TAG=20261115T144655Z-167106
+SCOPE: only newly-created, unmanaged .0041-disposable-* directories
+NOTE: uses existing richard transport; dedicated forced-command is tested separately
+=== Create isolated Btrfs fixture ===
+Create subvolume '/media/usb/.0041-disposable-20261115T144655Z-167106/work'
+Create a readonly snapshot of '/media/usb/.0041-disposable-20261115T144655Z-167106/work' in '/media/usb/.0041-disposable-20261115T144655Z-167106/parent'
+=== Full binary Btrfs send/receive ===
+At subvol /media/usb/.0041-disposable-20261115T144655Z-167106/parent
+At subvol parent
+PASS: full-transfer received UUID matched
+Create a readonly snapshot of '/media/usb/.0041-disposable-20261115T144655Z-167106/work' in '/media/usb/.0041-disposable-20261115T144655Z-167106/child'
+=== Incremental binary Btrfs send/receive ===
+At subvol /media/usb/.0041-disposable-20261115T144655Z-167106/child
+At snapshot child
+PASS: incremental received UUID and payload checksum matched
+=== Interrupted stream then guarded fixture retry ===
+Create a readonly snapshot of '/media/usb/.0041-disposable-20261115T144655Z-167106/work' in '/media/usb/.0041-disposable-20261115T144655Z-167106/interrupted'
+PASS: truncated stream rejected
+Delete subvolume 55910 (no-commit): '/@data/mars-received/.0041-disposable-20261115T144655Z-167106/interrupted'
+At subvol /media/usb/.0041-disposable-20261115T144655Z-167106/interrupted
+At snapshot interrupted
+PASS: interrupted fixture successfully resent and UUID verified
+=== Confirm production agreed-parent records did not change ===
+PASS: production agreed-parent files unchanged
+PASS: isolated binary transfer, incremental send, interruption/retry verified
+=== Dispose of ONLY the newly created 0041 fixture subvolumes ===
+Delete subvolume 55911 (no-commit): '/@data/mars-received/.0041-disposable-20261115T144655Z-167106/interrupted'
+Delete subvolume 55909 (no-commit): '/@data/mars-received/.0041-disposable-20261115T144655Z-167106/child'
+Delete subvolume 55908 (no-commit): '/@data/mars-received/.0041-disposable-20261115T144655Z-167106/parent'
+Delete subvolume 21744 (no-commit): '/media/usb/.0041-disposable-20261115T144655Z-167106/interrupted'
+Delete subvolume 21743 (no-commit): '/media/usb/.0041-disposable-20261115T144655Z-167106/child'
+Delete subvolume 21742 (no-commit): '/media/usb/.0041-disposable-20261115T144655Z-167106/parent'
+Delete subvolume 21741 (no-commit): '/media/usb/.0041-disposable-20261115T144655Z-167106/work'
+PASS: disposable fixture cleanup completed

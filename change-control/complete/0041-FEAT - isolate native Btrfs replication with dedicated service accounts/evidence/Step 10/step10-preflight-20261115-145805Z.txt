@@ -1,0 +1,21 @@
+0041 STEP 10 --preflight: 2026-11-15T14:58:02Z on mango
+No production timer cutover, no automatic retry, and no state-file rollback.
+=== Source/installed runtime identity ===
+PASS: mars:/usr/local/bin/btrfs-simplified-replication
+PASS: backup:/usr/local/bin/btrfs-simplified-replication
+PASS: mars:/usr/local/libexec/btrfs-replication-sender-cycle-0041
+PASS: backup:/usr/local/libexec/btrfs-replication-receiver-gate-0041
+PASS: backup:/usr/local/libexec/btrfs-replication-ssh-dispatch-0041
+=== Capture original active service and timer definitions ===
+Before source state sha256: aba2aeaea1b9ba5614d1239ca71f0cd827da50bb772c2a295f5df1d927067b0e
+Before receiver state sha256: aba2aeaea1b9ba5614d1239ca71f0cd827da50bb772c2a295f5df1d927067b0e
+=== Dedicated transport read-only preflight ===
+{"preflight": {"action": "incremental", "parent": "20261115-030001Z", "source": "20261115-140017Z", "source_uuid": "9913fcd7-fea4-854d-a2a0-ca433c2700d4"}, "receiver": {"parent": {"timestamp": "20261115-030001Z", "uuid": "e96f7a7b-b293-8b4e-bbcf-9cebc9ee7158"}, "prior": {"timestamp": "20261114-030021Z", "uuid": "d3506183-87c5-bd49-8c61-add410ef98b3"}, "schema": 1}, "receiver_parent_verified": true, "relation": "equal", "state": {"parent": {"timestamp": "20261115-030001Z", "uuid": "e96f7a7b-b293-8b4e-bbcf-9cebc9ee7158"}, "prior": {"timestamp": "20261114-030021Z", "uuid": "d3506183-87c5-bd49-8c61-add410ef98b3"}, "schema": 1}}
+Selected candidate: 20261115-140017Z
+Agreed parent: 20261115-030001Z
+=== Refuse if target candidate already exists (prevents incomplete-candidate deletion) ===
+PASS: selected receiver candidate absent; no cleanup required
+=== Verify sender manager-lock contention is refused ===
+PASS: concurrent sender status refused while manager lock held
+PASS: final preflight stable
+PASS: 0041 Step 10 preflight-only complete; no transfer or state changes

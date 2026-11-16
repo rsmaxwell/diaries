@@ -1,0 +1,163 @@
+0041 STEP 7 ADDITIVE PROVISIONING: 2026-11-15T14:26:37Z on mango
+ ebcce026723db37b9b53b76ba21903a351d48466 inventory (heads/main)
+ c5109340a2fe13296a2343c682e1079d1a212c8d playbooks (heads/main)
+
+=== Verify the exact previously tested candidate source files ===
+roles/btrfs-replication/README-0041-DEDICATED-IDENTITIES.md: OK
+roles/btrfs-replication/defaults/main.yaml: OK
+roles/btrfs-replication/files/btrfs-replication-receiver-gate-0041.py: OK
+roles/btrfs-replication/files/btrfs-replication-sender-cycle-0041.sh: OK
+roles/btrfs-replication/files/btrfs-replication-ssh-dispatch-0041.py: OK
+roles/btrfs-replication/files/btrfs-simplified-replication.py: OK
+roles/btrfs-replication/tasks/native.yaml: OK
+roles/btrfs-replication/tasks/service-identities-0041.yaml: OK
+roles/btrfs-replication/templates/btrfs-0041-service-sudoers.j2: OK
+roles/btrfs-replication/templates/btrfs-native-push-0041.service.j2: OK
+roles/btrfs-replication/tests/verify-0041-restricted-identity.py: OK
+
+=== Verify receiver host key before installing SSH credentials ===
+Receiver ED25519 fingerprint: SHA256:xUMdQvKNOUGmOAvO0MuEX71NQINUMBaLkPRysW6cgO0
+Port 39263 ED25519 key:    SHA256:xUMdQvKNOUGmOAvO0MuEX71NQINUMBaLkPRysW6cgO0
+PASS: receiver SSH host key matched
+
+=== Capture active service, timer and protected-state metadata ===
+root:root 600 /media/usb/@snapshots/.simple-agreed-parent.json
+root:root 600 /media/usb/@snapshots/.replication-protection.json
+root:root 600 /run/lock/btrfs-snapshot-manager.lock
+richard:richard 700 /@data/mars-received/.replication-state
+root:root 600 /@data/mars-received/.replication-state/.simple-agreed-parent.json
+richard:richard 600 /@data/mars-received/.replication-state/writer.lock
+
+=== Apply additive identity provisioning only ===
+Ansible working directory: /home/richard/ansible-controller/playbooks
+Ansible inventory: /home/richard/ansible-controller/inventory/hosts
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for mars, backup
+
+TASK [btrfs-replication : 0041 | Refuse partial host selection or unknown endpoint] ***
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : 0041 | Explain isolated check-mode key handling] *****
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Create dedicated primary group before user] ***
+changed: [backup]
+changed: [mars]
+
+TASK [btrfs-replication : 0041 | Create dedicated local account] ***************
+changed: [backup]
+changed: [mars]
+
+TASK [btrfs-replication : 0041 | Create isolated source key directories] *******
+skipping: [backup] => (item=/var/lib/btrfs-send) 
+skipping: [backup] => (item=/var/lib/btrfs-send/.ssh) 
+skipping: [backup]
+changed: [mars] => (item=/var/lib/btrfs-send)
+changed: [mars] => (item=/var/lib/btrfs-send/.ssh)
+
+TASK [btrfs-replication : 0041 | Protect receiver home and SSH configuration from service writes] ***
+skipping: [mars] => (item=/var/lib/btrfs-receive) 
+skipping: [mars] => (item=/var/lib/btrfs-receive/.ssh) 
+skipping: [mars]
+changed: [backup] => (item=/var/lib/btrfs-receive)
+changed: [backup] => (item=/var/lib/btrfs-receive/.ssh)
+
+TASK [btrfs-replication : 0041 | Generate source-only Ed25519 key without passphrase] ***
+[WARNING]: Module remote_tmp /var/lib/btrfs-send/.ansible/tmp did not exist and was created with a mode of 0700, this may cause issues when running as another user. To avoid this, create the remote_tmp dir with the correct permissions manually
+skipping: [backup]
+changed: [mars]
+
+TASK [btrfs-replication : 0041 | Confirm key remains private and local] ********
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : 0041 | Read public key from sender only] *************
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : 0041 | Read receiver host public key, not its private key] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : 0041 | Create root-controlled identity and helper directories] ***
+ok: [backup] => (item=/usr/local/libexec)
+ok: [mars] => (item=/usr/local/libexec)
+changed: [mars] => (item=/etc/btrfs-replication-0041)
+
+TASK [btrfs-replication : 0041 | Install root-owned pinned receiver host key on source] ***
+skipping: [backup]
+changed: [mars]
+
+TASK [btrfs-replication : 0041 | Protect pinned host key from service-account edits] ***
+skipping: [backup]
+ok: [mars]
+
+TASK [btrfs-replication : 0041 | Install dual-transport runtime (legacy is still the default)] ***
+changed: [backup]
+changed: [mars]
+
+TASK [btrfs-replication : 0041 | Install fixed root-owned command gates] *******
+changed: [backup] => (item={'src': 'btrfs-replication-receiver-gate-0041.py', 'dest': '/usr/local/libexec/btrfs-replication-receiver-gate-0041'})
+changed: [mars] => (item={'src': 'btrfs-replication-sender-cycle-0041.sh', 'dest': '/usr/local/libexec/btrfs-replication-sender-cycle-0041'})
+changed: [backup] => (item={'src': 'btrfs-replication-ssh-dispatch-0041.py', 'dest': '/usr/local/libexec/btrfs-replication-ssh-dispatch-0041'})
+
+TASK [btrfs-replication : 0041 | Install narrowly scoped service-only sudoers] ***
+changed: [backup]
+changed: [mars]
+
+TASK [btrfs-replication : 0041 | Install sole root-managed forced-command receiver public key] ***
+skipping: [mars]
+changed: [backup]
+
+TASK [btrfs-replication : 0041 | Verify SSH daemon config without changing or reloading it] ***
+skipping: [mars]
+ok: [backup]
+
+TASK [btrfs-replication : 0041 | Stage candidate service unit at NON-ACTIVE filename only] ***
+skipping: [backup]
+changed: [mars]
+
+PLAY RECAP *********************************************************************
+backup                     : ok=12   changed=7    unreachable=0    failed=0    skipped=8    rescued=0    ignored=0   
+mars                       : ok=15   changed=10   unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
+
+
+=== Verify accounts and root-managed boundaries ===
+btrfs-send:x:997:997::/var/lib/btrfs-send:/usr/sbin/nologin
+uid=997(btrfs-send) gid=997(btrfs-send) groups=997(btrfs-send)
+/etc/sudoers.d/btrfs-0041-service: parsed OK
+btrfs-send:btrfs-send 600 /var/lib/btrfs-send/.ssh/id_ed25519
+root:root 755 /usr/local/libexec/btrfs-replication-sender-cycle-0041
+root:root 644 /etc/btrfs-replication-0041/known_hosts
+btrfs-receive:x:997:999::/var/lib/btrfs-receive:/bin/sh
+uid=997(btrfs-receive) gid=999(btrfs-receive) groups=999(btrfs-receive)
+/etc/sudoers.d/btrfs-0041-service: parsed OK
+root:root 644 /var/lib/btrfs-receive/.ssh/authorized_keys
+root:root 755 /usr/local/libexec/btrfs-replication-receiver-gate-0041
+root:root 755 /usr/local/libexec/btrfs-replication-ssh-dispatch-0041
+
+=== Read-only dedicated transport test (NO Btrfs transfer) ===
+{"preflight": {"action": "incremental", "parent": "20261115-030001Z", "source": "20261115-140017Z", "source_uuid": "9913fcd7-fea4-854d-a2a0-ca433c2700d4"}, "receiver": {"parent": {"timestamp": "20261115-030001Z", "uuid": "e96f7a7b-b293-8b4e-bbcf-9cebc9ee7158"}, "prior": {"timestamp": "20261114-030021Z", "uuid": "d3506183-87c5-bd49-8c61-add410ef98b3"}, "schema": 1}, "receiver_parent_verified": true, "relation": "equal", "state": {"parent": {"timestamp": "20261115-030001Z", "uuid": "e96f7a7b-b293-8b4e-bbcf-9cebc9ee7158"}, "prior": {"timestamp": "20261114-030021Z", "uuid": "d3506183-87c5-bd49-8c61-add410ef98b3"}, "schema": 1}}
+PASS: dedicated SSH status and receiver identity verified
+
+=== Assert original production service/timer and protected metadata unchanged ===
+PASS: production service and 03:30 timer unchanged; candidate unit staged only
+
+PASS: 0041 additive provisioning and dedicated-status check verified

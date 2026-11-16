@@ -1,0 +1,184 @@
+0041-FEAT STEP 1 — READ-ONLY PRIVILEGE / REPLICATION BASELINE
+TIME_UTC=2026-11-13T10:19:58Z  EXECUTION_HOST=mango  USER=richard
+
+=== Git identity and source revisions (no checkout mutations) ===
+REPO=. HEAD=83cba342d9ffe7da51a97bda9231f32d02beb2e3 BRANCH=main
+REPO_CLEAN=. yes
+REPO=playbooks HEAD=c5109340a2fe13296a2343c682e1079d1a212c8d BRANCH=main
+REPO_CLEAN=playbooks yes
+REPO=inventory HEAD=ebcce026723db37b9b53b76ba21903a351d48466 BRANCH=main
+REPO_CLEAN=inventory yes
+ ebcce026723db37b9b53b76ba21903a351d48466 inventory (heads/main)
+ c5109340a2fe13296a2343c682e1079d1a212c8d playbooks (heads/main)
+
+=== Static source and installed Btrfs runtime hashes ===
+7eba4a04aca1f9b04333cd82952744ab1559cc7736092d7d1dcc11a25be67363  playbooks/roles/btrfs-replication/files/btrfs-simplified-replication.py
+
+=== Effective Ansible path names (without inventory secrets) ===
+ANSIBLE_CONFIG=<unset>
+ANSIBLE_INVENTORY=<unset>
+
+=== mars — source/sender (read-only) ===
+HOST=mars UTC=2026-11-13T10:20:01Z
+ACCOUNT richard uid=1001 gid=1001 home=/home/richard shell=/bin/bash
+ACCOUNT btrfs-send ABSENT
+ACCOUNT btrfs-receive ABSENT
+RICHARD_ADMIN_SUDO: PASS
+
+--- systemd sender service and timer ---
+ExecStart={ path=/usr/local/bin/btrfs-simplified-replication ; argv[]=/usr/local/bin/btrfs-simplified-replication sender cycle ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+User=root
+Group=root
+LoadState=loaded
+ActiveState=inactive
+SubState=dead
+Unit=btrfs-native-push.service
+NextElapseUSecRealtime=Sat 2026-11-14 03:30:00 UTC
+ActiveState=active
+UnitFileState=enabled
+# /etc/systemd/system/btrfs-native-push.service
+[Unit]
+Description=Push newest accepted-lineage Btrfs snapshot to off-site backup
+Wants=network-online.target
+After=network-online.target
+ConditionFileIsExecutable=/usr/local/bin/btrfs-simplified-replication
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+ExecStart=/usr/local/bin/btrfs-simplified-replication sender cycle
+TimeoutStartSec=6h
+
+# /etc/systemd/system/btrfs-native-push.timer
+[Unit]
+Description=Schedule source-initiated native Btrfs off-site replication
+
+[Timer]
+OnCalendar=*-*-* 03:30:00 UTC
+Persistent=false
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target
+
+--- source root-protected path metadata (not contents) ---
+directory 755 root:root /media/usb
+directory 755 root:root /media/usb/@snapshots
+directory 700 root:root /media/usb/@snapshots/@data
+regular file 600 root:root /media/usb/@snapshots/.simple-agreed-parent.json
+regular file 600 root:root /media/usb/@snapshots/.replication-protection.json
+regular empty file 600 root:root /run/lock/btrfs-snapshot-manager.lock
+regular file 755 root:root /usr/local/bin/btrfs-simplified-replication
+directory 700 richard:richard /home/richard/.ssh
+regular file 600 richard:richard /home/richard/.ssh/authorized_keys
+7eba4a04aca1f9b04333cd82952744ab1559cc7736092d7d1dcc11a25be67363  /usr/local/bin/btrfs-simplified-replication
+
+--- read-only backup health (does not initiate backup) ---
+DIARIES BACKUP STATUS (read-only)
+
+SNAPSHOT HEALTH
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=88
+qgroups_stale=2
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=75;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=75
+diaries_verification=valid;logicalDataset=production;backupId=20261113-003059Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+
+BACKUP HISTORY
+Retained distinct backups: 20
+  20261113-003059Z dataset=production occurrences=9 status=verified
+  20261112-003052Z dataset=production occurrences=24 status=verified
+
+LAST VERIFIED PULL (CURRENT RECEIVING MARKER)
+  backupId=20261113-003059Z logicalDataset=production verifiedAt=2026-11-13T01:30:07.982926Z
+  sourceIdentity=pluto:/home/richard/projects/diaries/data/diaries-backup snapshotEligible=True
+
+LAST ACCEPTED OFF-SITE REPLICATION
+  snapshot=20261113-030001Z source_uuid=86e884aa-3561-444e-9b1c-b568840e1115 (receiver identity verified)
+
+NEXT SIMPLIFIED PUSH PREFLIGHT (READ-ONLY)
+  action=incremental source=20261113-100032Z parent=20261113-030001Z
+
+Note: history verification configuration limitation is tracked under 0035-FEAT.
+
+--- sender protocol status (read-only, no transfer) ---
+{"preflight": {"action": "incremental", "parent": "20261113-030001Z", "source": "20261113-100032Z", "source_uuid": "a988743b-5616-d84b-a7b5-d5bd2348b8c5"}, "receiver": {"parent": {"timestamp": "20261113-030001Z", "uuid": "86e884aa-3561-444e-9b1c-b568840e1115"}, "prior": {"timestamp": "20261112-030019Z", "uuid": "186988bb-30f1-7b44-92e0-3ce8e179c6ca"}, "schema": 1}, "receiver_parent_verified": true, "relation": "equal", "state": {"parent": {"timestamp": "20261113-030001Z", "uuid": "86e884aa-3561-444e-9b1c-b568840e1115"}, "prior": {"timestamp": "20261112-030019Z", "uuid": "186988bb-30f1-7b44-92e0-3ce8e179c6ca"}, "schema": 1}}
+
+=== backup — receiver/prune (read-only) ===
+HOST=backup UTC=2026-11-13T10:20:09Z
+ACCOUNT richard uid=1000 gid=1000 home=/home/richard shell=/bin/bash
+ACCOUNT btrfs-send ABSENT
+ACCOUNT btrfs-receive ABSENT
+RICHARD_ADMIN_SUDO: PASS
+
+--- receiver retention systemd ---
+ExecStart={ path=/usr/local/sbin/btrfs-snapshot-manager ; argv[]=/usr/local/sbin/btrfs-snapshot-manager --config /etc/btrfs-snapshot-manager.json receiver-simple-prune --max-delete 10 ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+User=root
+Group=root
+LoadState=loaded
+ActiveState=inactive
+SubState=dead
+Unit=btrfs-receiver-simple-prune.service
+NextElapseUSecRealtime=Sat 2026-11-14 04:15:00 GMT
+ActiveState=active
+UnitFileState=enabled
+# /etc/systemd/system/btrfs-receiver-simple-prune.service
+[Unit]
+Description=0040 Simplified Btrfs receiver retention (approved only)
+After=network-online.target
+ConditionPathExists=/etc/btrfs-snapshot-manager.json
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+ExecStart=/usr/local/sbin/btrfs-snapshot-manager --config /etc/btrfs-snapshot-manager.json receiver-simple-prune --max-delete 10
+TimeoutStartSec=2h
+
+# /etc/systemd/system/btrfs-receiver-simple-prune.timer
+[Unit]
+Description=0040 Simplified Btrfs receiver retention timer
+
+[Timer]
+OnCalendar=*-*-* 04:15:00 UTC
+Persistent=false
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target
+
+--- receiver protected paths and SSH credential metadata (not contents) ---
+directory 755 root:root /@data/mars-received
+directory 755 root:root /@data/mars-received/@data
+directory 700 richard:richard /@data/mars-received/.replication-state
+regular file 600 root:root /@data/mars-received/.replication-state/.simple-agreed-parent.json
+regular empty file 600 richard:richard /@data/mars-received/.replication-state/writer.lock
+regular empty file 600 root:root /run/lock/btrfs-snapshot-manager.lock
+regular file 600 root:root /etc/btrfs-receiver-checkpoint-holds.json
+regular file 600 root:root /etc/btrfs-snapshot-manager.json
+regular file 755 root:root /usr/local/bin/btrfs-simplified-replication
+directory 700 richard:richard /home/richard/.ssh
+regular file 600 richard:richard /home/richard/.ssh/authorized_keys
+7eba4a04aca1f9b04333cd82952744ab1559cc7736092d7d1dcc11a25be67363  /usr/local/bin/btrfs-simplified-replication
+
+--- receiver protocol status (read-only, no transfer) ---
+{"state": {"parent": {"timestamp": "20261113-030001Z", "uuid": "86e884aa-3561-444e-9b1c-b568840e1115"}, "prior": {"timestamp": "20261112-030019Z", "uuid": "186988bb-30f1-7b44-92e0-3ce8e179c6ca"}, "schema": 1}}
+
+--- global sshd policy (Match-user rules require later targeted review) ---
+permitrootlogin without-password
+pubkeyauthentication yes
+passwordauthentication yes
+x11forwarding yes
+permittty yes
+allowtcpforwarding yes
+allowagentforwarding yes
+forcecommand none
+authorizedkeysfile .ssh/authorized_keys .ssh/authorized_keys2
+
+=== Result ===
+PASS: read-only baseline collected on mango, mars and backup; no user, key, sudo, filesystem, timer or snapshot changes made

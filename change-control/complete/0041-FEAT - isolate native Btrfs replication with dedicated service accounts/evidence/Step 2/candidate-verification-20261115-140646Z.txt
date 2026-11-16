@@ -1,0 +1,401 @@
+0041 SOURCE CANDIDATE CHECK: 2026-11-15T14:06:44Z UTC on mango
+
+=== Controller repository and submodules ===
+controller=83cba342d9ffe7da51a97bda9231f32d02beb2e3
+ ebcce026723db37b9b53b76ba21903a351d48466 inventory (heads/main)
+ c5109340a2fe13296a2343c682e1079d1a212c8d playbooks (heads/main)
+playbooks=c5109340a2fe13296a2343c682e1079d1a212c8d
+
+=== Review exact working-tree changes ===
+ M roles/btrfs-replication/defaults/main.yaml
+ M roles/btrfs-replication/files/btrfs-simplified-replication.py
+ M roles/btrfs-replication/tasks/native.yaml
+?? roles/btrfs-replication/README-0041-DEDICATED-IDENTITIES.md
+?? roles/btrfs-replication/files/btrfs-replication-receiver-gate-0041.py
+?? roles/btrfs-replication/files/btrfs-replication-sender-cycle-0041.sh
+?? roles/btrfs-replication/files/btrfs-replication-ssh-dispatch-0041.py
+?? roles/btrfs-replication/tasks/service-identities-0041.yaml
+?? roles/btrfs-replication/templates/btrfs-0041-service-sudoers.j2
+?? roles/btrfs-replication/templates/btrfs-native-push-0041.service.j2
+?? roles/btrfs-replication/tests/verify-0041-restricted-identity.py
+test_adversarial_commands_refused (__main__.Contracts.test_adversarial_commands_refused) ... ok
+test_allowed_status_and_advance (__main__.Contracts.test_allowed_status_and_advance) ... ok
+test_dedicated_transport_is_strict (__main__.Contracts.test_dedicated_transport_is_strict) ... ok
+test_header_read_does_not_consume_binary_stream (__main__.Contracts.test_header_read_does_not_consume_binary_stream) ... ok
+test_legacy_transport_not_changed (__main__.Contracts.test_legacy_transport_not_changed) ... ok
+test_root_gate_rejects_bypass (__main__.Contracts.test_root_gate_rejects_bypass) ... ok
+test_sudoers_and_provisioning_do_not_grant_all (__main__.Contracts.test_sudoers_and_provisioning_do_not_grant_all) ... ok
+test_unknown_mode_refuses_instead_of_silent_fallback (__main__.Contracts.test_unknown_mode_refuses_instead_of_silent_fallback) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.001s
+
+OK
+test_absent_or_complete_candidate_never_deleted (__main__.Cases.test_absent_or_complete_candidate_never_deleted) ... ok
+test_ambiguous_parent_divergence_refuses (__main__.Cases.test_ambiguous_parent_divergence_refuses) ... ok
+test_choose_newest_eligible_newer (__main__.Cases.test_choose_newest_eligible_newer) ... ok
+test_completed_candidate_uses_advance_without_retransmit (__main__.Cases.test_completed_candidate_uses_advance_without_retransmit) ... ok
+test_filesystem_identity_refusal (__main__.Cases.test_filesystem_identity_refusal) ... ok
+test_held_or_legacy_receipt_refuses (__main__.Cases.test_held_or_legacy_receipt_refuses) ... ok
+test_incomplete_cleanup_exact_subvolume_once (__main__.Cases.test_incomplete_cleanup_exact_subvolume_once) ... ok
+test_invalid_candidate_prevents_cleanup (__main__.Cases.test_invalid_candidate_prevents_cleanup) ... ok
+test_invalid_state_or_rollback_refuses (__main__.Cases.test_invalid_state_or_rollback_refuses) ... ok
+test_latest_invalid_candidate_refuses_rather_than_falling_back (__main__.Cases.test_latest_invalid_candidate_refuses_rather_than_falling_back) ... ok
+test_latest_selection_ignores_symlinks_and_non_snapshots (__main__.Cases.test_latest_selection_ignores_symlinks_and_non_snapshots) ... ok
+test_readonly_lock_never_creates_missing_lockfile (__main__.Cases.test_readonly_lock_never_creates_missing_lockfile) ... ok
+test_readonly_or_received_unknown_candidate_refused (__main__.Cases.test_readonly_or_received_unknown_candidate_refused) ... ok
+test_receiver_ahead_lost_ack (__main__.Cases.test_receiver_ahead_lost_ack) ... ok
+test_receiver_backoff_uses_configured_lock (__main__.Cases.test_receiver_backoff_uses_configured_lock) ... ok
+test_receiver_failure_does_not_advance (__main__.Cases.test_receiver_failure_does_not_advance) ... ok
+test_receiver_incomplete_next_run_deletes_then_receives (__main__.Cases.test_receiver_incomplete_next_run_deletes_then_receives) ... INFO: cleaned one incomplete candidate; retrying receive
+ok
+test_sender_lost_ack_advances_local_without_retransmission (__main__.Cases.test_sender_lost_ack_advances_local_without_retransmission) ... ok
+test_sender_status_receiver_ahead_does_not_reconcile_or_save (__main__.Cases.test_sender_status_receiver_ahead_does_not_reconcile_or_save) ... ok
+test_sender_status_rejects_unverified_receiver_identity (__main__.Cases.test_sender_status_rejects_unverified_receiver_identity) ... ok
+test_sender_status_uses_verified_readonly_identity_without_mutation (__main__.Cases.test_sender_status_uses_verified_readonly_identity_without_mutation) ... ok
+test_single_nonblocking_manager_lock (__main__.Cases.test_single_nonblocking_manager_lock) ... ok
+test_state_atomic_readback (__main__.Cases.test_state_atomic_readback) ... ok
+test_state_record_and_prior (__main__.Cases.test_state_record_and_prior) ... ok
+test_state_rejects_nonroot_owner_and_insecure_mode (__main__.Cases.test_state_rejects_nonroot_owner_and_insecure_mode) ... SUCCESS: common parent advanced to 20261101-140039Z
+SUCCESS: reconciled receiver-ahead transfer without retransmission
+ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 1.178s
+
+OK
+
+=== Verify Python/Bash/YAML sources ===
+PASS: Python AST and candidate YAML
+
+=== Active Ansible environment and syntax ===
+Ansible working directory: /home/richard/ansible-controller/playbooks
+Ansible inventory: /home/richard/ansible-controller/inventory/hosts
+
+playbook: btrfs-replication.yaml
+
+=== Read-only, deliberately partial first-run preview ===
+
+PLAY [Configure native Btrfs replication endpoints] ****************************
+
+TASK [Configure native Btrfs endpoint] *****************************************
+included: btrfs-replication for mars, backup
+
+TASK [btrfs-replication : 0041 | Refuse partial host selection or unknown endpoint] ***
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+ok: [mars] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : 0041 | Explain isolated check-mode key handling] *****
+ok: [mars] => {}
+
+MSG:
+
+CHECK MODE: account/key-dependent tasks are intentionally skipped on a first deployment because the Ed25519 private key must be generated only on mars. No service/timer is activated. Review source tests and the explicit additive deployment plan before authorising provisioning.
+ok: [backup] => {}
+
+MSG:
+
+CHECK MODE: account/key-dependent tasks are intentionally skipped on a first deployment because the Ed25519 private key must be generated only on mars. No service/timer is activated. Review source tests and the explicit additive deployment plan before authorising provisioning.
+
+TASK [btrfs-replication : 0041 | Create dedicated primary group before user] ***
+changed: [backup]
+changed: [mars]
+
+TASK [btrfs-replication : 0041 | Create dedicated local account] ***************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Create isolated source key directories] *******
+skipping: [mars] => (item=/var/lib/btrfs-send) 
+skipping: [mars] => (item=/var/lib/btrfs-send/.ssh) 
+skipping: [backup] => (item=/var/lib/btrfs-send) 
+skipping: [mars]
+skipping: [backup] => (item=/var/lib/btrfs-send/.ssh) 
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Protect receiver home and SSH configuration from service writes] ***
+skipping: [mars] => (item=/var/lib/btrfs-receive) 
+skipping: [mars] => (item=/var/lib/btrfs-receive/.ssh) 
+skipping: [mars]
+skipping: [backup] => (item=/var/lib/btrfs-receive) 
+skipping: [backup] => (item=/var/lib/btrfs-receive/.ssh) 
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Generate source-only Ed25519 key without passphrase] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Confirm key remains private and local] ********
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Read public key from sender only] *************
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Read receiver host public key, not its private key] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Create root-controlled identity and helper directories] ***
+skipping: [mars] => (item=/usr/local/libexec) 
+skipping: [mars] => (item=/etc/btrfs-replication-0041) 
+skipping: [mars]
+skipping: [backup] => (item=/usr/local/libexec) 
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Install root-owned pinned receiver host key on source] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Protect pinned host key from service-account edits] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Install dual-transport runtime (legacy is still the default)] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Install fixed root-owned command gates] *******
+--- before
++++ after: /home/richard/ansible-controller/playbooks/roles/btrfs-replication/files/btrfs-replication-receiver-gate-0041.py
+@@ -0,0 +1,88 @@
++#!/usr/bin/env python3
++"""Root-owned fixed sudo gate: unbuffered request header followed by raw stream.
++
++This program is intentionally only a bounded authority filter. It does not
++accept CLI options, shell commands, arbitrary filesystem paths or bootstrap.
++The original Btrfs runtime retains the identity/hold/lock/recovery checks.
++"""
++import json
++import os
++import re
++import signal
++import sys
++
++RUNTIME = '/usr/local/bin/btrfs-simplified-replication'
++STAMP = re.compile(r'[0-9]{8}-[0-9]{6}Z\Z')
++UUID = re.compile(r'[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\Z')
++MAX_HEADER = 512
++
++class Reject(ValueError):
++    pass
++
++def read_header(fd):
++    # DO NOT use buffered stdin.readline here: it can prefetch binary btrfs
++    # stream bytes before execv, silently corrupting the transfer.
++    data = bytearray()
++    for _ in range(MAX_HEADER):
++        ch = os.read(fd, 1)
++        if ch == b'\n':
++            return bytes(data)
++        if not ch:
++            raise Reject('Missing request newline')
++        data.extend(ch)
++    raise Reject('Request too long')
++
++def parse_request(raw):
++    def no_duplicates(pairs):
++        out = {}
++        for key, val in pairs:
++            if key in out:
++                raise Reject('Duplicate request field')
++            out[key] = val
++        return out
++    try:
++        obj = json.loads(raw.decode('ascii'), object_pairs_hook=no_duplicates)
++    except (ValueError, UnicodeError) as exc:
++        raise Reject('Invalid request encoding') from exc
++    if type(obj) is not dict or obj.get('op') not in ('status', 'receive', 'advance'):
++        raise Reject('Operation refused')
++    op = obj['op']
++    expected = {'op', 'snapshot'} if op == 'status' else {
++        'op', 'snapshot', 'uuid', 'parent', 'parent_uuid'}
++    if set(obj) != expected:
++        raise Reject('Unexpected request fields')
++    snap = obj['snapshot']
++    if op == 'status':
++        if snap is not None and (type(snap) is not str or not STAMP.fullmatch(snap)):
++            raise Reject('Invalid status snapshot')
++        return ['receiver', 'status'] + (['--snapshot', snap] if snap is not None else [])
++    for key, pattern in (('snapshot', STAMP), ('uuid', UUID),
++                         ('parent', STAMP), ('parent_uuid', UUID)):
++        value = obj[key]
++        if type(value) is not str or not pattern.fullmatch(value):
++            raise Reject('Invalid ' + key)
++    if obj['snapshot'] <= obj['parent']:
++        raise Reject('Candidate must be newer than parent')
++    return ['receiver', op, '--snapshot', obj['snapshot'], '--uuid', obj['uuid'],
++            '--parent', obj['parent'], '--parent-uuid', obj['parent_uuid']]
++
++def main():
++    if os.geteuid() != 0 or len(sys.argv) != 1:
++        raise Reject('Requires root and no CLI arguments')
++    # An authenticated client may be malicious or interrupted before the
++    # request header is complete. Do not keep a root gate blocked forever.
++    signal.alarm(20)
++    try:
++        args = parse_request(read_header(0))
++    finally:
++        signal.alarm(0)
++    # Keep stdin fd 0 at the exact byte after the newline, allowing the
++    # existing receiver runtime to attach it directly to `btrfs receive`.
++    os.execv(RUNTIME, [RUNTIME, *args])
++
++if __name__ == '__main__':
++    try:
++        main()
++    except (Reject, OSError) as exc:
++        print('REFUSED: ' + str(exc), file=sys.stderr)
++        raise SystemExit(64)
+
+changed: [backup] => (item={'src': 'btrfs-replication-receiver-gate-0041.py', 'dest': '/usr/local/libexec/btrfs-replication-receiver-gate-0041'})
+--- before
++++ after: /home/richard/ansible-controller/playbooks/roles/btrfs-replication/files/btrfs-replication-sender-cycle-0041.sh
+@@ -0,0 +1,12 @@
++#!/bin/sh
++# Fixed no-argument sudo entrypoint for the 0041 unprivileged sender service.
++set -eu
++if [ "$#" -ne 0 ]; then
++    echo 'REFUSED: no arguments permitted' >&2
++    exit 64
++fi
++# The existing root-owned replication program owns the whole transactional
++# manager lock; its SSH subprocess is delegated to the dedicated non-admin user.
++BTRFS_REPLICATION_IDENTITY_MODE=dedicated
++export BTRFS_REPLICATION_IDENTITY_MODE
++exec /usr/local/bin/btrfs-simplified-replication sender cycle
+
+changed: [mars] => (item={'src': 'btrfs-replication-sender-cycle-0041.sh', 'dest': '/usr/local/libexec/btrfs-replication-sender-cycle-0041'})
+--- before
++++ after: /home/richard/ansible-controller/playbooks/roles/btrfs-replication/files/btrfs-replication-ssh-dispatch-0041.py
+@@ -0,0 +1,80 @@
++#!/usr/bin/env python3
++"""Service-key forced SSH dispatcher; never evaluates SSH_ORIGINAL_COMMAND."""
++import json
++import os
++import re
++import shlex
++import subprocess
++import sys
++
++GATE = '/usr/local/libexec/btrfs-replication-receiver-gate-0041'
++STAMP = re.compile(r'[0-9]{8}-[0-9]{6}Z\Z')
++UUID = re.compile(r'[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\Z')
++
++class Reject(ValueError):
++    pass
++
++def parse_ssh_command(raw):
++    if not isinstance(raw, str) or not raw or len(raw) > 400 or any(
++            ord(ch) < 32 or ord(ch) > 126 for ch in raw):
++        raise Reject('Missing or invalid SSH command')
++    try:
++        parts = shlex.split(raw, posix=True)
++    except ValueError as exc:
++        raise Reject('Invalid SSH quoting') from exc
++    if len(parts) < 3 or parts[:2] != ['btrfs-replication', 'receiver']:
++        raise Reject('Unauthorized command')
++    op = parts[2]
++    if op == 'status':
++        if parts[3:] == []:
++            return {'op': 'status', 'snapshot': None}
++        if (len(parts) == 5 and parts[3] == '--snapshot' and
++                STAMP.fullmatch(parts[4])):
++            return {'op': 'status', 'snapshot': parts[4]}
++        raise Reject('Invalid status arguments')
++    if op not in ('receive', 'advance') or len(parts) != 11:
++        raise Reject('Unauthorized operation')
++    fields = ('snapshot', 'uuid', 'parent', 'parent_uuid')
++    expressions = (STAMP, UUID, STAMP, UUID)
++    request = {'op': op}
++    for i, (field, pattern) in enumerate(zip(fields, expressions)):
++        ix = 3 + 2 * i
++        if parts[ix] != '--' + field.replace('_', '-') or not pattern.fullmatch(parts[ix + 1]):
++            raise Reject('Invalid ' + field)
++        request[field] = parts[ix + 1]
++    if request['snapshot'] <= request['parent']:
++        raise Reject('Candidate is not newer than parent')
++    return request
++
++def main():
++    if len(sys.argv) != 1:
++        raise Reject('No dispatcher arguments allowed')
++    request = parse_ssh_command(os.environ.get('SSH_ORIGINAL_COMMAND'))
++    header = json.dumps(request, separators=(',', ':'), sort_keys=True).encode('ascii') + b'\n'
++    # Root sudoers admits ONLY the fixed no-argument gate. The gate independently
++    # validates the header; neither side invokes a shell or uses eval.
++    with subprocess.Popen(['sudo', '-n', GATE], stdin=subprocess.PIPE) as child:
++        try:
++            child.stdin.write(header)
++            child.stdin.flush()
++            if request['op'] == 'receive':
++                while True:
++                    chunk = os.read(0, 1024 * 1024)
++                    if not chunk:
++                        break
++                    child.stdin.write(chunk)
++            child.stdin.close()
++        except BrokenPipeError:
++            # Child already refused; propagate its exit status.
++            try:
++                child.stdin.close()
++            except BrokenPipeError:
++                pass
++        return child.wait()
++
++if __name__ == '__main__':
++    try:
++        sys.exit(main())
++    except (Reject, OSError) as exc:
++        print('REFUSED: ' + str(exc), file=sys.stderr)
++        sys.exit(64)
+
+changed: [backup] => (item={'src': 'btrfs-replication-ssh-dispatch-0041.py', 'dest': '/usr/local/libexec/btrfs-replication-ssh-dispatch-0041'})
+
+TASK [btrfs-replication : 0041 | Install narrowly scoped service-only sudoers] ***
+--- before
++++ after: /home/richard/.ansible/tmp/ansible-local-365225mv6xobb2/tmpxo_n_25c/btrfs-0041-service-sudoers.j2
+@@ -0,0 +1,2 @@
++# Managed by Ansible 0041-FEAT. No root shell, generic btrfs or arbitrary args.
++btrfs-receive ALL=(root) NOPASSWD: /usr/local/libexec/btrfs-replication-receiver-gate-0041 ""
+
+changed: [backup]
+--- before
++++ after: /home/richard/.ansible/tmp/ansible-local-365225mv6xobb2/tmp583rsoee/btrfs-0041-service-sudoers.j2
+@@ -0,0 +1,2 @@
++# Managed by Ansible 0041-FEAT. No root shell, generic btrfs or arbitrary args.
++btrfs-send ALL=(root) NOPASSWD: /usr/local/libexec/btrfs-replication-sender-cycle-0041 ""
+
+changed: [mars]
+
+TASK [btrfs-replication : 0041 | Install sole root-managed forced-command receiver public key] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Verify SSH daemon config without changing or reloading it] ***
+skipping: [mars]
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Stage candidate service unit at NON-ACTIVE filename only] ***
+skipping: [mars]
+skipping: [backup]
+
+PLAY RECAP *********************************************************************
+backup                     : ok=6    changed=3    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   
+mars                       : ok=6    changed=3    unreachable=0    failed=0    skipped=14   rescued=0    ignored=0   
+
+
+PASS: 0041 source and check-mode candidate evaluated; no live provisioning

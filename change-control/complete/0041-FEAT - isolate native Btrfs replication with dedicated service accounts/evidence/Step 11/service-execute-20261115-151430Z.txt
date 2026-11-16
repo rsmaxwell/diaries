@@ -1,0 +1,30 @@
+0041 STEP 11 --execute: 2026-11-15T15:14:27Z UTC on mango
+SCOPE: canonical sender service unit only; no transfer, timer change or agreed-parent edits
+=== Verify source, controller checkout, and inventory ===
+ M roles/btrfs-replication/defaults/main.yaml
+ M roles/btrfs-replication/files/btrfs-simplified-replication.py
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/btrfs-replication/tasks/source-scheduling.yaml
+ M roles/btrfs-replication/templates/btrfs-native-push.service.j2
+?? roles/btrfs-replication/README-0041-DEDICATED-IDENTITIES.md
+?? roles/btrfs-replication/files/btrfs-replication-receiver-gate-0041.py
+?? roles/btrfs-replication/files/btrfs-replication-sender-cycle-0041.sh
+?? roles/btrfs-replication/files/btrfs-replication-ssh-dispatch-0041.py
+?? roles/btrfs-replication/tasks/service-identities-0041.yaml
+?? roles/btrfs-replication/templates/btrfs-0041-service-sudoers.j2
+?? roles/btrfs-replication/templates/btrfs-native-push-0041.service.j2
+?? roles/btrfs-replication/tests/verify-0041-restricted-identity.py
+Playbooks HEAD: c5109340a2fe13296a2343c682e1079d1a212c8d
+Inventory HEAD: ebcce026723db37b9b53b76ba21903a351d48466
+PASS: reviewed source roles/btrfs-replication/README-0041-DEDICATED-IDENTITIES.md
+PASS: reviewed source roles/btrfs-replication/defaults/main.yaml
+PASS: reviewed source roles/btrfs-replication/tasks/source-scheduling.yaml
+PASS: reviewed source roles/btrfs-replication/templates/btrfs-native-push.service.j2
+=== Capture service/timer and protected state BEFORE ===
+Agreed-parent state sha256: 87435b9c0f3b463263bdfa367e846320ccd7a0d2bfbc318adcae27209948fdd9
+PASS: agreed parent verified through dedicated transport
+Ansible working directory: /home/richard/ansible-controller/playbooks
+Ansible inventory: /home/richard/ansible-controller/inventory/hosts
+=== Controlled scheduling-only Ansible preview (read-only) ===
+ERROR: Ansible requires the locale encoding to be UTF-8; Detected None.
+FAIL: Ansible check-mode preview failed
