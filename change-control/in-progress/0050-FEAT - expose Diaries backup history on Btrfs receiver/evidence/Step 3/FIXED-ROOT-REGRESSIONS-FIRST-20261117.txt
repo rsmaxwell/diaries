@@ -1,0 +1,51 @@
+test_fixed_directory_uses_explicit_schema2_verifier_mode (__main__.DeploymentContract.test_fixed_directory_uses_explicit_schema2_verifier_mode) ... ok
+test_only_receiver_installs_shared_commands_and_verifier (__main__.DeploymentContract.test_only_receiver_installs_shared_commands_and_verifier) ... ok
+test_receiver_config_requires_explicit_local_canonical_tree (__main__.DeploymentContract.test_receiver_config_requires_explicit_local_canonical_tree) ... ok
+test_receiver_template_is_readonly_additive (__main__.DeploymentContract.test_receiver_template_is_readonly_additive) ... ok
+test_source_0049_config_still_loads (__main__.DeploymentContract.test_source_0049_config_still_loads) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.006s
+
+OK
+test_receiver_conflicting_backup_id_is_not_accepted (__main__.ReceiverHistoryAcceptance.test_receiver_conflicting_backup_id_is_not_accepted) ... ok
+test_receiver_empty_history_is_healthy (__main__.ReceiverHistoryAcceptance.test_receiver_empty_history_is_healthy) ... ok
+test_receiver_full_verify_delegates_to_receiver_local_path (__main__.ReceiverHistoryAcceptance.test_receiver_full_verify_delegates_to_receiver_local_path) ... ok
+test_receiver_only_backup_discovery (__main__.ReceiverHistoryAcceptance.test_receiver_only_backup_discovery) ... ok
+test_receiver_show_path_and_all_occurrences (__main__.ReceiverHistoryAcceptance.test_receiver_show_path_and_all_occurrences) ... ok
+test_receiver_summary_parity (__main__.ReceiverHistoryAcceptance.test_receiver_summary_parity) ... ok
+test_receiver_tampered_marker_warns_and_degrades (__main__.ReceiverHistoryAcceptance.test_receiver_tampered_marker_warns_and_degrades) ... ok
+test_receiver_unsafe_symlink_is_reported (__main__.ReceiverHistoryAcceptance.test_receiver_unsafe_symlink_is_reported) ... ok
+test_source_0049_compatibility (__main__.ReceiverHistoryAcceptance.test_source_0049_compatibility) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 22.349s
+
+OK
+PASS: receiver/source fixed-root and generation verification plus tamper detection
+test_0041_dedicated_user_and_sudoers_preserved (__main__.DeploymentSourceTests.test_0041_dedicated_user_and_sudoers_preserved) ... ok
+test_inventory_compatibility_is_explicit (__main__.DeploymentSourceTests.test_inventory_compatibility_is_explicit) ... ok
+test_protocol_implementation_diff_is_only_executable_name_and_pretty_status (__main__.DeploymentSourceTests.test_protocol_implementation_diff_is_only_executable_name_and_pretty_status) ... ok
+test_unit_cutover_disables_old_before_new_and_removes_old (__main__.DeploymentSourceTests.test_unit_cutover_disables_old_before_new_and_removes_old) ... ok
+test_bad_config_fails_closed (__main__.ReportTests.test_bad_config_fails_closed) ... ok
+test_diaries_empty_report_has_labelled_empty_table (__main__.ReportTests.test_diaries_empty_report_has_labelled_empty_table) ... ok
+test_diaries_json_is_indented_and_errors_use_exit_2 (__main__.ReportTests.test_diaries_json_is_indented_and_errors_use_exit_2) ... ok
+test_diaries_report_has_only_application_data_and_aligns_table (__main__.ReportTests.test_diaries_report_has_only_application_data_and_aligns_table) ... ok
+test_host_json_is_pretty_and_machine_parseable (__main__.ReportTests.test_host_json_is_pretty_and_machine_parseable) ... ok
+test_local_only_skips_sender_ssh_even_when_remote_is_unavailable (__main__.ReportTests.test_local_only_skips_sender_ssh_even_when_remote_is_unavailable) ... ok
+test_qgroup_warning_degrades_infrastructure_status (__main__.ReportTests.test_qgroup_warning_degrades_infrastructure_status) ... ok
+test_receiver_has_no_collection_section_or_ssh_calls (__main__.ReportTests.test_receiver_has_no_collection_section_or_ssh_calls) ... ok
+test_source_remote_success_and_failure_have_distinct_health (__main__.ReportTests.test_source_remote_success_and_failure_have_distinct_health) ... ok
+test_table_does_not_truncate_unicode_or_identifiers (__main__.ReportTests.test_table_does_not_truncate_unicode_or_identifiers) ... ok
+test_old_receiver_subcommands_are_no_longer_accepted (__main__.SnapshotCliTests.test_old_receiver_subcommands_are_no_longer_accepted) ... ok
+test_receiver_create_is_refused (__main__.SnapshotCliTests.test_receiver_create_is_refused) ... ERROR: receiver mode supports only list, status and guarded prune
+ok
+test_receiver_delete_requires_explicit_bound (__main__.SnapshotCliTests.test_receiver_delete_requires_explicit_bound) ... ERROR: receiver prune requires --max-delete N
+ok
+test_receiver_preview_uses_existing_shared_lock_and_never_deletes (__main__.SnapshotCliTests.test_receiver_preview_uses_existing_shared_lock_and_never_deletes) ... ok
+test_source_bounded_prune_remains_distinct (__main__.SnapshotCliTests.test_source_bounded_prune_remains_distinct) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.014s
+
+OK

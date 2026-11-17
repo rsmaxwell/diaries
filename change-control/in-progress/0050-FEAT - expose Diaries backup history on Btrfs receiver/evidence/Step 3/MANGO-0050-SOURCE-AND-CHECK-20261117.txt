@@ -1,0 +1,879 @@
+richard@mango:~$ (
+  cd /home/richard/ansible-controller || exit 1
+
+  echo "=== REPOSITORY REVISIONS ==="
+  git branch --show-current
+  git rev-parse HEAD
+  git submodule status
+  git status --short
+
+  cd playbooks || exit 1
+
+  test "$(git rev-parse HEAD)" = \
+    "a2508ad61f479c1b2bc20cb39896006c1f2906e1" || exit 1
+
+  git status --short
+
+  echo "=== REGRESSION TESTS ==="
+
+  python3 roles/btrfs-replication/tests/verify-0050-receiver-history-contract.py &&
+  python3 roles/btrfs-replication/tests/verify-0049-backup-management.py &&
+  python3 roles/btrfs-replication/tests/verify-0041-restricted-identity.py &&
+  python3 roles/btrfs-replication/tests/verify-replication.py &&
+  python3 roles/snapshots/tests/verify-diaries-backup-history.py &&
+  python3 roles/snapshots/tests/verify-diaries-backup-status.py || exit 1
+
+  echo "=== ANSIBLE SYNTAX ==="
+
+  ansible-playbook btrfs-replication.yaml \
+fiecho "0050 SOURCE AND ANSIBLE PREVIEW: FAIL ($result)"
+=== REPOSITORY REVISIONS ===
+main
+a81eafdf1fccf6bcd7d9d1b3dfa77143872682e8
+ ebcce026723db37b9b53b76ba21903a351d48466 inventory (heads/main)
+ a2508ad61f479c1b2bc20cb39896006c1f2906e1 playbooks (heads/main)
+ m playbooks
+ M roles/btrfs-replication/README.md
+ M roles/btrfs-replication/tasks/native.yaml
+ M roles/btrfs-replication/templates/btrfs-receiver-manager.json.j2
+ M roles/btrfs-replication/tests/README.md
+ M roles/snapshots/files/diaries-backup-history.py
+ M roles/snapshots/files/diaries-backup-status.py
+?? roles/btrfs-replication/files/__pycache__/
+?? roles/btrfs-replication/tasks/receiver-diaries-history.yaml
+?? roles/btrfs-replication/tests/verify-0050-receiver-history-contract.py
+?? roles/snapshots/files/__pycache__/
+=== REGRESSION TESTS ===
+test_only_receiver_installs_shared_commands_and_verifier (__main__.DeploymentContract.test_only_receiver_installs_shared_commands_and_verifier) ... ok
+test_receiver_config_requires_explicit_local_canonical_tree (__main__.DeploymentContract.test_receiver_config_requires_explicit_local_canonical_tree) ... ok
+test_receiver_template_is_readonly_additive (__main__.DeploymentContract.test_receiver_template_is_readonly_additive) ... ok
+test_source_0049_config_still_loads (__main__.DeploymentContract.test_source_0049_config_still_loads) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.005s
+
+OK
+test_0041_dedicated_user_and_sudoers_preserved (__main__.DeploymentSourceTests.test_0041_dedicated_user_and_sudoers_preserved) ... ok
+test_inventory_compatibility_is_explicit (__main__.DeploymentSourceTests.test_inventory_compatibility_is_explicit) ... ok
+test_protocol_implementation_diff_is_only_executable_name_and_pretty_status (__main__.DeploymentSourceTests.test_protocol_implementation_diff_is_only_executable_name_and_pretty_status) ... ok
+test_unit_cutover_disables_old_before_new_and_removes_old (__main__.DeploymentSourceTests.test_unit_cutover_disables_old_before_new_and_removes_old) ... ok
+test_bad_config_fails_closed (__main__.ReportTests.test_bad_config_fails_closed) ... ok
+test_diaries_empty_report_has_labelled_empty_table (__main__.ReportTests.test_diaries_empty_report_has_labelled_empty_table) ... ok
+test_diaries_json_is_indented_and_errors_use_exit_2 (__main__.ReportTests.test_diaries_json_is_indented_and_errors_use_exit_2) ... ok
+test_diaries_report_has_only_application_data_and_aligns_table (__main__.ReportTests.test_diaries_report_has_only_application_data_and_aligns_table) ... ok
+test_host_json_is_pretty_and_machine_parseable (__main__.ReportTests.test_host_json_is_pretty_and_machine_parseable) ... ok
+test_local_only_skips_sender_ssh_even_when_remote_is_unavailable (__main__.ReportTests.test_local_only_skips_sender_ssh_even_when_remote_is_unavailable) ... ok
+test_qgroup_warning_degrades_infrastructure_status (__main__.ReportTests.test_qgroup_warning_degrades_infrastructure_status) ... ok
+test_receiver_has_no_collection_section_or_ssh_calls (__main__.ReportTests.test_receiver_has_no_collection_section_or_ssh_calls) ... ok
+test_source_remote_success_and_failure_have_distinct_health (__main__.ReportTests.test_source_remote_success_and_failure_have_distinct_health) ... ok
+test_table_does_not_truncate_unicode_or_identifiers (__main__.ReportTests.test_table_does_not_truncate_unicode_or_identifiers) ... ok
+test_old_receiver_subcommands_are_no_longer_accepted (__main__.SnapshotCliTests.test_old_receiver_subcommands_are_no_longer_accepted) ... ok
+test_receiver_create_is_refused (__main__.SnapshotCliTests.test_receiver_create_is_refused) ... ERROR: receiver mode supports only list, status and guarded prune
+ok
+test_receiver_delete_requires_explicit_bound (__main__.SnapshotCliTests.test_receiver_delete_requires_explicit_bound) ... ERROR: receiver prune requires --max-delete N
+ok
+test_receiver_preview_uses_existing_shared_lock_and_never_deletes (__main__.SnapshotCliTests.test_receiver_preview_uses_existing_shared_lock_and_never_deletes) ... ok
+test_source_bounded_prune_remains_distinct (__main__.SnapshotCliTests.test_source_bounded_prune_remains_distinct) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.016s
+
+OK
+test_adversarial_commands_refused (__main__.Contracts.test_adversarial_commands_refused) ... ok
+test_allowed_status_and_advance (__main__.Contracts.test_allowed_status_and_advance) ... ok
+test_dedicated_transport_is_strict (__main__.Contracts.test_dedicated_transport_is_strict) ... ok
+test_header_read_does_not_consume_binary_stream (__main__.Contracts.test_header_read_does_not_consume_binary_stream) ... ok
+test_legacy_transport_not_changed (__main__.Contracts.test_legacy_transport_not_changed) ... ok
+test_root_gate_rejects_bypass (__main__.Contracts.test_root_gate_rejects_bypass) ... ok
+test_sudoers_and_provisioning_do_not_grant_all (__main__.Contracts.test_sudoers_and_provisioning_do_not_grant_all) ... ok
+test_unknown_mode_refuses_instead_of_silent_fallback (__main__.Contracts.test_unknown_mode_refuses_instead_of_silent_fallback) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.002s
+
+OK
+test_absent_or_complete_candidate_never_deleted (__main__.Cases.test_absent_or_complete_candidate_never_deleted) ... ok
+test_ambiguous_parent_divergence_refuses (__main__.Cases.test_ambiguous_parent_divergence_refuses) ... ok
+test_choose_newest_eligible_newer (__main__.Cases.test_choose_newest_eligible_newer) ... ok
+test_completed_candidate_uses_advance_without_retransmit (__main__.Cases.test_completed_candidate_uses_advance_without_retransmit) ... SUCCESS: common parent advanced to 20261101-140039Z
+ok
+test_filesystem_identity_refusal (__main__.Cases.test_filesystem_identity_refusal) ... ok
+test_held_or_legacy_receipt_refuses (__main__.Cases.test_held_or_legacy_receipt_refuses) ... ok
+test_incomplete_cleanup_exact_subvolume_once (__main__.Cases.test_incomplete_cleanup_exact_subvolume_once) ... ok
+test_invalid_candidate_prevents_cleanup (__main__.Cases.test_invalid_candidate_prevents_cleanup) ... ok
+test_invalid_state_or_rollback_refuses (__main__.Cases.test_invalid_state_or_rollback_refuses) ... ok
+test_latest_invalid_candidate_refuses_rather_than_falling_back (__main__.Cases.test_latest_invalid_candidate_refuses_rather_than_falling_back) ... ok
+test_latest_selection_ignores_symlinks_and_non_snapshots (__main__.Cases.test_latest_selection_ignores_symlinks_and_non_snapshots) ... ok
+test_readonly_lock_never_creates_missing_lockfile (__main__.Cases.test_readonly_lock_never_creates_missing_lockfile) ... ok
+test_readonly_or_received_unknown_candidate_refused (__main__.Cases.test_readonly_or_received_unknown_candidate_refused) ... ok
+test_receiver_ahead_lost_ack (__main__.Cases.test_receiver_ahead_lost_ack) ... ok
+test_receiver_backoff_uses_configured_lock (__main__.Cases.test_receiver_backoff_uses_configured_lock) ... ok
+test_receiver_failure_does_not_advance (__main__.Cases.test_receiver_failure_does_not_advance) ... ok
+test_receiver_incomplete_next_run_deletes_then_receives (__main__.Cases.test_receiver_incomplete_next_run_deletes_then_receives) ... INFO: cleaned one incomplete candidate; retrying receive
+ok
+test_sender_lost_ack_advances_local_without_retransmission (__main__.Cases.test_sender_lost_ack_advances_local_without_retransmission) ... SUCCESS: reconciled receiver-ahead transfer without retransmission
+ok
+test_sender_status_receiver_ahead_does_not_reconcile_or_save (__main__.Cases.test_sender_status_receiver_ahead_does_not_reconcile_or_save) ... ok
+test_sender_status_rejects_unverified_receiver_identity (__main__.Cases.test_sender_status_rejects_unverified_receiver_identity) ... ok
+test_sender_status_uses_verified_readonly_identity_without_mutation (__main__.Cases.test_sender_status_uses_verified_readonly_identity_without_mutation) ... ok
+test_single_nonblocking_manager_lock (__main__.Cases.test_single_nonblocking_manager_lock) ... ok
+test_state_atomic_readback (__main__.Cases.test_state_atomic_readback) ... ok
+test_state_record_and_prior (__main__.Cases.test_state_record_and_prior) ... ok
+test_state_rejects_nonroot_owner_and_insecure_mode (__main__.Cases.test_state_rejects_nonroot_owner_and_insecure_mode) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.075s
+
+OK
+PASS: repeated Diaries backup IDs collapse to one history key with multiple snapshot occurrences
+PASS: same logicalDataset/backupId with incompatible manifest identity is flagged as conflict
+PASS: history refuses dataset symlink escape outside the managed snapshot occurrence
+PASS: 0035 diaries-backup-history regression verified
+PASS: pluto resolves fixed publication without inventing Btrfs history
+PASS: unsafe or corrupted live publication rejected
+PASS: 0049 Diaries status excludes infrastructure, aligns history and handles empty/errors
+=== ANSIBLE SYNTAX ===
+
+playbook: btrfs-replication.yaml
+=== RECEIVER DEPLOYMENT PREVIEW ===
+
+PLAY [Configure native Btrfs replication endpoints] ********************************************************************
+
+TASK [Configure native Btrfs endpoint] *********************************************************************************
+included: btrfs-replication for backup
+
+TASK [btrfs-replication : Native Btrfs | Reject unsupported deployment host] *******************************************
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Ensure privileged helper directory exists] ************************************
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Initialize root-owned source protection state if missing] *********************
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Read existing 0035 manager configuration] *************************************
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install replication-aware 0035 pruning manager] *******************************
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Activate fail-closed protection in existing 0035 config] **********************
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Keep retired endpoint sudoers absent] *****************************************
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Provision isolated receiver parent] *******************************************
+ok: [backup] => (item=/@data/mars-received)
+ok: [backup] => (item=/@data/mars-received/@data)
+
+TASK [btrfs-replication : Native Btrfs | Provision operator-owned transaction state] ***********************************
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver-mode manager (opt in)] ***************************************
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Inspect independent receiver checkpoint holds] ********************************
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Validate existing hold-file permissions] **************************************
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Read existing hold state without altering it] *********************************
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Validate mandatory checkpoints in existing hold state] ************************
+ok: [backup] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "key": "20261013-171228Z",
+        "value": {
+            "reason": "Historical recovery baseline",
+            "source_uuids": {
+                "@data": "340674cc-d02c-244e-b7ec-e3ea5a6b151f"
+            }
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "key": "20261018-165453Z",
+        "value": {
+            "reason": "Preserved evidence checkpoint",
+            "source_uuids": {
+                "@data": "087c906a-0518-e34a-88f7-40a5b693c41a"
+            }
+        }
+    }
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Initialise receiver checkpoint holds only when absent] ************************
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Read mandatory receiver checkpoint receipts] **********************************
+ok: [backup] => (item={'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}})
+ok: [backup] => (item={'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}})
+
+TASK [btrfs-replication : Native Btrfs | Validate mandatory receiver checkpoint receipt identities] ********************
+ok: [backup] => (item={'changed': False, 'failed': False, 'ansible_loop_var': 'item', 'item': {'key': '20261013-171228Z', 'value': {'reason': 'Historical recovery baseline', 'source_uuids': {'@data': '340674cc-d02c-244e-b7ec-e3ea5a6b151f'}}}, 'content': 'ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX3V1aWQiOiAiMzQwNjc0Y2MtZDAyYy0yNDRlLWI3ZWMtZTNlYTVhNmIxNTFmIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIzNDA2NzRjYy1kMDJjLTI0NGUtYjdlYy1lM2VhNWE2YjE1MWYiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTMtMTQwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJjMGI4MTM4My1iZGZjLTIyNGUtOTdiMS05MGNlZWU0ZDU0ZjAiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTEzVDE4OjA3OjAwLjk3MTM0NyswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K', 'source': '/@data/mars-received/.replication-state/20261013-171228Z.json', 'encoding': 'base64'}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "content": "ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX3V1aWQiOiAiMzQwNjc0Y2MtZDAyYy0yNDRlLWI3ZWMtZTNlYTVhNmIxNTFmIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIzNDA2NzRjYy1kMDJjLTI0NGUtYjdlYy1lM2VhNWE2YjE1MWYiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTMtMTQwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJjMGI4MTM4My1iZGZjLTIyNGUtOTdiMS05MGNlZWU0ZDU0ZjAiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxMy0xNzEyMjhaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTEzVDE4OjA3OjAwLjk3MTM0NyswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K",
+        "encoding": "base64",
+        "failed": false,
+        "item": {
+            "key": "20261013-171228Z",
+            "value": {
+                "reason": "Historical recovery baseline",
+                "source_uuids": {
+                    "@data": "340674cc-d02c-244e-b7ec-e3ea5a6b151f"
+                }
+            }
+        },
+        "source": "/@data/mars-received/.replication-state/20261013-171228Z.json"
+    }
+}
+
+MSG:
+
+All assertions passed
+ok: [backup] => (item={'changed': False, 'failed': False, 'ansible_loop_var': 'item', 'item': {'key': '20261018-165453Z', 'value': {'reason': 'Preserved evidence checkpoint', 'source_uuids': {'@data': '087c906a-0518-e34a-88f7-40a5b693c41a'}}}, 'content': 'ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX3V1aWQiOiAiMDg3YzkwNmEtMDUxOC1lMzRhLTg4ZjctNDBhNWI2OTNjNDFhIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIwODdjOTA2YS0wNTE4LWUzNGEtODhmNy00MGE1YjY5M2M0MWEiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTgtMDMwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJmOTFiMzIyYS00YWE3LWFkNDUtYTc2Ni1kN2ExZTJlYjE1YjkiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTE4VDE2OjU1OjM2LjE4NTE0NCswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K', 'source': '/@data/mars-received/.replication-state/20261018-165453Z.json', 'encoding': 'base64'}) => {
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "ansible_loop_var": "item",
+        "changed": false,
+        "content": "ewogICJzY2hlbWEiOiAxLAogICJ0cmFuc3BvcnQiOiAiYnRyZnMtaW5jcmVtZW50YWwiLAogICJzbmFwc2hvdCI6ICIyMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX3V1aWQiOiAiMDg3YzkwNmEtMDUxOC1lMzRhLTg4ZjctNDBhNWI2OTNjNDFhIiwKICAicmVjZWl2ZWRfdXVpZCI6ICIwODdjOTA2YS0wNTE4LWUzNGEtODhmNy00MGE1YjY5M2M0MWEiLAogICJwYXJlbnRfc25hcHNob3QiOiAiMjAyNjEwMTgtMDMwMDA2WiIsCiAgInBhcmVudF9zb3VyY2VfdXVpZCI6ICJmOTFiMzIyYS00YWE3LWFkNDUtYTc2Ni1kN2ExZTJlYjE1YjkiLAogICJkZXN0aW5hdGlvbiI6ICIvQGRhdGEvbWFycy1yZWNlaXZlZC9AZGF0YS8yMDI2MTAxOC0xNjU0NTNaIiwKICAic291cmNlX2ZpbGVzeXN0ZW1fdXVpZCI6ICI3MmQxZDhlYS05MDBlLTRmY2EtODM3Zi0xYjFmZWJlYzAzNmMiLAogICJyZWNlaXZlcl9maWxlc3lzdGVtX3V1aWQiOiAiYjkxNWY5NjctN2NiNC00YzE0LWIxMWItZjUyMjA5NjM3YTIyIiwKICAiY29tcGxldGVkX2F0X3V0YyI6ICIyMDI2LTEwLTE4VDE2OjU1OjM2LjE4NTE0NCswMDowMCIsCiAgInJlYWRfb25seV92ZXJpZmllZCI6IHRydWUsCiAgInNvdXJjZV9zZW5kX2V4aXQiOiAwLAogICJyZWNlaXZlcl9yZWNlaXZlX2V4aXQiOiAwCn0K",
+        "encoding": "base64",
+        "failed": false,
+        "item": {
+            "key": "20261018-165453Z",
+            "value": {
+                "reason": "Preserved evidence checkpoint",
+                "source_uuids": {
+                    "@data": "087c906a-0518-e34a-88f7-40a5b693c41a"
+                }
+            }
+        },
+        "source": "/@data/mars-received/.replication-state/20261018-165453Z.json"
+    }
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install receiver-mode read-only config (opt in)] ******************************
+--- before: /etc/btrfs-snapshot-manager.json
++++ after: /home/richard/.ansible/tmp/ansible-local-386816mvd1z9ny/tmp9oul9nem/btrfs-receiver-manager.json.j2
+@@ -13,5 +13,12 @@
+     {"name": "@data", "snapshot_directory": "/@data/mars-received/@data"}
+   ],
+   "verification": {"required": false},
++  "diaries_history": {
++    "enabled": true,
++    "source_name": "@data",
++    "dataset_relative_path": "backup/pluto/diaries-backup",
++    "marker_relative_path": "backup/.diaries-snapshot-verified.json",
++    "manifest_tool": "/usr/local/lib/diaries-backup/complete-dataset-manifest.py"
++  },
+   "retention": {"hourly": 48, "daily": 14, "weekly": 12, "monthly": 24, "yearly": 5, "minimum_age_minutes": 30}
+ }
+
+changed: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Provision stable transaction lock] ********************************************
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Retire obsolete backup-initiated pull executable] *****************************
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Retire obsolete rsync-based pull helper] **************************************
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install public receiver retention policy (opt in)] ****************************
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Keep retired observer sudoers absent] *****************************************
+ok: [backup]
+
+TASK [btrfs-replication : Btrfs replication | Install common sender/receiver runtime] **********************************
+ok: [backup]
+
+TASK [btrfs-replication : Btrfs replication | Update fixed 0041 entrypoint runtime paths] ******************************
+ok: [backup]
+
+TASK [btrfs-replication : Btrfs backup | Install host-aware read-only infrastructure report] ***************************
+ok: [backup]
+
+TASK [btrfs-replication : Diaries | Install dataset-only history summary on source] ************************************
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Validate requested sender service identity] ***********************************
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Verify dedicated sender prerequisites before service cutover] *****************
+skipping: [backup] => (item=/usr/local/libexec/btrfs-replication-sender-cycle-0041)
+skipping: [backup] => (item=/var/lib/btrfs-send/.ssh/id_ed25519)
+skipping: [backup] => (item=/etc/btrfs-replication-0041/known_hosts)
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Require protected dedicated sender prerequisites] *****************************
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Require replication runtime installation before service cutover] **************
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install source-initiated push service and timer] ******************************
+skipping: [backup] => (item=btrfs-push.service)
+skipping: [backup] => (item=btrfs-push.timer)
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Check for active legacy rsync off-site phase before scheduling native push] ***
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Refuse dual off-site transports] **********************************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0049 | Detect installed old push timer] ******************************************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0049 | Stop and disable old push timer before enabling replacement] **************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0049 | Refuse to change names during an active old push transaction] *************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0049 | Require the old push service to be inactive before timer transition] ******************
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Apply explicit push schedule state] *******************************************
+skipping: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Validate receiver retention settings] *****************************************
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Install shared manager with receiver retention] *******************************
+ok: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install receiver config with independent deletion gate] ***********************
+--- before: /etc/btrfs-snapshot-manager.json
++++ after: /home/richard/.ansible/tmp/ansible-local-386816mvd1z9ny/tmp8_z3yu6i/btrfs-receiver-manager.json.j2
+@@ -13,5 +13,12 @@
+     {"name": "@data", "snapshot_directory": "/@data/mars-received/@data"}
+   ],
+   "verification": {"required": false},
++  "diaries_history": {
++    "enabled": true,
++    "source_name": "@data",
++    "dataset_relative_path": "backup/pluto/diaries-backup",
++    "marker_relative_path": "backup/.diaries-snapshot-verified.json",
++    "manifest_tool": "/usr/local/lib/diaries-backup/complete-dataset-manifest.py"
++  },
+   "retention": {"hourly": 48, "daily": 14, "weekly": 12, "monthly": 24, "yearly": 5, "minimum_age_minutes": 30}
+ }
+
+changed: [backup]
+
+TASK [btrfs-replication : Native Btrfs | Install dormant receiver retention units] *************************************
+ok: [backup] => (item=btrfs-receiver-prune.service)
+ok: [backup] => (item=btrfs-receiver-prune.timer)
+
+TASK [btrfs-replication : 0049 | Detect installed old receiver prune timer] ********************************************
+ok: [backup]
+
+TASK [btrfs-replication : 0049 | Stop and disable old receiver prune timer before enabling replacement] ****************
+skipping: [backup]
+
+TASK [btrfs-replication : 0049 | Refuse cutover while old receiver prune service is running] ***************************
+ok: [backup]
+
+TASK [btrfs-replication : 0049 | Require the old receiver prune service to be inactive] ********************************
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Native Btrfs | Enforce explicit receiver retention timer state] ******************************
+skipping: [backup]
+
+TASK [btrfs-replication : Diaries receiver history | Ensure independent schema-2 verifier directory exists] ************
+ok: [backup]
+
+TASK [btrfs-replication : Diaries receiver history | Install the existing independent schema-2 verifier] ***************
+ok: [backup]
+
+TASK [btrfs-replication : Diaries receiver history | Install shared read-only history and status commands] *************
+--- before: /usr/local/sbin/diaries-backup-history
++++ after: /home/richard/ansible-controller/playbooks/roles/snapshots/files/diaries-backup-history.py
+@@ -10,6 +10,7 @@
+ import re
+ import subprocess
+ import sys
++import unicodedata
+ from dataclasses import dataclass
+ from pathlib import Path, PurePosixPath
+ from typing import Iterable
+@@ -56,21 +57,66 @@
+         raw = json.loads(path.read_text(encoding="utf-8"))
+     except Exception as exc:
+         raise HistoryError(f"cannot read configuration {path}: {exc}") from exc
+-    verification = raw.get("verification", {})
+-    if not verification.get("required", False):
++    if not isinstance(raw, dict):
++        raise HistoryError("snapshot-manager configuration must be a JSON object")
++    mode = raw.get("mode", "source")
++    if mode not in ("source", "receiver"):
++        raise HistoryError(f"unsupported snapshot-manager mode for Diaries history: {mode!r}")
++    receiver = mode == "receiver"
++    section_name = "diaries_history" if receiver else "verification"
++    section = raw.get(section_name, {})
++    if not isinstance(section, dict):
++        raise HistoryError(f"{section_name} must be a JSON object")
++    if receiver:
++        # A receiver may inspect already verified markers, but must NEVER enable
++        # the manager's source-side snapshot-creation verification gate.
++        manager_verification = raw.get("verification", {})
++        if not isinstance(manager_verification, dict) or manager_verification.get("required", False) is not False:
++            raise HistoryError("receiver manager must keep verification.required=false")
++        if section.get("enabled") is not True:
++            raise HistoryError("receiver Diaries history has not been explicitly enabled")
++    elif section.get("required") is not True:
+         raise HistoryError("Diaries verification is not enabled in snapshot-manager configuration")
+-    source_name = str(verification.get("source_name", ""))
+-    sources = {str(item.get("name")): Path(item.get("path", "")) for item in raw.get("sources", [])}
+-    if source_name not in sources:
+-        raise HistoryError("verification.source_name is not a configured snapshot source")
+-    manifest_tool = Path(verification.get("manifest_tool") or "")
+-    if not manifest_tool.is_absolute():
+-        raise HistoryError("verification.manifest_tool must be configured as an absolute path")
++
++    source_name = section.get("source_name")
++    sources = raw.get("sources", [])
++    if not isinstance(source_name, str) or not source_name or not isinstance(sources, list):
++        raise HistoryError(f"{section_name}.source_name must name a configured snapshot source")
++    matches = [item for item in sources if isinstance(item, dict) and item.get("name") == source_name]
++    if len(matches) != 1:
++        raise HistoryError(f"{section_name}.source_name must name exactly one snapshot source")
++
++    manifest_tool_value = section.get("manifest_tool")
++    if not isinstance(manifest_tool_value, str) or not Path(manifest_tool_value).is_absolute():
++        raise HistoryError(f"{section_name}.manifest_tool must be configured as an absolute path")
++    manifest_tool = Path(manifest_tool_value)
++    snapshot_root_value = raw.get("snapshot_root")
++    if not isinstance(snapshot_root_value, str) or not Path(snapshot_root_value).is_absolute():
++        raise HistoryError("snapshot_root must be an absolute path")
++    snapshot_root = Path(snapshot_root_value)
++    if receiver:
++        # The receiver's inventory path is explicit and must refer to the
++        # fixed, local Btrfs repository, not an arbitrary path or symlink.
++        if source_name != "@data":
++            raise HistoryError("receiver history requires the @data received-snapshot collection")
++        configured = matches[0].get("snapshot_directory")
++        if not isinstance(configured, str) or not Path(configured).is_absolute():
++            raise HistoryError("receiver source must configure an absolute snapshot_directory")
++        source_directory = Path(configured)
++        if source_directory != snapshot_root / source_name:
++            raise HistoryError("receiver snapshot_directory must be the local @data child of snapshot_root")
++        try:
++            if (snapshot_root.is_symlink() or source_directory.is_symlink() or
++                    snapshot_root.resolve(strict=True) != snapshot_root or
++                    source_directory.resolve(strict=True) != source_directory):
++                raise HistoryError("receiver snapshot root/directory must be canonical without symlinks")
++        except (OSError, RuntimeError) as exc:
++            raise HistoryError(f"receiver snapshot directory is unavailable: {exc}") from exc
+     return HistoryConfig(
+-        snapshot_root=Path(raw["snapshot_root"]).resolve(),
++        snapshot_root=snapshot_root.resolve(),
+         source_name=source_name,
+-        dataset_relative_path=safe_relative(verification.get("dataset_relative_path"), "verification.dataset_relative_path"),
+-        marker_relative_path=safe_relative(verification.get("marker_relative_path"), "verification.marker_relative_path"),
++        dataset_relative_path=safe_relative(section.get("dataset_relative_path"), f"{section_name}.dataset_relative_path"),
++        marker_relative_path=safe_relative(section.get("marker_relative_path"), f"{section_name}.marker_relative_path"),
+         manifest_tool=manifest_tool,
+     )
+
+@@ -104,6 +150,9 @@
+     marker_path = joined(occurrence_root, config.marker_relative_path)
+     if marker_path.is_symlink() or not marker_path.is_file():
+         raise HistoryError("verified marker missing/unsafe")
++    # Parent directories can also be symlinks. Enforce containment BEFORE
++    # reading marker bytes, just as we do for the dataset path below.
++    marker_path = resolved_inside(marker_path, occurrence_root, "verified marker")
+     try:
+         marker = json.loads(marker_path.read_text(encoding="utf-8"))
+     except (OSError, json.JSONDecodeError) as exc:
+@@ -149,8 +198,8 @@
+
+ def enumerate_occurrences(config: HistoryConfig) -> tuple[list[Occurrence], list[tuple[str, str]]]:
+     source_root = config.snapshot_root / config.source_name
+-    if not source_root.is_dir():
+-        raise HistoryError(f"managed snapshot source directory missing: {source_root}")
++    if not source_root.is_dir() or source_root.is_symlink():
++        raise HistoryError(f"managed snapshot source directory missing/unsafe: {source_root}")
+     occurrences: list[Occurrence] = []
+     warnings: list[tuple[str, str]] = []
+     names = sorted(
+@@ -225,6 +274,35 @@
+         raise HistoryError("published dataset has invalid identity")
+     return Occurrence("live", published_root.parent, dataset, logical_dataset, backup_id, sha256_file(manifest))
+
++
++
++
++def visible_width(value):
++    return sum(0 if unicodedata.combining(c) else
++               2 if unicodedata.east_asian_width(c) in ('F', 'W') else 1
++               for c in str(value))
++
++def fit(value, width, right=False):
++    value = str(value)
++    pad = ' ' * max(0, width - visible_width(value))
++    return (pad + value) if right else (value + pad)
++
++
++def print_table(title, headers, rows, numeric=()):
++    """Never truncate identities or paths; dynamically size each displayed column."""
++    print(title)
++    if not rows:
++        print('No retained backups found')
++        return
++    widths = [max(visible_width(h), *(visible_width(row[i]) for row in rows))
++              for i, h in enumerate(headers)]
++    def line(fields):
++        return '  '.join((fit(value, widths[i], right=(i in numeric)))
++                         for i, value in enumerate(fields))
++    print(line(headers))
++    print('  '.join('-' * width for width in widths))
++    for row in rows:
++        print(line(row))
+
+ def main(argv: list[str] | None = None) -> int:
+     parser = argparse.ArgumentParser(description=__doc__)
+@@ -267,11 +345,12 @@
+                         "status": "conflict" if conflict else "verified",
+                     })
+                 if args.json_output:
+-                    print(json.dumps({"occurrences": rows, "warnings": warnings}, sort_keys=True))
++                    print(json.dumps({"occurrences": rows, "warnings": warnings}, sort_keys=True, indent=2))
+                 else:
+-                    print("LOGICAL DATASET  BACKUP ID          SNAPSHOT             STATUS")
+-                    for row in rows:
+-                        print(f"{row['logicalDataset']:<16} {row['backupId']:<18} {row['snapshot']:<20} {row['status']}")
++                    print_table("RETAINED DIARIES BACKUP OCCURRENCES",
++                                ("Logical dataset", "Backup ID", "Snapshot UTC", "Manifest identity", "Path"),
++                                [(row['logicalDataset'], row['backupId'], row['snapshot'],
++                                  row['status'], row['path']) for row in rows])
+                 return 2 if conflicts or warnings else 0
+
+             rows = []
+@@ -286,15 +365,14 @@
+                     "status": "conflict" if key in conflicts else "verified",
+                 })
+             if args.json_output:
+-                print(json.dumps({"backups": rows, "warnings": warnings}, sort_keys=True))
++                print(json.dumps({"backups": rows, "warnings": warnings}, sort_keys=True, indent=2))
+             else:
+-                print("LOGICAL DATASET  BACKUP ID          FIRST RETAINED        LAST RETAINED         SNAPSHOTS STATUS")
+-                for row in rows:
+-                    print(
+-                        f"{row['logicalDataset']:<16} {row['backupId']:<18} "
+-                        f"{row['firstRetainedSnapshot']:<21} {row['lastRetainedSnapshot']:<21} "
+-                        f"{row['snapshots']:<9} {row['status']}"
+-                    )
++                print_table("RETAINED DIARIES BACKUPS",
++                            ("Logical dataset", "Backup ID", "First retained UTC", "Last retained UTC",
++                             "Snapshots", "Manifest identity"),
++                            [(row['logicalDataset'], row['backupId'], row['firstRetainedSnapshot'],
++                              row['lastRetainedSnapshot'], row['snapshots'], row['status']) for row in rows],
++                            numeric=(4,))
+             return 2 if conflicts or warnings else 0
+
+         key, values = select_backup(grouped, args.backup_id, args.logical_dataset)
+@@ -312,12 +390,12 @@
+                 for item in values
+             ]
+             if args.json_output:
+-                print(json.dumps({"logicalDataset": key[0], "backupId": key[1], "occurrences": rows}, sort_keys=True))
++                print(json.dumps({"logicalDataset": key[0], "backupId": key[1], "occurrences": rows}, sort_keys=True, indent=2))
+             else:
+-                print(f"logicalDataset={key[0]}")
+-                print(f"backupId={key[1]}")
+-                for row in rows:
+-                    print(f"snapshot={row['snapshot']};path={row['path']};manifestSha256={row['manifestSha256']}")
++                print(f"Logical dataset: {key[0]}  Backup ID: {key[1]}")
++                print_table("RETAINED OCCURRENCES",
++                            ("Snapshot UTC", "Manifest SHA-256", "Path"),
++                            [(row['snapshot'], row['manifestSha256'], row['path']) for row in rows])
+             return 0
+
+         occurrence = values[0]
+
+changed: [backup] => (item={'src': 'diaries-backup-history.py', 'dest': 'diaries-backup-history'})
+--- before
++++ after: /home/richard/ansible-controller/playbooks/roles/snapshots/files/diaries-backup-status.py
+@@ -0,0 +1,120 @@
++#!/usr/bin/env python3
++"""Read-only host-local Diaries dataset history and manifest-identity summary."""
++import argparse
++import json
++import subprocess
++import sys
++import unicodedata
++
++HISTORY = '/usr/local/sbin/diaries-backup-history'
++
++
++def inspect_history(binary, config):
++    try:
++        result = subprocess.run([binary, '--config', config, '--json', 'list'],
++                                text=True, capture_output=True, timeout=60, check=False)
++    except (OSError, subprocess.TimeoutExpired) as exc:
++        raise RuntimeError('Diaries history check unavailable: ' + str(exc)) from exc
++    try:
++        data = json.loads(result.stdout)
++    except ValueError as exc:
++        raise RuntimeError('Diaries history returned invalid JSON') from exc
++    if not isinstance(data, dict) or not isinstance(data.get('backups'), list) or not isinstance(data.get('warnings'), list):
++        raise RuntimeError('Diaries history returned an unexpected schema')
++    if result.returncode not in (0, 2):
++        raise RuntimeError('Diaries history failed: ' + (result.stderr.strip() or f'exit {result.returncode}'))
++    # History reports exit 2 for manifest conflicts/warnings. Other exit-2
++    # failures must not be mistaken for a healthy empty history.
++    if result.returncode == 2 and not (data['warnings'] or
++            any(isinstance(item, dict) and item.get('status') == 'conflict'
++                for item in data['backups'])):
++        raise RuntimeError('Diaries history failed without a reported conflict or warning')
++    return data
++
++
++def report(args):
++    try:
++        data = inspect_history(args.history, args.config)
++        rows = data['backups']
++        # A retained manifest identity is not evidence of a fresh full-content verification.
++        for row in rows:
++            if not all(key in row for key in ('logicalDataset', 'backupId', 'snapshots', 'firstRetainedSnapshot', 'lastRetainedSnapshot', 'status')):
++                raise RuntimeError('Diaries history row is missing required fields')
++        rows = sorted(rows, key=lambda row: (row['lastRetainedSnapshot'], row['backupId']), reverse=True)
++        conflicts = sum(row['status'] == 'conflict' for row in rows)
++        warnings = data['warnings']
++        status = 'degraded' if conflicts or warnings else 'healthy'
++        return {
++            'schema': 1, 'component': 'diaries', 'health': status,
++            'evidence': 'retained manifest identity (not full file-content verification)',
++            'distinctBackups': len(rows),
++            'retainedOccurrences': sum(row['snapshots'] for row in rows),
++            'conflictedBackups': conflicts,
++            'latest': rows[0] if rows else None,
++            'recent': rows[:args.limit], 'warnings': warnings,
++        }
++    except (RuntimeError, ValueError, TypeError, KeyError) as exc:
++        return {'schema': 1, 'component': 'diaries', 'health': 'error', 'error': str(exc)}
++
++
++
++def visible_width(value):
++    return sum(0 if unicodedata.combining(c) else
++               2 if unicodedata.east_asian_width(c) in ('F', 'W') else 1
++               for c in str(value))
++
++def fit(value, width, right=False):
++    value = str(value)
++    pad = ' ' * max(0, width - visible_width(value))
++    return (pad + value) if right else (value + pad)
++
++
++def table(headers, rows):
++    if not rows:
++        return 'No retained backups found'
++    widths = [max(visible_width(h), *(visible_width(row[i]) for row in rows)) for i, h in enumerate(headers)]
++    def line(fields):
++        return '  '.join((fit(v, widths[i], right=(i == 4)))
++                         for i, v in enumerate(fields))
++    return '\n'.join([line(headers), '  '.join('-' * n for n in widths)] + [line(row) for row in rows])
++
++
++def display(r):
++    print('DIARIES BACKUP STATUS')
++    if r['health'] == 'error':
++        print('UNAVAILABLE: ' + r['error'])
++        return
++    print('Evidence: ' + r['evidence'])
++    print(f"Health: {r['health'].upper()}  Distinct backups: {r['distinctBackups']}  "
++          f"Retained occurrences: {r['retainedOccurrences']}  Conflicts: {r['conflictedBackups']}")
++    latest = r['latest']
++    print('Latest retained backup: ' + (f"{latest['logicalDataset']}/{latest['backupId']} "
++           f"(last occurrence {latest['lastRetainedSnapshot']} UTC)" if latest else 'none'))
++    print('\nRECENT DIARIES BACKUPS')
++    print(table(('Logical dataset', 'Backup ID', 'First retained UTC', 'Last retained UTC', 'Snapshots', 'Manifest identity'),
++          [(x['logicalDataset'], x['backupId'], x['firstRetainedSnapshot'], x['lastRetainedSnapshot'], x['snapshots'],
++            'conflict' if x['status'] == 'conflict' else 'valid') for x in r['recent']]))
++    if r['warnings']:
++        print('\nDIARIES HISTORY WARNINGS')
++        print(table(('Snapshot', 'Reason'), [(str(x[0]), str(x[1])) for x in r['warnings']]))
++
++
++def main(argv=None):
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--config', default='/etc/btrfs-snapshot-manager.json')
++    parser.add_argument('--history', default=HISTORY)
++    parser.add_argument('--limit', type=int, default=5)
++    parser.add_argument('--json', action='store_true')
++    args = parser.parse_args(argv)
++    if not 0 <= args.limit <= 100:
++        parser.error('--limit must be between 0 and 100')
++    result = report(args)
++    if args.json:
++        print(json.dumps(result, indent=2, sort_keys=True))
++    else:
++        display(result)
++    return {'healthy': 0, 'degraded': 1, 'error': 2}[result['health']]
++
++
++if __name__ == '__main__':
++    sys.exit(main())
+
+changed: [backup] => (item={'src': 'diaries-backup-status.py', 'dest': 'diaries-backup-status'})
+
+TASK [btrfs-replication : 0049 | Remove old push/receiver systemd units] ***********************************************
+skipping: [backup] => (item=btrfs-receiver-simple-prune.service)
+skipping: [backup] => (item=btrfs-receiver-simple-prune.timer)
+skipping: [backup]
+
+TASK [btrfs-replication : 0049 | Reload unit catalogue after removing old names] ***************************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0049 | Remove obsolete installed simplified replication path] ********************************
+skipping: [backup]
+
+TASK [btrfs-replication : Qgroups | Validate explicit endpoint and activation contract] ********************************
+ok: [backup] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [btrfs-replication : Qgroups | Install one shared cleanup executable on both endpoints] ***************************
+skipping: [backup]
+
+TASK [btrfs-replication : Qgroups | Render host-local stale-qgroup maintenance configuration] **************************
+skipping: [backup]
+
+TASK [btrfs-replication : Qgroups | Install endpoint-specific service and common timer] ********************************
+skipping: [backup] => (item=btrfs-clear-stale-qgroups.service)
+skipping: [backup] => (item=btrfs-clear-stale-qgroups.timer)
+skipping: [backup]
+
+TASK [btrfs-replication : Qgroups | Read current installed timer state for safe check mode] ****************************
+skipping: [backup]
+
+TASK [btrfs-replication : Qgroups | Apply explicit timer activation state] *********************************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Refuse partial host selection or unknown endpoint] ************************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Explain isolated check-mode key handling] *********************************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Create dedicated primary group before user] *******************************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Create dedicated local account] *******************************************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Create isolated source key directories] ***********************************************
+skipping: [backup] => (item=/var/lib/btrfs-send)
+skipping: [backup] => (item=/var/lib/btrfs-send/.ssh)
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Protect receiver home and SSH configuration from service writes] **********************
+skipping: [backup] => (item=/var/lib/btrfs-receive)
+skipping: [backup] => (item=/var/lib/btrfs-receive/.ssh)
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Generate source-only Ed25519 key without passphrase] **********************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Confirm key remains private and local] ************************************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Read public key from sender only] *****************************************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Read receiver host public key, not its private key] ***********************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Create root-controlled identity and helper directories] *******************************
+skipping: [backup] => (item=/usr/local/libexec)
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Install root-owned pinned receiver host key on source] ********************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Protect pinned host key from service-account edits] ***********************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Install dual-transport runtime (legacy is still the default)] *************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Install fixed root-owned command gates] ***********************************************
+skipping: [backup] => (item={'src': 'btrfs-replication-receiver-gate-0041.py', 'dest': '/usr/local/libexec/btrfs-replication-receiver-gate-0041'})
+skipping: [backup] => (item={'src': 'btrfs-replication-ssh-dispatch-0041.py', 'dest': '/usr/local/libexec/btrfs-replication-ssh-dispatch-0041'})
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Install narrowly scoped service-only sudoers] *****************************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Install sole root-managed forced-command receiver public key] *************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Verify SSH daemon config without changing or reloading it] ****************************
+skipping: [backup]
+
+TASK [btrfs-replication : 0041 | Stage candidate service unit at NON-ACTIVE filename only] *****************************
+skipping: [backup]
+
+PLAY RECAP *************************************************************************************************************
+backup                     : ok=33   changed=3    unreachable=0    failed=0    skipped=47   rescued=0    ignored=0
+
+0050 SOURCE AND ANSIBLE PREVIEW: PASS
+richard@mango:~$

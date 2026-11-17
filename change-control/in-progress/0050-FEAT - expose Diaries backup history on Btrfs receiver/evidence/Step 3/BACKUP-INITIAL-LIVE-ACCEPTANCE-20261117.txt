@@ -1,0 +1,159 @@
+richard@backup:~$ (
+  echo "=== INSTALLED COMMANDS ==="
+  command -v diaries-backup-status || exit 1
+  command -v diaries-backup-history || exit 1
+
+  echo "=== DIARIES STATUS ==="
+  sudo -n diaries-backup-status
+  status_rc=$?
+
+  echo "=== RETAINED BACKUPS ==="
+  sudo -n diaries-backup-history list
+  list_rc=$?
+
+  echo "=== ALL SNAPSHOT OCCURRENCES ==="
+  sudo -n diaries-backup-history list --all
+  all_rc=$?
+
+  echo "=== VERIFY KNOWN RECEIVED BACKUP ==="
+  sudo -n diaries-backup-history verify \
+    20261116-003112Z \
+    --snapshot 20261116-150008Z
+  verify_rc=$?
+
+  echo "=== RECEIVER INFRASTRUCTURE ==="
+  sudo -n btrfs-backup-status --local-only
+  infra_rc=$?
+
+  echo "=== RESULT CODES ==="
+fiecho "0050 RECEIVER COMMAND ACCEPTANCE: REVIEW REQUIRED ($result)"
+=== INSTALLED COMMANDS ===
+/usr/local/sbin/diaries-backup-status
+/usr/local/sbin/diaries-backup-history
+=== DIARIES STATUS ===
+DIARIES BACKUP STATUS
+Evidence: retained manifest identity (not full file-content verification)
+Health: HEALTHY  Distinct backups: 30  Retained occurrences: 42  Conflicts: 0
+Latest retained backup: production/20261117-003110Z (last occurrence 20261117-030039Z UTC)
+
+RECENT DIARIES BACKUPS
+Logical dataset  Backup ID         First retained UTC  Last retained UTC  Snapshots  Manifest identity
+---------------  ----------------  ------------------  -----------------  ---------  -----------------
+production       20261117-003110Z  20261117-030039Z    20261117-030039Z           1  valid
+production       20261116-003112Z  20261116-030016Z    20261116-150008Z           2  valid
+production       20261115-003112Z  20261115-030001Z    20261115-140017Z           2  valid
+production       20261114-003057Z  20261114-030021Z    20261114-030021Z           1  valid
+production       20261113-003059Z  20261113-030001Z    20261113-030001Z           1  valid
+=== RETAINED BACKUPS ===
+RETAINED DIARIES BACKUPS
+Logical dataset  Backup ID         First retained UTC  Last retained UTC  Snapshots  Manifest identity
+---------------  ----------------  ------------------  -----------------  ---------  -----------------
+production       20261009-154847Z  20261009-170001Z    20261014-100031Z           6  verified
+production       20261015-003023Z  20261015-030004Z    20261015-030004Z           1  verified
+production       20261016-003019Z  20261016-030037Z    20261016-030037Z           1  verified
+production       20261017-003102Z  20261017-030007Z    20261017-030007Z           1  verified
+production       20261018-003102Z  20261018-030006Z    20261018-165453Z           2  verified
+production       20261019-003106Z  20261019-030038Z    20261019-030038Z           1  verified
+production       20261020-003106Z  20261020-030026Z    20261020-030026Z           1  verified
+production       20261021-003106Z  20261021-030006Z    20261021-030006Z           1  verified
+production       20261022-003107Z  20261022-030026Z    20261022-120034Z           3  verified
+production       20261023-003234Z  20261023-030037Z    20261023-030037Z           1  verified
+production       20261024-003215Z  20261024-030038Z    20261024-030038Z           1  verified
+production       20261025-003218Z  20261025-030026Z    20261025-030026Z           1  verified
+production       20261026-003102Z  20261026-030019Z    20261026-030019Z           1  verified
+production       20261027-003055Z  20261027-030038Z    20261027-030038Z           1  verified
+production       20261028-003103Z  20261028-030036Z    20261028-030036Z           1  verified
+production       20261029-003106Z  20261029-030003Z    20261029-030003Z           1  verified
+production       20261030-003052Z  20261030-030033Z    20261030-170009Z           2  verified
+production       20261101-003051Z  20261101-140039Z    20261101-150004Z           2  verified
+production       20261106-003055Z  20261106-160001Z    20261106-160001Z           1  verified
+production       20261107-003217Z  20261107-030031Z    20261107-030031Z           1  verified
+production       20261108-003143Z  20261108-030011Z    20261108-030011Z           1  verified
+production       20261109-003055Z  20261109-030030Z    20261109-030030Z           1  verified
+production       20261110-003113Z  20261110-030004Z    20261110-030004Z           1  verified
+production       20261111-003057Z  20261111-030031Z    20261111-030031Z           1  verified
+production       20261112-003052Z  20261112-030019Z    20261112-030019Z           1  verified
+production       20261113-003059Z  20261113-030001Z    20261113-030001Z           1  verified
+production       20261114-003057Z  20261114-030021Z    20261114-030021Z           1  verified
+production       20261115-003112Z  20261115-030001Z    20261115-140017Z           2  verified
+production       20261116-003112Z  20261116-030016Z    20261116-150008Z           2  verified
+production       20261117-003110Z  20261117-030039Z    20261117-030039Z           1  verified
+=== ALL SNAPSHOT OCCURRENCES ===
+RETAINED DIARIES BACKUP OCCURRENCES
+Logical dataset  Backup ID         Snapshot UTC      Manifest identity  Path
+
+---------------  ----------------  ----------------  -----------------  -----------------------------------------------------------------------------------------------------
+production       20261009-154847Z  20261009-170001Z  verified           /@data/mars-received/@data/20261009-170001Z/backup/pluto/.diaries-backup-generations/20261009-154847Z
+production       20261009-154847Z  20261013-050016Z  verified           /@data/mars-received/@data/20261013-050016Z/backup/pluto/.diaries-backup-generations/20261009-154847Z
+production       20261009-154847Z  20261013-140006Z  verified           /@data/mars-received/@data/20261013-140006Z/backup/pluto/.diaries-backup-generations/20261009-154847Z
+production       20261009-154847Z  20261013-171228Z  verified           /@data/mars-received/@data/20261013-171228Z/backup/pluto/.diaries-backup-generations/20261009-154847Z
+production       20261009-154847Z  20261013-180016Z  verified           /@data/mars-received/@data/20261013-180016Z/backup/pluto/.diaries-backup-generations/20261009-154847Z
+production       20261009-154847Z  20261014-100031Z  verified           /@data/mars-received/@data/20261014-100031Z/backup/pluto/.diaries-backup-generations/20261009-154847Z
+production       20261015-003023Z  20261015-030004Z  verified           /@data/mars-received/@data/20261015-030004Z/backup/pluto/.diaries-backup-generations/20261015-003023Z
+production       20261016-003019Z  20261016-030037Z  verified           /@data/mars-received/@data/20261016-030037Z/backup/pluto/.diaries-backup-generations/20261016-003019Z
+production       20261017-003102Z  20261017-030007Z  verified           /@data/mars-received/@data/20261017-030007Z/backup/pluto/diaries-backup
+production       20261018-003102Z  20261018-030006Z  verified           /@data/mars-received/@data/20261018-030006Z/backup/pluto/diaries-backup
+production       20261018-003102Z  20261018-165453Z  verified           /@data/mars-received/@data/20261018-165453Z/backup/pluto/diaries-backup
+production       20261019-003106Z  20261019-030038Z  verified           /@data/mars-received/@data/20261019-030038Z/backup/pluto/diaries-backup
+production       20261020-003106Z  20261020-030026Z  verified           /@data/mars-received/@data/20261020-030026Z/backup/pluto/diaries-backup
+production       20261021-003106Z  20261021-030006Z  verified           /@data/mars-received/@data/20261021-030006Z/backup/pluto/diaries-backup
+production       20261022-003107Z  20261022-030026Z  verified           /@data/mars-received/@data/20261022-030026Z/backup/pluto/diaries-backup
+production       20261022-003107Z  20261022-082824Z  verified           /@data/mars-received/@data/20261022-082824Z/backup/pluto/diaries-backup
+production       20261022-003107Z  20261022-120034Z  verified           /@data/mars-received/@data/20261022-120034Z/backup/pluto/diaries-backup
+production       20261023-003234Z  20261023-030037Z  verified           /@data/mars-received/@data/20261023-030037Z/backup/pluto/diaries-backup
+production       20261024-003215Z  20261024-030038Z  verified           /@data/mars-received/@data/20261024-030038Z/backup/pluto/diaries-backup
+production       20261025-003218Z  20261025-030026Z  verified           /@data/mars-received/@data/20261025-030026Z/backup/pluto/diaries-backup
+production       20261026-003102Z  20261026-030019Z  verified           /@data/mars-received/@data/20261026-030019Z/backup/pluto/diaries-backup
+production       20261027-003055Z  20261027-030038Z  verified           /@data/mars-received/@data/20261027-030038Z/backup/pluto/diaries-backup
+production       20261028-003103Z  20261028-030036Z  verified           /@data/mars-received/@data/20261028-030036Z/backup/pluto/diaries-backup
+production       20261029-003106Z  20261029-030003Z  verified           /@data/mars-received/@data/20261029-030003Z/backup/pluto/diaries-backup
+production       20261030-003052Z  20261030-030033Z  verified           /@data/mars-received/@data/20261030-030033Z/backup/pluto/diaries-backup
+production       20261030-003052Z  20261030-170009Z  verified           /@data/mars-received/@data/20261030-170009Z/backup/pluto/diaries-backup
+production       20261101-003051Z  20261101-140039Z  verified           /@data/mars-received/@data/20261101-140039Z/backup/pluto/diaries-backup
+production       20261101-003051Z  20261101-150004Z  verified           /@data/mars-received/@data/20261101-150004Z/backup/pluto/diaries-backup
+production       20261106-003055Z  20261106-160001Z  verified           /@data/mars-received/@data/20261106-160001Z/backup/pluto/diaries-backup
+production       20261107-003217Z  20261107-030031Z  verified           /@data/mars-received/@data/20261107-030031Z/backup/pluto/diaries-backup
+production       20261108-003143Z  20261108-030011Z  verified           /@data/mars-received/@data/20261108-030011Z/backup/pluto/diaries-backup
+production       20261109-003055Z  20261109-030030Z  verified           /@data/mars-received/@data/20261109-030030Z/backup/pluto/diaries-backup
+production       20261110-003113Z  20261110-030004Z  verified           /@data/mars-received/@data/20261110-030004Z/backup/pluto/diaries-backup
+production       20261111-003057Z  20261111-030031Z  verified           /@data/mars-received/@data/20261111-030031Z/backup/pluto/diaries-backup
+production       20261112-003052Z  20261112-030019Z  verified           /@data/mars-received/@data/20261112-030019Z/backup/pluto/diaries-backup
+production       20261113-003059Z  20261113-030001Z  verified           /@data/mars-received/@data/20261113-030001Z/backup/pluto/diaries-backup
+production       20261114-003057Z  20261114-030021Z  verified           /@data/mars-received/@data/20261114-030021Z/backup/pluto/diaries-backup
+production       20261115-003112Z  20261115-030001Z  verified           /@data/mars-received/@data/20261115-030001Z/backup/pluto/diaries-backup
+production       20261115-003112Z  20261115-140017Z  verified           /@data/mars-received/@data/20261115-140017Z/backup/pluto/diaries-backup
+production       20261116-003112Z  20261116-030016Z  verified           /@data/mars-received/@data/20261116-030016Z/backup/pluto/diaries-backup
+production       20261116-003112Z  20261116-150008Z  verified           /@data/mars-received/@data/20261116-150008Z/backup/pluto/diaries-backup
+production       20261117-003110Z  20261117-030039Z  verified           /@data/mars-received/@data/20261117-030039Z/backup/pluto/diaries-backup
+=== VERIFY KNOWN RECEIVED BACKUP ===
+ERROR: backupId must use UTC YYYYMMDD-HHmmssZ format
+ERROR: schema-2 verification failed for /@data/mars-received/@data/20261116-150008Z/backup/pluto/diaries-backup
+=== RECEIVER INFRASTRUCTURE ===
+BTRFS BACKUP STATUS — backup (receiver)
+Health: HEALTHY
+
+BTRFS SNAPSHOTS AND RETENTION
+Repository: /@data/mars-received
+Retained sets (observed): 42
+Oldest / newest (UTC): 20261009-170001Z / 20261117-030039Z
+Retention: hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+
+FILESYSTEM QGROUP HEALTH
+Qgroups: qgroups_status=ok, qgroups_total=45, qgroups_stale=0, qgroups_under_deletion=0
+
+BTRFS REPLICATION
+Local agreed parent: {'timestamp': '20261117-030039Z', 'uuid': '96853f6e-e2e2-ca45-ba3b-90b70268c0d5'}
+Locally recorded prior parent: {'timestamp': '20261116-150008Z', 'uuid': '818b8956-76de-564f-8351-37cc89037d14'}
+Receiver state: available
+Last verified transfer: unknown (independent receipt not available)
+
+SCHEDULED OPERATIONS
+Unit                          Active    Result   Next/last execution (systemd)
+----------------------------  --------  -------  -----------------------------
+btrfs-receiver-prune.service  inactive  success  Tue 2026-11-17 04:15:00 GMT
+btrfs-receiver-prune.timer    active    success  Wed 2026-11-18 04:15:00 GMT
+=== RESULT CODES ===
+status=0 list=0 all=0
+verify=2 infrastructure=0
+0050 RECEIVER COMMAND ACCEPTANCE: REVIEW REQUIRED (1)
+richard@backup:~$

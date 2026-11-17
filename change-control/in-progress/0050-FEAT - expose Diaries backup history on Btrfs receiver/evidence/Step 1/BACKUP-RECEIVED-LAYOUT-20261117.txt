@@ -1,0 +1,53 @@
+richard@backup:~$ (
+  stamp="20261116-150008Z"
+  root="/@data/mars-received/@data/$stamp"
+
+  echo "=== RECEIVER HEALTH ==="
+  sudo -n btrfs-backup-status --local-only || exit 1
+
+  echo "=== RECEIVED DIARIES FILES ==="
+  sudo -n test -f \
+    "$root/backup/.diaries-snapshot-verified.json" || exit 1
+
+  sudo -n test -f \
+    "$root/backup/pluto/diaries-backup/dataset-manifest.json" || exit 1
+
+  sudo -n sha256sum \
+    "$root/backup/.diaries-snapshot-verified.json" \
+    "$root/backup/pluto/diaries-backup/dataset-manifest.json" || exit 1
+
+  echo "0050 RECEIVER LAYOUT: PASS"
+)
+
+result=$?
+echo "0050 RECEIVER PREFLIGHT EXIT STATUS: $result"
+=== RECEIVER HEALTH ===
+BTRFS BACKUP STATUS — backup (receiver)
+Health: HEALTHY
+
+BTRFS SNAPSHOTS AND RETENTION
+Repository: /@data/mars-received
+Retained sets (observed): 42
+Oldest / newest (UTC): 20261009-170001Z / 20261117-030039Z
+Retention: hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+
+FILESYSTEM QGROUP HEALTH
+Qgroups: qgroups_status=ok, qgroups_total=45, qgroups_stale=0, qgroups_under_deletion=0
+
+BTRFS REPLICATION
+Local agreed parent: {'timestamp': '20261117-030039Z', 'uuid': '96853f6e-e2e2-ca45-ba3b-90b70268c0d5'}
+Locally recorded prior parent: {'timestamp': '20261116-150008Z', 'uuid': '818b8956-76de-564f-8351-37cc89037d14'}
+Receiver state: available
+Last verified transfer: unknown (independent receipt not available)
+
+SCHEDULED OPERATIONS
+Unit                          Active    Result   Next/last execution (systemd)
+----------------------------  --------  -------  -----------------------------
+btrfs-receiver-prune.service  inactive  success  Tue 2026-11-17 04:15:00 GMT
+btrfs-receiver-prune.timer    active    success  Wed 2026-11-18 04:15:00 GMT
+=== RECEIVED DIARIES FILES ===
+2104dd662f6ccbeba0b1414d9bf44f6b3411754181c7836e7ec65fbcd4c42bd3  /@data/mars-received/@data/20261116-150008Z/backup/.diaries-snapshot-verified.json
+85564be959c987fc15d5069f5899703928cc02d5adfdfb29a27b610836e91193  /@data/mars-received/@data/20261116-150008Z/backup/pluto/diaries-backup/dataset-manifest.json
+0050 RECEIVER LAYOUT: PASS
+0050 RECEIVER PREFLIGHT EXIT STATUS: 0
+richard@backup:~$

@@ -1,0 +1,61 @@
+richard@mango:~$ (
+  cd /home/richard/ansible-controller/playbooks || exit 1
+
+  file="roles/snapshots/files/diaries-backup-history.py"
+
+  echo "=== PLAYBOOKS SOURCE MODE ==="
+
+  test "$(git branch --show-current)" = main || exit 1
+  test "$(git rev-parse HEAD)" = \
+    "a1f27ddf20e6c9668c6ad8f0d801de0233695ccc" || exit 1
+
+  git fetch origin || exit 1
+  test "$(git rev-parse origin/main)" = "$(git rev-parse HEAD)" || exit 1
+
+  git diff --quiet || exit 1
+  git diff --cached --quiet || exit 1
+
+  test "$(git ls-files -s -- "$file" | awk '{print $1}')" = 100644 || exit 1
+
+  chmod +x "$file" || exit 1
+  git add -- "$file" || exit 1
+
+  test "$(git diff --cached --name-only)" = "$file" || exit 1
+  test "$(git ls-files -s -- "$file" | awk '{print $1}')" = 100755 || exit 1
+  git diff --cached --summary
+
+  echo "=== PUBLISH PLAYBOOKS ==="
+
+fiecho "0050 FINAL SOURCE PUBLICATION: FAIL ($result)"{print $1}')" = \ 1it 1
+=== PLAYBOOKS SOURCE MODE ===
+ mode change 100644 => 100755 roles/snapshots/files/diaries-backup-history.py
+=== PUBLISH PLAYBOOKS ===
+[main b0063d4] 0050-FEAT: restore history reader executable mode
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ mode change 100644 => 100755 roles/snapshots/files/diaries-backup-history.py
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 454 bytes | 454.00 KiB/s, done.
+Total 5 (delta 4), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+To github.com:rsmaxwell/playbooks.git
+   a1f27dd..b0063d4  main -> main
+0050 FINAL PLAYBOOKS: b0063d455faf4b264504405f9db72ab21c692741
+=== UPDATE ANSIBLE-CONTROLLER ===
+[main 28e394b] 0050-FEAT: pin executable-mode correction
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 274 bytes | 274.00 KiB/s, done.
+Total 2 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:rsmaxwell/ansible-controller.git
+   4a161f0..28e394b  main -> main
+0050 FINAL CONTROLLER: 28e394b48ba91479b147452d70adb39ff3b84559
+0050 MODE CORRECTION AND PUBLICATION: PASS
+0050 FINAL SOURCE PUBLICATION: PASS
+richard@mango:~$

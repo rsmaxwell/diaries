@@ -1,0 +1,85 @@
+richard@mango:~$ (
+  cd /home/richard/ansible-controller/playbooks || exit 1
+
+  echo "=== VERIFY PLAYBOOKS REPOSITORY ==="
+
+  test "$(git branch --show-current)" = main || exit 1
+  test "$(git rev-parse HEAD)" = \
+    "a2508ad61f479c1b2bc20cb39896006c1f2906e1" || exit 1
+
+  test "$(git remote get-url origin)" = \
+    "git@github.com:rsmaxwell/playbooks.git" || exit 1
+
+  git diff --cached --quiet || exit 1
+  git diff --check || exit 1
+
+  git fetch origin || exit 1
+  git merge-base --is-ancestor origin/main HEAD || exit 1
+
+  echo "=== STAGE ONLY 0050 SOURCE FILES ==="
+
+  paths=(
+    roles/btrfs-replication/README.md
+    roles/btrfs-replication/tasks/native.yaml
+    roles/btrfs-replication/tasks/receiver-diaries-history.yaml
+    roles/btrfs-replication/templates/btrfs-receiver-manager.json.j2
+    roles/btrfs-replication/tests/README.md
+    roles/btrfs-replication/tests/verify-0050-receiver-history-contract.py
+    roles/snapshots/files/diaries-backup-history.py
+fiecho "0050 PUBLICATION EXECUTION: FAIL ($result)" | awk '{print $1}')""
+=== VERIFY PLAYBOOKS REPOSITORY ===
+=== STAGE ONLY 0050 SOURCE FILES ===
+ roles/btrfs-replication/README.md                                      |  28 ++++++++--
+ roles/btrfs-replication/tasks/native.yaml                              |   3 ++
+ roles/btrfs-replication/tasks/receiver-diaries-history.yaml            |  45 ++++++++++++++++
+ roles/btrfs-replication/templates/btrfs-receiver-manager.json.j2       |   7 +++
+ roles/btrfs-replication/tests/README.md                                |  14 +++++
+ roles/btrfs-replication/tests/verify-0050-receiver-history-contract.py | 113 +++++++++++++++++++++++++++++++++++++++++
+ roles/snapshots/files/diaries-backup-history.py                        |  89 +++++++++++++++++++++++++-------
+ roles/snapshots/files/diaries-backup-status.py                         |   2 +-
+ 8 files changed, 278 insertions(+), 23 deletions(-)
+=== COMMIT AND PUBLISH PLAYBOOKS ===
+[main a1f27dd] 0050-FEAT: expose receiver-local Diaries backup history
+ 8 files changed, 278 insertions(+), 23 deletions(-)
+ create mode 100644 roles/btrfs-replication/tasks/receiver-diaries-history.yaml
+ create mode 100644 roles/btrfs-replication/tests/verify-0050-receiver-history-contract.py
+ mode change 100755 => 100644 roles/snapshots/files/diaries-backup-history.py
+Enumerating objects: 31, done.
+Counting objects: 100% (31/31), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (17/17), done.
+Writing objects: 100% (17/17), 6.40 KiB | 6.40 MiB/s, done.
+Total 17 (delta 14), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (14/14), completed with 14 local objects.
+To github.com:rsmaxwell/playbooks.git
+   a2508ad..a1f27dd  main -> main
+0050 PLAYBOOKS PUBLISHED: a1f27ddf20e6c9668c6ad8f0d801de0233695ccc
+=== VERIFY CONTROLLER REPOSITORY ===
+=== UPDATE PLAYBOOKS GITLINK ===
+diff --git a/playbooks b/playbooks
+index a2508ad..a1f27dd 160000
+--- a/playbooks
++++ b/playbooks
+@@ -1 +1 @@
+-Subproject commit a2508ad61f479c1b2bc20cb39896006c1f2906e1
++Subproject commit a1f27ddf20e6c9668c6ad8f0d801de0233695ccc
+=== COMMIT AND PUBLISH CONTROLLER ===
+[main 4a161f0] 0050-FEAT: pin receiver Diaries history implementation
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 285 bytes | 285.00 KiB/s, done.
+Total 2 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:rsmaxwell/ansible-controller.git
+   a81eafd..4a161f0  main -> main
+0050 CONTROLLER PUBLISHED: 4a161f08815819cce1a72bb89deaf82ef8aecb27
+=== FINAL REVISIONS ===
+ ebcce026723db37b9b53b76ba21903a351d48466 inventory (heads/main)
+ a1f27ddf20e6c9668c6ad8f0d801de0233695ccc playbooks (heads/main)
+ ? playbooks
+0050 REPOSITORY PUBLICATION: PASS
+0050 PUBLICATION EXECUTION: PASS
+richard@mango:~$

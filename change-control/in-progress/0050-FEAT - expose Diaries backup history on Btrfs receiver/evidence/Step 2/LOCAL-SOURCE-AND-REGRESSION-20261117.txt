@@ -1,0 +1,220 @@
+0050 LOCAL SOURCE TESTS UTC: 2026-11-17T09:31:02.580663+00:00
+Playbooks bundle: playbook-sources-20261117-081247.zip, HEAD a2508ad61f479c1b2bc20cb39896006c1f2906e1
+Not an Ansible check or live deployment.
+
+=== 0050 receiver/source fixture ===
+COMMAND: python3 /mnt/data/work0050/change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/tests/verify-0050-receiver-history-fixtures.py --playbooks-root /mnt/data/work0050/playbook-sources-20261117-081247/ansible-controller/playbooks
+EXIT: 0
+STDOUT:
+
+STDERR:
+test_receiver_conflicting_backup_id_is_not_accepted (__main__.ReceiverHistoryAcceptance.test_receiver_conflicting_backup_id_is_not_accepted) ... ok
+test_receiver_empty_history_is_healthy (__main__.ReceiverHistoryAcceptance.test_receiver_empty_history_is_healthy) ... ok
+test_receiver_full_verify_delegates_to_receiver_local_path (__main__.ReceiverHistoryAcceptance.test_receiver_full_verify_delegates_to_receiver_local_path) ... ok
+test_receiver_only_backup_discovery (__main__.ReceiverHistoryAcceptance.test_receiver_only_backup_discovery) ... ok
+test_receiver_show_path_and_all_occurrences (__main__.ReceiverHistoryAcceptance.test_receiver_show_path_and_all_occurrences) ... ok
+test_receiver_summary_parity (__main__.ReceiverHistoryAcceptance.test_receiver_summary_parity) ... ok
+test_receiver_tampered_marker_warns_and_degrades (__main__.ReceiverHistoryAcceptance.test_receiver_tampered_marker_warns_and_degrades) ... ok
+test_receiver_unsafe_symlink_is_reported (__main__.ReceiverHistoryAcceptance.test_receiver_unsafe_symlink_is_reported) ... ok
+test_source_0049_compatibility (__main__.ReceiverHistoryAcceptance.test_source_0049_compatibility) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 18.855s
+
+OK
+
+
+=== 0050 actual schema-2 verifier ===
+COMMAND: python3 /mnt/data/work0050/change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/tests/verify-0050-real-schema2.py --playbooks-root /mnt/data/work0050/playbook-sources-20261117-081247/ansible-controller/playbooks
+EXIT: 0
+STDOUT:
+PASS: production schema-2 verifier validates a receiver-only backup and detects tampered receiver bytes
+
+STDERR:
+
+
+=== 0050 permanent deployment contract ===
+COMMAND: python3 /mnt/data/work0050/playbook-sources-20261117-081247/ansible-controller/playbooks/roles/btrfs-replication/tests/verify-0050-receiver-history-contract.py
+EXIT: 0
+STDOUT:
+
+STDERR:
+test_only_receiver_installs_shared_commands_and_verifier (__main__.DeploymentContract.test_only_receiver_installs_shared_commands_and_verifier) ... ok
+test_receiver_config_requires_explicit_local_canonical_tree (__main__.DeploymentContract.test_receiver_config_requires_explicit_local_canonical_tree) ... ok
+test_receiver_template_is_readonly_additive (__main__.DeploymentContract.test_receiver_template_is_readonly_additive) ... ok
+test_source_0049_config_still_loads (__main__.DeploymentContract.test_source_0049_config_still_loads) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.005s
+
+OK
+
+
+=== 0049 backup management ===
+COMMAND: python3 /mnt/data/work0050/playbook-sources-20261117-081247/ansible-controller/playbooks/roles/btrfs-replication/tests/verify-0049-backup-management.py
+EXIT: 0
+STDOUT:
+
+STDERR:
+test_0041_dedicated_user_and_sudoers_preserved (__main__.DeploymentSourceTests.test_0041_dedicated_user_and_sudoers_preserved) ... ok
+test_inventory_compatibility_is_explicit (__main__.DeploymentSourceTests.test_inventory_compatibility_is_explicit) ... ok
+test_protocol_implementation_diff_is_only_executable_name_and_pretty_status (__main__.DeploymentSourceTests.test_protocol_implementation_diff_is_only_executable_name_and_pretty_status) ... ok
+test_unit_cutover_disables_old_before_new_and_removes_old (__main__.DeploymentSourceTests.test_unit_cutover_disables_old_before_new_and_removes_old) ... ok
+test_bad_config_fails_closed (__main__.ReportTests.test_bad_config_fails_closed) ... ok
+test_diaries_empty_report_has_labelled_empty_table (__main__.ReportTests.test_diaries_empty_report_has_labelled_empty_table) ... ok
+test_diaries_json_is_indented_and_errors_use_exit_2 (__main__.ReportTests.test_diaries_json_is_indented_and_errors_use_exit_2) ... ok
+test_diaries_report_has_only_application_data_and_aligns_table (__main__.ReportTests.test_diaries_report_has_only_application_data_and_aligns_table) ... ok
+test_host_json_is_pretty_and_machine_parseable (__main__.ReportTests.test_host_json_is_pretty_and_machine_parseable) ... ok
+test_local_only_skips_sender_ssh_even_when_remote_is_unavailable (__main__.ReportTests.test_local_only_skips_sender_ssh_even_when_remote_is_unavailable) ... ok
+test_qgroup_warning_degrades_infrastructure_status (__main__.ReportTests.test_qgroup_warning_degrades_infrastructure_status) ... ok
+test_receiver_has_no_collection_section_or_ssh_calls (__main__.ReportTests.test_receiver_has_no_collection_section_or_ssh_calls) ... ok
+test_source_remote_success_and_failure_have_distinct_health (__main__.ReportTests.test_source_remote_success_and_failure_have_distinct_health) ... ok
+test_table_does_not_truncate_unicode_or_identifiers (__main__.ReportTests.test_table_does_not_truncate_unicode_or_identifiers) ... ok
+test_old_receiver_subcommands_are_no_longer_accepted (__main__.SnapshotCliTests.test_old_receiver_subcommands_are_no_longer_accepted) ... ok
+test_receiver_create_is_refused (__main__.SnapshotCliTests.test_receiver_create_is_refused) ... ERROR: receiver mode supports only list, status and guarded prune
+ok
+test_receiver_delete_requires_explicit_bound (__main__.SnapshotCliTests.test_receiver_delete_requires_explicit_bound) ... ERROR: receiver prune requires --max-delete N
+ok
+test_receiver_preview_uses_existing_shared_lock_and_never_deletes (__main__.SnapshotCliTests.test_receiver_preview_uses_existing_shared_lock_and_never_deletes) ... ok
+test_source_bounded_prune_remains_distinct (__main__.SnapshotCliTests.test_source_bounded_prune_remains_distinct) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.063s
+
+OK
+
+
+=== 0041 dedicated restricted identity ===
+COMMAND: python3 /mnt/data/work0050/playbook-sources-20261117-081247/ansible-controller/playbooks/roles/btrfs-replication/tests/verify-0041-restricted-identity.py
+EXIT: 0
+STDOUT:
+
+STDERR:
+test_adversarial_commands_refused (__main__.Contracts.test_adversarial_commands_refused) ... ok
+test_allowed_status_and_advance (__main__.Contracts.test_allowed_status_and_advance) ... ok
+test_dedicated_transport_is_strict (__main__.Contracts.test_dedicated_transport_is_strict) ... ok
+test_header_read_does_not_consume_binary_stream (__main__.Contracts.test_header_read_does_not_consume_binary_stream) ... ok
+test_legacy_transport_not_changed (__main__.Contracts.test_legacy_transport_not_changed) ... ok
+test_root_gate_rejects_bypass (__main__.Contracts.test_root_gate_rejects_bypass) ... ok
+test_sudoers_and_provisioning_do_not_grant_all (__main__.Contracts.test_sudoers_and_provisioning_do_not_grant_all) ... ok
+test_unknown_mode_refuses_instead_of_silent_fallback (__main__.Contracts.test_unknown_mode_refuses_instead_of_silent_fallback) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.003s
+
+OK
+
+
+=== Btrfs replication core ===
+COMMAND: python3 /mnt/data/work0050/playbook-sources-20261117-081247/ansible-controller/playbooks/roles/btrfs-replication/tests/verify-replication.py
+EXIT: 0
+STDOUT:
+SUCCESS: common parent advanced to 20261101-140039Z
+SUCCESS: reconciled receiver-ahead transfer without retransmission
+
+STDERR:
+test_absent_or_complete_candidate_never_deleted (__main__.Cases.test_absent_or_complete_candidate_never_deleted) ... ok
+test_ambiguous_parent_divergence_refuses (__main__.Cases.test_ambiguous_parent_divergence_refuses) ... ok
+test_choose_newest_eligible_newer (__main__.Cases.test_choose_newest_eligible_newer) ... ok
+test_completed_candidate_uses_advance_without_retransmit (__main__.Cases.test_completed_candidate_uses_advance_without_retransmit) ... ok
+test_filesystem_identity_refusal (__main__.Cases.test_filesystem_identity_refusal) ... ok
+test_held_or_legacy_receipt_refuses (__main__.Cases.test_held_or_legacy_receipt_refuses) ... ok
+test_incomplete_cleanup_exact_subvolume_once (__main__.Cases.test_incomplete_cleanup_exact_subvolume_once) ... ok
+test_invalid_candidate_prevents_cleanup (__main__.Cases.test_invalid_candidate_prevents_cleanup) ... ok
+test_invalid_state_or_rollback_refuses (__main__.Cases.test_invalid_state_or_rollback_refuses) ... ok
+test_latest_invalid_candidate_refuses_rather_than_falling_back (__main__.Cases.test_latest_invalid_candidate_refuses_rather_than_falling_back) ... ok
+test_latest_selection_ignores_symlinks_and_non_snapshots (__main__.Cases.test_latest_selection_ignores_symlinks_and_non_snapshots) ... ok
+test_readonly_lock_never_creates_missing_lockfile (__main__.Cases.test_readonly_lock_never_creates_missing_lockfile) ... ok
+test_readonly_or_received_unknown_candidate_refused (__main__.Cases.test_readonly_or_received_unknown_candidate_refused) ... ok
+test_receiver_ahead_lost_ack (__main__.Cases.test_receiver_ahead_lost_ack) ... ok
+test_receiver_backoff_uses_configured_lock (__main__.Cases.test_receiver_backoff_uses_configured_lock) ... ok
+test_receiver_failure_does_not_advance (__main__.Cases.test_receiver_failure_does_not_advance) ... ok
+test_receiver_incomplete_next_run_deletes_then_receives (__main__.Cases.test_receiver_incomplete_next_run_deletes_then_receives) ... INFO: cleaned one incomplete candidate; retrying receive
+ok
+test_sender_lost_ack_advances_local_without_retransmission (__main__.Cases.test_sender_lost_ack_advances_local_without_retransmission) ... ok
+test_sender_status_receiver_ahead_does_not_reconcile_or_save (__main__.Cases.test_sender_status_receiver_ahead_does_not_reconcile_or_save) ... ok
+test_sender_status_rejects_unverified_receiver_identity (__main__.Cases.test_sender_status_rejects_unverified_receiver_identity) ... ok
+test_sender_status_uses_verified_readonly_identity_without_mutation (__main__.Cases.test_sender_status_uses_verified_readonly_identity_without_mutation) ... ok
+test_single_nonblocking_manager_lock (__main__.Cases.test_single_nonblocking_manager_lock) ... ok
+test_state_atomic_readback (__main__.Cases.test_state_atomic_readback) ... ok
+test_state_record_and_prior (__main__.Cases.test_state_record_and_prior) ... ok
+test_state_rejects_nonroot_owner_and_insecure_mode (__main__.Cases.test_state_rejects_nonroot_owner_and_insecure_mode) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.026s
+
+OK
+
+
+=== Diaries history source regression ===
+COMMAND: python3 /mnt/data/work0050/playbook-sources-20261117-081247/ansible-controller/playbooks/roles/snapshots/tests/verify-diaries-backup-history.py
+EXIT: 0
+STDOUT:
+PASS: repeated Diaries backup IDs collapse to one history key with multiple snapshot occurrences
+PASS: same logicalDataset/backupId with incompatible manifest identity is flagged as conflict
+PASS: history refuses dataset symlink escape outside the managed snapshot occurrence
+PASS: 0035 diaries-backup-history regression verified
+PASS: pluto resolves fixed publication without inventing Btrfs history
+PASS: unsafe or corrupted live publication rejected
+
+STDERR:
+
+
+=== Diaries status source regression ===
+COMMAND: python3 /mnt/data/work0050/playbook-sources-20261117-081247/ansible-controller/playbooks/roles/snapshots/tests/verify-diaries-backup-status.py
+EXIT: 0
+STDOUT:
+PASS: 0049 Diaries status excludes infrastructure, aligns history and handles empty/errors
+
+STDERR:
+
+
+=== 0040 receiver retention ===
+COMMAND: python3 /mnt/data/work0050/playbook-sources-20261117-081247/ansible-controller/playbooks/roles/snapshots/tests/verify-0040-simplified-receiver-retention.py
+EXIT: 0
+STDOUT:
+RECEIVER-PRUNE-DELETED 20261003-000000Z subvolume_id=252
+RECEIVER-PRUNE-DELETED 20261002-000000Z subvolume_id=251
+RECEIVER-PRUNE-DELETED count=2
+RECEIVER-PRUNE-DELETED 20261003-000000Z subvolume_id=252
+RECEIVER-PRUNE-DELETED 20261002-000000Z subvolume_id=251
+RECEIVER-PRUNE-DELETED 20261001-000000Z subvolume_id=250
+RECEIVER-PRUNE-DELETED count=3
+RECEIVER-PRUNE-DELETED count=0
+
+STDERR:
+.................
+----------------------------------------------------------------------
+Ran 17 tests in 0.037s
+
+OK
+
+
+=== 0040 source pruning cap ===
+COMMAND: python3 /mnt/data/work0050/playbook-sources-20261117-081247/ansible-controller/playbooks/roles/snapshots/tests/verify-0040-step13-source-prune-cap.py
+EXIT: 0
+STDOUT:
+PASS: limit=1 dry_run=False selected=1 prevalidated=3
+PASS: limit=2 dry_run=False selected=2 prevalidated=3
+PASS: limit=10 dry_run=False selected=3 prevalidated=3
+PASS: limit=32 dry_run=False selected=3 prevalidated=3
+PASS: limit=1 dry_run=True selected=1 prevalidated=3
+PASS: 0049 rejects uncapped deletion
+PASS: refused invalid limit 0
+PASS: refused invalid limit -1
+PASS: refused invalid limit 33
+PASS: refused invalid limit True
+PASS: limit=32 dry_run=False selected=32 prevalidated=40
+PASS: limit=32 dry_run=True selected=32 prevalidated=40
+PASS: capped scheduled prune + enforced paused timer across reboot
+
+STDERR:
+
+py_compile playbook-sources-20261117-081247/ansible-controller/playbooks/roles/snapshots/files/diaries-backup-history.py exit 0: 
+py_compile playbook-sources-20261117-081247/ansible-controller/playbooks/roles/snapshots/files/diaries-backup-status.py exit 0: 
+py_compile playbook-sources-20261117-081247/ansible-controller/playbooks/roles/btrfs-replication/tests/verify-0050-receiver-history-contract.py exit 0: 
+py_compile change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/tests/verify-0050-real-schema2.py exit 0: 
+YAML parse PASS: playbook-sources-20261117-081247/ansible-controller/playbooks/roles/btrfs-replication/tasks/native.yaml (12 tasks)
+YAML parse PASS: playbook-sources-20261117-081247/ansible-controller/playbooks/roles/btrfs-replication/tasks/receiver-diaries-history.yaml (3 tasks)
+
+0050 LOCAL SOURCE TESTS: PASS

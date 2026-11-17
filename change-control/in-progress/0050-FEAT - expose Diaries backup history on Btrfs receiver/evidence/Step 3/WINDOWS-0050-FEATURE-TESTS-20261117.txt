@@ -1,0 +1,36 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ (
+  cd /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries || exit 1
+
+  feature="change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver"
+  playbooks="/home/richard/ansible-controller/playbooks"
+
+  ssh mango "python3 - --playbooks-root '$playbooks'" \
+    < "$feature/tests/verify-0050-receiver-history-fixtures.py" || exit 1
+
+  ssh mango "python3 - --playbooks-root '$playbooks'" \
+    < "$feature/tests/verify-0050-real-schema2.py" || exit 1
+)
+
+result=$?
+echo "0050 FEATURE TESTS EXIT STATUS: $result"
+test_receiver_conflicting_backup_id_is_not_accepted (__main__.ReceiverHistoryAcceptance.test_receiver_conflicting_backup_id_is_not_accepted) ... ok
+test_receiver_empty_history_is_healthy (__main__.ReceiverHistoryAcceptance.test_receiver_empty_history_is_healthy) ... ok
+test_receiver_full_verify_delegates_to_receiver_local_path (__main__.ReceiverHistoryAcceptance.test_receiver_full_verify_delegates_to_receiver_local_path) ... ok
+test_receiver_only_backup_discovery (__main__.ReceiverHistoryAcceptance.test_receiver_only_backup_discovery) ... ok
+test_receiver_show_path_and_all_occurrences (__main__.ReceiverHistoryAcceptance.test_receiver_show_path_and_all_occurrences) ... ok
+test_receiver_summary_parity (__main__.ReceiverHistoryAcceptance.test_receiver_summary_parity) ... ok
+test_receiver_tampered_marker_warns_and_degrades (__main__.ReceiverHistoryAcceptance.test_receiver_tampered_marker_warns_and_degrades) ... ok
+test_receiver_unsafe_symlink_is_reported (__main__.ReceiverHistoryAcceptance.test_receiver_unsafe_symlink_is_reported) ... ok
+test_source_0049_compatibility (__main__.ReceiverHistoryAcceptance.test_source_0049_compatibility) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.844s
+
+OK
+PASS: production schema-2 verifier validates a receiver-only backup and detects tampered receiver bytes
+0050 FEATURE TESTS EXIT STATUS: 0
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

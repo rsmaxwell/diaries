@@ -1,0 +1,69 @@
+richard@backup:~$ (
+  echo "=== VERIFY RECEIVED DIARIES BACKUP ==="
+
+  sudo -n diaries-backup-history verify \
+    20261116-003112Z \
+    --snapshot 20261116-150008Z \
+    --logical-dataset production || exit 1
+
+  echo "=== DIARIES STATUS ==="
+  sudo -n diaries-backup-status || exit 1
+
+  echo "=== RECEIVER HEALTH ==="
+  sudo -n btrfs-backup-status --local-only || exit 1
+
+  echo "0050 LIVE CONTENT VERIFICATION: PASS"
+)
+
+result=$?
+if [ "$result" -ne 0 ]; then
+  echo "0050 LIVE CONTENT VERIFICATION: FAIL ($result)"
+fi
+=== VERIFY RECEIVED DIARIES BACKUP ===
+Valid complete Diaries dataset backup manifest
+  Schema:          2
+  Backup ID:       20261116-003112Z
+  Logical dataset: production
+  Workspace:       completed backup
+  Files:           128
+VERIFIED logicalDataset=production backupId=20261116-003112Z snapshot=20261116-150008Z path=/@data/mars-received/@data/20261116-150008Z/backup/pluto/diaries-backup
+=== DIARIES STATUS ===
+DIARIES BACKUP STATUS
+Evidence: retained manifest identity (not full file-content verification)
+Health: HEALTHY  Distinct backups: 30  Retained occurrences: 42  Conflicts: 0
+Latest retained backup: production/20261117-003110Z (last occurrence 20261117-030039Z UTC)
+
+RECENT DIARIES BACKUPS
+Logical dataset  Backup ID         First retained UTC  Last retained UTC  Snapshots  Manifest identity
+---------------  ----------------  ------------------  -----------------  ---------  -----------------
+production       20261117-003110Z  20261117-030039Z    20261117-030039Z           1  valid
+production       20261116-003112Z  20261116-030016Z    20261116-150008Z           2  valid
+production       20261115-003112Z  20261115-030001Z    20261115-140017Z           2  valid
+production       20261114-003057Z  20261114-030021Z    20261114-030021Z           1  valid
+production       20261113-003059Z  20261113-030001Z    20261113-030001Z           1  valid
+=== RECEIVER HEALTH ===
+BTRFS BACKUP STATUS — backup (receiver)
+Health: HEALTHY
+
+BTRFS SNAPSHOTS AND RETENTION
+Repository: /@data/mars-received
+Retained sets (observed): 42
+Oldest / newest (UTC): 20261009-170001Z / 20261117-030039Z
+Retention: hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+
+FILESYSTEM QGROUP HEALTH
+Qgroups: qgroups_status=ok, qgroups_total=45, qgroups_stale=0, qgroups_under_deletion=0
+
+BTRFS REPLICATION
+Local agreed parent: {'timestamp': '20261117-030039Z', 'uuid': '96853f6e-e2e2-ca45-ba3b-90b70268c0d5'}
+Locally recorded prior parent: {'timestamp': '20261116-150008Z', 'uuid': '818b8956-76de-564f-8351-37cc89037d14'}
+Receiver state: available
+Last verified transfer: unknown (independent receipt not available)
+
+SCHEDULED OPERATIONS
+Unit                          Active    Result   Next/last execution (systemd)
+----------------------------  --------  -------  -----------------------------
+btrfs-receiver-prune.service  inactive  success  Tue 2026-11-17 04:15:00 GMT
+btrfs-receiver-prune.timer    active    success  Wed 2026-11-18 04:15:00 GMT
+0050 LIVE CONTENT VERIFICATION: PASS
+richard@backup:~$
