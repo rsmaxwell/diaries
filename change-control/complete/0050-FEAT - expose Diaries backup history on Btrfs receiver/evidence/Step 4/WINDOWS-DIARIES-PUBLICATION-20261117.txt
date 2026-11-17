@@ -1,0 +1,122 @@
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$ (
+  cd /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries || exit 1
+
+  feature="change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver"
+
+  echo "=== VERIFY DIARIES REPOSITORY ==="
+
+  test "$(git branch --show-current)" = main || exit 1
+  test "$(git remote get-url origin)" = \
+    "git@github.com:rsmaxwell/diaries.git" || exit 1
+
+  git merge-base --is-ancestor \
+    19dcaba94616152738fda1f93c504d77da888f63 HEAD || exit 1
+
+  git diff --cached --quiet || exit 1
+
+  git fetch origin || exit 1
+  git merge-base --is-ancestor origin/main HEAD || exit 1
+
+  test -f "$feature/reports/FINAL-REPOSITORY-PUBLICATION-20261117.md" || exit 1
+  test -f "$feature/evidence/Step 4/MANGO-PLAYBOOKS-CONTROLLER-MODE-CORRECTION-20261117.txt" || exit 1
+
+  echo "=== STAGE 0050 ONLY ==="
+
+  git add -A -- "$feature" || exit 1
+
+  git diff --cached --quiet && {
+    echo "FAIL: No 0050 changes staged"
+fiecho "0050 REPOSITORY FINALISATION: FAIL ($result)" awk '{print $1}')"| exit 1
+=== VERIFY DIARIES REPOSITORY ===
+=== STAGE 0050 ONLY ===
+ .../DESIGN-AND-INTERFACE-CONTRACT.md               |  75 ++
+ .../IMPLEMENTATION-STEPS.md                        |  89 +++
+ .../README.md                                      |  96 +++
+ .../evidence/README.md                             |   5 +
+ .../Step 1/BACKUP-RECEIVED-LAYOUT-20261117.txt     |  53 ++
+ .../LOCAL-SOURCE-AND-REGRESSION-20261117.txt       | 220 ++++++
+ ...KUP-FULL-SCHEMA2-VERIFICATION-PASS-20261117.txt |  69 ++
+ .../BACKUP-INITIAL-LIVE-ACCEPTANCE-20261117.txt    | 159 ++++
+ ...RECTED-LIVE-VERIFICATION-LOG-SHA256-20261117.md |  10 +
+ .../Step 3/FIXED-ROOT-LOG-CHECKSUMS-20261117.md    |  12 +
+ .../FIXED-ROOT-REGRESSIONS-FIRST-20261117.txt      |  51 ++
+ .../FIXED-ROOT-REGRESSIONS-REMAINING-20261117.txt  |  53 ++
+ .../MANGO-0050-SOURCE-AND-CHECK-20261117.txt       | 879 +++++++++++++++++++++
+ .../MANGO-CORRECTED-READER-DEPLOYMENT-20261117.txt | 413 ++++++++++
+ .../Step 3/MANGO-RECEIVER-DEPLOYMENT-20261117.txt  | 400 ++++++++++
+ .../Step 3/PREDEPLOYMENT-LOG-SHA256-20261117.md    |   5 +
+ .../Step 3/WINDOWS-0050-FEATURE-TESTS-20261117.txt |  36 +
+ ...BOOKS-CONTROLLER-FIRST-PUBLICATION-20261117.txt |  85 ++
+ ...AYBOOKS-CONTROLLER-MODE-CORRECTION-20261117.txt |  61 ++
+ .../REPOSITORY-PUBLICATION-LOG-SHA256-20261117.md  |  10 +
+ .../reports/BASELINE-SOURCE-REVIEW-20261117.md     |  34 +
+ .../FINAL-REPOSITORY-PUBLICATION-20261117.md       |  41 +
+ .../FIRST-LIVE-VERIFICATION-CORRECTION-20261117.md |  38 +
+ .../IMPLEMENTATION-AND-SOURCE-TEST-20261117.md     |  36 +
+ .../reports/PLAYBOOKS-SOURCE-MANIFEST-20261117.md  |  19 +
+ .../reports/PREDEPLOYMENT-REVIEW-20261117.md       |  22 +
+ .../reports/PUBLICATION-READINESS-20261117.md      |  31 +
+ ...CEIVER-LIVE-VERIFICATION-ACCEPTANCE-20261117.md |  38 +
+ .../ROLLBACK-AND-DEPLOYMENT-NOTES-20261117.md      |   9 +
+ .../tests/ACCEPTANCE-MATRIX.md                     |  55 ++
+ .../tests/README.md                                |  74 ++
+ .../tests/verify-0050-real-schema2.py              |  61 ++
+ .../tests/verify-0050-receiver-history-fixtures.py | 262 ++++++
+ 33 files changed, 3501 insertions(+)
+=== COMMIT AND PUBLISH ===
+[main 06ae009] 0050-FEAT: record receiver history implementation and acceptance
+ 33 files changed, 3501 insertions(+)
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/DESIGN-AND-INTERFACE-CONTRACT.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/IMPLEMENTATION-STEPS.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/README.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/README.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 1/BACKUP-RECEIVED-LAYOUT-20261117.txt
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 2/LOCAL-SOURCE-AND-REGRESSION-20261117.txt
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 3/BACKUP-FULL-SCHEMA2-VERIFICATION-PASS-20261117.txt
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 3/BACKUP-INITIAL-LIVE-ACCEPTANCE-20261117.txt
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 3/CORRECTED-LIVE-VERIFICATION-LOG-SHA256-20261117.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 3/FIXED-ROOT-LOG-CHECKSUMS-20261117.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 3/FIXED-ROOT-REGRESSIONS-FIRST-20261117.txt
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 3/FIXED-ROOT-REGRESSIONS-REMAINING-20261117.txt
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 3/MANGO-0050-SOURCE-AND-CHECK-20261117.txt
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 3/MANGO-CORRECTED-READER-DEPLOYMENT-20261117.txt
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 3/MANGO-RECEIVER-DEPLOYMENT-20261117.txt
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 3/PREDEPLOYMENT-LOG-SHA256-20261117.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 3/WINDOWS-0050-FEATURE-TESTS-20261117.txt
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 4/MANGO-PLAYBOOKS-CONTROLLER-FIRST-PUBLICATION-20261117.txt
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 4/MANGO-PLAYBOOKS-CONTROLLER-MODE-CORRECTION-20261117.txt
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/evidence/Step 4/REPOSITORY-PUBLICATION-LOG-SHA256-20261117.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/reports/BASELINE-SOURCE-REVIEW-20261117.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/reports/FINAL-REPOSITORY-PUBLICATION-20261117.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/reports/FIRST-LIVE-VERIFICATION-CORRECTION-20261117.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/reports/IMPLEMENTATION-AND-SOURCE-TEST-20261117.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/reports/PLAYBOOKS-SOURCE-MANIFEST-20261117.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/reports/PREDEPLOYMENT-REVIEW-20261117.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/reports/PUBLICATION-READINESS-20261117.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/reports/RECEIVER-LIVE-VERIFICATION-ACCEPTANCE-20261117.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/reports/ROLLBACK-AND-DEPLOYMENT-NOTES-20261117.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/tests/ACCEPTANCE-MATRIX.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/tests/README.md
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/tests/verify-0050-real-schema2.py
+ create mode 100644 change-control/in-progress/0050-FEAT - expose Diaries backup history on Btrfs receiver/tests/verify-0050-receiver-history-fixtures.py
+Enumerating objects: 47, done.
+Counting objects: 100% (47/47), done.
+Delta compression using up to 32 threads
+Compressing objects: 100% (45/45), done.
+Writing objects: 100% (45/45), 64.29 KiB | 645.00 KiB/s, done.
+Total 45 (delta 7), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (7/7), completed with 2 local objects.
+To github.com:rsmaxwell/diaries.git
+   19dcaba..06ae009  main -> main
+0050 DIARIES PUBLISHED: 06ae009f2b840a9021045a9da3266d022ab6c65d
+=== FINAL REPOSITORY STATUS ===
+ e45ae170017fdf4974f642f654d7f709269af711 diaries-client (heads/main)
+ bd65d08435c0f5d240337cd6479cb41befe4d8c1 diaries-responder (heads/main)
+ cc147426e93ee6952558b65147e444d38316b3ce diaries-web (heads/main)
+0050 DIARIES PUBLICATION: PASS
+0050 REPOSITORY FINALISATION: PASS
+
+Richard@RICHARD-PC /cygdrive/c/Users/Richard/git/github.com/rsmaxwell/diaries-application/diaries
+$

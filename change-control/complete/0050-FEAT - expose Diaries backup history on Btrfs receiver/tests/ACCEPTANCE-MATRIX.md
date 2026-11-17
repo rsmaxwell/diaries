@@ -1,6 +1,6 @@
 # 0050 — Receiver Diaries backup history acceptance matrix
 
-**Current status:** LIVE FUNCTIONAL AND OPERATIONAL ACCEPTANCE PASSED; PUBLICATION AND FORMAL CLOSURE PENDING. Refer to the local source evidence and recorded fixture results. No acceptance step is CLOSED.
+**Current status:** FORMAL CLOSURE APPROVED; required acceptance results recorded; Steps 1–4 CLOSED. Final archival GitHub publication is pending execution of the guarded closure helper.
 
 | ID | Required result | Evidence |
 | --- | --- | --- |
@@ -53,3 +53,10 @@ See `reports/FINAL-OPERATIONAL-ACCEPTANCE-20261117.md`, verbatim idempotence/his
 - **OP-02 controller pin/publication:** PASS. Controller `28e394b48ba91479b147452d70adb39ff3b84559` pins `b0063d455faf4b264504405f9db72ab21c692741` and retains private inventory `ebcce026723db37b9b53b76ba21903a351d48466`. Remote SHA verified.
 - **OP-02 Diaries publication/formal closure:** PENDING. Preserve original publication logs and do not label the feature CLOSED until all change-control records are published and the feature owner explicitly approves closure.
 - Production behaviour, previously accepted full content verification and strict Ansible idempotence remain unaffected by the Git file-mode-only change.
+
+## 17 November 2026 — Formal closure acceptance (supersedes earlier gates)
+
+- **BL-01, DV-01, IN-01–02, HI-01–08, SE-01–02 and OP-01:** accepted PASS based on source/receiver configuration inspection, regression/negative tests, live command readback, real schema-2 full verification of 128 files, and strict Ansible reapply `changed=0 failed=0`. Preserve the original failure-stage logs as historical evidence.
+- **HI-02:** accepted PASS with 11 real receiver-only identities (19 shared, 3 source-only) and disposable fixture coverage. The 11 were **not** all individually content-verified; no claim of that kind is made.
+- **OP-02:** Playbooks, Ansible-controller and Diaries evidence publication verified by remote SHA readback. Formal closure approved on 17 November 2026. The final archive relocation/closure commit remains a guarded execution action, and its SHA is determined only when published.
+- **Step status:** Steps 1, 2, 3 and 4 accepted **CLOSED**. Closure record: `reports/FORMAL-CLOSURE-DECISION-20261117.md`.

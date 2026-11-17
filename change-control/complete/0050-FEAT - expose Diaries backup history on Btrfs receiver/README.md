@@ -1,7 +1,7 @@
 # 0050-FEAT — Expose Diaries backup history on Btrfs receiver
 
 - **Type:** Feature
-- **State:** OPERATIONAL ACCEPTANCE PASSED; PLAYBOOKS AND CONTROLLER PUBLISHED; WINDOWS DIARIES EVIDENCE PUBLICATION PENDING; NOT FORMALLY CLOSED
+- **State:** FORMAL CLOSURE APPROVED; STEPS 1–4 CLOSED; archive publication pending execution of the guarded closure helper
 - **Opened:** 2026-11-17
 - **Predecessor:** 0049-FEAT (formally closed; published Diaries commit `19dcaba94616152738fda1f93c504d77da888f63`)
 - **Permanent change-control owner:** Diaries parent repository, this feature directory
@@ -94,3 +94,9 @@ The final private Ansible-controller commit `28e394b48ba91479b147452d70adb39ff3b
 The running `backup` installation had previously been deployed using Ansible mode `0755`, and the accepted live 128-file content verification and strict idempotence are unchanged. No additional deploy or transfer is required for the source Git mode correction.
 
 **Remaining:** commit/publish the complete Windows Diaries 0050 change-control records, capture the final Diaries revision, then obtain separate formal closure approval before marking steps CLOSED or relocating to `change-control/complete/`. The earlier dated "publication pending" status remains in place solely as historical progression.
+
+## 17 November 2026 — Formal closure approved (supersedes earlier status)
+
+Feature owner explicitly approved formal closure after verification that the 0050 Diaries evidence commit `06ae009f2b840a9021045a9da3266d022ab6c65d` was published and all three repositories were in their expected revisions. The last accepted operational evidence has been carried forward under this feature directory, including the **strict `changed=0` receiver reapply**, the **11 naturally retained receiver-only backups**, and the **128-file full-content verification** of a selected received backup.
+
+Steps 1–4 are accepted **CLOSED**, with approval and limitations recorded in `reports/FORMAL-CLOSURE-DECISION-20261117.md`. This feature is ready to be archived from `change-control/in-progress/` to `change-control/complete/` and published in one guarded Diaries commit. The closure takes effect only after the helper confirms that remote commit readback. Earlier pending statements above are retained as dated historical progress, not current status.

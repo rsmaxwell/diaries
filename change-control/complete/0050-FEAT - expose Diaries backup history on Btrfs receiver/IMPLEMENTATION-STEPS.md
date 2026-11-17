@@ -1,8 +1,8 @@
 # 0050 — Implementation steps
 
-**State:** OPERATIONAL ACCEPTANCE AND PLAYBOOKS/CONTROLLER PUBLICATION PASSED; DIARIES EVIDENCE PUBLICATION AND FORMAL CLOSURE PENDING. These are integrated work phases and evidence checkpoints, not instructions to perform excessive incremental deployments. No step is CLOSED.
+**State:** FORMAL CLOSURE APPROVED; Steps 1–4 accepted CLOSED; archive publication awaits the guarded closure helper. Historical pending statements below are dated checkpoints, not current blockers.
 
-## Step 1 — Capture actual baseline and confirm receiver layout (OPEN)
+## Step 1 — Capture actual baseline and confirm receiver layout (CLOSED)
 
 - **Windows Cygwin terminal**, Diaries root `C:\Users\Richard\git\github.com\rsmaxwell\diaries-application\diaries`: record branch, HEAD, `git status --short`, `.gitmodules`, and `git submodule status`; do not assume Windows and `mango` are synchronised.
 - **mango SSH terminal**, `/home/richard/ansible-controller`: record parent, `playbooks` and `inventory` submodule HEADs/branches/dirty states; ensure the Playbooks baseline is or descends from published 0049 `a2508ad61f479c1b2bc20cb39896006c1f2906e1`. Do not copy inventory/vault secrets into the public repo or evidence.
@@ -11,7 +11,7 @@
 
 **Evidence:** `evidence/Step 1/` — revision manifests, installed command/config checks, snapshot structure/permissions and decision record. No destructive command.
 
-## Step 2 — Implement both receiver commands and preserve source behaviour (OPEN)
+## Step 2 — Implement both receiver commands and preserve source behaviour (CLOSED)
 
 Implement one coherent Playbooks source change set:
 
@@ -24,7 +24,7 @@ Implement one coherent Playbooks source change set:
 
 **Evidence:** `evidence/Step 2/` — coherent Playbooks diff, regression/source output, Ansible syntax/check results, versioned change manifest. No deployment implied by source completion.
 
-## Step 3 — Consolidated regression, controlled deployment, live read-only acceptance (OPEN)
+## Step 3 — Consolidated regression, controlled deployment, live read-only acceptance (CLOSED)
 
 - Run `tests/verify-0050-receiver-history-fixtures.py` (once code is implemented), and permanent Playbooks history/status/snapshot-manager/replication/0041 regressions. Fixtures must include a backup ID only on receiver, manifest mismatch, missing/unsafe marker, conflicting identity, empty inventory and explicit `verify` delegation. The feature fixture uses a disposable verifier stub **only to test CLI invocation**; actual verifier integrity must be proved with the production schema-2 tool in a separate integration test.
 - Run Ansible syntax check and receiver-limited `--check --diff`; review changes to paths, ownership, binary hashes, config and effective permissions. Deploy to `backup` using the normal playbook only after safe preflight; verify both commands and independent verifier installed. Reapply to check `changed=0` on `backup` and, where appropriate, `mars`.
@@ -34,7 +34,7 @@ Implement one coherent Playbooks source change set:
 
 **Evidence:** `evidence/Step 3/` — consolidated test results, receiver deployment and read-only reports, independent verifier output, Ansible idempotence and non-mutation proof.
 
-## Step 4 — Final review, publication and closure (OPEN)
+## Step 4 — Final review, publication and closure (CLOSED)
 
 - Compare acceptance matrix to logs and produce final implementation/rollback report. Record known limitations (manifest identity versus explicit full verification, independent retention and read-only rights).
 - Commit Playbooks to its own repository, then pin/publish the updated `playbooks` submodule in private `ansible-controller`. Keep private inventory unchanged unless an explicitly justified variable is required; never publish vault contents to the public Playbooks repo.
@@ -87,3 +87,9 @@ See `reports/FINAL-OPERATIONAL-ACCEPTANCE-20261117.md` and `evidence/Step 3/`. T
 - **Still pending:** publication of Windows Diaries change-control documentation/evidence, final revision receipt, then formal feature closure approval and directory relocation. Do not mark Step 4 or other steps CLOSED yet.
 
 See `reports/FINAL-REPOSITORY-PUBLICATION-20261117.md` and the two verbatim Git logs under `evidence/Step 4/`.
+
+## Formal closure decision — 17 November 2026
+
+The feature owner approved formal closure after accepted technical tests, live backup readback, strict receiver Ansible idempotence, independent receiver-only history comparison, and publication of Playbooks, Ansible-controller and Diaries evidence. All four steps are marked **CLOSED** by approval. The accepted evidence is listed in `reports/FORMAL-CLOSURE-DECISION-20261117.md`, `reports/FINAL-PUBLICATION-AND-REVISION-RECORD-20261117.md`, and the original logs under `evidence/`.
+
+The previous Step 4 publication-pending statement is a historical checkpoint. Actual Diaries evidence publication succeeded at `06ae009f2b840a9021045a9da3266d022ab6c65d`. The full feature history is archived through `tools/close-0050-feature.sh` only after checking the current origin, revision, migration completeness and remote readback. Formal archival is complete only when that command reports PASS; the archival commit SHA cannot be predeclared.
