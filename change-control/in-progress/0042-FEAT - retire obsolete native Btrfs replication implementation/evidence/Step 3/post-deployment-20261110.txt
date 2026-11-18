@@ -1,0 +1,57 @@
+=== 0042 Step 3: host verification ===
+Tue 10 Nov 08:27:46 UTC 2026
+=== Legacy host file absence audit ===
+mars {"present": [], "expected_absent": 39}
+simplified_status mars {"preflight": {"action": "incremental", "parent": "20261110-030004Z", "source": "20261110-080021Z", "source_uuid": "a4c2659d-5304-a443-86d2-07a62e663bb0"}, "receiver": {"parent": {"timestamp": "20261110-030004Z", "uuid": "c2a5c8d4-cc6a-bd43-bd6c-746cf866eb16"}, "prior": {"timestamp": "20261109-030030Z", "uuid": "239f29b4-9577-0e4b-b4f2-5f5cb9f7484c"}, "schema": 1}, "receiver_parent_verified": true, "relation": "equal", "state": {"parent": {"timestamp": "20261110-030004Z", "uuid": "c2a5c8d4-cc6a-bd43-bd6c-746cf866eb16"}, "prior": {"timestamp": "20261109-030030Z", "uuid": "239f29b4-9577-0e4b-b4f2-5f5cb9f7484c"}, "schema": 1}}
+backup {"present": [], "expected_absent": 35}
+simplified_status backup {"state": {"parent": {"timestamp": "20261110-030004Z", "uuid": "c2a5c8d4-cc6a-bd43-bd6c-746cf866eb16"}, "prior": {"timestamp": "20261109-030030Z", "uuid": "239f29b4-9577-0e4b-b4f2-5f5cb9f7484c"}, "schema": 1}}
+PASS: obsolete 0040 host paths still absent; simplified status working on both hosts
+=== Verify active simplified sender ===
+{ path=/usr/local/bin/btrfs-simplified-replication ; argv[]=/usr/local/bin/btrfs-simplified-replication sender cycle ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+PASS: simplified sender active
+=== Verify agreed-parent consistency ===
+PASS: verified common parent
+parent = 20261110-030004Z
+=== Verify active timers and snapshot health ===
+=== mars ===
+--- btrfs-native-push.timer ---
+enabled
+active
+--- btrfs-clear-stale-qgroups.timer ---
+enabled
+active
+--- Snapshot manager ---
+snapshot_root=/media/usb/@snapshots
+filesystem=btrfs
+qgroups_total=84
+qgroups_stale=3
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=70;incomplete_timestamp_sets=0
+source=@data:/media/usb/@data;managed_snapshots=70
+diaries_verification=valid;logicalDataset=production;backupId=20261110-003113Z;marker=/media/usb/@data/backup/.diaries-snapshot-verified.json
+--- Qgroup maintenance dry run ---
+mode=source filesystem=/media/usb uuid=72d1d8ea-900e-4fca-837f-1b1febec036c qgroups=84 stale_before=3 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=3 clear_stale_supported=true
+dry_run=true
+=== backup ===
+--- btrfs-receiver-simple-prune.timer ---
+enabled
+active
+--- btrfs-clear-stale-qgroups.timer ---
+enabled
+active
+--- Snapshot manager ---
+snapshot_root=/@data/mars-received
+filesystem=btrfs
+qgroups_total=36
+qgroups_stale=0
+qgroups_under_deletion=0
+qgroups_status=ok
+retention=hourly:48,daily:14,weekly:12,monthly:24,yearly:5,minimum_age_minutes:30
+complete_timestamp_sets=33;incomplete_timestamp_sets=0
+source=@data:None;managed_snapshots=33
+diaries_verification=disabled
+--- Qgroup maintenance dry run ---
+mode=receiver filesystem=/ uuid=b915f967-7cb4-4c14-b11b-f52209637a22 qgroups=36 stale_before=0 under_deletion=0 squota_placeholders=0 unmarked_orphans=0 pending_deletions=0 stale_pending=0 stale_eligible=0 clear_stale_supported=true
+dry_run=true

@@ -1,0 +1,104 @@
+
+=== roles/snapshots/tests/verify-0040-step13-source-prune-cap.py ===
+PASS: limit=1 dry_run=False selected=1 prevalidated=3
+PASS: limit=2 dry_run=False selected=2 prevalidated=3
+PASS: limit=10 dry_run=False selected=3 prevalidated=3
+PASS: limit=32 dry_run=False selected=3 prevalidated=3
+PASS: limit=1 dry_run=True selected=1 prevalidated=3
+PASS: limit=None dry_run=False selected=3 prevalidated=3
+PASS: refused invalid limit 0
+PASS: refused invalid limit -1
+PASS: refused invalid limit 33
+PASS: refused invalid limit True
+PASS: limit=32 dry_run=False selected=32 prevalidated=40
+PASS: limit=32 dry_run=True selected=32 prevalidated=40
+PASS: capped scheduled prune + enforced paused timer across reboot
+
+=== roles/snapshots/tests/verify-btrfs-snapshot-manager.py ===
+PASS: retention always keeps newest snapshot
+PASS: retention keeps configured recent hourly buckets
+PASS: retention keeps configured daily buckets
+PASS: retention keeps configured weekly buckets
+PASS: retention thins older snapshots
+PASS: numeric Snapper IDs are outside the managed timestamp namespace
+PASS: timestamp naming is unambiguous UTC
+PASS: native snapshot activation is default-off
+PASS: native timer enablement is behind explicit activation
+PASS: ordinary deployment installs/preflights units without scheduling
+PASS: Ansible fails closed if @snapshots is an unexpected ordinary path
+PASS: Playbooks installs the read-only Diaries snapshot-history tool
+PASS: Playbooks installs the physical-extent sharing acceptance tool
+PASS: manager creates read-only native Btrfs snapshots
+PASS: manager rejects cross-filesystem snapshot repository
+PASS: manager requires the verified Diaries marker when integration is enabled
+PASS: snapshot creation shares the receiver writer lock
+PASS: retention operates on complete multi-source timestamp sets and fails closed on partial sets
+PASS: mars/local-backup uses the shared snapshots role
+PASS: backup/remote-backup uses the shared snapshots role
+PASS: remote-backup launcher no longer selects obsolete Snapper-only tags
+PASS: snapshot launcher explicitly supports mars-first then backup deployment
+PASS: 0035 native Btrfs snapshot-manager regression verified
+PASS: verified receiver snapshot creation requires pre-provisioned non-symlink writer lock
+PASS: role cannot reinstall retired legacy-prune units
+PASS: manager does not expose retired legacy commands
+
+=== roles/snapshots/tests/verify-0040-prune-source-selection.py ===
+PASS: only @data chosen by dry-run and deletion; held/pinned timestamps retained
+PASS: omitted prune setting retains all-source behaviour
+PASS: malformed pruning selection fails closed
+PASS: 0040 prune source selection regression (no Btrfs operations)
+
+=== roles/snapshots/tests/verify-checkpoint-holds.py ===
+CHECKPOINT-HELD: ['20261013-171228Z']
+RETENTION sets: total=2 keep=2 sources=2
+Would delete 0 complete timestamp sets
+PASS: independent checkpoint holds persist, exclude retention deletion and fail closed
+
+=== roles/snapshots/tests/verify-native-prune-subvolume-id.py ===
+PASS: parsed pre-delete Btrfs subvolume ID via read-only show
+PASS: missing, invalid and ambiguous IDs fail closed
+PASS: native deletion logs the verified ID before mutation; dry-run unchanged
+
+=== roles/snapshots/tests/verify-btrfs-clear-stale-qgroups.py ===
+test_host_specific_configuration (__main__.ContractTests.test_host_specific_configuration) ... ok
+test_invalid_host_specific_configuration (__main__.ContractTests.test_invalid_host_specific_configuration) ... ok
+test_lock_inode_and_contention (__main__.ContractTests.test_lock_inode_and_contention) ... ok
+test_valid_source_and_receiver (__main__.ContractTests.test_valid_source_and_receiver) ... ok
+test_wrong_config_fail_closed (__main__.ContractTests.test_wrong_config_fail_closed) ... ok
+test_native_route_and_default_off (__main__.IntegrationSourceTests.test_native_route_and_default_off) ... ok
+test_compact_header_still_accepted (__main__.ParseTests.test_compact_header_still_accepted) ... ok
+test_malformed_or_unsupported_rejected (__main__.ParseTests.test_malformed_or_unsupported_rejected) ... ok
+test_native_busy_error_classification (__main__.ParseTests.test_native_busy_error_classification) ... ok
+test_parses_stale_and_does_not_misclassify_pending (__main__.ParseTests.test_parses_stale_and_does_not_misclassify_pending) ... ok
+test_pending_deletions_from_real_host_shape (__main__.ParseTests.test_pending_deletions_from_real_host_shape) ... ok
+test_real_v663_baseline_header_and_rows (__main__.ParseTests.test_real_v663_baseline_header_and_rows) ... ok
+test_subvolume_ids_fail_closed (__main__.ParseTests.test_subvolume_ids_fail_closed) ... ok
+test_bound_and_persisting_stale (__main__.RunTests.test_bound_and_persisting_stale) ... ok
+test_deferred_requires_post_cleanup_pending_match (__main__.RunTests.test_deferred_requires_post_cleanup_pending_match) ... ok
+test_dry_run_never_calls_mutating_tool (__main__.RunTests.test_dry_run_never_calls_mutating_tool) ... ok
+test_fail_closed_on_unsupported_version_or_orphans (__main__.RunTests.test_fail_closed_on_unsupported_version_or_orphans) ... ok
+test_native_cleanup_one_call (__main__.RunTests.test_native_cleanup_one_call) ... ok
+test_nonstale_mutation_detected (__main__.RunTests.test_nonstale_mutation_detected) ... ok
+test_partial_busy_is_expected_only_when_pending (__main__.RunTests.test_partial_busy_is_expected_only_when_pending) ... ok
+test_partial_failure_remains_failure_for_unexpected_error (__main__.RunTests.test_partial_failure_remains_failure_for_unexpected_error) ... ok
+test_real_eleven_pending_ninety_one_eligible_case (__main__.RunTests.test_real_eleven_pending_ninety_one_eligible_case) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.058s
+
+OK
+
+=== scripts/tests/verify-maintenance-schedule.py ===
+PASS: 0043 schedule plan/apply/idempotence/verify/conflict/refusal/rollback/remove
+
+=== calendar syntax ===
+Normalized form: *-*-* 04:15:00 UTC
+    Next elapse: Wed 2026-11-11 04:15:00 UTC
+       From now: 17h left
+
+Normalized form: *-*-* 05:30:00 UTC
+    Next elapse: Wed 2026-11-11 05:30:00 UTC
+       From now: 18h left
+
+=== Shell syntax ===
+PASS: all 0043 offline regression checks

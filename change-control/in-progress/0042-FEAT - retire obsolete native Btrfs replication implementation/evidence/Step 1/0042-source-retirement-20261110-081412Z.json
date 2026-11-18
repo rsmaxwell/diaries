@@ -1,0 +1,1301 @@
+{
+  "timestamp": "20261110-081412Z",
+  "result": "SOURCE_REMOVED_STAGED",
+  "source_revision": "e0da797310ab452ddc61e7368c50a444fe881e41",
+  "candidate_count": 215,
+  "archive": "/home/richard/diaries/change-control/in-progress/0042-FEAT - retire obsolete native Btrfs replication implementation/evidence/Step 1/0042-retired-playbooks-20261110-081412Z.tar.gz",
+  "archive_sha256": "d00f75fd7d3d5000f234f633ad65887331f122f57a58c3e9b1302971facba37b",
+  "files": [
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-candidate-selection.py",
+      "sha256": "32d39bb6f522ce420caf16b4a170514b9c9d40e32478658e86eb9ce175813bd5",
+      "mode": 420,
+      "size": 2292
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-cycle-entry.py",
+      "sha256": "67e62f1ec3d97df53b3244720f5811590efd1a7ba5036f6e9e9605e390f2a6a2",
+      "mode": 420,
+      "size": 12721
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-finalisation-core.py",
+      "sha256": "55af2aae546a6e07a79015a339535f044b9844a11a27baaeff4dcb01751eb259",
+      "mode": 420,
+      "size": 16031
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-finalisation-storage.py",
+      "sha256": "d0b664dc409afed18e1bc751add6870e298bff14a9b1277a7f83b348f303461d",
+      "mode": 420,
+      "size": 3534
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-finalisation-transaction.py",
+      "sha256": "47fc11d9fd1107ad4115fad153f0168d35149a5977f1c62cebbcf4dd0b101107",
+      "mode": 420,
+      "size": 7274
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-fixed-commands.py",
+      "sha256": "20a0359332573133d2f6266e9b11070bd8f41352ad22243ed27fd1e92ba8b384",
+      "mode": 420,
+      "size": 4841
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-get-state-transport.py",
+      "sha256": "cc7f33b93a763a8242a9618ea1369f74f294f39851ab1cb3f4a319f4bf7e71a7",
+      "mode": 420,
+      "size": 3962
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-incomplete-inspection.py",
+      "sha256": "a6542ba9b4b8dac1dacccfdfcfa8ee94a83d9a325f3b12b11ef80d4b7e4fdee8",
+      "mode": 420,
+      "size": 6645
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-incomplete-reconciler.py",
+      "sha256": "3672fbb306846ad87f4b0580ac192b8116de81af2398c5e96f1ec7812724bd3e",
+      "mode": 420,
+      "size": 7991
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-incomplete-recovery-gate.py",
+      "sha256": "eab2802058272d07de2baec807b7a4d50ad6dd2df47e3722e88ffa92df56f185",
+      "mode": 420,
+      "size": 3353
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-local-peer.py",
+      "sha256": "281b9a24fd6dff95c4f4815e9b003092b9e948ecc6f891ffcecdb012993c55ff",
+      "mode": 420,
+      "size": 2391
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-local-registration.py",
+      "sha256": "1c4ed1060769e56c13c7f70e9a2f9d6df1cb24cc2e515aba3d24ae244d524958",
+      "mode": 420,
+      "size": 3674
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-locked-candidate.py",
+      "sha256": "91b5044dcdb705f5a29f49f3f0ad23f1da12ae81a811df031410888f46136f51",
+      "mode": 420,
+      "size": 2984
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-locked-get-state.py",
+      "sha256": "fb36f46f1c34f445d95fd15216aa5026aed8c268c807c196c8b62a2e942f10ab",
+      "mode": 420,
+      "size": 3544
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-locked-prepare-plan.py",
+      "sha256": "c7a874c9c66ca7e0231d7e5cbbe3cf91e6a2a3ee0e22195c6bb362229ea09296",
+      "mode": 420,
+      "size": 3344
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-preparation-checkpoint.py",
+      "sha256": "21640dcb6a30b7ce37af36729c60914fdf69a12a1ac368a1216c1542da1dc4f1",
+      "mode": 420,
+      "size": 7057
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-prepare-integration.py",
+      "sha256": "62465634e9cbf8f2e53dc0c08687c3ed7be883a8eb6bd7522578861c2b8cfc6c",
+      "mode": 420,
+      "size": 4245
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-prepare-preflight.py",
+      "sha256": "2a865a8f743d5e89a735da9d50e455e5c64a5d06bcf1d491a7cc7f736b1ce526",
+      "mode": 420,
+      "size": 3994
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-prepare-transport-contract.py",
+      "sha256": "0bbb5d483a03747569c583a3f7805c53580f0e0a5009efa42f51d9162051fd15",
+      "mode": 420,
+      "size": 4777
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-prepare-transport.py",
+      "sha256": "1bd6dd3c70d0637eedbb5206291ec5ba3f1ed5c0a98e4325f3d70de6c91e1fb6",
+      "mode": 420,
+      "size": 3905
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-prepared-transfer-review.py",
+      "sha256": "2634b9fe161d885cf0f307c2088afa67d4d5ab7a0110b1fca77c033fcedb47c2",
+      "mode": 420,
+      "size": 4092
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-previous-ack.py",
+      "sha256": "71586a9a7f884b5fee98ee481318eef3c871c2a0c04804c46fa1494edb955e00",
+      "mode": 420,
+      "size": 2970
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-provisional-journal.py",
+      "sha256": "3455055e0e72ce1c93d78baf6efb6ea758d110b745b2d25def4b009e6b922dd2",
+      "mode": 420,
+      "size": 9469
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-receipt-readback.py",
+      "sha256": "cfd4f52b3ca63c565af905ccfbec41fe289416be8d619f483809e56a9a9b2ead",
+      "mode": 420,
+      "size": 2472
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-receive-boundary.py",
+      "sha256": "b326a1b55a8d29391007faf5b3c66c72bf5bf8dbaec537e1a84a2854b936db33",
+      "mode": 420,
+      "size": 3290
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-receive-core.py",
+      "sha256": "4627fa737da3ced2c46037006b3b2b531a0348b0a74cf8e2b77caa88969eda51",
+      "mode": 420,
+      "size": 25189
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-receiver-command",
+      "sha256": "995189037c71821e15c8e07881685a91133ab4547823d989354ead340a81a4b4",
+      "mode": 420,
+      "size": 288
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-receiver-entry.py",
+      "sha256": "4ad8b6127998b450f780961acbcab5373a4375523bec7df8d969942b9e722291",
+      "mode": 420,
+      "size": 35066
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-receiver-operation-contract.py",
+      "sha256": "408066b3a62c29abe7ef10e772a90454a7b55bc6fcb0fffe03be66cbe2b31cea",
+      "mode": 420,
+      "size": 2836
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-receiver-prepare.py",
+      "sha256": "35dbdcbcc40cae5cdba5e0066e3872c2f9efd1cfa879bea150bc4c1f9b3c479b",
+      "mode": 420,
+      "size": 3597
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-receiver-promoted-readback.py",
+      "sha256": "cb10acc629d5f4fd078371bbe0dc07419b1b0709836c46d02f510ca74c1021f7",
+      "mode": 420,
+      "size": 2342
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-receiver-promotion-adapter.py",
+      "sha256": "ce44973f43bb5bda729b08ea79ae52c060033819dfc2988f6a66087cc4ae4eed",
+      "mode": 420,
+      "size": 2809
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-receiver-promotion-binding.py",
+      "sha256": "137677ea83f849ff17479ba3e8992fd6be752f5297ba052b7e695677f4fc38fa",
+      "mode": 420,
+      "size": 1979
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-receiver-session-binding.py",
+      "sha256": "cfe4769a583b6db9206ddbc879fa7e0bd95e326bdcf8dee41e8691070763dacf",
+      "mode": 384,
+      "size": 4732
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-receiver-session-coordinator.py",
+      "sha256": "8091cf73658a837398b63396d94b3e57932efd48e9948efc51ce2304fa6b1f87",
+      "mode": 420,
+      "size": 3160
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-recovery-decision.py",
+      "sha256": "786e715b4b46c1f6b6d788c54161c041e2161e29ccb6a56b83b26138c2156e5c",
+      "mode": 420,
+      "size": 4860
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-scope-observer.py",
+      "sha256": "5ec5009b64f8f00db84e5e0f28d0fe5bb2543afc59cf8a7cc7478613e0e96ae9",
+      "mode": 420,
+      "size": 5208
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-selection.py",
+      "sha256": "f22f44c29db5023b36b0b157db9d9e2923ae9f705fba369a62838aeca4ecf5a1",
+      "mode": 420,
+      "size": 3230
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-sender-command.py",
+      "sha256": "fd105480013b383497f81b7bd8c254e253b308d5d62ca1897160fe152fed8a42",
+      "mode": 420,
+      "size": 11201
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-sender-execution.py",
+      "sha256": "03e9eb3f52ec7b814bc81927d085ae96490344dca3937d3ef50830857add0f91",
+      "mode": 420,
+      "size": 9383
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-sender-previous-ack.py",
+      "sha256": "8f4083beab4582695266d881fe3fc924b22ceb0bf17efbcd5d74a1a087e57e2e",
+      "mode": 420,
+      "size": 4192
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-sender-promotion-coordinator.py",
+      "sha256": "18710c00f5e39e67045816844eb7815ee3b44460e510ed216624982a4fc17277",
+      "mode": 420,
+      "size": 3484
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-sender-promotion-runtime.py",
+      "sha256": "c8fd57b352896677fc73f10e71422b5ce795ac2c5d3ef7d6dc305cba61b83388",
+      "mode": 420,
+      "size": 4381
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-sender-proof-handoff.py",
+      "sha256": "42c501d1d1846b7b39b89a66397d78698f486f3fb15b3d5f2f2f433ec5c59d32",
+      "mode": 420,
+      "size": 5417
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-sender-transaction.py",
+      "sha256": "797dd162f6628a670689047dd04adfe265af963d00cbed8e3d6fdc1d858a5754",
+      "mode": 420,
+      "size": 5242
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-sender-workflow.py",
+      "sha256": "e98272178297379cd9c25963d7300ea2a23c690e46b31eb7327c9967f11b6772",
+      "mode": 420,
+      "size": 5373
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-session-proof.py",
+      "sha256": "ccdd29eeba3b33b3d88648633eb42b0b9857e33b50ab76b792af2364e6a4c971",
+      "mode": 420,
+      "size": 3629
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-source-only-recovery.py",
+      "sha256": "aa19adf39196b87ccee3c5e1a7a2594413438967ba91c12a62196f1ff3ffeb64",
+      "mode": 420,
+      "size": 5069
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-source-recovery-integration.py",
+      "sha256": "058c8653bb351983b48452cd4bccf7fcaf3a060888104c345bf933a5078d2dc6",
+      "mode": 420,
+      "size": 4002
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-stage-ownership.py",
+      "sha256": "7880a60630c79af3b7ff44a2fd12230dc57a5bdea52e15ee456b180500c6e245",
+      "mode": 420,
+      "size": 7318
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-staged-recovery.py",
+      "sha256": "7437269327f7aae9d6a531fa6f152b0470cff65d885020110401cda034e1260f",
+      "mode": 420,
+      "size": 7041
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-staging-contract.py",
+      "sha256": "101596ebb471fc4f73da6c74c5bec2825654a0a5d84b22152c9695b7be557a17",
+      "mode": 420,
+      "size": 2227
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-staging-storage.py",
+      "sha256": "f4fca0f900f4009c39669107d654034f0ff8ef30492437ed635bc95204842c3a",
+      "mode": 420,
+      "size": 4975
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-stream-adapter.py",
+      "sha256": "61371ecacf54f5fca329cabaac947fd6c9e9a09a2656dad68dcbcaef3a5f1df0",
+      "mode": 420,
+      "size": 3652
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-stream-name.py",
+      "sha256": "254bdce00ae962ace2ebe6979b460e5bd1a0db8bcba06ab3efdfa61ace02e26a",
+      "mode": 420,
+      "size": 3590
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-transfer-absence-transport.py",
+      "sha256": "fa4436aa07c6e394d6d9249f03b6de3984abb8bc3da281595c1f2e123d21a95a",
+      "mode": 420,
+      "size": 3100
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-transfer-attestation-transport.py",
+      "sha256": "6dfb2f18c5ee44d08432b047068515ab33153a553c49ba9acb52cee65689fa18",
+      "mode": 420,
+      "size": 4972
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-transfer-coordinator.py",
+      "sha256": "ee188491e52547cec640c419608c096937564204c3f70783a6ec4cda35a30c9f",
+      "mode": 420,
+      "size": 4722
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-transfer-execution-adapter.py",
+      "sha256": "fa3c4e92a077e1bbe41e9402c417a7120f2fc6e86837cd39535d8324475f65cf",
+      "mode": 420,
+      "size": 4268
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-transfer-identity-probe.py",
+      "sha256": "06f4e7bd900d7d8451f73fe14f8de223a1bf4d16554e9bb7970b18e3ae05f228",
+      "mode": 420,
+      "size": 2216
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-transfer-integration-review.py",
+      "sha256": "6b16c4f882edf5ad34b40e7dae2e6ea1c96d286cdd5a1c8ea071534fbd7ae386",
+      "mode": 420,
+      "size": 4253
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-transfer-plan.py",
+      "sha256": "c2ffb3436c1190909bb9cef4357ebbf362c1ed4072ea8a0017a34b3895a0acc3",
+      "mode": 420,
+      "size": 6013
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-transfer-session.py",
+      "sha256": "2fbdcc9e9084ca47f668b93533652e4180d4dd6c64e4b3b363514d8350d8ad8a",
+      "mode": 420,
+      "size": 4386
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-transfer-transport-contract.py",
+      "sha256": "5e11d51782de1ecd18d3a49ede61998fb7b42f6c31c82779ee8bd34740b50141",
+      "mode": 420,
+      "size": 3833
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-unattended-coordinator.py",
+      "sha256": "39930c18401c5ac71953709f498bf8bd70ce7411aa43d034c8ede846500d0398",
+      "mode": 420,
+      "size": 3421
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-unattended-driver.py",
+      "sha256": "053236fb4dc1615f047c0683c8970c5a49577a2cf8d3c2d5f363dc73014bdd35",
+      "mode": 420,
+      "size": 2430
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-agreed-parent-unattended-policy.py",
+      "sha256": "23b445ae61ca8eac4e9c77a401c449e36c5cd276d0bffca9bbc1ce7e937ee99c",
+      "mode": 420,
+      "size": 3431
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-native-endpoint.py",
+      "sha256": "d1a7fa590e5c412af48f1cec34899c1170e0bb5b3f5044ee23096ef72901ca32",
+      "mode": 384,
+      "size": 22497
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-native-push-receiver.py",
+      "sha256": "6fd463bbc052ac5e2cd0f5cd2aa85c1db702df5868457c2118d71a4239a37a80",
+      "mode": 420,
+      "size": 51174
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-native-push.py",
+      "sha256": "66387ab564341365c18c6e16b9d66882b569d80c0b3be3ed6780a4360987c1db",
+      "mode": 420,
+      "size": 47271
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-owned-session.py",
+      "sha256": "23efb8e766ab4a459089b1bb211b8e90e7d39348fb4b4a849630aa38a8511910",
+      "mode": 420,
+      "size": 4421
+    },
+    {
+      "path": "roles/btrfs-replication/files/btrfs-receiver-prune.py",
+      "sha256": "3df569174fe7a80761cf662dcb9430cfe08c2c2982b30fc72fb39d6e25e8eca9",
+      "mode": 436,
+      "size": 11755
+    },
+    {
+      "path": "roles/btrfs-replication/files/mytools.py",
+      "sha256": "9b42cee8118854c2623baea0a38f894654686cb33d9029f147d34cd31998e40f",
+      "mode": 420,
+      "size": 4712
+    },
+    {
+      "path": "roles/btrfs-replication/tasks/agreed-parent-runtime.yaml",
+      "sha256": "14a3235d73129b155df2892ca85f3e306e290c7a05f8870595244ef2237e9477",
+      "mode": 420,
+      "size": 3089
+    },
+    {
+      "path": "roles/btrfs-replication/templates/btrfs-native-sudoers.j2",
+      "sha256": "2d32bed77d9b0c50d4a762b5682a10d817b020a74db552380e0a2ec1659bea82",
+      "mode": 384,
+      "size": 1412
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-APPROVED-MANAGER-JOURNAL-CHAIN.md",
+      "sha256": "c7ad10ac2249316ac9eb97204de788f99d28fa8e70e7cdab929e99bc1d4a82f8",
+      "mode": 420,
+      "size": 1842
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-APPROVED-REAL-BTRFS-ACCEPTANCE.md",
+      "sha256": "23db8e2261c1bea9c1291f6d90e5123e3670ab51f0ef48860e2b58b78edea6be",
+      "mode": 384,
+      "size": 1090
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-AUTHENTICATED-OWNED-GATE.md",
+      "sha256": "ed3e956eab54c0c1ec32acdb96916ca00de5115f325901ae88836fd643684e81",
+      "mode": 384,
+      "size": 999
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-AUTHENTICATED-SSH-GATE.md",
+      "sha256": "7b4ac00c93044c8956d7ea87fa5ab68f341e5f128586123d513eda7bbf2d3853",
+      "mode": 420,
+      "size": 1344
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-DISPOSABLE-ACCEPTANCE-PREFLIGHT.md",
+      "sha256": "c9c7710ba741e1607ff27892581a7a16ceaeafe0c1dcc5ff2cb0c22a8bb80bd6",
+      "mode": 420,
+      "size": 989
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-DISPOSABLE-BTRFS-LIFECYCLE.md",
+      "sha256": "66f848195b7ffd2e00bc7ab0a94063d59185f737607f5ed6310d97ff50bf6cac",
+      "mode": 420,
+      "size": 1539
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-INTEGRATED-ACCEPTANCE-GATE.md",
+      "sha256": "95874415bc5e2edc5119377b5b2487d9a9a2f512b54da090a2e59fe91e8cdf60",
+      "mode": 420,
+      "size": 2654
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-INTEGRATED-FIXTURE-PLAN.md",
+      "sha256": "de5e32c774cacae90cbebd125a8d46c9dffe4f7bffb17ec1acd2b617458e6bf8",
+      "mode": 420,
+      "size": 3475
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-INTERNAL-GATEWAY.md",
+      "sha256": "05ba7c1e28a9432b6b3ebad02ff16aea12c9f4b1dc4b7b0b0fa9a64cac9f3ace",
+      "mode": 420,
+      "size": 1190
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-LIVE-EXECUTOR-CONTRACT.md",
+      "sha256": "972b1b3611cf512e7a90a2681b729a2ae85a5dd0af6c3e626a3a9e410c33bc90",
+      "mode": 420,
+      "size": 1579
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-MANAGER-JOURNAL-INTEGRATION.md",
+      "sha256": "d8ec58df72219a3f17203825b8a991af1152c5d829a39f49836c7527e63d4467",
+      "mode": 420,
+      "size": 1273
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-OWNED-GATEWAY-BRIDGE.md",
+      "sha256": "fab1ee02cc32be7bc232128affb3d63936f7de26d51bd1cfbc03ee5d5b2f000a",
+      "mode": 420,
+      "size": 1187
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-OWNED-SESSION-GATE.md",
+      "sha256": "766a094bb49c878adfa071472edfe84589538e73a70c6849d5bf6c330ad33b67",
+      "mode": 420,
+      "size": 1631
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-PRIVILEGED-ENTRY-CONTRACT.md",
+      "sha256": "bd35f8a4894a872b5d46513cf83b4c854910e96aa834e9ba0f5c705af31ee940",
+      "mode": 420,
+      "size": 1094
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-PRODUCTION-INTEGRATION-GATE.md",
+      "sha256": "119e5e79bfdc462e4ddf5072c0dcc74bd11fc744dc5a90b3f5fe03cb754c7073",
+      "mode": 420,
+      "size": 3803
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-REAL-MANAGER-BTRFS-ACCEPTANCE.md",
+      "sha256": "9b8afcaded1357d9017598ee5eb58d6e7645139e2d306fd61c1b601335c981a8",
+      "mode": 420,
+      "size": 1768
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-RECEIVER-ENDPOINT-EXPOSURE.md",
+      "sha256": "2e519e0ea8c39ec6af5ee677ea0e54f61b5e955e0a6d0e6fe6f072ebcbc80ac6",
+      "mode": 420,
+      "size": 1145
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-SEND-RECEIVE-FIXTURE.md",
+      "sha256": "e6af78626b7f20e45cc4cc936145bcbb7f24e08941330a936a3e2f45f6a35dc9",
+      "mode": 420,
+      "size": 1589
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-STEP03-THREE-RECEIVED-FIXTURE.md",
+      "sha256": "6d5440f19fb2d5c7ab52b35131f62166388f7b2b0e6d1b5a6b3c917381f7ad6e",
+      "mode": 384,
+      "size": 1980
+    },
+    {
+      "path": "roles/btrfs-replication/tests/0040-live-receiver-contract-audit.py",
+      "sha256": "dde2099ca7517310d4012fdd3f584c308491b9cddc2956a5ba84dff4278027dc",
+      "mode": 420,
+      "size": 4152
+    },
+    {
+      "path": "roles/btrfs-replication/tests/run-authenticated-owned-two-challenge.sh",
+      "sha256": "2e70f4b99cd8ff3025404a5e8e3c6bd5b78f5ba9067f2c3b6bf396ae64370732",
+      "mode": 384,
+      "size": 722
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-0036-offsite-history-compatibility.py",
+      "sha256": "b8247cd14a327129a11a2820355f2bc3533a8335c9998a33b92afdd705b4945f",
+      "mode": 420,
+      "size": 5236
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-0040-preparation-deadline.py",
+      "sha256": "c70c55a9cdd887a6f17be178e52dc91f8d645e5b3c8162b3ebeda3e139c7ef3b",
+      "mode": 420,
+      "size": 1992
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-0040-stageb-cli-routing.py",
+      "sha256": "3cb88c13df18629c9a071cca5de45a10dc2e37ac5b525147b67e02c599027e9a",
+      "mode": 420,
+      "size": 1622
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-privileged-delete-transfer-guard.py",
+      "sha256": "7b6ccbb9ba355a98a64f29b8e8b7a0e7b02ad2a7405342005032d23d1412281e",
+      "mode": 420,
+      "size": 2541
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-receiver-consolidation.py",
+      "sha256": "6aff522b766927ef24bb04301d267b6f9f60e9d2586b6959a9ae0588c20953c5",
+      "mode": 420,
+      "size": 2480
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-3-receiver-process-lifetime.py",
+      "sha256": "7d938b40356fec7266ac79b1a3f0e439f7b885c2d54909aa8facb408e30750ad",
+      "mode": 420,
+      "size": 3157
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-0040-step12-parent-boundary.py",
+      "sha256": "a004f98ef65bba0aeef4d49868459097dc50ba4af8a328925273a6d4b25a0608",
+      "mode": 420,
+      "size": 2176
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-0040-unattended-sender-lock.py",
+      "sha256": "afa10d9c0d3df2d96423e4acad04dca955befcfdfe6cf59ca1334212331ad92c",
+      "mode": 420,
+      "size": 2369
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-approved-entry-contract.py",
+      "sha256": "62479147c6266cfbdfb771a1a18f820fbe1214de3a0716bf104a0e055d430232",
+      "mode": 436,
+      "size": 2765
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-approved-gateway-delegation.py",
+      "sha256": "fe8f9ac9ad7c730b699a577fe95047e717fe9ccbda43896f07071905ae5ca710",
+      "mode": 436,
+      "size": 3581
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-approved-manager-journal-chain.py",
+      "sha256": "03ca2183662edead06780b9322bc52953c0419bce26bc51cfae1f6edecfafdd8",
+      "mode": 420,
+      "size": 8342
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-approved-privilege-boundary.py",
+      "sha256": "c7f9f3b2185e7ab68446da1962099e6c16a6a9e3c637dbf9930346247efaf707",
+      "mode": 420,
+      "size": 2245
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-approved-real-btrfs-disposable.py",
+      "sha256": "90e26e896fc4de574a095c027675d177ff16f39ebf6248d3a1046b45b808e568",
+      "mode": 384,
+      "size": 15415
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-approved-two-challenge-integration.py",
+      "sha256": "4ec4b108568ee1019bd6f173b8bc2851a5ff84752b9f516e57f57c21a1b071bf",
+      "mode": 420,
+      "size": 6308
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-authenticated-owned-ssh.py",
+      "sha256": "0a9e117d4885b37fdcb7a3249c22bcba2b96e411e9f215fae9ac542ad446749c",
+      "mode": 420,
+      "size": 3019
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-authenticated-owned-two-challenge.py",
+      "sha256": "356eafd35966d262d655f5742f56bd2af413edb195c49a8334808b3e8b446660",
+      "mode": 384,
+      "size": 4556
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-disposable-btrfs-lifecycle.py",
+      "sha256": "71d9e4577aeb658adc2c4c0b3e978c6f748b287cb06a0a369ea9b81d0de756fd",
+      "mode": 420,
+      "size": 4442
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-disposable-receiver-preflight.py",
+      "sha256": "6c3ab36e5f62c739900eb79a0b6480ef15a17c9bf9e6517e7664c0dd8fdc79c0",
+      "mode": 420,
+      "size": 3052
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-disposable-send-receive-fixture.py",
+      "sha256": "15038662a594de71090a2bd7b0d21a78cb11ea600ca2276057700c2b8d4c4ff9",
+      "mode": 420,
+      "size": 6293
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-installed-receiver-transaction-boundary.py",
+      "sha256": "6bd59ee55a4f6373ea9bfcbc7e2071157a73c18ed1436dc150017cfeae55e5aa",
+      "mode": 420,
+      "size": 3526
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-integrated-receiver-fixture-plan.py",
+      "sha256": "aa1ee35bf938f60c483634a5171657908e035ee615cba414187efe8b508dbe5f",
+      "mode": 420,
+      "size": 4065
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-manager-journal-integration.py",
+      "sha256": "35a73cf232823008daa4ccd68a6338638a87ab736a2bc7f16671e71146e9bb5e",
+      "mode": 420,
+      "size": 5772
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-native-btrfs-mounts.py",
+      "sha256": "d60af62bd5badd587cde45511067bd2572b2cc12755f78fe9884c693925c2652",
+      "mode": 420,
+      "size": 1168
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-native-btrfs-push.py",
+      "sha256": "93ecb0e3aee42dbe72b19a73b3e816ea9e1e849453db443e8b7c52c1f14b2889",
+      "mode": 420,
+      "size": 4006
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-native-btrfs-static.py",
+      "sha256": "ba54beadcc7e9b984f7f5019274bc2d0559226e5cd6d4daf45bf1f3ef22fa262",
+      "mode": 420,
+      "size": 1665
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-owned-disposable-session.py",
+      "sha256": "d01694b568777646e6224bb08680e7872a992e009d060a91f6b4a59bcfd7ef03",
+      "mode": 420,
+      "size": 2072
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-owned-gateway-bridge.py",
+      "sha256": "52e700262557a574b2b7a322f78d872f67da74e120b2d32cb5422a68bde47166",
+      "mode": 420,
+      "size": 2060
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-prune-approval-contract.py",
+      "sha256": "8dbd21334a20d764b83d72d2dcf642546e220aaa9c353e2f8046cb3b161bf96c",
+      "mode": 420,
+      "size": 3119
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-real-manager-disposable-deletion.py",
+      "sha256": "e93149406a75ac94d91508d4c4aa97c5068662ef3d9be695e6b467383d118315",
+      "mode": 384,
+      "size": 10383
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-real-ssh-interruption-fixture.py",
+      "sha256": "214ca7427f48cf81206a6ddb51c2497a99ba4054ed166c3d58db836e84f5c5ae",
+      "mode": 420,
+      "size": 3896
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-receiver-approval-consumption.py",
+      "sha256": "21be2a5f8adfcf4cbe3841d8d5250c43b0f412af050a8f7aba3b1f8695bf5c39",
+      "mode": 420,
+      "size": 3545
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-receiver-approved-lock-binding.py",
+      "sha256": "35090c3594ed655b06ea70b5bb213a35b5ff4dfd7dae2e3d9c804f2b944953c2",
+      "mode": 420,
+      "size": 3269
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-receiver-prune-approval.py",
+      "sha256": "0befa413e6fc98bce554b6c389cc097ba6692a25ef673d06e6b2a025836dabcb",
+      "mode": 420,
+      "size": 2948
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-receiver-recovery-states.py",
+      "sha256": "14d0238aab507f374a0f928b475d5d90945373e97dbf87355f8c6d40916b9530",
+      "mode": 420,
+      "size": 5729
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-replication-protection-idempotency.py",
+      "sha256": "c2ad3b5e969bad6b61361025e369b5d1a1511183dc8780eefee7f703a29a2d71",
+      "mode": 436,
+      "size": 1836
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-replication-protection.py",
+      "sha256": "e829f80f21cda783f6e5211967d7142ea0570d922361e75f12037d3c519df722",
+      "mode": 420,
+      "size": 2968
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-source-protocol-interruption.py",
+      "sha256": "f3b878cb882d95d1eea67b8481ba6f0a3ee8263a339df8d6a7c9042ca7e25e0d",
+      "mode": 420,
+      "size": 3169
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-source-transaction-failure-continuity.py",
+      "sha256": "03cd9a5b6e0bf6375b242028726741c1ef5e89f92fc5bae2197c70fe803dab56",
+      "mode": 420,
+      "size": 2634
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-step03-coordination-suite.py",
+      "sha256": "1cfaac21f3184dd1097a52818ab1a8f883fbb6e371dd0c1e63af22c114834e20",
+      "mode": 420,
+      "size": 1233
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-step03-production-boundary.py",
+      "sha256": "2c21739567f8ae6b92287954216bfa3973992dbb4982cf69ef47fac195989dfe",
+      "mode": 420,
+      "size": 2441
+    },
+    {
+      "path": "roles/btrfs-replication/tests/verify-three-received-receipt-fixture.py",
+      "sha256": "a889e607ee10bf69fb64e6893130adeb023f297056534c30a12a84feec79cd98",
+      "mode": 384,
+      "size": 6586
+    },
+    {
+      "path": "roles/remote-backup/README.md",
+      "sha256": "314403d42330b142bb265614d5f474051dbe7a5e55bb4df96972dfa1e69dea9e",
+      "mode": 420,
+      "size": 2474
+    },
+    {
+      "path": "roles/remote-backup/defaults/main.yaml",
+      "sha256": "de9ce2512bbf1473de87f2a7ccbc0195bd81d443f7c3f1adf34b8182a1dfdb9b",
+      "mode": 420,
+      "size": 715
+    },
+    {
+      "path": "roles/remote-backup/docker-compose.yaml",
+      "sha256": "adab4d195751f575abc3a9597621bc7af835743da53158406884feab9219cb5e",
+      "mode": 436,
+      "size": 1399
+    },
+    {
+      "path": "roles/remote-backup/files/btrfs-native-endpoint.py",
+      "sha256": "b408a8ec52d2ee7824fc41d5678f90728611aba948c68a86472db566795e0834",
+      "mode": 420,
+      "size": 13344
+    },
+    {
+      "path": "roles/remote-backup/files/btrfs-native-push-receiver.py",
+      "sha256": "681ae61380b4ae595aca0e9b039e0365a216da583c32eacfe112bdfa634edd31",
+      "mode": 420,
+      "size": 11633
+    },
+    {
+      "path": "roles/remote-backup/files/btrfs-native-push.py",
+      "sha256": "b064ecb40f1ebd9277908a5c2b4a74e6fbd00bb9321bcfeedab1648cc54a9353",
+      "mode": 420,
+      "size": 16161
+    },
+    {
+      "path": "roles/remote-backup/files/mytools.py",
+      "sha256": "9b42cee8118854c2623baea0a38f894654686cb33d9029f147d34cd31998e40f",
+      "mode": 436,
+      "size": 4712
+    },
+    {
+      "path": "roles/remote-backup/tasks/main.yaml",
+      "sha256": "d5bdba8ec81c1b6c30b3b5d043f74e1cafb7b530985c6546f16e12834bd8254a",
+      "mode": 420,
+      "size": 330
+    },
+    {
+      "path": "roles/remote-backup/tasks/native.yaml",
+      "sha256": "f54e8a199b5e2d8ad6826512ff83057c79a9aa22ee906e5bf6226d58feb6df75",
+      "mode": 420,
+      "size": 8828
+    },
+    {
+      "path": "roles/remote-backup/templates/btrfs-native-push.service.j2",
+      "sha256": "44a879f005d9994ea5b99bd5b4bbc832321b48a75ab9f55c6002697d716b70e3",
+      "mode": 420,
+      "size": 398
+    },
+    {
+      "path": "roles/remote-backup/templates/btrfs-native-push.timer.j2",
+      "sha256": "c8756a1820a9ab62299cfe1df72eb8346b537d9057a852352a63713eb850ee3a",
+      "mode": 420,
+      "size": 203
+    },
+    {
+      "path": "roles/remote-backup/templates/btrfs-native-sudoers.j2",
+      "sha256": "6ebfeb459917019a23e5fe41a8488ed16a195611edf4feeaaab03f06180a7040",
+      "mode": 420,
+      "size": 952
+    },
+    {
+      "path": "roles/remote-backup/templates/btrfs-receiver-manager.json.j2",
+      "sha256": "aa4efbc1df0abf998f7401549468b20e2fe952ffc1fc07e100bb40c6e2a607be",
+      "mode": 420,
+      "size": 577
+    },
+    {
+      "path": "roles/remote-backup/tests/verify-0036-offsite-history-compatibility.py",
+      "sha256": "72299318e0951befc9f38f7423c73311f4fde60d79c8dd58766d12d4cd2bbfdc",
+      "mode": 420,
+      "size": 5228
+    },
+    {
+      "path": "roles/remote-backup/tests/verify-native-btrfs-mounts.py",
+      "sha256": "d60af62bd5badd587cde45511067bd2572b2cc12755f78fe9884c693925c2652",
+      "mode": 420,
+      "size": 1168
+    },
+    {
+      "path": "roles/remote-backup/tests/verify-native-btrfs-push.py",
+      "sha256": "93ecb0e3aee42dbe72b19a73b3e816ea9e1e849453db443e8b7c52c1f14b2889",
+      "mode": 420,
+      "size": 4006
+    },
+    {
+      "path": "roles/remote-backup/tests/verify-native-btrfs-static.py",
+      "sha256": "ba54beadcc7e9b984f7f5019274bc2d0559226e5cd6d4daf45bf1f3ef22fa262",
+      "mode": 420,
+      "size": 1665
+    },
+    {
+      "path": "roles/remote-backup/tests/verify-replication-protection.py",
+      "sha256": "edd11cc3215761417452b9e1c1e79f5c05756905bf6908abdcfc3dcc33ce0f74",
+      "mode": 420,
+      "size": 2960
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-bootstrap.py",
+      "sha256": "6d8c7615ef71529375ceb1f8410a68cd5f21a5c239c4f86f0f4fe4f6bd9acc14",
+      "mode": 420,
+      "size": 3721
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-completion-channel.py",
+      "sha256": "829bd67532c80fb2ac18555f1c74cf9e4c9ccd93238d9c058c7bc0739247aa47",
+      "mode": 420,
+      "size": 3872
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-completion-framing.py",
+      "sha256": "7e370ede4e2cd00fac75889f32f77d06ef2dc933872a2fb200dc21f476649e2b",
+      "mode": 420,
+      "size": 3780
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-coordinator.py",
+      "sha256": "3ac1fdf2b446d80e97da1ac242e18ba6ed28b3a957365ce0b02efde900527fe9",
+      "mode": 420,
+      "size": 3986
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-durable-promotion.py",
+      "sha256": "c68666be02883a931e549f9de4adcf22b4e2dd3285dd9e4749c37a7a61f33303",
+      "mode": 420,
+      "size": 3940
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-endpoint.py",
+      "sha256": "4a117c93866ddde1360432c0a1e62ed613c34a389066d6a623871f6f5fef4a5d",
+      "mode": 420,
+      "size": 4313
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-evidence.py",
+      "sha256": "63aab50a3bda4ec965ea44f043786da488cff275ffe44312de431350c2d586a1",
+      "mode": 420,
+      "size": 3396
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-get-state-endpoint.py",
+      "sha256": "1e3e6d932f71003f270ab65965aeafad910a831a6465668c7275890c8395ca03",
+      "mode": 420,
+      "size": 3648
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-initialise.py",
+      "sha256": "4a60718ca6d5dcfa4a521810b1a4476d51d4e6d11a2548853df3a82e1f6dcfb3",
+      "mode": 420,
+      "size": 6469
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-inspection.py",
+      "sha256": "f09248197bb69dfab08386307c849975d1032c0edb4e1bb8c2c2a0db8f8c4ea3",
+      "mode": 420,
+      "size": 2477
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-locked-session-review.py",
+      "sha256": "41ee16dcf9d6a0723e4c5eea7d27630eaef040f5950ed1ba0782e2d3d1b27d5c",
+      "mode": 384,
+      "size": 4420
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-observation-bridge.py",
+      "sha256": "0befb31e892e430fc8c93c214b64a3383ac9591be48ff83ff76a4c21026b4a4e",
+      "mode": 420,
+      "size": 2338
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-orchestrator.py",
+      "sha256": "83fb0f15d7dceb6355fdc23502f2ef12e154d1b836374a170947b96106071f63",
+      "mode": 420,
+      "size": 5703
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-prepare-endpoint.py",
+      "sha256": "8ebd8c806b98b10bdf6669176d3824e2a51aa58e07f9757d9a9c57348c2d9b61",
+      "mode": 420,
+      "size": 4088
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-prepare-verifier.py",
+      "sha256": "6a324277a02cb66c9d21d04da69aca8e2049795e396e1a55dab91e9a4a08c55d",
+      "mode": 420,
+      "size": 2014
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-protocol.py",
+      "sha256": "4f2086bef44bef51f0a67857f8182b2fc5131dd34287af31641101f2664e0683",
+      "mode": 420,
+      "size": 3323
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-receipt-commit-contract.py",
+      "sha256": "82d0b736b888bb9ac697a9e10ec7a9500e2ec5c1db1049737f00b43cde638c81",
+      "mode": 420,
+      "size": 3776
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-receive-transaction.py",
+      "sha256": "f2ecd9b1612be8be029eb99295baaf3f02f1969b1b3209b11bd7b7dba58744b6",
+      "mode": 420,
+      "size": 4310
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-receiver.py",
+      "sha256": "072092c7fdca956acfa34199cfbf82f377173355a5468f4a46466364cbb8cf36",
+      "mode": 420,
+      "size": 5157
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-rpc.py",
+      "sha256": "1ee5dab9be8b9fa106d21adac78fd6c522fa9542e79d43cf5c37be42227dca70",
+      "mode": 420,
+      "size": 4114
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-sender-completion-protocol.py",
+      "sha256": "e07d11166f856e531c9e82d184089f88e03e6eb9adf665a12d2aaf8f21c49307",
+      "mode": 420,
+      "size": 4898
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-source-evidence.py",
+      "sha256": "288283f14068d3882b8236948815489259ba7238d122691e98b033858db5e5d6",
+      "mode": 420,
+      "size": 3500
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-source-observer.py",
+      "sha256": "4e0cd37a149c6e894c8dc1e874e5e1716b6e7bb496b45fcc861843743f6e6de5",
+      "mode": 420,
+      "size": 3695
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-source-transition.py",
+      "sha256": "fe6f2029b3a78ec3eb9b5925cd29dea239771d5fcd418f851d11c190efb958f8",
+      "mode": 420,
+      "size": 4537
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-ssh.py",
+      "sha256": "f860e655ba0b76c3f6f5fc541bcf63560762696c666cf1fe2b5cd7372afc80d8",
+      "mode": 420,
+      "size": 3513
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-state.py",
+      "sha256": "0bc4dd104591a9d3f767988f68829d9b59e9d4992bbd0563fba9d72b5e9702cd",
+      "mode": 420,
+      "size": 5209
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-transaction-sim.py",
+      "sha256": "444420027633d3d34579c5b630bcf647d2365f45043c189cee72496a1ebfab3b",
+      "mode": 420,
+      "size": 4119
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-transfer-absence.py",
+      "sha256": "5f71a5074f822b99269145af50fa9f4f40eedf162691ba626c61fc371ead5a43",
+      "mode": 420,
+      "size": 3773
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-transfer-attestation.py",
+      "sha256": "9f4fe797d7ce6facf49f8049be0bbb074d8e4db900924a66facb1c9910eb8470",
+      "mode": 420,
+      "size": 6435
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-transition-endpoint.py",
+      "sha256": "91fc047a546c9446bb28be8dbd9fb7432bbc8591b66d167e4e702a5d98c255d9",
+      "mode": 420,
+      "size": 5236
+    },
+    {
+      "path": "roles/snapshots/files/btrfs-agreed-parent-transition.py",
+      "sha256": "fc703207bb6ff3178dff829c8ef26f4754a7bc7e024b930cea55c995307fdfa0",
+      "mode": 420,
+      "size": 5001
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-bootstrap.py",
+      "sha256": "b36ec2b1e6425b71cf4fe6e97716f22a5b67e0b2f7adbf0e60382ffcb1ce9e1e",
+      "mode": 420,
+      "size": 3091
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-completion-channel.py",
+      "sha256": "eb5ab302945a08ea6613f0e2e9788679e67a79c8d019804a8a9dea8b1e94ec6f",
+      "mode": 420,
+      "size": 3931
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-completion-framing.py",
+      "sha256": "1963a660656991ebb6b4dfb9bef5ae4b994d532142e60ccee3d9241ef0cb3dbc",
+      "mode": 420,
+      "size": 3878
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-coordinator.py",
+      "sha256": "fb08556af4d1e4c0050d686cd7113c41e121ca58f81ca52eca6c15f1e5e86c31",
+      "mode": 420,
+      "size": 2749
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-endpoint.py",
+      "sha256": "da1f06a3e422393a1307d43973ac556f41201d187c786d0baec92f52012b3658",
+      "mode": 420,
+      "size": 2602
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-evidence.py",
+      "sha256": "df1a9afd25d387b53d177928d5a2910aed703272b8b783da117a8397f5831423",
+      "mode": 420,
+      "size": 3478
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-get-state-endpoint.py",
+      "sha256": "25bf035466a3c5a24e7a7e8181ddce2b9c9a630331dfab0b9bd0bec03f000095",
+      "mode": 420,
+      "size": 3771
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-initialise.py",
+      "sha256": "d32a3ffc83f8737c51b2c506c0494cae5cbfe1a4ebc2ed65f8dbb29c393628aa",
+      "mode": 420,
+      "size": 3761
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-inspection.py",
+      "sha256": "08d2c6e9c9d1ba82f3be129a51c05c1fbdd8373575f9e175c8497a2d044a835d",
+      "mode": 420,
+      "size": 2404
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-locked-session-review.py",
+      "sha256": "d080584f83b61becbf3df225d8ffef1a752e3773b96af94a48cf4fa45581899c",
+      "mode": 420,
+      "size": 4991
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-observation-bridge.py",
+      "sha256": "722a43bd99ee32ca5ec73f50b93dba02f127b6e97f5a6460151fc3a09d74e0a7",
+      "mode": 420,
+      "size": 2473
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-orchestrator.py",
+      "sha256": "8ef7d011f98087a34ad17b237bcc4322f9dc7a8915eac968d9c9af14482cdf6d",
+      "mode": 420,
+      "size": 3902
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-prepare-endpoint.py",
+      "sha256": "58e004c2133ffa6af5e759d8708354a7820111997f8f53b68da404b3d902527e",
+      "mode": 420,
+      "size": 3655
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-protocol.py",
+      "sha256": "a6e810f0f23c86981c55010986d929ca173fa5f14b80dcd715f26839942a1073",
+      "mode": 420,
+      "size": 4438
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-receipt-commit-contract.py",
+      "sha256": "2871db7bba31f68f61d36821a6729dcf2928d19fbb22f986103ae64ba53d550f",
+      "mode": 420,
+      "size": 3772
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-receive-transaction.py",
+      "sha256": "509c46f00ea023ceb6d1fd580f6a20a5b9418ddc7d0b3f3f43152f6d04923bca",
+      "mode": 420,
+      "size": 4230
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-receiver.py",
+      "sha256": "0e79e90133a748dffa7bed9af68f3008c201aa2789d3d06b63e1634ee429a1ce",
+      "mode": 420,
+      "size": 4995
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-rpc.py",
+      "sha256": "475fad8ed3f3c4074577a1679378a9361ce942107e338678c4be01f29ce5083c",
+      "mode": 420,
+      "size": 3205
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-sender-completion-protocol.py",
+      "sha256": "ee2bbb56f75631c30d018fde8b0e4231073172ed82e99af86382aa2ef8e52abf",
+      "mode": 420,
+      "size": 2516
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-source-evidence.py",
+      "sha256": "45163a5c89b83e48cc8ebd79c95d9054615a65ab2999c6deca8d6bae12198c5e",
+      "mode": 420,
+      "size": 3658
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-source-observer.py",
+      "sha256": "4c8e44de8200ecf5096e483532892fb4d8ac4e0f659dcc65708acb7774e1c952",
+      "mode": 420,
+      "size": 4482
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-source-transition.py",
+      "sha256": "313f218038f9daf22bec67df3df327eca024cd0d22565b4afb64791bdbec5727",
+      "mode": 420,
+      "size": 4629
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-ssh.py",
+      "sha256": "da5259e47ba8fcf4dde621926d476e0beb9ab81a111fcb8d53dad1bedf4353c6",
+      "mode": 420,
+      "size": 2694
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-transaction-sim.py",
+      "sha256": "df620c27db5aff170f8e590669c3f7589e8563e0b20b83c7c7058b03cbeff5b9",
+      "mode": 420,
+      "size": 3269
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-transfer-absence.py",
+      "sha256": "06212e8b5d7ea8dbf921e116649f003ac8eae5f9a39e2b587083e562ce391cb3",
+      "mode": 420,
+      "size": 2316
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-transfer-attestation.py",
+      "sha256": "1f3e8c04000eb53ff00eabe5bf5d433557bc26f3d7d3d2cb2fe125d73565090e",
+      "mode": 420,
+      "size": 4457
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-transition-endpoint.py",
+      "sha256": "87d24ee386fa5a2259e4a610ea6696261853b7d54f442e1eda0ce3741f6ef704",
+      "mode": 420,
+      "size": 3451
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-agreed-parent-transition.py",
+      "sha256": "d681c7ef74bed4ea0d4d7f59e4a48574814690810fe0eb8de0a35187b0f2cffd",
+      "mode": 420,
+      "size": 5855
+    },
+    {
+      "path": "roles/snapshots/tests/verify-0040-step12-3-durable-receiver-promotion.py",
+      "sha256": "945a9d2719a77595a6eaee1ab3d5c8a90cce76c0682bf0cf4ee0b8d1339154e6",
+      "mode": 420,
+      "size": 3378
+    }
+  ],
+  "git_rm_output": "rm 'roles/btrfs-replication/files/btrfs-agreed-parent-candidate-selection.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-cycle-entry.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-finalisation-core.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-finalisation-storage.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-finalisation-transaction.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-fixed-commands.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-get-state-transport.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-incomplete-inspection.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-incomplete-reconciler.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-incomplete-recovery-gate.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-local-peer.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-local-registration.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-locked-candidate.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-locked-get-state.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-locked-prepare-plan.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-preparation-checkpoint.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-prepare-integration.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-prepare-preflight.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-prepare-transport-contract.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-prepare-transport.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-prepared-transfer-review.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-previous-ack.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-provisional-journal.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-receipt-readback.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-receive-boundary.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-receive-core.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-receiver-command'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-receiver-entry.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-receiver-operation-contract.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-receiver-prepare.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-receiver-promoted-readback.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-receiver-promotion-adapter.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-receiver-promotion-binding.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-receiver-session-binding.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-receiver-session-coordinator.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-recovery-decision.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-scope-observer.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-selection.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-sender-command.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-sender-execution.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-sender-previous-ack.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-sender-promotion-coordinator.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-sender-promotion-runtime.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-sender-proof-handoff.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-sender-transaction.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-sender-workflow.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-session-proof.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-source-only-recovery.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-source-recovery-integration.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-stage-ownership.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-staged-recovery.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-staging-contract.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-staging-storage.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-stream-adapter.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-stream-name.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-transfer-absence-transport.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-transfer-attestation-transport.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-transfer-coordinator.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-transfer-execution-adapter.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-transfer-identity-probe.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-transfer-integration-review.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-transfer-plan.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-transfer-session.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-transfer-transport-contract.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-unattended-coordinator.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-unattended-driver.py'\nrm 'roles/btrfs-replication/files/btrfs-agreed-parent-unattended-policy.py'\nrm 'roles/btrfs-replication/files/btrfs-native-endpoint.py'\nrm 'roles/btrfs-replication/files/btrfs-native-push-receiver.py'\nrm 'roles/btrfs-replication/files/btrfs-native-push.py'\nrm 'roles/btrfs-replication/files/btrfs-owned-session.py'\nrm 'roles/btrfs-replication/files/btrfs-receiver-prune.py'\nrm 'roles/btrfs-replication/files/mytools.py'\nrm 'roles/btrfs-replication/tasks/agreed-parent-runtime.yaml'\nrm 'roles/btrfs-replication/templates/btrfs-native-sudoers.j2'\nrm 'roles/btrfs-replication/tests/0040-STEP03-APPROVED-MANAGER-JOURNAL-CHAIN.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-APPROVED-REAL-BTRFS-ACCEPTANCE.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-AUTHENTICATED-OWNED-GATE.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-AUTHENTICATED-SSH-GATE.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-DISPOSABLE-ACCEPTANCE-PREFLIGHT.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-DISPOSABLE-BTRFS-LIFECYCLE.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-INTEGRATED-ACCEPTANCE-GATE.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-INTEGRATED-FIXTURE-PLAN.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-INTERNAL-GATEWAY.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-LIVE-EXECUTOR-CONTRACT.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-MANAGER-JOURNAL-INTEGRATION.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-OWNED-GATEWAY-BRIDGE.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-OWNED-SESSION-GATE.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-PRIVILEGED-ENTRY-CONTRACT.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-PRODUCTION-INTEGRATION-GATE.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-REAL-MANAGER-BTRFS-ACCEPTANCE.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-RECEIVER-ENDPOINT-EXPOSURE.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-SEND-RECEIVE-FIXTURE.md'\nrm 'roles/btrfs-replication/tests/0040-STEP03-THREE-RECEIVED-FIXTURE.md'\nrm 'roles/btrfs-replication/tests/0040-live-receiver-contract-audit.py'\nrm 'roles/btrfs-replication/tests/run-authenticated-owned-two-challenge.sh'\nrm 'roles/btrfs-replication/tests/verify-0036-offsite-history-compatibility.py'\nrm 'roles/btrfs-replication/tests/verify-0040-preparation-deadline.py'\nrm 'roles/btrfs-replication/tests/verify-0040-stageb-cli-routing.py'\nrm 'roles/btrfs-replication/tests/verify-0040-step12-3-privileged-delete-transfer-guard.py'\nrm 'roles/btrfs-replication/tests/verify-0040-step12-3-receiver-consolidation.py'\nrm 'roles/btrfs-replication/tests/verify-0040-step12-3-receiver-process-lifetime.py'\nrm 'roles/btrfs-replication/tests/verify-0040-step12-parent-boundary.py'\nrm 'roles/btrfs-replication/tests/verify-0040-unattended-sender-lock.py'\nrm 'roles/btrfs-replication/tests/verify-approved-entry-contract.py'\nrm 'roles/btrfs-replication/tests/verify-approved-gateway-delegation.py'\nrm 'roles/btrfs-replication/tests/verify-approved-manager-journal-chain.py'\nrm 'roles/btrfs-replication/tests/verify-approved-privilege-boundary.py'\nrm 'roles/btrfs-replication/tests/verify-approved-real-btrfs-disposable.py'\nrm 'roles/btrfs-replication/tests/verify-approved-two-challenge-integration.py'\nrm 'roles/btrfs-replication/tests/verify-authenticated-owned-ssh.py'\nrm 'roles/btrfs-replication/tests/verify-authenticated-owned-two-challenge.py'\nrm 'roles/btrfs-replication/tests/verify-disposable-btrfs-lifecycle.py'\nrm 'roles/btrfs-replication/tests/verify-disposable-receiver-preflight.py'\nrm 'roles/btrfs-replication/tests/verify-disposable-send-receive-fixture.py'\nrm 'roles/btrfs-replication/tests/verify-installed-receiver-transaction-boundary.py'\nrm 'roles/btrfs-replication/tests/verify-integrated-receiver-fixture-plan.py'\nrm 'roles/btrfs-replication/tests/verify-manager-journal-integration.py'\nrm 'roles/btrfs-replication/tests/verify-native-btrfs-mounts.py'\nrm 'roles/btrfs-replication/tests/verify-native-btrfs-push.py'\nrm 'roles/btrfs-replication/tests/verify-native-btrfs-static.py'\nrm 'roles/btrfs-replication/tests/verify-owned-disposable-session.py'\nrm 'roles/btrfs-replication/tests/verify-owned-gateway-bridge.py'\nrm 'roles/btrfs-replication/tests/verify-prune-approval-contract.py'\nrm 'roles/btrfs-replication/tests/verify-real-manager-disposable-deletion.py'\nrm 'roles/btrfs-replication/tests/verify-real-ssh-interruption-fixture.py'\nrm 'roles/btrfs-replication/tests/verify-receiver-approval-consumption.py'\nrm 'roles/btrfs-replication/tests/verify-receiver-approved-lock-binding.py'\nrm 'roles/btrfs-replication/tests/verify-receiver-prune-approval.py'\nrm 'roles/btrfs-replication/tests/verify-receiver-recovery-states.py'\nrm 'roles/btrfs-replication/tests/verify-replication-protection-idempotency.py'\nrm 'roles/btrfs-replication/tests/verify-replication-protection.py'\nrm 'roles/btrfs-replication/tests/verify-source-protocol-interruption.py'\nrm 'roles/btrfs-replication/tests/verify-source-transaction-failure-continuity.py'\nrm 'roles/btrfs-replication/tests/verify-step03-coordination-suite.py'\nrm 'roles/btrfs-replication/tests/verify-step03-production-boundary.py'\nrm 'roles/btrfs-replication/tests/verify-three-received-receipt-fixture.py'\nrm 'roles/remote-backup/README.md'\nrm 'roles/remote-backup/defaults/main.yaml'\nrm 'roles/remote-backup/docker-compose.yaml'\nrm 'roles/remote-backup/files/btrfs-native-endpoint.py'\nrm 'roles/remote-backup/files/btrfs-native-push-receiver.py'\nrm 'roles/remote-backup/files/btrfs-native-push.py'\nrm 'roles/remote-backup/files/mytools.py'\nrm 'roles/remote-backup/tasks/main.yaml'\nrm 'roles/remote-backup/tasks/native.yaml'\nrm 'roles/remote-backup/templates/btrfs-native-push.service.j2'\nrm 'roles/remote-backup/templates/btrfs-native-push.timer.j2'\nrm 'roles/remote-backup/templates/btrfs-native-sudoers.j2'\nrm 'roles/remote-backup/templates/btrfs-receiver-manager.json.j2'\nrm 'roles/remote-backup/tests/verify-0036-offsite-history-compatibility.py'\nrm 'roles/remote-backup/tests/verify-native-btrfs-mounts.py'\nrm 'roles/remote-backup/tests/verify-native-btrfs-push.py'\nrm 'roles/remote-backup/tests/verify-native-btrfs-static.py'\nrm 'roles/remote-backup/tests/verify-replication-protection.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-bootstrap.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-completion-channel.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-completion-framing.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-coordinator.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-durable-promotion.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-endpoint.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-evidence.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-get-state-endpoint.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-initialise.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-inspection.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-locked-session-review.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-observation-bridge.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-orchestrator.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-prepare-endpoint.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-prepare-verifier.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-protocol.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-receipt-commit-contract.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-receive-transaction.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-receiver.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-rpc.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-sender-completion-protocol.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-source-evidence.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-source-observer.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-source-transition.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-ssh.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-state.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-transaction-sim.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-transfer-absence.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-transfer-attestation.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-transition-endpoint.py'\nrm 'roles/snapshots/files/btrfs-agreed-parent-transition.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-bootstrap.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-completion-channel.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-completion-framing.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-coordinator.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-endpoint.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-evidence.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-get-state-endpoint.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-initialise.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-inspection.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-locked-session-review.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-observation-bridge.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-orchestrator.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-prepare-endpoint.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-protocol.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-receipt-commit-contract.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-receive-transaction.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-receiver.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-rpc.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-sender-completion-protocol.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-source-evidence.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-source-observer.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-source-transition.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-ssh.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-transaction-sim.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-transfer-absence.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-transfer-attestation.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-transition-endpoint.py'\nrm 'roles/snapshots/tests/verify-0040-agreed-parent-transition.py'\nrm 'roles/snapshots/tests/verify-0040-step12-3-durable-receiver-promotion.py'\n"
+}
