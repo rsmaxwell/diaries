@@ -6,7 +6,12 @@ Feature
 
 ## Status
 
-To do
+**In progress — design and implementation planning (17 November 2026).** No
+0028 migration has been applied, rehearsed or accepted by this planning package.
+
+See [DESIGN-AND-INTERFACE-CONTRACT.md](DESIGN-AND-INTERFACE-CONTRACT.md),
+[IMPLEMENTATION-STEPS.md](IMPLEMENTATION-STEPS.md) and
+[reports/SOURCE-REVIEW-20261117.md](reports/SOURCE-REVIEW-20261117.md).
 
 ## Priority
 
@@ -46,9 +51,37 @@ Therefore a legacy MARQUEE containing several embedded images cannot become one 
 - 0024 reconciliation maps supported Files-root images to stable Image IDs.
 - 0025 supports IMAGE persistence, locking, publication and safe Image deletion.
 - 0026 web rendering is deployed.
-- 0027 client editing is deployed or at least available for correcting migrated rows.
+- 0027 client editing is deployed and verified (completed 2026-10-06).
 - a production database backup and Files-root snapshot have been restored and rehearsed in a disposable environment.
 
+
+## Planning resumption — 17 November 2026
+
+The authoritative 17 November Diaries bundle confirms that **0027 is completed**
+(production IMAGE editing enabled on 6 October 2026). The 0026 reader was also
+previously deployed. This supersedes the *historical* 1 October 0026 handoff
+below; that earlier handoff is retained for traceability.
+
+The 0022 inventory and 0024 reconciliation tools exist, but their **generated
+live candidate CSVs are not in the supplied source bundle**. The 0022 baseline
+contains historic static-import/review evidence; it is not a substitute for a
+fresh inventory of the current database. No candidate counts, approved Image
+matches or migration eligibility are assumed. Existing production IMAGE
+Fragments created through 0027 must be excluded from legacy conversion.
+
+**Implementation approach:** one explicitly invoked offline responder-side
+migration, a reviewed *fragment-level* disposition manifest plus reviewed
+*image-occurrence* decisions, deterministic date-wide chronology changes,
+transactional durable journalling, and PostgreSQL-to-MQTT replay after writes
+are stopped. Preserve all original text and lineage evidence. No automated
+production conversion, schema cleanup, Image-file movement or Ansible changes
+are authorised by these planning documents.
+
+**Review before copying the package:** the 18:57 source snapshot contains only
+this feature's `README.md`; the later screenshot shows
+`DESIGN-AND-INTERFACE-CONTRACT.md` and `IMPLEMENTATION-STEPS.md` as well.
+Compare those potentially newer local files in Beyond Compare and preserve any
+additional local edits rather than overwriting them blindly.
 
 ## 0026 Reader Handoff — 2026-10-01
 
@@ -60,33 +93,25 @@ Authoritative reader evidence is in `../../complete/0026-FEAT - render ImageFrag
 
 ## Inputs and Preserved Evidence
 
-The migration package must use versioned, reviewable inputs:
+The migration must consume versioned, reviewable input and analysis evidence:
 
 ```text
-0022-fragment-candidates.csv
-0024-image-reconciliation.csv
-0028-dispositions.csv
+0022-legacy-image-candidates.csv      # actual 0022 generated name
+0024-candidate-cross-reference.csv     # actual 0024 generated name
+0028-dispositions.csv                  # one reviewed row per source Fragment
+0028-image-decisions.csv               # one reviewed row per embedded image occurrence
 ```
 
-The disposition manifest must contain at least:
+The 0022 and 0024 generated files are **not contained in the supplied 17 November
+source bundle**; recover or regenerate and reconcile them against the live
+current-schema inventory before review. See the precise fragment- and
+occurrence-level headers in the design contract and `tools/templates/`. Together
+the two 0028 manifests carry the original required fields: Fragment ID, expected
+version, Page/Marquee, date/sequence, embedded ordinal, original source,
+resolved Image ID, disposition, review note, reviewer and timestamp.
 
-```text
-fragment_id
-expected_fragment_version
-page_id
-marquee_id
-date
-sequence
-embedded_image_ordinal
-original_src
-resolved_image_id
-disposition
-review_note
-reviewed_by
-reviewed_at
-```
-
-Do not accept a manifest when the live row/version, Marquee relationship, embedded source list or resolved Image differs from the reviewed expectations.
+Do not accept a manifest when the live row/version, Marquee relationship,
+embedded source list or resolved Image differs from the reviewed expectations.
 
 ## Allowed Dispositions
 
@@ -221,7 +246,7 @@ Postflight verifies:
 
 ## Dependencies
 
-Requires 0022–0027 to be complete and the web reader/editor versions to be deployed. Supplies the evidence needed by 0029 final constraint and cleanup decisions.
+The 0022–0027 capability dependencies have feature-completion records, including the 0027 production rollout. Execution also requires fresh and reconciled live 0022/0024 evidence, full manual dispositions, restored rehearsal and independent production backup verification. Supplies the evidence needed by 0029 final constraint and cleanup decisions.
 
 ## Deployment and Rollback
 
