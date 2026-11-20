@@ -1,0 +1,13 @@
+PASS existing writer rejects IMAGE+Marquee
+PASS existing fragment update rejects IMAGE+Marquee
+PASS existing AddMarquee forces MARQUEE type
+PASS existing DeleteFragment rejects IMAGE+Marquee
+PASS current reader IMAGE branch ignores linked marquee
+PASS current reader rendering gates hasMarquee by type
+PASS current Day reader Image label after Position
+PASS current Day reader Image text
+PASS current client IMAGE guard excludes Marquee
+PASS current RPC null adapter limited to Image reference
+PASS native Fragment DTO mapping has no URL
+PASS old web retained model has no URL
+RESULT: 12 source-baseline checks PASS, 0 FAIL; read-only / no application runtime executed

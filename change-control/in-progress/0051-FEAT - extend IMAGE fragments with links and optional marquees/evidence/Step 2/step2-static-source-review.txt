@@ -1,0 +1,7 @@
+0051 Step 2 static source/package review (20 November 2026)
+PASS: 9 of 9 critical source invariants present
+PASS: 13 Step 1 SHA256 entries match accepted evidence
+PASS: separate default-off feature gate and schema migration source present
+PASS: new Image+Marquee handler and policy tests included
+NOT RUN: Gradle, Java/JUnit, PostgreSQL migration, database/MQTT integration, deployed runtime
+NOTE: no Git metadata included in source bundle; owner must verify actual repo and submodule status.

@@ -1,0 +1,10 @@
+0051 Step 2 — targeted integration rehearsal update, 2026-11-20
+Source: diaries-sources-20261120-095555 plus the 0051 Step 2 and two corrective ZIPs; latest owner regression successful.
+Status: PREPARED, NOT EXECUTED (test/migration not run in assistant environment).
+Preserves existing uncommitted 0028/0029 code and prior Step 2 evidence.
+
+SHA-256  repository-relative path
+9efdb9e0893e525e76c9c503f18521a0c86bba6a513bfd8765530c9dfebdc7ac  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/ImageWiringIntegrationTest.java
+b40f7875ee5ccb4439748eff12d0bcdba2323b6d7990b3d0855dc3f8471253a0  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/tools/run-step2-isolated-integration.ps1
+1eafd852a004af0f4063f582abcbeee5fa9c2c9650131563f999ab5936c26985  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 2/README.md
+5aadae35f507f0759b279fc3814bfae67c5d86e7499259aac150065b588b0613  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 2/STEP2-INTEGRATION-REHEARSAL-20261120.md

@@ -1,0 +1,25 @@
+0051 Step 1 documentation/source audit package — current tree after file relocation, 20 Nov 2026
+Original source ZIP SHA256 (093345 bundle): f323ac3b386087540b627419e2ffaa3042be6e6e7781ff3079820a0c768cf2fb
+Housekeeping input source ZIP SHA256 (095555 bundle): 0a5a7765c1971d8983ebafd2167edd460e04e32c756f3ec94f8a62e2e7b114b4
+mqtt-rpc ZIP SHA256: e677d83c7825c612c5ab03382a4e2c23d7ae08dbd9e0160110cdcaaceb992e7b
+Housekeeping: four STEP1 documents moved by owner to evidence/Step 1/; relative Markdown links repaired.
+Follow-up: Cygwin Python 3.7 static baseline PASS (12/12); selected responder/web Gradle tests PASS; Angular 39/39 PASS; contract accepted; Step 1 CLOSED.
+Production DB writes/deployments: NONE. Raw private production log included: NO.
+Current code modules changed: Step 2 source package (unverified; not deployed)
+Private production files included: NONE
+Accepted/closed Step 1 gate: YES (owner contract/coverage approval, 20 Nov 2026)
+
+SHA256 and repository-relative paths (current contents; excludes this manifest to avoid self-reference):
+28eb16ed44c862a9eb03d241b8d19d14df6dcbcba5c46475e7edef095d11c49e  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/IMPLEMENTATION-STEPS.md
+0131ab833905e22ff1432007aa5ce1273182ecc3d8e5dc59b234778774bc16af  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/README.md
+413fffd8e3d7b2d9e6844c8cb83e146da3bb7c88f730cc5152d6af6d646c3113  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 1/README.md
+e4dbccc13e94d49a6dfd7b96dcedff31f38ea7565bc7703e7dc927f04ea5a24d  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 1/STEP1-CROSS-COMPONENT-CONTRACT.md
+a135ca0177ef56c20c53286c2dbecf8e4fee6898841764d1c5b44f3da9558822  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 1/STEP1-LIVE-BASELINE-REVIEW-20261120.md
+76b22ec616dcfd5c1048b38fb94c09fa831dffbb66112185ed6d7215297d95a8  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 1/STEP1-NEXT-READONLY-VALIDATION.md
+34852d2c8eb0c14028e926303903c3a004ae621e37a76f6a6147fa78598d4715  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 1/STEP1-RUNTIME-BASELINE-REVIEW-20261120.md
+592b49828fe9e31ad3972995fe8cdbe182ee9736c0de7a8216b33c29e677c1cc  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 1/STEP1-SOURCE-AUDIT.md
+885562ca13e36b6f1bac264742a0d40521f315be2b68f21867741729c2d20f5b  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 1/STEP1-TEST-MATRIX.md
+cdcf0fe8b07e878b964d029e3d6807a2045ed7dc1a08c342720fdeaa78d0cbb3  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 1/expanded-source-sha256.txt
+32333de05d52ad58416591ecbad26fb68fe1129d9c7690f009000031af075d0c  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 1/step1-static-baseline-results.txt
+1b92a0c36c8df84ec34031da5ba37a06527b42092b2c8283f492ec5a808943e4  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/tests/step1-static-baseline.py
+dd187e969a1938fbe0becdfdc127c7e2a7b857922f58c0984f2181dcfca3b2b0  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/tools/step1-readonly-production-baseline.sh

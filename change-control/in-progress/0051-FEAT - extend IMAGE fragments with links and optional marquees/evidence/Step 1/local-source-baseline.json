@@ -1,0 +1,43 @@
+{
+  "recordedUtc": "2026-11-20T09:25:47.424183+00:00",
+  "scope": "Local Windows source only; no deployed-version inference",
+  "repositories": [
+    {
+      "repository": ".",
+      "branch": "main",
+      "head": "504e1d3f7757c609afde4ac64112e8bb0f01c18a",
+      "workingTreeStatus": [
+        "M \"change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/DESIGN-AND-INTERFACE-CONTRACT.md\"",
+        " M \"change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/IMPLEMENTATION-STEPS.md\"",
+        " M \"change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/README.md\"",
+        " M \"change-control/todo/0029-FEAT - complete Image lifecycle and remove legacy fragment marquee coupling/README.md\"",
+        "?? \"change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/\""
+      ]
+    },
+    {
+      "repository": "diaries-responder",
+      "branch": "main",
+      "head": "bd65d08435c0f5d240337cd6479cb41befe4d8c1",
+      "workingTreeStatus": []
+    },
+    {
+      "repository": "diaries-client",
+      "branch": "main",
+      "head": "89c9d539d79bd6b235ab28aa55ea600c86aa4fce",
+      "workingTreeStatus": []
+    },
+    {
+      "repository": "diaries-web",
+      "branch": "main",
+      "head": "cc147426e93ee6952558b65147e444d38316b3ce",
+      "workingTreeStatus": []
+    }
+  ],
+  "indexGitlinks": [
+    "160000 89c9d539d79bd6b235ab28aa55ea600c86aa4fce 0\tdiaries-client",
+    "160000 bd65d08435c0f5d240337cd6479cb41befe4d8c1 0\tdiaries-responder",
+    "160000 cc147426e93ee6952558b65147e444d38316b3ce 0\tdiaries-web"
+  ],
+  "captureNote": "git submodule status failed in the restricted environment because its MSYS shell could not start. Direct Git branch/HEAD/status for each configured submodule and parent index gitlinks succeeded instead.",
+  "productionInspected": false
+}

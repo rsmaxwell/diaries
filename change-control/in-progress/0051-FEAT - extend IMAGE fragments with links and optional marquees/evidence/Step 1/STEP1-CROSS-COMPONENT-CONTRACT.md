@@ -1,0 +1,69 @@
+# 0051 — Cross-component IMAGE link and Marquee contract (Step 1)
+
+**Contract baseline:** 20 November 2026. **Review:** accepted by owner on 20 November 2026. **Step 1: CLOSED.** Implementation and tests are tracked separately from this approved contract.
+
+This document settles proposed 0051 interface decisions for Step 2 and Step 3; it records *target* behaviour, not behaviour of deployed binaries. Use `STEP1-SOURCE-AUDIT.md` for evidence of current incompatible paths. No legacy migration, DB mutation or production activation is authorised here.
+
+## 1. Persistence and identity
+
+* Retain the existing `FragmentType.IMAGE`/`MARQUEE` and legacy nullable `type`/`page_id` compatibility window until 0028/0029. No new Fragment type or mandatory global column is introduced.
+* Add nullable `fragment.image_link_url VARCHAR(4096)`, mapped as `Fragment.imageLinkUrl` with `@Column(name="image_link_url", length=4096)` and conveyed as JSON `imageLinkUrl` on Fragment retained payloads and the editor/reader projections. The URL is a **Fragment occurrence** property, not an Image catalogue property. Existing rows start `NULL`.
+* Use the same field in the JPA entity, `FragmentDBDTO`, `FragmentPublishDTO`, all native repository SELECT lists/column indices and UPDATE/INSERT value lists, object copying, request handlers and reader records. `diaries/fragments/{id}` and `diaries/dates/.../{id}` must carry the identical URL after commit, including JSON `null` for cleared links.
+* `IMAGE` may have 0..1 Image catalogue reference, 0..1 Marquee and 0..1 URL independently. An `IMAGE` without a catalogue Image can retain a URL but cannot render a clickable image. `MARQUEE` (and legacy type-null compatibility records) cannot acquire an Image reference or an image click URL. No schema change is to create a fake Marquee or touch Image bytes.
+* Marquee remains a separate row linked by unique `marquee.fragment_id` and `marquee.page_id`. It can belong to an `IMAGE` **or** a legacy/`MARQUEE` Fragment. For new valid attachments `marquee.page_id == fragment.page_id`; both IDs must resolve. Preserve `id`, `version`, `x`, `y`, `width`, `height`, and Page when an existing valid Marquee is retained during 0028. Do not reparent or renumber it merely to change the Fragment type.
+* Apply the additive column by an explicit, repeatable migration (`ADD COLUMN IF NOT EXISTS` only after live-schema audit); do not rely solely on JPA schema generation. Before implementation, inspect real `fragment`/`marquee` constraints, duplicate indexes, and column widths in a read-only schema query. Do not drop type compatibility or existing constraints speculatively.
+
+## 2. URL syntax, rendering and preservation
+
+* Non-null value is a nonempty **absolute `http:` or `https:` URL**, case-insensitive scheme, with `//` authority and a nonempty valid host; allow explicit ports, query strings and `#` fragments. Existing HTTP links are allowed. A non-ASCII path may be accepted if parsed correctly; escaping must be consistently UTF-8/HTML-safe.
+* Reject relative and protocol-relative addresses; `javascript:`, `data:`, `file:` and other schemes; malformed escape sequences or URI syntax; empty host; credentials in authority (`user@host`); ASCII whitespace, C0 controls and DEL; and values longer than **4096 Unicode characters**, as enforced before persistence. No leading/trailing whitespace trimming that silently changes the destination. If too long or invalid, reject the write with a clear client-visible error, preserving prior state.
+* Keep the accepted URL's original semantic spelling (including case, `%XX`, query, fragment and `&` parameters). Do **not** parse/rebuild, normalise slashes, sort query parameters, double-decode HTML entities or fetch the external destination. For 0028 extraction decode HTML attribute entities **exactly once** using the source HTML parser before validating/storing the URL; do not manually replace `&amp;` in already-decoded strings.
+* Server validates on **every deliberate set** and any resulting writer state, with consistent safe validation by the reader before rendering untrusted retained data. Angular uses its normal URL-sanitised `[href]` binding; Pebble uses its normal escaping for `href` attributes (not a raw HTML interpolation). No `innerHTML` construction for links. Never render invalid stored URLs as links.
+* Only wrap the **real, resolvable, displayed catalogue image** in `<a href=...>`. No link on absent/unresolved images or the existing `Open image directly` file fallback. Clicking the image navigates in the **same tab** as the legacy anchor did; keep focus/Enter accessibility. A distinct `Show on source page` button/control highlights the Marquee (when present) or only navigates to the Page (when absent). It must not be nested in the link or its click event. Clicking, selecting and drag/reorder must remain independent.
+
+## 3. RPC commands and three-state link update
+
+`updateFragment` retains its existing mandatory identity/version/date/sequence/text args and **does not accept a different** `type`, `pageId` or `marqueeId`. The persisted Fragment remains authoritative.
+
+| Request arguments | Intent | Result |
+|---|---|---|
+| Neither `imageLinkUrl` nor `clearImageLinkUrl` | PRESERVE | Keep existing persisted URL, including NULL |
+| `imageLinkUrl: "https://example.invalid/a?x=1&y=2#p"` | SET | Validate then replace URL |
+| `clearImageLinkUrl: true` with `imageLinkUrl` omitted | CLEAR | Store NULL, retained `imageLinkUrl:null` |
+| Both fields, null set, false clear, nonboolean clear or empty string | REJECT | No mutation, no partial retained publish |
+
+* Use an **explicit, non-null clear flag**, rather than an `imageLinkUrl:null` RPC argument: bundled mqtt-rpc `Request` calls `Map.copyOf(args)` and rejects null entries. `ImageFragmentMessageHandler` special-cases `imageId:null`, not general null URLs. Add client helpers to serialise the three intents deliberately; do not put persisted fields automatically into text-only update requests.
+* `addImageFragment` may take optional non-null `imageLinkUrl` to SET at creation; omission means NULL. It must not accept `clearImageLinkUrl` at creation. Existing explicit `imageId:null` creation/clear remains supported through the current compatibility adapter; prove a combined `imageId:null` + `clearImageLinkUrl:true` update takes its intended path.
+* `imageId` update semantics stay intact: omitted => preserve; positive => attach/replace; explicit null => detach. Replacing/clearing an Image does **not** alter its link. The editor must expose a dormant URL even when no Image is attached and must not attach a new Image without showing the link destination.
+* Role at least EDITOR, active token/session, lock ownership and optimistic Fragment `version` check are required for setting and clearing the link. Validate before committing; release lock only on committed success. Conflict/failed validation must not publish a new retained value or drop the saved URL. Reuse current request authorization/log redaction; diagnostics must not log historical URLs or source text.
+* Deleting a Fragment tombstones both Fragment topic variants, including date topic, and any dependent Marquee topics after DB commit, then publishes renumbered survivors. It never deletes shared catalogue Images or their files.
+
+## 4. Marquee operations and concurrency
+
+* `addMarquee`: accept already-page-owned `IMAGE` and existing MARQUEE/legacy-compatible records. **Do not change an IMAGE's type or Image/link fields.** Require the same-page Fragment, unique association, owning Fragment edit lock, and for new IMAGE attachments a supplied `fragmentVersion` matching the locked current version. Serialise with concurrent writes under a row lock and database uniqueness. Existing MARQUEE request compatibility is retained during rollout; any strengthening of its version contract requires coordinating its client caller.
+* `updateMarquee`: accept linked IMAGE or MARQUEE, require the existing owning lock, unchanged Fragment/Page identity, and optimistic Marquee `version`; reject stale/competing or cross-page requests without writing geometry. Preserve Marquee ID and only change intended geometry/version. Do not rewrite Fragment URL/Image fields.
+* `deleteMarquee`: accept linked IMAGE or MARQUEE, require owning lock. For new IMAGE authoring, require a supplied `version` matching the current Marquee version, while older MARQUEE clients remain compatible until all writers upgrade; remove only this Marquee and tombstone its retained topics. Publish the surviving Fragment with `marqueeId:null`, and its original `imageId`/`imageLinkUrl`/Page unchanged.
+* Source metadata, type, and link must survive the Fragment lock clear/update, date normalization, and any Marquee mutation. Where a Fragment version is incremented by relationship changes, publish matching post-commit Fragment version and lock state. Never take an unvalidated client `marqueeId` as authoritative.
+* When deleting a Fragment, remove an attached IMAGE Marquee **in the same transaction**; remove the obsolete guard in `DeleteFragment` that blocks such deletion. Publish tombstones only for committed deletions. Full restart/replay must converge on the same two projection entries, even when retained messages arrive out of order; do not use retained-message arrival order as a destructive consistency decision.
+* Observe existing Page/Marquee geometry constraints; do not invent a default rectangle in 0028. New editor-driven creation may use its current initial rectangle, subject to existing bounds/size validation.
+
+## 5. Reader/client projection, navigation and header
+
+* `isImageFragment` tests `type==='IMAGE'`, **not** `marqueeId===null`. Existing `isMarqueeFragment` retains legacy type-null fallback; selected Marquee resolution accepts **both** typed IMAGE and MARQUEE when its Fragment/Page matches. Keep image and Marquee states independently hydrated on MQTT replay.
+* diaries-web `ProjectionSnapshot`: resolve a matching Page-consistent Marquee for an IMAGE and stop classifying valid IMAGE-with-Marquee as a relationship anomaly. Keep cross-Page/duplicate anomalies as diagnostics, not silent deletion. Use `fragmentMediaView` to expose the independently validated destination and Page highlight in both source-page and month reader rendering.
+* Day reader after `Position N` displays `Image ID: N` for any `type==='IMAGE'` with positive `fragment.imageId`, including pending/missing catalogue metadata and Marquee-present state; unattached => `No Image selected`. Do not show the label for legacy HTML/type-null or MARQUEE fragments, or derive it from a filename or Marquee ID.
+* Keep the existing date-wide order, keyboard selection, mobile layout, local dev modes, and image-file fallback unchanged for old data. Authoring views must show link editing separately from reference selection and Marquee geometry operations.
+
+## 6. Deployment activation and rollback boundary
+
+1. Confirm the production database schema constraints, writer/editor/reader build identities and supported backup recovery point; record private evidence under the existing ignored `evidence/Step 1/private/` location.
+2. Upgrade the additive schema with old data untouched. Initially deploy new responder with a **new, separate** `imageFragmentExtensionsWritesEnabled` boolean (default `false`) controlling only link SET/CLEAR and IMAGE-Marquee attach/edit/remove. The existing `imageFragmentWritesEnabled` gate is **already normally true in production** after 0027 and must not be silently reset: ordinary IMAGE authoring and existing MARQUEE operations continue unchanged. This new switch requires responder Config and a Playbooks template/variable change at rollout, in their separately authorised writable scope. No new combinations may enter DB/retained while old readers or old writers remain.
+3. Deploy and verify matching new editor/client and public web reader builds. Reconnect/retained replay and existing-data behaviour must pass first. Remove/invalidate old active editor sessions as part of explicit activation; old readers must no longer be serving traffic. Only then enable `imageFragmentExtensionsWritesEnabled` on the responder, retaining the existing IMAGE authoring gate value. Responders must reject new extension writes while false, including URL fields and IMAGE-Marquee operations.
+4. If failure occurs **before first new extension write**, roll back binaries with the additive nullable column intact and the extension gate disabled, subject to ordinary schema compatibility checks. **After** any linked IMAGE or IMAGE-with-Marquee state has been written, older responder/client/web binaries are **not safe rollback targets**. Prefer coordinated forward fix; or restore the verified pre-activation data snapshot under a separately approved recovery plan. Do not drop the new column to simulate rollback.
+5. Production migration of historical HTML remains **outside 0051**, on hold until 0028's separate approvals, drift checks and rehearsal. 0029 must not add a constraint excluding valid IMAGE Marquees.
+
+## 7. Implementation and acceptance boundaries
+
+* Step 2 implements and tests responder persistence/RPC semantics and its gate; Step 3 implements clients/readers; Step 4 rehearse rollout and 0028 handoff; Step 5 acceptance and formal release.
+* The attached `STEP1-TEST-MATRIX.md` defines the mandatory synthetic and integration checks, their expected outcomes and separate evidence. These are **not marked passed** merely by writing the contract.
+* Owner accepted this cross-component contract and the baseline testing boundary on 20 November 2026 after the live-schema/deployed-runtime evidence and selected existing-code tests passed. **Step 1 CLOSED.** New-feature implementation/DB/MQTT evidence is deliberately still required in Steps 2–4.

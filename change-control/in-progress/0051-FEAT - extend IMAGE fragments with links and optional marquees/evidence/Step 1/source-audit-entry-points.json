@@ -1,0 +1,220 @@
+{
+  "exhaustiveAudit": false,
+  "entries": [
+    {
+      "path": "diaries-client/src/app/model/fragment.ts",
+      "sha256": "440507cb40acf1e4d4074d93adbe64e111bb360a8a917ded7caad69c3516c194",
+      "auditPurpose": "IMAGE type/guards and reference edits require null marqueeId.",
+      "initialMatches": [
+        {
+          "line": 9,
+          "source": "marqueeId: number | null;"
+        },
+        {
+          "line": 21,
+          "source": "export type ImageFragment = Fragment & { type: 'IMAGE'; marqueeId: null };"
+        },
+        {
+          "line": 34,
+          "source": "return !!fragment && fragment.type === 'IMAGE' && fragment.marqueeId === null;"
+        },
+        {
+          "line": 93,
+          "source": "* responder-authoritative. In particular, IMAGE Fragments have marqueeId=null;"
+        },
+        {
+          "line": 152,
+          "source": "if (fragment.type !== 'IMAGE' || fragment.marqueeId !== null) {"
+        },
+        {
+          "line": 153,
+          "source": "throw new Error('Only an IMAGE Fragment without a Marquee can change its Image reference');"
+        }
+      ]
+    },
+    {
+      "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ResolvedFragmentState.java",
+      "sha256": "640ec809bf7c16102026dd9aa6ecc12b4e9c8c9bf28e348552f357578d85f6cd",
+      "auditPurpose": "IMAGE resolution rejects a Marquee.",
+      "initialMatches": [
+        {
+          "line": 23,
+          "source": "if (marquee != null) throw new IllegalArgumentException(\"IMAGE fragment cannot have a Marquee\");"
+        }
+      ]
+    },
+    {
+      "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/UpdateFragment.java",
+      "sha256": "f77d106e3debbc2ed44727110246fc4d71b28a2c9675acb4644b9d5fb3349f58",
+      "auditPurpose": "IMAGE update guard and field-preservation paths.",
+      "initialMatches": [
+        {
+          "line": 110,
+          "source": "throw RpcStatusException.badRequest(\"IMAGE Fragment cannot have a Marquee\");"
+        }
+      ]
+    },
+    {
+      "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/model/Fragment.java",
+      "sha256": "603d0b3875abf476a89ee88c25a84922114e1dd537c79305358c9313039d8b08",
+      "auditPurpose": "Entity relationships and DTO copy paths.",
+      "initialMatches": []
+    },
+    {
+      "path": "diaries-client/src/app/dayview/dayview.component.html",
+      "sha256": "f84f440f280772cf74de2611fef0024215f417f7de129d6c1971e827e4f7365c",
+      "auditPurpose": "Image label immediately follows Position.",
+      "initialMatches": [
+        {
+          "line": 46,
+          "source": "<span>Position {{fragment.sequence}}</span>"
+        },
+        {
+          "line": 47,
+          "source": "@if (imageReferenceLabel(fragment); as imageLabel) {"
+        }
+      ]
+    },
+    {
+      "path": "diaries-client/src/app/dayview/dayview.component.ts",
+      "sha256": "84c861ef6269ae56acf6e1d795f4aae8d1896dfa200c194b9f84fe96c41d7b56",
+      "auditPurpose": "Image label helper and selection.",
+      "initialMatches": [
+        {
+          "line": 189,
+          "source": "imageReferenceLabel(fragment: Fragment): string | null {"
+        },
+        {
+          "line": 196,
+          "source": ": 'No Image selected';"
+        }
+      ]
+    },
+    {
+      "path": "diaries-client/src/app/dayview/dayview.component.spec.ts",
+      "sha256": "a248cb96ffc77a01a4c5d60f40533604fd0dc73049808b4719a6d45a7fdf0165",
+      "auditPurpose": "Mixed-list and Image-label regression baseline.",
+      "initialMatches": [
+        {
+          "line": 120,
+          "source": "marqueeId: null"
+        },
+        {
+          "line": 126,
+          "source": "marqueeId: null"
+        },
+        {
+          "line": 141,
+          "source": "expect(items[2].querySelector('.fragment-image-reference')?.textContent?.trim()).toBe('No Image selected');"
+        },
+        {
+          "line": 179,
+          "source": "const legacyImage = { ...fragment(7, 1), pageId: null, marqueeId: null } as Fragment;"
+        },
+        {
+          "line": 189,
+          "source": "it('navigates an IMAGE Fragment by authoritative pageId and delegates Marquee state to ModelContext', () => {"
+        },
+        {
+          "line": 195,
+          "source": "marqueeId: null"
+        },
+        {
+          "line": 208,
+          "source": "const withoutMarquee = { ...fragment(7, 1), marqueeId: null } as Fragment;"
+        },
+        {
+          "line": 244,
+          "source": "marqueeId: null"
+        },
+        {
+          "line": 271,
+          "source": "marqueeId: null,"
+        },
+        {
+          "line": 279,
+          "source": "marqueeId: null,"
+        }
+      ]
+    },
+    {
+      "path": "diaries-client/src/app/fragment/image-fragment-reference.component.html",
+      "sha256": "7d99fba8ebdb03d6183d03e55566a6a275dd9d71957f18ca63389c31012d6acf",
+      "auditPurpose": "Preview and authoring controls.",
+      "initialMatches": [
+        {
+          "line": 15,
+          "source": "<strong *ngIf=\"!vm.unresolved\">No Image selected</strong>"
+        }
+      ]
+    },
+    {
+      "path": "diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/MutableProjectionState.java",
+      "sha256": "05c571cd1874dadc2bbe89b88742d589316a907c8565013be4da617ec92265be",
+      "auditPurpose": "Trace full projection relationship resolution.",
+      "initialMatches": []
+    },
+    {
+      "path": "diaries-web/src/main/resources/templates/month-reader.peb",
+      "sha256": "26ade5a4cce69c0fc3012d4379d25abbcc170c8f3760983485dd3d41fbeb7398",
+      "auditPurpose": "Month IMAGE presentation and fallback.",
+      "initialMatches": [
+        {
+          "line": 87,
+          "source": "{% if fragment.mediaUrl %}"
+        },
+        {
+          "line": 89,
+          "source": "<img class=\"fragment-media__image\" src=\"{{ fragment.mediaUrl }}\" alt=\"{{ fragment.mediaAltText }}\""
+        },
+        {
+          "line": 92,
+          "source": "<p class=\"fragment-media__fallback\"><a href=\"{{ fragment.mediaUrl }}\">Open image directly</a></p>"
+        }
+      ]
+    },
+    {
+      "path": "diaries-web/src/main/resources/templates/source-page.peb",
+      "sha256": "d90cd975b63158eaf2da08b2f8a0535f64b182f6bbde16625b482be679c20257",
+      "auditPurpose": "Source-page media and selection.",
+      "initialMatches": [
+        {
+          "line": 47,
+          "source": "{% if fragment.mediaUrl %}"
+        },
+        {
+          "line": 49,
+          "source": "<img class=\"fragment-media__image\" src=\"{{ fragment.mediaUrl }}\" alt=\"{{ fragment.mediaAltText }}\""
+        },
+        {
+          "line": 52,
+          "source": "<p class=\"fragment-media__fallback\"><a href=\"{{ fragment.mediaUrl }}\">Open image directly</a></p>"
+        }
+      ]
+    },
+    {
+      "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/AddMarquee.java",
+      "sha256": "fe84779139a1e52db48218c394869bd3c47ae3ee0122c571533f960b6a09aac7",
+      "auditPurpose": "Trace full association/locking/geometry/deletion path.",
+      "initialMatches": []
+    },
+    {
+      "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/UpdateMarquee.java",
+      "sha256": "b579933a25a08733a54adaab066bf4cc2fe3b66e387847eb2c54eed53f32b4c6",
+      "auditPurpose": "Trace full association/locking/geometry/deletion path.",
+      "initialMatches": []
+    },
+    {
+      "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/DeleteMarquee.java",
+      "sha256": "22bbf276c0e5e7755bf3076dfeeff805c3823fa5ab310379d8c1c3006c4827f6",
+      "auditPurpose": "Trace full association/locking/geometry/deletion path.",
+      "initialMatches": []
+    },
+    {
+      "path": "diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/sync/Synchronise.java",
+      "sha256": "2844fac34fd2bfb0f40838ec174224065e8779a6903b00293922a3c600cc82f2",
+      "auditPurpose": "Trace full startup replay and relationship resolution.",
+      "initialMatches": []
+    }
+  ]
+}

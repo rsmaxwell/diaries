@@ -1,0 +1,45 @@
+0051 Step 3 integrated source and Step 2 closure package - 2026-11-20
+Paths are relative to Diaries parent repository. Only files in this package are checked.
+Step 2 review/manifest remain historical: do not reinterpret their pre-acceptance checksums after later documentation edits.
+SHA-256 of payload (excluding this manifest):
+
+2c291defb57f8bf5ad01beffc93f2f71779182851a93af3bc380d31414acfe55  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/IMPLEMENTATION-STEPS.md
+ccd95cf9b7e92f0e47aca5a90fe8108253cef4b1748780a517a42b996fd31992  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/README.md
+1962acc1d7b781cdd8cd480683ea4a2bb2eccab552e67651e8c4ced4a7ca4b21  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 2/README.md
+ba272e5c8178b765c7f453b10d2c778ae37db836492ea23fd5174e05e9d71b77  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 2/STEP2-ACCEPTANCE-REVIEW-20261120.md
+7b363693433f2a4e373efb3bcb5c6c386b3ab928e3273d3168f7fe22cf3bd756  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 2/STEP2-ACCEPTANCE-REVIEW-MANIFEST-20261120.txt
+ac118bb2eaa0f439bc2f5b9896ea29b7e1bfedb098f52dab4c0a3bf91927b32d  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 2/STEP2-CLOSURE-20261120.md
+09ad16113a4152ee5fef166a5316db18b7901d1b2f12990e348e92385b962668  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 3/README.md
+38732dbf03066488e1450b3f145c1150f7d68b7552619bae50771297db63d8ea  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 3/STEP3-IMPLEMENTATION-REVIEW-20261120.md
+972e99f68b78678479fd2abafe49cbdc060a4ff9db2b10003b94981cb637733f  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/tools/verify-step3-local.sh
+17879516a61309cdda434a3cf6c40b05ef776edcc44c1c19c013c06ac094da8f  diaries-client/src/app/dayview/dayview.component.spec.ts
+cf5f83cdfb16f8144ff6a3ba65318ca75ceec519a56110d81a224d0a81a1e2bf  diaries-client/src/app/dayview/dayview.component.ts
+5764c43fc9cfbd71f27b6e62beb19e2cd1a9c555d7bd8b135e527cf8406035a3  diaries-client/src/app/fragment/fragment.component.html
+88627657d1b3a1bab6502dd37ac16b4c6369520213a49f5edd747cbfadce10c2  diaries-client/src/app/fragment/fragment.component.ts
+10e77852e85a6c5cfcf4b64170e3c5ef39c77f67e125b13e280871cf089c4b25  diaries-client/src/app/fragment/image-fragment-reference.accessibility.spec.ts
+fbf211c0f58deb2d7fef574c2cace8a030191a246367226ed4475b535c2928b2  diaries-client/src/app/fragment/image-fragment-reference.component.html
+14eebccac428afd4efd98f6b53cde2f5f2ffb50746073b7777609457686c3cae  diaries-client/src/app/fragment/image-fragment-reference.component.scss
+8dbe3fac5920226294aed61e9d680599c864a64ea19e7e1cfefcf8eb5fc87dda  diaries-client/src/app/fragment/image-fragment-reference.component.spec.ts
+2b74acac78c8e4d893f6de30747f42afd5ee2e7b98e0e26f6f7c1b13284d4848  diaries-client/src/app/fragment/image-fragment-reference.component.ts
+5c6841143e74682b166e4b017ec31979c9ab9dd342873fec1888ab99b4864cfc  diaries-client/src/app/fragment/image-viewer/image-viewer.component.ts
+5660669f959393191bf9096b22f09aa8aa391b50e49962431a646353e72757a3  diaries-client/src/app/headers/pageheader/pageheader.component.spec.ts
+802c587dcec99155c5ba454a2c3b7c91457103eeda7e6675913e5571f5c43c68  diaries-client/src/app/headers/pageheader/pageheader.component.ts
+e9093914975ab823cb581973af4975627092da88a5a03839a611b6ea85a47f2f  diaries-client/src/app/model/fragment.ts
+a20e6d8abb678f9b10f6183f4b57d7a003b7a0e67fefd81cb19be8cd35ff84ce  diaries-client/src/app/model/image-link-contract.spec.ts
+95865cf2996e7704c64b412e28f8105d66b860ca92dcb316f4917169334c00ce  diaries-client/src/app/model/marquee-image-rpc.spec.ts
+b54424a6c112b1f24929ca88bb66652a6a7fa48cf760bde61b5e98252f30b202  diaries-client/src/app/model/marquee.ts
+4104b5ebd046d0acb007488afd87b8e842a497c6f063ff7640ef62217b0692f6  diaries-client/src/app/model/model-context.spec.ts
+9a5a32229fd271debd3be0852631eb37bc3a276c1c73563ebae99c8a45b6bb95  diaries-client/src/app/model/model-context.ts
+2a7c5bf6fb23e89c1ba015db8aa06c19882e2cb66a6362d6709b6ed5436289b5  diaries-client/src/app/mqtt/rpc.service.ts
+4a98d1d422b7c6e0ae152aae0d6ccd236bb77232075c21c415c5e64df7221ce0  diaries-web/src/main/java/com/rsmaxwell/diaries/web/http/WebServer.java
+3ecc793535bcb6b5ac53731c774532bf04f8c373540a4f7198c35f33265f5125  diaries-web/src/main/java/com/rsmaxwell/diaries/web/model/FragmentItem.java
+7081e53363feffe7d2aaa42437c428409d842a9afa3d93925720beae8431794e  diaries-web/src/main/java/com/rsmaxwell/diaries/web/projection/ProjectionSnapshot.java
+7e21c2f454ef7fc62bad874a5a2d53de0a9456fefe8a2e9be44251c5693d238d  diaries-web/src/main/java/com/rsmaxwell/diaries/web/rendering/ImageLinkUrlPolicy.java
+a1207c1ed4b366d99497df29aaac78c2809d0c7e04bb4bb68fa87aa25274236d  diaries-web/src/main/resources/static/css/diaries.css
+48cf558ce5588f26575e8666588a5e1a9ee2f6d1f6e86aea1a6772155f0dfbca  diaries-web/src/main/resources/templates/month-reader.peb
+d0db724c08433282214de4f4d019f1789e680ac102d31d51065b9b7c049902ef  diaries-web/src/main/resources/templates/source-page.peb
+974186510158b18814bec593369d02ced8749ac2503f027468e4e8264ee44e84  diaries-web/src/test/java/com/rsmaxwell/diaries/web/TestData.java
+88d839202435be7d1b81e2646cd46c8b5d305c40e9d0687585796bf84a272070  diaries-web/src/test/java/com/rsmaxwell/diaries/web/http/WebServerTest.java
+d63ea13a7671d38e2bb568e163807d010c61cb1f249cab73a891cf6f5b5dc7d9  diaries-web/src/test/java/com/rsmaxwell/diaries/web/mqtt/RetainedContractTest.java
+d93d858ef26b1b922cedc05a528841771709f82dd8023a5b476b3df8e7fb247d  diaries-web/src/test/java/com/rsmaxwell/diaries/web/projection/ProjectionServiceTest.java
+16cfe99e72945c191ce933d9dee85f8e43610cea49681599fd9cf2176f9c8c02  diaries-web/src/test/java/com/rsmaxwell/diaries/web/rendering/ImageLinkUrlPolicyTest.java

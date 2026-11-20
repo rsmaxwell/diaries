@@ -1,0 +1,43 @@
+0051 Step 1 closure + Step 2 responder source patch; 20 November 2026
+Input: diaries-sources-20261120-095555.zip + previously issued Step 1 Python/runtime-evidence ZIPs
+Step 1: CLOSED (owner contract approval 20 Nov 2026). Step 2: IN PROGRESS; unverified runtime and DB/MQTT integration.
+No production database writes, no Playbooks edits, no deployment.
+All paths are relative to the Diaries parent repository root, including the diaries-responder submodule.
+SHA256 checksums of included payload files (excluding this manifest):
+28eb16ed44c862a9eb03d241b8d19d14df6dcbcba5c46475e7edef095d11c49e  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/IMPLEMENTATION-STEPS.md
+0131ab833905e22ff1432007aa5ce1273182ecc3d8e5dc59b234778774bc16af  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/README.md
+413fffd8e3d7b2d9e6844c8cb83e146da3bb7c88f730cc5152d6af6d646c3113  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 1/README.md
+e4dbccc13e94d49a6dfd7b96dcedff31f38ea7565bc7703e7dc927f04ea5a24d  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 1/STEP1-CROSS-COMPONENT-CONTRACT.md
+34852d2c8eb0c14028e926303903c3a004ae621e37a76f6a6147fa78598d4715  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 1/STEP1-RUNTIME-BASELINE-REVIEW-20261120.md
+885562ca13e36b6f1bac264742a0d40521f315be2b68f21867741729c2d20f5b  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 1/STEP1-TEST-MATRIX.md
+d1c8f152ce67771347b98e7e52983252fe36eada25600a7247e75dc9cc09f4e5  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 1/STEP1-UPDATE-MANIFEST.txt
+0ad33df26fb8f67f8ac9ee2cce9770c9078bcd2f57deab1783aa4c77468ceec2  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 2/README.md
+ddadcd88b6993e1aa0a9d30ceed7c5f41cb0a61770cda4f7932d3afd086f0eaa  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 2/STEP2-UPDATE-MANIFEST.txt
+c7614bc5b0105b59907cb49ecdcec2c668fabbc5b0b06a3d64ef3ac1866764c0  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 2/step2-static-source-review.txt
+c8613a0f038dd47972dd9c3ab5a83e627c5615af65c3397935609e7d3426d70f  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/migration/001-add-image-link-url.sql
+8903fd85a84c5457c1d5666451f30bc115e554da33ada091dd8d0b5fadac94fc  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/migration/002-assert-image-link-schema.sql
+be0f2ae013268e473c65ba737dfce3da1a82869eeb3975ae25efef1ac3b90035  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/migration/README.md
+c8ea906b593ebffddc15591b9c87f81dba7c956af776edd9ea42f686cf09ddd9  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/config/Config.java
+2cee76316689655d165114f177b1942fea05a82a649ab51e347b4327bc3e24b1  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/FragmentDBDTO.java
+cb7033966cb43aceec93866029710b4bf3cde1676df8a78290db558b70cda3cc  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/dto/FragmentPublishDTO.java
+06dfd0af38821e8a0acaff9f9d7736600916664c0311024526be0af094b16648  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/AddImageFragment.java
+6c8adb9b3ceac1a6d46c31ce60f8dad340a8b053908fece603c4b880107d20ee  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/AddMarquee.java
+1cfa25bdd2930f223fa912ee73548f8f663c1a4f586becc806f936ff2cc4c5d4  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/DeleteFragment.java
+883b1e14e4cd7728fd9b48c63dd26a2397cc87c2e465f235a8f66e41bd2c6669  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/DeleteMarquee.java
+5df0b0468e9e1ce4674d1f9ade280f2b7ebacea4bb3a08cf418a2510d31cbdae  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/UpdateFragment.java
+69883dcb303c23a6793224d6068151a01a73e094169d6faeb261842846ec9089  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/UpdateMarquee.java
+970216b6b588803ff78fc7ed8e9de6eeb518a63143c526a0043f3d206c923e7e  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/model/Fragment.java
+62882941af25308c351a35a55085eababb035d2bf4156989797fede4c2ea08f6  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/repositoryImpl/FragmentRepositoryImpl.java
+c881395b65bedd77f80a63ceab17faf359cc7223c11eeb879e31f597f05fcde0  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/FragmentLocking.java
+debe680949a4d3c2a17b7636e5570cf934aed19b88f8a2584143c45ef9640f30  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageFragmentExtensionsWritePolicy.java
+b8e9253fa79078f200781277d50d86f0e4960efb302b0d7d6bc4def7dae43eb9  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageLinkWritePolicy.java
+4cd16fb76988a29889853a91611917dd839f4b8c4d417c85522657a9178e3c5a  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ResolvedFragmentState.java
+9dbdb7a6edde77dbae6ac99878914700a0ffcac1df83d74028ced220d7179880  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/config/ImageFragmentGateConfigTest.java
+2c0d345a3f0c639e18a2b23d46677cdb93df760796e0a3186e90d7ef6ae1b46c  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/dto/RetainedStateDtoContractTest.java
+91c35bbdfb16760eb2e1aeb51628b3f4242b20a7a85fb734c57c6d899d70c81d  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/handlers/AddFragmentContractTest.java
+b3e69aae8c3a6a46bbb5a7fa6df7a360dc78da557236f9f53cb1ad135c576564  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/handlers/FragmentLifecycleContractTest.java
+7c14b925410dce518f9c3dadbfd929998b05c78eaa6931b6f12524dd0ff7cf6c  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/repositoryImpl/FragmentRepositoryImplTest.java
+4e45e1afb95796ec2dffccc3a7ccab2ee01c3494160c0cc4f6ac11545321d4c1  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/FragmentSequenceNormaliserTest.java
+523c98188f4b45fae9e5e22e4a18d9272462856f8eeb7235920b003deec8aeca  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/ImageFragmentMessageHandlerTest.java
+ec015ddd0211d1861bb48b5cc7a661dc7e723b544367248d81cfdd23a1b94909  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/ImageLinkWritePolicyTest.java
+bf0c708c691b3c1e6ef0dc565ae617b2eb5397944a8bcd4c32ee549d9898086f  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/ResolvedFragmentStateTest.java

@@ -1,0 +1,8 @@
+0051 Step 2 incremental test-compilation correction, 20 November 2026
+Input: previous 0051 Step 1 closure + Step 2 responder ZIP and owner test log.
+Step 1 CLOSED; Step 2 OPEN.
+Paths relative to the Diaries parent repository root.
+Only the following payload files are updated (excluding this manifest):
+bd0d5ce9ce359374e427c29e188fca8657c8d17fc917e84a630e093b85a290cf  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/FragmentSequenceNormaliserTest.java
+e6222874e329c597be8766ce5387414bc743e802fc2bde4a10b162b33ad26e8a  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/ImageLinkWritePolicyTest.java
+bc75513a769dbc83f1b862fbc13b90db0295bf9c72b836019f5038f4a37abe06  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 2/STEP2-TEST-COMPILATION-REVIEW-20261120.md

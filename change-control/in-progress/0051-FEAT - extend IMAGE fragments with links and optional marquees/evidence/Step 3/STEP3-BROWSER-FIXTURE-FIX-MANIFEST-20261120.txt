@@ -1,0 +1,7 @@
+# SHA-256 relative to 0051 feature root. Corrective package for browser-only fixture generator.
+# The original STEP3-INTEGRATED-SMOKE-MANIFEST-20261120.txt remains historical
+# and describes the prior smoke package, not these updated files.
+b8bdafaf03db8607a158c521d94c630fcbdd716270c2b855990c8504822923d9  evidence/Step 3/STEP3-BROWSER-FIXTURE-FAILURE-REVIEW-20261120.md
+aef48c44b7400b424d6822db6784575a2275d19cc4929a490df2473da5cada27  evidence/Step 3/STEP3-INTEGRATED-SMOKE-PLAN-20261120.md
+05fba76a36e3a03543a193f8f7b9ab71569cda1d7e7504fb5b04978c87073811  tests/step3-isolated-reader-smoke.cjs
+e9ea00fc7f93f419e124902bc4776ed3cfcd5dfc0676a64d8774200f7f8375f8  tools/verify-step3-isolated-ui.ps1
