@@ -1,0 +1,323 @@
+=== Validate and deploy Playbooks on mango ===
+=== Repository state ===
+main
+c13b1d5c690c879a4464b0a302aefda92d6335f8
+ M roles/diaries/README.md
+ M roles/diaries/defaults/main.yaml
+ M roles/diaries/tasks/copy.yaml
+ M roles/diaries/tasks/main.yaml
+ M roles/diaries/templates/config/responder/responder.json.j2
+ M roles/diaries/tests/verify-production-deployment-contract.py
+ M scripts/diaries.sh
+?? roles/btrfs-replication/files/__pycache__/
+?? roles/snapshots/files/__pycache__/
+=== Verify gate-free role and update image tag ===
+PASS: Gate-free role verified; responder set to build-86
+=== Ansible syntax validation ===
+
+playbook: diaries.yaml
+=== Deploy production ===
+
+PLAY [diaries] *****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [pluto]
+
+TASK [docker : Docker | Install prerequisite packages] *************************
+ok: [pluto]
+
+TASK [docker : Docker | Ensure apt keyrings directory exists] ******************
+ok: [pluto]
+
+TASK [docker : Docker | Install Docker apt signing key] ************************
+ok: [pluto]
+
+TASK [docker : Docker | Remove legacy Docker repository definition] ************
+ok: [pluto]
+
+TASK [docker : Docker | Add Docker repository] *********************************
+ok: [pluto]
+
+TASK [docker : Docker | Update apt cache after repository change] **************
+skipping: [pluto]
+
+TASK [docker : Docker | Install Docker packages] *******************************
+ok: [pluto]
+
+TASK [docker : Docker | Add remote user to docker group] ***********************
+ok: [pluto]
+
+TASK [docker : Docker | Enable and start Docker] *******************************
+ok: [pluto]
+
+TASK [diaries : diaries | Validate frontend mode] ******************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries | Validate mutable Files directory selector] ***********
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries | Validate complete-dataset production configuration] ***
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries:utilities | Install prerequisite packages] *************
+ok: [pluto]
+
+TASK [diaries : diaries:0036 | Validate host mount inputs] *********************
+ok: [pluto]
+
+TASK [diaries : diaries:0036 | Install CIFS credentials directory] *************
+ok: [pluto]
+
+TASK [diaries : diaries:0036 | Install dedicated CIFS credentials] *************
+ok: [pluto]
+
+TASK [diaries : diaries:0036 | Check host mountpoint] **************************
+ok: [pluto]
+
+TASK [diaries : diaries:0036 | Create host mountpoint if absent] ***************
+skipping: [pluto]
+
+TASK [diaries : diaries:0036 | Mount host NAS share read-only] *****************
+ok: [pluto]
+
+TASK [diaries : diaries:tools | Install Mosquitto tools] ***********************
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Create project directories] *********************
+ok: [pluto] => (item=/home/richard/projects)
+ok: [pluto] => (item=/home/richard/projects/diaries)
+ok: [pluto] => (item=/home/richard/projects/diaries/config)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/client)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/responder)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/config)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/config/conf.d)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/config/conf.d/locations)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/config/files)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/html)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/html/files)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/log)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/mosquitto)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/postgres)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/web)
+ok: [pluto] => (item=/home/richard/projects/diaries/data)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/postgres)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/mosquitto)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/responder)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/nginx)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/nginx/files)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/diaries)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/files)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/dataset-backups)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/dataset-backups/production)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/dataset-restores)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/dataset-restores/production)
+ok: [pluto] => (item=/home/richard/projects/diaries/scripts)
+
+TASK [diaries : diaries:copy | Synchronize project files excluding managed scripts] ***
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Debug project sync output] **********************
+ok: [pluto] => {
+    "result.stdout_lines": []
+}
+
+TASK [diaries : diaries:copy | Synchronize managed scripts] ********************
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Debug managed scripts sync output] **************
+ok: [pluto] => {
+    "scripts_sync_result.stdout_lines": []
+}
+
+TASK [diaries : diaries:copy | Template files] *********************************
+changed: [pluto] => (item={'path': 'compose.yaml', 'mode': '0664'})
+ok: [pluto] => (item={'path': '.env', 'mode': '0600'})
+ok: [pluto] => (item={'path': 'config/client/config.json', 'mode': '0644'})
+changed: [pluto] => (item={'path': 'config/responder/responder.json', 'mode': '0644'})
+ok: [pluto] => (item={'path': 'config/nginx/config/conf.d/site.conf', 'mode': '0644'})
+ok: [pluto] => (item={'path': 'config/nginx/html/files/index.html', 'mode': '0644'})
+ok: [pluto] => (item={'path': 'config/web/diaries-web.json', 'mode': '0644'})
+ok: [pluto] => (item={'path': 'scripts/start.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/stop.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/status.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/logs.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/shell-prompt-database.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/shell-prompt-mosquitto.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/shell-prompt-responder.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/shell-prompt-client.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/shell-prompt-nginx.sh', 'mode': '0744'})
+
+TASK [diaries : diaries:copy | Validate rendered mutable Files selector in .env] ***
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Validate rendered complete-dataset storage contract in .env] ***
+ok: [pluto] => (item=DIARIES_COMPLETE_BACKUP_REPOSITORY_ROOT=/home/richard/projects/diaries/data/dataset-backups/production)
+ok: [pluto] => (item=DIARIES_COMPLETE_RESTORE_STATE_ROOT=/home/richard/projects/diaries/data/dataset-restores/production)
+ok: [pluto] => (item=DIARIES_COMPLETE_BACKUP_PUBLISHED_ROOT=/home/richard/projects/diaries/data/diaries-backup)
+ok: [pluto] => (item=DIARIES_COMPLETE_BACKUP_STORAGE_MODE=auto)
+
+TASK [diaries : diaries:copy | Validate rendered mutable Files mount in Compose] ***
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Validate rendered shared diary scan mount in Compose] ***
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Validate retained-snapshot broker flow-control policy] ***
+ok: [pluto] => (item=max_inflight_messages[[:space:]]+20[[:space:]]*)
+ok: [pluto] => (item=max_queued_messages[[:space:]]+0[[:space:]]*)
+
+TASK [diaries : diaries:copy | Install the systemd unit] ***********************
+ok: [pluto] => (item={'path': 'etc/systemd/system/diaries-compose.service', 'mode': '0644'})
+
+TASK [diaries : diaries:unattended-backup | Install complete-backup publisher service and timer] ***
+ok: [pluto] => (item=diaries-complete-backup-publish.service)
+ok: [pluto] => (item=diaries-complete-backup-publish.timer)
+
+TASK [diaries : diaries:unattended-backup | Flush unit changes before timer state] ***
+
+RUNNING HANDLER [diaries : diaries:handler | Enable and start diaries compose stack] ***
+changed: [pluto]
+
+TASK [diaries : diaries:unattended-backup | Apply explicit complete-backup schedule state] ***
+ok: [pluto]
+
+TASK [diaries : diaries:shared-frontend | Check the shared Docker network exists] ***
+ok: [pluto]
+
+TASK [diaries : diaries:shared-frontend | Require the shared Docker network] ***
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries:shared-frontend | Check the shared Nginx container exists] ***
+ok: [pluto]
+
+TASK [diaries : diaries:shared-frontend | Require the shared Nginx container] ***
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries:shared-frontend | Check the shared Nginx files directory exists] ***
+ok: [pluto]
+
+TASK [diaries : diaries:shared-frontend | Require the shared Nginx files directory] ***
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries:shared-frontend | Check the shared Nginx location directory exists] ***
+ok: [pluto]
+
+TASK [diaries : diaries:shared-frontend | Require the shared Nginx location directory] ***
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries:shared-frontend | Install Diaries shared Nginx source file] ***
+ok: [pluto]
+
+TASK [diaries : diaries:standalone-frontend | Remove stale shared Nginx active location] ***
+skipping: [pluto]
+
+TASK [diaries : diaries:standalone-frontend | Remove stale shared Nginx source file] ***
+skipping: [pluto]
+
+TASK [diaries : diaries:standalone-frontend | Check whether shared Nginx is running] ***
+skipping: [pluto]
+
+TASK [diaries : diaries:standalone-frontend | Validate shared Nginx after removing stale route] ***
+skipping: [pluto]
+
+TASK [diaries : diaries:standalone-frontend | Reload shared Nginx after removing stale route] ***
+skipping: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Validate MQTT credential variables] ***
+ok: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Calculate credential fingerprint] ***
+ok: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Check installed password file] ****
+ok: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Check installed password checksum marker] ***
+ok: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Read installed password checksum marker] ***
+ok: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Normalise installed password checksum] ***
+ok: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Decide whether password file must be regenerated] ***
+ok: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Create temporary password source file on target] ***
+skipping: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Write password source on target] ***
+skipping: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Hash password file in place] ******
+skipping: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Install hashed Mosquitto password file] ***
+skipping: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Write password source checksum marker] ***
+skipping: [pluto]
+
+TASK [diaries : diaries:mosquitto-password | Remove temporary password source from target] ***
+skipping: [pluto]
+
+TASK [diaries : diaries:compose | Increase the maximum receive and send buffer sizes] ***
+ok: [pluto] => (item=net.core.rmem_max)
+ok: [pluto] => (item=net.core.wmem_max)
+
+PLAY RECAP *********************************************************************
+pluto                      : ok=51   changed=2    unreachable=0    failed=0    skipped=13   rescued=0    ignored=0   
+
+=== Verify production runtime on pluto ===
+PASS: diaries-client rsmaxwell/diaries-client:0.0.9-build-79|healthy
+PASS: diaries-responder rsmaxwell/diaries-responder:0.0.9-build-86|healthy
+PASS: diaries-web rsmaxwell/diaries-web:0.0.9-build-9|healthy
+PASS: diaries-postgres healthy
+PASS: diaries-mosquitto healthy
+=== Verify retired options are absent ===
+PASS: Both retired properties absent
+PASS: Production runtime verification
