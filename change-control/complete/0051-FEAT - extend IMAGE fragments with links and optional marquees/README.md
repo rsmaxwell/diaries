@@ -6,15 +6,15 @@ Feature
 
 ## Status
 
-**In progress. Steps 1–3 CLOSED by explicit owner acceptance on 20 November 2026. Step 4 production delivery and functional checks passed; its formal closure decision is pending. Step 5 documentation and 0028/0029 handoff are prepared, pending final review and feature closure approval.**
+**CLOSED — formal feature closure approved by the owner on 21 November 2026. Steps 1–5 accepted.** Implementation, production activation, permanent authoring-gate retirement and the 0028/0029 handoff are complete. See the [formal closure record](evidence/Step%205/0051-FORMAL-CLOSURE-20261121.md) and the [final production acceptance receipt](evidence/Step%205/STEP5-PRODUCTION-CLEANUP-ACCEPTANCE-20261121.md).
 
 - [Step 1 evidence](evidence/Step%201/README.md): baseline and accepted cross-component contract.
 - [Step 2 evidence](evidence/Step%202/README.md): responder/DB/MQTT implementation, regressions and disposable PostgreSQL/MQTT receipt `c1759df22f5f`.
 - [Step 3 evidence](evidence/Step%203/README.md): accepted client and web implementation, browser/reader smoke and visual tests; the subsequent IMAGE Day Reader rendering correction passed 244 Angular tests and production build.
-- [Step 4 production acceptance review](evidence/Step%204/STEP4-PRODUCTION-ACCEPTANCE-REVIEW-20261121.md) and [evidence register](evidence/Step%204/STEP4-PRODUCTION-EVIDENCE-REGISTER-20261121.md): protected published-image rollback rehearsal PASS; production client `0.0.9-build-79`, responder `0.0.9-build-85`, web `0.0.9-build-9` and PostgreSQL/Mosquitto healthy; production extension-write gate activated on 21 November 2026. The owner confirmed corrected IMAGE 2332 rendering and stated **“0051 production activation functional checks all passed.”** This is owner-attested browser acceptance, not a claim of independent per-action database readback. A separate post-build-79 `local-docker-build` run was not evidenced; the review describes accepted coverage and that limitation.
-- [Step 5 acceptance/closure plan](evidence/Step%205/STEP5-ACCEPTANCE-AND-CLOSURE-PLAN-20261121.md) and [0028/0029 handoff](evidence/Step%205/STEP5-0028-0029-HANDOFF-20261121.md): prepared, not formally accepted.
+- [Step 4 production acceptance review](evidence/Step%204/STEP4-PRODUCTION-ACCEPTANCE-REVIEW-20261121.md) and [evidence register](evidence/Step%204/STEP4-PRODUCTION-EVIDENCE-REGISTER-20261121.md): the original rollout activated compatible authoring on client build-79, responder build-85 and web build-9, with owner-confirmed functional acceptance. This is the historical rollout state; the subsequent Step 5 deployment replaced responder build-85 with build-86 and removed both development gates. A separate post-build-79 local build was not recorded at the initial Step 4 review; the later gate-free local Docker build and five browser checks passed during Step 5.
+- [Step 5 closure](evidence/Step%205/0051-FORMAL-CLOSURE-20261121.md), [production acceptance receipt](evidence/Step%205/STEP5-PRODUCTION-CLEANUP-ACCEPTANCE-20261121.md) and [0028/0029 handoff](evidence/Step%205/STEP5-0028-0029-HANDOFF-20261121.md): accepted; 0028 production migration remains separately gated.
 
-**Post-activation rollback:** new-format IMAGE links/Marquees may now exist in production. Switching the extension-write gate off does **not** re-authorise old responder/client/web binaries as rollback targets; use compatible forward recovery or an independently verified restore plan.
+**Post-activation rollback:** new-format IMAGE links/Marquees may now exist in production. The temporary authoring feature gates have been removed permanently from responder build-86 and its Playbooks configuration. Older binaries are **not** safe rollback targets for new-format records; use compatible forward recovery or an independently verified restore plan.
 
 **Scope boundary:** 0028 production migration and 0029 destructive cleanup have not been authorised or executed under 0051. 0052-DEF (incorrect Whitley Park map content) remains a separate TODO defect.
 
@@ -195,27 +195,27 @@ verification, caption allocations or review reasons by itself.
 
 ## Acceptance criteria
 
-- [ ] Existing IMAGE type supports all four link/Marquee presence combinations.
-- [ ] Unlinked IMAGE and ordinary MARQUEE behaviour remains compatible.
-- [ ] HTTP/HTTPS destinations round-trip without semantic changes; unsafe URLs
+- [x] Existing IMAGE type supports all four link/Marquee presence combinations.
+- [x] Unlinked IMAGE and ordinary MARQUEE behaviour remains compatible.
+- [x] HTTP/HTTPS destinations round-trip without semantic changes; unsafe URLs
       are rejected and missing links retain plain-image rendering.
-- [ ] Link edits obey authorisation/locks/version checks; omitted updates
+- [x] Link edits obey authorisation/locks/version checks; omitted updates
       preserve it and deliberate clear works across RPC, DB and retained state.
-- [ ] IMAGE Marquees can be retained, added, edited and explicitly removed;
+- [x] IMAGE Marquees can be retained, added, edited and explicitly removed;
       Page consistency, uniqueness and geometry constraints hold.
-- [ ] Both UIs separate external image clicks from source highlighting and
+- [x] Both UIs separate external image clicks from source highlighting and
       keyboard fragment navigation; mixed/image-only days remain usable.
-- [ ] Day reader shows the correct Image ID after Position, including with a
+- [x] Day reader shows the correct Image ID after Position, including with a
       Marquee and with catalogue metadata pending; null state is explicit.
-- [ ] Deletion, reconnect and replay reconcile all Fragment/Marquee topics;
+- [x] Deletion, reconnect and replay reconcile all Fragment/Marquee topics;
       shared Images and file bytes remain untouched.
-- [ ] Existing-data schema upgrade and mixed-version deployment/rollback
+- [x] Existing-data schema upgrade and mixed-version deployment/rollback
       behaviour are rehearsed; no older writer can silently discard new state.
-- [ ] Updated 0028 contracts/checks support preservation without auto-approval;
+- [x] Updated 0028 contracts/checks support preservation without auto-approval;
       0029 no longer plans to prohibit valid IMAGE Marquees.
-- [ ] Relevant responder/client/web suites, builds and cross-component smoke
+- [x] Relevant responder/client/web suites, builds and cross-component smoke
       tests pass, with actual commands and evidence recorded.
-- [ ] Production capability is verified before 0028 resumes; temporary tooling
+- [x] Production capability is verified before 0028 resumes; temporary tooling
       is classified and removed from live/deployed paths where appropriate.
 
 ## Deployment, backup and rollback
@@ -225,17 +225,29 @@ The schema addition should be repeatable and non-destructive; existing links
 start null and existing relationships remain untouched. Audit actual schema
 constraints rather than assuming that changing JPA changes production safely.
 
-Establish a deployment/authoring gate so IMAGE-with-Marquee and linked IMAGE
-writes cannot start while incompatible consumers or writers are still active.
-Do not assume an old binary is a safe rollback after those states exist:
-older code explicitly rejects IMAGE Marquees and cannot maintain link fields.
-Rehearse rollback with preserved columns/data and document the cutoff after
-which coordinated forward recovery or a verified restore is needed. Do not
-drop the new column merely to roll back an application.
+The original rollout used deployment/authoring gates so IMAGE-with-Marquee
+and linked IMAGE writes could not start with incompatible consumers or writers.
+Following accepted production functionality, those temporary gates were retired
+from responder build-86 and Playbooks on 21 November 2026. No old writer is a
+safe rollback target after new-format records exist; use a compatible forward
+recovery or independently verified restore rather than dropping the new column.
 
 ## Validation and Git references
 
-The 20 November Step 1–3 evidence records the baseline, responder and PostgreSQL/MQTT integration, Angular production build and 240/240 initial Angular tests, web regression, and isolated editor/reader acceptance. The corrective Day Reader IMAGE rendering patch subsequently passed 244/244 Angular tests and production build. Client commit `7e0251d1c47720397504f3fd43fff09b6b7f2bb3` was pinned by parent `aace22faa2f2bf64f146b33dfc8714e43005cf1d`; Jenkins build-79 succeeded. On 21 November Ansible activation and production health checks passed with client 79, responder 85 and web 9, and the owner confirmed real IMAGE rendering and functional extension tests. See the [Step 4 review](evidence/Step%204/STEP4-PRODUCTION-ACCEPTANCE-REVIEW-20261121.md) for evidence limitations. The Playbooks working tree still had uncommitted feature changes at last inspection; do not claim a final published Playbooks revision until committed and verified. Formal 0051 closure has not been approved.
+The Step 1–3 evidence records the 20 November baseline, responder and
+PostgreSQL/MQTT integration, Angular/web regression and isolated editor/reader
+acceptance. The Step 4 review records the initial production rollout (client
+build-79, responder build-85, web build-9) and the original evidence limitations.
+After permanent authoring-gate removal, Java regression, local Docker health,
+five local GUI checks, Jenkins publication of responder build-86, coordinated
+Ansible deployment, five healthy production containers, absence of the obsolete
+JSON properties, Playbooks contract verification and the owner’s production
+browser acceptance all passed. The final deployment and acceptance receipt was
+committed in Diaries parent `bb9a1cbf1b1e7a20de67703961d598ccbf0505dc`.
+Playbooks commit `417de0887109324b5f78ba0fc1bd5591625e4f12` and
+controller commit `8efacfa26acaddbea2e0dd2eeab7c8947b29462a` were
+pushed. Formal closure was approved on 21 November 2026; see the
+[closure record](evidence/Step%205/0051-FORMAL-CLOSURE-20261121.md).
 
 ## Dependencies and completion
 
@@ -244,5 +256,6 @@ Marquee facilities. Blocks 0028's migration resumption and informs 0029's final
 invariants. Update active architecture/component docs when implementation
 changes behaviour; preserve historical completion evidence.
 
-Completion requires all acceptance evidence and an explicit capability handoff
-to 0028. This record's creation does not close either feature.
+All 0051 acceptance and handoff requirements have been met. Formal 0051 closure
+was approved on 21 November 2026. 0028 remains a separate, independently gated
+migration; nothing in this closure approves its production application.

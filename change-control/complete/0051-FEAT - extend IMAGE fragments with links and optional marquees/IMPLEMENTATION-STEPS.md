@@ -1,6 +1,6 @@
 # 0051 — Implementation steps and acceptance gates
 
-**Steps 1–3 CLOSED by explicit owner approval on 20 November 2026. Step 4 production rollout, gate activation and owner functional checks PASS; formal Step 4 closure decision pending. Step 5 handoff/docs prepared; formal feature closure OPEN.**
+**Steps 1–5 CLOSED.** Steps 1–3 were accepted on 20 November 2026. Step 4 production rollout and Step 5 permanent authoring-gate cleanup, documentation and handoff were accepted under the owner’s explicit approval of formal 0051 feature closure on **21 November 2026**. See [formal closure](evidence/Step%205/0051-FORMAL-CLOSURE-20261121.md).
 
 Step 1 evidence and contract are indexed in [Step 1 evidence](evidence/Step%201/README.md).
 Step 2 source changes, the first failed test-compilation run, corrected tests,
@@ -82,7 +82,7 @@ cross-component local smoke and visual evidence rather than unit tests alone.
 
 ## Step 4 — Update migration handoff and rehearse compatible rollout
 
-**PRODUCTION VERIFICATION PASS; formal Step 4 owner closure decision pending.**
+**CLOSED on 21 November 2026 under explicit owner approval of 0051 formal closure.** The original production rollout and owner functional checks passed; follow-on permanent gate retirement is recorded in Step 5.
 The [Step 4 production acceptance review](evidence/Step%204/STEP4-PRODUCTION-ACCEPTANCE-REVIEW-20261121.md)
 and [evidence register](evidence/Step%204/STEP4-PRODUCTION-EVIDENCE-REGISTER-20261121.md)
 record the 0028 compatibility-tool changes, protected published-image rollback
@@ -110,8 +110,10 @@ it accurately. Passing a draft checker alone does not satisfy this gate.
 
 ## Step 5 — Accept capability and hand off 0028
 
-**Documentation and handoff package applied in the owner's Windows working copy;
-Git diff checks PASS on 21 November 2026. Formal acceptance and closure OPEN.**
+**CLOSED on 21 November 2026.** Durable documents and 0028/0029 handoff were
+committed, responder build-86 was published and deployed with gate-free Playbooks,
+Java regression and local/production acceptance passed, and final evidence was
+committed in parent `bb9a1cb`. The owner expressly approved formal 0051 closure.
 See the [Step 5 plan](evidence/Step%205/STEP5-ACCEPTANCE-AND-CLOSURE-PLAN-20261121.md)
 and [0028/0029 handoff](evidence/Step%205/STEP5-0028-0029-HANDOFF-20261121.md).
 
@@ -123,8 +125,19 @@ and [0028/0029 handoff](evidence/Step%205/STEP5-0028-0029-HANDOFF-20261121.md).
   historical feature tooling; remove temporary deployed helpers at close-out.
 - Record the explicit 0028 resumption handoff. Reconcile fresh DB/Files evidence
   before reusing prior reviewed decisions; resume its own rehearsal/apply gates.
-- Do not mark 0051 complete, migrate legacy data, commit or push solely because
-  this planning document lists those later steps.
+- 0051 was marked complete only after the required evidence was accepted and the
+  owner expressly approved formal closure on 21 November 2026. This does not
+  authorise migration of legacy data under 0028.
 
 **Gate:** accepted capability and traceable handoff. 0028 remains a distinct
 migration with its own outstanding decisions and production approval.
+
+## Formal completion record — 21 November 2026
+
+- **Step 4: CLOSED** — initial compatible production activation and owner acceptance; see its original evidence register.
+- **Step 5: CLOSED** — production responder `0.0.9-build-86`, gate-free responder JSON/Playbooks, all five containers healthy, local five-test GUI acceptance, owner production browser acceptance, Playbooks contract pass, and committed evidence.
+- Parent implementation `94d2b91`, final acceptance evidence `bb9a1cb`; responder `4109c37`; Playbooks `417de08`; controller `8efacfa`.
+- The old development flags were deliberately retired and are not a runtime rollback mechanism; older binaries are not safe for new-format IMAGE records.
+- The separate 0028 migration and 0029 lifecycle work remain controlled by their own gates; 0052 stays TODO.
+
+[Formal closure record](evidence/Step%205/0051-FORMAL-CLOSURE-20261121.md) and [production acceptance receipt](evidence/Step%205/STEP5-PRODUCTION-CLEANUP-ACCEPTANCE-20261121.md).
