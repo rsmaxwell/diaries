@@ -74,21 +74,26 @@ Delete Image    -> removes catalogue metadata/file/topic only when no Fragment r
 
 The responder is authoritative for the Image reference check. A 409/reference conflict must leave the Image row, retained topic and physical file intact. Removing the last Fragment reference does not implicitly delete the Image.
 
-## Authoring gate
+## Permanent authoring policy (0051 Step 5 cleanup)
 
-The responder configuration property is:
+Normal IMAGE creation, image-reference SET/CLEAR, external HTTP(S) link SET/CLEAR,
+and optional same-Page Marquee attach/edit/remove are permanently available to
+authorised Editors. The rollout-only JSON options `imageFragmentWritesEnabled`
+and `imageFragmentExtensionsWritesEnabled` and corresponding Ansible settings
+are retired. Authorisation, locks, optimistic versions, image references, link
+validation and same-Page Marquee ownership remain mandatory. Ordinary updates
+that omit relationship/link fields preserve existing values.
 
-```json
-"imageFragmentWritesEnabled": true|false
-```
+Remove both obsolete keys from local `%USERPROFILE%\.diaries\responder.json`
+and `%USERPROFILE%\.diaries\responder.docker.json` before using the cleaned-up
+responder. The new strict JSON parser rejects obsolete properties. The Ansible
+production template and upgraded responder must be deployed together; updating
+only the template while using an older responder would disable legacy write gates.
 
-The gate controls only new IMAGE creation and actual `imageId` mutations. When false, those actions return 403. Existing IMAGE Fragments can still be read, locked/unlocked, edited for text/date/sequence, normalised and deleted because those operations preserve/omit `imageId`.
-
-Production renders the original IMAGE gate from Ansible `diaries_image_fragment_writes_enabled`; the normal role default is `true`. **0051 adds the separate responder gate `imageFragmentExtensionsWritesEnabled`**, rendered from `diaries_image_fragment_extensions_writes_enabled`. The extension gate was deployed **false** with the coordinated new components and enabled in production on 21 November 2026 only after a protected rollback rehearsal, recovery checks and supported component verification.
-
-Setting the extension gate to `false` again can stop **new extension-format writes**, but it does **not** remove existing link/Marquee records or make older binaries safe rollback targets after such a record has been written. After activation/first new-format write, recover using compatible images or a separately authorised, verified data restore. Never drop the additive schema column to imitate a rollback. The original `imageFragmentWritesEnabled=false` remains an independent stop on ordinary new IMAGE creation/reference mutation, not an undo operation.
-
-For local operation, `true` is also the normal value. Direct development reads the developer-owned `%USERPROFILE%\.diaries\responder.json` (via the generated effective development config). `local-docker-build` and `local-published-smoke` use the external responder JSON selected by `DIARIES_RESPONDER_DOCKER_CONFIG_FILE`, normally `%USERPROFILE%\.diaries\responder.docker.json`, mounted as `/config/responder.json`. There is no environment-variable override for the gate itself. Use missing/null/false only when deliberately verifying the disabled gate or exercising rollback/emergency-stop behaviour.
+The post-0051 rollback boundary remains: older pre-extension responder/reader
+builds are not safe rollback targets after extension-format records exist.
+Use a compatible responder build and the established matched database/Files
+backup process for recovery; do not drop the `image_link_url` schema column.
 
 The production client MQTT ACL must include read access to `diaries/images/+`; Fragment/RPC access alone is not sufficient to resolve catalogue metadata.
 

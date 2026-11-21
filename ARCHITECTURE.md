@@ -370,15 +370,27 @@ The editor Day Reader shows `Image ID: N` **after Position**, then the full cata
 
 `deleteFragment` is type-aware. Deleting an IMAGE Fragment deletes the Fragment and its retained Fragment aliases only. It never cascades into Image deletion. The reusable Image row, retained Image metadata and physical file remain until a separate catalogue deletion is requested. That Image deletion is reference-aware and is rejected while any Fragment still refers to the Image.
 
-### Production authoring gate and rollback
+### Permanent IMAGE authoring and rollback compatibility
 
-`imageFragmentWritesEnabled` is a responder configuration gate, not a client-only feature flag. With the gate disabled, new IMAGE Fragment creation and actual Image-reference mutation return 403; reading, replay, lock/unlock, text/date/sequence edits, normalisation and Fragment deletion continue to work.
+IMAGE creation, catalogue-image attachment/replacement/clearing, external HTTP(S) links,
+and optional same-Page Marquees are supported permanent Editor operations. The two
+rollout-only responder JSON properties (`imageFragmentWritesEnabled` and
+`imageFragmentExtensionsWritesEnabled`) and their Ansible variables were removed
+in the 0051 Step 5 cleanup. No deployment flag can disable IMAGE mutations; security
+continues to depend on active Editor authorisation, valid locks and versions,
+transactional consistency, reference checks, and link/Marquee validation.
 
-Production renders the setting from Ansible `diaries_image_fragment_writes_enabled`. After the successful 0027 rollout, the role source default is `true`, making IMAGE Fragment authoring the normal supported production mode. Setting it to `false` and restarting/redeploying the responder is the non-destructive emergency/rollback stop; existing IMAGE data stays intact and ordinary IMAGE text/date/sequence editing remains available.
+Development configurations and production templates must **omit** the retired JSON
+keys. A new responder does not accept these legacy keys; remove them from local
+`%USERPROFILE%\.diaries\responder.json` and `responder.docker.json` before
+running a cleaned-up responder. Production deployment must upgrade the Ansible
+responder JSON template and the compatible rebuilt responder image **together**.
 
-Local modes use the same responder JSON property with `true` as the normal post-0027 value. Direct development takes it from `%USERPROFILE%\.diaries\responder.json`; `local-docker-build` and `local-published-smoke` take it from the external JSON selected by `DIARIES_RESPONDER_DOCKER_CONFIG_FILE` (normally `%USERPROFILE%\.diaries\responder.docker.json`). Missing/null/false remains fail-closed and is appropriate only for deliberate disabled-gate/rollback testing or an emergency authoring stop.
-
-0051 introduces a **separate** `imageFragmentExtensionsWritesEnabled` responder JSON property. Production renders it from Ansible `diaries_image_fragment_extensions_writes_enabled`. The compatible client/responder/web versions were deployed with extension writes disabled; production activated the gate on **21 November 2026** with client `0.0.9-build-79`, responder `0.0.9-build-85` and web reader `0.0.9-build-9`, with all five services healthy. Protected pre-write legacy rollback was tested, but **after the first extension-format write the older responder/reader versions are not approved rollback targets**. Disabling the gate is a forward safety stop only; it does not erase existing new-format records or restore old-binary compatibility.
+After 0051 extension records have been written, pre-0051 responder/reader versions
+are not supported rollback targets. Disabling the obsolete feature switches is no
+longer an available rollback. Use compatible application images and established
+matched database/Files backup and recovery procedures as appropriate; no schema
+columns or records are deleted during this cleanup.
 
 0027 production verification used client `0.0.9-build-76`, responder `0.0.9-build-84` and reader `0.0.9-build-8`. The controlled lifecycle verified create, ordinary preserve edits, replace, clear, reattach, delete guard, restart/replay, reader/editor agreement and cleanup.
 

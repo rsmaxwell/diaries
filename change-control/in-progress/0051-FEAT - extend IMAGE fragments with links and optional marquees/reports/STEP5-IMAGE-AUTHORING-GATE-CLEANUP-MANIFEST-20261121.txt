@@ -1,0 +1,42 @@
+0051-FEAT Step 5 SOURCE PATCH manifest (21 November 2026)
+Source bundles: diaries-sources-20261121-111041.zip; playbook-sources-20261121-111343.zip
+Apply Diaries and Playbooks ZIPs separately at the respective repository roots.
+Source files to remove in Diaries after overlay:
+  DELETE diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageFragmentWritePolicy.java
+  DELETE diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageFragmentExtensionsWritePolicy.java
+  DELETE diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/config/ImageFragmentGateConfigTest.java
+
+DIARIES SHA-256 payload:
+144de15fed0011ff44825b17b13f578588bd156f6a084f999171ddcec9728603  ARCHITECTURE.md
+4d7b1e62d091912f29dbf61f546db9e80442ce93051287f0184ed938dbe2e209  docs/IMAGE-FRAGMENT-AUTHORING.md
+c6ccc49b60bfc1cba452f124aa1b89e38176c282012f974e4f99f9f8ed6ec5e8  config/environments/local.env.example
+8285271cf8b244acdcdc83ba7c157e7e98b29ff13867cf4a51e03d35448df544  diaries-client/README.md
+072556b83bdd51e5b86212493233fcc6936c73b2ec2198a70250614d4ed33203  diaries-responder/README.md
+f70016fc3464ba8415be34d3f8658447b2272baf9234545277c3610c5b6d494a  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/config/Config.java
+571b9e84e5d3ba1babffe09a0c3777afbb8eb770b3d63a7153699467e6f7cbb3  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/AddImageFragment.java
+129f7892f5c03540f85de56ee0d4882d49c89c3da5801cf1f66c0b86cb0a4d4d  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/AddMarquee.java
+3b8f0cfa040518b8775e5fe7b5f1ccacbbd34307c0c460da533ada493db51c6c  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/DeleteMarquee.java
+087b852559cc63d41906131368bc568359e21d7ea660873ea5c081e03cfd1ef1  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/UpdateFragment.java
+eadecf0d4c5ab14895513f867ae019a153792f060fb99b4d2a6256c658163f92  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/handlers/UpdateMarquee.java
+68197c8217f779d454fde40728930e57805c40a8892ac14d7e9e9f3a9bdd6049  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/DiaryContext.java
+284fff493ff46ea88f952a5993746ddf3477a5d142918caf5ae04b9c019f0c0f  diaries-responder/src/main/java/com/rsmaxwell/diaries/responder/utilities/ImageLinkWritePolicy.java
+3fd68b346559124a9ca7ce7f4ae1d594b8463cc109782ec41f235e5a383451a5  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/ImageWiringIntegrationTest.java
+cf2915e27223b93bb8629ceffeca0ae8dce6519581ce0e33ac7695616ba82969  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/config/ImageAuthoringConfigTest.java
+e09c9956932b6bcfff16ae8f80b5a6c8f7a85c50d688e3c2d0cd6e8ea1b86469  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/handlers/AddImageFragmentTest.java
+be45ac806df923ed6ebb15fcaad8d5ad4f4dded177cab28f3e89a6b7c5dc2909  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/handlers/FragmentLifecycleContractTest.java
+8a00a852336fc2f6819a170bcd76de9e1760ecce74ec8508e818d8a6d96f2ed4  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/handlers/UpdateFragmentImageTest.java
+21a5242c0b753be897e6776c1ce94c8ecc4c3d79d6ff142831d8bd68303f29a8  diaries-responder/src/test/java/com/rsmaxwell/diaries/responder/utilities/ImageLinkWritePolicyTest.java
+db383357aff6f3bc7582b8900e28c1b9fd76f58097c4053b10da93d0789edc57  scripts/windows/validation/smoke-imagefragment-reader.cjs
+024dc8b6878ff2c219ad187d29df20773d4690879c47acf6e72332b98d7585c9  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/tests/step3-isolated-reader-smoke.cjs
+e8571addcacf5581e7242756d7ccc864cc30ea150ceb309b2ae9853e7b604b04  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/tests/verify-step5-retired-authoring-gates.py
+a599fbcd1c2db15e308a1f989d03eab8327e3531dca61f264508b20acf2042f6  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/tools/remove-retired-image-authoring-config.py
+ea1d23e2c05db135b9af3bdef522d05469d53d3e7ab913d33df6c1d143a322a7  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/tools/remove-retired-image-gate-java-sources.sh
+b7769d4036d363ce98450a3b93a8b47d3652aaa3611d29980e184e4a7f467d9a  change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/reports/STEP5-IMAGE-AUTHORING-GATE-CLEANUP-20261121.md
+
+PLAYBOOKS SHA-256 payload:
+8652ed21f4ec9aaa2fa917cc834e943500a75326a6b27af97fe9cd6577a07b89  roles/diaries/defaults/main.yaml
+7ab3aa512b4e65d93f188c587dc204371266b091e8aa8a5af2e4007eabf87014  roles/diaries/tasks/main.yaml
+38f91b3d0b39e8cbe87b31acfbbf6e0a165f75758b66e74b7f5a753d9e4cca66  roles/diaries/tasks/copy.yaml
+608e8aaa2562b60db8b65cfbc2aec073cc44a9de55da6b70a8b83de9021ecd00  roles/diaries/templates/config/responder/responder.json.j2
+5a2551a20a77c233cb326d2ec7d031271d0afc102e189ad436ba3a32ec90c3b8  roles/diaries/README.md
+98b33151845716d87968ec2eec962bb161c1d5ca0832367c638322ddd6c484cc  roles/diaries/tests/verify-production-deployment-contract.py

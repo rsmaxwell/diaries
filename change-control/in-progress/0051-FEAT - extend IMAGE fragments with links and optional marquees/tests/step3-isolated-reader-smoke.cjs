@@ -49,7 +49,7 @@ const summary = {
   liveDevelopmentDatabaseModified: false,
   productionDatabaseModified: false,
   liveNasModified: false,
-  imageFragmentWritesEnabledInitially: step4Rehearsal,
+  imageAuthoringMode: "permanently-enabled",
   acceptanceMode: step4Rehearsal ? 'rollout-preactivation' : (process.env.STEP3_EDITOR_ONLY === '1' ? 'angular-editor' : 'public-reader')
 };
 async function docker(...args) { return (await run('docker', args, { maxBuffer: 64 * 1024 * 1024 })).stdout.trim(); }
@@ -310,13 +310,13 @@ async function main() {
   summary.mqttUrl='mqtt://127.0.0.1:'+await port(broker,1883);
   await waitFor('Mosquitto', async()=>{ try { const probe=await connect('diaries-health'); await probe.endAsync(); return true; } catch { return false; } });
   const proxyPort=await unusedPort(); summary.publicOrigin='http://127.0.0.1:'+proxyPort;
-  const responderConfig = (imageWritesEnabled, extensionWritesEnabled = imageWritesEnabled) => ({
+  const responderConfig = () => ({
     db:{jdbc:{dbms:'postgresql',driver:'org.postgresql.Driver'},host:db,port:5432,database:'step13',admin:{username:'diaries',password:''},users:[{username:'diaries',password:''}],additionalConnectionProperties:{'hibernate.hbm2ddl.auto':'validate'}},
     diaries:{root:'/data',files:'files',diaries:'diaries',baseUrl:'http://localhost:8081'},mqtt:{host:broker,port:1883,user:{username:'diaries-responder',password:'step13-fixture'}},
-    refreshPeriod:'30m',refreshExpiration:'2h',normaliseOnStartup:false,imageFragmentWritesEnabled:imageWritesEnabled,imageFragmentExtensionsWritesEnabled:extensionWritesEnabled,
+    refreshPeriod:'30m',refreshExpiration:'2h',normaliseOnStartup:false,
     secret:Buffer.from('step13-disposable-signing-key-01234567890123456789').toString('base64')
   });
-  fs.writeFileSync(path.join(output,'responder.json'),JSON.stringify(responderConfig(step4Rehearsal, false),null,2));
+  fs.writeFileSync(path.join(output,'responder.json'),JSON.stringify(responderConfig(),null,2));
   const javaImage=process.env.STEP13_JAVA_IMAGE || 'diaries-responder:local';
   // These are disposable containers, so always populate both fixture trees. Checking
   // only for /data/files could accidentally skip copying the synthetic Page files
@@ -490,8 +490,7 @@ async function main() {
   const marqueeArgs={pageId:first.page_id,year:first.year,month:first.month,day:first.day,sequence:await nextSequence(first,10),text:'Step 13 fixture MARQUEE',x:Math.max(10,first.width*.12),y:Math.max(10,first.height*.12),width:Math.max(80,first.width*.30),height:Math.max(80,first.height*.20)};
   write('marquee-fixture-request.json', marqueeArgs);
   const marquee=await rpc('addFragment',marqueeArgs); expectRpcStatus(marquee,200,`addFragment ${JSON.stringify(marqueeArgs)}`); const marqueeId=marquee.payload.id;
-  const blocked=await rpc('addImageFragment',{pageId:first.page_id,year:first.year,month:first.month,day:first.day,sequence:await nextSequence(first,20),text:'Step 13 gate-disabled IMAGE'}); expectRpcStatus(blocked,403,'gate-disabled addImageFragment'); write('gate-disabled.json',blocked);
-  checks.push('MARQUEE creation succeeds while IMAGE authoring gate is disabled; addImageFragment is rejected with 403');
+  checks.push('Legacy MARQUEE creation succeeds with permanent IMAGE authoring available');
   const baselineRoute=`/reader/diaries/${first.diary_id}/${first.year}/${String(first.month).padStart(2,'0')}?fragment=${marqueeId}#fragment-${marqueeId}`;
   await waitFor('web live MARQUEE', async()=> (await (await fetch(summary.publicOrigin+baselineRoute)).text()).includes(`data-reader-fragment="${marqueeId}"`));
   const baselineHtml=await (await fetch(summary.publicOrigin+baselineRoute)).text();
@@ -507,30 +506,22 @@ async function main() {
     responseSha256:pageBytesResponse.ok?sha(pageBytes):null,
     expectedSha256:sourceProbes[0].expectedSha256,
     errorBody:pageBytesResponse.ok?null:pageBytes.toString('utf8').slice(0,400)};
-  write('gate-disabled-page-http.json',browserPrefixProbe);
+  write('baseline-page-http.json',browserPrefixProbe);
   assert.equal(decodeURIComponent(pageUrl),decodeURIComponent(expectedPageUrl),
-    'Web reader emitted an unexpected synthetic Page URL; see gate-disabled-page-http.json');
+    'Web reader emitted an unexpected synthetic Page URL; see baseline-page-http.json');
   assert.equal(pageBytesResponse.status,200,
-    `Synthetic Page bytes unavailable through /diaries-responder (HTTP ${pageBytesResponse.status}); see gate-disabled-page-http.json`);
+    `Synthetic Page bytes unavailable through /diaries-responder (HTTP ${pageBytesResponse.status}); see baseline-page-http.json`);
   assert.equal(browserPrefixProbe.responseSha256,browserPrefixProbe.expectedSha256,
-    'Reverse proxy served incorrect synthetic Page bytes; see gate-disabled-page-http.json');
+    'Reverse proxy served incorrect synthetic Page bytes; see baseline-page-http.json');
   const chrome=process.env.CHROME_BIN || ['C:/Program Files/Google/Chrome/Application/chrome.exe','C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'].find(x=>fs.existsSync(x)); assert(chrome&&fs.existsSync(chrome),'Set CHROME_BIN or install Chrome/Edge');
   browser=await chromium.launch({executablePath:chrome,headless:true});
-  const gateContext=await browser.newContext({viewport:{width:1440,height:1050}}); const gatePage=await gateContext.newPage(); gatePage.setDefaultTimeout(25000);
-  await gatePage.goto(summary.publicOrigin+baselineRoute); await gatePage.locator(`[data-reader-fragment="${marqueeId}"]`).waitFor();
-  assert.equal(await gatePage.locator(`[data-reader-fragment="${marqueeId}"]`).getAttribute('data-has-marquee'),'true');
-  assert.equal(await gatePage.locator('[data-viewer-action="fit-selection"]').isEnabled(),true);
-  await waitFor('gate-disabled MARQUEE source page', async()=> (await gatePage.locator('[data-viewer-message]').textContent()) !== 'The source image could not be loaded.');
-  await gatePage.screenshot({path:path.join(evidence,'gate-disabled-marquee.png'),fullPage:true}); await gateContext.close();
-  checks.push('Browser MARQUEE selection/source rendering is healthy while Image authoring remains disabled');
-  fs.writeFileSync(path.join(output,'responder.json'),JSON.stringify(responderConfig(true),null,2));
-  summary.imageFragmentWritesEnabledFixture=true;
-  const gateRestart=new Date().toISOString(), beforeGatePort=upstreamPorts.responder;
-  await docker('restart',responder);
-  await responderReady(gateRestart);
-  await refreshResponderHttpAfterRestart('gate-enabled',beforeGatePort);
-  await waitFor('web ready after gated responder restart',async()=>
-    (await fetch(summary.webDirectUrl+'/reader/health/ready',{signal:AbortSignal.timeout(2500)})).ok);
+  const baselineContext=await browser.newContext({viewport:{width:1440,height:1050}}); const baselinePage=await baselineContext.newPage(); baselinePage.setDefaultTimeout(25000);
+  await baselinePage.goto(summary.publicOrigin+baselineRoute); await baselinePage.locator(`[data-reader-fragment="${marqueeId}"]`).waitFor();
+  assert.equal(await baselinePage.locator(`[data-reader-fragment="${marqueeId}"]`).getAttribute('data-has-marquee'),'true');
+  assert.equal(await baselinePage.locator('[data-viewer-action="fit-selection"]').isEnabled(),true);
+  await waitFor('MARQUEE source page', async()=> (await baselinePage.locator('[data-viewer-message]').textContent()) !== 'The source image could not be loaded.');
+  await baselinePage.screenshot({path:path.join(evidence,'baseline-marquee.png'),fullPage:true}); await baselineContext.close();
+  checks.push('Browser MARQUEE selection/source rendering is healthy with permanent IMAGE authoring available');
   async function upload(name,subdir,filename){ const bytes=fs.readFileSync(path.join(output,'inputs',filename)); const result=await rpc('uploadFile',{name,subdir,bytes:bytes.toString('base64'),size:bytes.length,contentType:'image/png'}); expectRpcStatus(result,200,`uploadFile ${name} in ${subdir}`); assert(result.payload.imageId); return result.payload; }
   // Only one synthetic catalogued image is needed for 0051; the already-accepted
   // 0026 missing-media and shared-image lifecycle suites are NOT rerun here.
