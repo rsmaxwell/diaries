@@ -13,7 +13,7 @@ function verifyRepositoryDigest(inspected, expected, label) {
 }
 
 async function runStep4RolloutChecks(ctx) {
-  const {root,output,summary,checks,first,responder,web,broker,prefix,owned,
+  const {root,output,summary,checks,first,responder,web,broker,prefix,owned,filesVolume,
     docker,container,port,sql,rows,rpc,waitFor,write,retainedSnapshot,
     retainedPayload,expectRpcStatus,responderConfig,relogin} = ctx;
   const env = process.env;
@@ -189,11 +189,13 @@ async function runStep4RolloutChecks(ctx) {
     write('step4-retired-containers.json',retired);
   }
   const newResponderArgs=['-p','127.0.0.1::8081',
-    '--mount',`type=bind,source=${path.join(output,'files')},target=/data/files`,
+    '-e','CONFIG_FILE=/fixture/responder.json',
+    '--mount',`type=volume,source=${filesVolume},target=/data/files`,
     '--mount',`type=bind,source=${path.join(output,'diaries')},target=/data/diaries,readonly`,
     '--mount',`type=bind,source=${output},target=/fixture,readonly`];
   const legacyResponderArgs=['-p','127.0.0.1::8081',
-    '--mount',`type=bind,source=${path.join(output,'files')},target=/data/files`,
+    '-e','CONFIG_FILE=/config/responder.json',
+    '--mount',`type=volume,source=${filesVolume},target=/data/files`,
     '--mount',`type=bind,source=${path.join(output,'diaries')},target=/data/diaries,readonly`,
     '--mount',`type=bind,source=${path.join(output,'step4-legacy-responder.json')},target=/config/responder.json,readonly`];
   const webEnv=['-e','DIARIES_WEB_MQTT_USERNAME=diaries-web',
@@ -226,7 +228,7 @@ async function runStep4RolloutChecks(ctx) {
   // Re-upgrade, still gate false. Confirm existing state and retained replay.
   await removeOwned(web);await removeOwned(responder);
   fs.writeFileSync(path.join(output,'responder.json'),JSON.stringify(responderConfig(true,false),null,2));
-  await container(responder,[...newResponderArgs,images.candidate.responder,'--config','/fixture/responder.json']);
+  await container(responder,[...newResponderArgs,images.candidate.responder]);
   await waitFor('re-upgraded responder subscription',async()=>
     (await docker('logs','--tail','120',responder)).includes('diaries/rpc/request'),90000);
   await container(web,[...webArgs,images.candidate.web]);
@@ -241,7 +243,7 @@ async function runStep4RolloutChecks(ctx) {
   // Cross the rollback boundary only after old containers are gone.
   await removeOwned(responder);
   fs.writeFileSync(path.join(output,'responder.json'),JSON.stringify(responderConfig(true,true),null,2));
-  await container(responder,[...newResponderArgs,images.candidate.responder,'--config','/fixture/responder.json']);
+  await container(responder,[...newResponderArgs,images.candidate.responder]);
   await waitFor('activated candidate responder subscription',async()=>
     (await docker('logs','--tail','120',responder)).includes('diaries/rpc/request'),90000);
   await relogin();

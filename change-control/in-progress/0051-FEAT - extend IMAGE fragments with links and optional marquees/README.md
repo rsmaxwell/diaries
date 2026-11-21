@@ -6,34 +6,17 @@ Feature
 
 ## Status
 
-**In progress — Steps 1, 2 and 3 CLOSED by explicit owner approval; Steps 4–5 OPEN.**
+**In progress. Steps 1–3 CLOSED by explicit owner acceptance on 20 November 2026. Step 4 production delivery and functional checks passed; its formal closure decision is pending. Step 5 documentation and 0028/0029 handoff are prepared, pending final review and feature closure approval.**
 
-The [Step 1 evidence](evidence/Step%201/README.md) contains the approved
-cross-component contract and pre-change regression baseline. The responder
-Step 2 implementation has been applied and tested on the owner's Windows
-working copy. The full responder Gradle test task completed successfully on
-20 November 2026 after correction of two test-source compilation errors and
-one stale legacy-invariant assertion. The disposable PostgreSQL/MQTT integration
-run `c1759df22f5f` reported PASSED, with two JUnit integration tests, no
-failures/errors/skips, idempotent schema migration and preserved existing
-values. The owner independently checked its `result.json`, JUnit summary and
-SHA-256 manifest. See the [Step 2 acceptance review](evidence/Step%202/STEP2-ACCEPTANCE-REVIEW-20261120.md).
+- [Step 1 evidence](evidence/Step%201/README.md): baseline and accepted cross-component contract.
+- [Step 2 evidence](evidence/Step%202/README.md): responder/DB/MQTT implementation, regressions and disposable PostgreSQL/MQTT receipt `c1759df22f5f`.
+- [Step 3 evidence](evidence/Step%203/README.md): accepted client and web implementation, browser/reader smoke and visual tests; the subsequent IMAGE Day Reader rendering correction passed 244 Angular tests and production build.
+- [Step 4 production acceptance review](evidence/Step%204/STEP4-PRODUCTION-ACCEPTANCE-REVIEW-20261121.md) and [evidence register](evidence/Step%204/STEP4-PRODUCTION-EVIDENCE-REGISTER-20261121.md): protected published-image rollback rehearsal PASS; production client `0.0.9-build-79`, responder `0.0.9-build-85`, web `0.0.9-build-9` and PostgreSQL/Mosquitto healthy; production extension-write gate activated on 21 November 2026. The owner confirmed corrected IMAGE 2332 rendering and stated **“0051 production activation functional checks all passed.”** This is owner-attested browser acceptance, not a claim of independent per-action database readback. A separate post-build-79 `local-docker-build` run was not evidenced; the review describes accepted coverage and that limitation.
+- [Step 5 acceptance/closure plan](evidence/Step%205/STEP5-ACCEPTANCE-AND-CLOSURE-PLAN-20261121.md) and [0028/0029 handoff](evidence/Step%205/STEP5-0028-0029-HANDOFF-20261121.md): prepared, not formally accepted.
 
-**Step 2 CLOSED** by explicit owner approval on 20 November 2026, following the verified responder regression and isolated PostgreSQL/MQTT run. See the [Step 2 closure record](evidence/Step%202/STEP2-CLOSURE-20261120.md).
-Step 3 implementation and its local verification have run in the owner's Windows working copy. The Angular production build, 240/240 Chrome Headless tests, corrected targeted web-reader HTTP tests, integrated public-reader smoke `20261120T140504Z-fe13662e`, and signed-in Angular editor acceptance run `20261120T150113Z-d8ec629c` all passed. The six editor screenshots and JSON receipts were reviewed on 20 November; the [Step 3 acceptance review](evidence/Step%203/STEP3-ACCEPTANCE-REVIEW-20261120.md) records scope, limitations and a non-blocking mobile heading observation. Step 3 was formally CLOSED by explicit owner approval on 20 November 2026; see the [Step 3 closure receipt](evidence/Step%203/STEP3-CLOSURE-20261120.md) and [Step 3 evidence](evidence/Step%203/README.md).
-This is local and isolated verification only. No production migration,
-deployment, feature-gate activation or 0028 conversion has occurred.
-Step 4 now has an [offline migration compatibility review](evidence/Step%204/STEP4-MIGRATION-COMPATIBILITY-IMPLEMENTATION-20261120.md)
-from the refreshed 15:28 source bundle. It does not close Step 4 or authorise
-0028 conversion or live deployment. The separate 0051 extension-write gate
-must remain disabled during coordinated rollout.
-The [disposable Step 4 rollout/rollback rehearsal](evidence/Step%204/STEP4-DISPOSABLE-ROLLOUT-REHEARSAL-20261120.md) is prepared for Windows PowerShell 7 but has **not been run**. It uses uniquely tagged local images and checks historic production image IDs; it does not deploy or change any production state.
-The Step 4 rollout workflow now uses the existing **Jenkins/Docker Hub published images** and the Windows `local-published-smoke` image selection, with disposable test data for mutating rollback checks. See the [Jenkins-published image rehearsal plan](evidence/Step%204/STEP4-JENKINS-PUBLISHED-SMOKE-PLAN-20261120.md). The replacement local-build rehearsal is retired; no Jenkins publication or production rollout has yet occurred.
+**Post-activation rollback:** new-format IMAGE links/Marquees may now exist in production. Switching the extension-write gate off does **not** re-authorise old responder/client/web binaries as rollback targets; use compatible forward recovery or an independently verified restore plan.
 
-The [Step 4 handoff](evidence/Step%204/STEP4-HANDOFF-20261120.md) sets out the next
-implementation and deployment-rehearsal boundaries without modifying 0028 drafts. The
-[implementation plan](IMPLEMENTATION-STEPS.md) remains authoritative for the
-remaining migration-handoff, compatible-rollout and final acceptance gates in Steps 4–5.
+**Scope boundary:** 0028 production migration and 0029 destructive cleanup have not been authorised or executed under 0051. 0052-DEF (incorrect Whitley Park map content) remains a separate TODO defect.
 
 ## Priority
 
@@ -61,13 +44,14 @@ It does not itself authorise or execute the legacy conversion.
   wrapping an image. Each has one destination: 29 HTTPS and one HTTP. None has
   an explicit `target` or `rel` attribute. These are historical observations,
   not a fresh production inventory or proof that external destinations work.
-- Of those 30, 22 also have an existing Marquee relationship. Current IMAGE
-  contracts prohibit Marquees, forcing removal or retention as legacy HTML.
+- Of those 30, 22 also have an existing Marquee relationship. At feature
+  creation, IMAGE contracts prohibited Marquees; the deployed 0051 contract
+  now permits an optional same-Page source Marquee.
 - Current web templates render IMAGE media separately from fragment text.
   Their image-file fallback does not preserve an external click destination.
-- The client currently rejects Image-reference edits when `marqueeId` is
-  non-null. Model, mutation, locking and selection assumptions must change
-  together; a reader-only patch is insufficient.
+- Before 0051, the client rejected Image-reference edits when `marqueeId` was
+  non-null. The integrated model, mutation, locking and selection paths were
+  changed together; the deployed fix is not reader-only.
 - `diaries-client/src/app/dayview/dayview.component.html` already places an
   `Image N` label after Position for typed IMAGE fragments. Its helper returns
   `No Image selected` for an unattached IMAGE. This request makes the identity
@@ -93,9 +77,9 @@ Marquee  -> belongs to exactly one Fragment; at most one per Fragment
 The nullable legacy Page/type compatibility window remains until 0028/0029
 resolve it. This feature does not introduce global NOT NULL cleanup.
 
-`imageLinkUrl` is the proposed public field, backed by a nullable Fragment
-column such as `image_link_url`. Confirm the exact names and storage limits in
-Step 1 and use them consistently in DB, DTOs, RPC, retained JSON and both UIs.
+`imageLinkUrl` is the implemented public field, backed by nullable PostgreSQL
+`fragment.image_link_url` (`VARCHAR(4096)`). Step 1 fixed the names and
+storage limit, used consistently across DB, DTOs, RPC, retained JSON and both UIs.
 The URL belongs to the Fragment, not reusable Image metadata: two occurrences
 of one Image can link to different destinations.
 
@@ -184,7 +168,8 @@ it; modifications there require their own authorised writable scope.
 
 ## Migration and 0028 handoff
 
-0028 is paused. Preserve its frozen inputs and latest reviewed draft unchanged.
+0028 remains paused pending its own formally approved resumption gates. Preserve
+its frozen inputs and latest reviewed draft unchanged.
 Automatic URL extraction is feasible for the observed 30 single-link cases,
 but is not equivalent to approving conversion or Page ownership.
 
@@ -250,7 +235,7 @@ drop the new column merely to roll back an application.
 
 ## Validation and Git references
 
-At request creation, source inspection and pre-change regression baselines were recorded. On 20 November the Cygwin static source baseline passed 12/12 checks and targeted existing-code responder/web and Angular tests passed (39/39 Angular), as documented in Step 1 evidence. Step 2 subsequently passed responder regression and disposable PostgreSQL/MQTT integration. Step 3 passed the Angular production build, 240/240 Angular unit tests, targeted web-reader HTTP regression, and separate disposable public-reader and signed-in Angular editor browser acceptance. The 20 November [Step 3 acceptance review](evidence/Step%203/STEP3-ACCEPTANCE-REVIEW-20261120.md) provides the run IDs and visual evidence. **No production schema change, publication, or deployment has occurred.** New implementation commits, production image versions and production acceptance remain unrecorded. Do not commit or publish merely because this review exists.
+The 20 November Step 1–3 evidence records the baseline, responder and PostgreSQL/MQTT integration, Angular production build and 240/240 initial Angular tests, web regression, and isolated editor/reader acceptance. The corrective Day Reader IMAGE rendering patch subsequently passed 244/244 Angular tests and production build. Client commit `7e0251d1c47720397504f3fd43fff09b6b7f2bb3` was pinned by parent `aace22faa2f2bf64f146b33dfc8714e43005cf1d`; Jenkins build-79 succeeded. On 21 November Ansible activation and production health checks passed with client 79, responder 85 and web 9, and the owner confirmed real IMAGE rendering and functional extension tests. See the [Step 4 review](evidence/Step%204/STEP4-PRODUCTION-ACCEPTANCE-REVIEW-20261121.md) for evidence limitations. The Playbooks working tree still had uncommitted feature changes at last inspection; do not claim a final published Playbooks revision until committed and verified. Formal 0051 closure has not been approved.
 
 ## Dependencies and completion
 

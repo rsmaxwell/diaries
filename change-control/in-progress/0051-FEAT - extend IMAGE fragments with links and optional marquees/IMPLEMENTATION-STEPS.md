@@ -1,14 +1,15 @@
 # 0051 — Implementation steps and acceptance gates
 
-**Steps 1, 2 and 3 CLOSED by explicit owner approval on 20 November 2026. Step 4 migration handoff and compatible rollout OPEN; Step 5 final acceptance OPEN.**
+**Steps 1–3 CLOSED by explicit owner approval on 20 November 2026. Step 4 production rollout, gate activation and owner functional checks PASS; formal Step 4 closure decision pending. Step 5 handoff/docs prepared; formal feature closure OPEN.**
 
 Step 1 evidence and contract are indexed in [Step 1 evidence](evidence/Step%201/README.md).
 Step 2 source changes, the first failed test-compilation run, corrected tests,
 the 0025 same-session migration-runner correction and the final successful
 integration receipt are indexed in [Step 2 evidence](evidence/Step%202/README.md).
-No production database or service changes have been performed. Compatible
-rollout, production verification and 0028 handoff remain in Steps 4–5; 0028
-continues paused.
+Production schema, deployment and controlled extension-write activation were
+subsequently verified on 20–21 November; see the Step 4 acceptance review and
+production evidence register. 0028 production migration remains paused and is
+not authorised by 0051 activation.
 
 ## Step 1 — Freeze the baseline and finalise the contract
 
@@ -81,12 +82,16 @@ cross-component local smoke and visual evidence rather than unit tests alone.
 
 ## Step 4 — Update migration handoff and rehearse compatible rollout
 
-**Publication workflow agreed (20 November 2026):** Jenkins on `pluto` publishes the intended pinned parent/submodule revisions. Windows checks the selected published images against the existing `local-published-smoke` Compose configuration and runs the rollback rehearsal with isolated synthetic Files and the frozen database fixture, never its writable NAS mount. See [Jenkins published-image verification plan](evidence/Step%204/STEP4-JENKINS-PUBLISHED-SMOKE-PLAN-20261120.md). No production deployment, migration or gate activation has occurred.
-
-**OPEN — offline migration compatibility implementation prepared; rollout rehearsal and
-production checks remain outstanding.** [Step 4 source review](evidence/Step%204/STEP4-MIGRATION-COMPATIBILITY-IMPLEMENTATION-20261120.md).
-The [disposable three-image rehearsal](evidence/Step%204/STEP4-DISPOSABLE-ROLLOUT-REHEARSAL-20261120.md) is prepared; Docker execution and recorded acceptance are pending.
-Follow the [Step 4 handoff and preconditions](evidence/Step%204/STEP4-HANDOFF-20261120.md). This is the next substantial implementation stage, not an accepted or deployed step.
+**PRODUCTION VERIFICATION PASS; formal Step 4 owner closure decision pending.**
+The [Step 4 production acceptance review](evidence/Step%204/STEP4-PRODUCTION-ACCEPTANCE-REVIEW-20261121.md)
+and [evidence register](evidence/Step%204/STEP4-PRODUCTION-EVIDENCE-REGISTER-20261121.md)
+record the 0028 compatibility-tool changes, protected published-image rollback
+rehearsal PASS, corrected Day Reader client build-79, deployed responder 85 and
+web 9, healthy production services and backups, the 21 November enabled write
+gate, and owner-confirmed production functional checks. The separate post-build-79
+`local-docker-build` run was not evidenced; the review records this limitation.
+The [original handoff](evidence/Step%204/STEP4-HANDOFF-20261120.md) remains
+historical planning evidence and must not be treated as the current deployment status.
 
 - Amend 0028's design, manifest schema, review portal/checker and tests for
   explicit URL and Marquee preservation. Preserve original review evidence;
@@ -103,7 +108,12 @@ Follow the [Step 4 handoff and preconditions](evidence/Step%204/STEP4-HANDOFF-20
 **Gate:** supported behaviour exists in production and migration tools model
 it accurately. Passing a draft checker alone does not satisfy this gate.
 
-## Step 5 — Accept capability and resume 0028
+## Step 5 — Accept capability and hand off 0028
+
+**Documentation and handoff package applied in the owner's Windows working copy;
+Git diff checks PASS on 21 November 2026. Formal acceptance and closure OPEN.**
+See the [Step 5 plan](evidence/Step%205/STEP5-ACCEPTANCE-AND-CLOSURE-PLAN-20261121.md)
+and [0028/0029 handoff](evidence/Step%205/STEP5-0028-0029-HANDOFF-20261121.md).
 
 - Record acceptance against every criterion, actual builds/revisions and
   deployment evidence. Update active architecture and component documentation.

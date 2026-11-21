@@ -324,7 +324,8 @@ MARQUEE and IMAGE Fragments share one durable `Fragment` chronology and the same
 
 ```text
 MARQUEE -> authoritative pageId + Marquee relationship; imageId absent/null
-IMAGE   -> authoritative pageId + optional Image relationship; no Marquee
+IMAGE   -> authoritative pageId + optional catalogue Image, optional same-Page Marquee,
+           optional validated per-Fragment external image-click link
 ```
 
 The reusable `Image` entity is catalogue metadata stored in PostgreSQL and published as retained `diaries/images/<id>` state. Its physical bytes live under the selected mutable Files root and are presented through the stable `/files/...` HTTP namespace. An `Image.relativePath` is relative to the selected Files root; it is not an absolute URL and does not encode an execution mode.
@@ -345,7 +346,7 @@ This separates identity from presentation: the database Image ID is the relation
 
 The responder remains authoritative for Page ownership, Fragment type, locking, optimistic version checks, Image existence and the authoring gate.
 
-Creation uses the explicit `addImageFragment` RPC. Normal creation chooses one already-catalogued Image first and sends its positive ID. The responder creates `type=IMAGE`, `marqueeId=null` and participates in the same date/sequence normalisation as MARQUEE creation.
+Creation uses the explicit `addImageFragment` RPC. Normal creation chooses one already-catalogued Image first and sends its positive ID. The responder creates `type=IMAGE`, initially without a Marquee, and participates in the same date/sequence normalisation as MARQUEE creation. Under 0051, a same-Page Marquee can subsequently be attached, edited or removed without changing the Image relationship or the independent optional link.
 
 Updates use tri-state `imageId` semantics:
 
@@ -356,6 +357,14 @@ imageId=null      -> deliberately clear the Image reference
 ```
 
 Ordinary transcription/date/sequence edits and mixed-type reorder use the omit/preserve path. Only explicit Image-reference actions send the `imageId` key. This keeps normal editing usable when Image-reference authoring is disabled and prevents accidental relationship mutation.
+
+### 0051 IMAGE extensions and reader presentation
+
+`Fragment.imageLinkUrl` is optional and stored in nullable PostgreSQL `fragment.image_link_url` (`VARCHAR(4096)`). It is **per Fragment occurrence**, not a property of the shared `Image`. A valid HTTP(S) destination may include path, query and fragment. The responder validates link SET/CLEAR intent under locking, authorisation and optimistic versioning; omitted link fields preserve existing values on ordinary edits. Do not guess/derive destinations from filenames or fetch them during migration.
+
+IMAGE fragments now support **zero or one same-Page Marquee**, with independent source-page selection/highlighting. Both client and public reader distinguish opening an image's external link from selecting its source page or moving/editing its Marquee. Removing a Marquee never deletes the Fragment, link, catalogue Image or file; deletion of a Fragment removes only its dependent Marquee/Fragment state and leaves the reusable Image intact.
+
+The editor Day Reader shows `Image ID: N` **after Position**, then the full catalogue image **beneath the header**, followed by transcription text. Missing catalogue metadata results in an unavailable/no-Image presentation, not a fabricated URL. Legacy MARQUEE embedded-image HTML continues to render until separately reviewed 0028 migration. 0029 final constraint cleanup must not reinstate the obsolete IMAGE/no-Marquee invariant.
 
 ### Delete boundaries
 
@@ -368,6 +377,8 @@ Ordinary transcription/date/sequence edits and mixed-type reorder use the omit/p
 Production renders the setting from Ansible `diaries_image_fragment_writes_enabled`. After the successful 0027 rollout, the role source default is `true`, making IMAGE Fragment authoring the normal supported production mode. Setting it to `false` and restarting/redeploying the responder is the non-destructive emergency/rollback stop; existing IMAGE data stays intact and ordinary IMAGE text/date/sequence editing remains available.
 
 Local modes use the same responder JSON property with `true` as the normal post-0027 value. Direct development takes it from `%USERPROFILE%\.diaries\responder.json`; `local-docker-build` and `local-published-smoke` take it from the external JSON selected by `DIARIES_RESPONDER_DOCKER_CONFIG_FILE` (normally `%USERPROFILE%\.diaries\responder.docker.json`). Missing/null/false remains fail-closed and is appropriate only for deliberate disabled-gate/rollback testing or an emergency authoring stop.
+
+0051 introduces a **separate** `imageFragmentExtensionsWritesEnabled` responder JSON property. Production renders it from Ansible `diaries_image_fragment_extensions_writes_enabled`. The compatible client/responder/web versions were deployed with extension writes disabled; production activated the gate on **21 November 2026** with client `0.0.9-build-79`, responder `0.0.9-build-85` and web reader `0.0.9-build-9`, with all five services healthy. Protected pre-write legacy rollback was tested, but **after the first extension-format write the older responder/reader versions are not approved rollback targets**. Disabling the gate is a forward safety stop only; it does not erase existing new-format records or restore old-binary compatibility.
 
 0027 production verification used client `0.0.9-build-76`, responder `0.0.9-build-84` and reader `0.0.9-build-8`. The controlled lifecycle verified create, ordinary preserve edits, replace, clear, reattach, delete guard, restart/replay, reader/editor agreement and cleanup.
 

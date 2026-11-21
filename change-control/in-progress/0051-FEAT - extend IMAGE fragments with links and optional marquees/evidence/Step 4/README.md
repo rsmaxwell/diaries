@@ -1,15 +1,31 @@
 # 0051 Step 4 evidence index
 
-- [Original Step 3-to-4 handoff](STEP4-HANDOFF-20261120.md)
-- [0028 migration compatibility implementation review](STEP4-MIGRATION-COMPATIBILITY-IMPLEMENTATION-20261120.md)
-- [Coordinated rollout rehearsal/runbook](STEP4-ROLLOUT-REHEARSAL-RUNBOOK-20261120.md)
-- [Disposable three-image rollout/rollback rehearsal (prepared, not run)](STEP4-DISPOSABLE-ROLLOUT-REHEARSAL-20261120.md)
+**Current status (21 November 2026):** compatible production rollout, schema and
+runtime checks, protected rollback rehearsal, client IMAGE rendering correction
+and extension-write activation PASS. The owner explicitly confirmed all final
+production functional checks PASS. **Formal Step 4 closure remains pending**
+until the Step 4 acceptance review is approved.
 
-The refreshed 15:28 Diaries bundle was inspected. 0028's historic private
-source evidence and reviewer drafts are not shipped or changed in this package.
-The offline reviewer/checker only emits a new PRIVATE v2 draft; Step 4 is OPEN.
-Executed tests and preflights must create their own records under `private/`.
+## Current acceptance records
 
-Windows `verify-step4-offline.sh` and mango Ansible syntax-check were reported PASS on 20 November 2026. The subsequent disposable Docker rollout rehearsal is prepared but has not been executed. No production change or activation is approved.
+- [Production acceptance review](STEP4-PRODUCTION-ACCEPTANCE-REVIEW-20261121.md) — verified and owner-attested coverage, qualifications and recommended disposition.
+- [Production evidence register](STEP4-PRODUCTION-EVIDENCE-REGISTER-20261121.md) — build digests, actual deployment logs, release versions and protected rehearsal IDs.
+- `production-activation-20261121T090357Z.log` — Windows-hosted execution output recorded on 21 November; verify existence before claiming checked-in evidence.
+- [Updated documentation and closure plan](../Step%205/STEP5-ACCEPTANCE-AND-CLOSURE-PLAN-20261121.md).
 
-- [Jenkins-published image and isolated smoke plan](STEP4-JENKINS-PUBLISHED-SMOKE-PLAN-20261120.md) — owner-approved workflow change; implementation scripts prepared, publication/rehearsal still unexecuted. The earlier disposable local-build failures remain historical evidence; no need to repeat local builds.
+## Earlier implementation and historical records
+
+- [Original Step 3-to-4 handoff](STEP4-HANDOFF-20261120.md) (historical, predates production rollout).
+- [0028 migration compatibility implementation review](STEP4-MIGRATION-COMPATIBILITY-IMPLEMENTATION-20261120.md).
+- [Coordinated rollout rehearsal/runbook](STEP4-ROLLOUT-REHEARSAL-RUNBOOK-20261120.md).
+- [Disposable three-image rollout/rollback rehearsal preparation](STEP4-DISPOSABLE-ROLLOUT-REHEARSAL-20261120.md) (original planning document; actual protected published-image rehearsal PASS is recorded in the acceptance review).
+- Other Step 4 protected test, correction and package manifests remain historical evidence, including intermediate failed harness attempts; do not relabel or delete them.
+
+The 0028 source review artifacts are private drafts only, not approval to
+convert legacy production data. The 0029 destructive constraint cleanup is
+outside this feature. Do not publish private transcriptions, reviewer drafts,
+credentials or raw production DB exports.
+
+**Rollback cutoff:** after new-format extension writes, gate-off does not make
+old application binaries safe rollback targets. Preserve compatible software or
+use an independently verified recovery procedure.

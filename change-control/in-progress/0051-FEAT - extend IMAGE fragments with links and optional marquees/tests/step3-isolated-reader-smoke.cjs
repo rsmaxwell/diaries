@@ -31,8 +31,9 @@ fs.mkdirSync(evidence);
 const step4Rehearsal = process.env.STEP4_ROLLOUT_REHEARSAL === '1';
 const prefix = (step4Rehearsal ? 'diaries-0051-step4-' : 'diaries-0051-step3-') + crypto.randomUUID().slice(0, 8);
 const db = prefix + '-db', broker = prefix + '-mqtt', responder = prefix + '-responder', web = prefix + '-web';
+const filesVolume = prefix + '-files'; // Only this Step 4 run may create/remove it.
 const owned = [], connections = [], checks = [];
-let browser, proxyServer, networkCreated = false;
+let browser, proxyServer, networkCreated = false, filesVolumeCreated = false;
 const sha = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const write = (name, value) => fs.writeFileSync(path.join(evidence, name), typeof value === 'string' ? value : JSON.stringify(value, null, 2));
 function expectRpcStatus(reply, expected, label) {
@@ -272,6 +273,25 @@ async function main() {
     });
   }
   await docker('network','create',prefix); networkCreated=true;
+  if (step4Rehearsal) {
+    // Docker's local Linux volume supports the real upload protocol: POSIX mode
+    // 0700, flock, hard links and atomic rename. The Windows-hosted bind mount
+    // used by the first published-image attempt could not satisfy this gate.
+    // A run-unique name, explicit absence check and owned cleanup prevent
+    // touching the NAS or a developer's existing Docker volumes.
+    try {
+      await docker('volume','inspect',filesVolume);
+      throw Error(`Refusing to reuse pre-existing Docker volume ${filesVolume}`);
+    } catch (error) {
+      if (!/no such volume/i.test(error.stderr || error.message || '')) throw error;
+    }
+    const name = await docker('volume','create',
+      '--label','diaries.feature=0051','--label','diaries.purpose=step4-published-fixture',filesVolume);
+    assert.equal(name,filesVolume,'Disposable Docker volume was not created as requested');
+    filesVolumeCreated=true;
+    write('step4-files-volume.json',{name:filesVolume,driver:'local',
+      purpose:'private Linux filesystem for 0051 upload / rollback',sharedNas:false});
+  }
   await container(db, ['--tmpfs','/var/lib/postgresql','-e','POSTGRES_USER=diaries','-e','POSTGRES_DB=step13','-e','POSTGRES_HOST_AUTH_METHOD=trust','postgres:18-alpine']);
   await waitFor('PostgreSQL', async()=>{ await docker('exec',db,'pg_isready','-U','diaries','-d','step13'); return true; });
   await restoreBackup(); await applyFixtureSchema();
@@ -301,17 +321,28 @@ async function main() {
   // These are disposable containers, so always populate both fixture trees. Checking
   // only for /data/files could accidentally skip copying the synthetic Page files
   // when a custom Java runtime image pre-creates that directory.
-  // Step 4 uses the actual freshly built responder image, with only synthetic
-  // fixture directories mounted. Step 3 keeps its proven JAR launch unchanged.
+  // Step 4 runs the exact Jenkins-published responder image, configured using
+  // CONFIG_FILE as required by its /opt/diaries/bin/responder.sh entrypoint.
+  // Only synthetic fixture directories are mounted. Step 3 keeps its accepted
+  // JAR launch unchanged.
   if (step4Rehearsal) {
-    fs.mkdirSync(path.join(output,'files','.image-staging'),{recursive:true});
     const image = process.env.STEP4_CANDIDATE_RESPONDER_IMAGE;
     assert(image, 'Step 4 candidate responder image not provided');
+    // Prepare the private staging directory inside the Linux filesystem before
+    // the upload RPC. `ImageCatalogueService` requires rwx------ and verifies
+    // file locks, hard links and atomic rename on the mounted filesystem.
+    const preflight = await docker('run','--rm',
+      '--mount',`type=volume,source=${filesVolume},target=/data/files`,
+      '--entrypoint','sh',image,'-c',
+      'mkdir -p /data/files/.image-staging && chmod 700 /data/files/.image-staging && test "$(stat -c %a /data/files/.image-staging)" = 700 && f=$(mktemp /data/files/.image-staging/0051-preflight-XXXXXX) && ln "$f" "$f.link" && mv "$f.link" "$f.moved" && rm "$f" "$f.moved" && echo STEP4_FILES_PREFLIGHT_PASS');
+    assert.equal(preflight,'STEP4_FILES_PREFLIGHT_PASS','Linux Files volume preflight failed');
+    write('step4-files-preflight.txt',preflight+'\n');
     await container(responder, ['-p','127.0.0.1::8081',
-      '--mount',`type=bind,source=${path.join(output,'files')},target=/data/files`,
+      '-e','CONFIG_FILE=/fixture/responder.json',
+      '--mount',`type=volume,source=${filesVolume},target=/data/files`,
       '--mount',`type=bind,source=${path.join(output,'diaries')},target=/data/diaries,readonly`,
       '--mount',`type=bind,source=${output},target=/fixture,readonly`,
-      image,'--config','/fixture/responder.json']);
+      image]);
   } else {
     await container(responder, ['-p','127.0.0.1::8081','--mount',`type=bind,source=${output},target=/fixture`,'--entrypoint','sh',javaImage,'-c','mkdir -p /data/files/.image-staging /data/diaries; cp -a /fixture/diaries/. /data/diaries/; chmod 700 /data/files/.image-staging; exec java -jar /fixture/responder.jar --config /fixture/responder.json']);
   }
@@ -442,7 +473,7 @@ async function main() {
   if (step4Rehearsal) {
     const { runStep4RolloutChecks } = require('./step4-rollout-rehearsal-checks.cjs');
     await runStep4RolloutChecks({root,output,evidence,summary,checks,first,
-      responder,web,db,broker,prefix,owned,docker,container,port,sql,rows,rpc,
+      responder,web,db,broker,prefix,owned,filesVolume,docker,container,port,sql,rows,rpc,
       waitFor,write,retainedSnapshot,retainedPayload,expectRpcStatus,
       responderConfig,upstreamPorts,
       relogin:async()=>{
@@ -714,8 +745,13 @@ main().catch(error=>{summary.status='FAILED';summary.failure=error.stack;process
   if(browser)await browser.close().catch(()=>{}); if(proxyServer)await new Promise(resolve=>proxyServer.close(resolve));
   for(const c of connections)await c.endAsync(true).catch(()=>{});
   for(const name of [responder,web,broker,db]) if(owned.includes(name)){try{const logs=await run('docker',['logs',name],{maxBuffer:32*1024*1024});const lines=(logs.stdout+logs.stderr).split('\n').filter(line=>/Connected, subscribing|synchronise:|Published replay generation|Subscribed to canonical|Javalin started|Sending status:|Image deletion|Step 13|Outgoing messages are being dropped|not authori[sz]ed|denied|too many|queue full|disconnect|Static server|Exception|\bERROR\b|failed|BindException/i.test(line)).slice(-500);write(name.slice(prefix.length+1)+'.log',lines.join('\n')+'\n');}catch{}}
-  const cleanup={containersRemoved:[],networkRemoved:false,failures:[]};
+  const cleanup={containersRemoved:[],networkRemoved:false,
+    filesVolume:step4Rehearsal ? filesVolume : null,filesVolumeRemoved:false,failures:[]};
   for(const name of owned.reverse()){try{await docker('rm','-f',name);cleanup.containersRemoved.push(name);}catch{cleanup.failures.push(name);}}
+  if(filesVolumeCreated){
+    try { await docker('volume','rm',filesVolume); cleanup.filesVolumeRemoved=true; }
+    catch(error){cleanup.failures.push(`files-volume:${filesVolume}: ${error.message}`);}
+  }
   if(networkCreated){try{await docker('network','rm',prefix);cleanup.networkRemoved=true;}catch{cleanup.failures.push(prefix);}}
   write('cleanup.json',cleanup);
   summary.cleanupFailures=cleanup.failures; if(cleanup.failures.length){summary.status='CLEANUP_FAILED';process.exitCode=1;} summary.finishedAtUtc=new Date().toISOString(); write('summary.json',summary);

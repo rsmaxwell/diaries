@@ -7,8 +7,8 @@ This document records the durable developer and operator contract established by
 Both Fragment types share the same Page ownership, date, sequence, transcription, version and lock model.
 
 ```text
-MARQUEE -> `type=MARQUEE` (or legacy null type), no Image, optional/expected Marquee
-IMAGE   -> `type=IMAGE`, `marqueeId=null`, zero or one `imageId`
+MARQUEE -> `type=MARQUEE` (or legacy null type); no catalogue Image or per-IMAGE link; optional/legacy Marquee
+IMAGE   -> `type=IMAGE`; zero or one catalogue `imageId`, zero or one same-Page Marquee, optional per-Fragment `imageLinkUrl`
 ```
 
 A catalogued Image is a reusable entity. Its metadata is durable in PostgreSQL and distributed as retained `diaries/images/<id>` MQTT state. Its bytes remain in the selected mutable Files root and are served through the responder/static `/files/...` route. Fragment/Image identity therefore uses the database `imageId`, never the filename or absolute URL.
@@ -40,6 +40,16 @@ updateFragment imageId=null    -> clear the Image reference
 The Angular client enforces this separation with `UpdateFragmentRequest` for ordinary editing and `UpdateImageFragmentRequest` only for explicit Image-reference authoring. Day-view mixed-type reorder also uses the ordinary preserve path.
 
 `addImageFragment` is not idempotent. If a transport/server failure leaves creation outcome unconfirmed, refresh/reconcile retained/database state before retrying rather than blindly issuing another create.
+
+## 0051 — optional link and same-Page Marquee
+
+An IMAGE Fragment may have zero or one source-page Marquee, independent of its optional reusable catalogue Image and optional clickable `imageLinkUrl`. The link is **per Fragment occurrence**, not a property of the shared Image. The nullable database field is `fragment.image_link_url` (`VARCHAR(4096)`); changing one occurrence's link must not change other Fragments using that Image.
+
+Link writing uses the responder's validated IMAGE-extension mutation contract: distinguish **no link**, **explicit SET**, **explicit CLEAR** and **field omitted (preserve existing link)**. Only safe absolute HTTP/HTTPS destinations are accepted; preserve the approved path, query string and fragment without downloading the destination. Ordinary transcription/date/sequence/Image-reference edits must not erase a stored link. If an Image is cleared, its link may remain dormant until a later Image reference is restored.
+
+Source Marquee attach/edit/remove uses ordinary Fragment/Marquee authorization, edit locking and optimistic version checking, with authoritative same-Page ownership. Preserve an existing Marquee's identity/version/geometry unless an explicit user edit changes it. Removing a Marquee does **not** delete its Fragment, catalogue Image or external link; deleting the Fragment may remove its dependent Marquee but **not** a reusable Image or physical file. The old rule that *IMAGE must not have a Marquee* is obsolete.
+
+In the Angular Day Reader, the IMAGE header displays **`Image ID: N` immediately after Position** for a positive Image reference; a null reference displays the explicit no-Image state. The catalogue image renders **beneath the header**, before transcription text, for each fragment independent of current selection. Valid external image clicks are distinct from fragment selection and the separate **Show on source page**/Marquee highlight action. An unresolved image must not become a misleading clickable link. Legacy MARQUEE embedded HTML remains supported until reviewed 0028 conversion.
 
 ## Retained Image lookup and URLs
 
@@ -74,11 +84,19 @@ The responder configuration property is:
 
 The gate controls only new IMAGE creation and actual `imageId` mutations. When false, those actions return 403. Existing IMAGE Fragments can still be read, locked/unlocked, edited for text/date/sequence, normalised and deleted because those operations preserve/omit `imageId`.
 
-Production renders the property from Ansible `diaries_image_fragment_writes_enabled`. With 0027 closed, the normal role default is `true`; the compatible reader, responder and client have passed the controlled disabled-gate and enabled-gate production verification. Rollback is non-destructive: set the variable to `false`, redeploy/restart the responder, and keep existing IMAGE rows and Files data unchanged.
+Production renders the original IMAGE gate from Ansible `diaries_image_fragment_writes_enabled`; the normal role default is `true`. **0051 adds the separate responder gate `imageFragmentExtensionsWritesEnabled`**, rendered from `diaries_image_fragment_extensions_writes_enabled`. The extension gate was deployed **false** with the coordinated new components and enabled in production on 21 November 2026 only after a protected rollback rehearsal, recovery checks and supported component verification.
+
+Setting the extension gate to `false` again can stop **new extension-format writes**, but it does **not** remove existing link/Marquee records or make older binaries safe rollback targets after such a record has been written. After activation/first new-format write, recover using compatible images or a separately authorised, verified data restore. Never drop the additive schema column to imitate a rollback. The original `imageFragmentWritesEnabled=false` remains an independent stop on ordinary new IMAGE creation/reference mutation, not an undo operation.
 
 For local operation, `true` is also the normal value. Direct development reads the developer-owned `%USERPROFILE%\.diaries\responder.json` (via the generated effective development config). `local-docker-build` and `local-published-smoke` use the external responder JSON selected by `DIARIES_RESPONDER_DOCKER_CONFIG_FILE`, normally `%USERPROFILE%\.diaries\responder.docker.json`, mounted as `/config/responder.json`. There is no environment-variable override for the gate itself. Use missing/null/false only when deliberately verifying the disabled gate or exercising rollback/emergency-stop behaviour.
 
 The production client MQTT ACL must include read access to `diaries/images/+`; Fragment/RPC access alone is not sufficient to resolve catalogue metadata.
+
+## 0051 production release and related features
+
+Production feature activation was reported on **21 November 2026** with client `0.0.9-build-79`, responder `0.0.9-build-85` and public reader `0.0.9-build-9`. PostgreSQL has nullable `fragment.image_link_url` and all five containers passed post-deployment health checks. The owner subsequently confirmed the IMAGE link/optional-Marquee functional checks passed; the full Step 4 review and formal closure decision live in `change-control/in-progress/0051-FEAT - extend IMAGE fragments with links and optional marquees/evidence/Step 4/`.
+
+0028 remains the independent, separately approved migration of legacy inline images. Its versioned reviewer must capture exact link decisions and optional Marquee identity/Page/geometry without automatically approving historical drafts. 0029's later destructive constraint and relationship cleanup **must retain valid IMAGE Marquees and links**. The 0052 Whitley Park media-location defect is a separate content correction, not a reason to change the IMAGE data contract.
 
 ## 0027 production baseline
 
