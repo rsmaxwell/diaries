@@ -1,0 +1,29 @@
+UTC: 20261123T130110Z
+Windows Diaries parent checkout:
+main
+0818179be4b207bcd9600e1e70c4870f6f9823d4
+ M "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/DESIGN-AND-INTERFACE-CONTRACT.md"
+ M "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/IMPLEMENTATION-STEPS.md"
+ M "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/README.md"
+ M "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/tools/README.md"
+ M "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/tools/step1_inventory.py"
+ M "change-control/todo/0029-FEAT - complete Image lifecycle and remove legacy fragment marquee coupling/README.md"
+?? "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/reports/STEP1-POST0051-RESUMPTION-20261121.md"
+?? "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/reports/STEP1-V2-CAPTION-OVERRIDE-20261122.md"
+?? "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/reports/STEP1-V2-FROZEN-HTML-INFERENCE-20261121.md"
+?? "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/reports/STEP1-V2-REFRESH-TEST-FIXTURE-RECONCILIATION-20261121.md"
+?? "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/reports/STEP1-V2-REVIEW-PORTAL-IMPROVEMENT-20261121.md"
+?? "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/tests/test_step4_0051_caption_override.py"
+?? "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/tests/test_step4_0051_compatibility_review.py"
+?? "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/tests/test_step4_0051_original_html.py"
+?? "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/tests/test_step4_0051_portal_refresh.py"
+?? "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/tests/test_step4_0051_portal_suggestions.py"
+?? "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/tests/test_step4_0051_source_inference.py"
+?? "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/tools/resume-step1-post0051-readonly.sh"
+?? "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/tools/step1_refresh_0051_portal_offline.py"
+?? "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/tools/step4_0051_compatibility_review.py"
+?? "change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/tools/templates/0028-0051-v2-review-fields.example.csv"
+?? "change-control/in-progress/0052-DEF - correct catalogue image content errors/"
+ 4faeac6af36913a947e7947c7adb17856bd86e19 diaries-client (heads/main)
+ 4109c37eb64ea8f8f513a439628d75145f658634 diaries-responder (heads/main)
+ 6d1b289bc5a7983cbf36fe771f8c11dc4725813b diaries-web (heads/main)

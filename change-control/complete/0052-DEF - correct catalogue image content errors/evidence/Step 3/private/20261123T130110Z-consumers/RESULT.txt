@@ -1,0 +1,13 @@
+PASS: 0052 production/development fragment-identity and direct-consumer checks.
+PASS: production public Reader index and page-owned IMAGE Fragment 2334 HTTP 200.
+July 1829 page-owned month HTTP check: HTTP_200_MONTH_ONLY.
+Run UTC: 20261123T130110Z
+Reference expectations based on 2026-11-23 Step 1 inventory.
+Legacy Fragments 84 and 598 have NULL page_id, so the public Reader projection
+cannot resolve them directly before 0028 migration. A July month HTTP 200, if
+available, is not a check that Hermitage Fragment 598 renders in the public Reader.
+This script does NOT establish picture correctness or independently prove unchanged
+transcription/ordering against pre-change evidence. Review fingerprint rows against
+prior Step 1 private inventory if stronger criteria are required.
+Public Reader visual acceptance (where applicable), protected-image visual checks,
+and explicit owner closure approval remain MANUAL / NOT YET RECORDED here.

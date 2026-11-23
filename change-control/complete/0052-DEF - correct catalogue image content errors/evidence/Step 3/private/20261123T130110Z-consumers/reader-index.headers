@@ -1,0 +1,17 @@
+HTTP/2 200 
+date: Mon, 23 Nov 2026 13:01:16 GMT
+content-type: text/html;charset=utf-8
+cache-control: public, max-age=0, must-revalidate
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=D7WC74tUq9yvCrIeFm5zKuSc2qgshDL%2FV1UrJKMF2%2BmBFk5i6U4tHNUVU%2BoUF6O0SiUA%2B85USlf3UOwkN5M%2BePrV79zoHf3%2FF6BHb7fVpcYMbnlp8iienavKFi3zGLIjadPhk92SjbOkUwL4CqwBROOUKI0%3D"}]}
+content-security-policy: default-src 'none'; style-src 'self'; script-src 'self'; img-src https://pluto.rsmaxwell.co.uk data:; connect-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+permissions-policy: camera=(), microphone=(), geolocation=()
+referrer-policy: strict-origin-when-cross-origin
+server: cloudflare
+x-content-type-options: nosniff
+x-frame-options: DENY
+cf-cache-status: DYNAMIC
+vary: accept-encoding
+cf-ray: a5f05c8e18f4528f-LHR
+alt-svc: h3=":443"; ma=86400
+
