@@ -2,16 +2,21 @@
 
 <!-- 0028-STEP4-CURRENT-STATUS-BEGIN -->
 
-**Current step status (24 November 2026):** Step 1 accepted;
-Step 2 accepted; **Step 3 CLOSED (owner accepted 24 November)**; **Step 4 OPEN**.
-The 71-conversion production apply and postflight succeeded; Fragment 1564 is
-DEFERRED. The accepted Editor/Reader checks and MQTT startup synchronisation
-are documented in `reports/STEP3-PRODUCTION-ACCEPTANCE-20261124.md`.
-The staged production migration files were archived and the exact `pluto`
-transient stage removed. See `reports/STEP4-CLOSURE-REVIEW-20261124.md`.
-**Do not mark Step 4 CLOSED or move the feature to `complete` without explicit
-owner approval.** Earlier OPEN labels in historical step headings are retained
-for traceability and superseded by this current status.
+**FORMALLY CLOSED — 24 November 2026.**
+
+All four implementation steps are accepted and CLOSED.
+
+- 71 reviewed legacy image fragments migrated successfully.
+- Fragment 1564 remains deliberately DEFERRED.
+- Production database postflight passed.
+- MQTT synchronisation and Editor/Reader visual checks passed.
+- Production services restored.
+- Temporary production migration files archived, verified and removed.
+- Step 3 accepted by the owner on 24 November 2026.
+- Step 4 and formal feature closure approved by the owner on 24 November 2026.
+
+Historical OPEN status references below are superseded by this
+formal closure record. Follow-on work remains separately tracked.
 
 <!-- 0028-STEP4-CURRENT-STATUS-END -->
 
