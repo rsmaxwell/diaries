@@ -1,8 +1,61 @@
 # 0028 — Design and interface contract
 
-**State:** proposed implementation contract, not implemented or approved for production.
+**State:** ACTIVE for Step 1 review as of 21 November 2026, after 0051
+production activation and formal closure. The 0051 Step 4 offline compatibility
+addendum below supersedes legacy IMAGE/no-Marquee assumptions. This document
+is not an executable migration plan or approval for production writes. The owner agreed on 20 November 2026 to extend IMAGE
+with optional links and Marquees first. The former no-Marquee invariant and mandatory
+Marquee deletion were superseded under
+[0051](../../complete/0051-FEAT%20-%20extend%20IMAGE%20fragments%20with%20links%20and%20optional%20marquees/README.md)
+and are resolved by the authoritative Step 4 addendum below. Retain the
+earlier design for traceability without discarding reviewed relationships.
 **Reviewed against:** `diaries-sources-20261117-185710.zip`, generated 2026-11-17 18:57 UTC.
 **Owner of changes/evidence:** Diaries parent `change-control/in-progress/0028-FEAT - migrate reviewed legacy embedded-image fragments/`.
+
+
+## 0051 Step 4 compatibility addendum — authoritative for resumption (20 November 2026)
+
+The former blanket IMAGE/Marquee rejection and hyperlink-loss blocker are **obsolete**.
+The old `0028-human-review-v1` portal/checker and the original migration
+dispositions are preserved for historical evidence; they **must not** be used
+as production approval under 0051. A separate offline `0028-0051-review-v2`
+compatibility reviewer is provided at
+[`tools/step4_0051_compatibility_review.py`](tools/step4_0051_compatibility_review.py).
+The private v2 portal is generated from verified historical evidence and carries
+every earlier v1 decision only as `legacy_review` (an unapproved hint).
+The new `v2_review_confirmed=YES`, exact link choice and explicit Marquee choice
+are required for a proposed mutation. No draft can authorise apply or SQL writes.
+
+For each embedded occurrence preserve an unambiguous decoded `<a href>` as an
+**exact** HTTP(S) `imageLinkUrl`, including its query string and fragment;
+`&amp;` is decoded once by the HTML parser. Do not fetch, shorten, canonicalise
+or infer a URL. Distinguish `NOT_PRESENT`, `PRESERVE`, explicitly reviewed
+`CLEAR_CONFIRMED`, and `DEFER`. A set must match the original decoded URL
+and SHA-256 exactly; an omitted field never means clear. Invalid schemes,
+credentials and unreviewed wrappers block conversion.
+
+For the source Marquee, review `PRESERVE`, `REMOVE_CONFIRMED`, `NOT_APPLICABLE`
+or `DEFER`. Preservation means **same Marquee ID, version, Page and complete
+geometry**, with no tombstone; removal requires a second explicit approval
+and then a transactionally committed tombstone only under 0028 apply. A split
+retains the original MARQUEE and its geometry; it cannot share its Marquee
+with newly created IMAGE rows. Cross-Page, duplicate or stale Marquees block
+conversion. Page/date/sequence/original text and all Image IDs are immutable
+until independently reviewed and checked against current evidence.
+
+**Known source limitation:** the 18 November frozen inventory includes only
+Marquee ID/Page, not version or rectangle geometry. `step1_inventory.py` now
+collects those attributes on a **new read-only snapshot**; do not alter or
+replace the historical snapshot. Any preservation candidate without complete
+matching fresh geometry remains blocked. Fresh version/HTML/Page discrepancies
+require a new review, not silent reconciliation. The `prepare`/`check` modes
+only emit private draft evidence and fail closed.
+
+The full Java 0028 `analyse`/`validate-manifest`/`dry-run`/`apply`/`postflight`
+workflow, date-wise journal, exact source-span HTML editing and migration
+rehearsal are **not implemented by this offline compatibility checker**.
+The existing 0028 Step 1/2/3 acceptance gates remain OPEN; no legacy conversion
+may run until the independent 0028 approvals.
 
 ## 1. Objective and scope
 
@@ -16,7 +69,7 @@ startup auto-migration. 0029 owns final constraint/legacy cleanup.
 Keep current invariants:
 
 - `Fragment.page_id` authoritative; `type=MARQUEE` permits a Marquee and forbids `image_id`.
-- `type=IMAGE` forbids a Marquee, and may reference zero or one catalogued Image.
+- `type=IMAGE` permits zero or one same-Page Marquee, zero or one catalogued Image, and an optional validated HTTP(S) `imageLinkUrl`.
 - An Image may be referenced by any number of Fragments; deleting a Fragment
   must not delete its Image or its file.
 - A deliberate `KEEP_LEGACY` MARQUEE may retain inline image markup, expressly
@@ -179,9 +232,12 @@ repeated identical `src` values.
    sequence change and journal entry. Stop the run on failure; earlier dates
    may remain committed and are tracked in the journal for safe resume.
 4. For `CONVERT`: retain original Fragment ID/Page/date; set `type=IMAGE`,
-   reviewed `image_id`, exact approved text; delete legacy Marquee in the
-   same transaction, retaining its old ID/page/diary for later tombstone
-   verification. Preserve all unaffected metadata including lock state.
+   reviewed `image_id`, exact approved text and any approved original
+   HTTP(S) `imageLinkUrl`. Preserve a reviewed same-Page Marquee's original
+   ID, version and geometry unchanged; delete it within the same transaction
+   **only** on explicit, independently confirmed removal review, retaining
+   the old identity for post-commit tombstone verification. Preserve all
+   unaffected metadata including lock state.
 5. For `SPLIT`: retain original Fragment ID/Page/Marquee/date and its approved
    non-image text as `MARQUEE`/null image; create one new `IMAGE` per approved
    image occurrence with its own generated ID and text; no Marquee for new rows.

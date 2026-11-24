@@ -1,6 +1,17 @@
 # 0028 — Implementation steps and acceptance gates
 
-**Status: ALL STEPS OPEN.** This package is a **planning change**, not evidence
+**Status: ACTIVE as of 21 November 2026; all acceptance steps remain OPEN.**
+The owner approved formal closure of
+[0051](../../complete/0051-FEAT%20-%20extend%20IMAGE%20fragments%20with%20links%20and%20optional%20marquees/README.md)
+following production verification (responder `0.0.9-build-86`). 0028 Step 1
+has collected evidence and partial reviews but has not passed its gate.
+Resume with the read-only collection and v2 review script under `tools/`.
+
+The planned no-Marquee IMAGE contract must be revised for supported link and
+Marquee preservation before continuing these steps. No existing draft is
+automatically approved by completing 0051.
+
+This package is a **planning change**, not evidence
 that a test, restore, deployment or migration has run. Prioritise one coherent
 implementation and one consolidated rehearsal/test cycle; correct affected
 regressions without repeating accepted expensive restores.
@@ -9,6 +20,13 @@ All artifacts, receipts and raw logs are kept **inside this feature directory**
 under `reports/` and `evidence/Step N/`; one-off scripts under `tools/` or
 `tests/`. Application code belongs in its own `diaries-responder` submodule;
 commit that submodule separately before pinning it in the Diaries parent.
+
+**0051 Step 4 handoff update (20 November):** The v2 private compatibility reviewer
+and updated read-only inventory capture are now available for the later 0028
+Step 1 review. They do **not** replace the planned Java migration engine in
+Step 2, grant reviewer approval, or approve a mutation. V1 drafts are hints
+only. Fresh geometry/version readback and explicit lossless link decisions
+are required before any conversion can be considered.
 
 ## Step 1 — Freeze inputs, assess data, approve per-fragment decisions (OPEN)
 

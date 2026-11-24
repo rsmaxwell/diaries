@@ -6,12 +6,50 @@ Feature
 
 ## Status
 
-**In progress — design and implementation planning (17 November 2026).** No
-0028 migration has been applied, rehearsed or accepted by this planning package.
+**ACTIVE — resumed 21 November 2026, after formal closure of 0051.**
+[0051 IMAGE links and optional Marquees](../../complete/0051-FEAT%20-%20extend%20IMAGE%20fragments%20with%20links%20and%20optional%20marquees/README.md)
+was deployed and formally closed at Diaries parent commit `0818179`.
+0028 Step 1 remains **OPEN**: there is no accepted migration manifest, no
+restored rehearsal and no authorised production conversion. Historical evidence
+and uncommitted work must remain intact.
+
+The retained baseline is the 18 November frozen inventory and private review
+export **(15)**, SHA-256
+`7ff753b34ea5d7b7f19affdcce23ab2754d4d496544c2b6bffaa4db325250957`.
+Its exact copy and check results are under
+`evidence/Step 1/private/20261120-export-15-review-check/`. Nine rows pass draft
+checks; 63 have outstanding items. These are draft checks, not migration
+approval. Preserve all earlier exports and original checksum manifests.
+
+**Resumption requirement (now active):** the pre-0051 IMAGE/no-Marquee rules and mandatory
+Marquee deletion described below and in the existing design are historical
+planning assumptions. Do not execute them unchanged. 0051 must deliver the
+preservation contract and updated review tooling; then reconcile fresh live
+evidence, re-review changed expectations, and resume 0028's own acceptance,
+rehearsal and explicit production-apply gates. Page, text and Image decisions
+remain outstanding independently of 0051.
 
 See [DESIGN-AND-INTERFACE-CONTRACT.md](DESIGN-AND-INTERFACE-CONTRACT.md),
 [IMPLEMENTATION-STEPS.md](IMPLEMENTATION-STEPS.md) and
 [reports/SOURCE-REVIEW-20261117.md](reports/SOURCE-REVIEW-20261117.md).
+
+## 0051-compatible, read-only review tooling (Step 4 handoff)
+
+The [0051 migration compatibility addendum](DESIGN-AND-INTERFACE-CONTRACT.md#0051-step-4-compatibility-addendum--authoritative-for-resumption-20-november-2026)
+and [offline v2 reviewer](tools/step4_0051_compatibility_review.py) supersede the
+old no-Marquee IMAGE assumption. The original frozen inputs, private v1 draft
+export (15), and all earlier checks are preserved unchanged. A v2 draft is
+never implicitly approved; Marquee version/geometry require a fresh read-only
+snapshot and any stale row remains a blocker. 0028 Step 1 remains OPEN; no production apply is authorised.
+
+## Resumption execution — 21 November 2026
+
+Run `tools/resume-step1-post0051-readonly.sh` **from the authoritative Windows
+Cygwin Diaries checkout** to collect a fresh read-only inventory directly over
+SSH to `pluto`, generate a new private v2 review against the archived inputs,
+and report draft blockers. It neither changes production nor copies private
+HTML to a public repository. See
+[reports/STEP1-POST0051-RESUMPTION-20261121.md](reports/STEP1-POST0051-RESUMPTION-20261121.md).
 
 ## Priority
 
@@ -38,8 +76,8 @@ The accepted target invariant remains:
 
 ```text
 MARQUEE Fragment -> optional Marquee, no Image
-IMAGE Fragment   -> optional Image, no Marquee
-Fragment         -> zero or one Image
+IMAGE Fragment   -> optional Image, optional same-Page Marquee, optional imageLinkUrl
+Fragment         -> zero or one Image; at most one Marquee
 Image            -> zero or more Fragments
 ```
 
@@ -121,7 +159,7 @@ Use when the existing Fragment is semantically an image occurrence and its Marqu
 
 - preserve Fragment ID, Page, date and sequence;
 - set `type=IMAGE` and the approved `imageId`;
-- remove the Marquee in the same database transaction;
+- preserve the original same-Page Marquee ID/version/geometry by default when explicitly reviewed under 0051; remove it in the database transaction **only** when separately reviewed and confirmed;
 - remove only the reviewed `<img>` markup from Fragment text;
 - retain meaningful accompanying text as the IMAGE Fragment text;
 - increment/version the Fragment according to the approved migration policy;
@@ -235,7 +273,7 @@ Postflight verifies:
 
 - [ ] Every 0022 candidate has exactly one reviewed disposition.
 - [ ] No disposition is inferred automatically from `<img>` presence alone.
-- [ ] Every generated IMAGE Fragment references zero or one Image and has no Marquee.
+- [ ] Every resulting IMAGE Fragment references zero or one Image; a preserved optional Marquee must remain the same-Page original with unchanged ID/geometry/version (and no new unreviewed Marquee is invented).
 - [ ] Every resulting MARQUEE Fragment has no Image reference.
 - [ ] Multi-image legacy content creates separate ordered IMAGE Fragments when approved.
 - [ ] Fragment identity, date, sequence and non-image text are preserved according to the reviewed plan.

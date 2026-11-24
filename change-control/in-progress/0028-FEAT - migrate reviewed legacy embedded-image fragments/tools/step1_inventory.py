@@ -47,7 +47,9 @@ FROM (
              'lock_user_id',f.lock_user_id,'lock_session_id',f.lock_session_id,
              'lock_timestamp',f.lock_timestamp,
              'marquees', COALESCE((SELECT json_agg(json_build_object(
-                          'id',m.id,'page_id',m.page_id) ORDER BY m.id)
+                          'id',m.id,'page_id',m.page_id,
+                          'version',m.version,'x',m.x,'y',m.y,
+                          'width',m.width,'height',m.height) ORDER BY m.id)
                         FROM marquee m WHERE m.fragment_id=f.id), '[]'::json)
            )::text AS payload
     FROM fragment f
@@ -238,8 +240,7 @@ def analyse(snapshot: Path, out: Path, historical: Path | None,
         counts['type_' + (ftype or 'NULL')] += 1
         if len(marquee) > 1:
             issues.append({'fragment_id': fid, 'issue': 'MULTIPLE_MARQUEES', 'detail': str(len(marquee))})
-        if ftype == 'IMAGE' and marquee:
-            issues.append({'fragment_id': fid, 'issue': 'IMAGE_HAS_MARQUEE', 'detail': ''})
+        # 0051 permits an IMAGE with one same-Page Marquee; this is no longer an anomaly.
         if ftype == 'MARQUEE' and f.get('image_id') is not None:
             issues.append({'fragment_id': fid, 'issue': 'MARQUEE_HAS_IMAGE_ID', 'detail': ''})
         if ftype not in ('MARQUEE', 'IMAGE'):
