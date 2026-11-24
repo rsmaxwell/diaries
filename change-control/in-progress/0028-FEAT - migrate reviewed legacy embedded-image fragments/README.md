@@ -1,5 +1,21 @@
 # 0028-FEAT - Migrate reviewed legacy embedded-image fragments
 
+<!-- 0028-STEP4-CURRENT-STATUS-BEGIN -->
+
+**Current accepted status (24 November 2026):** Steps 1 and 2 technical
+acceptance recorded; **Step 3 CLOSED by explicit owner acceptance** after 71
+production conversions, database postflight, MQTT startup synchronisation and
+Editor/Reader visual acceptance. Fragment **1564 remains DEFERRED**.
+The temporary production migration stage has been SHA-256 archived to ignored
+private evidence and removed from `pluto`. **Step 4 remains OPEN** pending
+final documentary reconciliation and explicit *feature* closure approval.
+See [Step 4 closure review](reports/STEP4-CLOSURE-REVIEW-20261124.md).
+
+Historical planning/status paragraphs below describe earlier checkpoints, not
+current production state.
+
+<!-- 0028-STEP4-CURRENT-STATUS-END -->
+
 ## Type
 
 Feature

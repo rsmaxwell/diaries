@@ -1,5 +1,20 @@
 # 0028 — Implementation steps and acceptance gates
 
+<!-- 0028-STEP4-CURRENT-STATUS-BEGIN -->
+
+**Current step status (24 November 2026):** Step 1 accepted;
+Step 2 accepted; **Step 3 CLOSED (owner accepted 24 November)**; **Step 4 OPEN**.
+The 71-conversion production apply and postflight succeeded; Fragment 1564 is
+DEFERRED. The accepted Editor/Reader checks and MQTT startup synchronisation
+are documented in `reports/STEP3-PRODUCTION-ACCEPTANCE-20261124.md`.
+The staged production migration files were archived and the exact `pluto`
+transient stage removed. See `reports/STEP4-CLOSURE-REVIEW-20261124.md`.
+**Do not mark Step 4 CLOSED or move the feature to `complete` without explicit
+owner approval.** Earlier OPEN labels in historical step headings are retained
+for traceability and superseded by this current status.
+
+<!-- 0028-STEP4-CURRENT-STATUS-END -->
+
 **Status: ACTIVE as of 21 November 2026; all acceptance steps remain OPEN.**
 The owner approved formal closure of
 [0051](../../complete/0051-FEAT%20-%20extend%20IMAGE%20fragments%20with%20links%20and%20optional%20marquees/README.md)
