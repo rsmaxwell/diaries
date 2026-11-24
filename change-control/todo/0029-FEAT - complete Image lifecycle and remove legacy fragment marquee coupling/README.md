@@ -25,6 +25,10 @@ This is the destructive contract stage. It must not be combined operationally wi
 ## Preconditions
 
 - 0022–0027 application capabilities are deployed and stable.
+- [0051 IMAGE links and optional Marquees](../../in-progress/0051-FEAT%20-%20extend%20IMAGE%20fragments%20with%20links%20and%20optional%20marquees/README.md)
+  is deployed and its revised contracts are accepted. As agreed on 20 November
+  2026, final cleanup must preserve valid IMAGE Marquees and per-fragment links;
+  it must not reinstate the former IMAGE/no-Marquee rule.
 - 0028 has recorded a disposition for every legacy embedded-image candidate.
 - all Page ownership/type anomalies are resolved or explicitly documented as blockers.
 - no deployed or rollback-target binary requires the columns or payload fields selected for removal.
@@ -36,7 +40,8 @@ This is the destructive contract stage. It must not be combined operationally wi
 Fragment.page_id is non-null and valid
 Fragment.type is non-null and valid
 MARQUEE => fragment.image_id is null
-IMAGE   => no Marquee exists for the Fragment
+IMAGE   => zero or one Marquee, consistent with Fragment Page ownership
+IMAGE   => optional validated per-fragment image-click URL
 non-null fragment.image_id => Image exists
 Marquee.fragment_id is valid and unique
 Marquee has no persistent page_id
