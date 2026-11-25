@@ -3,10 +3,16 @@
 ## Type and status
 
 - **Type:** Defect — Angular Editor Fragment locking.
-- **Status:** OPEN / registered 24 November 2026; **implementation deferred until 0028-FEAT is completed**. No source change, deployment, or acceptance is claimed under 0053.
+- **Status:** IN PROGRESS — local correction validated on Windows, 25 November 2026. Angular production build PASS; all 248 ChromeHeadless tests PASS; six two-window GUI checks PASS. Direct database/version and retained MQTT inspections and production deployment are not evidenced. Formal closure has not been authorised.
 - **Priority:** Medium — blocks editing in another session until the owner navigates away; workaround confirmed.
 - **Repository:** Diaries parent, `change-control/in-progress/0053-DEF - editor does not release fragment lock when transcription restored/`.
 - **Discovered during:** `0028-FEAT` isolated Angular Editor GUI acceptance on 24 November 2026.
+
+## 25 November reproduction and scope extension
+
+- A normal-speed, two-window test on development Fragment 85 (diary 1, page 692) again left a lock held after the displayed text was restored. The screenshot shows Save still styled active, suggesting `hasEdits` may not have returned to false even though the visible text did. This is not proof of the exact HTML difference; runtime values remain to be captured.
+- In the other window, the lock label read `Locked`, not `Locked by another window`. This can happen when duplicated tabs inherit the same authenticated lock `sessionId` through `sessionStorage`; verify the actual session IDs in a safe local environment.
+- Root-cause priority is ordinary editor dirty-state comparison and lock reconciliation, then delayed RPC handling and distinct-window identity.
 
 ## Summary
 
@@ -89,4 +95,14 @@ No code or database change has been made by opening this defect. Anticipated fix
 
 ## Implementation status / closure
 
-**NOT STARTED.** See `IMPLEMENTATION-STEPS.md`. Keep 0053 open until implementation, integrated verification and formal acceptance are complete.
+**Implementation and local functional verification completed 25 November 2026; formal closure NOT approved.** See `IMPLEMENTATION-STEPS.md` and `reports/LOCAL-VERIFICATION-HANDOFF-20261125.md`. No production deployment has been recorded.
+
+## 25 November local verification update
+
+- Windows Cygwin Git output: parent `main`, client `main` at `4faeac6af36913a947e7947c7adb17856bd86e19` (working tree modified), responder submodule `7aa6296e0c675b3d315e9a46bb0dd70202a8cd55`, web `6d1b289bc5a7983cbf36fe771f8c11dc4725813b`. Parent HEAD hash was not captured.
+- Client `npm ci` installed 709 packages successfully after the initial Windows `esbuild.exe` file-lock failure. npm audit reported 55 vulnerabilities; not addressed within 0053.
+- Development server `ng serve`: PASS. Production `npm run build`: PASS, output at `diaries-client/dist/diaries-client`.
+- First ChromeHeadless test run: 246/248, two new `TextPanelComponent` regression tests failed due to inaccurate test fixtures. After the one-file fixture correction, full run: **248/248 PASS**. See evidence logs.
+- Owner confirmed all six two-window GUI checks PASS: acquire lock, another-window label, restore content, automatic unlock/Save inactive, cross-window notification, subsequent edit/release.
+- GUI observation supports working MQTT propagation but no retained-topic raw capture or direct PostgreSQL version comparison has been supplied; do not mark those checks passed by inference.
+- Four modified client paths observed in `git status`; a final live working-tree diff against the proposed package and final commit IDs remain to be captured.

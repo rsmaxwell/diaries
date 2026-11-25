@@ -1,0 +1,1 @@
+2026-11-25: Global TypeScript parser used on client TS component, spec and access token service. All three returned zero parseDiagnostics (syntax only). No typecheck or Angular test/build performed.
