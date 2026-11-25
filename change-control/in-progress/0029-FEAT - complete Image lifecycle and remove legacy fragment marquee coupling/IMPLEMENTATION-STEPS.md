@@ -1,33 +1,41 @@
-# 0029-FEAT — Implementation steps (revised 2026-11-25)
+# 0029-FEAT — Implementation steps (hybrid model approved 2026-11-25)
 
-**Scope:** final database integrity and reconciliation only. See [README.md](README.md) for exclusions, dependencies and acceptance criteria. Statuses below are planning items, **not claims of execution**.
+**Status: IN PROGRESS.** The following is the agreed implementation plan, **not** evidence that the target model has been deployed. See [README.md](README.md) and the Diaries `ARCHITECTURE.md`. Use a few substantial implementation chunks and one consolidated verification cycle.
 
-## 1. Baseline and non-destructive preflight
+## Step 1 — Baseline, actual data and migration disposition (OPEN)
 
-- [ ] Record Git branch/revision, submodule revisions, uncommitted changes and current deployed client/responder/reader versions.
-- [ ] Review existing 0024/0025 Image reconciliation/guard code, relevant migration evidence (including 0028), and the current database schema; avoid repeating accepted work.
-- [ ] Create and execute read-only diagnostics for Fragment Page/type/Image consistency, Marquee uniqueness and Page agreement, catalogue-to-files checks and MQTT retained-state inventory.
-- [ ] Archive raw outputs and an explicit discrepancy/exception list under this feature.
+- [ ] Confirm the Windows parent/client/responder/web revisions, dirty working trees and submodule references before application edits; verify current deployed versions and Playbooks revision before deploying.
+- [ ] Preserve and accept already collected 2026-11-25 database preflights: 22 development type fixes (complete), zero analogous production rows, 60 development vs 11 production Page-less, 71 journalled 0028 sources in production, reviewed Page candidates and content previews. Keep all raw evidence in this 0029 directory; do not rerun accepted checks without a reason.
+- [ ] Reconcile 49 development-only Page-less embedded-image HTML records against 0028 evidence and migrated IMAGE records; no blind deletion or Page attachment.
+- [ ] Validate 9 annual preamble Fragments and their explicit Diary/year identity; preserve links/HTML. Confirm 1738 and 2061 as DATED with verified Page 1005 and 1078 respectively; verify sequence without overwriting existing content.
+- [ ] Audit fragment enum/type, year/date/diary fields, `page_id`, MQTT date aliases, reader projection and Angular Dayview assumptions, creation/edit RPCs, all Marquee references and Image catalogue protections. Determine minimal persistent Diary FK for annual content, its migration/default semantics and non-page editing UX.
+- [ ] Record actual schema constraints, relevant DB/Files/MQTT reconciliation coverage and any residual exceptions before schema implementation.
 
-**Gate:** actual anomalies and missing safeguards distinguished from already-satisfied constraints.
+**Gate:** validated data disposition, ownership contract and backup/rollback requirements documented; existing accepted evidence reused.
 
-## 2. Coherent integrity/reconciliation implementation
+## Step 2 — Coherent hybrid ownership and integrity implementation
 
-- [ ] Implement only missing report-only reconciliation coverage, with usable invocation, structured output, meaningful exit status and no mutation.
-- [ ] Correct data exceptions only through an explicitly reviewed, reversible migration if required.
-- [ ] Add/validate PostgreSQL Fragment and relationship constraints and corresponding JPA mappings.
-- [ ] Remove redundant persistent `marquee.page_id` and dependent responder code only after proving it can be derived from Fragment and confirming compatible deployment/rollback strategy.
-- [ ] Preserve `Fragment.marqueeId` contract where current consumers need it; preserve optional IMAGE Marquees and image-click links.
-- [ ] Add focused regression tests for actual uncovered invariants or report errors.
+- [ ] Persist `TEXT`/`IMAGE` type and `PREAMBLE`/`DATED`/`POSTAMBLE` placement. `MARQUEE` is renamed `TEXT` in data and consumers; do not mistake a Marquee for a Fragment type.
+- [ ] Implement exclusive ownership: DATED requires Page and derives Diary; annual placement requires explicit Diary + calendar year, NULL Page and no Marquee. Add appropriate nullable/required columns and conditional CHECK/FK constraints plus responder-level validation of cross-row rules and diary/year dates. Do not impose blanket `page_id NOT NULL`.
+- [ ] Guarded migration: map ordinary Page-owned records to DATED, reviewed annual Fragments to PREAMBLE, 1738/2061 to verified DATED Pages; treat development-only legacy HTML separately. Preserve original HTML and useful hyperlinks; simplify decorative 1828 introductory HTML by reviewed transformation. No currently approved POSTAMBLE rows.
+- [ ] Update responder JPA/entity, DTO/RPC, persisted validation, retained topic paths and startup normalisation so annual Fragments are addressable by **Diary/year** and do not acquire a fake Page; republish/delete obsolete retained aliases. Maintain derived `marqueeId` where needed.
+- [ ] Update Angular editor (year-level pre/post sections without Page selection, create/edit/order and lock) and public reader projection (PREAMBLE before first heading; DATED grouped normally; POSTAMBLE after final heading), including Diary spanning multiple years and stable tie-breakers.
+- [ ] Retire `marquee.page_id` and dependent Java paths only after validating that Marquee Page can be resolved through DATED Fragment; update constraints and rollback design together.
+- [ ] Retain shared Catalogue Image caption/altText and per-occurrence optional link; support IMAGE/TEXT in any placement and optional DATED Marquee; add regression fixtures and tests for the new owner rules, POSTAMBLE and all date boundaries.
+- [ ] Reuse existing 0024/0025 Image safeguards and reconciliation functionality; implement only demonstrated missing **read-only** reporting.
 
-**Gate:** integrated change is ready for a single consolidated verification cycle.
+**Gate:** complete, internally consistent application/schema/migration package ready for consolidated regression. No arbitrary interim release or unnecessary compatibility layer.
 
-## 3. Consolidated verification and production migration
+## Step 3 — Consolidated verification and controlled production migration
 
-- [ ] Run appropriate responder/client/reader tests and compile/build checks after the integrated changes.
-- [ ] Verify database postflight, Image file/catalogue integrity, retained-tree replay/comparison and edit/read smoke paths (MARQUEE, IMAGE, optional Marquee/link).
-- [ ] For production: verify current restorable database backup and relevant Files-root backup; record compatibility and rollback method before any destructive SQL.
-- [ ] Deploy as one controlled responder/schema update; archive service, database, MQTT and functional evidence. Repeat only affected tests after fixes.
-- [ ] Record unresolved exceptions, acceptance decisions, Git commits and deployment revisions. Mark steps CLOSED only after evidence is accepted; move feature to `complete` only after formal approval.
+- [ ] Build/test client, responder and reader; verify normal DATED editing/locks, TEXT and IMAGE, optional Page Marquees, links and catalogue captions.
+- [ ] Verify 1828/1832 introductions above 1 January, other annual highlights, DATED 1738/2061, multi-year Diary presentation, synthetic POSTAMBLE, year-level edit/order and retained MQTT replay without fake date or Page relationships.
+- [ ] Record current restorable PostgreSQL backup and relevant Files-root recovery, capture pre-migration rows and compatible rollback procedure; rehearse guarded SQL against development. Obtain appropriate approval before irreversible production operations.
+- [ ] Deploy schema and compatible responder/editor/reader together, reconcile old/new retained topics, inspect logs and postflight, and run targeted production smoke tests.
+- [ ] Capture final evidence/commit hashes/deployment versions; mark steps CLOSED only with accepted evidence. Move feature to `complete` only after explicit formal closure approval.
 
-**Gate:** production acceptance and formal closure decision.
+**Gate:** production ownership/integrity/reporting acceptance; no unresolved data exceptions concealed.
+
+## Superseded 2026-11-25 decisions
+
+Earlier in this same feature, mandatory Page ownership was proposed for all Fragments and 1828/1832 annual introductions were tentatively assigned to first-January Pages 685 and 972. **Those proposals are superseded** by approved hybrid ownership. The Page IDs remain useful as historical diagnostic context, **not** migration targets for PREAMBLE/POSTAMBLE. The existing 22-row development-only `MARQUEE` repair remains a completed intermediate fact; final `TEXT` conversion is not yet implemented.
