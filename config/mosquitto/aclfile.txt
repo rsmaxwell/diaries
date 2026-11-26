@@ -7,6 +7,7 @@ topic read diaries/fragments/#
 topic read diaries/marquees/#
 topic read diaries/images/+
 topic read diaries/dates/#
+topic read diaries/years/#
 
 user diaries-responder
 topic read diaries/rpc/request
@@ -18,6 +19,7 @@ topic readwrite diaries/fragments/#
 topic readwrite diaries/marquees/#
 topic readwrite diaries/images/+
 topic readwrite diaries/dates/#
+topic readwrite diaries/years/#
 topic readwrite diaries/people/#
 topic readwrite diaries/roles/#
 
@@ -29,6 +31,7 @@ topic read diaries/pages/+
 topic read diaries/fragments/+
 topic read diaries/marquees/+
 topic read diaries/images/+
+topic read diaries/years/#
 
 user diaries-health
 topic read $SYS/broker/version

@@ -4,6 +4,7 @@
 
 - **Type:** Feature
 - **Status:** In progress
+- **Development milestone:** Step 2 CLOSED (2026-11-26); production migration and final feature closure remain open. See `reports/STEP-2-DEVELOPMENT-ACCEPTANCE-20261126.md`.
 - **Priority:** High
 - **Opened:** 2026-09-08
 - **Scope revision:** 2026-11-25. Original Image lifecycle/legacy Marquee coupling history remains in Git; existing feature directory name stays unchanged for traceability.
@@ -13,7 +14,7 @@
 
 Complete and enforce the final **TEXT/IMAGE** content model and **PREAMBLE/DATED/POSTAMBLE** placement, reconcile legacy data with the actual ownership semantics, remove redundant Marquee Page persistence, and provide repeatable, safe reconciliation of PostgreSQL, image catalogue/files and retained MQTT state. Preserve accepted 0024/0025/0028/0051 Image features rather than rebuilding them.
 
-## Authoritative target model — approved 2026-11-25, not yet deployed
+## Authoritative target model — approved 2026-11-25 (development implemented; production not verified)
 
 A Diary is a physical book **and** a digital edition. It has physical Pages and calendar-year editorial sections. Every Fragment has:
 

@@ -1,6 +1,6 @@
 # 0029-FEAT — Implementation steps (hybrid model approved 2026-11-25)
 
-**Status: IN PROGRESS.** The following is the agreed implementation plan, **not** evidence that the target model has been deployed. See [README.md](README.md) and the Diaries `ARCHITECTURE.md`. Use a few substantial implementation chunks and one consolidated verification cycle.
+**Status: IN PROGRESS; Step 2 CLOSED for development on 2026-11-26.** This plan describes the agreed scope; the development implementation is verified, but production deployment is **not** evidenced. See [README.md](README.md) and the Diaries `ARCHITECTURE.md`. Use a few substantial implementation chunks and one consolidated verification cycle.
 
 ## Step 1 — Baseline, actual data and migration disposition (OPEN)
 
@@ -13,7 +13,7 @@
 
 **Gate:** validated data disposition, ownership contract and backup/rollback requirements documented; existing accepted evidence reused.
 
-## Step 2 — Coherent hybrid ownership and integrity implementation
+## Step 2 — Coherent hybrid ownership and integrity implementation (CLOSED — development, 2026-11-26)
 
 - [ ] Persist `TEXT`/`IMAGE` type and `PREAMBLE`/`DATED`/`POSTAMBLE` placement. `MARQUEE` is renamed `TEXT` in data and consumers; do not mistake a Marquee for a Fragment type.
 - [ ] Implement exclusive ownership: DATED requires Page and derives Diary; annual placement requires explicit Diary + calendar year, NULL Page and no Marquee. Add appropriate nullable/required columns and conditional CHECK/FK constraints plus responder-level validation of cross-row rules and diary/year dates. Do not impose blanket `page_id NOT NULL`.
@@ -25,6 +25,9 @@
 - [ ] Reuse existing 0024/0025 Image safeguards and reconciliation functionality; implement only demonstrated missing **read-only** reporting.
 
 **Gate:** complete, internally consistent application/schema/migration package ready for consolidated regression. No arbitrary interim release or unnecessary compatibility layer.
+
+**Closure evidence (development):** 49 reviewed legacy-image conversions and their source archives/receipts; nine annual PREAMBLEs; integrated responder/editor/reader tests; TEXT and IMAGE create/edit/delete browser checks; repaired IMAGE creation `placement=DATED`; restored historical PREAMBLE IDs 1–3 following an accidental annual-editor deletion; successful startup MQTT reconciliation and final read-only database integrity PASS on 2026-11-26 at 11:52. See `reports/STEP-2-DEVELOPMENT-ACCEPTANCE-20261126.md`. This closes the Step 2 development implementation gate only; Step 3 production migration and feature closure are **not** approved or complete.
+
 
 ## Step 3 — Consolidated verification and controlled production migration
 
