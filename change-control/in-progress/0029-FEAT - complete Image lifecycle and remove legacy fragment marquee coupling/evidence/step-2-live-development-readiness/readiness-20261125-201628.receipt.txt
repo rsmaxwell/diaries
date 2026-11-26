@@ -1,0 +1,11 @@
+Development database backup readiness receipt — NOT migration approval
+Captured UTC: 2026-11-25T20:16:31Z
+Database container: diaries-development-db
+Dump: change-control/in-progress/0029-FEAT - complete Image lifecycle and remove legacy fragment marquee coupling/evidence/step-2-live-development-readiness/diaries-development-pre0029-20261125-201628.dump
+Archive bytes: 289535
+072e44c610179aa672a6bd8321f560c767821e67f75fcbeb2e7fe03583aaa621 *change-control/in-progress/0029-FEAT - complete Image lifecycle and remove legacy fragment marquee coupling/evidence/step-2-live-development-readiness/diaries-development-pre0029-20261125-201628.dump
+Archive TOC: verified with pg_restore --list
+Restore test: NOT performed by this command (earlier isolated rehearsal restored a separate dump).
+Live responder and MQTT quiescence: NOT verified.
+Editorial placement approvals: PENDING.
+Live development migration: NOT EXECUTED.

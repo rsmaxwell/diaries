@@ -1,0 +1,6 @@
+PASS: Parent Git baseline
+FAIL: Parent and submodule diff whitespace (exit 2) — 02-diff-check.log
+FAIL: Responder compile and tests (exit 1) — 03-responder-test.log
+FAIL: Reader compile and tests (exit 1) — 04-reader-test.log
+FAIL: Angular production build (exit 1) — 05-angular-build.log
+FAIL: Angular ChromeHeadless tests (exit 1) — 06-angular-test.log

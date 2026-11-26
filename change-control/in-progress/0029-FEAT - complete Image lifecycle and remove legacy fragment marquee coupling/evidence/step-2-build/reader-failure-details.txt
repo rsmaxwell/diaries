@@ -1,0 +1,546 @@
+FILE: diaries-web/build/test-results/test/TEST-com.rsmaxwell.diaries.web.http.WebServerTest.xml
+CASE: com.rsmaxwell.diaries.web.http.WebServerTest :: mixedTypedFragmentsRemainAvailableThroughMonthAndSourceHttpResponses()
+MESSAGE: org.opentest4j.AssertionFailedError: 
+expected: 200
+ but was: 500
+org.opentest4j.AssertionFailedError: 
+expected: 200
+ but was: 500
+	at com.rsmaxwell.diaries.web.http.WebServerTest.mixedTypedFragmentsRemainAvailableThroughMonthAndSourceHttpResponses(WebServerTest.java:267)
+
+------------------------------------------------------------------------
+FILE: diaries-web/build/test-results/test/TEST-com.rsmaxwell.diaries.web.http.WebServerTest.xml
+CASE: com.rsmaxwell.diaries.web.http.WebServerTest :: acceptsAndClipsAMarqueeWhichExtendsBeyondThePageOrigin()
+MESSAGE: org.opentest4j.AssertionFailedError: 
+expected: 200
+ but was: 500
+org.opentest4j.AssertionFailedError: 
+expected: 200
+ but was: 500
+	at com.rsmaxwell.diaries.web.http.WebServerTest.acceptsAndClipsAMarqueeWhichExtendsBeyondThePageOrigin(WebServerTest.java:170)
+
+------------------------------------------------------------------------
+FILE: diaries-web/build/test-results/test/TEST-com.rsmaxwell.diaries.web.http.WebServerTest.xml
+CASE: com.rsmaxwell.diaries.web.http.WebServerTest :: linkedImageAndSourceRegionRenderAsIndependentSafeControls()
+MESSAGE: org.opentest4j.AssertionFailedError: 
+expected: 200
+ but was: 500
+org.opentest4j.AssertionFailedError: 
+expected: 200
+ but was: 500
+	at com.rsmaxwell.diaries.web.http.WebServerTest.linkedImageAndSourceRegionRenderAsIndependentSafeControls(WebServerTest.java:35)
+
+------------------------------------------------------------------------
+FILE: diaries-web/build/test-results/test/TEST-com.rsmaxwell.diaries.web.http.WebServerTest.xml
+CASE: com.rsmaxwell.diaries.web.http.WebServerTest :: rendersPageOwnedFragmentWhenItsMarqueeIsUnavailable()
+MESSAGE: org.opentest4j.AssertionFailedError: 
+expected: 200
+ but was: 500
+org.opentest4j.AssertionFailedError: 
+expected: 200
+ but was: 500
+	at com.rsmaxwell.diaries.web.http.WebServerTest.rendersPageOwnedFragmentWhenItsMarqueeIsUnavailable(WebServerTest.java:188)
+
+------------------------------------------------------------------------
+FILE: diaries-web/build/test-results/test/TEST-com.rsmaxwell.diaries.web.http.WebServerTest.xml
+CASE: com.rsmaxwell.diaries.web.http.WebServerTest :: step11CoversMixedChronologyDegradedMediaMissingOwnershipAndReadOnlyHttpBoundaries()
+MESSAGE: org.opentest4j.AssertionFailedError: 
+expected: 200
+ but was: 500
+org.opentest4j.AssertionFailedError: 
+expected: 200
+ but was: 500
+	at com.rsmaxwell.diaries.web.http.WebServerTest.step11CoversMixedChronologyDegradedMediaMissingOwnershipAndReadOnlyHttpBoundaries(WebServerTest.java:355)
+
+------------------------------------------------------------------------
+FILE: diaries-web/build/test-results/test/TEST-com.rsmaxwell.diaries.web.http.WebServerTest.xml
+CASE: com.rsmaxwell.diaries.web.http.WebServerTest :: rendersDiaryContentsAndMonthReaderFromOneSnapshot()
+MESSAGE: org.opentest4j.AssertionFailedError: 
+expected: 200
+ but was: 500
+org.opentest4j.AssertionFailedError: 
+expected: 200
+ but was: 500
+	at com.rsmaxwell.diaries.web.http.WebServerTest.rendersDiaryContentsAndMonthReaderFromOneSnapshot(WebServerTest.java:102)
+
+------------------------------------------------------------------------
+FILE: diaries-web/build/test-results/test/TEST-com.rsmaxwell.diaries.web.mqtt.MqttProjectionIntegrationTest.xml
+CASE: com.rsmaxwell.diaries.web.mqtt.MqttProjectionIntegrationTest :: imageCatalogueDoesNotChangeVisibleChronologyAcrossReaderRestarts()
+MESSAGE: java.lang.AssertionError: 
+Expecting actual:
+  "<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read-only diary">
+  <title>Diaries Browser</title>
+  <link rel="canonical" href="https://reader.example.test/diaries/11/2026/09">
+  <link rel="stylesheet" href="/assets/css/diaries.css?v=d7fc0070">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to diary content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-title" href="/">Diaries</a>
+      <nav aria-label="Primary navigation">
+        <a href="/diaries">Diaries</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content" class="page-shell">
+    <header class="page-heading">
+  <p class="eyebrow">Error 500</p>
+  <h1>Unable to render page</h1>
+  <p>The page could not be rendered. Please try again later.</p>
+  <p class="request-id">Request reference: 4c64aa07-5bbd-452d-a365-2f00d4977866</p>  <p><a href="/">Return to the diary index</a></p>
+</header>
+  </main>
+  <footer class="site-footer">
+    <p>Read-only diary archive · version phase9</p>
+  </footer>
+  <script src="/assets/js/diaries.js?v=d7fc0070" defer></script>
+</body>
+</html>
+"
+to contain:
+  ["A diary entry", "data-viewer-marquee", "data-reader-fragment="33""]
+but could not find:
+  ["A diary entry", "data-viewer-marquee", "data-reader-fragment="33""]
+ 
+java.lang.AssertionError: 
+Expecting actual:
+  "<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read-only diary">
+  <title>Diaries Browser</title>
+  <link rel="canonical" href="https://reader.example.test/diaries/11/2026/09">
+  <link rel="stylesheet" href="/assets/css/diaries.css?v=d7fc0070">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to diary content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-title" href="/">Diaries</a>
+      <nav aria-label="Primary navigation">
+        <a href="/diaries">Diaries</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content" class="page-shell">
+    <header class="page-heading">
+  <p class="eyebrow">Error 500</p>
+  <h1>Unable to render page</h1>
+  <p>The page could not be rendered. Please try again later.</p>
+  <p class="request-id">Request reference: 4c64aa07-5bbd-452d-a365-2f00d4977866</p>  <p><a href="/">Return to the diary index</a></p>
+</header>
+  </main>
+  <footer class="site-footer">
+    <p>Read-only diary archive · version phase9</p>
+  </footer>
+  <script src="/assets/js/diaries.js?v=d7fc0070" defer></script>
+</body>
+</html>
+"
+to contain:
+  ["A diary entry", "data-viewer-marquee", "data-reader-fragment="33""]
+but could not find:
+  ["A diary entry", "data-viewer-marquee", "data-reader-fragment="33""]
+ 
+	at com.rsmaxwell.diaries.web.mqtt.MqttProjectionIntegrationTest.imageCatalogueDoesNotChangeVisibleChronologyAcrossReaderRestarts(MqttProjectionIntegrationTest.java:155)
+
+------------------------------------------------------------------------
+FILE: diaries-web/build/test-results/test/TEST-com.rsmaxwell.diaries.web.mqtt.MqttProjectionIntegrationTest.xml
+CASE: com.rsmaxwell.diaries.web.mqtt.MqttProjectionIntegrationTest :: retainedStartupLiveUpdateTombstoneAndReadOnlyAclWorkTogether()
+MESSAGE: java.lang.AssertionError: 
+Expecting actual:
+  "<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read-only diary">
+  <title>Diaries Browser</title>
+  <link rel="canonical" href="https://reader.example.test/diaries/11/2026/09">
+  <link rel="stylesheet" href="/assets/css/diaries.css?v=30818dfa">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to diary content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-title" href="/">Diaries</a>
+      <nav aria-label="Primary navigation">
+        <a href="/diaries">Diaries</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content" class="page-shell">
+    <header class="page-heading">
+  <p class="eyebrow">Error 500</p>
+  <h1>Unable to render page</h1>
+  <p>The page could not be rendered. Please try again later.</p>
+  <p class="request-id">Request reference: 086bf893-138a-4bee-aada-63528da8addb</p>  <p><a href="/">Return to the diary index</a></p>
+</header>
+  </main>
+  <footer class="site-footer">
+    <p>Read-only diary archive · version integration</p>
+  </footer>
+  <script src="/assets/js/diaries.js?v=30818dfa" defer></script>
+</body>
+</html>
+"
+to contain:
+  "A diary entry" 
+java.lang.AssertionError: 
+Expecting actual:
+  "<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read-only diary">
+  <title>Diaries Browser</title>
+  <link rel="canonical" href="https://reader.example.test/diaries/11/2026/09">
+  <link rel="stylesheet" href="/assets/css/diaries.css?v=30818dfa">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to diary content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-title" href="/">Diaries</a>
+      <nav aria-label="Primary navigation">
+        <a href="/diaries">Diaries</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content" class="page-shell">
+    <header class="page-heading">
+  <p class="eyebrow">Error 500</p>
+  <h1>Unable to render page</h1>
+  <p>The page could not be rendered. Please try again later.</p>
+  <p class="request-id">Request reference: 086bf893-138a-4bee-aada-63528da8addb</p>  <p><a href="/">Return to the diary index</a></p>
+</header>
+  </main>
+  <footer class="site-footer">
+    <p>Read-only diary archive · version integration</p>
+  </footer>
+  <script src="/assets/js/diaries.js?v=30818dfa" defer></script>
+</body>
+</html>
+"
+to contain:
+  "A diary entry" 
+	at com.rsmaxwell.diaries.web.mqtt.MqttProjectionIntegrationTest.retainedStartupLiveUpdateTombstoneAndReadOnlyAclWorkTogether(MqttProjectionIntegrationTest.java:87)
+
+------------------------------------------------------------------------
+FILE: diaries-web/build/test-results/test/TEST-com.rsmaxwell.diaries.web.mqtt.Step12MqttHttpIntegrationTest.xml
+CASE: com.rsmaxwell.diaries.web.mqtt.Step12MqttHttpIntegrationTest :: missingImagePermissionDegradesProjectionWhileActualWebIdentityRemainsRpcFreeAndReadOnly()
+MESSAGE: java.lang.AssertionError: 
+Expecting actual:
+  "<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read-only diary">
+  <title>Diaries Browser</title>
+  <link rel="canonical" href="https://reader.example.test/diaries/11/2026/09">
+  <link rel="stylesheet" href="/assets/css/diaries.css?v=34d2a4c1">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to diary content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-title" href="/">Diaries</a>
+      <nav aria-label="Primary navigation">
+        <a href="/diaries">Diaries</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content" class="page-shell">
+    <header class="page-heading">
+  <p class="eyebrow">Error 500</p>
+  <h1>Unable to render page</h1>
+  <p>The page could not be rendered. Please try again later.</p>
+  <p class="request-id">Request reference: 512e4dc7-215b-47a5-abcf-aa86c4f87ee8</p>  <p><a href="/">Return to the diary index</a></p>
+</header>
+  </main>
+  <footer class="site-footer">
+    <p>Read-only diary archive · version step12</p>
+  </footer>
+  <script src="/assets/js/diaries.js?v=34d2a4c1" defer></script>
+</body>
+</html>
+"
+to contain:
+  ["data-media-state="MISSING_METADATA"", "Image unavailable"]
+but could not find:
+  ["data-media-state="MISSING_METADATA"", "Image unavailable"]
+ 
+java.lang.AssertionError: 
+Expecting actual:
+  "<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read-only diary">
+  <title>Diaries Browser</title>
+  <link rel="canonical" href="https://reader.example.test/diaries/11/2026/09">
+  <link rel="stylesheet" href="/assets/css/diaries.css?v=34d2a4c1">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to diary content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-title" href="/">Diaries</a>
+      <nav aria-label="Primary navigation">
+        <a href="/diaries">Diaries</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content" class="page-shell">
+    <header class="page-heading">
+  <p class="eyebrow">Error 500</p>
+  <h1>Unable to render page</h1>
+  <p>The page could not be rendered. Please try again later.</p>
+  <p class="request-id">Request reference: 512e4dc7-215b-47a5-abcf-aa86c4f87ee8</p>  <p><a href="/">Return to the diary index</a></p>
+</header>
+  </main>
+  <footer class="site-footer">
+    <p>Read-only diary archive · version step12</p>
+  </footer>
+  <script src="/assets/js/diaries.js?v=34d2a4c1" defer></script>
+</body>
+</html>
+"
+to contain:
+  ["data-media-state="MISSING_METADATA"", "Image unavailable"]
+but could not find:
+  ["data-media-state="MISSING_METADATA"", "Image unavailable"]
+ 
+	at com.rsmaxwell.diaries.web.mqtt.Step12MqttHttpIntegrationTest.missingImagePermissionDegradesProjectionWhileActualWebIdentityRemainsRpcFreeAndReadOnly(Step12MqttHttpIntegrationTest.java:236)
+
+------------------------------------------------------------------------
+FILE: diaries-web/build/test-results/test/TEST-com.rsmaxwell.diaries.web.mqtt.Step12MqttHttpIntegrationTest.xml
+CASE: com.rsmaxwell.diaries.web.mqtt.Step12MqttHttpIntegrationTest :: retainedReplayLiveImageChangesAndFreshReconnectReachHttpWithoutStaleState()
+MESSAGE: java.lang.AssertionError: 
+Expecting actual:
+  "<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read-only diary">
+  <title>Diaries Browser</title>
+  <link rel="canonical" href="https://reader.example.test/diaries/11/2026/09">
+  <link rel="stylesheet" href="/assets/css/diaries.css?v=34d2a4c1">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to diary content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-title" href="/">Diaries</a>
+      <nav aria-label="Primary navigation">
+        <a href="/diaries">Diaries</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content" class="page-shell">
+    <header class="page-heading">
+  <p class="eyebrow">Error 500</p>
+  <h1>Unable to render page</h1>
+  <p>The page could not be rendered. Please try again later.</p>
+  <p class="request-id">Request reference: eb35890e-fb62-4dd3-9910-fe4991957def</p>  <p><a href="/">Return to the diary index</a></p>
+</header>
+  </main>
+  <footer class="site-footer">
+    <p>Read-only diary archive · version step12</p>
+  </footer>
+  <script src="/assets/js/diaries.js?v=34d2a4c1" defer></script>
+</body>
+</html>
+"
+to contain:
+  ["data-reader-fragment="35"",
+    "data-fragment-type="IMAGE"",
+    "data-media-state="AVAILABLE"",
+    "Detail from the source page"]
+but could not find:
+  ["data-reader-fragment="35"",
+    "data-fragment-type="IMAGE"",
+    "data-media-state="AVAILABLE"",
+    "Detail from the source page"]
+ 
+java.lang.AssertionError: 
+Expecting actual:
+  "<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read-only diary">
+  <title>Diaries Browser</title>
+  <link rel="canonical" href="https://reader.example.test/diaries/11/2026/09">
+  <link rel="stylesheet" href="/assets/css/diaries.css?v=34d2a4c1">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to diary content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-title" href="/">Diaries</a>
+      <nav aria-label="Primary navigation">
+        <a href="/diaries">Diaries</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content" class="page-shell">
+    <header class="page-heading">
+  <p class="eyebrow">Error 500</p>
+  <h1>Unable to render page</h1>
+  <p>The page could not be rendered. Please try again later.</p>
+  <p class="request-id">Request reference: eb35890e-fb62-4dd3-9910-fe4991957def</p>  <p><a href="/">Return to the diary index</a></p>
+</header>
+  </main>
+  <footer class="site-footer">
+    <p>Read-only diary archive · version step12</p>
+  </footer>
+  <script src="/assets/js/diaries.js?v=34d2a4c1" defer></script>
+</body>
+</html>
+"
+to contain:
+  ["data-reader-fragment="35"",
+    "data-fragment-type="IMAGE"",
+    "data-media-state="AVAILABLE"",
+    "Detail from the source page"]
+but could not find:
+  ["data-reader-fragment="35"",
+    "data-fragment-type="IMAGE"",
+    "data-media-state="AVAILABLE"",
+    "Detail from the source page"]
+ 
+	at com.rsmaxwell.diaries.web.mqtt.Step12MqttHttpIntegrationTest.retainedReplayLiveImageChangesAndFreshReconnectReachHttpWithoutStaleState(Step12MqttHttpIntegrationTest.java:102)
+
+------------------------------------------------------------------------
+FILE: diaries-web/build/test-results/test/TEST-com.rsmaxwell.diaries.web.mqtt.Step12MqttHttpIntegrationTest.xml
+CASE: com.rsmaxwell.diaries.web.mqtt.Step12MqttHttpIntegrationTest :: productionSizedRetainedTreeReplaysWithinRuntimeLimitsAndPublishesOneCompleteHttpGeneration()
+MESSAGE: java.lang.AssertionError: 
+Expecting actual:
+  "<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read-only diary">
+  <title>Diaries Browser</title>
+  <link rel="canonical" href="https://reader.example.test/diaries/1/2026/09">
+  <link rel="stylesheet" href="/assets/css/diaries.css?v=34d2a4c1">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to diary content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-title" href="/">Diaries</a>
+      <nav aria-label="Primary navigation">
+        <a href="/diaries">Diaries</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content" class="page-shell">
+    <header class="page-heading">
+  <p class="eyebrow">Error 500</p>
+  <h1>Unable to render page</h1>
+  <p>The page could not be rendered. Please try again later.</p>
+  <p class="request-id">Request reference: c58aa977-1794-4b22-8716-66437003d76a</p>  <p><a href="/">Return to the diary index</a></p>
+</header>
+  </main>
+  <footer class="site-footer">
+    <p>Read-only diary archive · version step12</p>
+  </footer>
+  <script src="/assets/js/diaries.js?v=34d2a4c1" defer></script>
+</body>
+</html>
+"
+to contain:
+  ["data-reader-fragment="12270"",
+    "data-fragment-type="IMAGE"",
+    "data-media-state="AVAILABLE""]
+but could not find:
+  ["data-reader-fragment="12270"",
+    "data-fragment-type="IMAGE"",
+    "data-media-state="AVAILABLE""]
+ 
+java.lang.AssertionError: 
+Expecting actual:
+  "<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Read-only diary">
+  <title>Diaries Browser</title>
+  <link rel="canonical" href="https://reader.example.test/diaries/1/2026/09">
+  <link rel="stylesheet" href="/assets/css/diaries.css?v=34d2a4c1">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to diary content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-title" href="/">Diaries</a>
+      <nav aria-label="Primary navigation">
+        <a href="/diaries">Diaries</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content" class="page-shell">
+    <header class="page-heading">
+  <p class="eyebrow">Error 500</p>
+  <h1>Unable to render page</h1>
+  <p>The page could not be rendered. Please try again later.</p>
+  <p class="request-id">Request reference: c58aa977-1794-4b22-8716-66437003d76a</p>  <p><a href="/">Return to the diary index</a></p>
+</header>
+  </main>
+  <footer class="site-footer">
+    <p>Read-only diary archive · version step12</p>
+  </footer>
+  <script src="/assets/js/diaries.js?v=34d2a4c1" defer></script>
+</body>
+</html>
+"
+to contain:
+  ["data-reader-fragment="12270"",
+    "data-fragment-type="IMAGE"",
+    "data-media-state="AVAILABLE""]
+but could not find:
+  ["data-reader-fragment="12270"",
+    "data-fragment-type="IMAGE"",
+    "data-media-state="AVAILABLE""]
+ 
+	at com.rsmaxwell.diaries.web.mqtt.Step12MqttHttpIntegrationTest.productionSizedRetainedTreeReplaysWithinRuntimeLimitsAndPublishesOneCompleteHttpGeneration(Step12MqttHttpIntegrationTest.java:302)
+
+------------------------------------------------------------------------
+FILE: diaries-web/build/test-results/test/TEST-com.rsmaxwell.diaries.web.rendering.RenderingSafetyTest.xml
+CASE: com.rsmaxwell.diaries.web.rendering.RenderingSafetyTest :: templatesReserveRawRenderingForSanitizedFragmentHtmlOnly()
+MESSAGE: org.opentest4j.AssertionFailedError: 
+expected: 1
+ but was: 3
+org.opentest4j.AssertionFailedError: 
+expected: 1
+ but was: 3
+	at com.rsmaxwell.diaries.web.rendering.RenderingSafetyTest.templatesReserveRawRenderingForSanitizedFragmentHtmlOnly(RenderingSafetyTest.java:136)
+
+------------------------------------------------------------------------

@@ -1,0 +1,32 @@
+BEGIN
+SET
+=== Database identity and legacy schema presence ===
+ database_name | database_user | server_address | server_port | postgres_version |          captured_at          
+---------------+---------------+----------------+-------------+------------------+-------------------------------
+ diaries       | diaries       |                |             | 18.7             | 2026-11-25 17:33:00.533022+00
+(1 row)
+
+ journal_source | journal_occurrence 
+----------------+--------------------
+                | 
+(1 row)
+
+=== Current 0029 schema columns (check migration not already applied) ===
+ table_name | column_name | is_nullable |     data_type     
+------------+-------------+-------------+-------------------
+ fragment   | page_id     | YES         | bigint
+ fragment   | type        | YES         | character varying
+ marquee    | fragment_id | NO          | bigint
+ marquee    | page_id     | YES         | bigint
+(4 rows)
+
+=== Page-less totals and partition against reviewed 11 IDs ===
+ total_pageless | reviewed_pageless | other_pageless | other_image_type | other_marquee_type | other_null_type 
+----------------+-------------------+----------------+------------------+--------------------+-----------------
+             60 |                11 |             49 |                0 |                  0 |              49
+(1 row)
+
+=== All 49 development-only Page-less rows, joined to 0028 journal ===
+ERROR:  relation "public.migration0028_source" does not exist
+LINE 15: LEFT JOIN public.migration0028_source s ON s.fragment_id=f.i...
+                   ^

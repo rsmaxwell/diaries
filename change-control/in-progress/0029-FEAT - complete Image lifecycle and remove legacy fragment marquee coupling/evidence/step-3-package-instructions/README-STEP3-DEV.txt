@@ -1,0 +1,1 @@
+0029 Step 3 development retirement runbook + guarded script. Apply the two repository-relative files with Beyond Compare 4. Run --plan first. DO NOT execute --execute without explicit approval and IDE responder shutdown.
