@@ -1,0 +1,262 @@
+0029 PRODUCTION CUTOVER START 2026-11-26T17:23:07Z
+Windows backup: change-control/in-progress/0029-FEAT - complete Image lifecycle and remove legacy fragment marquee coupling/evidence/step-3-production-cutover/diaries-production-pre0029-20261126-172307.dump
+Migration inputs:
+563cb107ac8fa518610c2f3a9a4e6b65575cf4acfc89a889bfd2ec288e3080ef *change-control/in-progress/0029-FEAT - complete Image lifecycle and remove legacy fragment marquee coupling/tools/step2-hybrid-schema-and-data.sql
+758a41e5ecdddd895827865b35edd362edb4dd56d12a51f845fc515a9b735931 *change-control/in-progress/0029-FEAT - complete Image lifecycle and remove legacy fragment marquee coupling/tools/step3-retire-marquee-page-id.sql
+=== STOP APPLICATION WRITERS: leave PostgreSQL and MQTT online ===
+ Container diaries-web Stopping 
+ Container diaries-client Stopping 
+ Container diaries-client Stopped 
+ Container diaries-web Stopped 
+ Container diaries-responder Stopping 
+ Container diaries-responder Stopped 
+=== RETAIN FRESH PRODUCTION DATABASE RECOVERY DUMP ===
+change-control/in-progress/0029-FEAT - complete Image lifecycle and remove legacy fragment marquee coupling/evidence/step-3-production-cutover/diaries-production-pre0029-20261126-172307.dump: OK
+BACKUP PASS: change-control/in-progress/0029-FEAT - complete Image lifecycle and remove legacy fragment marquee coupling/evidence/step-3-production-cutover/diaries-production-pre0029-20261126-172307.dump; catalogue change-control/in-progress/0029-FEAT - complete Image lifecycle and remove legacy fragment marquee coupling/evidence/step-3-production-cutover/diaries-production-pre0029-20261126-172307.dump.toc
+=== MIGRATE 1: HYBRID FRAGMENT ===
+BEGIN
+SET
+SET
+DO
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+UPDATE 2320
+UPDATE 9
+UPDATE 1
+UPDATE 1
+UPDATE 2258
+DO
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+CREATE INDEX
+ placement | type  | fragments 
+-----------+-------+-----------
+ DATED     | IMAGE |        73
+ DATED     | TEXT  |      2249
+ PREAMBLE  | TEXT  |         9
+(3 rows)
+
+COMMIT
+MIGRATION 1 PASS
+=== MIGRATE 2: RETIRE MARQUEE PAGE_ID ===
+BEGIN
+SET
+SET
+DO
+ALTER TABLE
+DO
+COMMIT
+MIGRATION 2 PASS
+=== POST-MIGRATION DATABASE INTEGRITY ===
+DO
+DATABASE INTEGRITY PASS
+=== DEPLOY PUBLISHED PLAYBOOKS TO PLUTO ===
+
+PLAY [diaries] *****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [pluto]
+
+TASK [docker : Docker | Install prerequisite packages] *************************
+ok: [pluto]
+
+TASK [docker : Docker | Ensure apt keyrings directory exists] ******************
+ok: [pluto]
+
+TASK [docker : Docker | Install Docker apt signing key] ************************
+ok: [pluto]
+
+TASK [docker : Docker | Remove legacy Docker repository definition] ************
+ok: [pluto]
+
+TASK [docker : Docker | Add Docker repository] *********************************
+ok: [pluto]
+
+TASK [docker : Docker | Update apt cache after repository change] **************
+skipping: [pluto]
+
+TASK [docker : Docker | Install Docker packages] *******************************
+ok: [pluto]
+
+TASK [docker : Docker | Add remote user to docker group] ***********************
+ok: [pluto]
+
+TASK [docker : Docker | Enable and start Docker] *******************************
+ok: [pluto]
+
+TASK [diaries : diaries | Validate frontend mode] ******************************
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries | Validate mutable Files directory selector] ***********
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries | Validate complete-dataset production configuration] ***
+ok: [pluto] => {
+    "changed": false
+}
+
+MSG:
+
+All assertions passed
+
+TASK [diaries : diaries:utilities | Install prerequisite packages] *************
+ok: [pluto]
+
+TASK [diaries : diaries:0036 | Validate host mount inputs] *********************
+ok: [pluto]
+
+TASK [diaries : diaries:0036 | Install CIFS credentials directory] *************
+ok: [pluto]
+
+TASK [diaries : diaries:0036 | Install dedicated CIFS credentials] *************
+ok: [pluto]
+
+TASK [diaries : diaries:0036 | Check host mountpoint] **************************
+ok: [pluto]
+
+TASK [diaries : diaries:0036 | Create host mountpoint if absent] ***************
+skipping: [pluto]
+
+TASK [diaries : diaries:0036 | Mount host NAS share read-only] *****************
+ok: [pluto]
+
+TASK [diaries : diaries:tools | Install Mosquitto tools] ***********************
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Create project directories] *********************
+ok: [pluto] => (item=/home/richard/projects)
+ok: [pluto] => (item=/home/richard/projects/diaries)
+ok: [pluto] => (item=/home/richard/projects/diaries/config)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/client)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/responder)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/config)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/config/conf.d)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/config/conf.d/locations)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/config/files)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/html)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/html/files)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/nginx/log)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/mosquitto)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/postgres)
+ok: [pluto] => (item=/home/richard/projects/diaries/config/web)
+ok: [pluto] => (item=/home/richard/projects/diaries/data)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/postgres)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/mosquitto)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/responder)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/nginx)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/nginx/files)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/diaries)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/files)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/dataset-backups)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/dataset-backups/production)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/dataset-restores)
+ok: [pluto] => (item=/home/richard/projects/diaries/data/dataset-restores/production)
+ok: [pluto] => (item=/home/richard/projects/diaries/scripts)
+
+TASK [diaries : diaries:copy | Synchronize project files excluding managed scripts] ***
+changed: [pluto]
+
+TASK [diaries : diaries:copy | Debug project sync output] **********************
+ok: [pluto] => {
+    "result.stdout_lines": [
+        "<f.stp..... config/mosquitto/aclfile.txt"
+    ]
+}
+
+TASK [diaries : diaries:copy | Synchronize managed scripts] ********************
+changed: [pluto]
+
+TASK [diaries : diaries:copy | Debug managed scripts sync output] **************
+ok: [pluto] => {
+    "scripts_sync_result.stdout_lines": [
+        "*deleting   __pycache__/fixed-dataset-capture.cpython-312.pyc",
+        "*deleting   __pycache__/"
+    ]
+}
+
+TASK [diaries : diaries:copy | Template files] *********************************
+changed: [pluto] => (item={'path': 'compose.yaml', 'mode': '0664'})
+ok: [pluto] => (item={'path': '.env', 'mode': '0600'})
+ok: [pluto] => (item={'path': 'config/client/config.json', 'mode': '0644'})
+ok: [pluto] => (item={'path': 'config/responder/responder.json', 'mode': '0644'})
+ok: [pluto] => (item={'path': 'config/nginx/config/conf.d/site.conf', 'mode': '0644'})
+ok: [pluto] => (item={'path': 'config/nginx/html/files/index.html', 'mode': '0644'})
+ok: [pluto] => (item={'path': 'config/web/diaries-web.json', 'mode': '0644'})
+ok: [pluto] => (item={'path': 'scripts/start.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/stop.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/status.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/logs.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/shell-prompt-database.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/shell-prompt-mosquitto.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/shell-prompt-responder.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/shell-prompt-client.sh', 'mode': '0744'})
+ok: [pluto] => (item={'path': 'scripts/shell-prompt-nginx.sh', 'mode': '0744'})
+
+TASK [diaries : diaries:copy | Validate rendered mutable Files selector in .env] ***
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Validate rendered complete-dataset storage contract in .env] ***
+ok: [pluto] => (item=DIARIES_COMPLETE_BACKUP_REPOSITORY_ROOT=/home/richard/projects/diaries/data/dataset-backups/production)
+ok: [pluto] => (item=DIARIES_COMPLETE_RESTORE_STATE_ROOT=/home/richard/projects/diaries/data/dataset-restores/production)
+ok: [pluto] => (item=DIARIES_COMPLETE_BACKUP_PUBLISHED_ROOT=/home/richard/projects/diaries/data/diaries-backup)
+ok: [pluto] => (item=DIARIES_COMPLETE_BACKUP_STORAGE_MODE=auto)
+
+TASK [diaries : diaries:copy | Validate rendered mutable Files mount in Compose] ***
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Validate rendered shared diary scan mount in Compose] ***
+ok: [pluto]
+
+TASK [diaries : diaries:copy | Validate retained-snapshot broker flow-control policy] ***
+ok: [pluto] => (item=max_inflight_messages[[:space:]]+20[[:space:]]*)
+ok: [pluto] => (item=max_queued_messages[[:space:]]+0[[:space:]]*)
+
+TASK [diaries : diaries:copy | Install the systemd unit] ***********************
+ok: [pluto] => (item={'path': 'etc/systemd/system/diaries-compose.service', 'mode': '0644'})
+
+TASK [diaries : diaries:unattended-backup | Install complete-backup publisher service and timer] ***
+ok: [pluto] => (item=diaries-complete-backup-publish.service)
+ok: [pluto] => (item=diaries-complete-backup-publish.timer)
+
+TASK [diaries : diaries:unattended-backup | Flush unit changes before timer state] ***
+
+RUNNING HANDLER [diaries : diaries:handler | Enable and start diaries compose stack] ***
+[ERROR]: Task failed: Module failed: Unable to restart service diaries-compose.service: Job for diaries-compose.service failed because the control process exited with error code.
+See "systemctl status diaries-compose.service" and "journalctl -xeu diaries-compose.service" for details.
+
+Origin: /home/richard/ansible-controller/playbooks/roles/diaries/handlers/main.yaml:10:3
+
+ 8
+ 9
+10 - name: diaries:handler | Enable and start diaries compose stack
+     ^ column 3
+
+fatal: [pluto]: FAILED! => {
+    "changed": false
+}
+
+MSG:
+
+Unable to restart service diaries-compose.service: Job for diaries-compose.service failed because the control process exited with error code.
+See "systemctl status diaries-compose.service" and "journalctl -xeu diaries-compose.service" for details.
+
+
+PLAY RECAP *********************************************************************
+pluto                      : ok=32   changed=3    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0   
+

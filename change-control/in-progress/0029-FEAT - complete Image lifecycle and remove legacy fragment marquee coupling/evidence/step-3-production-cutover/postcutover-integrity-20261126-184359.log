@@ -1,0 +1,49 @@
+=== 0029 post-cutover integrity UTC 2026-11-26T18:43:59+00:00 ===
+Evidence: change-control/in-progress/0029-FEAT - complete Image lifecycle and remove legacy fragment marquee coupling/evidence/step-3-production-cutover/postcutover-integrity-20261126-184359.log
+=== Installed Diaries application versions, health, systemd ===
+systemd=active
+/diaries-client image=rsmaxwell/diaries-client:0.0.9-build-81 state=running health=healthy
+/diaries-responder image=rsmaxwell/diaries-responder:0.0.9-build-87 state=running health=healthy
+/diaries-web image=rsmaxwell/diaries-web:0.0.9-build-10 state=running health=healthy
+/diaries-mosquitto image=eclipse-mosquitto:2 state=running health=healthy
+/diaries-postgres image=postgres:18-alpine state=running health=healthy
+=== Annual topic ACL grants ===
+10:topic read diaries/years/#
+21:topic readwrite diaries/years/#
+33:topic read diaries/years/#
+=== Read-only production SQL checks ===
+BEGIN
+SET
+=== Hybrid Fragment distribution ===
+ placement | type  | fragments 
+-----------+-------+-----------
+ DATED     | IMAGE |        73
+ DATED     | TEXT  |      2249
+ PREAMBLE  | TEXT  |         9
+(3 rows)
+
+=== Annual PREAMBLE identities ===
+  id  | diary_id | year | placement | type | page_id | sequence 
+------+----------+------+-----------+------+---------+----------
+    1 |        1 | 1828 | PREAMBLE  | TEXT |         |   3.0000
+    2 |        1 | 1828 | PREAMBLE  | TEXT |         |   4.0000
+    3 |        1 | 1828 | PREAMBLE  | TEXT |         |   5.0000
+  387 |        1 | 1829 | PREAMBLE  | TEXT |         |   2.0000
+  806 |        1 | 1830 | PREAMBLE  | TEXT |         |   2.0000
+ 1177 |        3 | 1831 | PREAMBLE  | TEXT |         |   2.0000
+ 1563 |        4 | 1832 | PREAMBLE  | TEXT |         |   3.0000
+ 1564 |        4 | 1832 | PREAMBLE  | TEXT |         |   4.0000
+ 1738 |        4 | 1832 | DATED     | TEXT |    1005 |   1.0000
+ 1926 |        5 | 1834 | PREAMBLE  | TEXT |         |   2.0000
+ 2061 |        5 | 1834 | DATED     | TEXT |    1078 |   1.0000
+(11 rows)
+
+=== Production ownership and schema assertions ===
+DO
+NOTICE:  PASS: 0029 production post-cutover SQL ownership and schema integrity
+COMMIT
+=== Recent application/broker error summaries (review any matches) ===
+--- diaries-responder ---
+--- diaries-web ---
+--- diaries-mosquitto ---
+PASS: structural integrity and collection completed; review error summaries and browser evidence separately
