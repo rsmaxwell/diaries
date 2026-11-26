@@ -3,8 +3,8 @@
 ## Type / status / history
 
 - **Type:** Feature
-- **Status:** In progress
-- **Development milestone:** Step 2 CLOSED (2026-11-26); production migration and final feature closure remain open. See `reports/STEP-2-DEVELOPMENT-ACCEPTANCE-20261126.md`.
+- **Status:** COMPLETE — formal owner approval 2026-11-26
+- **Milestones:** Steps 1, 2 and 3 CLOSED; production migration and final acceptance verified on 2026-11-26. See `reports/STEP-2-DEVELOPMENT-ACCEPTANCE-20261126.md` and `reports/FORMAL-CLOSURE-20261126.md`.
 - **Priority:** High
 - **Opened:** 2026-09-08
 - **Scope revision:** 2026-11-25. Original Image lifecycle/legacy Marquee coupling history remains in Git; existing feature directory name stays unchanged for traceability.
@@ -38,7 +38,7 @@ An IMAGE Fragment has a required catalogue Image reference. The **Catalogue Imag
 
 For each Diary and calendar year, show ordered PREAMBLE content (no date heading), then DATED Fragments under date headings in established page/fragment order, then ordered POSTAMBLE (no date heading), before the following year's preamble. Do not invent January/December dates, silently place annual material under 1 January, or put Page-less Fragments in the Page's fragment list. The editor and public reader must use the same semantics, and support editing annual content without a selected physical Page.
 
-### Initial content disposition — reviewed, not yet migrated
+### Initial content disposition — reviewed and migrated 2026-11-26
 
 Production 2026-11-25 read-only diagnostics identified **11** Page-less Fragments. All have non-empty HTML and none is among the **71** recorded 0028 migration source Fragments. Proposed approved treatment:
 
@@ -53,7 +53,7 @@ Production 2026-11-25 read-only diagnostics identified **11** Page-less Fragment
 | 1738 | `DATED` / `TEXT` | Candidate Page 1005 (`img3018`), 1832-06-27 | Significant commentary, no Marquee; preserve |
 | 2061 | `DATED` / `TEXT` | Candidate Page 1078 (`img2706`), 1834-05-14 | Historical link; preserve |
 
-These are **migration targets**, not verified applied changes. Existing annual Fragments are already Page-less; do **not** assign them artificial Pages. Candidate Pages for the two DATED exceptions still require guarded preflight. The 49 extra development Page-less Fragments predominantly contain legacy image HTML; reconcile them against 0028 acceptance and actual catalogue Image Fragments before any deletion/repair. No actual POSTAMBLE records exist yet; use synthetic tests.
+These were **migration targets**, now verified applied in production in the 2026-11-26 post-cutover SQL reports. Existing annual Fragments are already Page-less; do **not** assign them artificial Pages. The two DATED exceptions were verified on Pages 1005 and 1078. The 49 extra development Page-less Fragments predominantly contain legacy image HTML; reconcile them against 0028 acceptance and actual catalogue Image Fragments before any deletion/repair. No actual POSTAMBLE records exist yet; use synthetic tests.
 
 The development-only correction of 22 NULL-type Fragments associated with matching Marquees to `MARQUEE` was completed and verified on 2026-11-25. Production had **zero** analogous missing-type-with-Marquee rows, so no equivalent correction was needed. This is historical evidence, **not** final TEXT migration or MQTT publication.
 
@@ -74,6 +74,9 @@ The development-only correction of 22 NULL-type Fragments associated with matchi
 
 ## Acceptance criteria
 
+**Final disposition:** Owner accepted the integrated production result and authorised formal closure on 2026-11-26, including an explicit waiver of a separately exhaustive PostgreSQL-to-retained-MQTT inventory/replay comparison. The checkbox list below is retained as the original acceptance specification; see `reports/FORMAL-CLOSURE-20261126.md` for observed evidence, scope of acceptance, and that limitation.
+
+
 - [ ] Complete read-only preflight and reviewed disposition of all Page-less/legacy records, with production/development differences recorded.
 - [ ] Exactly `TEXT` and `IMAGE` active Fragment types; only `PREAMBLE`, `DATED`, `POSTAMBLE` active placements, enforced in database and application.
 - [ ] All `DATED` Fragments have a valid Page and its Diary; all PREAMBLE/POSTAMBLE have a validated explicit Diary/year owner, **no Page, no Marquee**, with appropriate conditional constraints.
@@ -89,3 +92,7 @@ The development-only correction of 22 NULL-type Fragments associated with matchi
 ## Deployment / rollback
 
 Do not run destructive production SQL solely from this documentation. Record existing image/DB backups and restoration capability before schema modifications. Coordinate schema, responder, editor and reader to avoid incompatible intermediate MQTT types or ownership. Prepare a guarded, reproducible SQL migration and rollback with explicit original-row evidence, reconcile retained topics, and test real annual content plus a synthetic POSTAMBLE. See [IMPLEMENTATION-STEPS.md](IMPLEMENTATION-STEPS.md).
+
+## Formal closure (2026-11-26)
+
+**COMPLETE.** Owner approval received 2026-11-26. Production migration, five-container health, six production browser tests, database ownership assertions, and recovery evidence accepted. Independent exhaustive retained MQTT topic reconciliation was **not separately demonstrated and was expressly accepted as a closure limitation**, not marked PASS. See `reports/FORMAL-CLOSURE-20261126.md`.

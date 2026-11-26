@@ -1,8 +1,8 @@
 # 0029-FEAT — Implementation steps (hybrid model approved 2026-11-25)
 
-**Status: IN PROGRESS; Step 2 CLOSED for development on 2026-11-26.** This plan describes the agreed scope; the development implementation is verified, but production deployment is **not** evidenced. See [README.md](README.md) and the Diaries `ARCHITECTURE.md`. Use a few substantial implementation chunks and one consolidated verification cycle.
+**Status: COMPLETE; Steps 1–3 CLOSED following owner approval on 2026-11-26.** This plan retains the original implementation criteria, and its final disposition is recorded in `reports/FORMAL-CLOSURE-20261126.md`. See [README.md](README.md) and the Diaries `ARCHITECTURE.md`. Use a few substantial implementation chunks and one consolidated verification cycle.
 
-## Step 1 — Baseline, actual data and migration disposition (OPEN)
+## Step 1 — Baseline, actual data and migration disposition (CLOSED — accepted evidence)
 
 - [ ] Confirm the Windows parent/client/responder/web revisions, dirty working trees and submodule references before application edits; verify current deployed versions and Playbooks revision before deploying.
 - [ ] Preserve and accept already collected 2026-11-25 database preflights: 22 development type fixes (complete), zero analogous production rows, 60 development vs 11 production Page-less, 71 journalled 0028 sources in production, reviewed Page candidates and content previews. Keep all raw evidence in this 0029 directory; do not rerun accepted checks without a reason.
@@ -29,7 +29,7 @@
 **Closure evidence (development):** 49 reviewed legacy-image conversions and their source archives/receipts; nine annual PREAMBLEs; integrated responder/editor/reader tests; TEXT and IMAGE create/edit/delete browser checks; repaired IMAGE creation `placement=DATED`; restored historical PREAMBLE IDs 1–3 following an accidental annual-editor deletion; successful startup MQTT reconciliation and final read-only database integrity PASS on 2026-11-26 at 11:52. See `reports/STEP-2-DEVELOPMENT-ACCEPTANCE-20261126.md`. This closes the Step 2 development implementation gate only; Step 3 production migration and feature closure are **not** approved or complete.
 
 
-## Step 3 — Consolidated verification and controlled production migration
+## Step 3 — Consolidated verification and controlled production migration (CLOSED — production accepted 2026-11-26)
 
 - [ ] Build/test client, responder and reader; verify normal DATED editing/locks, TEXT and IMAGE, optional Page Marquees, links and catalogue captions.
 - [ ] Verify 1828/1832 introductions above 1 January, other annual highlights, DATED 1738/2061, multi-year Diary presentation, synthetic POSTAMBLE, year-level edit/order and retained MQTT replay without fake date or Page relationships.
@@ -42,3 +42,7 @@
 ## Superseded 2026-11-25 decisions
 
 Earlier in this same feature, mandatory Page ownership was proposed for all Fragments and 1828/1832 annual introductions were tentatively assigned to first-January Pages 685 and 972. **Those proposals are superseded** by approved hybrid ownership. The Page IDs remain useful as historical diagnostic context, **not** migration targets for PREAMBLE/POSTAMBLE. The existing 22-row development-only `MARQUEE` repair remains a completed intermediate fact; final `TEXT` conversion is not yet implemented.
+
+## Formal closure decision — 2026-11-26
+
+The owner explicitly approved closure of 0029-FEAT, including acceptance of the limitation that an independent exhaustive retained-MQTT-vs-PostgreSQL reconciliation was not demonstrated. Production SQL integrity, backup/recovery, release images and six browser checks passed. Steps 1–3 are CLOSED on accepted evidence; the original unchecked task list above is preserved as a historical plan, not a claim that every item had an individual checkbox sign-off. `reports/FORMAL-CLOSURE-20261126.md` documents the acceptance evidence and the limitation.
