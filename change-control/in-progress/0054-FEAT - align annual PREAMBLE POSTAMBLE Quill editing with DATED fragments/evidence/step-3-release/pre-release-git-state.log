@@ -1,0 +1,63 @@
+=== Parent repository ===
+main
+f79c3f0a641103cfa2913dfbb784583650b300c1
+ m diaries-client
+ m diaries-web
+?? change-control/in-progress/
+ cc826a8254b0e6d989755dc880d3023dae9e3416 diaries-client (heads/main)
+ a49c6abd0ce005d58eb516770f6515313e40cdf6 diaries-responder (heads/main)
+ 363ca8f425b811eeedff47486092b1f63c403ab0 diaries-web (heads/main)
+
+[submodule "diaries-responder"]
+	path = diaries-responder
+	url = ../diaries-responder.git
+
+[submodule "diaries-client"]
+	path = diaries-client
+	url = ../diaries-client.git
+
+[submodule "diaries-web"]
+	path = diaries-web
+	url = ../diaries-web.git
+
+=== diaries-client ===
+main
+cc826a8254b0e6d989755dc880d3023dae9e3416
+ M src/app/diary/annual-editor/annual-editor.component.html
+ M src/app/diary/annual-editor/annual-editor.component.ts
+ M src/app/diary/diary.component.html
+ M src/app/fragment/text-panel/text-panel.component.spec.ts
+ M src/app/fragment/text-panel/text-panel.component.ts
+?? src/app/diary/annual-editor/annual-editor.component.scss
+?? src/app/diary/annual-editor/annual-editor.component.spec.ts
+?? src/app/diary/annual-editor/annual-quill-preview.directive.spec.ts
+?? src/app/diary/annual-editor/annual-quill-preview.directive.ts
+?? src/app/fragment/quill-text-toolbar.spec.ts
+?? src/app/fragment/quill-text-toolbar.ts
+ .../annual-editor/annual-editor.component.html     |  21 ++-
+ .../diary/annual-editor/annual-editor.component.ts | 191 +++++++++++++++++----
+ src/app/diary/diary.component.html                 |   2 +-
+ .../text-panel/text-panel.component.spec.ts        |   5 +-
+ .../fragment/text-panel/text-panel.component.ts    |  68 +-------
+ 5 files changed, 189 insertions(+), 98 deletions(-)
+src/app/diary/annual-editor/annual-editor.component.scss
+src/app/diary/annual-editor/annual-editor.component.spec.ts
+src/app/diary/annual-editor/annual-quill-preview.directive.spec.ts
+src/app/diary/annual-editor/annual-quill-preview.directive.ts
+src/app/fragment/quill-text-toolbar.spec.ts
+src/app/fragment/quill-text-toolbar.ts
+
+=== diaries-web ===
+main
+363ca8f425b811eeedff47486092b1f63c403ab0
+ M src/main/java/com/rsmaxwell/diaries/web/rendering/FragmentHtmlSanitizer.java
+ M src/main/resources/static/css/diaries.css
+ M src/test/java/com/rsmaxwell/diaries/web/rendering/RenderingSafetyTest.java
+ .../web/rendering/FragmentHtmlSanitizer.java       | 116 ++++++++++++++++++++-
+ src/main/resources/static/css/diaries.css          |  91 ++++++++++++++++
+ .../diaries/web/rendering/RenderingSafetyTest.java |  82 +++++++++++++++
+ 3 files changed, 285 insertions(+), 4 deletions(-)
+
+=== diaries-responder ===
+main
+a49c6abd0ce005d58eb516770f6515313e40cdf6
