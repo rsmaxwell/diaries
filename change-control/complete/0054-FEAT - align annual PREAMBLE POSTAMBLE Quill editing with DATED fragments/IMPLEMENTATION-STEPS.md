@@ -1,6 +1,6 @@
 # 0054-FEAT — Implementation steps
 
-**Status:** IN PROGRESS — 26 November 2026
+**Status:** CLOSED — 27 November 2026 (owner approved)
 
 ## Step 1 — Confirm current editor behaviour and choose parity contract (CLOSED — accepted by continuing to implementation)
 
@@ -11,7 +11,7 @@
 
 **Gate:** Identified behavioural gap and agreed functional contract; do not claim Quill is absent without verifying.
 
-## Step 2 — Implement annual Quill parity (IMPLEMENTED — validation pending)
+## Step 2 — Implement annual Quill parity (CLOSED)
 
 - Implement the agreed shared Quill configuration and annual editor improvements in one coherent Angular change.
 - Cover both new and existing PREAMBLE/POSTAMBLE TEXT content; preserve annual DTOs, RPCs, retained MQTT topic subscriptions, sequencing and locks.
@@ -19,7 +19,7 @@
 
 **Gate:** Client build and targeted tests pass.
 
-## Step 3 — Consolidated verification and release (OPEN)
+## Step 3 — Consolidated verification and release (CLOSED)
 
 - Exercise create/edit/save/reload of PREAMBLE and POSTAMBLE TEXT, HTML format preservation, locking and Reader rendering; regression-check DATED TEXT and annual IMAGE features.
 - Record build/test/browser results, relevant Git revisions and rollback mechanism inside this feature.
@@ -42,3 +42,16 @@ this analysis container could not restore npm or Gradle dependencies. See
 - Prevent paste/drop insertion of new inline images while preserving already-stored legacy HTML.
 - Include focused toolbar and paste/drop regression tests in Step 3 acceptance.
 - Verify in the development browser before release. No release/closure is authorised by this package.
+
+## Final acceptance and closure — 27 November 2026
+
+Step 2 and Step 3 are CLOSED. Final Angular regression/build checks passed;
+Reader regression/build checks passed; all four production browser smoke tests
+were accepted by the owner. Production Client `0.0.9-build-82`, Reader
+`0.0.9-build-11` and unchanged Responder `0.0.9-build-87` were healthy on
+`pluto`. The owner explicitly approved formal feature closure on 27 November
+2026. See `reports/0054-PRODUCTION-ACCEPTANCE-AND-CLOSURE-REVIEW.md` for
+release/rollback evidence and the deferred cross-diary design consideration.
+
+The implementation note dated 26 November above is historical and does not
+supersede these final acceptance results.

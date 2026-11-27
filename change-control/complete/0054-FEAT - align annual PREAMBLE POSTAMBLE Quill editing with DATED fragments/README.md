@@ -1,6 +1,6 @@
 # 0054-FEAT — Align annual PREAMBLE/POSTAMBLE Quill editing with DATED fragments
 
-**Status:** IN PROGRESS — opened 26 November 2026  
+**Status:** CLOSED — 27 November 2026 (owner approved)  
 **Repository:** Diaries parent repository (`rsmaxwell/diaries`)  
 **Component:** Angular Diaries Client — annual editor  
 **Production impact:** None until implementation, testing and release approval
@@ -60,3 +60,11 @@ Keep this feature's design, scripts, test logs and acceptance reports under this
 - `diaries-client/src/app/diary/annual-editor/annual-editor.component.ts` and `.html`.
 - `diaries-client/src/app/fragment/text-panel/text-panel.component.ts` and `.html`.
 - Closed `0029-FEAT` provides the established annual Fragment ownership and lifecycle contract.
+
+## Formal closure — 27 November 2026
+
+All acceptance gates are CLOSED following explicit owner approval. Production
+Client `0.0.9-build-82`, Reader `0.0.9-build-11` and unchanged Responder
+`0.0.9-build-87` were verified healthy. See the production acceptance report
+for source revisions, smoke testing and rollback instructions. The separate
+cross-diary annual-content design consideration remains deferred.
