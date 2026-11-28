@@ -1,0 +1,21 @@
+0054-FEAT Step 2 — Fragment Save error reporting and draft preservation
+
+Scope: Angular client only. Annual PREAMBLE/EPILOGUE and normal DATED text editors.
+
+Annual editor:
+- Keep an inline role=alert error visible after rejected update; show the RPC error and state that data was not saved.
+- Preserve the current edit buffer, edit mode and lock for retry, and clear the error at the next save or cancel.
+- Existing global alert remains as a secondary notification (auto-closes after 3 seconds).
+
+DATED text editor:
+- Show a persistent inline role=alert with the RPC error.
+- On failure restore the fragment/version and saved baseline, but *not* the edited Quill buffer.
+- Release failed-save lock as previously required, then use existing dirty-state lock reconciliation for retry.
+- Clear the inline error when the user changes selected fragment, retries, or succeeds.
+- Retain existing 401 redirect behaviour.
+
+Tests: updated component unit tests for failed annual edit, failed DATED edit,
+retained draft, saved version, and displayed error.
+
+Verification: source patch prepared; user should run Angular tests/build and browser tests.
+No tests/build have been run in this isolated source-bundle environment.

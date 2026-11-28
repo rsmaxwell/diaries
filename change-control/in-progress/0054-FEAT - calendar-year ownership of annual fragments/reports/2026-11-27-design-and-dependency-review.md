@@ -23,8 +23,12 @@
 
 ## Accepted editor navigation decision — 2026-11-27
 
-The editor remains **physical-Diary-oriented**: select a physical Diary first, then open its Annual editorial content panel/dialog. Within that editor, explicitly select a calendar year and PREAMBLE/POSTAMBLE. The selected Diary is navigation context (and may provide grounded year suggestions), not the owner or filter for annual content.
+The editor remains **physical-Diary-oriented**: select a physical Diary first, then open its Annual editorial content panel/dialog. Within that editor, explicitly select a calendar year and PREAMBLE/EPILOGUE. The selected Diary is navigation context (and may provide grounded year suggestions), not the owner or filter for annual content.
 
 For a completely new Diary with no dates or Pages, allow manual year selection and annual CRUD without creating fictitious dated content. If multiple physical Diaries span a year, both entry points display/edit the identical year-owned collection. Do not infer provenance from whichever Diary opened the UI. Preserve existing editing and locking capabilities; panel versus dialog presentation may be chosen during implementation so long as these behaviours are tested.
 
 This resolves the editor bootstrapping concern without altering 0053's calendar-first **public Reader** scope. These decisions are incorporated in the 0054 README, implementation steps and acceptance criteria; they are design approval, **not evidence of implementation or test completion**.
+
+## Terminology decision (2026-11-27)
+
+Approved name: **EPILOGUE**, replacing the earlier **POSTAMBLE** term in the target design. This is a whole-contract rename, not display-only. The deployed legacy literal `POSTAMBLE` must be recognised and migrated during the coordinated 0054 database/MQTT cutover, without an enduring alias. No runtime change has yet been made.

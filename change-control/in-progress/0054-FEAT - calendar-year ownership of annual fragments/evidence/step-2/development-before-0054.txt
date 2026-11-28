@@ -1,0 +1,21 @@
+BEGIN
+  id  | version | year | month | day | diary_id | page_id | placement | type | sequence | image_id | image_link_url | lock_user_id | lock_username | lock_known_as | lock_timestamp | lock_session_id 
+------+---------+------+-------+-----+----------+---------+-----------+------+----------+----------+----------------+--------------+---------------+---------------+----------------+-----------------
+    1 |      14 | 1828 |     1 |   1 |        1 |         | PREAMBLE  | TEXT |   1.0000 |          |                |              |               |               |                | 
+    2 |      14 | 1828 |     1 |   1 |        1 |         | PREAMBLE  | TEXT |   3.0000 |          |                |              |               |               |                | 
+    3 |      14 | 1828 |     1 |   1 |        1 |         | PREAMBLE  | TEXT |   5.0000 |          |                |              |               |               |                | 
+  387 |       0 | 1829 |     1 |   1 |        1 |         | PREAMBLE  | TEXT |   2.0000 |          |                |              |               |               |                | 
+  806 |       2 | 1830 |     1 |   1 |        1 |         | PREAMBLE  | TEXT |   1.0000 |          |                |              |               |               |                | 
+ 1177 |       0 | 1831 |     1 |   1 |        3 |         | PREAMBLE  | TEXT |   2.0000 |          |                |              |               |               |                | 
+ 1563 |       0 | 1832 |     1 |   1 |        4 |         | PREAMBLE  | TEXT |   3.0000 |          |                |              |               |               |                | 
+ 1564 |       0 | 1832 |     1 |   1 |        4 |         | PREAMBLE  | TEXT |   4.0000 |          |                |              |               |               |                | 
+ 1926 |       0 | 1834 |     1 |   1 |        5 |         | PREAMBLE  | TEXT |   2.0000 |          |                |              |               |               |                | 
+(9 rows)
+
+ placement | count 
+-----------+-------
+ DATED     |  2322
+ PREAMBLE  |     9
+(2 rows)
+
+COMMIT

@@ -318,39 +318,41 @@ The key point is that “already gone” is not a server error.
 ---
 
 
-## Approved hybrid Fragment ownership model — 0029 target (2026-11-25; pending implementation)
+## Hybrid Fragment ownership — 0054 calendar-year model (supersedes 0029 annual ownership)
 
-A Diary represents both the physical book and its digital edition. Physical Pages (including covers if represented as Pages) own **DATED** content. Editorial annual sections can instead own Fragments directly at the **Diary + year** level: they do not need to be associated with a physical Page.
+A Diary represents both the physical book and its digital edition. Physical Pages (including covers if represented as Pages) own **DATED** content. Editorial annual sections own Fragments at the **calendar-year** level: they do not need to be associated with a physical Page.
 
 ```text
 Diary
 ├── Pages (physical book surfaces)
 │   └── DATED Fragments, ordered within diary date: TEXT | IMAGE
 │       └── optional Marquee (0..1) on the scanned Page
-└── Year-level sections (Diary identity + calendar year)
-    ├── PREAMBLE Fragments, ordered: TEXT | IMAGE; no Page/Marquee
-    └── POSTAMBLE Fragments, ordered: TEXT | IMAGE; no Page/Marquee
+Calendar year (independent of physical Diary)
+├── PREAMBLE Fragments, ordered: TEXT | IMAGE; no Page/Marquee/Diary
+└── EPILOGUE Fragments, ordered: TEXT | IMAGE; no Page/Marquee/Diary
 ```
 
-Every Fragment has exactly one **placement** (`PREAMBLE`, `DATED`, `POSTAMBLE`) and one **type** (`TEXT`, `IMAGE`). `TEXT` covers transcription and editorial content; `IMAGE` references a reusable Catalogue Image. The old type `MARQUEE` is retired: a Marquee is a *separate, optional scanned-Page position*, never a content type.
+Every Fragment has exactly one **placement** (`PREAMBLE`, `DATED`, `EPILOGUE`) and one **type** (`TEXT`, `IMAGE`). `TEXT` covers transcription and editorial content; `IMAGE` references a reusable Catalogue Image. The old type `MARQUEE` is retired: a Marquee is a *separate, optional scanned-Page position*, never a content type.
 
 **Exclusive ownership by placement:**
 
 | Placement | Required owner | Page | Marquee | Rendering |
 |---|---|---|---|---|
 | `DATED` | An existing Page (which identifies its Diary) | Required | Optional 0..1 | Under its diary-date heading |
-| `PREAMBLE` | Explicit Diary identity **and** calendar year | Must be absent | Must be absent | Before that year's first dated heading |
-| `POSTAMBLE` | Explicit Diary identity **and** calendar year | Must be absent | Must be absent | After that year's final dated entry |
+| `PREAMBLE` | Calendar year only | Must be absent | Must be absent | Before that year's first dated heading |
+| `EPILOGUE` | Calendar year only | Must be absent | Must be absent | After that year's final dated entry |
 
-The existing `Fragment.year` establishes the calendar year, but **not** which Diary owns a Page-less Fragment: one Diary can cover multiple years and future data may overlap years between books. Implement an explicit Diary foreign key or equivalent validated persistent association for PREAMBLE/POSTAMBLE; do not infer Diary solely from year or date. The 0029 implementation must choose/document the precise column/DTO shape after auditing the existing database, retaining the exclusive association: DATED ownership is derived from `page.diary_id`, annual ownership from explicit Diary reference. Validate that DATED Fragment dates agree with the Page's Diary chronology where applicable.
+`Fragment.year` identifies the annual owner irrespective of the physical Diary from which the editor was opened. `fragment.diary_id`, `page_id`, `month` and `day` are NULL for PREAMBLE/EPILOGUE; DATED ownership remains derived from its Page and physical Diary. The 0054 migration preserves original associations in feature evidence. The SQL migration and coordinated deployment are prerequisites for applying this contract to a running system.
 
 All placements support TEXT and IMAGE. An IMAGE Fragment references a Catalogue Image; the catalogue owns independently optional **caption** and **alternative text**, while the occurrence owns its independently optional HTTP(S) **image-click link**. Caption and link may be present simultaneously. Page-specific commentary is a TEXT Fragment, not a per-occurrence caption. Marquees are permitted only for DATED Fragments and derive their Page via the Fragment; the redundant persisted `marquee.page_id` is to be removed. Preserve derived `Fragment.marqueeId` in retained contracts where needed.
 
-The reading order for each **Diary and year** is PREAMBLE (by stable sequence/ID), then DATED (date order, then established Page/Fragment ordering), then POSTAMBLE (stable sequence/ID), before the next year. PREAMBLE/POSTAMBLE have no fabricated dates or date headings, and are not inserted into a Page's fragment list. Both editor and public reader must present them consistently; year-level editing must not require selecting an arbitrary Page.
+The editorial reading order for each **calendar year** is PREAMBLE (by stable sequence/ID), then DATED (date order, then established Page/Fragment ordering), then EPILOGUE (stable sequence/ID), before the next year. PREAMBLE/EPILOGUE have no fabricated dates or date headings, and are not inserted into a Page's fragment list. Both editor and public reader must present them consistently; year-level editing must not require selecting an arbitrary Page.
 
-**Approved existing-content classification:** production Fragments 1/2/3 → PREAMBLE of 1828, 387 → 1829, 806 → 1830, 1177 → 1831, 1563/1564 → 1832, 1926 → 1834, all belonging to the *appropriate verified Diary*. These are the nine known annual editorial Fragments. Preserve their content, order, useful links and historical HTML evidence; simplify decorative HTML for 1/2/3 only after review. Fragments 1738 (1832-06-27) and 2061 (1834-05-14) are **DATED** editorial TEXT, with candidate Pages 1005 (`img3018`) and 1078 (`img2706`) respectively, subject to guarded verification. The 49 additional development-only Page-less Fragments require separate 0028 provenance reconciliation; do not blindly migrate, delete or duplicate them. No current POSTAMBLE records are known; test with synthetic data.
+**Approved existing-content classification:** production Fragments 1/2/3 → PREAMBLE of 1828, 387 → 1829, 806 → 1830, 1177 → 1831, 1563/1564 → 1832, 1926 → 1834, previously associated with the verified physical Diaries, before migration to year-only ownership. These are the nine known annual editorial Fragments. Preserve their content, order, useful links and historical HTML evidence; simplify decorative HTML for 1/2/3 only after review. Fragments 1738 (1832-06-27) and 2061 (1834-05-14) are **DATED** editorial TEXT, with candidate Pages 1005 (`img3018`) and 1078 (`img2706`) respectively, subject to guarded verification. The 49 additional development-only Page-less Fragments require separate 0028 provenance reconciliation; do not blindly migrate, delete or duplicate them. No current EPILOGUE records are known; test with synthetic data.
 
 **Migration status:** this is the approved *target*, not the deployed contract. PostgreSQL and existing clients still have nullable Page/type, `MARQUEE` values and the redundant Marquee Page mapping. The new annual Diary owner, placement, JSON/MQTT contracts, schema constraints and editor/reader behaviour are pending coordinated implementation. No SQL mutation or deployment is authorised by this documentation.
+
+**Change-control:** 0054 changes the earlier 0029 Diary-owned annual design. The name `POSTAMBLE` is a legacy database value converted to `EPILOGUE` by 0054; it is not an accepted ongoing placement. Calendar-first public Reader navigation is delivered separately by 0053.
 
 ## ImageFragment authoring architecture
 
@@ -430,7 +432,7 @@ columns or records are deleted during this cleanup.
 
 ## Annual reading flow — hybrid Diary-year ownership (0029 approved target)
 
-Annual editorial Fragments are **not** Page Fragments. See the authoritative [hybrid Fragment ownership model](#approved-hybrid-fragment-ownership-model--0029-target-2026-11-25-pending-implementation) above. The three placements determine both ownership and presentation: `DATED` belongs to a Page; `PREAMBLE` and `POSTAMBLE` belong to a particular Diary and calendar year and have no Page or Marquee. All types remain TEXT or IMAGE; image captions live in the catalogue. The feature's migration and acceptance details are recorded under `change-control/in-progress/0029-FEAT - complete Image lifecycle and remove legacy fragment marquee coupling/`.
+Annual editorial Fragments are **not** Page Fragments. See the authoritative [hybrid Fragment ownership model](#approved-hybrid-fragment-ownership-model--0029-target-2026-11-25-pending-implementation) above. The three placements determine both ownership and presentation: `DATED` belongs to a Page; `PREAMBLE` and `EPILOGUE` belong to a calendar year independently of physical Diaries and have no Page or Marquee. All types remain TEXT or IMAGE; image captions live in the catalogue. The feature's migration and acceptance details are recorded under `change-control/in-progress/0029-FEAT - complete Image lifecycle and remove legacy fragment marquee coupling/`.
 
 ---
 
